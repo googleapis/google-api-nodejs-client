@@ -19,14 +19,14 @@
  * rather than this file.
  */
 
-export = {
-   utils: require('google-auth-library/lib/utils.js'),
+const googleauth = {
    authClient: require('google-auth-library/lib/auth/authclient.js'),
    computeclient: require('google-auth-library/lib/auth/computeclient.js'),
    jwtclient: require('google-auth-library/lib/auth/jwtclient.js'),
    loginticket: require('google-auth-library/lib/auth/loginticket.js'),
    oauth2client: require('google-auth-library/lib/auth/oauth2client.js'),
    transporters: require('google-auth-library/lib/transporters.js'),
-   pemverifier: require('google-auth-library/lib/pemverifier.js'),
+   pemverifier: require('google-auth-library/lib/pemverifier.js')
 }
+export default googleauth;
 

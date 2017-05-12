@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Tag Manager API
@@ -62,7 +61,7 @@ function Tagmanager(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/tagmanager/v2/{path}',
           method: 'GET'
         }, options),
@@ -97,7 +96,7 @@ function Tagmanager(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/tagmanager/v2/accounts',
           method: 'GET'
         }, options),
@@ -134,7 +133,7 @@ function Tagmanager(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/tagmanager/v2/{path}',
           method: 'PUT'
         }, options),
@@ -172,7 +171,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{parent}/containers',
             method: 'POST'
           }, options),
@@ -207,7 +206,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'DELETE'
           }, options),
@@ -242,7 +241,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'GET'
           }, options),
@@ -278,7 +277,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{parent}/containers',
             method: 'GET'
           }, options),
@@ -315,7 +314,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'PUT'
           }, options),
@@ -353,7 +352,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/environments',
               method: 'POST'
             }, options),
@@ -388,7 +387,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'DELETE'
             }, options),
@@ -423,7 +422,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'GET'
             }, options),
@@ -459,7 +458,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/environments',
               method: 'GET'
             }, options),
@@ -496,7 +495,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'PATCH'
             }, options),
@@ -532,7 +531,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:reauthorize',
               method: 'POST'
             }, options),
@@ -569,7 +568,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'PUT'
             }, options),
@@ -607,7 +606,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/version_headers:latest',
               method: 'GET'
             }, options),
@@ -644,7 +643,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/version_headers',
               method: 'GET'
             }, options),
@@ -682,7 +681,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'DELETE'
             }, options),
@@ -718,7 +717,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'GET'
             }, options),
@@ -753,7 +752,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/versions:live',
               method: 'GET'
             }, options),
@@ -789,7 +788,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:publish',
               method: 'POST'
             }, options),
@@ -824,7 +823,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:set_latest',
               method: 'POST'
             }, options),
@@ -859,7 +858,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:undelete',
               method: 'POST'
             }, options),
@@ -896,7 +895,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'PUT'
             }, options),
@@ -935,7 +934,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/workspaces',
               method: 'POST'
             }, options),
@@ -971,7 +970,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:create_version',
               method: 'POST'
             }, options),
@@ -1006,7 +1005,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'DELETE'
             }, options),
@@ -1041,7 +1040,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'GET'
             }, options),
@@ -1076,7 +1075,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'GET'
             }, options),
@@ -1111,7 +1110,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}/status',
               method: 'GET'
             }, options),
@@ -1147,7 +1146,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{parent}/workspaces',
               method: 'GET'
             }, options),
@@ -1182,7 +1181,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:quick_preview',
               method: 'POST'
             }, options),
@@ -1219,7 +1218,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:resolve_conflict',
               method: 'POST'
             }, options),
@@ -1254,7 +1253,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}:sync',
               method: 'POST'
             }, options),
@@ -1291,7 +1290,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'PUT'
             }, options),
@@ -1327,7 +1326,7 @@ function Tagmanager(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/tagmanager/v2/{path}',
               method: 'PUT'
             }, options),
@@ -1365,7 +1364,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/built_in_variables',
                 method: 'POST'
               }, options),
@@ -1401,7 +1400,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -1437,7 +1436,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/built_in_variables',
                 method: 'GET'
               }, options),
@@ -1473,7 +1472,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}/built_in_variables:revert',
                 method: 'POST'
               }, options),
@@ -1512,7 +1511,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/folders',
                 method: 'POST'
               }, options),
@@ -1547,7 +1546,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -1583,7 +1582,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:entities',
                 method: 'POST'
               }, options),
@@ -1618,7 +1617,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'GET'
               }, options),
@@ -1654,7 +1653,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/folders',
                 method: 'GET'
               }, options),
@@ -1693,7 +1692,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:move_entities_to_folder',
                 method: 'POST'
               }, options),
@@ -1729,7 +1728,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:revert',
                 method: 'POST'
               }, options),
@@ -1766,7 +1765,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'PUT'
               }, options),
@@ -1805,7 +1804,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/proposal',
                 method: 'POST'
               }, options),
@@ -1840,7 +1839,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -1879,7 +1878,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/tags',
                 method: 'POST'
               }, options),
@@ -1914,7 +1913,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -1949,7 +1948,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'GET'
               }, options),
@@ -1985,7 +1984,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/tags',
                 method: 'GET'
               }, options),
@@ -2021,7 +2020,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:revert',
                 method: 'POST'
               }, options),
@@ -2058,7 +2057,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'PUT'
               }, options),
@@ -2097,7 +2096,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/triggers',
                 method: 'POST'
               }, options),
@@ -2132,7 +2131,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -2167,7 +2166,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'GET'
               }, options),
@@ -2203,7 +2202,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/triggers',
                 method: 'GET'
               }, options),
@@ -2239,7 +2238,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:revert',
                 method: 'POST'
               }, options),
@@ -2276,7 +2275,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'PUT'
               }, options),
@@ -2315,7 +2314,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/variables',
                 method: 'POST'
               }, options),
@@ -2350,7 +2349,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'DELETE'
               }, options),
@@ -2385,7 +2384,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'GET'
               }, options),
@@ -2421,7 +2420,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{parent}/variables',
                 method: 'GET'
               }, options),
@@ -2457,7 +2456,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}:revert',
                 method: 'POST'
               }, options),
@@ -2494,7 +2493,7 @@ function Tagmanager(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/tagmanager/v2/{path}',
                 method: 'PUT'
               }, options),
@@ -2535,7 +2534,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{parent}/user_permissions',
             method: 'POST'
           }, options),
@@ -2570,7 +2569,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'DELETE'
           }, options),
@@ -2605,7 +2604,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'GET'
           }, options),
@@ -2641,7 +2640,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{parent}/user_permissions',
             method: 'GET'
           }, options),
@@ -2677,7 +2676,7 @@ function Tagmanager(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/tagmanager/v2/{path}',
             method: 'PUT'
           }, options),

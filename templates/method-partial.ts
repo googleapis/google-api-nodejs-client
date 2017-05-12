@@ -44,7 +44,7 @@
   options || (options = {});
 
   const parameters = {
-    options: utils.extend({
+    options: Object.assign({
       url: {{ (rootUrl + servicePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'
     }, options),

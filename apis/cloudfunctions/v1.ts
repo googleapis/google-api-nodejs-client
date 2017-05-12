@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud Functions API

@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Enterprise License Manager API
@@ -64,7 +63,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'DELETE'
         }, options),
@@ -101,7 +100,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'GET'
         }, options),
@@ -138,7 +137,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user',
           method: 'POST'
         }, options),
@@ -176,7 +175,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/users',
           method: 'GET'
         }, options),
@@ -215,7 +214,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/users',
           method: 'GET'
         }, options),
@@ -253,7 +252,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'PATCH'
         }, options),
@@ -291,7 +290,7 @@ function Licensing(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
           method: 'PUT'
         }, options),

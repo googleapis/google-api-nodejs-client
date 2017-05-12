@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * AdSense Management API
@@ -63,7 +62,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}',
           method: 'GET'
         }, options),
@@ -99,7 +98,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/accounts',
           method: 'GET'
         }, options),
@@ -138,7 +137,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients',
             method: 'GET'
           }, options),
@@ -178,7 +177,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'GET'
           }, options),
@@ -215,7 +214,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
             method: 'GET'
           }, options),
@@ -254,7 +253,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'GET'
           }, options),
@@ -295,7 +294,7 @@ function Adsense(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
               method: 'GET'
             }, options),
@@ -335,7 +334,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts/{alertId}',
             method: 'DELETE'
           }, options),
@@ -371,7 +370,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts',
             method: 'GET'
           }, options),
@@ -411,7 +410,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
             method: 'GET'
           }, options),
@@ -449,7 +448,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels',
             method: 'GET'
           }, options),
@@ -491,7 +490,7 @@ function Adsense(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
               method: 'GET'
             }, options),
@@ -530,7 +529,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/payments',
             method: 'GET'
           }, options),
@@ -579,7 +578,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports',
             method: 'GET'
           }, options),
@@ -620,7 +619,7 @@ function Adsense(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/{savedReportId}',
               method: 'GET'
             }, options),
@@ -657,7 +656,7 @@ function Adsense(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/saved',
               method: 'GET'
             }, options),
@@ -697,7 +696,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles/{savedAdStyleId}',
             method: 'GET'
           }, options),
@@ -734,7 +733,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles',
             method: 'GET'
           }, options),
@@ -775,7 +774,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/urlchannels',
             method: 'GET'
           }, options),
@@ -815,7 +814,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients',
           method: 'GET'
         }, options),
@@ -855,7 +854,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}',
           method: 'GET'
         }, options),
@@ -891,7 +890,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/adcode',
           method: 'GET'
         }, options),
@@ -929,7 +928,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits',
           method: 'GET'
         }, options),
@@ -969,7 +968,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
             method: 'GET'
           }, options),
@@ -1008,7 +1007,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/alerts/{alertId}',
           method: 'DELETE'
         }, options),
@@ -1043,7 +1042,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/alerts',
           method: 'GET'
         }, options),
@@ -1083,7 +1082,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         }, options),
@@ -1120,7 +1119,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels',
           method: 'GET'
         }, options),
@@ -1161,7 +1160,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
             method: 'GET'
           }, options),
@@ -1201,7 +1200,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/metadata/dimensions',
             method: 'GET'
           }, options),
@@ -1238,7 +1237,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/metadata/metrics',
             method: 'GET'
           }, options),
@@ -1276,7 +1275,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/payments',
           method: 'GET'
         }, options),
@@ -1326,7 +1325,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/reports',
           method: 'GET'
         }, options),
@@ -1366,7 +1365,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/reports/{savedReportId}',
             method: 'GET'
           }, options),
@@ -1402,7 +1401,7 @@ function Adsense(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adsense/v1.4/reports/saved',
             method: 'GET'
           }, options),
@@ -1441,7 +1440,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles/{savedAdStyleId}',
           method: 'GET'
         }, options),
@@ -1477,7 +1476,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles',
           method: 'GET'
         }, options),
@@ -1518,7 +1517,7 @@ function Adsense(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/urlchannels',
           method: 'GET'
         }, options),

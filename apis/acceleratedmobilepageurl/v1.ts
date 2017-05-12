@@ -16,13 +16,12 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Accelerated Mobile Pages (AMP) URL API
  *
- * This API contains a single method, batchGet. Call this method to retrieve the AMP URL (and equivalent AMP Cache URL) for given public URL(s).
+ * Retrieves the list of AMP URL (and equivalent AMP Cache URL) for a given list of public URL(s).
 
  *
  * @example
@@ -63,7 +62,7 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet',
           method: 'POST'
         }, options),
@@ -93,18 +92,18 @@ only once.
  * @typedef AmpUrl
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
-* @property {string} originalUrl The original non-AMP URL.
-* @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
 * @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
 the cached document in the Google AMP Cache.
+* @property {string} originalUrl The original non-AMP URL.
+* @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
 */
 /**
  * @typedef AmpUrlError
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
- * @property {string} errorMessage An optional descriptive error message.
  * @property {string} errorCode The error code of an API call.
  * @property {string} originalUrl The original non-AMP URL.
+ * @property {string} errorMessage An optional descriptive error message.
  */
 /**
  * @typedef BatchGetAmpUrlsRequest

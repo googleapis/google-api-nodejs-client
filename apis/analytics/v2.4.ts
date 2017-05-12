@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Analytics API
@@ -71,7 +70,7 @@ function Analytics(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/analytics/v2.4/data',
           method: 'GET'
         }, options),
@@ -113,7 +112,7 @@ function Analytics(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts',
             method: 'GET'
           }, options),
@@ -155,7 +154,7 @@ function Analytics(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
           }, options),
@@ -196,7 +195,7 @@ function Analytics(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
           }, options),
@@ -235,7 +234,7 @@ function Analytics(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/analytics/v2.4/management/segments',
             method: 'GET'
           }, options),
@@ -275,7 +274,7 @@ function Analytics(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties',
             method: 'GET'
           }, options),

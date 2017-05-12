@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Cloud SQL Administration API
@@ -64,7 +63,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
           method: 'DELETE'
         }, options),
@@ -101,7 +100,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
           method: 'GET'
         }, options),
@@ -138,7 +137,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
           method: 'POST'
         }, options),
@@ -176,7 +175,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
           method: 'GET'
         }, options),
@@ -217,7 +216,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'DELETE'
         }, options),
@@ -254,7 +253,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'GET'
         }, options),
@@ -291,7 +290,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
           method: 'POST'
         }, options),
@@ -327,7 +326,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
           method: 'GET'
         }, options),
@@ -365,7 +364,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'PATCH'
         }, options),
@@ -403,7 +402,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'PUT'
         }, options),
@@ -442,7 +441,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/flags',
           method: 'GET'
         }, options),
@@ -483,7 +482,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/clone',
           method: 'POST'
         }, options),
@@ -519,7 +518,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'DELETE'
         }, options),
@@ -556,7 +555,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/export',
           method: 'POST'
         }, options),
@@ -593,7 +592,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/failover',
           method: 'POST'
         }, options),
@@ -629,7 +628,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'GET'
         }, options),
@@ -666,7 +665,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/import',
           method: 'POST'
         }, options),
@@ -702,7 +701,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
           method: 'POST'
         }, options),
@@ -740,7 +739,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
           method: 'GET'
         }, options),
@@ -777,7 +776,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'PATCH'
         }, options),
@@ -813,7 +812,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica',
           method: 'POST'
         }, options),
@@ -849,7 +848,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig',
           method: 'POST'
         }, options),
@@ -885,7 +884,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restart',
           method: 'POST'
         }, options),
@@ -922,7 +921,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup',
           method: 'POST'
         }, options),
@@ -958,7 +957,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/startReplica',
           method: 'POST'
         }, options),
@@ -994,7 +993,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica',
           method: 'POST'
         }, options),
@@ -1031,7 +1030,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog',
           method: 'POST'
         }, options),
@@ -1068,7 +1067,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'PUT'
         }, options),
@@ -1108,7 +1107,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations/{operation}',
           method: 'GET'
         }, options),
@@ -1146,7 +1145,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations',
           method: 'GET'
         }, options),
@@ -1187,7 +1186,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral',
           method: 'POST'
         }, options),
@@ -1224,7 +1223,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'DELETE'
         }, options),
@@ -1261,7 +1260,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'GET'
         }, options),
@@ -1298,7 +1297,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
           method: 'POST'
         }, options),
@@ -1334,7 +1333,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
           method: 'GET'
         }, options),
@@ -1373,7 +1372,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/tiers',
           method: 'GET'
         }, options),
@@ -1415,7 +1414,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'DELETE'
         }, options),
@@ -1452,7 +1451,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'POST'
         }, options),
@@ -1488,7 +1487,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'GET'
         }, options),
@@ -1527,7 +1526,7 @@ function Sqladmin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'PUT'
         }, options),

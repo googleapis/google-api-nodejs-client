@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Admin Reports API
@@ -71,7 +70,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
           method: 'GET'
         }, options),
@@ -116,7 +115,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
           method: 'POST'
         }, options),
@@ -155,7 +154,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/reports/v1/admin/reports_v1/channels/stop',
           method: 'POST'
         }, options),
@@ -197,7 +196,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
           method: 'GET'
         }, options),
@@ -242,7 +241,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
           method: 'GET'
         }, options),

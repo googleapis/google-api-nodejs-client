@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Play Developer API
@@ -64,7 +63,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel',
           method: 'POST'
         }, options),
@@ -101,7 +100,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}',
           method: 'GET'
         }, options),

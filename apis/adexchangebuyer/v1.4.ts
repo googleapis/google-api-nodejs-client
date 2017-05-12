@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Ad Exchange Buyer API
@@ -62,7 +61,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
           method: 'GET'
         }, options),
@@ -96,7 +95,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts',
           method: 'GET'
         }, options),
@@ -133,7 +132,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
           method: 'PATCH'
         }, options),
@@ -170,7 +169,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/accounts/{id}',
           method: 'PUT'
         }, options),
@@ -209,7 +208,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}',
           method: 'GET'
         }, options),
@@ -243,7 +242,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo',
           method: 'GET'
         }, options),
@@ -283,7 +282,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
           method: 'GET'
         }, options),
@@ -320,7 +319,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
           method: 'PATCH'
         }, options),
@@ -357,7 +356,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/billinginfo/{accountId}/{billingId}',
           method: 'PUT'
         }, options),
@@ -398,7 +397,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/addDeal/{dealId}',
           method: 'POST'
         }, options),
@@ -434,7 +433,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
         }, options),
@@ -469,7 +468,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives',
           method: 'POST'
         }, options),
@@ -509,7 +508,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives',
           method: 'GET'
         }, options),
@@ -545,7 +544,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/listDeals',
           method: 'GET'
         }, options),
@@ -582,7 +581,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/removeDeal/{dealId}',
           method: 'POST'
         }, options),
@@ -622,7 +621,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/delete',
           method: 'POST'
         }, options),
@@ -658,7 +657,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/insert',
           method: 'POST'
         }, options),
@@ -694,7 +693,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals',
           method: 'GET'
         }, options),
@@ -730,7 +729,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/deals/update',
           method: 'POST'
         }, options),
@@ -770,7 +769,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/notes/insert',
           method: 'POST'
         }, options),
@@ -806,7 +805,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/notes',
           method: 'GET'
         }, options),
@@ -846,7 +845,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/privateauction/{privateAuctionId}/updateproposal',
           method: 'POST'
         }, options),
@@ -889,7 +888,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/performancereport',
           method: 'GET'
         }, options),
@@ -929,7 +928,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
           method: 'DELETE'
         }, options),
@@ -965,7 +964,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
           method: 'GET'
         }, options),
@@ -1001,7 +1000,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}',
           method: 'POST'
         }, options),
@@ -1036,7 +1035,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}',
           method: 'GET'
         }, options),
@@ -1073,7 +1072,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
           method: 'PATCH'
         }, options),
@@ -1110,7 +1109,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/pretargetingconfigs/{accountId}/{configId}',
           method: 'PUT'
         }, options),
@@ -1149,7 +1148,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/products/{productId}',
           method: 'GET'
         }, options),
@@ -1184,7 +1183,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/products/search',
           method: 'GET'
         }, options),
@@ -1223,7 +1222,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}',
           method: 'GET'
         }, options),
@@ -1258,7 +1257,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/insert',
           method: 'POST'
         }, options),
@@ -1296,7 +1295,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/{revisionNumber}/{updateAction}',
           method: 'PATCH'
         }, options),
@@ -1331,7 +1330,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/search',
           method: 'GET'
         }, options),
@@ -1366,7 +1365,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/setupcomplete',
           method: 'POST'
         }, options),
@@ -1404,7 +1403,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/proposals/{proposalId}/{revisionNumber}/{updateAction}',
           method: 'PUT'
         }, options),
@@ -1443,7 +1442,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.4/publisher/{accountId}/profiles',
           method: 'GET'
         }, options),
@@ -1586,7 +1585,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer[]} productCategories Detected product categories, if any. Each category is represented by an integer as defined in  ad-product-categories.txt. Read-only. This field should not be set in requests.
  * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet. Each category is represented by an integer as defined in the  ad-restricted-categories.txt.
  * @property {integer[]} sensitiveCategories Detected sensitive categories, if any. Each category is represented by an integer as defined in  ad-sensitive-categories.txt. Read-only. This field should not be set in requests.
- * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests.
+ * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests. See the examples in the Creatives guide for more details.
  * @property {integer[]} vendorType List of vendor types for the ads that may be shown from this snippet. Each vendor type is represented by an integer as defined in vendors.txt.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
  * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
@@ -1653,7 +1652,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @typedef DealTermsGuaranteedFixedPriceTermsBillingInfo
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
- * @property {string} currencyConversionTimeMs The timestamp (in ms since epoch) when the original reservation price for the deal was first converted to DFP currency. This is used to convert the contracted price into advertiser&#39;s currency without discrepancy.
+ * @property {string} currencyConversionTimeMs The timestamp (in ms since epoch) when the original reservation price for the deal was first converted to DFP currency. This is used to convert the contracted price into buyer&#39;s currency without discrepancy.
  * @property {string} dfpLineItemId The DFP line item id associated with this deal. For features like CPD, buyers can retrieve the DFP line item for billing reconciliation.
  * @property {string} originalContractedQuantity The original contracted quantity (# impressions) for this deal. To ensure delivery, sometimes the publisher will book the deal with a impression buffer, such that guaranteed_looks is greater than the contracted quantity. However clients are billed using the original contracted quantity.
  * @property {adexchangebuyer(v1.4).Price} price The original reservation price for the deal, if the currency code is different from the one used in negotiation.
@@ -1786,6 +1785,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} flightStartTimeMs Proposed flight start time of the deal (ms since epoch) This will generally be stored in a granularity of a second. (updatable)
  * @property {string} inventoryDescription Description for the deal terms. (buyer-readonly)
  * @property {boolean} isRfpTemplate Indicates whether the current deal is a RFP template. RFP template is created by buyer and not based on seller created products.
+ * @property {boolean} isSetupComplete True, if the buyside inventory setup is complete for this deal. (readonly, except via OrderSetupCompleted action)
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#marketplaceDeal&quot;.
  * @property {string} lastUpdateTimeMs The time (ms since epoch) when the deal was last updated. (readonly)
  * @property {string} name The name of the deal. (updatable)
@@ -1914,6 +1914,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {string} auctionTier Optional access type for this buyer.
+ * @property {adexchangebuyer(v1.4).Buyer} billedBuyer Reference to the buyer that will get billed.
  * @property {adexchangebuyer(v1.4).Buyer} buyer The buyer who will pay this price. If unset, all buyers can pay this price (if the advertisers match, and there&#39;s no more specific rule matching the buyer).
  * @property {adexchangebuyer(v1.4).Price} price The specified price
  */
@@ -1928,8 +1929,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @typedef Product
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
+ * @property {adexchangebuyer(v1.4).Buyer} billedBuyer The billed buyer corresponding to the buyer that created the offer. (readonly, except on create)
+ * @property {adexchangebuyer(v1.4).Buyer} buyer The buyer that created the offer if this is a buyer initiated offer (readonly, except on create)
  * @property {string} creationTimeMs Creation time in ms. since epoch (readonly)
  * @property {adexchangebuyer(v1.4).ContactInformation[]} creatorContacts Optional contact information for the creator of this product. (buyer-readonly)
+ * @property {string} creatorRole The role that created the offer. Set to BUYER for buyer initiated offers.
  * @property {adexchangebuyer(v1.4).DeliveryControl} deliveryControl The set of fields around delivery control that are interesting for a buyer to see but are non-negotiable. These are set by the publisher. This message is assigned an id of 100 since some day we would want to model this as a protobuf extension.
  * @property {string} flightEndTimeMs The proposed end time for the deal (ms since epoch) (buyer-readonly)
  * @property {string} flightStartTimeMs Inventory availability dates. (times are in ms since epoch) The granularity is generally in the order of seconds. (buyer-readonly)
@@ -1966,7 +1970,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {boolean} hasSellerSignedOff When an proposal is in an accepted state, indicates whether the buyer has signed off Once both sides have signed off on a deal, the proposal can be finalized by the seller. (buyer-readonly)
  * @property {string} inventorySource What exchange will provide this inventory (readonly, except on create).
  * @property {boolean} isRenegotiating True if the proposal is being renegotiated (readonly).
- * @property {boolean} isSetupComplete True, if the buyside inventory setup is complete for this proposal. (readonly, except via OrderSetupCompleted action)
+ * @property {boolean} isSetupComplete True, if the buyside inventory setup is complete for this proposal. (readonly, except via OrderSetupCompleted action) Deprecated in favor of deal level setup complete flag.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#proposal&quot;.
  * @property {adexchangebuyer(v1.4).MarketplaceLabel[]} labels List of labels associated with the proposal. (readonly)
  * @property {string} lastUpdaterOrCommentorRole The role of the last user that either updated the proposal or left a comment. (readonly)
@@ -2047,6 +2051,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @type object
  * @property {adexchangebuyer(v1.4).TargetingValueSize[]} companionSizes For video size type, the list of companion sizes.
  * @property {string} creativeSizeType The Creative size type.
+ * @property {string} nativeTemplate The native template for native ad.
  * @property {adexchangebuyer(v1.4).TargetingValueSize} size For regular or video creative size type, specifies the size of the creative.
  * @property {string} skippableAdType The skippable ad type for video size.
  */

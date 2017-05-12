@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Play Developer API
@@ -63,7 +62,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit',
           method: 'POST'
         }, options),
@@ -99,7 +98,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'DELETE'
         }, options),
@@ -135,7 +134,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'GET'
         }, options),
@@ -171,7 +170,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits',
           method: 'POST'
         }, options),
@@ -207,7 +206,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate',
           method: 'POST'
         }, options),
@@ -247,7 +246,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'DELETE'
           }, options),
@@ -284,7 +283,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'DELETE'
           }, options),
@@ -322,7 +321,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'GET'
           }, options),
@@ -359,7 +358,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'GET'
           }, options),
@@ -398,7 +397,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PATCH'
           }, options),
@@ -437,7 +436,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PUT'
           }, options),
@@ -477,7 +476,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted',
             method: 'POST'
           }, options),
@@ -513,7 +512,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'GET'
           }, options),
@@ -552,7 +551,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'POST'
           }, options),
@@ -597,7 +596,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}',
             method: 'POST'
           }, options),
@@ -637,7 +636,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'GET'
           }, options),
@@ -674,7 +673,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PATCH'
           }, options),
@@ -711,7 +710,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PUT'
           }, options),
@@ -752,7 +751,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'GET'
           }, options),
@@ -791,7 +790,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PATCH'
           }, options),
@@ -830,7 +829,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PUT'
           }, options),
@@ -871,7 +870,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'POST'
           }, options),
@@ -914,7 +913,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}',
             method: 'DELETE'
           }, options),
@@ -952,7 +951,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'DELETE'
           }, options),
@@ -990,7 +989,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'GET'
           }, options),
@@ -1031,7 +1030,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'POST'
           }, options),
@@ -1072,7 +1071,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'DELETE'
           }, options),
@@ -1108,7 +1107,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'DELETE'
           }, options),
@@ -1145,7 +1144,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'GET'
           }, options),
@@ -1181,7 +1180,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'GET'
           }, options),
@@ -1219,7 +1218,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PATCH'
           }, options),
@@ -1257,7 +1256,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PUT'
           }, options),
@@ -1297,7 +1296,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'GET'
           }, options),
@@ -1335,7 +1334,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PATCH'
           }, options),
@@ -1373,7 +1372,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PUT'
           }, options),
@@ -1413,7 +1412,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'GET'
           }, options),
@@ -1449,7 +1448,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks',
             method: 'GET'
           }, options),
@@ -1487,7 +1486,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PATCH'
           }, options),
@@ -1525,7 +1524,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PUT'
           }, options),
@@ -1568,7 +1567,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/entitlements',
           method: 'GET'
         }, options),
@@ -1607,7 +1606,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/inappproducts/batch',
           method: 'POST'
         }, options),
@@ -1643,7 +1642,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'DELETE'
         }, options),
@@ -1679,7 +1678,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'GET'
         }, options),
@@ -1716,7 +1715,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'POST'
         }, options),
@@ -1754,7 +1753,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'GET'
         }, options),
@@ -1792,7 +1791,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PATCH'
         }, options),
@@ -1830,7 +1829,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PUT'
         }, options),
@@ -1873,7 +1872,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}',
             method: 'GET'
           }, options),
@@ -1913,7 +1912,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel',
             method: 'POST'
           }, options),
@@ -1951,7 +1950,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer',
             method: 'POST'
           }, options),
@@ -1988,7 +1987,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}',
             method: 'GET'
           }, options),
@@ -2025,7 +2024,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund',
             method: 'POST'
           }, options),
@@ -2062,7 +2061,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke',
             method: 'POST'
           }, options),
@@ -2105,7 +2104,7 @@ function Androidpublisher(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/voidedpurchases',
             method: 'GET'
           }, options),
@@ -2146,7 +2145,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}',
           method: 'GET'
         }, options),
@@ -2185,7 +2184,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews',
           method: 'GET'
         }, options),
@@ -2222,7 +2221,7 @@ function Androidpublisher(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}:reply',
           method: 'POST'
         }, options),

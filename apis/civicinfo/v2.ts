@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Civic Information API
@@ -63,7 +62,7 @@ function Civicinfo(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/civicinfo/v2/divisions',
           method: 'GET'
         }, options),
@@ -102,7 +101,7 @@ function Civicinfo(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/civicinfo/v2/elections',
           method: 'GET'
         }, options),
@@ -141,7 +140,7 @@ function Civicinfo(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/civicinfo/v2/voterinfo',
           method: 'GET'
         }, options),
@@ -184,7 +183,7 @@ function Civicinfo(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives',
           method: 'GET'
         }, options),
@@ -223,7 +222,7 @@ function Civicinfo(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives/{ocdId}',
           method: 'GET'
         }, options),

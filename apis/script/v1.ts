@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Apps Script Execution API
@@ -63,7 +62,7 @@ function Script(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://script.googleapis.com/v1/scripts/{scriptId}:run',
           method: 'POST'
         }, options),
@@ -80,16 +79,6 @@ function Script(options) { // eslint-disable-line
 }
 
 /**
- * @typedef JoinAsyncRequest
- * @memberOf! script(v1)
- * @type object
-* @property {string} scriptId The script id which specifies the script which all processes in the names
-field must be from.
-* @property {string[]} names List of operation resource names that we want to join,
-as returned from a call to RunAsync.
-* @property {string} timeout Timeout for information retrieval in milliseconds.
-*/
-/**
  * @typedef ExecutionResponse
  * @memberOf! script(v1)
  * @type object
@@ -100,16 +89,6 @@ they can only return primitive types such as a `string`, `number`, `array`,
 `object`, or `boolean`.
 */
 /**
- * @typedef Operation
- * @memberOf! script(v1)
- * @type object
- * @property {string} name This field is not used.
- * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
- * @property {object} metadata This field is not used.
- * @property {boolean} done This field is not used.
- * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
- */
-/**
  * @typedef JoinAsyncResponse
  * @memberOf! script(v1)
  * @type object
@@ -118,30 +97,40 @@ names to the Operation containing the result of the process. The response
 will contain either an error or the result of the script function.
 */
 /**
+ * @typedef Operation
+ * @memberOf! script(v1)
+ * @type object
+ * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
+ * @property {string} name This field is not used.
+ * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
+ * @property {object} metadata This field is not used.
+ * @property {boolean} done This field is not used.
+ */
+/**
  * @typedef ScriptStackTraceElement
  * @memberOf! script(v1)
  * @type object
- * @property {integer} lineNumber The line number where the script failed.
  * @property {string} function The name of the function that failed.
+ * @property {integer} lineNumber The line number where the script failed.
  */
 /**
  * @typedef ExecutionError
  * @memberOf! script(v1)
  * @type object
-* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
-where the execution failed, with the deepest call first.
 * @property {string} errorType The error type, for example `TypeError` or `ReferenceError`. If the error
 type is unavailable, this field is not included.
 * @property {string} errorMessage The error message thrown by Apps Script, usually localized into the user&#39;s
 language.
+* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
+where the execution failed, with the deepest call first.
 */
 /**
  * @typedef Status
  * @memberOf! script(v1)
  * @type object
+ * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  * @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [`google.rpc.Status.details`](google.rpc.Status.details) field, or localized by the client.
  * @property {object[]} details An array that contains a single `ExecutionError` object that provides information about the nature of the error.
- * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  */
 /**
  * @typedef ExecutionRequest
@@ -167,5 +156,15 @@ for each parameter should match the expected type in Apps Script.
 Parameters cannot be Apps Script-specific object types (such as a
 `Document` or a `Calendar`); they can only be primitive types such as
 `string`, `number`, `array`, `object`, or `boolean`. Optional.
+*/
+/**
+ * @typedef JoinAsyncRequest
+ * @memberOf! script(v1)
+ * @type object
+* @property {string} timeout Timeout for information retrieval in milliseconds.
+* @property {string} scriptId The script id which specifies the script which all processes in the names
+field must be from.
+* @property {string[]} names List of operation resource names that we want to join,
+as returned from a call to RunAsync.
 */
 export = Script;

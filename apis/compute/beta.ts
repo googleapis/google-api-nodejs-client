@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Compute Engine API
@@ -130,7 +129,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/acceleratorTypes',
           method: 'GET'
         }, options),
@@ -224,7 +223,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/acceleratorTypes/{acceleratorType}',
           method: 'GET'
         }, options),
@@ -331,7 +330,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/acceleratorTypes',
           method: 'GET'
         }, options),
@@ -438,7 +437,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/addresses',
           method: 'GET'
         }, options),
@@ -532,7 +531,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
         }, options),
@@ -626,7 +625,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
         }, options),
@@ -721,7 +720,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses',
           method: 'POST'
         }, options),
@@ -828,7 +827,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses',
           method: 'GET'
         }, options),
@@ -927,7 +926,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -1034,7 +1033,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/autoscalers',
           method: 'GET'
         }, options),
@@ -1128,7 +1127,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
         }, options),
@@ -1222,7 +1221,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
         }, options),
@@ -1317,7 +1316,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
         }, options),
@@ -1424,7 +1423,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
         }, options),
@@ -1524,7 +1523,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
           method: 'PATCH'
         }, options),
@@ -1623,7 +1622,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -1720,7 +1719,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/autoscalers',
           method: 'PUT'
         }, options),
@@ -1814,7 +1813,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'DELETE'
         }, options),
@@ -1904,7 +1903,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'GET'
         }, options),
@@ -1995,7 +1994,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets',
           method: 'POST'
         }, options),
@@ -2098,7 +2097,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets',
           method: 'GET'
         }, options),
@@ -2194,7 +2193,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PATCH'
         }, options),
@@ -2290,7 +2289,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PUT'
         }, options),
@@ -2397,7 +2396,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/backendServices',
           method: 'GET'
         }, options),
@@ -2487,7 +2486,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
         }, options),
@@ -2577,7 +2576,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
         }, options),
@@ -2671,7 +2670,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
         }, options),
@@ -2762,7 +2761,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices',
           method: 'POST'
         }, options),
@@ -2865,7 +2864,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices',
           method: 'GET'
         }, options),
@@ -2961,7 +2960,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
         }, options),
@@ -3056,7 +3055,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -3152,7 +3151,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
         }, options),
@@ -3259,7 +3258,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/diskTypes',
           method: 'GET'
         }, options),
@@ -3353,7 +3352,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
         }, options),
@@ -3460,7 +3459,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
         }, options),
@@ -3567,7 +3566,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/disks',
           method: 'GET'
         }, options),
@@ -3667,7 +3666,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
         }, options),
@@ -3761,7 +3760,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
         }, options),
@@ -3855,7 +3854,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
         }, options),
@@ -3951,7 +3950,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks',
           method: 'POST'
         }, options),
@@ -4058,7 +4057,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks',
           method: 'GET'
         }, options),
@@ -4157,7 +4156,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{disk}/resize',
           method: 'POST'
         }, options),
@@ -4256,7 +4255,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/setLabels',
           method: 'POST'
         }, options),
@@ -4355,7 +4354,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -4449,7 +4448,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
         }, options),
@@ -4539,7 +4538,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
         }, options),
@@ -4630,7 +4629,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls',
           method: 'POST'
         }, options),
@@ -4733,7 +4732,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls',
           method: 'GET'
         }, options),
@@ -4829,7 +4828,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
         }, options),
@@ -4924,7 +4923,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -5020,7 +5019,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
         }, options),
@@ -5127,7 +5126,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
         }, options),
@@ -5221,7 +5220,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
         }, options),
@@ -5315,7 +5314,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
         }, options),
@@ -5410,7 +5409,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
         }, options),
@@ -5517,7 +5516,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
         }, options),
@@ -5616,7 +5615,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
         }, options),
@@ -5715,7 +5714,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -5809,7 +5808,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
         }, options),
@@ -5899,7 +5898,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{address}',
           method: 'GET'
         }, options),
@@ -5990,7 +5989,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses',
           method: 'POST'
         }, options),
@@ -6093,7 +6092,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses',
           method: 'GET'
         }, options),
@@ -6188,7 +6187,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/addresses/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -6282,7 +6281,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
         }, options),
@@ -6372,7 +6371,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
         }, options),
@@ -6463,7 +6462,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules',
           method: 'POST'
         }, options),
@@ -6566,7 +6565,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules',
           method: 'GET'
         }, options),
@@ -6661,7 +6660,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
         }, options),
@@ -6756,7 +6755,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -6863,7 +6862,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/operations',
           method: 'GET'
         }, options),
@@ -6950,7 +6949,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
         }, options),
@@ -7040,7 +7039,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations/{operation}',
           method: 'GET'
         }, options),
@@ -7143,7 +7142,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/operations',
           method: 'GET'
         }, options),
@@ -7237,7 +7236,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'DELETE'
         }, options),
@@ -7327,7 +7326,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'GET'
         }, options),
@@ -7418,7 +7417,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks',
           method: 'POST'
         }, options),
@@ -7521,7 +7520,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks',
           method: 'GET'
         }, options),
@@ -7617,7 +7616,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PATCH'
         }, options),
@@ -7712,7 +7711,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -7808,7 +7807,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PUT'
         }, options),
@@ -7902,7 +7901,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
         }, options),
@@ -7992,7 +7991,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
         }, options),
@@ -8083,7 +8082,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks',
           method: 'POST'
         }, options),
@@ -8186,7 +8185,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks',
           method: 'GET'
         }, options),
@@ -8282,7 +8281,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
         }, options),
@@ -8377,7 +8376,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -8473,7 +8472,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
         }, options),
@@ -8567,7 +8566,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'DELETE'
         }, options),
@@ -8657,7 +8656,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'GET'
         }, options),
@@ -8748,7 +8747,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks',
           method: 'POST'
         }, options),
@@ -8851,7 +8850,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks',
           method: 'GET'
         }, options),
@@ -8947,7 +8946,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PATCH'
         }, options),
@@ -9042,7 +9041,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -9138,7 +9137,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PUT'
         }, options),
@@ -9232,7 +9231,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}',
           method: 'DELETE'
         }, options),
@@ -9327,7 +9326,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
         }, options),
@@ -9417,7 +9416,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{image}',
           method: 'GET'
         }, options),
@@ -9507,7 +9506,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/family/{family}',
           method: 'GET'
         }, options),
@@ -9598,7 +9597,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images',
           method: 'POST'
         }, options),
@@ -9701,7 +9700,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images',
           method: 'GET'
         }, options),
@@ -9796,7 +9795,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{resource}/setLabels',
           method: 'POST'
         }, options),
@@ -9891,7 +9890,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/images/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -9994,7 +9993,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
         }, options),
@@ -10097,7 +10096,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instanceGroupManagers',
           method: 'GET'
         }, options),
@@ -10191,7 +10190,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
         }, options),
@@ -10290,7 +10289,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
         }, options),
@@ -10384,7 +10383,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
         }, options),
@@ -10479,7 +10478,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
         }, options),
@@ -10586,7 +10585,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
         }, options),
@@ -10684,7 +10683,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
         }, options),
@@ -10784,7 +10783,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
         }, options),
@@ -10883,7 +10882,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
         }, options),
@@ -10983,7 +10982,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
         }, options),
@@ -11082,7 +11081,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced',
           method: 'POST'
         }, options),
@@ -11181,7 +11180,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
         }, options),
@@ -11280,7 +11279,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
         }, options),
@@ -11379,7 +11378,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
         }, options),
@@ -11478,7 +11477,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -11578,7 +11577,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
         }, options),
@@ -11681,7 +11680,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
           method: 'POST'
         }, options),
@@ -11784,7 +11783,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instanceGroups',
           method: 'GET'
         }, options),
@@ -11878,7 +11877,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'DELETE'
         }, options),
@@ -11972,7 +11971,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'GET'
         }, options),
@@ -12067,7 +12066,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups',
           method: 'POST'
         }, options),
@@ -12174,7 +12173,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups',
           method: 'GET'
         }, options),
@@ -12290,7 +12289,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
         }, options),
@@ -12389,7 +12388,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
           method: 'POST'
         }, options),
@@ -12488,7 +12487,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
         }, options),
@@ -12587,7 +12586,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -12681,7 +12680,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'DELETE'
         }, options),
@@ -12771,7 +12770,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'GET'
         }, options),
@@ -12862,7 +12861,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates',
           method: 'POST'
         }, options),
@@ -12965,7 +12964,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates',
           method: 'GET'
         }, options),
@@ -13060,7 +13059,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -13167,7 +13166,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
         }, options),
@@ -13270,7 +13269,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/instances',
           method: 'GET'
         }, options),
@@ -13369,7 +13368,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
         }, options),
@@ -13463,7 +13462,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
         }, options),
@@ -13565,7 +13564,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
         }, options),
@@ -13663,7 +13662,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
         }, options),
@@ -13757,7 +13756,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
         }, options),
@@ -13853,7 +13852,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
         }, options),
@@ -13948,7 +13947,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances',
           method: 'POST'
         }, options),
@@ -14055,7 +14054,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances',
           method: 'GET'
         }, options),
@@ -14096,7 +14095,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/referrers',
           method: 'GET'
         }, options),
@@ -14190,7 +14189,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
         }, options),
@@ -14292,7 +14291,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
         }, options),
@@ -14391,7 +14390,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setLabels',
           method: 'POST'
         }, options),
@@ -14490,7 +14489,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources',
           method: 'POST'
         }, options),
@@ -14589,7 +14588,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
           method: 'POST'
         }, options),
@@ -14688,7 +14687,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
         }, options),
@@ -14787,7 +14786,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
         }, options),
@@ -14886,7 +14885,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
           method: 'POST'
         }, options),
@@ -14985,7 +14984,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
         }, options),
@@ -15079,7 +15078,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/start',
           method: 'POST'
         }, options),
@@ -15178,7 +15177,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
         }, options),
@@ -15272,7 +15271,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/stop',
           method: 'POST'
         }, options),
@@ -15371,7 +15370,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -15465,7 +15464,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/licenses/{license}',
           method: 'GET'
         }, options),
@@ -15572,7 +15571,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/machineTypes',
           method: 'GET'
         }, options),
@@ -15666,7 +15665,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
         }, options),
@@ -15773,7 +15772,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
         }, options),
@@ -15872,7 +15871,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}/addPeering',
           method: 'POST'
         }, options),
@@ -15962,7 +15961,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}',
           method: 'DELETE'
         }, options),
@@ -16052,7 +16051,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}',
           method: 'GET'
         }, options),
@@ -16143,7 +16142,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks',
           method: 'POST'
         }, options),
@@ -16246,7 +16245,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks',
           method: 'GET'
         }, options),
@@ -16341,7 +16340,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}/removePeering',
           method: 'POST'
         }, options),
@@ -16431,7 +16430,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}/switchToCustomMode',
           method: 'POST'
         }, options),
@@ -16526,7 +16525,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -16616,7 +16615,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/disableXpnHost',
           method: 'POST'
         }, options),
@@ -16707,7 +16706,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/disableXpnResource',
           method: 'POST'
         }, options),
@@ -16793,7 +16792,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/enableXpnHost',
           method: 'POST'
         }, options),
@@ -16884,7 +16883,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/enableXpnResource',
           method: 'POST'
         }, options),
@@ -16970,7 +16969,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}',
           method: 'GET'
         }, options),
@@ -17056,7 +17055,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/getXpnHost',
           method: 'GET'
         }, options),
@@ -17159,7 +17158,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/getXpnResources',
           method: 'GET'
         }, options),
@@ -17267,7 +17266,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/listXpnHosts',
           method: 'POST'
         }, options),
@@ -17358,7 +17357,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/moveDisk',
           method: 'POST'
         }, options),
@@ -17449,7 +17448,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/moveInstance',
           method: 'POST'
         }, options),
@@ -17540,7 +17539,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
         }, options),
@@ -17631,7 +17630,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/setUsageExportBucket',
           method: 'POST'
         }, options),
@@ -17729,7 +17728,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'DELETE'
         }, options),
@@ -17823,7 +17822,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'GET'
         }, options),
@@ -17918,7 +17917,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers',
           method: 'POST'
         }, options),
@@ -18025,7 +18024,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers',
           method: 'GET'
         }, options),
@@ -18125,7 +18124,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers',
           method: 'PATCH'
         }, options),
@@ -18224,7 +18223,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -18321,7 +18320,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/autoscalers',
           method: 'PUT'
         }, options),
@@ -18419,7 +18418,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'DELETE'
         }, options),
@@ -18513,7 +18512,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'GET'
         }, options),
@@ -18611,7 +18610,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
           method: 'POST'
         }, options),
@@ -18706,7 +18705,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices',
           method: 'POST'
         }, options),
@@ -18813,7 +18812,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices',
           method: 'GET'
         }, options),
@@ -18913,7 +18912,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PATCH'
         }, options),
@@ -19012,7 +19011,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -19112,7 +19111,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PUT'
         }, options),
@@ -19155,7 +19154,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/commitments',
           method: 'GET'
         }, options),
@@ -19249,7 +19248,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/commitments/{commitment}',
           method: 'GET'
         }, options),
@@ -19344,7 +19343,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/commitments',
           method: 'POST'
         }, options),
@@ -19451,7 +19450,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/commitments',
           method: 'GET'
         }, options),
@@ -19554,7 +19553,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
         }, options),
@@ -19648,7 +19647,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
         }, options),
@@ -19747,7 +19746,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
         }, options),
@@ -19841,7 +19840,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
         }, options),
@@ -19936,7 +19935,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'POST'
         }, options),
@@ -20043,7 +20042,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'GET'
         }, options),
@@ -20141,7 +20140,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
         }, options),
@@ -20241,7 +20240,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
         }, options),
@@ -20340,7 +20339,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
         }, options),
@@ -20438,7 +20437,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
         }, options),
@@ -20537,7 +20536,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
         }, options),
@@ -20636,7 +20635,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
         }, options),
@@ -20735,7 +20734,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
         }, options),
@@ -20834,7 +20833,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -20934,7 +20933,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
         }, options),
@@ -21032,7 +21031,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}',
           method: 'GET'
         }, options),
@@ -21139,7 +21138,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroups',
           method: 'GET'
         }, options),
@@ -21255,7 +21254,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
         }, options),
@@ -21354,7 +21353,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
         }, options),
@@ -21453,7 +21452,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -21548,7 +21547,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
         }, options),
@@ -21642,7 +21641,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
         }, options),
@@ -21749,7 +21748,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/operations',
           method: 'GET'
         }, options),
@@ -21843,7 +21842,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}',
           method: 'GET'
         }, options),
@@ -21946,7 +21945,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions',
           method: 'GET'
         }, options),
@@ -22053,7 +22052,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/routers',
           method: 'GET'
         }, options),
@@ -22147,7 +22146,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
           method: 'DELETE'
         }, options),
@@ -22241,7 +22240,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
           method: 'GET'
         }, options),
@@ -22335,7 +22334,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
           method: 'GET'
         }, options),
@@ -22430,7 +22429,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers',
           method: 'POST'
         }, options),
@@ -22537,7 +22536,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers',
           method: 'GET'
         }, options),
@@ -22637,7 +22636,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
         }, options),
@@ -22736,7 +22735,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}/preview',
           method: 'POST'
         }, options),
@@ -22835,7 +22834,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -22935,7 +22934,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/routers/{router}',
           method: 'PUT'
         }, options),
@@ -23029,7 +23028,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{route}',
           method: 'DELETE'
         }, options),
@@ -23119,7 +23118,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{route}',
           method: 'GET'
         }, options),
@@ -23210,7 +23209,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes',
           method: 'POST'
         }, options),
@@ -23313,7 +23312,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes',
           method: 'GET'
         }, options),
@@ -23408,7 +23407,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/routes/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -23502,7 +23501,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
         }, options),
@@ -23592,7 +23591,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
         }, options),
@@ -23695,7 +23694,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots',
           method: 'GET'
         }, options),
@@ -23790,7 +23789,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{resource}/setLabels',
           method: 'POST'
         }, options),
@@ -23885,7 +23884,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/snapshots/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -23979,7 +23978,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'DELETE'
         }, options),
@@ -24069,7 +24068,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'GET'
         }, options),
@@ -24160,7 +24159,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates',
           method: 'POST'
         }, options),
@@ -24263,7 +24262,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates',
           method: 'GET'
         }, options),
@@ -24358,7 +24357,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/sslCertificates/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -24465,7 +24464,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/subnetworks',
           method: 'GET'
         }, options),
@@ -24559,7 +24558,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
         }, options),
@@ -24658,7 +24657,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
           method: 'POST'
         }, options),
@@ -24752,7 +24751,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'GET'
         }, options),
@@ -24846,7 +24845,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
           method: 'GET'
         }, options),
@@ -24941,7 +24940,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks',
           method: 'POST'
         }, options),
@@ -25048,7 +25047,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks',
           method: 'GET'
         }, options),
@@ -25147,7 +25146,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
           method: 'POST'
         }, options),
@@ -25185,7 +25184,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
           method: 'POST'
         }, options),
@@ -25284,7 +25283,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -25378,7 +25377,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
         }, options),
@@ -25468,7 +25467,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
         }, options),
@@ -25559,7 +25558,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies',
           method: 'POST'
         }, options),
@@ -25662,7 +25661,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies',
           method: 'GET'
         }, options),
@@ -25757,7 +25756,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
         }, options),
@@ -25852,7 +25851,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpProxies/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -25946,7 +25945,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'DELETE'
         }, options),
@@ -26036,7 +26035,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'GET'
         }, options),
@@ -26127,7 +26126,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies',
           method: 'POST'
         }, options),
@@ -26230,7 +26229,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies',
           method: 'GET'
         }, options),
@@ -26325,7 +26324,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
           method: 'POST'
         }, options),
@@ -26420,7 +26419,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
           method: 'POST'
         }, options),
@@ -26515,7 +26514,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetHttpsProxies/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -26622,7 +26621,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetInstances',
           method: 'GET'
         }, options),
@@ -26716,7 +26715,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
         }, options),
@@ -26810,7 +26809,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
         }, options),
@@ -26905,7 +26904,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
         }, options),
@@ -27012,7 +27011,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
         }, options),
@@ -27111,7 +27110,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -27214,7 +27213,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
         }, options),
@@ -27313,7 +27312,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
         }, options),
@@ -27416,7 +27415,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetPools',
           method: 'GET'
         }, options),
@@ -27510,7 +27509,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
         }, options),
@@ -27604,7 +27603,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
         }, options),
@@ -27703,7 +27702,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
         }, options),
@@ -27798,7 +27797,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
         }, options),
@@ -27905,7 +27904,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
         }, options),
@@ -28004,7 +28003,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
         }, options),
@@ -28103,7 +28102,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
         }, options),
@@ -28203,7 +28202,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
         }, options),
@@ -28302,7 +28301,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -28396,7 +28395,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'DELETE'
         }, options),
@@ -28486,7 +28485,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'GET'
         }, options),
@@ -28577,7 +28576,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies',
           method: 'POST'
         }, options),
@@ -28680,7 +28679,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies',
           method: 'GET'
         }, options),
@@ -28775,7 +28774,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
           method: 'POST'
         }, options),
@@ -28870,7 +28869,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
           method: 'POST'
         }, options),
@@ -28965,7 +28964,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
           method: 'POST'
         }, options),
@@ -29060,7 +29059,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -29154,7 +29153,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
           method: 'DELETE'
         }, options),
@@ -29244,7 +29243,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
           method: 'GET'
         }, options),
@@ -29335,7 +29334,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies',
           method: 'POST'
         }, options),
@@ -29438,7 +29437,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies',
           method: 'GET'
         }, options),
@@ -29533,7 +29532,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService',
           method: 'POST'
         }, options),
@@ -29628,7 +29627,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader',
           method: 'POST'
         }, options),
@@ -29735,7 +29734,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/targetVpnGateways',
           method: 'GET'
         }, options),
@@ -29829,7 +29828,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'DELETE'
         }, options),
@@ -29923,7 +29922,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'GET'
         }, options),
@@ -30018,7 +30017,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'POST'
         }, options),
@@ -30125,7 +30124,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'GET'
         }, options),
@@ -30224,7 +30223,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/targetVpnGateways/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -30318,7 +30317,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
         }, options),
@@ -30408,7 +30407,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
         }, options),
@@ -30499,7 +30498,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps',
           method: 'POST'
         }, options),
@@ -30594,7 +30593,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
           method: 'POST'
         }, options),
@@ -30697,7 +30696,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps',
           method: 'GET'
         }, options),
@@ -30793,7 +30792,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
         }, options),
@@ -30888,7 +30887,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -30984,7 +30983,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
         }, options),
@@ -31079,7 +31078,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
         }, options),
@@ -31186,7 +31185,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/vpnTunnels',
           method: 'GET'
         }, options),
@@ -31280,7 +31279,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'DELETE'
         }, options),
@@ -31374,7 +31373,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'GET'
         }, options),
@@ -31469,7 +31468,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels',
           method: 'POST'
         }, options),
@@ -31576,7 +31575,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels',
           method: 'GET'
         }, options),
@@ -31675,7 +31674,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/vpnTunnels/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -31770,7 +31769,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
         }, options),
@@ -31864,7 +31863,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         }, options),
@@ -31971,7 +31970,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/operations',
           method: 'GET'
         }, options),
@@ -32065,7 +32064,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}',
           method: 'GET'
         }, options),
@@ -32168,7 +32167,7 @@ function Compute(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones',
           method: 'GET'
         }, options),

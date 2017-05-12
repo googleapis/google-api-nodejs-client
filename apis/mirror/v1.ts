@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Mirror API
@@ -65,7 +64,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/accounts/{userToken}/{accountType}/{accountName}',
           method: 'POST'
         }, options),
@@ -104,7 +103,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'DELETE'
         }, options),
@@ -139,7 +138,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'GET'
         }, options),
@@ -174,7 +173,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts',
           method: 'POST'
         }, options),
@@ -208,7 +207,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts',
           method: 'GET'
         }, options),
@@ -244,7 +243,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'PATCH'
         }, options),
@@ -280,7 +279,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'PUT'
         }, options),
@@ -319,7 +318,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/locations/{id}',
           method: 'GET'
         }, options),
@@ -353,7 +352,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/locations',
           method: 'GET'
         }, options),
@@ -392,7 +391,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/settings/{id}',
           method: 'GET'
         }, options),
@@ -431,7 +430,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
           method: 'DELETE'
         }, options),
@@ -466,7 +465,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/subscriptions',
           method: 'POST'
         }, options),
@@ -500,7 +499,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/subscriptions',
           method: 'GET'
         }, options),
@@ -536,7 +535,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
           method: 'PUT'
         }, options),
@@ -575,7 +574,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'DELETE'
         }, options),
@@ -610,7 +609,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'GET'
         }, options),
@@ -648,7 +647,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline',
           method: 'POST'
         }, options),
@@ -690,7 +689,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline',
           method: 'GET'
         }, options),
@@ -726,7 +725,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'PATCH'
         }, options),
@@ -765,7 +764,7 @@ function Mirror(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'PUT'
         }, options),
@@ -804,7 +803,7 @@ function Mirror(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
             method: 'DELETE'
           }, options),
@@ -840,7 +839,7 @@ function Mirror(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
             method: 'GET'
           }, options),
@@ -878,7 +877,7 @@ function Mirror(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
             method: 'POST'
           }, options),
@@ -914,7 +913,7 @@ function Mirror(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
             method: 'GET'
           }, options),

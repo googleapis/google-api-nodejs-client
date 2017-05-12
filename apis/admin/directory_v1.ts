@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Admin Directory API
@@ -63,7 +62,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'DELETE'
         }, options),
@@ -99,7 +98,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'GET'
         }, options),
@@ -134,7 +133,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
           method: 'GET'
         }, options),
@@ -173,7 +172,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
           method: 'POST'
         }, options),
@@ -214,7 +213,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action',
           method: 'POST'
         }, options),
@@ -251,7 +250,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'GET'
         }, options),
@@ -292,7 +291,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
           method: 'GET'
         }, options),
@@ -330,7 +329,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PATCH'
         }, options),
@@ -368,7 +367,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PUT'
         }, options),
@@ -407,7 +406,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'GET'
         }, options),
@@ -443,7 +442,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PATCH'
         }, options),
@@ -479,7 +478,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PUT'
         }, options),
@@ -519,7 +518,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'DELETE'
         }, options),
@@ -555,7 +554,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'GET'
         }, options),
@@ -591,7 +590,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'POST'
         }, options),
@@ -627,7 +626,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'GET'
         }, options),
@@ -667,7 +666,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'DELETE'
         }, options),
@@ -703,7 +702,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'GET'
         }, options),
@@ -739,7 +738,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'POST'
         }, options),
@@ -774,7 +773,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'GET'
         }, options),
@@ -813,7 +812,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'DELETE'
         }, options),
@@ -848,7 +847,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'GET'
         }, options),
@@ -883,7 +882,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'POST'
         }, options),
@@ -922,7 +921,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'GET'
         }, options),
@@ -958,7 +957,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PATCH'
         }, options),
@@ -994,7 +993,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PUT'
         }, options),
@@ -1032,7 +1031,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
             method: 'DELETE'
           }, options),
@@ -1068,7 +1067,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'POST'
           }, options),
@@ -1103,7 +1102,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'GET'
           }, options),
@@ -1143,7 +1142,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'DELETE'
         }, options),
@@ -1179,7 +1178,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'GET'
         }, options),
@@ -1215,7 +1214,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'POST'
         }, options),
@@ -1253,7 +1252,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'GET'
         }, options),
@@ -1290,7 +1289,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PATCH'
         }, options),
@@ -1327,7 +1326,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PUT'
         }, options),
@@ -1368,7 +1367,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
           method: 'POST'
         }, options),
@@ -1404,7 +1403,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'DELETE'
         }, options),
@@ -1441,7 +1440,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'GET'
         }, options),
@@ -1482,7 +1481,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
           method: 'GET'
         }, options),
@@ -1522,7 +1521,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'DELETE'
         }, options),
@@ -1558,7 +1557,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'GET'
         }, options),
@@ -1596,7 +1595,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
           method: 'GET'
         }, options),
@@ -1633,7 +1632,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PATCH'
         }, options),
@@ -1670,7 +1669,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PUT'
         }, options),
@@ -1710,7 +1709,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'DELETE'
         }, options),
@@ -1746,7 +1745,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'GET'
         }, options),
@@ -1782,7 +1781,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'POST'
         }, options),
@@ -1819,7 +1818,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'GET'
         }, options),
@@ -1856,7 +1855,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PATCH'
         }, options),
@@ -1893,7 +1892,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PUT'
         }, options),
@@ -1932,7 +1931,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
           method: 'GET'
         }, options),
@@ -1974,7 +1973,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'DELETE'
           }, options),
@@ -2010,7 +2009,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'GET'
           }, options),
@@ -2046,7 +2045,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'POST'
           }, options),
@@ -2083,7 +2082,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'GET'
           }, options),
@@ -2120,7 +2119,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PATCH'
           }, options),
@@ -2157,7 +2156,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PUT'
           }, options),
@@ -2197,7 +2196,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'DELETE'
         }, options),
@@ -2233,7 +2232,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'GET'
         }, options),
@@ -2269,7 +2268,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'POST'
         }, options),
@@ -2308,7 +2307,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'GET'
         }, options),
@@ -2348,7 +2347,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'DELETE'
         }, options),
@@ -2384,7 +2383,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'GET'
         }, options),
@@ -2420,7 +2419,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'POST'
         }, options),
@@ -2457,7 +2456,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'GET'
         }, options),
@@ -2494,7 +2493,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PATCH'
         }, options),
@@ -2531,7 +2530,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PUT'
         }, options),
@@ -2571,7 +2570,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'DELETE'
         }, options),
@@ -2607,7 +2606,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'GET'
         }, options),
@@ -2643,7 +2642,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'POST'
         }, options),
@@ -2678,7 +2677,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'GET'
         }, options),
@@ -2715,7 +2714,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PATCH'
         }, options),
@@ -2752,7 +2751,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PUT'
         }, options),
@@ -2792,7 +2791,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'DELETE'
         }, options),
@@ -2828,7 +2827,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'GET'
         }, options),
@@ -2863,7 +2862,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
           method: 'GET'
         }, options),
@@ -2902,7 +2901,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'DELETE'
         }, options),
@@ -2940,7 +2939,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'GET'
         }, options),
@@ -2975,7 +2974,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'POST'
         }, options),
@@ -3021,7 +3020,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'GET'
         }, options),
@@ -3057,7 +3056,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
           method: 'POST'
         }, options),
@@ -3093,7 +3092,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PATCH'
         }, options),
@@ -3129,7 +3128,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
           method: 'POST'
         }, options),
@@ -3165,7 +3164,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PUT'
         }, options),
@@ -3212,7 +3211,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
           method: 'POST'
         }, options),
@@ -3250,7 +3249,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
             method: 'DELETE'
           }, options),
@@ -3286,7 +3285,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'POST'
           }, options),
@@ -3322,7 +3321,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'GET'
           }, options),
@@ -3359,7 +3358,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
             method: 'POST'
           }, options),
@@ -3397,7 +3396,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'DELETE'
           }, options),
@@ -3432,7 +3431,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'GET'
           }, options),
@@ -3468,7 +3467,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PATCH'
           }, options),
@@ -3504,7 +3503,7 @@ function Admin(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PUT'
           }, options),
@@ -3543,7 +3542,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
           method: 'POST'
         }, options),
@@ -3578,7 +3577,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
           method: 'POST'
         }, options),
@@ -3613,7 +3612,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',
           method: 'GET'
         }, options),

@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Admin Data Transfer API
@@ -62,7 +61,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications/{applicationId}',
           method: 'GET'
         }, options),
@@ -99,7 +98,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications',
           method: 'GET'
         }, options),
@@ -138,7 +137,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers/{dataTransferId}',
           method: 'GET'
         }, options),
@@ -173,7 +172,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'POST'
         }, options),
@@ -213,7 +212,7 @@ function Admin(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'GET'
         }, options),

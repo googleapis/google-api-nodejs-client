@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google+ Domains API
@@ -62,7 +61,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}',
           method: 'GET'
         }, options),
@@ -99,7 +98,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities',
           method: 'POST'
         }, options),
@@ -137,7 +136,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities/{collection}',
           method: 'GET'
         }, options),
@@ -178,7 +177,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/audiences',
           method: 'GET'
         }, options),
@@ -219,7 +218,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'PUT'
         }, options),
@@ -254,7 +253,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'GET'
         }, options),
@@ -290,7 +289,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'POST'
         }, options),
@@ -327,7 +326,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'GET'
         }, options),
@@ -363,7 +362,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PATCH'
         }, options),
@@ -398,7 +397,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'DELETE'
         }, options),
@@ -435,7 +434,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'DELETE'
         }, options),
@@ -471,7 +470,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PUT'
         }, options),
@@ -510,7 +509,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/comments/{commentId}',
           method: 'GET'
         }, options),
@@ -546,7 +545,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'POST'
         }, options),
@@ -584,7 +583,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'GET'
         }, options),
@@ -628,7 +627,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/media/{collection}',
           method: 'POST'
         }, options),
@@ -668,7 +667,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}',
           method: 'GET'
         }, options),
@@ -707,7 +706,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/people/{collection}',
           method: 'GET'
         }, options),
@@ -745,7 +744,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/people/{collection}',
           method: 'GET'
         }, options),
@@ -782,7 +781,7 @@ function Plusdomains(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'GET'
         }, options),

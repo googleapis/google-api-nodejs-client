@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Cloud Spanner API
@@ -66,7 +65,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{parent}/instanceConfigs',
             method: 'GET'
           }, options),
@@ -101,7 +100,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'GET'
           }, options),
@@ -116,42 +115,6 @@ function Spanner(options) { // eslint-disable-line
     },
 
     instances: {
-
-      /**
-       * spanner.projects.instances.testIamPermissions
-       *
-       * @desc Returns permissions that the caller has on the specified instance resource.  Attempting this RPC on a non-existent Cloud Spanner instance resource will result in a NOT_FOUND error if the user has `spanner.instances.list` permission on the containing Google Cloud Project. Otherwise returns an empty set of permissions.
-       *
-       * @alias spanner.projects.instances.testIamPermissions
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
-       * @param {spanner(v1).TestIamPermissionsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      testIamPermissions: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{resource}:testIamPermissions',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * spanner.projects.instances.delete
@@ -175,7 +138,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'DELETE'
           }, options),
@@ -197,10 +160,10 @@ function Spanner(options) { // eslint-disable-line
        * @memberOf! spanner(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
-       * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * name   * display_name   * labels.key where key is the name of a label  Some examples of using filters are:    * name:* --> The instance has a name.   * name:Howl --> The instance's name contains the string "howl".   * name:HOWL --> Equivalent to above.   * NAME:howl --> Equivalent to above.   * labels.env:* --> The instance has the label "env".   * labels.env:dev --> The instance has the label "env" and the value of                        the label contains the string "dev".   * name:howl labels.env:dev --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
        * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse.
        * @param {integer=} params.pageSize Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+       * @param {string} params.parent Required. The name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
+       * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * name   * display_name   * labels.key where key is the name of a label  Some examples of using filters are:    * name:* --> The instance has a name.   * name:Howl --> The instance's name contains the string "howl".   * name:HOWL --> Equivalent to above.   * NAME:howl --> Equivalent to above.   * labels.env:* --> The instance has the label "env".   * labels.env:dev --> The instance has the label "env" and the value of                        the label contains the string "dev".   * name:howl labels.env:dev --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -213,7 +176,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{parent}/instances',
             method: 'GET'
           }, options),
@@ -249,7 +212,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
             method: 'POST'
           }, options),
@@ -285,7 +248,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{parent}/instances',
             method: 'POST'
           }, options),
@@ -321,7 +284,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{resource}:getIamPolicy',
             method: 'POST'
           }, options),
@@ -356,7 +319,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'GET'
           }, options),
@@ -392,7 +355,7 @@ function Spanner(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'PATCH'
           }, options),
@@ -405,42 +368,43 @@ function Spanner(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
+      /**
+       * spanner.projects.instances.testIamPermissions
+       *
+       * @desc Returns permissions that the caller has on the specified instance resource.  Attempting this RPC on a non-existent Cloud Spanner instance resource will result in a NOT_FOUND error if the user has `spanner.instances.list` permission on the containing Google Cloud Project. Otherwise returns an empty set of permissions.
+       *
+       * @alias spanner.projects.instances.testIamPermissions
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+       * @param {spanner(v1).TestIamPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      testIamPermissions: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://spanner.googleapis.com/v1/{resource}:testIamPermissions',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
       databases: {
-
-        /**
-         * spanner.projects.instances.databases.getDdl
-         *
-         * @desc Returns the schema of a Cloud Spanner database as a list of formatted DDL statements. This method does not show pending schema updates, those may be queried using the Operations API.
-         *
-         * @alias spanner.projects.instances.databases.getDdl
-         * @memberOf! spanner(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.database Required. The database whose schema we wish to get.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        getDdl: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://spanner.googleapis.com/v1/{database}/ddl',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['database'],
-            pathParams: ['database'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * spanner.projects.instances.databases.list
@@ -451,9 +415,9 @@ function Spanner(options) { // eslint-disable-line
          * @memberOf! spanner(v1)
          *
          * @param {object} params Parameters for request
+         * @param {string} params.parent Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
          * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse.
          * @param {integer=} params.pageSize Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-         * @param {string} params.parent Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -466,7 +430,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{parent}/databases',
               method: 'GET'
             }, options),
@@ -502,7 +466,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{parent}/databases',
               method: 'POST'
             }, options),
@@ -538,7 +502,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
               method: 'POST'
             }, options),
@@ -574,7 +538,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{resource}:getIamPolicy',
               method: 'POST'
             }, options),
@@ -609,7 +573,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
             }, options),
@@ -644,7 +608,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{database}',
               method: 'DELETE'
             }, options),
@@ -680,7 +644,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{database}/ddl',
               method: 'PATCH'
             }, options),
@@ -716,7 +680,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{resource}:testIamPermissions',
               method: 'POST'
             }, options),
@@ -729,42 +693,42 @@ function Spanner(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         },
 
+        /**
+         * spanner.projects.instances.databases.getDdl
+         *
+         * @desc Returns the schema of a Cloud Spanner database as a list of formatted DDL statements. This method does not show pending schema updates, those may be queried using the Operations API.
+         *
+         * @alias spanner.projects.instances.databases.getDdl
+         * @memberOf! spanner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.database Required. The database whose schema we wish to get.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getDdl: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: Object.assign({
+              url: 'https://spanner.googleapis.com/v1/{database}/ddl',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['database'],
+            pathParams: ['database'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
         operations: {
-
-          /**
-           * spanner.projects.instances.databases.operations.cancel
-           *
-           * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-           *
-           * @alias spanner.projects.instances.databases.operations.cancel
-           * @memberOf! spanner(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.name The name of the operation resource to be cancelled.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          cancel: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const parameters = {
-              options: utils.extend({
-                url: 'https://spanner.googleapis.com/v1/{name}:cancel',
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['name'],
-              pathParams: ['name'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
 
           /**
            * spanner.projects.instances.databases.operations.delete
@@ -788,7 +752,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'DELETE'
               }, options),
@@ -826,7 +790,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
               }, options),
@@ -861,9 +825,44 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * spanner.projects.instances.databases.operations.cancel
+           *
+           * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+           *
+           * @alias spanner.projects.instances.databases.operations.cancel
+           * @memberOf! spanner(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The name of the operation resource to be cancelled.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          cancel: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const parameters = {
+              options: Object.assign({
+                url: 'https://spanner.googleapis.com/v1/{name}:cancel',
+                method: 'POST'
               }, options),
               params: params,
               requiredParams: ['name'],
@@ -878,20 +877,21 @@ function Spanner(options) { // eslint-disable-line
         sessions: {
 
           /**
-           * spanner.projects.instances.databases.sessions.delete
+           * spanner.projects.instances.databases.sessions.commit
            *
-           * @desc Ends a session, releasing server resources associated with it.
+           * @desc Commits a transaction. The request includes the mutations to be applied to rows in the database.  `Commit` might return an `ABORTED` error. This can occur at any time; commonly, the cause is conflicts with concurrent transactions. However, it can also happen for a variety of other reasons. If `Commit` returns `ABORTED`, the caller should re-attempt the transaction from the beginning, re-using the same session.
            *
-           * @alias spanner.projects.instances.databases.sessions.delete
+           * @alias spanner.projects.instances.databases.sessions.commit
            * @memberOf! spanner(v1)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.name Required. The name of the session to delete.
+           * @param {string} params.session Required. The session in which the transaction to be committed is running.
+           * @param {spanner(v1).CommitRequest} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function (params, options, callback) {
+          commit: function (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -899,13 +899,13 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
-                url: 'https://spanner.googleapis.com/v1/{name}',
-                method: 'DELETE'
+              options: Object.assign({
+                url: 'https://spanner.googleapis.com/v1/{session}:commit',
+                method: 'POST'
               }, options),
               params: params,
-              requiredParams: ['name'],
-              pathParams: ['name'],
+              requiredParams: ['session'],
+              pathParams: ['session'],
               context: self
             };
 
@@ -935,7 +935,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{session}:beginTransaction',
                 method: 'POST'
               }, options),
@@ -949,21 +949,20 @@ function Spanner(options) { // eslint-disable-line
           },
 
           /**
-           * spanner.projects.instances.databases.sessions.commit
+           * spanner.projects.instances.databases.sessions.delete
            *
-           * @desc Commits a transaction. The request includes the mutations to be applied to rows in the database.  `Commit` might return an `ABORTED` error. This can occur at any time; commonly, the cause is conflicts with concurrent transactions. However, it can also happen for a variety of other reasons. If `Commit` returns `ABORTED`, the caller should re-attempt the transaction from the beginning, re-using the same session.
+           * @desc Ends a session, releasing server resources associated with it.
            *
-           * @alias spanner.projects.instances.databases.sessions.commit
+           * @alias spanner.projects.instances.databases.sessions.delete
            * @memberOf! spanner(v1)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.session Required. The session in which the transaction to be committed is running.
-           * @param {spanner(v1).CommitRequest} params.resource Request body data
+           * @param {string} params.name Required. The name of the session to delete.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          commit: function (params, options, callback) {
+          delete: function (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
@@ -971,13 +970,13 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
-                url: 'https://spanner.googleapis.com/v1/{session}:commit',
-                method: 'POST'
+              options: Object.assign({
+                url: 'https://spanner.googleapis.com/v1/{name}',
+                method: 'DELETE'
               }, options),
               params: params,
-              requiredParams: ['session'],
-              pathParams: ['session'],
+              requiredParams: ['name'],
+              pathParams: ['name'],
               context: self
             };
 
@@ -1007,7 +1006,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{session}:executeStreamingSql',
                 method: 'POST'
               }, options),
@@ -1043,44 +1042,8 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{session}:executeSql',
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['session'],
-              pathParams: ['session'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
-           * spanner.projects.instances.databases.sessions.rollback
-           *
-           * @desc Rolls back a transaction, releasing any locks it holds. It is a good idea to call this for any transaction that includes one or more Read or ExecuteSql requests and ultimately decides not to commit.  `Rollback` returns `OK` if it successfully aborts the transaction, the transaction was already aborted, or the transaction is not found. `Rollback` never returns `ABORTED`.
-           *
-           * @alias spanner.projects.instances.databases.sessions.rollback
-           * @memberOf! spanner(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.session Required. The session in which the transaction to roll back is running.
-           * @param {spanner(v1).RollbackRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          rollback: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const parameters = {
-              options: utils.extend({
-                url: 'https://spanner.googleapis.com/v1/{session}:rollback',
                 method: 'POST'
               }, options),
               params: params,
@@ -1115,8 +1078,44 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{session}:streamingRead',
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['session'],
+              pathParams: ['session'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * spanner.projects.instances.databases.sessions.rollback
+           *
+           * @desc Rolls back a transaction, releasing any locks it holds. It is a good idea to call this for any transaction that includes one or more Read or ExecuteSql requests and ultimately decides not to commit.  `Rollback` returns `OK` if it successfully aborts the transaction, the transaction was already aborted, or the transaction is not found. `Rollback` never returns `ABORTED`.
+           *
+           * @alias spanner.projects.instances.databases.sessions.rollback
+           * @memberOf! spanner(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.session Required. The session in which the transaction to roll back is running.
+           * @param {spanner(v1).RollbackRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          rollback: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const parameters = {
+              options: Object.assign({
+                url: 'https://spanner.googleapis.com/v1/{session}:rollback',
                 method: 'POST'
               }, options),
               params: params,
@@ -1150,7 +1149,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{database}/sessions',
                 method: 'POST'
               }, options),
@@ -1186,7 +1185,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{session}:read',
                 method: 'POST'
               }, options),
@@ -1221,7 +1220,7 @@ function Spanner(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
               }, options),
@@ -1260,7 +1259,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{name}:cancel',
               method: 'POST'
             }, options),
@@ -1295,7 +1294,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'DELETE'
             }, options),
@@ -1317,10 +1316,10 @@ function Spanner(options) { // eslint-disable-line
          * @memberOf! spanner(v1)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.filter The standard list filter.
          * @param {string} params.name The name of the operation collection.
          * @param {string=} params.pageToken The standard list page token.
          * @param {integer=} params.pageSize The standard list page size.
+         * @param {string=} params.filter The standard list filter.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1333,7 +1332,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
             }, options),
@@ -1368,7 +1367,7 @@ function Spanner(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
             }, options),
@@ -1385,46 +1384,6 @@ function Spanner(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef RollbackRequest
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} transactionId Required. The transaction to roll back.
- */
-/**
- * @typedef Transaction
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} id `id` may be used to identify the transaction in subsequent
-Read,
-ExecuteSql,
-Commit, or
-Rollback calls.
-
-Single-use read-only transactions do not have IDs, because
-single-use transactions do not support multiple requests.
-* @property {string} readTimestamp For snapshot read-only transactions, the read timestamp chosen
-for the transaction. Not returned by default: see
-TransactionOptions.ReadOnly.return_read_timestamp.
-*/
-/**
- * @typedef UpdateDatabaseDdlMetadata
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} statements For an update this list contains all the statements. For an
-individual statement, this list contains only that statement.
-* @property {string[]} commitTimestamps Reports the commit timestamps of all statements that have
-succeeded so far, where `commit_timestamps[i]` is the commit
-timestamp for the statement `statements[i]`.
-* @property {string} database The database being modified.
-*/
-/**
- * @typedef CounterOptions
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} metric The metric to update.
- * @property {string} field The field value to attribute.
- */
 /**
  * @typedef QueryPlan
  * @memberOf! spanner(v1)
@@ -1461,7 +1420,6 @@ multiple fields with the same name.
  * @typedef ResultSetStats
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).QueryPlan} queryPlan QueryPlan for the query associated with this result.
 * @property {object} queryStats Aggregated statistics from the execution of the query. Only present when
 the query is profiled. For example, a query could return the statistics as
 follows:
@@ -1471,6 +1429,7 @@ follows:
       &quot;elapsed_time&quot;: &quot;1.22 secs&quot;,
       &quot;cpu_time&quot;: &quot;1.19 secs&quot;
     }
+* @property {spanner(v1).QueryPlan} queryPlan QueryPlan for the query associated with this result.
 */
 /**
  * @typedef TestIamPermissionsRequest
@@ -1489,11 +1448,11 @@ Permissions with wildcards (such as &#39;*&#39;, &#39;spanner.*&#39;, &#39;spann
  * @typedef Type
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).StructType} structType If code == STRUCT, then `struct_type`
-provides type information for the struct&#39;s fields.
 * @property {spanner(v1).Type} arrayElementType If code == ARRAY, then `array_element_type`
 is the type of the array elements.
 * @property {string} code Required. The TypeCode for this type.
+* @property {spanner(v1).StructType} structType If code == STRUCT, then `struct_type`
+provides type information for the struct&#39;s fields.
 */
 /**
  * @typedef PlanNode
@@ -1513,24 +1472,24 @@ profile query. For example, number of executions, number of rows/time per
 execution etc.
 * @property {spanner(v1).ShortRepresentation} shortRepresentation Condensed representation for SCALAR nodes.
 * @property {integer} index The `PlanNode`&#39;s index in node list.
+* @property {string} displayName The display name for the node.
 * @property {string} kind Used to determine the type of node. May be needed for visualizing
 different kinds of nodes differently. For example, If the node is a
 SCALAR node, it will have a condensed representation
 which can be used to directly embed a description of the node in its
 parent.
-* @property {string} displayName The display name for the node.
 * @property {spanner(v1).ChildLink[]} childLinks List of child node `index`es and their relationship to this parent.
 */
 /**
  * @typedef AuditConfig
  * @memberOf! spanner(v1)
  * @type object
+* @property {string[]} exemptedMembers 
 * @property {string} service Specifies a service that will be enabled for audit logging.
 For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
 `allServices` is a special value that covers all services.
 * @property {spanner(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
 Next ID: 4
-* @property {string[]} exemptedMembers 
 */
 /**
  * @typedef CreateInstanceMetadata
@@ -1549,10 +1508,6 @@ cannot be cancelled again.
  * @typedef ChildLink
  * @memberOf! spanner(v1)
  * @type object
-* @property {string} type The type of the link. For example, in Hash Joins this could be used to
-distinguish between the build child and the probe child, or in the case
-of the child being an output variable, to represent the tag associated
-with the output variable.
 * @property {integer} childIndex The node to which the link points.
 * @property {string} variable Only present if the child node is SCALAR and corresponds
 to an output variable of the parent node. The field carries the name of
@@ -1562,6 +1517,10 @@ have child links to the `SCALAR` nodes representing the output variables
 created for each column that is read by the operator. The corresponding
 `variable` fields will be set to the variable names assigned to the
 columns.
+* @property {string} type The type of the link. For example, in Hash Joins this could be used to
+distinguish between the build child and the probe child, or in the case
+of the child being an output variable, to represent the tag associated
+with the output variable.
 */
 /**
  * @typedef CloudAuditOptions
@@ -1572,13 +1531,29 @@ columns.
  * @typedef Delete
  * @memberOf! spanner(v1)
  * @type object
- * @property {string} table Required. The table whose rows will be deleted.
  * @property {spanner(v1).KeySet} keySet Required. The primary keys of the rows within table to delete.
+ * @property {string} table Required. The table whose rows will be deleted.
+ */
+/**
+ * @typedef ListInstanceConfigsResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
+ListInstanceConfigs call to
+fetch more of the matching instance configurations.
+* @property {spanner(v1).InstanceConfig[]} instanceConfigs The list of requested instance configurations.
+*/
+/**
+ * @typedef BeginTransactionRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {spanner(v1).TransactionOptions} options Required. Options for the new transaction.
  */
 /**
  * @typedef CommitRequest
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} transactionId Commit a previously-started transaction.
 * @property {spanner(v1).TransactionOptions} singleUseTransaction Execute mutations in a temporary transaction. Note that unlike
 commit of a previously-started transaction, commit with a
 temporary transaction is non-idempotent. That is, if the
@@ -1591,23 +1566,12 @@ Commit instead.
 * @property {spanner(v1).Mutation[]} mutations The mutations to be executed when this transaction commits. All
 mutations are applied atomically, in the order they appear in
 this list.
-* @property {string} transactionId Commit a previously-started transaction.
 */
 /**
- * @typedef BeginTransactionRequest
+ * @typedef GetIamPolicyRequest
  * @memberOf! spanner(v1)
  * @type object
- * @property {spanner(v1).TransactionOptions} options Required. Options for the new transaction.
  */
-/**
- * @typedef ListInstanceConfigsResponse
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
-ListInstanceConfigs call to
-fetch more of the matching instance configurations.
-* @property {spanner(v1).InstanceConfig[]} instanceConfigs The list of requested instance configurations.
-*/
 /**
  * @typedef TestIamPermissionsResponse
  * @memberOf! spanner(v1)
@@ -1616,14 +1580,19 @@ fetch more of the matching instance configurations.
 allowed.
 */
 /**
- * @typedef GetIamPolicyRequest
+ * @typedef CreateDatabaseMetadata
  * @memberOf! spanner(v1)
  * @type object
+ * @property {string} database The database being created.
  */
 /**
  * @typedef Rule
  * @memberOf! spanner(v1)
  * @type object
+* @property {spanner(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
+that match the LOG action.
+* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
+the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
 * @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
 (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
 and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
@@ -1634,24 +1603,14 @@ The format for in and not_in entries is the same as for members in a
 Binding (see google/iam/v1/policy.proto).
 * @property {string} description Human-readable description of the rule.
 * @property {spanner(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {spanner(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
 */
-/**
- * @typedef CreateDatabaseMetadata
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} database The database being created.
- */
 /**
  * @typedef LogConfig
  * @memberOf! spanner(v1)
  * @type object
- * @property {spanner(v1).CounterOptions} counter Counter options.
  * @property {spanner(v1).DataAccessOptions} dataAccess Data access options.
  * @property {spanner(v1).CloudAuditOptions} cloudAudit Cloud audit options.
+ * @property {spanner(v1).CounterOptions} counter Counter options.
  */
 /**
  * @typedef Session
@@ -1660,6 +1619,19 @@ the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
  * @property {string} name Required. The name of the session.
  */
 /**
+ * @typedef KeyRange
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {any[]} startClosed If the start is closed, then the range includes all rows whose
+first `len(start_closed)` key columns exactly match `start_closed`.
+* @property {any[]} startOpen If the start is open, then the range excludes rows whose first
+`len(start_open)` key columns exactly match `start_open`.
+* @property {any[]} endOpen If the end is open, then the range excludes rows whose first
+`len(end_open)` key columns exactly match `end_open`.
+* @property {any[]} endClosed If the end is closed, then the range includes all rows whose
+first `len(end_closed)` key columns exactly match `end_closed`.
+*/
+/**
  * @typedef ListInstancesResponse
  * @memberOf! spanner(v1)
  * @type object
@@ -1667,19 +1639,6 @@ the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
 * @property {string} nextPageToken `next_page_token` can be sent in a subsequent
 ListInstances call to fetch more
 of the matching instances.
-*/
-/**
- * @typedef KeyRange
- * @memberOf! spanner(v1)
- * @type object
-* @property {any[]} endClosed If the end is closed, then the range includes all rows whose
-first `len(end_closed)` key columns exactly match `end_closed`.
-* @property {any[]} startClosed If the start is closed, then the range includes all rows whose
-first `len(start_closed)` key columns exactly match `start_closed`.
-* @property {any[]} startOpen If the start is open, then the range excludes rows whose first
-`len(start_open)` key columns exactly match `start_open`.
-* @property {any[]} endOpen If the end is open, then the range excludes rows whose first
-`len(end_open)` key columns exactly match `end_open`.
 */
 /**
  * @typedef ShortRepresentation
@@ -1736,35 +1695,37 @@ on the `session` resource.
  * @typedef CreateDatabaseRequest
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
+new database.  The database ID must conform to the regular expression
+`a-z*[a-z0-9]` and be between 2 and 30 characters in length.
+If the database ID is a reserved word or if it contains a hyphen, the
+database ID must be enclosed in backticks (`` ` ``).
 * @property {string[]} extraStatements An optional list of DDL statements to run inside the newly created
 database. Statements can create tables, indexes, etc. These
 statements execute atomically with the creation of the database:
 if there is an error in any statement, the database is not created.
-* @property {string} createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
-new database.  The database ID must conform to the regular expression
-`a-z*[a-z0-9]` and be between 2 and 30 characters in length.
 */
 /**
  * @typedef CreateInstanceRequest
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).Instance} instance Required. The instance to create.  The name may be omitted, but if
-specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
 * @property {string} instanceId Required. The ID of the instance to create.  Valid identifiers are of the
 form `a-z*[a-z0-9]` and must be between 6 and 30 characters in
 length.
+* @property {spanner(v1).Instance} instance Required. The instance to create.  The name may be omitted, but if
+specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
 */
 /**
  * @typedef Condition
  * @memberOf! spanner(v1)
  * @type object
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
 * @property {string} svc Trusted attributes discharged by the service.
 * @property {string} value DEPRECATED. Use &#39;values&#39; instead.
 * @property {string} sys Trusted attributes supplied by any service that owns resources and uses
 the IAM system for access control.
+* @property {string} iam Trusted attributes supplied by the IAM system.
+* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+* @property {string} op An operator to apply the subject with.
 */
 /**
  * @typedef AuditLogConfig
@@ -1779,37 +1740,6 @@ Follows the same format of Binding.members.
  * @typedef ReadOnly
  * @memberOf! spanner(v1)
  * @type object
-* @property {boolean} strong Read at a timestamp where all previously committed transactions
-are visible.
-* @property {string} minReadTimestamp Executes all reads at a timestamp &gt;= `min_read_timestamp`.
-
-This is useful for requesting fresher data than some previous
-read, or data that is fresh enough to observe the effects of some
-previously committed transaction whose timestamp is known.
-
-Note that this option can only be used in single-use transactions.
-* @property {string} maxStaleness Read data at a timestamp &gt;= `NOW - max_staleness`
-seconds. Guarantees that all writes that have committed more
-than the specified number of seconds ago are visible. Because
-Cloud Spanner chooses the exact timestamp, this mode works even if
-the client&#39;s local clock is substantially skewed from Cloud Spanner
-commit timestamps.
-
-Useful for reading the freshest data available at a nearby
-replica, while bounding the possible staleness if the local
-replica has fallen behind.
-
-Note that this option can only be used in single-use
-transactions.
-* @property {string} readTimestamp Executes all reads at the given timestamp. Unlike other modes,
-reads at a specific timestamp are repeatable; the same read at
-the same timestamp always returns the same data. If the
-timestamp is in the future, the read will block until the
-specified timestamp, modulo the read&#39;s deadline.
-
-Useful for large scale consistent reads such as mapreduces, or
-for coordinating many reads against a consistent snapshot of the
-data.
 * @property {boolean} returnReadTimestamp If true, the Cloud Spanner-selected read timestamp is included in
 the Transaction message that describes the transaction.
 * @property {string} exactStaleness Executes all reads at a timestamp that is `exact_staleness`
@@ -1823,13 +1753,42 @@ timestamps.
 
 Useful for reading at nearby replicas without the distributed
 timestamp negotiation overhead of `max_staleness`.
+* @property {boolean} strong Read at a timestamp where all previously committed transactions
+are visible.
+* @property {string} minReadTimestamp Executes all reads at a timestamp &gt;= `min_read_timestamp`.
+
+This is useful for requesting fresher data than some previous
+read, or data that is fresh enough to observe the effects of some
+previously committed transaction whose timestamp is known.
+
+Note that this option can only be used in single-use transactions.
+* @property {string} readTimestamp Executes all reads at the given timestamp. Unlike other modes,
+reads at a specific timestamp are repeatable; the same read at
+the same timestamp always returns the same data. If the
+timestamp is in the future, the read will block until the
+specified timestamp, modulo the read&#39;s deadline.
+
+Useful for large scale consistent reads such as mapreduces, or
+for coordinating many reads against a consistent snapshot of the
+data.
+* @property {string} maxStaleness Read data at a timestamp &gt;= `NOW - max_staleness`
+seconds. Guarantees that all writes that have committed more
+than the specified number of seconds ago are visible. Because
+Cloud Spanner chooses the exact timestamp, this mode works even if
+the client&#39;s local clock is substantially skewed from Cloud Spanner
+commit timestamps.
+
+Useful for reading the freshest data available at a nearby
+replica, while bounding the possible staleness if the local
+replica has fallen behind.
+
+Note that this option can only be used in single-use
+transactions.
 */
 /**
  * @typedef ExecuteSqlRequest
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a
-temporary read-only transaction with strong concurrency.
 * @property {string} resumeToken If this request is resuming a previously interrupted SQL query
 execution, `resume_token` should be copied from the last
 PartialResultSet yielded before the interruption. Doing this
@@ -1861,11 +1820,23 @@ object whose keys are parameter names, and whose values are the
 corresponding parameter values.
 * @property {string} queryMode Used to control the amount of debugging information returned in
 ResultSetStats.
+* @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a
+temporary read-only transaction with strong concurrency.
 */
 /**
  * @typedef Policy
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
 * @property {boolean} iamOwned 
 * @property {spanner(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
 manner:
@@ -1881,21 +1852,18 @@ manner:
 * @property {spanner(v1).Binding[]} bindings Associates a list of `members` to a `role`.
 Multiple `bindings` must not be specified for the same `role`.
 `bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
 */
 /**
  * @typedef ReadRequest
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} resumeToken If this request is resuming a previously interrupted read,
+`resume_token` should be copied from the last
+PartialResultSet yielded before the interruption. Doing this
+enables the new read to resume where the last read left off. The
+rest of the request parameters must exactly match the request
+that yielded this token.
+* @property {string} table Required. The name of the table in the database to be read.
 * @property {string} limit If greater than zero, only the first `limit` rows are yielded. If `limit`
 is zero, the default is no limit.
 * @property {string} index If non-empty, the name of an index on table. This index is
@@ -1915,13 +1883,6 @@ exist in the database. Read yields nothing for nonexistent rows.
 this request.
 * @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a
 temporary read-only transaction with strong concurrency.
-* @property {string} resumeToken If this request is resuming a previously interrupted read,
-`resume_token` should be copied from the last
-PartialResultSet yielded before the interruption. Doing this
-enables the new read to resume where the last read left off. The
-rest of the request parameters must exactly match the request
-that yielded this token.
-* @property {string} table Required. The name of the table in the database to be read.
 */
 /**
  * @typedef Write
@@ -1956,14 +1917,6 @@ encoded as described here.
  * @typedef Operation
  * @memberOf! spanner(v1)
  * @type object
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
@@ -1975,11 +1928,33 @@ long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+*/
+/**
+ * @typedef Status
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef ResultSet
  * @memberOf! spanner(v1)
  * @type object
+* @property {spanner(v1).ResultSetStats} stats Query plan and execution statistics for the query that produced this
+result set. These can be requested by setting
+ExecuteSqlRequest.query_mode.
 * @property {array[]} rows Each element in `rows` is a row whose format is defined by
 metadata.row_type. The ith element
 in each row matches the ith field in
@@ -1987,20 +1962,31 @@ metadata.row_type. Elements are
 encoded based on type as described
 here.
 * @property {spanner(v1).ResultSetMetadata} metadata Metadata about the result set, such as row type information.
-* @property {spanner(v1).ResultSetStats} stats Query plan and execution statistics for the query that produced this
-result set. These can be requested by setting
-ExecuteSqlRequest.query_mode.
 */
 /**
- * @typedef Status
+ * @typedef UpdateDatabaseDdlRequest
  * @memberOf! spanner(v1)
  * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string[]} statements DDL statements to be applied to the database.
+* @property {string} operationId If empty, the new update request is assigned an
+automatically-generated operation ID. Otherwise, `operation_id`
+is used to construct the name of the resulting
+Operation.
+
+Specifying an explicit operation ID simplifies determining
+whether the statements were executed in the event that the
+UpdateDatabaseDdl call is replayed,
+or the return value is otherwise lost: the database and
+`operation_id` fields can be combined to form the
+name of the resulting
+longrunning.Operation: `&lt;database&gt;/operations/&lt;operation_id&gt;`.
+
+`operation_id` should be unique within the database, and must be
+a valid identifier: `a-z*`. Note that
+automatically-generated operation IDs always begin with an
+underscore. If the named operation already exists,
+UpdateDatabaseDdl returns
+`ALREADY_EXISTS`.
 */
 /**
  * @typedef Binding
@@ -2032,31 +2018,6 @@ common set of message types for APIs to use.
 * @property {string} role Role that is assigned to `members`.
 For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
-*/
-/**
- * @typedef UpdateDatabaseDdlRequest
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} statements DDL statements to be applied to the database.
-* @property {string} operationId If empty, the new update request is assigned an
-automatically-generated operation ID. Otherwise, `operation_id`
-is used to construct the name of the resulting
-Operation.
-
-Specifying an explicit operation ID simplifies determining
-whether the statements were executed in the event that the
-UpdateDatabaseDdl call is replayed,
-or the return value is otherwise lost: the database and
-`operation_id` fields can be combined to form the
-name of the resulting
-longrunning.Operation: `&lt;database&gt;/operations/&lt;operation_id&gt;`.
-
-`operation_id` should be unique within the database, and must be
-a valid identifier: `a-z*`. Note that
-automatically-generated operation IDs always begin with an
-underscore. If the named operation already exists,
-UpdateDatabaseDdl returns
-`ALREADY_EXISTS`.
 */
 /**
  * @typedef PartialResultSet
@@ -2166,15 +2127,13 @@ request was received.
  * @typedef ListOperationsResponse
  * @memberOf! spanner(v1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
  * @property {spanner(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef ResultSetMetadata
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).Transaction} transaction If the read or SQL query began a transaction as a side-effect, the
-information about the new transaction is yielded here.
 * @property {spanner(v1).StructType} rowType Indicates the field names and types for the rows in the result
 set.  For example, a SQL query like `&quot;SELECT UserId, UserName FROM
 Users&quot;` could return a `row_type` value like:
@@ -2183,6 +2142,8 @@ Users&quot;` could return a `row_type` value like:
       { &quot;name&quot;: &quot;UserId&quot;, &quot;type&quot;: { &quot;code&quot;: &quot;INT64&quot; } },
       { &quot;name&quot;: &quot;UserName&quot;, &quot;type&quot;: { &quot;code&quot;: &quot;STRING&quot; } },
     ]
+* @property {spanner(v1).Transaction} transaction If the read or SQL query began a transaction as a side-effect, the
+information about the new transaction is yielded here.
 */
 /**
  * @typedef TransactionSelector
@@ -2200,8 +2161,6 @@ ResultSetMetadata.transaction, which is a Transaction.
  * @typedef Mutation
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).Write} update Update existing rows in a table. If any of the rows does not
-already exist, the transaction fails with error `NOT_FOUND`.
 * @property {spanner(v1).Write} replace Like insert, except that if the row already exists, it is
 deleted, and the column values provided are inserted
 instead. Unlike insert_or_update, this means any values not
@@ -2213,13 +2172,13 @@ the write or transaction fails with error `ALREADY_EXISTS`.
 * @property {spanner(v1).Write} insertOrUpdate Like insert, except that if the row already exists, then
 its column values are overwritten with the ones provided. Any
 column values not explicitly written are preserved.
+* @property {spanner(v1).Write} update Update existing rows in a table. If any of the rows does not
+already exist, the transaction fails with error `NOT_FOUND`.
 */
 /**
  * @typedef KeySet
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).KeyRange[]} ranges A list of key ranges. See KeyRange for more information about
-key range specifications.
 * @property {array[]} keys A list of specific keys. Entries in `keys` should have exactly as
 many elements as there are columns in the primary or index key
 with which this `KeySet` is used.  Individual key values are
@@ -2227,6 +2186,8 @@ encoded as described here.
 * @property {boolean} all For convenience `all` can be set to `true` to indicate that this
 `KeySet` matches all keys in the table or index. Note that any keys
 specified in `keys` or `ranges` are only yielded once.
+* @property {spanner(v1).KeyRange[]} ranges A list of key ranges. See KeyRange for more information about
+key range specifications.
 */
 /**
  * @typedef GetDatabaseDdlResponse
@@ -2245,6 +2206,15 @@ specified in the request.
 where `&lt;database&gt;` is as specified in the `CREATE DATABASE`
 statement. This name can be passed to other API methods to
 identify the database.
+*/
+/**
+ * @typedef ListDatabasesResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
+ListDatabases call to fetch more
+of the matching databases.
+* @property {spanner(v1).Database[]} databases Databases that matched the request.
 */
 /**
  * @typedef SetIamPolicyRequest
@@ -2286,15 +2256,15 @@ internal label representation, such as JSON, which doesn&#39;t rely upon
 specific characters being disallowed.  For example, representing labels
 as the string:  name + &quot;_&quot; + value  would prove problematic if we were to
 allow &quot;_&quot; in a future release.
-* @property {string} config Required. The name of the instance&#39;s configuration. Values are of the form
-`projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See
-also InstanceConfig and
-ListInstanceConfigs.
 * @property {string} state Output only. The current instance state. For
 CreateInstance, the state must be
 either omitted or set to `CREATING`. For
 UpdateInstance, the state must be
 either omitted or set to `READY`.
+* @property {string} config Required. The name of the instance&#39;s configuration. Values are of the form
+`projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See
+also InstanceConfig and
+ListInstanceConfigs.
 * @property {string} name Required. A unique identifier for the instance, which cannot be changed
 after the instance is created. Values are of the form
 `projects/&lt;project&gt;/instances/a-z*[a-z0-9]`. The final
@@ -2303,12 +2273,43 @@ segment of the name must be between 6 and 30 characters in length.
 Must be unique per project and between 4 and 30 characters in length.
 */
 /**
- * @typedef ListDatabasesResponse
+ * @typedef RollbackRequest
  * @memberOf! spanner(v1)
  * @type object
-* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
-ListDatabases call to fetch more
-of the matching databases.
-* @property {spanner(v1).Database[]} databases Databases that matched the request.
+ * @property {string} transactionId Required. The transaction to roll back.
+ */
+/**
+ * @typedef Transaction
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} id `id` may be used to identify the transaction in subsequent
+Read,
+ExecuteSql,
+Commit, or
+Rollback calls.
+
+Single-use read-only transactions do not have IDs, because
+single-use transactions do not support multiple requests.
+* @property {string} readTimestamp For snapshot read-only transactions, the read timestamp chosen
+for the transaction. Not returned by default: see
+TransactionOptions.ReadOnly.return_read_timestamp.
 */
+/**
+ * @typedef UpdateDatabaseDdlMetadata
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} database The database being modified.
+* @property {string[]} statements For an update this list contains all the statements. For an
+individual statement, this list contains only that statement.
+* @property {string[]} commitTimestamps Reports the commit timestamps of all statements that have
+succeeded so far, where `commit_timestamps[i]` is the commit
+timestamp for the statement `statements[i]`.
+*/
+/**
+ * @typedef CounterOptions
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} metric The metric to update.
+ * @property {string} field The field value to attribute.
+ */
 export = Spanner;

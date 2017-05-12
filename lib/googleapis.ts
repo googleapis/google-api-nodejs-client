@@ -11,10 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const path = require('path');
-const fs = require('fs');
-const util = require('util');
-const Discovery = require('./discovery');
+import * as path from 'path';
+import * as fs from 'fs';
+import * as util from 'util';
+import Discovery from './discovery';
+
 const discovery = new Discovery({ debug: false, includePrivate: false });
 
 /**

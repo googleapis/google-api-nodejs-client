@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Content API for Shopping
@@ -64,7 +63,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge',
           method: 'POST'
         }, options),
@@ -100,7 +99,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders/{orderId}/advance',
           method: 'POST'
         }, options),
@@ -137,7 +136,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancel',
           method: 'POST'
         }, options),
@@ -174,7 +173,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem',
           method: 'POST'
         }, options),
@@ -210,7 +209,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders',
           method: 'POST'
         }, options),
@@ -245,7 +244,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/orders/batch',
           method: 'POST'
         }, options),
@@ -281,7 +280,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}',
           method: 'GET'
         }, options),
@@ -317,7 +316,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}',
           method: 'GET'
         }, options),
@@ -353,7 +352,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testordertemplates/{templateName}',
           method: 'GET'
         }, options),
@@ -395,7 +394,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders',
           method: 'GET'
         }, options),
@@ -432,7 +431,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/refund',
           method: 'POST'
         }, options),
@@ -469,7 +468,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem',
           method: 'POST'
         }, options),
@@ -506,7 +505,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems',
           method: 'POST'
         }, options),
@@ -543,7 +542,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId',
           method: 'POST'
         }, options),
@@ -580,7 +579,7 @@ function Content(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment',
           method: 'POST'
         }, options),

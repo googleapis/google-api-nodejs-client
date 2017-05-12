@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Enterprise Apps Reseller API
@@ -62,7 +61,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'GET'
         }, options),
@@ -98,7 +97,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers',
           method: 'POST'
         }, options),
@@ -134,7 +133,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PATCH'
         }, options),
@@ -170,7 +169,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PUT'
         }, options),
@@ -208,7 +207,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/getwatchdetails',
           method: 'GET'
         }, options),
@@ -243,7 +242,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/register',
           method: 'POST'
         }, options),
@@ -278,7 +277,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/unregister',
           method: 'POST'
         }, options),
@@ -318,7 +317,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate',
           method: 'POST'
         }, options),
@@ -355,7 +354,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
           method: 'POST'
         }, options),
@@ -392,7 +391,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
           method: 'POST'
         }, options),
@@ -429,7 +428,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
           method: 'POST'
         }, options),
@@ -466,7 +465,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'DELETE'
         }, options),
@@ -502,7 +501,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'GET'
         }, options),
@@ -539,7 +538,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions',
           method: 'POST'
         }, options),
@@ -578,7 +577,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/subscriptions',
           method: 'GET'
         }, options),
@@ -614,7 +613,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
           method: 'POST'
         }, options),
@@ -650,7 +649,7 @@ function Reseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend',
           method: 'POST'
         }, options),

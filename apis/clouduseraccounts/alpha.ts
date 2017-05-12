@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Cloud User Accounts API
@@ -63,7 +62,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
         }, options),
@@ -99,7 +98,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'GET'
         }, options),
@@ -138,7 +137,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations',
           method: 'GET'
         }, options),
@@ -179,7 +178,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/addMember',
           method: 'POST'
         }, options),
@@ -215,7 +214,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'DELETE'
         }, options),
@@ -251,7 +250,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'GET'
         }, options),
@@ -287,7 +286,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/getIamPolicy',
           method: 'GET'
         }, options),
@@ -323,7 +322,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'POST'
         }, options),
@@ -362,7 +361,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'GET'
         }, options),
@@ -399,7 +398,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/removeMember',
           method: 'POST'
         }, options),
@@ -436,7 +435,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/setIamPolicy',
           method: 'POST'
         }, options),
@@ -473,7 +472,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/testIamPermissions',
           method: 'POST'
         }, options),
@@ -516,7 +515,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
           method: 'POST'
         }, options),
@@ -557,7 +556,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/linuxAccountViews',
           method: 'POST'
         }, options),
@@ -598,7 +597,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/addPublicKey',
           method: 'POST'
         }, options),
@@ -634,7 +633,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'DELETE'
         }, options),
@@ -670,7 +669,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'GET'
         }, options),
@@ -706,7 +705,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/getIamPolicy',
           method: 'GET'
         }, options),
@@ -742,7 +741,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'POST'
         }, options),
@@ -781,7 +780,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'GET'
         }, options),
@@ -818,7 +817,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/removePublicKey',
           method: 'POST'
         }, options),
@@ -855,7 +854,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/setIamPolicy',
           method: 'POST'
         }, options),
@@ -892,7 +891,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/testIamPermissions',
           method: 'POST'
         }, options),

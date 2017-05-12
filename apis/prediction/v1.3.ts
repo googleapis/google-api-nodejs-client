@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Prediction API
@@ -63,7 +62,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
         }, options),
@@ -102,7 +101,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'DELETE'
         }, options),
@@ -137,7 +136,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'GET'
         }, options),
@@ -172,7 +171,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/training',
           method: 'POST'
         }, options),
@@ -208,7 +207,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/training/{data}/predict',
           method: 'POST'
         }, options),
@@ -244,7 +243,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.3/training/{data}',
           method: 'PUT'
         }, options),

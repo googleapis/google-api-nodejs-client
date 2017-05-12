@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud Speech API
@@ -62,7 +61,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/operations/{name}:cancel',
           method: 'POST'
         }, options),
@@ -97,7 +96,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
           method: 'DELETE'
         }, options),
@@ -135,7 +134,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/operations',
           method: 'GET'
         }, options),
@@ -170,7 +169,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
           method: 'GET'
         }, options),
@@ -209,7 +208,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/speech:asyncrecognize',
           method: 'POST'
         }, options),
@@ -244,7 +243,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1beta1/speech:syncrecognize',
           method: 'POST'
         }, options),
@@ -260,60 +259,6 @@ function Speech(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef Status
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
-/**
- * @typedef SyncRecognizeResponse
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
-sequential portions of audio.
-*/
-/**
- * @typedef Empty
- * @memberOf! speech(v1beta1)
- * @type object
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1beta1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef SpeechContext
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
-the speech recognition is more likely to recognize them. This can be used
-to improve the accuracy for specific words and phrases, for example, if
-specific commands are typically spoken by the user. This can also be used
-to add additional words to the vocabulary of the recognizer. See
-[usage limits](https://cloud.google.com/speech/limits#content).
-*/
-/**
- * @typedef SpeechRecognitionAlternative
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
-indicates an estimated greater likelihood that the recognized words are
-correct. This field is typically provided only for the top hypothesis, and
-only for `is_final=true` results. Clients should not rely on the
-`confidence` field as it is not guaranteed to be accurate, or even set, in
-any of the results.
-The default of 0.0 is a sentinel value indicating `confidence` was not set.
-* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
 /**
  * @typedef SpeechRecognitionResult
  * @memberOf! speech(v1beta1)
@@ -347,6 +292,9 @@ process the request.
  * @typedef Operation
  * @memberOf! speech(v1beta1)
  * @type object
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -363,9 +311,6 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 */
 /**
  * @typedef RecognitionConfig
@@ -377,22 +322,22 @@ within each `SpeechRecognitionResult`.
 The server may return fewer than `max_alternatives`.
 Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
 one. If omitted, will return a maximum of one.
-* @property {integer} sampleRate *Required* Sample rate in Hertz of the audio data sent in all
-`RecognitionAudio` messages. Valid values are: 8000-48000.
-16000 is optimal. For best results, set the sampling rate of the audio
-source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
-the audio source (instead of re-sampling).
 * @property {string} languageCode *Optional* The language of the supplied audio as a BCP-47 language tag.
 Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
 If omitted, defaults to &quot;en-US&quot;. See
 [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
-* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
+* @property {integer} sampleRate *Required* Sample rate in Hertz of the audio data sent in all
+`RecognitionAudio` messages. Valid values are: 8000-48000.
+16000 is optimal. For best results, set the sampling rate of the audio
+source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
+the audio source (instead of re-sampling).
 * @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
 profanities, replacing all but the initial character in each filtered word
 with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
 won&#39;t be filtered out.
+* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
 */
 /**
  * @typedef SyncRecognizeRequest
@@ -402,4 +347,58 @@ won&#39;t be filtered out.
 process the request.
 * @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
+/**
+ * @typedef Status
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef SyncRecognizeResponse
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
+sequential portions of audio.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! speech(v1beta1)
+ * @type object
+ */
+/**
+ * @typedef SpeechRecognitionAlternative
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are
+correct. This field is typically provided only for the top hypothesis, and
+only for `is_final=true` results. Clients should not rely on the
+`confidence` field as it is not guaranteed to be accurate, or even set, in
+any of the results.
+The default of 0.0 is a sentinel value indicating `confidence` was not set.
+* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
+*/
+/**
+ * @typedef SpeechContext
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
+the speech recognition is more likely to recognize them. This can be used
+to improve the accuracy for specific words and phrases, for example, if
+specific commands are typically spoken by the user. This can also be used
+to add additional words to the vocabulary of the recognizer. See
+[usage limits](https://cloud.google.com/speech/limits#content).
+*/
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! speech(v1beta1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
 export = Speech;

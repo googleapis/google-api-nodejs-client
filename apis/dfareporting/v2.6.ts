@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * DCM/DFA Reporting And Trafficking API
@@ -112,7 +111,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
           method: 'GET'
         }, options),
@@ -201,7 +200,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountPermissionGroups/{id}',
           method: 'GET'
         }, options),
@@ -282,7 +281,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountPermissionGroups',
           method: 'GET'
         }, options),
@@ -371,7 +370,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountPermissions/{id}',
           method: 'GET'
         }, options),
@@ -452,7 +451,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountPermissions',
           method: 'GET'
         }, options),
@@ -541,7 +540,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountUserProfiles/{id}',
           method: 'GET'
         }, options),
@@ -627,7 +626,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountUserProfiles',
           method: 'POST'
         }, options),
@@ -730,7 +729,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountUserProfiles',
           method: 'GET'
         }, options),
@@ -821,7 +820,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountUserProfiles',
           method: 'PATCH'
         }, options),
@@ -907,7 +906,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accountUserProfiles',
           method: 'PUT'
         }, options),
@@ -996,7 +995,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accounts/{id}',
           method: 'GET'
         }, options),
@@ -1097,7 +1096,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accounts',
           method: 'GET'
         }, options),
@@ -1188,7 +1187,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accounts',
           method: 'PATCH'
         }, options),
@@ -1274,7 +1273,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/accounts',
           method: 'PUT'
         }, options),
@@ -1363,7 +1362,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/ads/{id}',
           method: 'GET'
         }, options),
@@ -1449,7 +1448,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/ads',
           method: 'POST'
         }, options),
@@ -1567,7 +1566,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/ads',
           method: 'GET'
         }, options),
@@ -1658,7 +1657,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/ads',
           method: 'PATCH'
         }, options),
@@ -1744,7 +1743,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/ads',
           method: 'PUT'
         }, options),
@@ -1830,7 +1829,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'DELETE'
         }, options),
@@ -1915,7 +1914,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'GET'
         }, options),
@@ -2001,7 +2000,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups',
           method: 'POST'
         }, options),
@@ -2101,7 +2100,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups',
           method: 'GET'
         }, options),
@@ -2192,7 +2191,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups',
           method: 'PATCH'
         }, options),
@@ -2278,7 +2277,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertiserGroups',
           method: 'PUT'
         }, options),
@@ -2367,7 +2366,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertisers/{id}',
           method: 'GET'
         }, options),
@@ -2453,7 +2452,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertisers',
           method: 'POST'
         }, options),
@@ -2559,7 +2558,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertisers',
           method: 'GET'
         }, options),
@@ -2650,7 +2649,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertisers',
           method: 'PATCH'
         }, options),
@@ -2736,7 +2735,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/advertisers',
           method: 'PUT'
         }, options),
@@ -2821,7 +2820,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/browsers',
           method: 'GET'
         }, options),
@@ -2915,7 +2914,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'POST'
         }, options),
@@ -3016,7 +3015,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'GET'
         }, options),
@@ -3105,7 +3104,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{id}',
           method: 'GET'
         }, options),
@@ -3199,7 +3198,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns',
           method: 'POST'
         }, options),
@@ -3306,7 +3305,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns',
           method: 'GET'
         }, options),
@@ -3397,7 +3396,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns',
           method: 'PATCH'
         }, options),
@@ -3483,7 +3482,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns',
           method: 'PUT'
         }, options),
@@ -3572,7 +3571,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/changeLogs/{id}',
           method: 'GET'
         }, options),
@@ -3676,7 +3675,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/changeLogs',
           method: 'GET'
         }, options),
@@ -3765,7 +3764,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/cities',
           method: 'GET'
         }, options),
@@ -3854,7 +3853,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/connectionTypes/{id}',
           method: 'GET'
         }, options),
@@ -3935,7 +3934,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/connectionTypes',
           method: 'GET'
         }, options),
@@ -4021,7 +4020,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories/{id}',
           method: 'DELETE'
         }, options),
@@ -4106,7 +4105,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories/{id}',
           method: 'GET'
         }, options),
@@ -4192,7 +4191,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories',
           method: 'POST'
         }, options),
@@ -4292,7 +4291,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories',
           method: 'GET'
         }, options),
@@ -4383,7 +4382,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories',
           method: 'PATCH'
         }, options),
@@ -4469,7 +4468,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/contentCategories',
           method: 'PUT'
         }, options),
@@ -4559,7 +4558,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/conversions/batchinsert',
           method: 'POST'
         }, options),
@@ -4648,7 +4647,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/countries/{dartId}',
           method: 'GET'
         }, options),
@@ -4729,7 +4728,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/countries',
           method: 'GET'
         }, options),
@@ -4833,7 +4832,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
           method: 'POST'
         }, options),
@@ -4924,7 +4923,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'DELETE'
         }, options),
@@ -5013,7 +5012,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'GET'
         }, options),
@@ -5103,7 +5102,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'POST'
         }, options),
@@ -5207,7 +5206,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'GET'
         }, options),
@@ -5302,7 +5301,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PATCH'
         }, options),
@@ -5392,7 +5391,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PUT'
         }, options),
@@ -5478,7 +5477,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{id}',
           method: 'DELETE'
         }, options),
@@ -5563,7 +5562,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields/{id}',
           method: 'GET'
         }, options),
@@ -5649,7 +5648,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields',
           method: 'POST'
         }, options),
@@ -5750,7 +5749,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields',
           method: 'GET'
         }, options),
@@ -5841,7 +5840,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields',
           method: 'PATCH'
         }, options),
@@ -5927,7 +5926,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeFields',
           method: 'PUT'
         }, options),
@@ -6016,7 +6015,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeGroups/{id}',
           method: 'GET'
         }, options),
@@ -6102,7 +6101,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeGroups',
           method: 'POST'
         }, options),
@@ -6204,7 +6203,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeGroups',
           method: 'GET'
         }, options),
@@ -6295,7 +6294,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeGroups',
           method: 'PATCH'
         }, options),
@@ -6381,7 +6380,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creativeGroups',
           method: 'PUT'
         }, options),
@@ -6470,7 +6469,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creatives/{id}',
           method: 'GET'
         }, options),
@@ -6556,7 +6555,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creatives',
           method: 'POST'
         }, options),
@@ -6666,7 +6665,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creatives',
           method: 'GET'
         }, options),
@@ -6757,7 +6756,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creatives',
           method: 'PATCH'
         }, options),
@@ -6843,7 +6842,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/creatives',
           method: 'PUT'
         }, options),
@@ -6948,7 +6947,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/dimensionvalues/query',
           method: 'POST'
         }, options),
@@ -7037,7 +7036,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/directorySiteContacts/{id}',
           method: 'GET'
         }, options),
@@ -7138,7 +7137,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/directorySiteContacts',
           method: 'GET'
         }, options),
@@ -7227,7 +7226,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/directorySites/{id}',
           method: 'GET'
         }, options),
@@ -7313,7 +7312,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/directorySites',
           method: 'POST'
         }, options),
@@ -7420,7 +7419,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/directorySites',
           method: 'GET'
         }, options),
@@ -7515,7 +7514,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}',
           method: 'DELETE'
         }, options),
@@ -7601,7 +7600,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/dynamicTargetingKeys',
           method: 'POST'
         }, options),
@@ -7686,7 +7685,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/dynamicTargetingKeys',
           method: 'GET'
         }, options),
@@ -7772,7 +7771,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags/{id}',
           method: 'DELETE'
         }, options),
@@ -7857,7 +7856,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags/{id}',
           method: 'GET'
         }, options),
@@ -7943,7 +7942,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags',
           method: 'POST'
         }, options),
@@ -8034,7 +8033,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags',
           method: 'GET'
         }, options),
@@ -8125,7 +8124,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags',
           method: 'PATCH'
         }, options),
@@ -8211,7 +8210,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/eventTags',
           method: 'PUT'
         }, options),
@@ -8304,7 +8303,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/reports/{reportId}/files/{fileId}',
           method: 'GET'
         }, options),
@@ -8403,7 +8402,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/files',
           method: 'GET'
         }, options),
@@ -8489,7 +8488,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'DELETE'
         }, options),
@@ -8571,7 +8570,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities/generatetag',
           method: 'POST'
         }, options),
@@ -8656,7 +8655,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'GET'
         }, options),
@@ -8742,7 +8741,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities',
           method: 'POST'
         }, options),
@@ -8849,7 +8848,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities',
           method: 'GET'
         }, options),
@@ -8940,7 +8939,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities',
           method: 'PATCH'
         }, options),
@@ -9026,7 +9025,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivities',
           method: 'PUT'
         }, options),
@@ -9115,7 +9114,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivityGroups/{id}',
           method: 'GET'
         }, options),
@@ -9201,7 +9200,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'POST'
         }, options),
@@ -9304,7 +9303,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'GET'
         }, options),
@@ -9395,7 +9394,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PATCH'
         }, options),
@@ -9481,7 +9480,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PUT'
         }, options),
@@ -9570,7 +9569,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightConfigurations/{id}',
           method: 'GET'
         }, options),
@@ -9652,7 +9651,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightConfigurations',
           method: 'GET'
         }, options),
@@ -9743,7 +9742,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PATCH'
         }, options),
@@ -9829,7 +9828,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PUT'
         }, options),
@@ -9922,7 +9921,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
           method: 'GET'
         }, options),
@@ -10029,7 +10028,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
           method: 'GET'
         }, options),
@@ -10119,7 +10118,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'DELETE'
         }, options),
@@ -10208,7 +10207,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'GET'
         }, options),
@@ -10298,7 +10297,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'POST'
         }, options),
@@ -10383,7 +10382,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'GET'
         }, options),
@@ -10478,7 +10477,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PATCH'
         }, options),
@@ -10568,7 +10567,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PUT'
         }, options),
@@ -10653,7 +10652,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/languages',
           method: 'GET'
         }, options),
@@ -10738,7 +10737,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/metros',
           method: 'GET'
         }, options),
@@ -10827,7 +10826,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/mobileCarriers/{id}',
           method: 'GET'
         }, options),
@@ -10908,7 +10907,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/mobileCarriers',
           method: 'GET'
         }, options),
@@ -10997,7 +10996,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/operatingSystemVersions/{id}',
           method: 'GET'
         }, options),
@@ -11078,7 +11077,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/operatingSystemVersions',
           method: 'GET'
         }, options),
@@ -11167,7 +11166,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/operatingSystems/{dartId}',
           method: 'GET'
         }, options),
@@ -11248,7 +11247,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/operatingSystems',
           method: 'GET'
         }, options),
@@ -11341,7 +11340,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
           method: 'GET'
         }, options),
@@ -11448,7 +11447,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
           method: 'GET'
         }, options),
@@ -11541,7 +11540,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
           method: 'GET'
         }, options),
@@ -11646,7 +11645,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{projectId}/orders',
           method: 'GET'
         }, options),
@@ -11735,7 +11734,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementGroups/{id}',
           method: 'GET'
         }, options),
@@ -11821,7 +11820,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementGroups',
           method: 'POST'
         }, options),
@@ -11934,7 +11933,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementGroups',
           method: 'GET'
         }, options),
@@ -12025,7 +12024,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementGroups',
           method: 'PATCH'
         }, options),
@@ -12111,7 +12110,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementGroups',
           method: 'PUT'
         }, options),
@@ -12197,7 +12196,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'DELETE'
         }, options),
@@ -12282,7 +12281,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'GET'
         }, options),
@@ -12368,7 +12367,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies',
           method: 'POST'
         }, options),
@@ -12468,7 +12467,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies',
           method: 'GET'
         }, options),
@@ -12559,7 +12558,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies',
           method: 'PATCH'
         }, options),
@@ -12645,7 +12644,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placementStrategies',
           method: 'PUT'
         }, options),
@@ -12733,7 +12732,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements/generatetags',
           method: 'POST'
         }, options),
@@ -12818,7 +12817,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements/{id}',
           method: 'GET'
         }, options),
@@ -12904,7 +12903,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements',
           method: 'POST'
         }, options),
@@ -13020,7 +13019,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements',
           method: 'GET'
         }, options),
@@ -13111,7 +13110,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements',
           method: 'PATCH'
         }, options),
@@ -13197,7 +13196,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/placements',
           method: 'PUT'
         }, options),
@@ -13286,7 +13285,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/platformTypes/{id}',
           method: 'GET'
         }, options),
@@ -13367,7 +13366,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/platformTypes',
           method: 'GET'
         }, options),
@@ -13456,7 +13455,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/postalCodes/{code}',
           method: 'GET'
         }, options),
@@ -13537,7 +13536,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/postalCodes',
           method: 'GET'
         }, options),
@@ -13626,7 +13625,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects/{id}',
           method: 'GET'
         }, options),
@@ -13727,7 +13726,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/projects',
           method: 'GET'
         }, options),
@@ -13812,7 +13811,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/regions',
           method: 'GET'
         }, options),
@@ -13901,7 +13900,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
           method: 'GET'
         }, options),
@@ -13992,7 +13991,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingListShares',
           method: 'PATCH'
         }, options),
@@ -14078,7 +14077,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingListShares',
           method: 'PUT'
         }, options),
@@ -14167,7 +14166,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingLists/{id}',
           method: 'GET'
         }, options),
@@ -14253,7 +14252,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingLists',
           method: 'POST'
         }, options),
@@ -14358,7 +14357,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingLists',
           method: 'GET'
         }, options),
@@ -14449,7 +14448,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingLists',
           method: 'PATCH'
         }, options),
@@ -14535,7 +14534,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/remarketingLists',
           method: 'PUT'
         }, options),
@@ -14621,7 +14620,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}',
           method: 'DELETE'
         }, options),
@@ -14706,7 +14705,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}',
           method: 'GET'
         }, options),
@@ -14792,7 +14791,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports',
           method: 'POST'
         }, options),
@@ -14891,7 +14890,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports',
           method: 'GET'
         }, options),
@@ -14982,7 +14981,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}',
           method: 'PATCH'
         }, options),
@@ -15068,7 +15067,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}/run',
           method: 'POST'
         }, options),
@@ -15158,7 +15157,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}',
           method: 'PUT'
         }, options),
@@ -15246,7 +15245,7 @@ function Dfareporting(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/compatiblefields/query',
             method: 'POST'
           }, options),
@@ -15342,7 +15341,7 @@ function Dfareporting(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
             method: 'GET'
           }, options),
@@ -15444,7 +15443,7 @@ function Dfareporting(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/reports/{reportId}/files',
             method: 'GET'
           }, options),
@@ -15533,7 +15532,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sites/{id}',
           method: 'GET'
         }, options),
@@ -15619,7 +15618,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sites',
           method: 'POST'
         }, options),
@@ -15728,7 +15727,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sites',
           method: 'GET'
         }, options),
@@ -15819,7 +15818,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sites',
           method: 'PATCH'
         }, options),
@@ -15905,7 +15904,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sites',
           method: 'PUT'
         }, options),
@@ -15994,7 +15993,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sizes/{id}',
           method: 'GET'
         }, options),
@@ -16080,7 +16079,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sizes',
           method: 'POST'
         }, options),
@@ -16165,7 +16164,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/sizes',
           method: 'GET'
         }, options),
@@ -16254,7 +16253,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/subaccounts/{id}',
           method: 'GET'
         }, options),
@@ -16340,7 +16339,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/subaccounts',
           method: 'POST'
         }, options),
@@ -16440,7 +16439,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/subaccounts',
           method: 'GET'
         }, options),
@@ -16531,7 +16530,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/subaccounts',
           method: 'PATCH'
         }, options),
@@ -16617,7 +16616,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/subaccounts',
           method: 'PUT'
         }, options),
@@ -16706,7 +16705,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetableRemarketingLists/{id}',
           method: 'GET'
         }, options),
@@ -16810,7 +16809,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetableRemarketingLists',
           method: 'GET'
         }, options),
@@ -16899,7 +16898,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetingTemplates/{id}',
           method: 'GET'
         }, options),
@@ -16985,7 +16984,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetingTemplates',
           method: 'POST'
         }, options),
@@ -17086,7 +17085,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetingTemplates',
           method: 'GET'
         }, options),
@@ -17177,7 +17176,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetingTemplates',
           method: 'PATCH'
         }, options),
@@ -17263,7 +17262,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/targetingTemplates',
           method: 'PUT'
         }, options),
@@ -17349,7 +17348,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}',
           method: 'GET'
         }, options),
@@ -17427,7 +17426,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles',
           method: 'GET'
         }, options),
@@ -17516,7 +17515,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRolePermissionGroups/{id}',
           method: 'GET'
         }, options),
@@ -17597,7 +17596,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRolePermissionGroups',
           method: 'GET'
         }, options),
@@ -17686,7 +17685,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRolePermissions/{id}',
           method: 'GET'
         }, options),
@@ -17768,7 +17767,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRolePermissions',
           method: 'GET'
         }, options),
@@ -17854,7 +17853,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles/{id}',
           method: 'DELETE'
         }, options),
@@ -17939,7 +17938,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles/{id}',
           method: 'GET'
         }, options),
@@ -18025,7 +18024,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles',
           method: 'POST'
         }, options),
@@ -18127,7 +18126,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles',
           method: 'GET'
         }, options),
@@ -18218,7 +18217,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles',
           method: 'PATCH'
         }, options),
@@ -18304,7 +18303,7 @@ function Dfareporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dfareporting/v2.6/userprofiles/{profileId}/userRoles',
           method: 'PUT'
         }, options),

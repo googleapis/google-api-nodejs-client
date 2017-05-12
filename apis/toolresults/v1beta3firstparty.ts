@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Cloud Tool Results firstparty API
@@ -62,7 +61,7 @@ function Toolresults(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/settings',
           method: 'GET'
         }, options),
@@ -97,7 +96,7 @@ function Toolresults(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}:initializeSettings',
           method: 'POST'
         }, options),
@@ -136,7 +135,7 @@ function Toolresults(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories',
             method: 'POST'
           }, options),
@@ -172,7 +171,7 @@ function Toolresults(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}',
             method: 'GET'
           }, options),
@@ -210,7 +209,7 @@ function Toolresults(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories',
             method: 'GET'
           }, options),
@@ -250,7 +249,7 @@ function Toolresults(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions',
               method: 'POST'
             }, options),
@@ -287,7 +286,7 @@ function Toolresults(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'GET'
             }, options),
@@ -325,7 +324,7 @@ function Toolresults(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions',
               method: 'GET'
             }, options),
@@ -364,7 +363,7 @@ function Toolresults(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'PATCH'
             }, options),
@@ -405,7 +404,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'POST'
               }, options),
@@ -443,7 +442,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'GET'
               }, options),
@@ -481,7 +480,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary',
                 method: 'GET'
               }, options),
@@ -520,7 +519,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'GET'
               }, options),
@@ -560,7 +559,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'PATCH'
               }, options),
@@ -599,7 +598,7 @@ function Toolresults(options) { // eslint-disable-line
             options || (options = {});
 
             const parameters = {
-              options: utils.extend({
+              options: Object.assign({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles',
                 method: 'POST'
               }, options),
@@ -640,7 +639,7 @@ function Toolresults(options) { // eslint-disable-line
               options || (options = {});
 
               const parameters = {
-                options: utils.extend({
+                options: Object.assign({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary',
                   method: 'POST'
                 }, options),
@@ -682,7 +681,7 @@ function Toolresults(options) { // eslint-disable-line
               options || (options = {});
 
               const parameters = {
-                options: utils.extend({
+                options: Object.assign({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries',
                   method: 'POST'
                 }, options),
@@ -721,7 +720,7 @@ function Toolresults(options) { // eslint-disable-line
               options || (options = {});
 
               const parameters = {
-                options: utils.extend({
+                options: Object.assign({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}',
                   method: 'GET'
                 }, options),
@@ -760,7 +759,7 @@ function Toolresults(options) { // eslint-disable-line
               options || (options = {});
 
               const parameters = {
-                options: utils.extend({
+                options: Object.assign({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries',
                   method: 'GET'
                 }, options),
@@ -802,7 +801,7 @@ function Toolresults(options) { // eslint-disable-line
                 options || (options = {});
 
                 const parameters = {
-                  options: utils.extend({
+                  options: Object.assign({
                     url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate',
                     method: 'POST'
                   }, options),
@@ -843,7 +842,7 @@ function Toolresults(options) { // eslint-disable-line
                 options || (options = {});
 
                 const parameters = {
-                  options: utils.extend({
+                  options: Object.assign({
                     url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples',
                     method: 'GET'
                   }, options),
@@ -887,7 +886,7 @@ function Toolresults(options) { // eslint-disable-line
               options || (options = {});
 
               const parameters = {
-                options: utils.extend({
+                options: Object.assign({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails',
                   method: 'GET'
                 }, options),

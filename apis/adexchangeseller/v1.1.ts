@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Ad Exchange Seller API
@@ -62,7 +61,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/accounts/{accountId}',
           method: 'GET'
         }, options),
@@ -102,7 +101,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients',
           method: 'GET'
         }, options),
@@ -142,7 +141,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}',
           method: 'GET'
         }, options),
@@ -180,7 +179,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits',
           method: 'GET'
         }, options),
@@ -220,7 +219,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
             method: 'GET'
           }, options),
@@ -259,7 +258,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/alerts',
           method: 'GET'
         }, options),
@@ -299,7 +298,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         }, options),
@@ -336,7 +335,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels',
           method: 'GET'
         }, options),
@@ -377,7 +376,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
             method: 'GET'
           }, options),
@@ -417,7 +416,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/metadata/dimensions',
             method: 'GET'
           }, options),
@@ -454,7 +453,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/metadata/metrics',
             method: 'GET'
           }, options),
@@ -493,7 +492,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals/{dealId}',
           method: 'GET'
         }, options),
@@ -527,7 +526,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/preferreddeals',
           method: 'GET'
         }, options),
@@ -574,7 +573,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports',
           method: 'GET'
         }, options),
@@ -614,7 +613,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/{savedReportId}',
             method: 'GET'
           }, options),
@@ -650,7 +649,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://www.googleapis.com/adexchangeseller/v1.1/reports/saved',
             method: 'GET'
           }, options),
@@ -691,7 +690,7 @@ function Adexchangeseller(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangeseller/v1.1/adclients/{adClientId}/urlchannels',
           method: 'GET'
         }, options),
