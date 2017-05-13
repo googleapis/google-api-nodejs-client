@@ -114,6 +114,19 @@ export default class Generator {
     return pathParams;
   }
 
+  private getFormDataParams (params) {
+    const formDataParams = [];
+    if (typeof params !== 'object') {
+      params = {};
+    }
+    Object.keys(params).forEach(function (key) {
+      if (params[key].location === 'formdata') {
+        formDataParams.push(key);
+      }
+    });
+    return formDataParams;
+  }
+
   private getSafeParamName (param) {
     if (RESERVED_PARAMS.indexOf(param) !== -1) {
       return param + '_';
@@ -152,6 +165,7 @@ export default class Generator {
     swig.setFilter('oneLine', this.oneLine);
     swig.setFilter('cleanComments', this.cleanComments);
     swig.setFilter('getPathParams', this.getPathParams);
+    swig.setFilter('getFormDataParams', this.getFormDataParams);
     swig.setFilter('getSafeParamName', this.getSafeParamName);
     swig.setFilter('cleanPaths', (str) => {
       return str.replace(/\/\*\//gi, '/x/').replace(/\/\*`/gi, '/x');

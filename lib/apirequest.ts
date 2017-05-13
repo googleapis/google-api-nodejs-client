@@ -124,6 +124,12 @@ function createAPIRequest (parameters, callback) {
     delete params[param];
   });
 
+  const formData = {};
+  (parameters.formDataParams || []).forEach(function (param) {
+    formData[param] = params[param];
+    delete params[param];
+  });
+
   // if authClient is actually a string, use it as an API KEY
   if (typeof authClient === 'string') {
     params.key = params.key || authClient;
@@ -156,6 +162,10 @@ function createAPIRequest (parameters, callback) {
         options.body = media.body;
       }
     }
+  // only add form data to options if form data is given
+  } else if(Object.getOwnPropertyNames(formData).length > 0) {
+    options.formData = formData;
+    options.json = true;
   } else {
     options.json = resource || (
       (options.method === 'GET' || options.method === 'DELETE') ? true : {}

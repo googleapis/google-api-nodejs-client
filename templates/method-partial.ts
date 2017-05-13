@@ -1,6 +1,7 @@
 {% set lb = "{" %}
 {% set rb = "}" %}
 {%- set pathParams = m.parameters|getPathParams -%}
+{%- set formDataParams = m.parameters|getFormDataParams -%}
 /**
  * {{ m.id }}
  *
@@ -52,6 +53,7 @@
     {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ [rootUrl, m.mediaUpload.protocols.simple.path]|join('')|buildurl }},{%- endif -%}
     requiredParams: [{%- if m.parameterOrder.length -%}'{{ m.parameterOrder|join("', '")|safe }}'{%- endif -%}],
     pathParams: [{%- if pathParams.length -%}'{{ pathParams|join("', '")|safe }}'{%- endif -%}],
+    formDataParams: [{%- if formDataParams.length -%}'{{ formDataParams|join("', '")|safe }}'{%- endif -%}],
     context: self
   };
 
