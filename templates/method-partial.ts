@@ -43,13 +43,15 @@
   }
   options || (options = {});
 
+  const rootUrl = options.rootUrl || {{ rootUrl|buildurl }};
+
   const parameters = {
     options: Object.assign({
-      url: {{ (rootUrl + servicePath + m.path)|buildurl }},
+      url: (rootUrl + {{ ('/' + servicePath + m.path)|buildurl }}).replace(/([^:]\/)\/+/g, '$1'),
       method: '{{ m.httpMethod }}'
     }, options),
     params: params,
-    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ [rootUrl, m.mediaUpload.protocols.simple.path]|join('')|buildurl }},{%- endif -%}
+    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl }}).replace(/([^:]\/)\/+/g, '$1'),{%- endif -%}
     requiredParams: [{%- if m.parameterOrder.length -%}'{{ m.parameterOrder|join("', '")|safe }}'{%- endif -%}],
     pathParams: [{%- if pathParams.length -%}'{{ pathParams|join("', '")|safe }}'{%- endif -%}],
     context: self
