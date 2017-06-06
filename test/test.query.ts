@@ -18,6 +18,7 @@ import utils from './utils';
 let googleapis = require('../');
 
 describe('Query params', () => {
+  let localCompute, remoteCompute;
   let localDrive, remoteDrive;
   let localGmail, remoteGmail;
 
@@ -26,6 +27,9 @@ describe('Query params', () => {
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
+      (cb) => {
+        utils.loadApi(google, 'compute', 'v1', {}, cb);
+      },
       (cb) => {
         utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
@@ -36,8 +40,9 @@ describe('Query params', () => {
       if (err) {
         return done(err);
       }
-      remoteDrive = apis[0];
-      remoteGmail = apis[1];
+      remoteCompute = apis[0];
+      remoteDrive = apis[1];
+      remoteGmail = apis[2];
       nock.disableNetConnect();
       done();
     });
@@ -47,6 +52,7 @@ describe('Query params', () => {
     nock.cleanAll();
     nock.disableNetConnect();
     const google = new googleapis.GoogleApis();
+    localCompute = google.compute('v1');
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
   });
@@ -91,6 +97,18 @@ describe('Query params', () => {
     assert.equal(req.uri.query, 'resource=hello');
     req = remoteDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
     assert.equal(req.uri.query, 'resource=hello');
+  });
+
+  it('should be set if params passed are falsy', () => {
+    let req = localCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, utils.noop);
+    assert.equal(req.uri.query, 'autoDelete=false&deviceName=');
+    req = remoteCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, utils.noop);
+    assert.equal(req.uri.query, 'autoDelete=false&deviceName=');
+
+    req = localCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, utils.noop);
+    assert.equal(req.uri.query, 'size=0');
+    req = remoteCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, utils.noop);
+    assert.equal(req.uri.query, 'size=0');
   });
 
   it('should chain together with & in order', () => {
