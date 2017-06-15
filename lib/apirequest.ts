@@ -38,7 +38,7 @@ function getMissingParams (params, required) {
 
   required.forEach(function (param) {
     // Is the required param in the params object?
-    if (!params.hasOwnProperty(param)) {
+    if (params[param] === undefined) {
       missing.push(param);
     }
   });
