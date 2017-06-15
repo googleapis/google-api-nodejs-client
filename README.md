@@ -332,7 +332,7 @@ var jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
-  [scope1, scope2],
+  ['https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/calendar'], // an array of auth scopes
   null
 );
 
