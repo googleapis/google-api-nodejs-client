@@ -119,6 +119,15 @@ describe('Options', () => {
     assert.equal(req.headers.Authorization, 'Bearer abc');
   });
 
+  it('should allow overriding rootUrl via options', () => {
+    const google = new googleapis.GoogleApis();
+    const drive = google.drive('v3');
+    const reqWithSlash = drive.files.get({ fileId: 'woot' }, { rootUrl: 'https://myrooturl.com/' }, utils.noop);
+    assert.equal(reqWithSlash.url, 'https://myrooturl.com/drive/v3/files/woot', 'Request used overridden rootUrl with trailing slash.');
+    const reqWithoutSlash = drive.files.get({ fileId: 'woot' }, { rootUrl: 'https://myrooturl.com' }, utils.noop);
+    assert.equal(reqWithoutSlash.url, 'https://myrooturl.com/drive/v3/files/woot', 'Request used overridden rootUrl.');
+  });
+
   after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
