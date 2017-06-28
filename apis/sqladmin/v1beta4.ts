@@ -62,9 +62,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -99,9 +101,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -136,9 +140,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -174,9 +180,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -215,9 +223,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -252,9 +262,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -289,9 +301,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -325,9 +339,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -363,9 +379,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -401,9 +419,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -440,9 +460,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/flags',
+          url: (rootUrl + '/sql/v1beta4/flags').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -481,9 +503,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/clone',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/clone').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -517,9 +541,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -554,9 +580,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/export',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/export').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -591,9 +619,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/failover',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/failover').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -627,9 +657,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -664,9 +696,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/import',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -700,9 +734,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -723,7 +759,7 @@ function Sqladmin(options) { // eslint-disable-line
      * @memberOf! sqladmin(v1beta4)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression for filtering listed instances.
+     * @param {string=} params.filter An expression for filtering the results of the request, such as by name or label.
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
@@ -738,9 +774,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -775,9 +813,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -811,9 +851,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -847,9 +889,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -883,9 +927,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restart',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/restart').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -920,9 +966,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -956,9 +1004,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/startReplica',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/startReplica').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -992,9 +1042,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1029,9 +1081,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1066,9 +1120,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1106,9 +1162,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations/{operation}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1144,9 +1202,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/operations').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1185,9 +1245,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1222,9 +1284,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1259,9 +1323,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1296,9 +1362,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1332,9 +1400,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1371,9 +1441,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/tiers',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/tiers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1413,9 +1485,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1450,9 +1524,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1486,9 +1562,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1525,9 +1603,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1717,6 +1797,7 @@ CSV: The file contains CSV data.
 * @property {string} fileType The file type for the specified uri.
 SQL: The file contains SQL statements.
 CSV: The file contains CSV data.
+* @property {string} importUser The PostgreSQL user to use for this import operation. Defaults to cloudsqlsuperuser. Does not apply to MySQL instances.
 * @property {string} kind This is always sql#importContext.
 * @property {string} uri A path to the file in Google Cloud Storage from which the import is made. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are supported when fileType is SQL.
 */
@@ -1781,13 +1862,6 @@ CSV: The file contains CSV data.
  * @property {string} type The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
  */
 /**
- * @typedef Labels
- * @memberOf! sqladmin(v1beta4)
- * @type object
- * @property {string} key The key of the label.
- * @property {string} value The value of the label.
- */
-/**
  * @typedef LocationPreference
  * @memberOf! sqladmin(v1beta4)
  * @type object
@@ -1843,7 +1917,7 @@ CSV: The file contains CSV data.
  * @property {string} startTime The time this operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
  * @property {string} status The status of an operation. Valid values are PENDING, RUNNING, DONE, UNKNOWN.
  * @property {string} targetId Name of the database instance related to this operation.
- * @property {string} targetLink The URI of the instance related to the operation.
+ * @property {string} targetLink 
  * @property {string} targetProject The project ID of the target instance related to this operation.
  * @property {string} user The email address of the user who initiated this operation.
  */
@@ -1905,15 +1979,15 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
 * @property {boolean} databaseReplicationEnabled Configuration specific to read replica instances. Indicates whether replication is enabled or not.
 * @property {sqladmin(v1beta4).IpConfiguration} ipConfiguration The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
 * @property {string} kind This is always sql#settings.
-* @property {sqladmin(v1beta4).Labels[]} labels User defined labels.
 * @property {sqladmin(v1beta4).LocationPreference} locationPreference The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or GCE zone for better performance. App Engine co-location is only applicable to First Generation instances.
 * @property {sqladmin(v1beta4).MaintenanceWindow} maintenanceWindow The maintenance window for this instance. This specifies when the instance may be restarted for maintenance purposes. Applies only to Second Generation instances.
 * @property {string} pricingPlan The pricing plan for this instance. This can be either PER_USE or PACKAGE. Only PER_USE is supported for Second Generation instances.
 * @property {string} replicationType The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First Generation instances.
 * @property {string} settingsVersion The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.
-* @property {boolean} storageAutoResize Configuration to increase storage size automatically. The default value is false. Applies only to Second Generation instances.
+* @property {boolean} storageAutoResize Configuration to increase storage size automatically. The default value is true. Applies only to Second Generation instances.
 * @property {string} storageAutoResizeLimit The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. Applies only to Second Generation instances.
 * @property {string} tier The tier of service for this instance, for example D1, D2. For more information, see pricing.
+* @property {object} userLabels User-provided labels, represented as a dictionary where each label is a single key value pair.
 */
 /**
  * @typedef SslCert

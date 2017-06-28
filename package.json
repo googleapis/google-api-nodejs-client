@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "19.0.0",
+  "version": "20.0.0",
   "author": "Google Inc.",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",

@@ -61,9 +61,11 @@ function Discovery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
+          url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Discovery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/discovery/v1/apis',
+          url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

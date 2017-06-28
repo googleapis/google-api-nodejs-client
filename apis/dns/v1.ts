@@ -120,9 +120,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}/changes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -214,9 +216,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes/{changeId}',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}/changes/{changeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -321,9 +325,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/changes',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}/changes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -416,9 +422,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -503,9 +511,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -593,9 +603,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -695,9 +707,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -785,9 +799,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}',
+          url: (rootUrl + '/dns/v1/projects/{project}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -896,9 +912,11 @@ function Dns(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/dns/v1/projects/{project}/managedZones/{managedZone}/rrsets',
+          url: (rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}/rrsets').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

@@ -60,9 +60,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/datatransfer/v1/applications/{applicationId}',
+          url: (rootUrl + '/admin/datatransfer/v1/applications/{applicationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/datatransfer/v1/applications',
+          url: (rootUrl + '/admin/datatransfer/v1/applications').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -136,9 +140,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers/{dataTransferId}',
+          url: (rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -171,9 +177,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
+          url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -211,9 +219,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
+          url: (rootUrl + '/admin/datatransfer/v1/transfers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

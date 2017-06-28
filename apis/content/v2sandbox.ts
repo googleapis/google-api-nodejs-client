@@ -62,9 +62,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -98,9 +100,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders/{orderId}/advance',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/testorders/{orderId}/advance').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -135,9 +139,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancel',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -172,9 +178,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -208,9 +216,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/testorders').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -243,9 +253,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/orders/batch',
+          url: (rootUrl + '/content/v2sandbox/orders/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -279,9 +291,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -315,9 +329,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -351,9 +367,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testordertemplates/{templateName}',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/testordertemplates/{templateName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -393,9 +411,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -430,9 +450,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/refund',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/refund').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -467,9 +489,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -504,9 +528,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -541,9 +567,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -578,9 +606,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment',
+          url: (rootUrl + '/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

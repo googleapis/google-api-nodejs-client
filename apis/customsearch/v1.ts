@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * CustomSearch API
  *
- * Lets you search over a website or collection of websites
+ * Searches over a website or collection of websites
  *
  * @example
  * const google = require('googleapis');
@@ -50,7 +50,6 @@ function Customsearch(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.c2coff Turns off the translation between zh-CN and zh-TW.
      * @param {string=} params.cr Country restrict(s).
-     * @param {string=} params.cref The URL of a linked custom search engine
      * @param {string=} params.cx The custom search engine ID to scope this search query
      * @param {string=} params.dateRestrict Specifies all search results are from a time period
      * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain
@@ -91,9 +90,11 @@ function Customsearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/customsearch/v1',
+          url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -132,7 +133,6 @@ function Customsearch(options) { // eslint-disable-line
  * @type object
  * @property {integer} count 
  * @property {string} cr 
- * @property {string} cref 
  * @property {string} cx 
  * @property {string} dateRestrict 
  * @property {string} disableCnTwTranslation 

@@ -60,9 +60,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -130,9 +134,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -165,9 +171,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -200,9 +208,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getOobConfirmationCode').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -236,9 +246,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -270,9 +282,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -304,9 +318,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -339,9 +355,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -374,9 +392,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -409,9 +429,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -444,9 +466,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -479,9 +503,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -514,9 +540,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -549,9 +577,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -584,9 +614,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -619,9 +651,11 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

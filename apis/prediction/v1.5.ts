@@ -61,9 +61,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/hostedmodels/{hostedModelName}/predict',
+          url: (rootUrl + '/prediction/v1.5/hostedmodels/{hostedModelName}/predict').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -100,9 +102,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/analyze',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/{id}/analyze').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -135,9 +139,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -170,9 +176,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -205,9 +213,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -241,9 +251,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/list',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/list').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -277,9 +289,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/predict',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/{id}/predict').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -313,9 +327,11 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
+          url: (rootUrl + '/prediction/v1.5/trainedmodels/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

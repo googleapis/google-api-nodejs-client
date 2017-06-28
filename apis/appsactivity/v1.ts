@@ -66,9 +66,11 @@ function Appsactivity(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/appsactivity/v1/activities',
+          url: (rootUrl + '/appsactivity/v1/activities').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

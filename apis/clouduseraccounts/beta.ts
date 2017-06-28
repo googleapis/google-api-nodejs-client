@@ -112,9 +112,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/operations/{operation}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -202,9 +204,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/operations/{operation}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -305,9 +309,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/operations',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -404,9 +410,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/addMember',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/addMember').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -494,9 +502,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -584,9 +594,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -675,9 +687,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -778,9 +792,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -873,9 +889,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/removeMember',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/removeMember').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -976,9 +994,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1074,9 +1094,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/zones/{zone}/linuxAccountViews',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/zones/{zone}/linuxAccountViews').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1173,9 +1195,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users/{user}/addPublicKey',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}/addPublicKey').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1263,9 +1287,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users/{user}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1353,9 +1379,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users/{user}',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1444,9 +1472,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1547,9 +1577,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1642,9 +1674,11 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/clouduseraccounts/beta/projects/{project}/global/users/{user}/removePublicKey',
+          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}/removePublicKey').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

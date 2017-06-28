@@ -1,3 +1,19 @@
+##### 20.0.0 - 27 June 2017
+
+- Regenerated
+
+###### Breaking changes
+- Deleted `dataproc` `v1alpha1` API
+- Deleted `dfareporting` `v2.6` API
+- Deleted `tracing` `v2` API
+
+###### Backwards compatible changes
+- Added the `adexperiencereport` `v1` API
+- Added the `cloudresourcemanager` `v2beta1` API
+- Added the `cloudtrace` `v2` API
+- Added the `oslogin` `v1alpha` API
+- Added the `videointelligence` `v1beta1` API
+
 ##### 19.0.0 - 10 April 2017
 
 - Regenerated

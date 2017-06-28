@@ -102,6 +102,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -113,9 +114,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -193,6 +196,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -204,9 +208,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -283,6 +289,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -295,9 +302,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -370,6 +379,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -381,9 +391,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -466,6 +478,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -478,9 +491,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -563,6 +578,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -575,9 +591,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -653,6 +671,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If set, only deletes the bucket if its metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the bucket if its metageneration does not match this value.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -664,9 +683,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}',
+          url: (rootUrl + '/storage/v1/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -742,6 +763,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -753,9 +775,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}',
+          url: (rootUrl + '/storage/v1/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -777,6 +801,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -788,9 +813,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam',
+          url: (rootUrl + '/storage/v1/b/{bucket}/iam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -882,9 +909,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b',
+          url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -985,9 +1014,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b',
+          url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1070,6 +1101,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1082,9 +1114,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}',
+          url: (rootUrl + '/storage/v1/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1106,6 +1140,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1118,9 +1153,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam',
+          url: (rootUrl + '/storage/v1/b/{bucket}/iam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1143,6 +1180,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.permissions Permissions to test.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1154,9 +1192,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam/testPermissions',
+          url: (rootUrl + '/storage/v1/b/{bucket}/iam/testPermissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1239,6 +1279,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1251,9 +1292,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}',
+          url: (rootUrl + '/storage/v1/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1339,9 +1382,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/channels/stop',
+          url: (rootUrl + '/storage/v1/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1420,6 +1465,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1431,9 +1477,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1511,6 +1559,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1522,9 +1571,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1601,6 +1652,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1613,9 +1665,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1690,6 +1744,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1701,9 +1756,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1786,6 +1843,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1798,9 +1856,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1883,6 +1943,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1895,9 +1956,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1924,6 +1987,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification ID of the notification to delete.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1935,9 +1999,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs/{notification}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/notificationConfigs/{notification}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1960,6 +2026,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification Notification ID
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1971,9 +2038,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs/{notification}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/notificationConfigs/{notification}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1995,6 +2064,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Notification} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2007,9 +2077,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs',
+          url: (rootUrl + '/storage/v1/b/{bucket}/notificationConfigs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2031,6 +2103,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a GCS bucket.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2042,9 +2115,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs',
+          url: (rootUrl + '/storage/v1/b/{bucket}/notificationConfigs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2129,6 +2204,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2140,9 +2216,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2226,6 +2304,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2237,9 +2316,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2322,6 +2403,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2334,9 +2416,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2415,6 +2499,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2426,9 +2511,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2517,6 +2604,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2529,9 +2617,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2620,6 +2710,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2632,9 +2723,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2727,6 +2820,8 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).ComposeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2739,9 +2834,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{destinationBucket}/o/{destinationObject}/compose',
+          url: (rootUrl + '/storage/v1/b/{destinationBucket}/o/{destinationObject}/compose').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2849,6 +2946,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2861,9 +2959,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}',
+          url: (rootUrl + '/storage/v1/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2943,6 +3043,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2954,9 +3055,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -3044,6 +3147,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3055,9 +3159,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -3081,6 +3187,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3092,9 +3199,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/iam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -3184,9 +3293,11 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -3202,13 +3313,15 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o',
+        mediaUrl: (rootUrl + '/upload/storage/v1/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
         context: self
@@ -3296,6 +3409,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3308,9 +3422,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -3400,6 +3516,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3412,9 +3529,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -3504,6 +3623,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value.
@@ -3520,6 +3640,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3532,9 +3653,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{sourceBucket}/o/{sourceObject}/rewriteTo/b/{destinationBucket}/o/{destinationObject}',
+          url: (rootUrl + '/storage/v1/b/{sourceBucket}/o/{sourceObject}/rewriteTo/b/{destinationBucket}/o/{destinationObject}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3558,6 +3681,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3570,9 +3694,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/iam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -3597,6 +3723,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string} params.permissions Permissions to test.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3608,9 +3735,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam/testPermissions',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}/iam/testPermissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -3704,6 +3833,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3716,9 +3846,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -3800,6 +3932,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {storage(v1).Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3813,9 +3946,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/watch',
+          url: (rootUrl + '/storage/v1/b/{bucket}/o/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3854,9 +3989,11 @@ function Storage(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/storage/v1/projects/{projectId}/serviceAccount',
+            url: (rootUrl + '/storage/v1/projects/{projectId}/serviceAccount').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3876,8 +4013,10 @@ function Storage(options) { // eslint-disable-line
  * @memberOf! storage(v1)
  * @type object
  * @property {storage(v1).BucketAccessControl[]} acl Access controls on the bucket.
+ * @property {object} billing The bucket&#39;s billing configuration.
  * @property {object[]} cors The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
  * @property {storage(v1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
+ * @property {object} encryption Encryption configuration used by default for newly inserted objects, when no encryption config is specified.
  * @property {string} etag HTTP 1.1 Entity tag for the bucket.
  * @property {string} id The ID of the bucket. For buckets, the id and name properities are the same.
  * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
@@ -4000,6 +4139,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} generation The content generation of this object. Used for object versioning.
  * @property {string} id The ID of the object, including the bucket name, object name, and generation number.
  * @property {string} kind The kind of item this is. For objects, this is always storage#object.
+ * @property {string} kmsKeyName Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
  * @property {string} md5Hash MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
  * @property {string} mediaLink Media download link.
  * @property {object} metadata User-provided metadata, in key/value pairs.

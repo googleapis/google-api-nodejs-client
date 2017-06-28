@@ -61,9 +61,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/activities',
+          url: (rootUrl + '/youtube/v3/activities').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -104,9 +106,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/activities',
+          url: (rootUrl + '/youtube/v3/activities').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -145,9 +149,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/captions',
+          url: (rootUrl + '/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -184,9 +190,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/captions/{id}',
+          url: (rootUrl + '/youtube/v3/captions/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -226,13 +234,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/captions',
+          url: (rootUrl + '/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/captions',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
         context: self
@@ -266,9 +276,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/captions',
+          url: (rootUrl + '/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -308,13 +320,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/captions',
+          url: (rootUrl + '/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/captions',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
         context: self
@@ -352,13 +366,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channelBanners/insert',
+          url: (rootUrl + '/youtube/v3/channelBanners/insert').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/channelBanners/insert',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/channelBanners/insert').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
         context: self
@@ -393,9 +409,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          url: (rootUrl + '/youtube/v3/channelSections').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -431,9 +449,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          url: (rootUrl + '/youtube/v3/channelSections').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -471,9 +491,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          url: (rootUrl + '/youtube/v3/channelSections').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -508,9 +530,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channelSections',
+          url: (rootUrl + '/youtube/v3/channelSections').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -557,9 +581,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channels',
+          url: (rootUrl + '/youtube/v3/channels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -594,9 +620,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/channels',
+          url: (rootUrl + '/youtube/v3/channels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -634,9 +662,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/commentThreads',
+          url: (rootUrl + '/youtube/v3/commentThreads').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -679,9 +709,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/commentThreads',
+          url: (rootUrl + '/youtube/v3/commentThreads').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -715,9 +747,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/commentThreads',
+          url: (rootUrl + '/youtube/v3/commentThreads').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -754,9 +788,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments',
+          url: (rootUrl + '/youtube/v3/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -790,9 +826,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments',
+          url: (rootUrl + '/youtube/v3/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -830,9 +868,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments',
+          url: (rootUrl + '/youtube/v3/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -865,9 +905,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments/markAsSpam',
+          url: (rootUrl + '/youtube/v3/comments/markAsSpam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -902,9 +944,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments/setModerationStatus',
+          url: (rootUrl + '/youtube/v3/comments/setModerationStatus').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -938,9 +982,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/comments',
+          url: (rootUrl + '/youtube/v3/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -980,9 +1026,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/fanFundingEvents',
+          url: (rootUrl + '/youtube/v3/fanFundingEvents').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1022,9 +1070,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/guideCategories',
+          url: (rootUrl + '/youtube/v3/guideCategories').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1062,9 +1112,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/i18nLanguages',
+          url: (rootUrl + '/youtube/v3/i18nLanguages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1102,9 +1154,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/i18nRegions',
+          url: (rootUrl + '/youtube/v3/i18nRegions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1145,9 +1199,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/bind',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts/bind').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1186,9 +1242,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/control',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts/control').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1223,9 +1281,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1261,9 +1321,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1304,9 +1366,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1343,9 +1407,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/transition',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts/transition').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1381,9 +1447,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+          url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1420,9 +1488,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
+          url: (rootUrl + '/youtube/v3/liveChat/bans').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1456,9 +1526,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
+          url: (rootUrl + '/youtube/v3/liveChat/bans').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1495,9 +1567,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          url: (rootUrl + '/youtube/v3/liveChat/messages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1531,9 +1605,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          url: (rootUrl + '/youtube/v3/liveChat/messages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1571,9 +1647,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
+          url: (rootUrl + '/youtube/v3/liveChat/messages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1610,9 +1688,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1646,9 +1726,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1684,9 +1766,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
+          url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1725,9 +1809,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          url: (rootUrl + '/youtube/v3/liveStreams').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1763,9 +1849,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          url: (rootUrl + '/youtube/v3/liveStreams').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1804,9 +1892,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          url: (rootUrl + '/youtube/v3/liveStreams').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1842,9 +1932,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/liveStreams',
+          url: (rootUrl + '/youtube/v3/liveStreams').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1882,9 +1974,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          url: (rootUrl + '/youtube/v3/playlistItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1919,9 +2013,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          url: (rootUrl + '/youtube/v3/playlistItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1960,9 +2056,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          url: (rootUrl + '/youtube/v3/playlistItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1997,9 +2095,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlistItems',
+          url: (rootUrl + '/youtube/v3/playlistItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2037,9 +2137,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          url: (rootUrl + '/youtube/v3/playlists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2075,9 +2177,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          url: (rootUrl + '/youtube/v3/playlists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2118,9 +2222,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          url: (rootUrl + '/youtube/v3/playlists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2155,9 +2261,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/playlists',
+          url: (rootUrl + '/youtube/v3/playlists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2224,9 +2332,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/search',
+          url: (rootUrl + '/youtube/v3/search').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2266,9 +2376,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/sponsors',
+          url: (rootUrl + '/youtube/v3/sponsors').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2305,9 +2417,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          url: (rootUrl + '/youtube/v3/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2341,9 +2455,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          url: (rootUrl + '/youtube/v3/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2387,9 +2503,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/subscriptions',
+          url: (rootUrl + '/youtube/v3/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2429,9 +2547,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/superChatEvents',
+          url: (rootUrl + '/youtube/v3/superChatEvents').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2472,13 +2592,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/thumbnails/set',
+          url: (rootUrl + '/youtube/v3/thumbnails/set').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/thumbnails/set',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['videoId'],
         pathParams: [],
         context: self
@@ -2513,9 +2635,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videoAbuseReportReasons',
+          url: (rootUrl + '/youtube/v3/videoAbuseReportReasons').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2555,9 +2679,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videoCategories',
+          url: (rootUrl + '/youtube/v3/videoCategories').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2595,9 +2721,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos',
+          url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2631,9 +2759,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos/getRating',
+          url: (rootUrl + '/youtube/v3/videos/getRating').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2675,13 +2805,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos',
+          url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
         context: self
@@ -2723,9 +2855,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos',
+          url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2759,9 +2893,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos/rate',
+          url: (rootUrl + '/youtube/v3/videos/rate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2795,9 +2931,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos/reportAbuse',
+          url: (rootUrl + '/youtube/v3/videos/reportAbuse').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2832,9 +2970,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/videos',
+          url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2876,13 +3016,15 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/watermarks/set',
+          url: (rootUrl + '/youtube/v3/watermarks/set').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/youtube/v3/watermarks/set',
+        mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['channelId'],
         pathParams: [],
         context: self
@@ -2913,9 +3055,11 @@ function Youtube(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/v3/watermarks/unset',
+          url: (rootUrl + '/youtube/v3/watermarks/unset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

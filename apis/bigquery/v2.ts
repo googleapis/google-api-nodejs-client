@@ -113,9 +113,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -203,9 +205,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -294,9 +298,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -397,9 +403,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -493,9 +501,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -589,9 +599,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -683,9 +695,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -773,9 +787,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -880,9 +896,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries/{jobId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -981,13 +999,15 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/bigquery/v2/projects/{projectId}/jobs',
+        mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
         context: self
@@ -1086,9 +1106,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1177,9 +1199,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1278,9 +1302,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects',
+          url: (rootUrl + '/bigquery/v2/projects').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1381,9 +1407,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1492,9 +1520,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1587,9 +1617,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1682,9 +1714,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1777,9 +1811,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1882,9 +1918,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1982,9 +2020,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2082,9 +2122,11 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2228,7 +2270,7 @@ function Bigquery(options) { // eslint-disable-line
  * @memberOf! bigquery(v2)
  * @type object
  * @property {boolean} cacheHit Whether the query result was fetched from the query cache.
- * @property {bigquery(v2).ErrorProto[]} errors [Output-only] All errors and warnings encountered during the running of the job. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+ * @property {bigquery(v2).ErrorProto[]} errors [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
  * @property {string} etag A hash of this response.
  * @property {boolean} jobComplete Whether the query has completed or not. If rows or totalRows are present, this will always be true. If this is false, totalRows will not be available.
  * @property {bigquery(v2).JobReference} jobReference Reference to the BigQuery Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
@@ -2319,17 +2361,17 @@ function Bigquery(options) { // eslint-disable-line
  * @typedef JobConfigurationQuery
  * @memberOf! bigquery(v2)
  * @type object
- * @property {boolean} allowLargeResults [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
+ * @property {boolean} allowLargeResults [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed. However, you must still set destinationTable when result size exceeds the allowed maximum response size.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
  * @property {bigquery(v2).DatasetReference} defaultDataset [Optional] Specifies the default dataset to use for unqualified table names in the query.
- * @property {bigquery(v2).TableReference} destinationTable [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results.
+ * @property {bigquery(v2).TableReference} destinationTable [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results. This property must be set for large results that exceed the maximum response size.
  * @property {boolean} flattenResults [Optional] If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
  * @property {integer} maximumBillingTier [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
  * @property {string} maximumBytesBilled [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
  * @property {string} parameterMode Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} priority [Optional] Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
- * @property {string} query [Required] BigQuery SQL query to execute.
+ * @property {string} query [Required] SQL query text to execute. The useLegacySql field can be used to indicate whether the query uses legacy SQL or standard SQL.
  * @property {bigquery(v2).QueryParameter[]} queryParameters Query parameters for standard SQL queries.
  * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {object} tableDefinitions [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
@@ -2411,7 +2453,7 @@ function Bigquery(options) { // eslint-disable-line
  * @memberOf! bigquery(v2)
  * @type object
  * @property {bigquery(v2).ErrorProto} errorResult [Output-only] Final error result of the job. If present, indicates that the job has completed and was unsuccessful.
- * @property {bigquery(v2).ErrorProto[]} errors [Output-only] All errors encountered during the running of the job. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+ * @property {bigquery(v2).ErrorProto[]} errors [Output-only] The first errors encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
  * @property {string} state [Output-only] Running state of the job.
  */
 /**
@@ -2485,7 +2527,7 @@ function Bigquery(options) { // eslint-disable-line
  * @memberOf! bigquery(v2)
  * @type object
  * @property {boolean} cacheHit Whether the query result was fetched from the query cache.
- * @property {bigquery(v2).ErrorProto[]} errors [Output-only] All errors and warnings encountered during the running of the job. Errors here do not necessarily mean that the job has completed or was unsuccessful.
+ * @property {bigquery(v2).ErrorProto[]} errors [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
  * @property {boolean} jobComplete Whether the query has completed or not. If rows or totalRows are present, this will always be true. If this is false, totalRows will not be available.
  * @property {bigquery(v2).JobReference} jobReference Reference to the Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
  * @property {string} kind The resource type.
@@ -2567,7 +2609,7 @@ function Bigquery(options) { // eslint-disable-line
  * @typedef TableFieldSchema
  * @memberOf! bigquery(v2)
  * @type object
- * @property {string} description [Optional] The field description. The maximum length is 16K characters.
+ * @property {string} description [Optional] The field description. The maximum length is 1,024 characters.
  * @property {bigquery(v2).TableFieldSchema[]} fields [Optional] Describes the nested schema fields if the type property is set to RECORD.
  * @property {string} mode [Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
  * @property {string} name [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.

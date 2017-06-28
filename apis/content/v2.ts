@@ -59,14 +59,55 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/accounts/authinfo',
+          url: (rootUrl + '/content/v2/accounts/authinfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.accounts.claimwebsite
+     *
+     * @desc Claims the website of a Merchant Center sub-account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     *
+     * @alias content.accounts.claimwebsite
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account whose website is claimed.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {boolean=} params.overwrite Flag to remove any existing claim on the requested website by another account and replace it with a claim from this account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    claimwebsite: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/content/v2/{merchantId}/accounts/{accountId}/claimwebsite').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
         context: self
       };
 
@@ -95,9 +136,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/accounts/batch',
+          url: (rootUrl + '/content/v2/accounts/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -132,9 +175,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -168,9 +213,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -205,9 +252,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -242,9 +291,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -280,9 +331,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -318,9 +371,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -357,9 +412,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
+          url: (rootUrl + '/content/v2/accountstatuses/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -393,9 +450,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accountstatuses/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -430,9 +489,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses',
+          url: (rootUrl + '/content/v2/{merchantId}/accountstatuses').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -470,9 +531,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/accounttax/batch',
+          url: (rootUrl + '/content/v2/accounttax/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -506,9 +569,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounttax/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -543,9 +608,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax',
+          url: (rootUrl + '/content/v2/{merchantId}/accounttax').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -581,9 +648,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounttax/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -619,9 +688,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/accounttax/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -659,9 +730,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
+          url: (rootUrl + '/content/v2/datafeeds/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -676,7 +749,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.delete
      *
-     * @desc Deletes a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Deletes a datafeed configuration from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.delete
      * @memberOf! content(v2)
@@ -696,9 +769,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds/{datafeedId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -713,7 +788,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.get
      *
-     * @desc Retrieves a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves a datafeed configuration from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.get
      * @memberOf! content(v2)
@@ -732,9 +807,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds/{datafeedId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -749,7 +826,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.insert
      *
-     * @desc Registers a datafeed with your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Registers a datafeed configuration with your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.insert
      * @memberOf! content(v2)
@@ -769,9 +846,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -806,9 +885,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -823,7 +904,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.patch
      *
-     * @desc Updates a datafeed of your Merchant Center account. This method can only be called for non-multi-client accounts. This method supports patch semantics.
+     * @desc Updates a datafeed configuration of your Merchant Center account. This method can only be called for non-multi-client accounts. This method supports patch semantics.
      *
      * @alias content.datafeeds.patch
      * @memberOf! content(v2)
@@ -844,9 +925,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds/{datafeedId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -861,7 +944,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.update
      *
-     * @desc Updates a datafeed of your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Updates a datafeed configuration of your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.update
      * @memberOf! content(v2)
@@ -882,9 +965,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeeds/{datafeedId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -921,9 +1006,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
+          url: (rootUrl + '/content/v2/datafeedstatuses/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -957,9 +1044,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses/{datafeedId}',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeedstatuses/{datafeedId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -994,9 +1083,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses',
+          url: (rootUrl + '/content/v2/{merchantId}/datafeedstatuses').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1034,9 +1125,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/inventory/batch',
+          url: (rootUrl + '/content/v2/inventory/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1073,9 +1166,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}',
+          url: (rootUrl + '/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1114,9 +1209,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/acknowledge',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/acknowledge').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1150,9 +1247,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders/{orderId}/advance',
+          url: (rootUrl + '/content/v2/{merchantId}/testorders/{orderId}/advance').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1187,9 +1286,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancel',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1224,9 +1325,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancelLineItem',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/cancelLineItem').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1260,9 +1363,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders',
+          url: (rootUrl + '/content/v2/{merchantId}/testorders').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1295,9 +1400,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/orders/batch',
+          url: (rootUrl + '/content/v2/orders/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1331,9 +1438,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1367,9 +1476,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/ordersbymerchantid/{merchantOrderId}',
+          url: (rootUrl + '/content/v2/{merchantId}/ordersbymerchantid/{merchantOrderId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1403,9 +1514,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/testordertemplates/{templateName}',
+          url: (rootUrl + '/content/v2/{merchantId}/testordertemplates/{templateName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1445,9 +1558,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders',
+          url: (rootUrl + '/content/v2/{merchantId}/orders').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1482,9 +1597,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/refund',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/refund').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1519,9 +1636,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/returnLineItem',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/returnLineItem').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1556,9 +1675,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/shipLineItems',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/shipLineItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1593,9 +1714,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateMerchantOrderId',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/updateMerchantOrderId').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1630,9 +1753,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateShipment',
+          url: (rootUrl + '/content/v2/{merchantId}/orders/{orderId}/updateShipment').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1670,9 +1795,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/products/batch',
+          url: (rootUrl + '/content/v2/products/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1707,9 +1834,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
+          url: (rootUrl + '/content/v2/{merchantId}/products/{productId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1743,9 +1872,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
+          url: (rootUrl + '/content/v2/{merchantId}/products/{productId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1780,9 +1911,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
+          url: (rootUrl + '/content/v2/{merchantId}/products').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1818,9 +1951,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
+          url: (rootUrl + '/content/v2/{merchantId}/products').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1845,6 +1980,7 @@ function Content(options) { // eslint-disable-line
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.includeAttributes Flag to include full product data in the results of this request. The default value is false.
      * @param {content(v2).ProductstatusesCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1857,9 +1993,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
+          url: (rootUrl + '/content/v2/productstatuses/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1880,6 +2018,7 @@ function Content(options) { // eslint-disable-line
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.includeAttributes Flag to include full product data in the result of this get request. The default value is false.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.productId The ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1893,9 +2032,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses/{productId}',
+          url: (rootUrl + '/content/v2/{merchantId}/productstatuses/{productId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1916,6 +2057,7 @@ function Content(options) { // eslint-disable-line
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.includeAttributes Flag to include full product data in the results of the list request. The default value is false.
      * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
@@ -1931,9 +2073,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses',
+          url: (rootUrl + '/content/v2/{merchantId}/productstatuses').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1971,9 +2115,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/shippingsettings/batch',
+          url: (rootUrl + '/content/v2/shippingsettings/batch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2007,9 +2153,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/shippingsettings/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2042,9 +2190,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/supportedCarriers',
+          url: (rootUrl + '/content/v2/{merchantId}/supportedCarriers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2079,9 +2229,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings',
+          url: (rootUrl + '/content/v2/{merchantId}/shippingsettings').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2117,9 +2269,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/shippingsettings/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2155,9 +2309,11 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          url: (rootUrl + '/content/v2/{merchantId}/shippingsettings/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2207,6 +2363,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} accountId The ID of the account for which the status is reported.
  * @property {content(v2).AccountStatusDataQualityIssue[]} dataQualityIssues A list of data quality issues.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountStatus&quot;.
+ * @property {boolean} websiteClaimed Whether the account&#39;s website is claimed or not.
  */
 /**
  * @typedef AccountStatusDataQualityIssue
@@ -2269,6 +2426,12 @@ function Content(options) { // eslint-disable-line
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
 */
 /**
+ * @typedef AccountsClaimWebsiteResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsClaimWebsiteResponse&quot;.
+ */
+/**
  * @typedef AccountsCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
@@ -2279,10 +2442,11 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Account} account The account to create or update. Only defined if the method is insert or update.
- * @property {string} accountId The ID of the account to get or delete. Only defined if the method is get or delete.
+ * @property {string} accountId The ID of the targeted account. Only defined if the method is get, delete or claimwebsite.
  * @property {integer} batchId An entry ID, unique within the batch request.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
+ * @property {boolean} overwrite Only applicable if the method is claimwebsite. Indicates whether or not to take the claim from another account in case there is a conflict.
  */
 /**
  * @typedef AccountsCustomBatchResponse
@@ -2295,7 +2459,7 @@ function Content(options) { // eslint-disable-line
  * @typedef AccountsCustomBatchResponseEntry
  * @memberOf! content(v2)
  * @type object
- * @property {content(v2).Account} account The retrieved, created, or updated account. Not defined if the method was delete.
+ * @property {content(v2).Account} account The retrieved, created, or updated account. Not defined if the method was delete or claimwebsite.
  * @property {integer} batchId The ID of the request entry this entry responds to.
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponseEntry&quot;.
@@ -3218,6 +3382,8 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} link URL directly linking to your item&#39;s page on your website.
  * @property {content(v2).LoyaltyPoints} loyaltyPoints Loyalty points that users receive after purchasing the item. Japan only.
  * @property {string} material The material of which the item is made.
+ * @property {string} maxHandlingTime Maximal product handling time (in business days).
+ * @property {string} minHandlingTime Minimal product handling time (in business days).
  * @property {string} mobileLink Link to a mobile-optimized version of the landing page.
  * @property {string} mpn Manufacturer Part Number (MPN) of the item.
  * @property {string} multipack The number of identical products in a merchant-defined multipack.

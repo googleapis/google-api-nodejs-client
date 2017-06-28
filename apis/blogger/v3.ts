@@ -62,9 +62,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}',
+          url: (rootUrl + '/blogger/v3/users/{userId}/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -103,9 +105,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -139,9 +143,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/byurl',
+          url: (rootUrl + '/blogger/v3/blogs/byurl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -178,9 +184,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs',
+          url: (rootUrl + '/blogger/v3/users/{userId}/blogs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -219,9 +227,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -256,9 +266,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -294,9 +306,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -337,9 +351,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -378,9 +394,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/comments',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -415,9 +433,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -452,9 +472,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -492,9 +514,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pageviews',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pageviews').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -532,9 +556,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -569,9 +595,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -606,9 +634,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -646,9 +676,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -685,9 +717,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -721,9 +755,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/publish',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}/publish').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -757,9 +793,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/revert',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}/revert').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -796,9 +834,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -838,9 +878,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts/{postId}',
+          url: (rootUrl + '/blogger/v3/users/{userId}/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -883,9 +925,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts',
+          url: (rootUrl + '/blogger/v3/users/{userId}/blogs/{blogId}/posts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -923,9 +967,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -963,9 +1009,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1001,9 +1049,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/bypath',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/bypath').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1040,9 +1090,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1085,9 +1137,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1127,9 +1181,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1164,9 +1220,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/publish',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/publish').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1200,9 +1258,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/revert',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}/revert').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1238,9 +1298,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/search',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/search').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1280,9 +1342,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
+          url: (rootUrl + '/blogger/v3/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1319,9 +1383,11 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/blogger/v3/users/{userId}',
+          url: (rootUrl + '/blogger/v3/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

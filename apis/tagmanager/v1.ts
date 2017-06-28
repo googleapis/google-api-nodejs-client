@@ -60,9 +60,11 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
+          url: (rootUrl + '/tagmanager/v1/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -94,9 +96,11 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tagmanager/v1/accounts',
+          url: (rootUrl + '/tagmanager/v1/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -131,9 +135,11 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
+          url: (rootUrl + '/tagmanager/v1/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -169,9 +175,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -205,9 +213,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -241,9 +251,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -276,9 +288,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -314,9 +328,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -353,9 +369,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -390,9 +408,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -427,9 +447,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -463,9 +485,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -502,9 +526,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             }, options),
             params: params,
@@ -541,9 +567,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -581,9 +609,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -618,9 +648,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -655,9 +687,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -691,9 +725,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -730,9 +766,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -769,9 +807,11 @@ function Tagmanager(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities',
+                url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               }, options),
               params: params,
@@ -814,9 +854,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -855,9 +897,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -895,9 +939,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -932,9 +978,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -969,9 +1017,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1005,9 +1055,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1044,9 +1096,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -1084,9 +1138,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1121,9 +1177,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1158,9 +1216,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1194,9 +1254,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1233,9 +1295,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -1273,9 +1337,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1310,9 +1376,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1347,9 +1415,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1383,9 +1453,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1422,9 +1494,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -1462,9 +1536,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1499,9 +1575,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1536,9 +1614,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1574,9 +1654,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1612,9 +1694,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1649,9 +1733,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1686,9 +1772,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1725,9 +1813,11 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
+              url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -1765,9 +1855,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1801,9 +1893,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1837,9 +1931,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1872,9 +1968,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1909,9 +2007,11 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,

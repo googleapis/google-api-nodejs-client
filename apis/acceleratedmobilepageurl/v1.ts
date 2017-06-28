@@ -61,9 +61,11 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet',
+          url: (rootUrl + '/v1/ampUrls:batchGet').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -101,9 +103,9 @@ the cached document in the Google AMP Cache.
  * @typedef AmpUrlError
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
+ * @property {string} errorMessage An optional descriptive error message.
  * @property {string} errorCode The error code of an API call.
  * @property {string} originalUrl The original non-AMP URL.
- * @property {string} errorMessage An optional descriptive error message.
  */
 /**
  * @typedef BatchGetAmpUrlsRequest

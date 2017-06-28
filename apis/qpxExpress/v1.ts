@@ -60,9 +60,11 @@ function Qpxexpress(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/qpxExpress/v1/trips/search',
+          url: (rootUrl + '/qpxExpress/v1/trips/search').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

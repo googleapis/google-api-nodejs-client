@@ -60,9 +60,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}',
+          url: (rootUrl + '/plusDomains/v1/activities/{activityId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/activities').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -135,9 +139,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities/{collection}',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/activities/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -176,9 +182,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/audiences',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/audiences').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -217,9 +225,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}/people').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -252,9 +262,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -288,9 +300,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/circles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -325,9 +339,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/circles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -361,9 +377,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -396,9 +414,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -433,9 +453,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}/people').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -469,9 +491,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -508,9 +532,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/comments/{commentId}',
+          url: (rootUrl + '/plusDomains/v1/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -544,9 +570,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
+          url: (rootUrl + '/plusDomains/v1/activities/{activityId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -582,9 +610,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
+          url: (rootUrl + '/plusDomains/v1/activities/{activityId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -626,13 +656,15 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/media/{collection}',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/media/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/{userId}/media/{collection}',
+        mediaUrl: (rootUrl + '/upload/plusDomains/v1/people/{userId}/media/{collection}').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
         context: self
@@ -666,9 +698,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -705,9 +739,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/people/{collection}',
+          url: (rootUrl + '/plusDomains/v1/people/{userId}/people/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -743,9 +779,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/people/{collection}',
+          url: (rootUrl + '/plusDomains/v1/activities/{activityId}/people/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -780,9 +818,11 @@ function Plusdomains(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
+          url: (rootUrl + '/plusDomains/v1/circles/{circleId}/people').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

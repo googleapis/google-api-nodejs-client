@@ -61,9 +61,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -170,9 +176,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -207,9 +215,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -244,9 +254,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns/{columnId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -285,9 +297,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/query',
+          url: (rootUrl + '/fusiontables/v2/query').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -322,9 +336,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/query',
+          url: (rootUrl + '/fusiontables/v2/query').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -362,9 +378,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -398,9 +416,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -434,9 +454,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -471,9 +493,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -508,9 +532,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -545,9 +571,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -585,9 +613,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/copy',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/copy').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -620,9 +650,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -655,9 +687,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -698,13 +732,15 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/import',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/import').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/{tableId}/import',
+        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/import').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
         context: self
@@ -739,13 +775,15 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/import',
+          url: (rootUrl + '/fusiontables/v2/tables/import').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/import',
+        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/import').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['name'],
         pathParams: [],
         context: self
@@ -775,9 +813,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables',
+          url: (rootUrl + '/fusiontables/v2/tables').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -811,9 +851,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables',
+          url: (rootUrl + '/fusiontables/v2/tables').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -848,9 +890,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -891,13 +935,15 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/replace',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/replace').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/{tableId}/replace',
+        mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/replace').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
         context: self
@@ -929,9 +975,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -969,9 +1017,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1005,9 +1055,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1043,9 +1095,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1083,9 +1137,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates/{templateId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1119,9 +1175,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates/{templateId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1155,9 +1213,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1192,9 +1252,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1229,9 +1291,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates/{templateId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1266,9 +1330,11 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
+          url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates/{templateId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

@@ -61,9 +61,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients',
+          url: (rootUrl + '/adexchangeseller/v1/adclients').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -101,9 +103,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}',
+          url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -139,9 +143,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits',
+          url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -179,9 +185,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
+            url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -219,9 +227,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}',
+          url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -256,9 +266,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -297,9 +309,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
+            url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -344,9 +358,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/reports',
+          url: (rootUrl + '/adexchangeseller/v1/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -384,9 +400,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/{savedReportId}',
+            url: (rootUrl + '/adexchangeseller/v1/reports/{savedReportId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -420,9 +438,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/saved',
+            url: (rootUrl + '/adexchangeseller/v1/reports/saved').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -461,9 +481,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/urlchannels',
+          url: (rootUrl + '/adexchangeseller/v1/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

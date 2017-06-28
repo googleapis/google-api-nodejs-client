@@ -60,9 +60,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
+          url: (rootUrl + '/adexchangebuyer/v1.2/accounts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -94,9 +96,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts',
+          url: (rootUrl + '/adexchangebuyer/v1.2/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -130,9 +134,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
+          url: (rootUrl + '/adexchangebuyer/v1.2/accounts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -166,9 +172,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
+          url: (rootUrl + '/adexchangebuyer/v1.2/accounts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -206,9 +214,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives/{accountId}/{buyerCreativeId}',
+          url: (rootUrl + '/adexchangebuyer/v1.2/creatives/{accountId}/{buyerCreativeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -241,9 +251,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
+          url: (rootUrl + '/adexchangebuyer/v1.2/creatives').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -278,9 +290,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
+          url: (rootUrl + '/adexchangebuyer/v1.2/creatives').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

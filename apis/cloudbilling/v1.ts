@@ -120,9 +120,11 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
+          url: (rootUrl + '/v1/{name}/billingInfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -208,9 +210,11 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
+          url: (rootUrl + '/v1/{name}/billingInfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -300,9 +304,11 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://cloudbilling.googleapis.com/v1/{name}',
+          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -397,9 +403,11 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://cloudbilling.googleapis.com/v1/billingAccounts',
+          url: (rootUrl + '/v1/billingAccounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -502,9 +510,11 @@ function Cloudbilling(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://cloudbilling.googleapis.com/v1/{name}/projects',
+            url: (rootUrl + '/v1/{name}/projects').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,

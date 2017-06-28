@@ -69,9 +69,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
+          url: (rootUrl + '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -114,9 +116,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
+          url: (rootUrl + '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -153,9 +157,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/reports/v1/admin/reports_v1/channels/stop',
+          url: (rootUrl + '/admin/reports/v1/admin/reports_v1/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -195,9 +201,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
+          url: (rootUrl + '/admin/reports/v1/usage/dates/{date}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -240,9 +248,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
+          url: (rootUrl + '/admin/reports/v1/usage/users/{userKey}/dates/{date}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
