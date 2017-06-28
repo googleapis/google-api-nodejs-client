@@ -74,9 +74,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/data/ga',
+            url: (rootUrl + '/analytics/v3/data/ga').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -121,9 +123,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/data/mcf',
+            url: (rootUrl + '/analytics/v3/data/mcf').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -164,9 +168,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/data/realtime',
+            url: (rootUrl + '/analytics/v3/data/realtime').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -206,9 +212,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accountSummaries',
+            url: (rootUrl + '/analytics/v3/management/accountSummaries').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -245,9 +253,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -281,9 +291,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -318,9 +330,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -355,9 +369,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -394,9 +410,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts',
+            url: (rootUrl + '/analytics/v3/management/accounts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -435,9 +453,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -475,9 +495,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -512,9 +534,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -550,9 +574,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -589,9 +615,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -628,9 +656,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -668,9 +698,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -705,9 +737,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -743,9 +777,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -782,9 +818,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -821,9 +859,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -862,9 +902,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -900,9 +942,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -938,9 +982,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -977,9 +1023,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1016,9 +1064,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -1055,9 +1105,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1094,9 +1146,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters/{filterId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1130,9 +1184,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters/{filterId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1166,9 +1222,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1203,9 +1261,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1240,9 +1300,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters/{filterId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -1277,9 +1339,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/filters/{filterId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1318,9 +1382,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1356,9 +1422,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1395,9 +1463,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1434,9 +1504,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -1473,9 +1545,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1514,9 +1588,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1552,9 +1628,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1590,9 +1668,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1629,9 +1709,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1668,9 +1750,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -1707,9 +1791,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1748,9 +1834,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1786,9 +1874,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1825,9 +1915,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1864,9 +1956,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1904,9 +1998,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1941,9 +2037,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1978,9 +2076,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2016,9 +2116,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2054,9 +2156,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -2092,9 +2196,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -2132,9 +2238,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -2169,9 +2277,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2206,9 +2316,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2245,9 +2357,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2283,9 +2397,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -2321,9 +2437,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -2360,9 +2478,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/segments',
+            url: (rootUrl + '/analytics/v3/management/segments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2401,9 +2521,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -2439,9 +2561,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2477,9 +2601,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2516,9 +2642,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2557,9 +2685,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2595,9 +2725,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2634,9 +2766,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2674,13 +2808,15 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
+          mediaUrl: (rootUrl + '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
           context: self
@@ -2715,9 +2851,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -2752,9 +2890,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2789,9 +2929,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2827,9 +2969,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2865,9 +3009,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -2903,9 +3049,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -2942,9 +3090,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2978,9 +3128,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -3015,9 +3167,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3052,9 +3206,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -3089,9 +3245,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -3129,9 +3287,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -3166,9 +3326,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -3204,9 +3366,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3242,9 +3406,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
+            url: (rootUrl + '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -3283,9 +3449,11 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/analytics/v3/metadata/{reportType}/columns',
+            url: (rootUrl + '/analytics/v3/metadata/{reportType}/columns').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3322,9 +3490,11 @@ function Analytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/analytics/v3/provisioning/createAccountTicket',
+          url: (rootUrl + '/analytics/v3/provisioning/createAccountTicket').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

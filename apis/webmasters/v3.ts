@@ -61,9 +61,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -101,9 +103,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -137,9 +141,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -173,9 +179,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -209,9 +217,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -248,9 +258,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -283,9 +295,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -318,9 +332,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -352,9 +368,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites',
+          url: (rootUrl + '/webmasters/v3/sites').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -394,9 +412,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -436,9 +456,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -473,9 +495,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -511,9 +535,11 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
+          url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,

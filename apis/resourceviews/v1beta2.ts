@@ -62,9 +62,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -101,9 +103,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -143,9 +147,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/addResources',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/addResources').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -180,9 +186,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -217,9 +225,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -255,9 +265,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -292,9 +304,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -330,9 +344,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -372,9 +388,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -410,9 +428,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -448,9 +468,11 @@ function Resourceviews(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/setService',
+          url: (rootUrl + '/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/setService').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

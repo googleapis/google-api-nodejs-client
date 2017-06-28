@@ -60,9 +60,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrum',
+          url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrum').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrumBatch',
+          url: (rootUrl + '/spectrum/v1explorer/paws/getSpectrumBatch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -130,9 +134,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/init',
+          url: (rootUrl + '/spectrum/v1explorer/paws/init').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -165,9 +171,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/notifySpectrumUse',
+          url: (rootUrl + '/spectrum/v1explorer/paws/notifySpectrumUse').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -200,9 +208,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/register',
+          url: (rootUrl + '/spectrum/v1explorer/paws/register').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -235,9 +245,11 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/spectrum/v1explorer/paws/verifyDevice',
+          url: (rootUrl + '/spectrum/v1explorer/paws/verifyDevice').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

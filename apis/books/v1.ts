@@ -62,9 +62,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
+          url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -98,9 +100,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
+          url: (rootUrl + '/books/v1/users/{userId}/bookshelves').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -140,9 +144,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}/volumes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -182,9 +188,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
+          url: (rootUrl + '/books/v1/cloudloading/addBook').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -217,9 +225,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
+          url: (rootUrl + '/books/v1/cloudloading/deleteBook').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -252,9 +262,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
+          url: (rootUrl + '/books/v1/cloudloading/updateBook').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -291,9 +303,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
+          url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -333,9 +347,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
+          url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary/{summaryId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -372,9 +388,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
+          url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -418,9 +436,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -465,9 +485,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -507,9 +529,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -556,9 +580,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -594,9 +620,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
+          url: (rootUrl + '/books/v1/myconfig/getUserSettings').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -632,9 +660,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
+          url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -672,9 +702,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
+          url: (rootUrl + '/books/v1/myconfig/requestAccess').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -714,9 +746,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
+          url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -749,9 +783,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
+          url: (rootUrl + '/books/v1/myconfig/updateUserSettings').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -791,9 +827,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -830,9 +868,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
+            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -874,9 +914,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
+            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -910,9 +952,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
+            url: (rootUrl + '/books/v1/mylibrary/annotations/summary').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -947,9 +991,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -988,9 +1034,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1024,9 +1072,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1060,9 +1110,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1095,9 +1147,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1133,9 +1187,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1171,9 +1227,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1215,9 +1273,11 @@ function Books(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
+              url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1256,9 +1316,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
+            url: (rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1297,9 +1359,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
+            url: (rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1338,9 +1402,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/notification/get',
+          url: (rootUrl + '/books/v1/notification/get').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1377,9 +1443,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
+          url: (rootUrl + '/books/v1/onboarding/listCategories').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1416,9 +1484,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
+          url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1457,9 +1527,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/personalizedstream/get',
+          url: (rootUrl + '/books/v1/personalizedstream/get').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1503,9 +1575,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/promooffer/accept',
+          url: (rootUrl + '/books/v1/promooffer/accept').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1544,9 +1618,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
+          url: (rootUrl + '/books/v1/promooffer/dismiss').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1584,9 +1660,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/promooffer/get',
+          url: (rootUrl + '/books/v1/promooffer/get').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1623,9 +1701,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/series/get',
+          url: (rootUrl + '/books/v1/series/get').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1662,9 +1742,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/series/membership/get',
+            url: (rootUrl + '/books/v1/series/membership/get').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1707,9 +1789,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
+          url: (rootUrl + '/books/v1/volumes/{volumeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1755,9 +1839,11 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/books/v1/volumes',
+          url: (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1796,9 +1882,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/associated').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1840,9 +1928,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/mybooks',
+            url: (rootUrl + '/books/v1/volumes/mybooks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1880,9 +1970,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/recommended',
+            url: (rootUrl + '/books/v1/volumes/recommended').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1918,9 +2010,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/recommended/rate',
+            url: (rootUrl + '/books/v1/volumes/recommended/rate').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1961,9 +2055,11 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/books/v1/volumes/useruploaded',
+            url: (rootUrl + '/books/v1/volumes/useruploaded').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,

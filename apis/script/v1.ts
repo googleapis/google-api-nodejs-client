@@ -61,9 +61,11 @@ function Script(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://script.googleapis.com/v1/scripts/{scriptId}:run',
+          url: (rootUrl + '/v1/scripts/{scriptId}:run').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -100,18 +102,18 @@ will contain either an error or the result of the script function.
  * @typedef Operation
  * @memberOf! script(v1)
  * @type object
+ * @property {boolean} done This field is not used.
  * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
  * @property {string} name This field is not used.
  * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
  * @property {object} metadata This field is not used.
- * @property {boolean} done This field is not used.
  */
 /**
  * @typedef ScriptStackTraceElement
  * @memberOf! script(v1)
  * @type object
- * @property {string} function The name of the function that failed.
  * @property {integer} lineNumber The line number where the script failed.
+ * @property {string} function The name of the function that failed.
  */
 /**
  * @typedef ExecutionError
@@ -128,9 +130,9 @@ where the execution failed, with the deepest call first.
  * @typedef Status
  * @memberOf! script(v1)
  * @type object
+ * @property {object[]} details An array that contains a single `ExecutionError` object that provides information about the nature of the error.
  * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  * @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [`google.rpc.Status.details`](google.rpc.Status.details) field, or localized by the client.
- * @property {object[]} details An array that contains a single `ExecutionError` object that provides information about the nature of the error.
  */
 /**
  * @typedef ExecutionRequest
@@ -146,11 +148,11 @@ that is, it can access information like the user&#39;s current cursor position
 (in Docs) or selected cell (in Sheets). To retrieve the state, call
 `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`.
 Optional.
-* @property {string} function The name of the function to execute in the given script. The name does not
-include parentheses or parameters.
 * @property {boolean} devMode If `true` and the user is an owner of the script, the script runs at the
 most recently saved version rather than the version deployed for use with
 the Execution API. Optional; default is `false`.
+* @property {string} function The name of the function to execute in the given script. The name does not
+include parentheses or parameters.
 * @property {any[]} parameters The parameters to be passed to the function being executed. The object type
 for each parameter should match the expected type in Apps Script.
 Parameters cannot be Apps Script-specific object types (such as a
@@ -161,10 +163,10 @@ Parameters cannot be Apps Script-specific object types (such as a
  * @typedef JoinAsyncRequest
  * @memberOf! script(v1)
  * @type object
+* @property {string[]} names List of operation resource names that we want to join,
+as returned from a call to RunAsync.
 * @property {string} timeout Timeout for information retrieval in milliseconds.
 * @property {string} scriptId The script id which specifies the script which all processes in the names
 field must be from.
-* @property {string[]} names List of operation resource names that we want to join,
-as returned from a call to RunAsync.
 */
 export = Script;

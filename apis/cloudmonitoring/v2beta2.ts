@@ -61,9 +61,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors/{metric}',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors/{metric}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -136,9 +140,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -185,9 +191,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -221,9 +229,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries:write',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/timeseries:write').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -270,9 +280,11 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}',
+          url: (rootUrl + '/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

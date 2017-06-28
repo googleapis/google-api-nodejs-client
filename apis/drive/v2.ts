@@ -62,9 +62,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/about',
+          url: (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -101,9 +103,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/apps/{appId}',
+          url: (rootUrl + '/drive/v2/apps/{appId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -138,9 +142,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/apps',
+          url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -179,9 +185,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/changes/{changeId}',
+          url: (rootUrl + '/drive/v2/changes/{changeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -215,9 +223,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/changes/startPageToken',
+          url: (rootUrl + '/drive/v2/changes/startPageToken').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -259,9 +269,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/changes',
+          url: (rootUrl + '/drive/v2/changes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -304,9 +316,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/changes/watch',
+          url: (rootUrl + '/drive/v2/changes/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -343,9 +357,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/channels/stop',
+          url: (rootUrl + '/drive/v2/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -383,9 +399,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
+          url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -419,9 +437,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
+          url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -456,9 +476,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
+          url: (rootUrl + '/drive/v2/files/{folderId}/children').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -495,9 +517,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
+          url: (rootUrl + '/drive/v2/files/{folderId}/children').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -535,9 +559,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -572,9 +598,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -608,9 +636,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -647,9 +677,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -684,9 +716,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -721,9 +755,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -769,9 +805,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/copy',
+          url: (rootUrl + '/drive/v2/files/{fileId}/copy').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -805,9 +843,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -839,9 +879,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/trash',
+          url: (rootUrl + '/drive/v2/files/trash').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -856,7 +898,7 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.files.export
      *
-     * @desc Exports a Google Doc to the requested MIME type and returns the exported content.
+     * @desc Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.
      *
      * @alias drive.files.export
      * @memberOf! drive(v2)
@@ -875,9 +917,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/export',
+          url: (rootUrl + '/drive/v2/files/{fileId}/export').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -911,9 +955,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/generateIds',
+          url: (rootUrl + '/drive/v2/files/generateIds').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -951,9 +997,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -998,13 +1046,15 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files',
+          url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
+        mediaUrl: (rootUrl + '/upload/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
         context: self
@@ -1044,9 +1094,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files',
+          url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1094,9 +1146,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1130,9 +1184,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/touch',
+          url: (rootUrl + '/drive/v2/files/{fileId}/touch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1166,9 +1222,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/trash',
+          url: (rootUrl + '/drive/v2/files/{fileId}/trash').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1202,9 +1260,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/untrash',
+          url: (rootUrl + '/drive/v2/files/{fileId}/untrash').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1255,13 +1315,15 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}',
+        mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
@@ -1297,9 +1359,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/watch',
+          url: (rootUrl + '/drive/v2/files/{fileId}/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1337,9 +1401,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1373,9 +1439,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1410,9 +1478,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
+          url: (rootUrl + '/drive/v2/files/{fileId}/parents').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1445,9 +1515,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
+          url: (rootUrl + '/drive/v2/files/{fileId}/parents').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1486,9 +1558,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1523,9 +1597,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1558,9 +1634,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/permissionIds/{email}',
+          url: (rootUrl + '/drive/v2/permissionIds/{email}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1597,9 +1675,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1635,9 +1715,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1675,9 +1757,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1715,9 +1799,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1756,9 +1842,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1793,9 +1881,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1829,9 +1919,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1864,9 +1956,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1902,9 +1996,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1940,9 +2036,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1980,9 +2078,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
+          url: (rootUrl + '/drive/v2/files/{fileId}/realtime').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2019,13 +2119,15 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
+          url: (rootUrl + '/drive/v2/files/{fileId}/realtime').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}/realtime',
+        mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}/realtime').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
@@ -2061,9 +2163,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2099,9 +2203,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2136,9 +2242,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2175,9 +2283,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2213,9 +2323,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2251,9 +2363,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2291,9 +2405,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2327,9 +2443,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2364,9 +2482,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions',
+          url: (rootUrl + '/drive/v2/files/{fileId}/revisions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2401,9 +2521,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2438,9 +2560,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
+          url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2477,9 +2601,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2512,9 +2638,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2548,9 +2676,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/teamdrives',
+          url: (rootUrl + '/drive/v2/teamdrives').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2584,9 +2714,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/teamdrives',
+          url: (rootUrl + '/drive/v2/teamdrives').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2620,9 +2752,11 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2857,7 +2991,7 @@ function Drive(options) { // eslint-disable-line
 * @property {string} folderColorRgb Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette. Not populated for Team Drive files.
 * @property {string} fullFileExtension The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {boolean} hasAugmentedPermissions Whether any users are granted file access directly on this file. This field is only populated for Team Drive files.
-* @property {boolean} hasThumbnail Whether this file has a thumbnail.
+* @property {boolean} hasThumbnail Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
 * @property {string} headRevisionId The ID of the file&#39;s head revision. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {string} iconLink A link to the file&#39;s icon.
 * @property {string} id The ID of the file.
@@ -2948,8 +3082,8 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @memberOf! drive(v2)
  * @type object
 * @property {string[]} additionalRoles Additional roles for this user. Only commenter is currently allowed, though more may be supported in the future.
-* @property {string} authKey The authkey parameter required for this permission.
-* @property {boolean} deleted Whether the account of the permission has been deleted. This field only pertains to user and group permissions.
+* @property {string} authKey Deprecated.
+* @property {boolean} deleted Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
 * @property {string} domain The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
 * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
 * @property {string} etag The ETag of the permission.
@@ -3058,14 +3192,14 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @typedef TeamDrive
  * @memberOf! drive(v2)
  * @type object
- * @property {object} backgroundImageFile An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field that can only be set on a drive.teamdrives.update request that does not set themeId. When specified, all fields of the backgroundImageFile must be set.
+ * @property {object} backgroundImageFile An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on drive.teamdrives.update requests that don&#39;t set themeId. When specified, all fields of the backgroundImageFile must be set.
  * @property {string} backgroundImageLink A short-lived link to this Team Drive&#39;s background image.
  * @property {object} capabilities Capabilities the current user has on this Team Drive.
  * @property {string} colorRgb The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
  * @property {string} id The ID of this Team Drive which is also the ID of the top level folder for this Team Drive.
  * @property {string} kind This is always drive#teamDrive
  * @property {string} name The name of this Team Drive.
- * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write only field that can only be set on a request that does not set colorRgb or backgroundImageFile.
+ * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
  */
 /**
  * @typedef TeamDriveList

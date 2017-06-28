@@ -60,9 +60,11 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/profile',
+          url: (rootUrl + '/gmail/v1/users/{userId}/profile').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/stop',
+          url: (rootUrl + '/gmail/v1/users/{userId}/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -131,9 +135,11 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/gmail/v1/users/{userId}/watch',
+          url: (rootUrl + '/gmail/v1/users/{userId}/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -172,13 +178,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -209,9 +217,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -246,9 +256,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -285,9 +297,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -324,13 +338,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/send',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/send',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -365,13 +381,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/{id}',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
           context: self
@@ -409,9 +427,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/history',
+            url: (rootUrl + '/gmail/v1/users/{userId}/history').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -448,9 +468,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -484,9 +506,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -520,9 +544,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -555,9 +581,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -592,9 +620,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -629,9 +659,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -668,9 +700,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchDelete',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -704,9 +738,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchModify',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchModify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -740,9 +776,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -778,9 +816,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -821,13 +861,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/import',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/import',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -863,13 +905,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -891,7 +935,7 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.labelIds Only return messages with labels that match all of the specified label IDs.
        * @param {integer=} params.maxResults Maximum number of messages to return.
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-       * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
+       * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -904,9 +948,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -941,9 +987,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/modify',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -980,13 +1028,15 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/send',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/send').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/send',
+          mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/send').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
@@ -1017,9 +1067,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/trash',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1053,9 +1105,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/untrash',
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1092,9 +1146,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1131,9 +1187,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1166,9 +1224,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1201,9 +1261,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1236,9 +1298,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1272,9 +1336,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1308,9 +1374,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1344,9 +1412,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1380,9 +1450,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -1418,9 +1490,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1454,9 +1528,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1490,9 +1566,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1525,9 +1603,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1564,9 +1644,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1600,9 +1682,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1636,9 +1720,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1671,9 +1757,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1710,9 +1798,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1746,9 +1836,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -1782,9 +1874,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1817,9 +1911,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -1854,9 +1950,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             }, options),
             params: params,
@@ -1891,9 +1989,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PUT'
             }, options),
             params: params,
@@ -1927,9 +2027,11 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify',
+              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1966,9 +2068,11 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
+                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               }, options),
               params: params,
@@ -2003,9 +2107,11 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
+                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               }, options),
               params: params,
@@ -2040,9 +2146,11 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
+                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               }, options),
               params: params,
@@ -2076,9 +2184,11 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
+                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               }, options),
               params: params,
@@ -2113,9 +2223,11 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
             const parameters = {
               options: Object.assign({
-                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault',
+                url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'POST'
               }, options),
               params: params,
@@ -2154,9 +2266,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -2192,9 +2306,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2232,9 +2348,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2269,9 +2387,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/modify',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2305,9 +2425,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/trash',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2341,9 +2463,11 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/untrash',
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,

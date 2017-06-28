@@ -63,13 +63,15 @@ function Groupsmigration(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/groups/v1/groups/{groupId}/archive',
+          url: (rootUrl + '/groups/v1/groups/{groupId}/archive').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/groups/v1/groups/{groupId}/archive',
+        mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
         context: self

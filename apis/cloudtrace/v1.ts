@@ -115,9 +115,11 @@ function Cloudtrace(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
+          url: (rootUrl + '/v1/projects/{projectId}/traces').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -130,6 +132,98 @@ function Cloudtrace(options) { // eslint-disable-line
     },
 
     traces: {
+
+      /**
+       * cloudtrace.projects.traces.get
+       *
+       * @desc Gets a single trace by its ID.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Trace API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudtrace
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudTrace = google.cloudtrace('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // ID of the Cloud project where the trace data is stored.
+       *     projectId: '',  // TODO: Update placeholder value.
+       *
+       *     // ID of the trace to return.
+       *     traceId: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   cloudTrace.projects.traces.get(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias cloudtrace.projects.traces.get
+       * @memberOf! cloudtrace(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
+       * @param {string} params.traceId ID of the trace to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/projects/{projectId}/traces/{traceId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'traceId'],
+          pathParams: ['projectId', 'traceId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * cloudtrace.projects.traces.list
@@ -223,104 +317,16 @@ function Cloudtrace(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
+            url: (rootUrl + '/v1/projects/{projectId}/traces').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudtrace.projects.traces.get
-       *
-       * @desc Gets a single trace by its ID.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Trace API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/cloudtrace
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var cloudTrace = google.cloudtrace('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // ID of the Cloud project where the trace data is stored.
-       *     projectId: '',  // TODO: Update placeholder value.
-       *
-       *     // ID of the trace to return.
-       *     traceId: '',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   cloudTrace.projects.traces.get(request, function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias cloudtrace.projects.traces.get
-       * @memberOf! cloudtrace(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.traceId ID of the trace to return.
-       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: Object.assign({
-            url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces/{traceId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectId', 'traceId'],
-          pathParams: ['traceId', 'projectId'],
           context: self
         };
 
@@ -334,6 +340,10 @@ function Cloudtrace(options) { // eslint-disable-line
  * @typedef TraceSpan
  * @memberOf! cloudtrace(v1)
  * @type object
+* @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
+unique within a trace.
+* @property {string} parentSpanId ID of the parent span, if any. Optional.
+* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
 * @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
 * @property {string} kind Distinguishes between spans generated in a particular context. For example,
 two spans with the same name may be distinguished using `RPC_CLIENT`
@@ -378,19 +388,6 @@ The name may be a method name or some other per-call site name.
 For the same executable and the same call point, a best practice is
 to use a consistent name, which makes it easier to correlate
 cross-trace spans.
-* @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
-unique within a trace.
-* @property {string} parentSpanId ID of the parent span, if any. Optional.
-* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
-*/
-/**
- * @typedef ListTracesResponse
- * @memberOf! cloudtrace(v1)
- * @type object
-* @property {cloudtrace(v1).Trace[]} traces List of trace records returned.
-* @property {string} nextPageToken If defined, indicates that there are more traces that match the request
-and that this value should be passed to the next request to continue
-retrieving additional traces.
 */
 /**
  * @typedef Empty
@@ -398,11 +395,20 @@ retrieving additional traces.
  * @type object
  */
 /**
+ * @typedef ListTracesResponse
+ * @memberOf! cloudtrace(v1)
+ * @type object
+* @property {string} nextPageToken If defined, indicates that there are more traces that match the request
+and that this value should be passed to the next request to continue
+retrieving additional traces.
+* @property {cloudtrace(v1).Trace[]} traces List of trace records returned.
+*/
+/**
  * @typedef Trace
  * @memberOf! cloudtrace(v1)
  * @type object
-* @property {string} projectId Project ID of the Cloud project where the trace data is stored.
 * @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
+* @property {string} projectId Project ID of the Cloud project where the trace data is stored.
 * @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit
 numeric value formatted as a 32-byte hex string.
 */

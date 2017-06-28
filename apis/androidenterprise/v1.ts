@@ -62,9 +62,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -99,9 +101,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -135,9 +139,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -173,9 +179,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -212,9 +220,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/acknowledgeNotificationSet',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/acknowledgeNotificationSet').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -248,9 +258,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/completeSignup',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/completeSignup').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -284,9 +296,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -319,9 +333,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -355,9 +371,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/enroll',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/enroll').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -390,9 +408,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/signupUrl',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/signupUrl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -425,9 +445,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -461,9 +483,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -496,9 +520,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -532,9 +558,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
+          url: (rootUrl + '/androidenterprise/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -567,9 +595,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
+          url: (rootUrl + '/androidenterprise/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -602,9 +632,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/pullNotificationSet',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/pullNotificationSet').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -637,9 +669,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -673,9 +707,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/account',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/account').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -709,9 +745,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -744,9 +782,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/unenroll',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -785,9 +825,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -822,9 +864,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -858,9 +902,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -897,9 +943,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -936,9 +984,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -976,9 +1026,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1011,9 +1063,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1051,9 +1105,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1093,9 +1149,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1131,9 +1189,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1168,9 +1228,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1207,9 +1269,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1246,9 +1310,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1288,9 +1354,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1326,9 +1394,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1363,9 +1433,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1402,9 +1474,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1441,9 +1515,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1482,9 +1558,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1519,9 +1597,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1555,9 +1635,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1593,9 +1675,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1631,9 +1715,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1671,9 +1757,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/permissions/{permissionId}',
+          url: (rootUrl + '/androidenterprise/v1/permissions/{permissionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1712,9 +1800,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1749,9 +1839,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1786,9 +1878,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1823,9 +1917,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1859,9 +1955,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1899,9 +1997,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1935,9 +2035,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1975,9 +2077,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2011,9 +2115,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2046,9 +2152,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2087,9 +2195,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2124,9 +2234,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2161,9 +2273,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2197,9 +2311,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2235,9 +2351,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2273,9 +2391,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2313,9 +2433,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2349,9 +2471,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2385,9 +2509,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2420,9 +2546,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2457,9 +2585,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2494,9 +2624,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2534,9 +2666,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2570,9 +2704,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2606,9 +2742,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2642,9 +2780,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2678,9 +2818,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2714,9 +2856,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2750,9 +2894,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2787,9 +2933,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2823,9 +2971,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2860,9 +3010,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2897,9 +3049,11 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -3081,9 +3235,9 @@ Possible values include:
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
 * @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
 * @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
-* @property {string} permissions The state of permission acceptance with this product. This field is only set if the product is approved. Possible states are: 
-- &quot;currentApproved&quot;, the current set of permissions is approved, but additional permissions will require the administrator to reapprove the product (if the product was approved without specifying what to when the required permissions change, this is the default), 
-- &quot;needsReapproval&quot;, there are permissions which need to be accepted (currently the product is not assignable), 
+* @property {string} permissions The permission approval status of the product. This field is only set if the product is approved. Possible states are: 
+- &quot;currentApproved&quot;, the current set of permissions is approved, but additional permissions will require the administrator to reapprove the product (If the product was approved without specifying the approved permissions setting, then this is the default behavior.), 
+- &quot;needsReapproval&quot;, the product has unapproved permissions. No additional product licenses can be assigned until the product is reapproved, 
 - &quot;allCurrentAndFutureApproved&quot;, the current permissions are approved and any future permission updates will be automatically approved without administrator review.
 * @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
 */
@@ -3204,6 +3358,7 @@ Possible values include:
  * @property {androidenterprise(v1).InstallFailureEvent} installFailureEvent Notifications about an app installation failure.
  * @property {androidenterprise(v1).NewDeviceEvent} newDeviceEvent Notifications about new devices.
  * @property {androidenterprise(v1).NewPermissionsEvent} newPermissionsEvent Notifications about new app permissions.
+ * @property {string} notificationType Type of the notification.
  * @property {androidenterprise(v1).ProductApprovalEvent} productApprovalEvent Notifications about changes to a product&#39;s approval status.
  * @property {androidenterprise(v1).ProductAvailabilityChangeEvent} productAvailabilityChangeEvent Notifications about product availability changes.
  * @property {string} timestampMillis The time when the notification was published in milliseconds since 1970-01-01T00:00:00Z. This will always be present.
@@ -3292,7 +3447,7 @@ Possible values include:
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ApprovalUrlInfo} approvalUrlInfo The approval URL that was shown to the user. Only the permissions shown to the user with that URL will be accepted, which may not be the product&#39;s entire set of permissions. For example, the URL may only display new permissions from an update after the product was approved, or not include new permissions if the product was updated since the URL was generated.
- * @property {string} approvedPermissions The permissions being approved with this app. This can either be the current set of permissions only (additional permissions added to the app through updates will require review by the administrator) or all current and future permissions for the app. If not specified, only the current set of permissions will be approved.
+ * @property {string} approvedPermissions Sets how new permission requests for the product are handled. &quot;allPermissions&quot; automatically approves all current and future permissions for the product. &quot;currentPermissionsOnly&quot; approves the current set of permissions for the product, but any future permissions added through updates will require manual reapproval. If not specified, only the current set of permissions will be approved.
  */
 /**
  * @typedef ProductsGenerateApprovalUrlResponse

@@ -60,9 +60,11 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
+          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -96,9 +98,11 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
+          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -132,9 +136,11 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
+          url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -181,7 +187,7 @@ function Groupssettings(options) { // eslint-disable-line
  * @property {string} whoCanInvite Permissions to invite members. Possible values are: ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE NONE_CAN_INVITE
  * @property {string} whoCanJoin Permissions to join the group. Possible values are: ANYONE_CAN_JOIN ALL_IN_DOMAIN_CAN_JOIN INVITED_CAN_JOIN CAN_REQUEST_TO_JOIN
  * @property {string} whoCanLeaveGroup Permission to leave the group. Possible values are: ALL_MANAGERS_CAN_LEAVE ALL_MEMBERS_CAN_LEAVE NONE_CAN_LEAVE
- * @property {string} whoCanPostMessage Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
+ * @property {string} whoCanPostMessage Permissions to post messages to the group. Possible values are: NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
  * @property {string} whoCanViewGroup Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  * @property {string} whoCanViewMembership Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  */

@@ -60,9 +60,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
+          url: (rootUrl + '/doubleclickbidmanager/v1/lineitems/downloadlineitems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
+          url: (rootUrl + '/doubleclickbidmanager/v1/lineitems/uploadlineitems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -134,9 +138,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
+          url: (rootUrl + '/doubleclickbidmanager/v1/query').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -169,9 +175,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
+          url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -204,9 +212,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
+          url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -238,9 +248,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
+          url: (rootUrl + '/doubleclickbidmanager/v1/queries').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -274,9 +286,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
+          url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -313,9 +327,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
+          url: (rootUrl + '/doubleclickbidmanager/v1/queries/{queryId}/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -352,9 +368,11 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/sdf/download',
+          url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

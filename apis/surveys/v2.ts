@@ -60,9 +60,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/mobileAppPanels/{panelId}',
+          url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/mobileAppPanels',
+          url: (rootUrl + '/surveys/v2/mobileAppPanels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/mobileAppPanels/{panelId}',
+          url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -173,9 +179,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{surveyUrlId}/results',
+          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -212,9 +220,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{surveyUrlId}',
+          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -247,9 +257,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{surveyUrlId}',
+          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -282,9 +294,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys',
+          url: (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -319,9 +333,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys',
+          url: (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -355,9 +371,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{resourceId}/start',
+          url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -390,9 +408,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{resourceId}/stop',
+          url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -426,9 +446,11 @@ function Surveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/surveys/v2/surveys/{surveyUrlId}',
+          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

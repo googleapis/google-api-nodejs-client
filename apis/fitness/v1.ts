@@ -63,9 +63,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -99,9 +101,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -135,9 +139,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -171,9 +177,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -208,9 +216,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -245,9 +255,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -286,9 +298,11 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
+              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             }, options),
             params: params,
@@ -325,9 +339,11 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
+              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -364,9 +380,11 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
+              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             }, options),
             params: params,
@@ -404,9 +422,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataset:aggregate',
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -444,9 +464,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -483,9 +505,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions',
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -521,9 +545,11 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,

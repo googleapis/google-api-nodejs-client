@@ -61,9 +61,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          url: (rootUrl + '/youtube/analytics/v1/groupItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          url: (rootUrl + '/youtube/analytics/v1/groupItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          url: (rootUrl + '/youtube/analytics/v1/groupItems').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -173,9 +179,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          url: (rootUrl + '/youtube/analytics/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -209,9 +217,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          url: (rootUrl + '/youtube/analytics/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -247,9 +257,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          url: (rootUrl + '/youtube/analytics/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -283,9 +295,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          url: (rootUrl + '/youtube/analytics/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -332,9 +346,11 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/youtube/analytics/v1/reports',
+          url: (rootUrl + '/youtube/analytics/v1/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

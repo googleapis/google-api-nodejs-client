@@ -63,9 +63,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements',
+          url: (rootUrl + '/games/v1/achievements').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -105,9 +107,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/increment',
+          url: (rootUrl + '/games/v1/achievements/{achievementId}/increment').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -145,9 +149,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}/achievements',
+          url: (rootUrl + '/games/v1/players/{playerId}/achievements').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -181,9 +187,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/reveal',
+          url: (rootUrl + '/games/v1/achievements/{achievementId}/reveal').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -218,9 +226,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/setStepsAtLeast',
+          url: (rootUrl + '/games/v1/achievements/{achievementId}/setStepsAtLeast').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -254,9 +264,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/unlock',
+          url: (rootUrl + '/games/v1/achievements/{achievementId}/unlock').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -290,9 +302,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/achievements/updateMultiple',
+          url: (rootUrl + '/games/v1/achievements/updateMultiple').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -332,9 +346,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/applications/{applicationId}',
+          url: (rootUrl + '/games/v1/applications/{applicationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -367,9 +383,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/applications/played',
+          url: (rootUrl + '/games/v1/applications/played').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -403,9 +421,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/applications/{applicationId}/verify',
+          url: (rootUrl + '/games/v1/applications/{applicationId}/verify').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -445,9 +465,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/events',
+          url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -483,9 +505,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/eventDefinitions',
+          url: (rootUrl + '/games/v1/eventDefinitions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -520,9 +544,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/events',
+          url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -561,9 +587,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}',
+          url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -599,9 +627,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards',
+          url: (rootUrl + '/games/v1/leaderboards').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -638,9 +668,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/metagameConfig',
+          url: (rootUrl + '/games/v1/metagameConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -678,9 +710,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}/categories/{collection}',
+          url: (rootUrl + '/games/v1/players/{playerId}/categories/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -719,9 +753,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}',
+          url: (rootUrl + '/games/v1/players/{playerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -758,9 +794,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/me/players/{collection}',
+          url: (rootUrl + '/games/v1/players/me/players/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -798,9 +836,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/pushtokens/remove',
+          url: (rootUrl + '/games/v1/pushtokens/remove').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -834,9 +874,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/pushtokens',
+          url: (rootUrl + '/games/v1/pushtokens').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -876,9 +918,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/quests/{questId}/milestones/{milestoneId}/claim',
+          url: (rootUrl + '/games/v1/quests/{questId}/milestones/{milestoneId}/claim').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -917,9 +961,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/quests/{questId}/accept',
+          url: (rootUrl + '/games/v1/quests/{questId}/accept').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -956,9 +1002,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}/quests',
+          url: (rootUrl + '/games/v1/players/{playerId}/quests').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -996,9 +1044,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/revisions/check',
+          url: (rootUrl + '/games/v1/revisions/check').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1037,9 +1087,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/create',
+          url: (rootUrl + '/games/v1/rooms/create').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1074,9 +1126,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/decline',
+          url: (rootUrl + '/games/v1/rooms/{roomId}/decline').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1110,9 +1164,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/dismiss',
+          url: (rootUrl + '/games/v1/rooms/{roomId}/dismiss').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1147,9 +1203,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}',
+          url: (rootUrl + '/games/v1/rooms/{roomId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1185,9 +1243,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/join',
+          url: (rootUrl + '/games/v1/rooms/{roomId}/join').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1223,9 +1283,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/leave',
+          url: (rootUrl + '/games/v1/rooms/{roomId}/leave').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1261,9 +1323,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms',
+          url: (rootUrl + '/games/v1/rooms').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1299,9 +1363,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/reportstatus',
+          url: (rootUrl + '/games/v1/rooms/{roomId}/reportstatus').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1345,9 +1411,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}',
+          url: (rootUrl + '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1386,9 +1454,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores/{collection}',
+          url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1429,9 +1499,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/window/{collection}',
+          url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}/window/{collection}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1468,9 +1540,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores',
+          url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1505,9 +1579,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/leaderboards/scores',
+          url: (rootUrl + '/games/v1/leaderboards/scores').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1546,9 +1622,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/snapshots/{snapshotId}',
+          url: (rootUrl + '/games/v1/snapshots/{snapshotId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1585,9 +1663,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/players/{playerId}/snapshots',
+          url: (rootUrl + '/games/v1/players/{playerId}/snapshots').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1625,9 +1705,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/cancel',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1662,9 +1744,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/create',
+          url: (rootUrl + '/games/v1/turnbasedmatches/create').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1699,9 +1783,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/decline',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/decline').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1735,9 +1821,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/dismiss',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/dismiss').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1773,9 +1861,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/finish',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/finish').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1811,9 +1901,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1848,9 +1940,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/join',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/join').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1885,9 +1979,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leave',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/leave').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1924,9 +2020,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leaveTurn',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/leaveTurn').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1964,9 +2062,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches',
+          url: (rootUrl + '/games/v1/turnbasedmatches').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2002,9 +2102,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/rematch',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/rematch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2042,9 +2144,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/sync',
+          url: (rootUrl + '/games/v1/turnbasedmatches/sync').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2080,9 +2184,11 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/turn',
+          url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/turn').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

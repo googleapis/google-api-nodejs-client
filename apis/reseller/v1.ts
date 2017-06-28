@@ -60,9 +60,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -96,9 +98,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers',
+          url: (rootUrl + '/apps/reseller/v1/customers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -132,9 +136,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -168,9 +174,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -206,9 +214,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/getwatchdetails',
+          url: (rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -241,9 +251,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/register',
+          url: (rootUrl + '/apps/reseller/v1/resellernotify/register').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -276,9 +288,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/resellernotify/unregister',
+          url: (rootUrl + '/apps/reseller/v1/resellernotify/unregister').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -316,9 +330,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -353,9 +369,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -390,9 +408,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -427,9 +447,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -464,9 +486,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -500,9 +524,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -537,9 +563,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -576,9 +604,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/subscriptions',
+          url: (rootUrl + '/apps/reseller/v1/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -612,9 +642,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -648,9 +680,11 @@ function Reseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend',
+          url: (rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

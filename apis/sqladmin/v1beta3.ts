@@ -63,9 +63,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns/{backupConfiguration}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns/{backupConfiguration}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -102,9 +104,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/backupRuns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -140,9 +144,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/flags',
+          url: (rootUrl + '/sql/v1beta3/flags').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -180,9 +186,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/clone',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/clone').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -216,9 +224,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -253,9 +263,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/export',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/export').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -289,9 +301,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -326,9 +340,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/import',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -362,9 +378,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -399,9 +417,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -436,9 +456,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -472,9 +494,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/promoteReplica',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/promoteReplica').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -508,9 +532,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/resetSslConfig',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/resetSslConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -544,9 +570,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/restart',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/restart').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -582,9 +610,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/restoreBackup',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/restoreBackup').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -619,9 +649,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/setRootPassword',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/setRootPassword').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -656,9 +688,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -697,9 +731,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/operations/{operation}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -735,9 +771,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/operations',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/operations').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -776,9 +814,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -813,9 +853,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -850,9 +892,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -886,9 +930,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/instances/{instance}/sslCerts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -925,9 +971,11 @@ function Sqladmin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/sql/v1beta3/projects/{project}/tiers',
+          url: (rootUrl + '/sql/v1beta3/projects/{project}/tiers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

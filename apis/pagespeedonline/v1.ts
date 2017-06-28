@@ -65,9 +65,11 @@ function Pagespeedonline(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
+          url: (rootUrl + '/pagespeedonline/v1/runPagespeed').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

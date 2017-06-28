@@ -57,9 +57,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/oauth2/v1/certs',
+        url: (rootUrl + '/oauth2/v1/certs').replace(/([^:]\/)\/+/g, '$1'),
         method: 'GET'
       }, options),
       params: params,
@@ -91,9 +93,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/oauth2/v1/raw_public_keys',
+        url: (rootUrl + '/oauth2/v1/raw_public_keys').replace(/([^:]\/)\/+/g, '$1'),
         method: 'GET'
       }, options),
       params: params,
@@ -126,9 +130,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/service_accounts/v1/jwk/{robotEmail}',
+        url: (rootUrl + '/service_accounts/v1/jwk/{robotEmail}').replace(/([^:]\/)\/+/g, '$1'),
         method: 'GET'
       }, options),
       params: params,
@@ -161,9 +167,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/service_accounts/v1/metadata/raw/{robotEmail}',
+        url: (rootUrl + '/service_accounts/v1/metadata/raw/{robotEmail}').replace(/([^:]\/)\/+/g, '$1'),
         method: 'GET'
       }, options),
       params: params,
@@ -196,9 +204,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/service_accounts/v1/metadata/x509/{robotEmail}',
+        url: (rootUrl + '/service_accounts/v1/metadata/x509/{robotEmail}').replace(/([^:]\/)\/+/g, '$1'),
         method: 'GET'
       }, options),
       params: params,
@@ -232,9 +242,11 @@ function Oauth2(options) { // eslint-disable-line
     }
     options || (options = {});
 
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
     const parameters = {
       options: Object.assign({
-        url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
+        url: (rootUrl + '/oauth2/v1/tokeninfo').replace(/([^:]\/)\/+/g, '$1'),
         method: 'POST'
       }, options),
       params: params,
@@ -268,9 +280,11 @@ function Oauth2(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/oauth2/v1/userinfo',
+          url: (rootUrl + '/oauth2/v1/userinfo').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -306,9 +320,11 @@ function Oauth2(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/userinfo/v2/me',
+              url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,

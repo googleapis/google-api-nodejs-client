@@ -61,9 +61,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -172,9 +178,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -209,9 +217,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -246,9 +256,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -286,9 +298,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -325,9 +339,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -360,9 +376,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -396,9 +414,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -436,9 +456,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -473,9 +495,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -510,9 +534,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -551,9 +577,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
+          url: (rootUrl + '/calendar/v3/users/me/calendarList/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -590,9 +618,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/clear').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -625,9 +655,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -660,9 +692,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -695,9 +729,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars',
+          url: (rootUrl + '/calendar/v3/calendars').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -731,9 +767,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -767,9 +805,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -806,9 +846,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/channels/stop',
+          url: (rootUrl + '/calendar/v3/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -844,9 +886,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/colors',
+          url: (rootUrl + '/calendar/v3/colors').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -885,9 +929,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -924,9 +970,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -961,9 +1009,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1000,9 +1050,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1045,9 +1097,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1072,7 +1126,7 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
      * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
      * @param {string=} params.pageToken Token specifying which result page to return. Optional.
      * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
@@ -1097,9 +1151,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1135,9 +1191,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}/move').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1176,9 +1234,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1213,9 +1273,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/quickAdd').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1254,9 +1316,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1281,7 +1345,7 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
+     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
      * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
      * @param {string=} params.pageToken Token specifying which result page to return. Optional.
      * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
@@ -1307,9 +1371,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/watch',
+          url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1346,9 +1412,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/freeBusy',
+          url: (rootUrl + '/calendar/v3/freeBusy').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1385,9 +1453,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}',
+          url: (rootUrl + '/calendar/v3/users/me/settings/{setting}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1422,9 +1492,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
+          url: (rootUrl + '/calendar/v3/users/me/settings').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1460,9 +1532,11 @@ function Calendar(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',
+          url: (rootUrl + '/calendar/v3/users/me/settings/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

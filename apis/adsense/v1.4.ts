@@ -61,9 +61,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}',
+          url: (rootUrl + '/adsense/v1.4/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/accounts',
+          url: (rootUrl + '/adsense/v1.4/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -136,9 +140,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -176,9 +182,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -213,9 +221,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -252,9 +262,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -293,9 +305,11 @@ function Adsense(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
+              url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -333,9 +347,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts/{alertId}',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/alerts/{alertId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -369,9 +385,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/alerts',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/alerts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -409,9 +427,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -447,9 +467,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -489,9 +511,11 @@ function Adsense(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
+              url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -528,9 +552,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/payments',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/payments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -577,9 +603,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/reports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -618,9 +646,11 @@ function Adsense(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/{savedReportId}',
+              url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/reports/{savedReportId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -655,9 +685,11 @@ function Adsense(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/reports/saved',
+              url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/reports/saved').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -695,9 +727,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles/{savedAdStyleId}',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/savedadstyles/{savedAdStyleId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -732,9 +766,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/savedadstyles',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/savedadstyles').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -773,9 +809,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/urlchannels',
+            url: (rootUrl + '/adsense/v1.4/accounts/{accountId}/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -813,9 +851,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients',
+          url: (rootUrl + '/adsense/v1.4/adclients').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -853,9 +893,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -889,9 +931,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/adcode',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/adcode').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -927,9 +971,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -967,9 +1013,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
+            url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/adunits/{adUnitId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1006,9 +1054,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/alerts/{alertId}',
+          url: (rootUrl + '/adsense/v1.4/alerts/{alertId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1041,9 +1091,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/alerts',
+          url: (rootUrl + '/adsense/v1.4/alerts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1081,9 +1133,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1118,9 +1172,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1159,9 +1215,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
+            url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/customchannels/{customChannelId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1199,9 +1257,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/metadata/dimensions',
+            url: (rootUrl + '/adsense/v1.4/metadata/dimensions').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1236,9 +1296,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/metadata/metrics',
+            url: (rootUrl + '/adsense/v1.4/metadata/metrics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1274,9 +1336,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/payments',
+          url: (rootUrl + '/adsense/v1.4/payments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1324,9 +1388,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/reports',
+          url: (rootUrl + '/adsense/v1.4/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1364,9 +1430,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/reports/{savedReportId}',
+            url: (rootUrl + '/adsense/v1.4/reports/{savedReportId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1400,9 +1468,11 @@ function Adsense(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsense/v1.4/reports/saved',
+            url: (rootUrl + '/adsense/v1.4/reports/saved').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1439,9 +1509,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles/{savedAdStyleId}',
+          url: (rootUrl + '/adsense/v1.4/savedadstyles/{savedAdStyleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1475,9 +1547,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/savedadstyles',
+          url: (rootUrl + '/adsense/v1.4/savedadstyles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1516,9 +1590,11 @@ function Adsense(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsense/v1.4/adclients/{adClientId}/urlchannels',
+          url: (rootUrl + '/adsense/v1.4/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

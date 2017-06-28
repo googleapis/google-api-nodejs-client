@@ -60,9 +60,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}',
+          url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -96,9 +98,11 @@ function Adexchangeseller(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts',
+          url: (rootUrl + '/adexchangeseller/v2.0/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -135,9 +139,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -174,9 +180,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/alerts',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/alerts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -214,9 +222,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -252,9 +262,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -292,9 +304,11 @@ function Adexchangeseller(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/metadata/dimensions',
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/metadata/dimensions').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -330,9 +344,11 @@ function Adexchangeseller(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/metadata/metrics',
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/metadata/metrics').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -370,9 +386,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals/{dealId}',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals/{dealId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -405,9 +423,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -452,9 +472,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -493,9 +515,11 @@ function Adexchangeseller(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports/{savedReportId}',
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports/{savedReportId}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -530,9 +554,11 @@ function Adexchangeseller(options) { // eslint-disable-line
           }
           options || (options = {});
 
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
           const parameters = {
             options: Object.assign({
-              url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports/saved',
+              url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/reports/saved').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
@@ -572,9 +598,11 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/urlchannels',
+            url: (rootUrl + '/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,

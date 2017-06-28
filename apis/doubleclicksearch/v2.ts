@@ -70,9 +70,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion',
+          url: (rootUrl + '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -105,9 +107,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -147,9 +151,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -182,9 +188,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
+          url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -217,9 +225,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
+          url: (rootUrl + '/doubleclicksearch/v2/conversion/updateAvailability').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -256,9 +266,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
+          url: (rootUrl + '/doubleclicksearch/v2/reports/generate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -291,9 +303,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}',
+          url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -327,9 +341,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}',
+          url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -362,9 +378,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
+          url: (rootUrl + '/doubleclicksearch/v2/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -402,9 +420,11 @@ function Doubleclicksearch(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns',
+          url: (rootUrl + '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

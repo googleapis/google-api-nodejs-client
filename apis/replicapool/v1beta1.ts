@@ -63,9 +63,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -100,9 +102,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -137,9 +141,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -175,9 +181,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -213,9 +221,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -251,9 +261,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -294,9 +306,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -332,9 +346,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -371,9 +387,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -409,9 +427,11 @@ function Replicapool(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart',
+          url: (rootUrl + '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

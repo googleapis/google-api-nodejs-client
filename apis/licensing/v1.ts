@@ -62,9 +62,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -99,9 +101,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -136,9 +140,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -174,9 +180,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/users',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -213,9 +221,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/users',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -251,9 +261,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -289,9 +301,11 @@ function Licensing(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}',
+          url: (rootUrl + '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

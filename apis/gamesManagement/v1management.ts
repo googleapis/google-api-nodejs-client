@@ -60,9 +60,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/reset',
+          url: (rootUrl + '/games/v1management/achievements/{achievementId}/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -94,9 +96,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/achievements/reset',
+          url: (rootUrl + '/games/v1management/achievements/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -128,9 +132,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/achievements/resetAllForAllPlayers',
+          url: (rootUrl + '/games/v1management/achievements/resetAllForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -163,9 +169,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/achievements/{achievementId}/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -198,9 +206,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/achievements/resetMultipleForAllPlayers',
+          url: (rootUrl + '/games/v1management/achievements/resetMultipleForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -239,9 +249,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden',
+          url: (rootUrl + '/games/v1management/applications/{applicationId}/players/hidden').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -278,9 +290,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/events/{eventId}/reset',
+          url: (rootUrl + '/games/v1management/events/{eventId}/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -312,9 +326,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/events/reset',
+          url: (rootUrl + '/games/v1management/events/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -346,9 +362,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/events/resetAllForAllPlayers',
+          url: (rootUrl + '/games/v1management/events/resetAllForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -381,9 +399,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/events/{eventId}/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/events/{eventId}/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -416,9 +436,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/events/resetMultipleForAllPlayers',
+          url: (rootUrl + '/games/v1management/events/resetMultipleForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -456,9 +478,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
+          url: (rootUrl + '/games/v1management/applications/{applicationId}/players/hidden/{playerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -492,9 +516,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
+          url: (rootUrl + '/games/v1management/applications/{applicationId}/players/hidden/{playerId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -531,9 +557,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/quests/{questId}/reset',
+          url: (rootUrl + '/games/v1management/quests/{questId}/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -565,9 +593,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/quests/reset',
+          url: (rootUrl + '/games/v1management/quests/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -599,9 +629,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/quests/resetAllForAllPlayers',
+          url: (rootUrl + '/games/v1management/quests/resetAllForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -634,9 +666,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/quests/{questId}/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/quests/{questId}/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -669,9 +703,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/quests/resetMultipleForAllPlayers',
+          url: (rootUrl + '/games/v1management/quests/resetMultipleForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -707,9 +743,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/rooms/reset',
+          url: (rootUrl + '/games/v1management/rooms/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -741,9 +779,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/rooms/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/rooms/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -780,9 +820,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/reset',
+          url: (rootUrl + '/games/v1management/leaderboards/{leaderboardId}/scores/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -814,9 +856,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/scores/reset',
+          url: (rootUrl + '/games/v1management/scores/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -848,9 +892,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/scores/resetAllForAllPlayers',
+          url: (rootUrl + '/games/v1management/scores/resetAllForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -883,9 +929,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -918,9 +966,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/scores/resetMultipleForAllPlayers',
+          url: (rootUrl + '/games/v1management/scores/resetMultipleForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -956,9 +1006,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
+          url: (rootUrl + '/games/v1management/turnbasedmatches/reset').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -990,9 +1042,11 @@ function Gamesmanagement(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/resetForAllPlayers',
+          url: (rootUrl + '/games/v1management/turnbasedmatches/resetForAllPlayers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

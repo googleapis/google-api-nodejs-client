@@ -61,9 +61,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyPushConfig',
+          url: (rootUrl + '/v1beta1a/subscriptions/modifyPushConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -96,9 +98,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
+          url: (rootUrl + '/v1beta1a/subscriptions/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -131,9 +135,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pull',
+          url: (rootUrl + '/v1beta1a/subscriptions/pull').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -155,8 +161,8 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken The value obtained in the last <code>ListSubscriptionsResponse</code> for continuation.
-     * @param {string=} params.query A valid label query expression.
      * @param {integer=} params.maxResults Maximum number of subscriptions to return.
+     * @param {string=} params.query A valid label query expression.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -168,9 +174,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
+          url: (rootUrl + '/v1beta1a/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -203,44 +211,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      const parameters = {
-        options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.subscriptions.acknowledge
-     *
-     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
-     *
-     * @alias pubsub.subscriptions.acknowledge
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).AcknowledgeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    acknowledge: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
 
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/acknowledge',
+          url: (rootUrl + '/v1beta1a/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -273,9 +248,48 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyAckDeadline',
+          url: (rootUrl + '/v1beta1a/subscriptions/modifyAckDeadline').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.subscriptions.acknowledge
+     *
+     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
+     *
+     * @alias pubsub.subscriptions.acknowledge
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).AcknowledgeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    acknowledge: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/subscriptions/acknowledge').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -308,9 +322,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
+          url: (rootUrl + '/v1beta1a/subscriptions/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -343,9 +359,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pullBatch',
+          url: (rootUrl + '/v1beta1a/subscriptions/pullBatch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -360,76 +378,6 @@ function Pubsub(options) { // eslint-disable-line
   };
 
   self.topics = {
-
-    /**
-     * pubsub.topics.get
-     *
-     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
-     *
-     * @alias pubsub.topics.get
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic The name of the topic to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['topic'],
-        pathParams: ['topic'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.publish
-     *
-     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
-     *
-     * @alias pubsub.topics.publish
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    publish: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publish',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * pubsub.topics.delete
@@ -452,9 +400,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
+          url: (rootUrl + '/v1beta1a/topics/{topic}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -487,9 +437,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics/publishBatch',
+          url: (rootUrl + '/v1beta1a/topics/publishBatch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -510,8 +462,8 @@ function Pubsub(options) { // eslint-disable-line
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.query A valid label query expression.
      * @param {integer=} params.maxResults Maximum number of topics to return.
+     * @param {string=} params.query A valid label query expression.
      * @param {string=} params.pageToken The value obtained in the last <code>ListTopicsResponse</code> for continuation.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -524,9 +476,11 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
+          url: (rootUrl + '/v1beta1a/topics').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -559,9 +513,85 @@ function Pubsub(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://pubsub.googleapis.com/v1beta1a/topics',
+          url: (rootUrl + '/v1beta1a/topics').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.get
+     *
+     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
+     *
+     * @alias pubsub.topics.get
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.topic The name of the topic to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/topics/{topic}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.publish
+     *
+     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
+     *
+     * @alias pubsub.topics.publish
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    publish: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/topics/publish').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -576,172 +606,6 @@ function Pubsub(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef Label
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} strValue A string value.
-* @property {string} numValue An integer value.
-* @property {string} key The key of a label is a syntactically valid URL (as per RFC 1738) with
-the &quot;scheme&quot; and initial slashes omitted and with the additional
-restrictions noted below.  Each key should be globally unique.  The
-&quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily
-resolvable to a network endpoint.  Instead, the namespace indicates what
-system or entity defines the semantics of the label.  Namespaces do not
-restrict the set of objects to which a label may be associated.
-
-Keys are defined by the following grammar:
-
-  key          = hostname &quot;/&quot; kpath
-  kpath        = ksegment *[ &quot;/&quot; ksegment ]
-  ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ]
-
-where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738.
-
-Example key:
-  spanner.google.com/universe
-*/
-/**
- * @typedef ModifyAckDeadlineRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} subscription Next Index: 5
-The name of the subscription from which messages are being pulled.
-* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated,
-not both.
-* @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to the
-Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack
-deadline will expire 10 seconds after the ModifyAckDeadline call was made.
-Specifying zero may immediately make the message available for another pull
-request.
-* @property {string[]} ackIds List of acknowledgment IDs. Either this field or ack_id
-should be populated, not both.
-*/
-/**
- * @typedef PullBatchRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {integer} maxEvents The maximum number of PubsubEvents returned for this request. The Pub/Sub
-system may return fewer than the number of events specified.
-* @property {string} subscription The subscription from which messages should be pulled.
-* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
-it is not able to return a message in the Pull response. Otherwise the
-system is allowed to wait until at least one message is available rather
-than returning no messages. The client may cancel the request if it does
-not wish to wait any longer for the response.
-*/
-/**
- * @typedef ModifyPushConfigRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {pubsub(v1beta1a).PushConfig} pushConfig An empty &lt;code&gt;push_config&lt;/code&gt; indicates that the Pub/Sub system should
-pause pushing messages from the given subscription.
-* @property {string} subscription The name of the subscription.
-*/
-/**
- * @typedef PubsubMessage
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} messageId ID of this message assigned by the server at publication time. Guaranteed
-to be unique within the topic. This value may be read by a subscriber
-that receives a PubsubMessage via a Pull call or a push delivery. It must
-not be populated by a publisher in a Publish call.
-* @property {pubsub(v1beta1a).Label[]} label Optional list of labels for this message. Keys in this collection must
-be unique.
-* @property {string} publishTime The time at which the message was published.
-The time is milliseconds since the UNIX epoch.
-* @property {string} data The message payload.
-*/
-/**
- * @typedef ListTopicsResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {pubsub(v1beta1a).Topic[]} topic The resulting topics.
-* @property {string} nextPageToken If not empty, indicates that there are more topics that match the request,
-and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt;
-to continue.
-*/
-/**
- * @typedef PublishBatchRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
- * @property {pubsub(v1beta1a).PubsubMessage[]} messages The messages to publish.
- * @property {string} topic The messages in the request will be published on this topic.
- */
-/**
- * @typedef AcknowledgeRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} subscription The subscription whose message is being acknowledged.
-* @property {string[]} ackId The acknowledgment ID for the message being acknowledged. This was
-returned by the Pub/Sub system in the Pull response.
-*/
-/**
- * @typedef PullBatchResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {pubsub(v1beta1a).PullResponse[]} pullResponses Received Pub/Sub messages or status events. The Pub/Sub system will return
-zero messages if there are no more messages available in the backlog. The
-Pub/Sub system may return fewer than the max_events requested even if
-there are more messages available in the backlog.
-*/
-/**
- * @typedef Empty
- * @memberOf! pubsub(v1beta1a)
- * @type object
- */
-/**
- * @typedef PullResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
- * @property {string} ackId This ID must be used to acknowledge the received event or message.
- * @property {pubsub(v1beta1a).PubsubEvent} pubsubEvent A pubsub message or truncation event.
- */
-/**
- * @typedef PushConfig
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
-For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
-*/
-/**
- * @typedef PullRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} subscription The subscription from which a message should be pulled.
-* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
-it is not able to return a message in the Pull response. Otherwise the
-system is allowed to wait until at least one message is available rather
-than returning FAILED_PRECONDITION. The client may cancel the request if
-it does not wish to wait any longer for the response.
-*/
-/**
- * @typedef ListSubscriptionsResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {pubsub(v1beta1a).Subscription[]} subscription The subscriptions that match the request.
-* @property {string} nextPageToken If not empty, indicates that there are more subscriptions that match the
-request and this value should be passed to the next
-&lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
-*/
-/**
- * @typedef PubsubEvent
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {boolean} truncated Indicates that this subscription has been truncated.
-* @property {boolean} deleted Indicates that this subscription has been deleted. (Note that pull
-subscribers will always receive NOT_FOUND in response in their pull
-request on the subscription, rather than seeing this boolean.)
-* @property {pubsub(v1beta1a).PubsubMessage} message A received message.
-* @property {string} subscription The subscription that received the event.
-*/
-/**
- * @typedef PublishRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
- * @property {string} topic The message in the request will be published on this topic.
- * @property {pubsub(v1beta1a).PubsubMessage} message The message to publish.
- */
 /**
  * @typedef Subscription
  * @memberOf! pubsub(v1beta1a)
@@ -783,5 +647,171 @@ the topic.
  * @memberOf! pubsub(v1beta1a)
  * @type object
  * @property {string} name Name of the topic.
+ */
+/**
+ * @typedef Label
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} strValue A string value.
+* @property {string} numValue An integer value.
+* @property {string} key The key of a label is a syntactically valid URL (as per RFC 1738) with
+the &quot;scheme&quot; and initial slashes omitted and with the additional
+restrictions noted below.  Each key should be globally unique.  The
+&quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily
+resolvable to a network endpoint.  Instead, the namespace indicates what
+system or entity defines the semantics of the label.  Namespaces do not
+restrict the set of objects to which a label may be associated.
+
+Keys are defined by the following grammar:
+
+  key          = hostname &quot;/&quot; kpath
+  kpath        = ksegment *[ &quot;/&quot; ksegment ]
+  ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ]
+
+where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738.
+
+Example key:
+  spanner.google.com/universe
+*/
+/**
+ * @typedef ModifyAckDeadlineRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string[]} ackIds List of acknowledgment IDs. Either this field or ack_id
+should be populated, not both.
+* @property {string} subscription Next Index: 5
+The name of the subscription from which messages are being pulled.
+* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated,
+not both.
+* @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to the
+Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack
+deadline will expire 10 seconds after the ModifyAckDeadline call was made.
+Specifying zero may immediately make the message available for another pull
+request.
+*/
+/**
+ * @typedef PullBatchRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {integer} maxEvents The maximum number of PubsubEvents returned for this request. The Pub/Sub
+system may return fewer than the number of events specified.
+* @property {string} subscription The subscription from which messages should be pulled.
+* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
+it is not able to return a message in the Pull response. Otherwise the
+system is allowed to wait until at least one message is available rather
+than returning no messages. The client may cancel the request if it does
+not wish to wait any longer for the response.
+*/
+/**
+ * @typedef ModifyPushConfigRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {pubsub(v1beta1a).PushConfig} pushConfig An empty &lt;code&gt;push_config&lt;/code&gt; indicates that the Pub/Sub system should
+pause pushing messages from the given subscription.
+* @property {string} subscription The name of the subscription.
+*/
+/**
+ * @typedef PubsubMessage
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} messageId ID of this message assigned by the server at publication time. Guaranteed
+to be unique within the topic. This value may be read by a subscriber
+that receives a PubsubMessage via a Pull call or a push delivery. It must
+not be populated by a publisher in a Publish call.
+* @property {string} publishTime The time at which the message was published.
+The time is milliseconds since the UNIX epoch.
+* @property {pubsub(v1beta1a).Label[]} label Optional list of labels for this message. Keys in this collection must
+be unique.
+* @property {string} data The message payload.
+*/
+/**
+ * @typedef ListTopicsResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {pubsub(v1beta1a).Topic[]} topic The resulting topics.
+* @property {string} nextPageToken If not empty, indicates that there are more topics that match the request,
+and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt;
+to continue.
+*/
+/**
+ * @typedef PublishBatchRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {pubsub(v1beta1a).PubsubMessage[]} messages The messages to publish.
+ * @property {string} topic The messages in the request will be published on this topic.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ */
+/**
+ * @typedef PullBatchResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {pubsub(v1beta1a).PullResponse[]} pullResponses Received Pub/Sub messages or status events. The Pub/Sub system will return
+zero messages if there are no more messages available in the backlog. The
+Pub/Sub system may return fewer than the max_events requested even if
+there are more messages available in the backlog.
+*/
+/**
+ * @typedef AcknowledgeRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} subscription The subscription whose message is being acknowledged.
+* @property {string[]} ackId The acknowledgment ID for the message being acknowledged. This was
+returned by the Pub/Sub system in the Pull response.
+*/
+/**
+ * @typedef PullResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} ackId This ID must be used to acknowledge the received event or message.
+ * @property {pubsub(v1beta1a).PubsubEvent} pubsubEvent A pubsub message or truncation event.
+ */
+/**
+ * @typedef PushConfig
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
+For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+*/
+/**
+ * @typedef PullRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} subscription The subscription from which a message should be pulled.
+* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
+it is not able to return a message in the Pull response. Otherwise the
+system is allowed to wait until at least one message is available rather
+than returning FAILED_PRECONDITION. The client may cancel the request if
+it does not wish to wait any longer for the response.
+*/
+/**
+ * @typedef PubsubEvent
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {boolean} deleted Indicates that this subscription has been deleted. (Note that pull
+subscribers will always receive NOT_FOUND in response in their pull
+request on the subscription, rather than seeing this boolean.)
+* @property {boolean} truncated Indicates that this subscription has been truncated.
+* @property {pubsub(v1beta1a).PubsubMessage} message A received message.
+* @property {string} subscription The subscription that received the event.
+*/
+/**
+ * @typedef ListSubscriptionsResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {pubsub(v1beta1a).Subscription[]} subscription The subscriptions that match the request.
+* @property {string} nextPageToken If not empty, indicates that there are more subscriptions that match the
+request and this value should be passed to the next
+&lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
+*/
+/**
+ * @typedef PublishRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {string} topic The message in the request will be published on this topic.
+ * @property {pubsub(v1beta1a).PubsubMessage} message The message to publish.
  */
 export = Pubsub;

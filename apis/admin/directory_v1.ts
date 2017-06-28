@@ -61,9 +61,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -132,9 +136,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/asps').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -171,9 +177,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
+          url: (rootUrl + '/admin/directory/v1/admin/directory_v1/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -212,9 +220,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -249,9 +259,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -275,6 +287,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
      * @param {string=} params.orderBy Column to use for sorting results
+     * @param {string=} params.orgUnitPath Full path of the organization unit or its Id
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
@@ -290,9 +303,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -328,9 +343,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -366,9 +383,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -405,9 +424,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -441,9 +462,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -477,9 +500,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
+          url: (rootUrl + '/admin/directory/v1/customers/{customerKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -517,9 +542,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -553,9 +580,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -589,9 +618,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -625,9 +656,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -665,9 +698,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains/{domainName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -701,9 +736,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains/{domainName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -737,9 +774,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -772,9 +811,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/domains').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -811,9 +852,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -846,9 +889,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -881,9 +926,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups',
+          url: (rootUrl + '/admin/directory/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -920,9 +967,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups',
+          url: (rootUrl + '/admin/directory/v1/groups').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -956,9 +1005,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -992,9 +1043,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1030,9 +1083,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases/{alias}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -1066,9 +1121,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1101,9 +1158,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
+            url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -1141,9 +1200,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1177,9 +1238,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1213,9 +1276,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1251,9 +1316,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1288,9 +1355,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1325,9 +1394,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/members/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1366,9 +1437,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1402,9 +1475,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1439,9 +1514,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1480,9 +1557,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/mobile').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1520,9 +1599,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1556,9 +1637,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1594,9 +1677,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1631,9 +1716,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1668,9 +1755,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/notifications/{notificationId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1708,9 +1797,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1744,9 +1835,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1780,9 +1873,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1817,9 +1912,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1854,9 +1951,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1891,9 +1990,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1930,9 +2031,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/ALL/privileges').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1972,9 +2075,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -2008,9 +2113,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2044,9 +2151,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -2081,9 +2190,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -2118,9 +2229,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -2155,9 +2268,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
+            url: (rootUrl + '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -2195,9 +2310,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2231,9 +2348,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2267,9 +2386,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2306,9 +2427,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roleassignments').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2346,9 +2469,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2382,9 +2507,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2418,9 +2545,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2455,9 +2584,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2492,9 +2623,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2529,9 +2662,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2569,9 +2704,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2605,9 +2742,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2641,9 +2780,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -2676,9 +2817,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2713,9 +2856,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -2750,9 +2895,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -2790,9 +2937,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2826,9 +2975,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2861,9 +3012,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/tokens').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2900,9 +3053,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -2938,9 +3093,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -2973,9 +3130,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users',
+          url: (rootUrl + '/admin/directory/v1/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3019,9 +3178,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users',
+          url: (rootUrl + '/admin/directory/v1/users').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -3055,9 +3216,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3091,9 +3254,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -3127,9 +3292,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/undelete').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3163,9 +3330,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -3210,9 +3379,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
+          url: (rootUrl + '/admin/directory/v1/users/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3248,9 +3419,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases/{alias}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -3284,9 +3457,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -3320,9 +3495,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3357,9 +3534,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases/watch').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -3395,9 +3574,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -3430,9 +3611,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -3466,9 +3649,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -3502,9 +3687,11 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
+            url: (rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -3541,9 +3728,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes/generate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3576,9 +3765,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes/invalidate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -3611,9 +3802,11 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',
+          url: (rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -4109,6 +4302,7 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} isEnrolledIn2Sv Is enrolled in 2-step verification (Read-only)
  * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
  * @property {string} kind Kind of resource this is.
+ * @property {any} languages 
  * @property {string} lastLoginTime User&#39;s last login time. (Read-only)
  * @property {any} locations 
  * @property {admin(directory_v1).UserName} name User&#39;s name
@@ -4187,15 +4381,22 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
  */
 /**
+ * @typedef UserLanguage
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customLanguage Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can&#39;t be set
+ * @property {string} languageCode Language Code. Should be used for storing Google III LanguageCode string representation for language. Illegal values cause SchemaException.
+ */
+/**
  * @typedef UserLocation
  * @memberOf! admin(directory_v1)
  * @type object
- * @property {string} area Textual location. This is most useful for display purposes to concisely describe the location. E.g. &quot;Mountain View, CA&quot;, &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
+ * @property {string} area Textual location. This is most useful for display purposes to concisely describe the location. For example, &quot;Mountain View, CA&quot;, &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
  * @property {string} buildingId Building Identifier.
  * @property {string} customType Custom Type.
  * @property {string} deskCode Most specific textual code of individual desk location.
  * @property {string} floorName Floor name/number.
- * @property {string} floorSection Floor Section. More specific location within the floor. E.g. if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
+ * @property {string} floorSection Floor section. More specific location within the floor. For example, if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
  */
 /**
@@ -4221,6 +4422,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} department Department within the organization.
  * @property {string} description Description of the organization.
  * @property {string} domain The domain to which the organization belongs to.
+ * @property {integer} fullTimeEquivalent The full-time equivalent percent within the organization (100000 = 100%).
  * @property {string} location Location of the organization. This need not be fully qualified address.
  * @property {string} name Name of the organization
  * @property {boolean} primary If it user&#39;s primary organization.

@@ -60,9 +60,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}',
+          url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/accounts',
+          url: (rootUrl + '/adsensehost/v4.1/accounts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -170,9 +176,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -210,9 +218,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -247,9 +257,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -285,9 +297,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -322,9 +336,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -361,9 +377,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -399,9 +417,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           }, options),
           params: params,
@@ -436,9 +456,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           }, options),
           params: params,
@@ -483,9 +505,11 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/reports',
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -522,9 +546,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -558,9 +584,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients',
+          url: (rootUrl + '/adsensehost/v4.1/adclients').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -600,9 +628,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/start',
+          url: (rootUrl + '/adsensehost/v4.1/associationsessions/start').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -635,9 +665,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify',
+          url: (rootUrl + '/adsensehost/v4.1/associationsessions/verify').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -675,9 +707,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -711,9 +745,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -747,9 +783,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -784,9 +822,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -821,9 +861,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -857,9 +899,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/customchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -904,9 +948,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/reports',
+          url: (rootUrl + '/adsensehost/v4.1/reports').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -944,9 +990,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -980,9 +1028,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1017,9 +1067,11 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
+          url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

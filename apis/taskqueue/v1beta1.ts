@@ -62,9 +62,11 @@ function Taskqueue(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}',
+          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -103,9 +105,11 @@ function Taskqueue(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
+          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -140,9 +144,11 @@ function Taskqueue(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
+          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -178,9 +184,11 @@ function Taskqueue(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/lease',
+          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/lease').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -214,9 +222,11 @@ function Taskqueue(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks',
+          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,

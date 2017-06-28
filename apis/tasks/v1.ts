@@ -60,9 +60,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
+          url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -95,9 +97,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
+          url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -130,9 +134,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
+          url: (rootUrl + '/tasks/v1/users/@me/lists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -166,9 +172,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
+          url: (rootUrl + '/tasks/v1/users/@me/lists').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -202,9 +210,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
+          url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -238,9 +248,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
+          url: (rootUrl + '/tasks/v1/users/@me/lists/{tasklist}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -277,9 +289,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/clear').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -313,9 +327,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -349,9 +365,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -387,9 +405,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -432,9 +452,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -470,9 +492,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -507,9 +531,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -544,9 +570,11 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
+          url: (rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,

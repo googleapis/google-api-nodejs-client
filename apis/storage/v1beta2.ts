@@ -61,9 +61,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -97,9 +99,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -133,9 +137,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -168,9 +174,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -205,9 +213,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -242,9 +252,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -283,9 +295,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -321,9 +335,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -358,9 +374,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b',
+          url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -396,9 +414,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b',
+          url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -435,9 +455,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -474,9 +496,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -513,9 +537,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/channels/stop',
+          url: (rootUrl + '/storage/v1beta2/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -553,9 +579,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -589,9 +617,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -625,9 +655,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -662,9 +694,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -699,9 +733,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -736,9 +772,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -778,9 +816,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -816,9 +856,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -854,9 +896,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -891,9 +935,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -930,9 +976,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -969,9 +1017,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1012,9 +1062,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose',
+          url: (rootUrl + '/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1061,9 +1113,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}',
+          url: (rootUrl + '/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -1102,9 +1156,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -1144,9 +1200,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1189,13 +1247,15 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/storage/v1beta2/b/{bucket}/o',
+        mediaUrl: (rootUrl + '/upload/storage/v1beta2/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
         context: self
@@ -1231,9 +1291,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -1274,9 +1336,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -1317,9 +1381,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -1359,9 +1425,11 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/watch',
+          url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/watch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,

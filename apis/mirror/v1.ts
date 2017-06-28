@@ -63,9 +63,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/accounts/{userToken}/{accountType}/{accountName}',
+          url: (rootUrl + '/mirror/v1/accounts/{userToken}/{accountType}/{accountName}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -102,9 +104,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
+          url: (rootUrl + '/mirror/v1/contacts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -137,9 +141,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
+          url: (rootUrl + '/mirror/v1/contacts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -172,9 +178,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts',
+          url: (rootUrl + '/mirror/v1/contacts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -206,9 +214,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts',
+          url: (rootUrl + '/mirror/v1/contacts').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -242,9 +252,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
+          url: (rootUrl + '/mirror/v1/contacts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -278,9 +290,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
+          url: (rootUrl + '/mirror/v1/contacts/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -317,9 +331,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/locations/{id}',
+          url: (rootUrl + '/mirror/v1/locations/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -351,9 +367,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/locations',
+          url: (rootUrl + '/mirror/v1/locations').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -390,9 +408,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/settings/{id}',
+          url: (rootUrl + '/mirror/v1/settings/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -429,9 +449,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
+          url: (rootUrl + '/mirror/v1/subscriptions/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -464,9 +486,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions',
+          url: (rootUrl + '/mirror/v1/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -498,9 +522,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions',
+          url: (rootUrl + '/mirror/v1/subscriptions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -534,9 +560,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
+          url: (rootUrl + '/mirror/v1/subscriptions/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -573,9 +601,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
+          url: (rootUrl + '/mirror/v1/timeline/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'DELETE'
         }, options),
         params: params,
@@ -608,9 +638,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
+          url: (rootUrl + '/mirror/v1/timeline/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -646,13 +678,15 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline',
+          url: (rootUrl + '/mirror/v1/timeline').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline',
+        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
         context: self
@@ -688,9 +722,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline',
+          url: (rootUrl + '/mirror/v1/timeline').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -724,9 +760,11 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
+          url: (rootUrl + '/mirror/v1/timeline/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
         }, options),
         params: params,
@@ -763,13 +801,15 @@ function Mirror(options) { // eslint-disable-line
       }
       options || (options = {});
 
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
       const parameters = {
         options: Object.assign({
-          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
+          url: (rootUrl + '/mirror/v1/timeline/{id}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/{id}',
+        mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{id}').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
@@ -802,9 +842,11 @@ function Mirror(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
@@ -838,9 +880,11 @@ function Mirror(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -876,13 +920,15 @@ function Mirror(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/{itemId}/attachments',
+          mediaUrl: (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments').replace(/([^:]\/)\/+/g, '$1'),
           requiredParams: ['itemId'],
           pathParams: ['itemId'],
           context: self
@@ -912,9 +958,11 @@ function Mirror(options) { // eslint-disable-line
         }
         options || (options = {});
 
+        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
         const parameters = {
           options: Object.assign({
-            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
+            url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
