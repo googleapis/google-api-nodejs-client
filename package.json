@@ -94,7 +94,8 @@
     "build": "tsc",
     "test": "npm run lint && npm run cover",
     "build-tools": "tsc -p tsconfig.tools.json",
-    "clean": "find . -name '*.js.map' -type f -delete && find -E . -regex '\\./(test|lib|apis|scripts)/.*.js$' -type f -delete"
+    "clean": "find . -name '*.js.map' -type f -delete && find -E . -regex '\\./(test|lib|apis|scripts)/.*.js$' -type f -delete",
+    "prepack": "npm run clean && npm run build"
   },
   "nyc": {
     "exclude": [
