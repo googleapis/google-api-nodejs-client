@@ -37,6 +37,84 @@ function Speech(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
+  self.speech = {
+
+    /**
+     * speech.speech.longrunningrecognize
+     *
+     * @desc Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains a `LongRunningRecognizeResponse` message.
+     *
+     * @alias speech.speech.longrunningrecognize
+     * @memberOf! speech(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1).LongRunningRecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    longrunningrecognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/speech:longrunningrecognize').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.speech.recognize
+     *
+     * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
+     *
+     * @alias speech.speech.recognize
+     * @memberOf! speech(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1).RecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    recognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/speech:recognize').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.operations = {
 
     /**
@@ -123,10 +201,10 @@ function Speech(options) { // eslint-disable-line
      * @memberOf! speech(v1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
      * @param {string=} params.name The name of the operation's parent resource.
      * @param {string=} params.pageToken The standard list page token.
      * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.filter The standard list filter.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -192,137 +270,8 @@ function Speech(options) { // eslint-disable-line
     }
 
   };
-
-  self.speech = {
-
-    /**
-     * speech.speech.longrunningrecognize
-     *
-     * @desc Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains a `LongRunningRecognizeResponse` message.
-     *
-     * @alias speech.speech.longrunningrecognize
-     * @memberOf! speech(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1).LongRunningRecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    longrunningrecognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/speech:longrunningrecognize').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.speech.recognize
-     *
-     * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
-     *
-     * @alias speech.speech.recognize
-     * @memberOf! speech(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1).RecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    recognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/speech:recognize').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 }
 
-/**
- * @typedef Operation
- * @memberOf! speech(v1)
- * @type object
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
-* @property {speech(v1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
-*/
-/**
- * @typedef RecognitionConfig
- * @memberOf! speech(v1)
- * @type object
-* @property {integer} sampleRateHertz *Required* Sample rate in Hertz of the audio data sent in all
-`RecognitionAudio` messages. Valid values are: 8000-48000.
-16000 is optimal. For best results, set the sampling rate of the audio
-source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
-the audio source (instead of re-sampling).
-* @property {integer} maxAlternatives *Optional* Maximum number of recognition hypotheses to be returned.
-Specifically, the maximum number of `SpeechRecognitionAlternative` messages
-within each `SpeechRecognitionResult`.
-The server may return fewer than `max_alternatives`.
-Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
-one. If omitted, will return a maximum of one.
-* @property {string} languageCode *Required* The language of the supplied audio as a
-[BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-Example: &quot;en-US&quot;.
-See [Language Support](https://cloud.google.com/speech/docs/languages)
-for a list of the currently supported language codes.
-* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
-* @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
-profanities, replacing all but the initial character in each filtered word
-with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
-won&#39;t be filtered out.
-* @property {speech(v1).SpeechContext[]} speechContexts *Optional* A means to provide context to assist the speech recognition.
-*/
 /**
  * @typedef Status
  * @memberOf! speech(v1)
@@ -348,6 +297,24 @@ process the request.
 * @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
 /**
+ * @typedef SpeechContext
+ * @memberOf! speech(v1)
+ * @type object
+* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
+the speech recognition is more likely to recognize them. This can be used
+to improve the accuracy for specific words and phrases, for example, if
+specific commands are typically spoken by the user. This can also be used
+to add additional words to the vocabulary of the recognizer. See
+[usage limits](https://cloud.google.com/speech/limits#content).
+*/
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! speech(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
  * @typedef SpeechRecognitionAlternative
  * @memberOf! speech(v1)
  * @type object
@@ -358,24 +325,6 @@ only for `is_final=true` results. Clients should not rely on the
 `confidence` field as it is not guaranteed to be accurate or consistent.
 The default of 0.0 is a sentinel value indicating `confidence` was not set.
 * @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef SpeechContext
- * @memberOf! speech(v1)
- * @type object
-* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
-the speech recognition is more likely to recognize them. This can be used
-to improve the accuracy for specific words and phrases, for example, if
-specific commands are typically spoken by the user. This can also be used
-to add additional words to the vocabulary of the recognizer. See
-[usage limits](https://cloud.google.com/speech/limits#content).
 */
 /**
  * @typedef SpeechRecognitionResult
@@ -420,4 +369,55 @@ sequential portions of audio.
  * @memberOf! speech(v1)
  * @type object
  */
+/**
+ * @typedef Operation
+ * @memberOf! speech(v1)
+ * @type object
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+* @property {speech(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+*/
+/**
+ * @typedef RecognitionConfig
+ * @memberOf! speech(v1)
+ * @type object
+* @property {integer} maxAlternatives *Optional* Maximum number of recognition hypotheses to be returned.
+Specifically, the maximum number of `SpeechRecognitionAlternative` messages
+within each `SpeechRecognitionResult`.
+The server may return fewer than `max_alternatives`.
+Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
+one. If omitted, will return a maximum of one.
+* @property {string} languageCode *Required* The language of the supplied audio as a
+[BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+Example: &quot;en-US&quot;.
+See [Language Support](https://cloud.google.com/speech/docs/languages)
+for a list of the currently supported language codes.
+* @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
+profanities, replacing all but the initial character in each filtered word
+with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
+won&#39;t be filtered out.
+* @property {speech(v1).SpeechContext[]} speechContexts *Optional* A means to provide context to assist the speech recognition.
+* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+* @property {integer} sampleRateHertz *Required* Sample rate in Hertz of the audio data sent in all
+`RecognitionAudio` messages. Valid values are: 8000-48000.
+16000 is optimal. For best results, set the sampling rate of the audio
+source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
+the audio source (instead of re-sampling).
+*/
 export = Speech;

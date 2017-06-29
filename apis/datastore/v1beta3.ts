@@ -41,120 +41,6 @@ function Datastore(options) { // eslint-disable-line
   self.projects = {
 
     /**
-     * datastore.projects.allocateIds
-     *
-     * @desc Allocates IDs for the given keys, which is useful for referencing an entity before it is inserted.
-     *
-     * @alias datastore.projects.allocateIds
-     * @memberOf! datastore(v1beta3)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {datastore(v1beta3).AllocateIdsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    allocateIds: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta3/projects/{projectId}:allocateIds').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * datastore.projects.commit
-     *
-     * @desc Commits a transaction, optionally creating, deleting or modifying some entities.
-     *
-     * @alias datastore.projects.commit
-     * @memberOf! datastore(v1beta3)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {datastore(v1beta3).CommitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    commit: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta3/projects/{projectId}:commit').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * datastore.projects.beginTransaction
-     *
-     * @desc Begins a new transaction.
-     *
-     * @alias datastore.projects.beginTransaction
-     * @memberOf! datastore(v1beta3)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {datastore(v1beta3).BeginTransactionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    beginTransaction: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta3/projects/{projectId}:beginTransaction').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * datastore.projects.runQuery
      *
      * @desc Queries for entities.
@@ -266,11 +152,186 @@ function Datastore(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * datastore.projects.allocateIds
+     *
+     * @desc Allocates IDs for the given keys, which is useful for referencing an entity before it is inserted.
+     *
+     * @alias datastore.projects.allocateIds
+     * @memberOf! datastore(v1beta3)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {datastore(v1beta3).AllocateIdsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    allocateIds: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta3/projects/{projectId}:allocateIds').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * datastore.projects.beginTransaction
+     *
+     * @desc Begins a new transaction.
+     *
+     * @alias datastore.projects.beginTransaction
+     * @memberOf! datastore(v1beta3)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {datastore(v1beta3).BeginTransactionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    beginTransaction: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta3/projects/{projectId}:beginTransaction').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * datastore.projects.commit
+     *
+     * @desc Commits a transaction, optionally creating, deleting or modifying some entities.
+     *
+     * @alias datastore.projects.commit
+     * @memberOf! datastore(v1beta3)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {datastore(v1beta3).CommitRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    commit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta3/projects/{projectId}:commit').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
+/**
+ * @typedef MutationResult
+ * @memberOf! datastore(v1beta3)
+ * @type object
+* @property {string} version The version of the entity on the server after processing the mutation. If
+the mutation doesn&#39;t change anything on the server, then the version will
+be the version of the current entity or, if no entity is present, a version
+that is strictly greater than the version of any previous entity and less
+than the version of any possible future entity.
+* @property {boolean} conflictDetected Whether a conflict was detected for this mutation. Always false when a
+conflict detection strategy field is not set in the mutation.
+* @property {datastore(v1beta3).Key} key The automatically allocated key.
+Set only when the mutation allocated a key.
+*/
+/**
+ * @typedef GqlQuery
+ * @memberOf! datastore(v1beta3)
+ * @type object
+* @property {string} queryString A string of the format described
+[here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+* @property {datastore(v1beta3).GqlQueryParameter[]} positionalBindings Numbered binding site @1 references the first numbered parameter,
+effectively using 1-based indexing, rather than the usual 0.
+
+For each binding site numbered i in `query_string`, there must be an i-th
+numbered parameter. The inverse must also be true.
+* @property {object} namedBindings For each non-reserved named binding site in the query string, there must be
+a named parameter with that name, but not necessarily the inverse.
+
+Key must match regex `A-Za-z_$*`, must not match regex
+`__.*__`, and must not be `&quot;&quot;`.
+* @property {boolean} allowLiterals When false, the query string must not contain any literals and instead must
+bind all values. For example,
+`SELECT * FROM Kind WHERE a = &#39;string literal&#39;` is not allowed, while
+`SELECT * FROM Kind WHERE a = @value` is.
+*/
+/**
+ * @typedef Filter
+ * @memberOf! datastore(v1beta3)
+ * @type object
+ * @property {datastore(v1beta3).PropertyFilter} propertyFilter A filter on a property.
+ * @property {datastore(v1beta3).CompositeFilter} compositeFilter A composite filter.
+ */
+/**
+ * @typedef RollbackRequest
+ * @memberOf! datastore(v1beta3)
+ * @type object
+* @property {string} transaction The transaction identifier, returned by a call to
+Datastore.BeginTransaction.
+*/
+/**
+ * @typedef RunQueryRequest
+ * @memberOf! datastore(v1beta3)
+ * @type object
+* @property {datastore(v1beta3).ReadOptions} readOptions The options for this query.
+* @property {datastore(v1beta3).Query} query The query to run.
+* @property {datastore(v1beta3).GqlQuery} gqlQuery The GQL query to run.
+* @property {datastore(v1beta3).PartitionId} partitionId Entities are partitioned into subsets, identified by a partition ID.
+Queries are scoped to a single partition.
+This partition ID is normalized with the standard default context
+partition ID.
+*/
 /**
  * @typedef CompositeFilter
  * @memberOf! datastore(v1beta3)
@@ -290,14 +351,15 @@ its key path completed with a newly allocated ID.
  * @typedef Query
  * @memberOf! datastore(v1beta3)
  * @type object
+* @property {datastore(v1beta3).Projection[]} projection The projection to return. Defaults to returning all properties.
 * @property {string} endCursor An ending point for the query results. Query cursors are
 returned in query result batches and
 [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+* @property {datastore(v1beta3).Filter} filter The filter to apply.
 * @property {integer} limit The maximum number of results to return. Applies after all other
 constraints. Optional.
 Unspecified is interpreted as no limit.
 Must be &gt;= 0 if specified.
-* @property {datastore(v1beta3).Filter} filter The filter to apply.
 * @property {integer} offset The number of results to skip. Applies before limit, but after all other
 constraints. Optional. Must be &gt;= 0 if specified.
 * @property {string} startCursor A starting point for the query results. Query cursors are
@@ -309,15 +371,14 @@ Currently at most 1 kind may be specified.
 result for each distinct combination of values for the given properties
 (if empty, all results are returned).
 * @property {datastore(v1beta3).PropertyOrder[]} order The order to apply to the query results (if empty, order is unspecified).
-* @property {datastore(v1beta3).Projection[]} projection The projection to return. Defaults to returning all properties.
 */
 /**
  * @typedef PropertyFilter
  * @memberOf! datastore(v1beta3)
  * @type object
- * @property {datastore(v1beta3).Value} value The value to compare the property to.
  * @property {datastore(v1beta3).PropertyReference} property The property to filter by.
  * @property {string} op The operator to filter by.
+ * @property {datastore(v1beta3).Value} value The value to compare the property to.
  */
 /**
  * @typedef EntityResult
@@ -349,15 +410,6 @@ updated.
  * @typedef Value
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {string} blobValue A blob value.
-May have at most 1,000,000 bytes.
-When `exclude_from_indexes` is false, may have at most 1500 bytes.
-In JSON requests, must be base64-encoded.
-* @property {integer} meaning The `meaning` field should only be populated for backwards compatibility.
-* @property {datastore(v1beta3).ArrayValue} arrayValue An array value.
-Cannot contain another array value.
-A `Value` instance that sets field `array_value` must not set fields
-`meaning` or `exclude_from_indexes`.
 * @property {datastore(v1beta3).Entity} entityValue An entity value.
 
 - May have no key.
@@ -377,13 +429,22 @@ When stored in the Datastore, precise only to microseconds;
 any additional precision is rounded down.
 * @property {boolean} booleanValue A boolean value.
 * @property {string} nullValue A null value.
+* @property {string} blobValue A blob value.
+May have at most 1,000,000 bytes.
+When `exclude_from_indexes` is false, may have at most 1500 bytes.
+In JSON requests, must be base64-encoded.
+* @property {integer} meaning The `meaning` field should only be populated for backwards compatibility.
+* @property {datastore(v1beta3).ArrayValue} arrayValue An array value.
+Cannot contain another array value.
+A `Value` instance that sets field `array_value` must not set fields
+`meaning` or `exclude_from_indexes`.
 */
 /**
  * @typedef PartitionId
  * @memberOf! datastore(v1beta3)
  * @type object
- * @property {string} namespaceId If not empty, the ID of the namespace to which the entities belong.
  * @property {string} projectId The ID of the project to which the entities belong.
+ * @property {string} namespaceId If not empty, the ID of the namespace to which the entities belong.
  */
 /**
  * @typedef Entity
@@ -403,11 +464,16 @@ An entity&#39;s kind is its key path&#39;s last element&#39;s kind,
 or null if it has no key.
 */
 /**
+ * @typedef LookupRequest
+ * @memberOf! datastore(v1beta3)
+ * @type object
+ * @property {datastore(v1beta3).ReadOptions} readOptions The options for this lookup request.
+ * @property {datastore(v1beta3).Key[]} keys Keys of entities to look up.
+ */
+/**
  * @typedef QueryResultBatch
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {string} entityResultType The result type for every entity in `entity_results`.
-* @property {datastore(v1beta3).EntityResult[]} entityResults The results for this batch.
 * @property {string} endCursor A cursor that points to the position after the last result in the batch.
 * @property {string} moreResults The state of the query after the current batch.
 * @property {string} snapshotVersion The version number of the snapshot this batch was returned from.
@@ -422,14 +488,9 @@ The value will be zero for eventually consistent queries.
 * @property {string} skippedCursor A cursor that points to the position after the last skipped result.
 Will be set when `skipped_results` != 0.
 * @property {integer} skippedResults The number of results skipped, typically because of an offset.
+* @property {string} entityResultType The result type for every entity in `entity_results`.
+* @property {datastore(v1beta3).EntityResult[]} entityResults The results for this batch.
 */
-/**
- * @typedef LookupRequest
- * @memberOf! datastore(v1beta3)
- * @type object
- * @property {datastore(v1beta3).Key[]} keys Keys of entities to look up.
- * @property {datastore(v1beta3).ReadOptions} readOptions The options for this lookup request.
- */
 /**
  * @typedef PathElement
  * @memberOf! datastore(v1beta3)
@@ -461,22 +522,15 @@ result batches.
  * @property {string} transaction The transaction identifier (always present).
  */
 /**
- * @typedef AllocateIdsRequest
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {datastore(v1beta3).Key[]} keys A list of keys with incomplete key paths for which to allocate IDs.
-No key may be reserved/read-only.
-*/
-/**
  * @typedef LookupResponse
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {datastore(v1beta3).EntityResult[]} found Entities found as `ResultType.FULL` entities. The order of results in this
-field is undefined and has no relation to the order of the keys in the
-input.
 * @property {datastore(v1beta3).EntityResult[]} missing Entities not found as `ResultType.KEY_ONLY` entities. The order of results
 in this field is undefined and has no relation to the order of the keys
 in the input.
+* @property {datastore(v1beta3).EntityResult[]} found Entities found as `ResultType.FULL` entities. The order of results in this
+field is undefined and has no relation to the order of the keys in the
+input.
 * @property {datastore(v1beta3).Key[]} deferred A list of keys that were not looked up due to resource constraints. The
 order of results in this field is undefined and has no relation to the
 order of the keys in the input.
@@ -489,11 +543,18 @@ order of the keys in the input.
  * @property {datastore(v1beta3).QueryResultBatch} batch A batch of query results (always present).
  */
 /**
+ * @typedef AllocateIdsRequest
+ * @memberOf! datastore(v1beta3)
+ * @type object
+* @property {datastore(v1beta3).Key[]} keys A list of keys with incomplete key paths for which to allocate IDs.
+No key may be reserved/read-only.
+*/
+/**
  * @typedef PropertyOrder
  * @memberOf! datastore(v1beta3)
  * @type object
- * @property {datastore(v1beta3).PropertyReference} property The property to order by.
  * @property {string} direction The direction to order by. Defaults to `ASCENDING`.
+ * @property {datastore(v1beta3).PropertyReference} property The property to order by.
  */
 /**
  * @typedef BeginTransactionRequest
@@ -504,7 +565,6 @@ order of the keys in the input.
  * @typedef CommitRequest
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {string} mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
 * @property {datastore(v1beta3).Mutation[]} mutations The mutations to perform.
 
 When mode is `TRANSACTIONAL`, mutations affecting a single entity are
@@ -521,19 +581,13 @@ entity.
 * @property {string} transaction The identifier of the transaction associated with the commit. A
 transaction identifier is returned by a call to
 Datastore.BeginTransaction.
+* @property {string} mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
 */
 /**
  * @typedef KindExpression
  * @memberOf! datastore(v1beta3)
  * @type object
  * @property {string} name The name of the kind.
- */
-/**
- * @typedef LatLng
- * @memberOf! datastore(v1beta3)
- * @type object
- * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
- * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
  */
 /**
  * @typedef Key
@@ -560,18 +614,19 @@ ID and namespace ID.
 Queries are scoped to a single partition.
 */
 /**
+ * @typedef LatLng
+ * @memberOf! datastore(v1beta3)
+ * @type object
+ * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
+ * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
+ */
+/**
  * @typedef PropertyReference
  * @memberOf! datastore(v1beta3)
  * @type object
 * @property {string} name The name of the property.
 If name includes &quot;.&quot;s, it may be interpreted as a property name path.
 */
-/**
- * @typedef Projection
- * @memberOf! datastore(v1beta3)
- * @type object
- * @property {datastore(v1beta3).PropertyReference} property The property to project.
- */
 /**
  * @typedef ArrayValue
  * @memberOf! datastore(v1beta3)
@@ -581,94 +636,39 @@ The order of this array may not be preserved if it contains a mix of
 indexed and unindexed values.
 */
 /**
+ * @typedef Projection
+ * @memberOf! datastore(v1beta3)
+ * @type object
+ * @property {datastore(v1beta3).PropertyReference} property The property to project.
+ */
+/**
  * @typedef Mutation
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {datastore(v1beta3).Entity} insert The entity to insert. The entity must not already exist.
-The entity key&#39;s final path element may be incomplete.
+* @property {datastore(v1beta3).Key} delete The key of the entity to delete. The entity may or may not already exist.
+Must have a complete key path and must not be reserved/read-only.
 * @property {string} baseVersion The version of the entity that this mutation is being applied to. If this
 does not match the current version on the server, the mutation conflicts.
+* @property {datastore(v1beta3).Entity} insert The entity to insert. The entity must not already exist.
+The entity key&#39;s final path element may be incomplete.
 * @property {datastore(v1beta3).Entity} update The entity to update. The entity must already exist.
 Must have a complete key path.
 * @property {datastore(v1beta3).Entity} upsert The entity to upsert. The entity may or may not already exist.
 The entity key&#39;s final path element may be incomplete.
-* @property {datastore(v1beta3).Key} delete The key of the entity to delete. The entity may or may not already exist.
-Must have a complete key path and must not be reserved/read-only.
 */
 /**
  * @typedef ReadOptions
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {string} readConsistency The non-transactional read consistency to use.
-Cannot be set to `STRONG` for global queries.
 * @property {string} transaction The identifier of the transaction in which to read. A
 transaction identifier is returned by a call to
 Datastore.BeginTransaction.
+* @property {string} readConsistency The non-transactional read consistency to use.
+Cannot be set to `STRONG` for global queries.
 */
 /**
  * @typedef RollbackResponse
  * @memberOf! datastore(v1beta3)
  * @type object
  */
-/**
- * @typedef MutationResult
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {boolean} conflictDetected Whether a conflict was detected for this mutation. Always false when a
-conflict detection strategy field is not set in the mutation.
-* @property {datastore(v1beta3).Key} key The automatically allocated key.
-Set only when the mutation allocated a key.
-* @property {string} version The version of the entity on the server after processing the mutation. If
-the mutation doesn&#39;t change anything on the server, then the version will
-be the version of the current entity or, if no entity is present, a version
-that is strictly greater than the version of any previous entity and less
-than the version of any possible future entity.
-*/
-/**
- * @typedef GqlQuery
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {string} queryString A string of the format described
-[here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
-* @property {boolean} allowLiterals When false, the query string must not contain any literals and instead must
-bind all values. For example,
-`SELECT * FROM Kind WHERE a = &#39;string literal&#39;` is not allowed, while
-`SELECT * FROM Kind WHERE a = @value` is.
-* @property {object} namedBindings For each non-reserved named binding site in the query string, there must be
-a named parameter with that name, but not necessarily the inverse.
-
-Key must match regex `A-Za-z_$*`, must not match regex
-`__.*__`, and must not be `&quot;&quot;`.
-* @property {datastore(v1beta3).GqlQueryParameter[]} positionalBindings Numbered binding site @1 references the first numbered parameter,
-effectively using 1-based indexing, rather than the usual 0.
-
-For each binding site numbered i in `query_string`, there must be an i-th
-numbered parameter. The inverse must also be true.
-*/
-/**
- * @typedef Filter
- * @memberOf! datastore(v1beta3)
- * @type object
- * @property {datastore(v1beta3).CompositeFilter} compositeFilter A composite filter.
- * @property {datastore(v1beta3).PropertyFilter} propertyFilter A filter on a property.
- */
-/**
- * @typedef RunQueryRequest
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {datastore(v1beta3).ReadOptions} readOptions The options for this query.
-* @property {datastore(v1beta3).Query} query The query to run.
-* @property {datastore(v1beta3).PartitionId} partitionId Entities are partitioned into subsets, identified by a partition ID.
-Queries are scoped to a single partition.
-This partition ID is normalized with the standard default context
-partition ID.
-* @property {datastore(v1beta3).GqlQuery} gqlQuery The GQL query to run.
-*/
-/**
- * @typedef RollbackRequest
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {string} transaction The transaction identifier, returned by a call to
-Datastore.BeginTransaction.
-*/
 export = Datastore;

@@ -40,44 +40,6 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
   self.projects = {
 
     /**
-     * bigquerydatatransfer.projects.setEnabled
-     *
-     * @desc Enables or disables data transfer for a project. This method requires the additional scope of 'https://www.googleapis.com/auth/cloudplatformprojects' to manage the cloud project permissions.
-     *
-     * @alias bigquerydatatransfer.projects.setEnabled
-     * @memberOf! bigquerydatatransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
-     * @param {bigquerydatatransfer(v1).SetEnabledRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setEnabled: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}:setEnabled').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * bigquerydatatransfer.projects.isEnabled
      *
      * @desc Returns true if data transfer is enabled for a project.
@@ -104,6 +66,44 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/v1/{name}:isEnabled').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * bigquerydatatransfer.projects.setEnabled
+     *
+     * @desc Enables or disables data transfer for a project. This method requires the additional scope of 'https://www.googleapis.com/auth/cloudplatformprojects' to manage the cloud project permissions.
+     *
+     * @alias bigquerydatatransfer.projects.setEnabled
+     * @memberOf! bigquerydatatransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
+     * @param {bigquerydatatransfer(v1).SetEnabledRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setEnabled: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{name}:setEnabled').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -204,10 +204,10 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
          * @memberOf! bigquerydatatransfer(v1)
          *
          * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
          * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
          * @param {string} params.parent The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
          * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-         * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -554,10 +554,10 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
              * @memberOf! bigquerydatatransfer(v1)
              *
              * @param {object} params Parameters for request
-             * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
              * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
              * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
              * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
+             * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
@@ -599,9 +599,9 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
          * @memberOf! bigquerydatatransfer(v1)
          *
          * @param {object} params Parameters for request
+         * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
          * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
          * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-         * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -707,6 +707,43 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
     },
 
     transferConfigs: {
+
+      /**
+       * bigquerydatatransfer.projects.transferConfigs.delete
+       *
+       * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+       *
+       * @alias bigquerydatatransfer.projects.transferConfigs.delete
+       * @memberOf! bigquerydatatransfer(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * bigquerydatatransfer.projects.transferConfigs.list
@@ -826,43 +863,6 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
       },
 
       /**
-       * bigquerydatatransfer.projects.transferConfigs.get
-       *
-       * @desc Returns information about a data transfer config.
-       *
-       * @alias bigquerydatatransfer.projects.transferConfigs.get
-       * @memberOf! bigquerydatatransfer(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * bigquerydatatransfer.projects.transferConfigs.patch
        *
        * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
@@ -871,9 +871,9 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
        * @memberOf! bigquerydatatransfer(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string} params.name The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer run.
        * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the gaia id of the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
        * @param {string=} params.updateMask Required list of fields to be updated in this request.
-       * @param {string} params.name The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer run.
        * @param {bigquerydatatransfer(v1).TransferConfig} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -903,11 +903,11 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
       },
 
       /**
-       * bigquerydatatransfer.projects.transferConfigs.delete
+       * bigquerydatatransfer.projects.transferConfigs.get
        *
-       * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+       * @desc Returns information about a data transfer config.
        *
-       * @alias bigquerydatatransfer.projects.transferConfigs.delete
+       * @alias bigquerydatatransfer.projects.transferConfigs.get
        * @memberOf! bigquerydatatransfer(v1)
        *
        * @param {object} params Parameters for request
@@ -916,7 +916,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      get: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -928,7 +928,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
         const parameters = {
           options: Object.assign({
             url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
+            method: 'GET'
           }, options),
           params: params,
           requiredParams: ['name'],
@@ -987,11 +987,11 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
          * @memberOf! bigquerydatatransfer(v1)
          *
          * @param {object} params Parameters for request
+         * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
          * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
          * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
          * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
          * @param {string=} params.statuses When specified, only transfer runs with requested statuses are returned.
-         * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1104,44 +1104,6 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
     dataSources: {
 
       /**
-       * bigquerydatatransfer.projects.dataSources.checkValidCreds
-       *
-       * @desc Returns true if valid credentials exist for the given data source and requesting user.
-       *
-       * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
-       * @memberOf! bigquerydatatransfer(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
-       * @param {bigquerydatatransfer(v1).CheckValidCredsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      checkValidCreds: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}:checkValidCreds').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * bigquerydatatransfer.projects.dataSources.list
        *
        * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
@@ -1215,11 +1177,221 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * bigquerydatatransfer.projects.dataSources.checkValidCreds
+       *
+       * @desc Returns true if valid credentials exist for the given data source and requesting user.
+       *
+       * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
+       * @memberOf! bigquerydatatransfer(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+       * @param {bigquerydatatransfer(v1).CheckValidCredsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      checkValidCreds: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}:checkValidCreds').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
 }
 
+/**
+ * @typedef ListDataSourcesResponse
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {bigquerydatatransfer(v1).DataSource[]} dataSources List of supported data sources and their transfer settings.
+* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+this token can be used as the
+`ListDataSourcesRequest.page_token`
+to request the next page of list results.
+@OutputOnly
+*/
+/**
+ * @typedef DataSourceParameter
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {bigquerydatatransfer(v1).DataSourceParameter[]} fields When parameter is a record, describes child fields.
+* @property {number} maxValue For integer and double values specifies maxminum allowed value.
+* @property {string} type Parameter type.
+* @property {boolean} recurse If set to true, schema should be taken from the parent with the same
+parameter_id. Only applicable when parameter type is RECORD.
+* @property {string} description Parameter description.
+* @property {string[]} allowedValues All possible values for the parameter.
+* @property {string} validationHelpUrl URL to a help document to further explain the naming requirements.
+* @property {number} minValue For integer and double values specifies minimum allowed value.
+* @property {string} validationRegex Regular expression which can be used for parameter validation.
+* @property {string} paramId Parameter identifier.
+* @property {boolean} required Is parameter required.
+* @property {boolean} repeated Can parameter have multiple values.
+* @property {string} displayName Parameter display name in the user interface.
+* @property {string} validationDescription Description of the requirements for this field, in case the user input does
+not fulfill the regex pattern or min/max values.
+* @property {boolean} immutable Cannot be changed after initial creation.
+*/
+/**
+ * @typedef ListTransferRunsResponse
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {bigquerydatatransfer(v1).TransferRun[]} transferRuns The stored pipeline transfer runs.
+@OutputOnly
+* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+this token can be used as the
+`ListTransferRunsRequest.page_token`
+to request the next page of list results.
+@OutputOnly
+*/
+/**
+ * @typedef IsEnabledRequest
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+ */
+/**
+ * @typedef SetEnabledRequest
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+ * @property {boolean} enabled Whether data transfer should be enabled or disabled for the project.
+ */
+/**
+ * @typedef ListTransferConfigsResponse
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {bigquerydatatransfer(v1).TransferConfig[]} transferConfigs The stored pipeline transfer configurations.
+@OutputOnly
+* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+this token can be used as the
+`ListTransferConfigsRequest.page_token`
+to request the next page of list results.
+@OutputOnly
+*/
+/**
+ * @typedef IsEnabledResponse
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+ * @property {boolean} enabled Indicates whether the project is enabled.
+ */
+/**
+ * @typedef DataSource
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {string} displayName User friendly data source name.
+* @property {string} dataRefreshType Specifies whether the data source supports automatic data refresh for the
+past few days, and how it&#39;s supported.
+For some data sources, data might not be complete until a few days later,
+so it&#39;s useful to refresh data automatically.
+* @property {bigquerydatatransfer(v1).DataSourceParameter[]} parameters Data source parameters.
+* @property {string} helpUrl Url for the help document for this data source.
+* @property {string} defaultSchedule Default data transfer schedule.
+Examples of valid schedules include:
+`1st,3rd monday of month 15:30`,
+`every wed,fri of jan,jun 13:15`, and
+`first sunday of quarter 00:00`.
+* @property {boolean} supportsMultipleTransfers Indicates whether the data source supports multiple transfers
+to different BigQuery targets.
+* @property {integer} statusUpdateDeadlineSeconds The number of seconds to wait for a status update from the data source
+before BigQuery marks the transfer as failed.
+* @property {boolean} manualRunsDisabled Disables backfilling and manual run scheduling
+for the data source.
+* @property {integer} defaultDataRefreshWindowDays Default data refresh window on days.
+Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`.
+* @property {string} transferType Transfer type. Currently supports only batch transfers,
+which are transfers that use the BigQuery batch APIs (load or
+query) to ingest the data.
+* @property {string} description User friendly data source description string.
+* @property {string} dataSourceId Data source id.
+* @property {string[]} scopes Api auth scopes for which refresh token needs to be obtained. Only valid
+when `client_id` is specified. Ignored otherwise. These are scopes needed
+by a data source to prepare data and ingest them into BigQuery,
+e.g., https://www.googleapis.com/auth/bigquery
+* @property {string} name Data source resource name.
+* @property {string} clientId Data source client id which should be used to receive refresh token.
+When not supplied, no offline credentials are populated for data transfer.
+* @property {string} authorizationType Indicates the type of authorization.
+* @property {boolean} supportsCustomSchedule Specifies whether the data source supports a user defined schedule, or
+operates on the default schedule.
+When set to `true`, user can override default schedule.
+*/
+/**
+ * @typedef ScheduleTransferRunsRequest
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+ * @property {string} rangeStartTime Start time of the range of transfer runs.
+ * @property {string} rangeEndTime End time of the range of transfer runs.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+ */
+/**
+ * @typedef TransferConfig
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {string} dataSourceId Data source id. Cannot be changed once data transfer is created.
+* @property {string} status Status of the most recently updated transfer run.
+@OutputOnly
+* @property {string} destinationDatasetId The BigQuery target dataset id.
+* @property {string} name The resource name of the transfer run.
+Transfer run names have the form
+`projects/{project_id}/transferConfigs/{config_id}`.
+Where `config_id` is usually a uuid, even though it is not
+guaranteed or required. The name is ignored when creating a transfer run.
+* @property {string} userId GaiaID of the user on whose behalf transfer is done. Applicable only
+to data sources that do not support service accounts. When set to 0,
+the data source service account credentials are used.
+@OutputOnly
+* @property {object} params Data transfer specific parameters.
+* @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
+&quot;US&quot; and &quot;EU&quot;.
+@OutputOnly
+* @property {string} displayName User specified display name for the data transfer.
+* @property {boolean} disabled Is this config disabled. When set to true, no runs are scheduled
+for a given transfer.
+* @property {string} nextRunTime Next time when data transfer will run. Output only. Applicable
+only for batch data transfers.
+@OutputOnly
+* @property {string} updateTime Data transfer modification time. Ignored by server on input.
+@OutputOnly
+* @property {string} schedule Data transfer schedule in GROC format.
+If the data source does not support a custom schedule, this should be
+empty. If it is empty, the default value for the data source will be
+used.
+The specified times are in UTC.
+Examples of valid GROC include:
+`1st,3rd monday of month 15:30`,
+`every wed,fri of jan,jun 13:15`, and
+`first sunday of quarter 00:00`.
+* @property {integer} dataRefreshWindowDays The number of days to look back to automatically refresh the data.
+For example, if `data_refresh_window_days = 10`, then every day
+BigQuery reingests data for [today-10, today-1], rather than ingesting data
+for just [today-1].
+Only valid if the data source supports the feature. Set the value to  0
+to use the default value.
+*/
 /**
  * @typedef TransferRun
  * @memberOf! bigquerydatatransfer(v1)
@@ -1239,13 +1411,13 @@ data should be ingested.
 @OutputOnly
 * @property {string} status Data transfer run status. Ignored for input requests.
 @OutputOnly
-* @property {string} destinationDatasetId The BigQuery target dataset id.
+* @property {string} userId The user id for this transfer run.
+@OutputOnly
 * @property {string} name The resource name of the transfer run.
 Transfer run names have the form
 `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
 The name is ignored when creating a transfer run.
-* @property {string} userId The user id for this transfer run.
-@OutputOnly
+* @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {object} params Data transfer specific parameters.
 * @property {string} endTime Time when transfer run ended. Parameter ignored by server for input
 requests.
@@ -1294,176 +1466,4 @@ to request the next page of list results.
  * @property {string} severity Message severity.
  * @property {string} messageTime Time when message was logged.
  */
-/**
- * @typedef ListDataSourcesResponse
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
-this token can be used as the
-`ListDataSourcesRequest.page_token`
-to request the next page of list results.
-@OutputOnly
-* @property {bigquerydatatransfer(v1).DataSource[]} dataSources List of supported data sources and their transfer settings.
-*/
-/**
- * @typedef DataSourceParameter
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {string} description Parameter description.
-* @property {string[]} allowedValues All possible values for the parameter.
-* @property {number} minValue For integer and double values specifies minimum allowed value.
-* @property {string} validationHelpUrl URL to a help document to further explain the naming requirements.
-* @property {string} validationRegex Regular expression which can be used for parameter validation.
-* @property {string} paramId Parameter identifier.
-* @property {boolean} required Is parameter required.
-* @property {boolean} repeated Can parameter have multiple values.
-* @property {string} displayName Parameter display name in the user interface.
-* @property {string} validationDescription Description of the requirements for this field, in case the user input does
-not fulfill the regex pattern or min/max values.
-* @property {boolean} immutable Cannot be changed after initial creation.
-* @property {bigquerydatatransfer(v1).DataSourceParameter[]} fields When parameter is a record, describes child fields.
-* @property {number} maxValue For integer and double values specifies maxminum allowed value.
-* @property {string} type Parameter type.
-* @property {boolean} recurse If set to true, schema should be taken from the parent with the same
-parameter_id. Only applicable when parameter type is RECORD.
-*/
-/**
- * @typedef ListTransferRunsResponse
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {bigquerydatatransfer(v1).TransferRun[]} transferRuns The stored pipeline transfer runs.
-@OutputOnly
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
-this token can be used as the
-`ListTransferRunsRequest.page_token`
-to request the next page of list results.
-@OutputOnly
-*/
-/**
- * @typedef IsEnabledRequest
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- */
-/**
- * @typedef SetEnabledRequest
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- * @property {boolean} enabled Whether data transfer should be enabled or disabled for the project.
- */
-/**
- * @typedef ListTransferConfigsResponse
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {bigquerydatatransfer(v1).TransferConfig[]} transferConfigs The stored pipeline transfer configurations.
-@OutputOnly
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
-this token can be used as the
-`ListTransferConfigsRequest.page_token`
-to request the next page of list results.
-@OutputOnly
-*/
-/**
- * @typedef IsEnabledResponse
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- * @property {boolean} enabled Indicates whether the project is enabled.
- */
-/**
- * @typedef DataSource
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {string} dataRefreshType Specifies whether the data source supports automatic data refresh for the
-past few days, and how it&#39;s supported.
-For some data sources, data might not be complete until a few days later,
-so it&#39;s useful to refresh data automatically.
-* @property {bigquerydatatransfer(v1).DataSourceParameter[]} parameters Data source parameters.
-* @property {string} helpUrl Url for the help document for this data source.
-* @property {string} defaultSchedule Default data transfer schedule.
-Examples of valid schedules include:
-`1st,3rd monday of month 15:30`,
-`every wed,fri of jan,jun 13:15`, and
-`first sunday of quarter 00:00`.
-* @property {boolean} supportsMultipleTransfers Indicates whether the data source supports multiple transfers
-to different BigQuery targets.
-* @property {integer} statusUpdateDeadlineSeconds The number of seconds to wait for a status update from the data source
-before BigQuery marks the transfer as failed.
-* @property {boolean} manualRunsDisabled Disables backfilling and manual run scheduling
-for the data source.
-* @property {integer} defaultDataRefreshWindowDays Default data refresh window on days.
-Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`.
-* @property {string} transferType Transfer type. Currently supports only batch transfers,
-which are transfers that use the BigQuery batch APIs (load or
-query) to ingest the data.
-* @property {string} description User friendly data source description string.
-* @property {string} dataSourceId Data source id.
-* @property {string[]} scopes Api auth scopes for which refresh token needs to be obtained. Only valid
-when `client_id` is specified. Ignored otherwise. These are scopes needed
-by a data source to prepare data and ingest them into BigQuery,
-e.g., https://www.googleapis.com/auth/bigquery
-* @property {string} name Data source resource name.
-* @property {string} clientId Data source client id which should be used to receive refresh token.
-When not supplied, no offline credentials are populated for data transfer.
-* @property {string} authorizationType Indicates the type of authorization.
-* @property {boolean} supportsCustomSchedule Specifies whether the data source supports a user defined schedule, or
-operates on the default schedule.
-When set to `true`, user can override default schedule.
-* @property {string} displayName User friendly data source name.
-*/
-/**
- * @typedef ScheduleTransferRunsRequest
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- * @property {string} rangeStartTime Start time of the range of transfer runs.
- * @property {string} rangeEndTime End time of the range of transfer runs.
- */
-/**
- * @typedef Empty
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- */
-/**
- * @typedef TransferConfig
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
-* @property {object} params Data transfer specific parameters.
-* @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
-&quot;US&quot; and &quot;EU&quot;.
-@OutputOnly
-* @property {string} displayName User specified display name for the data transfer.
-* @property {string} nextRunTime Next time when data transfer will run. Output only. Applicable
-only for batch data transfers.
-@OutputOnly
-* @property {boolean} disabled Is this config disabled. When set to true, no runs are scheduled
-for a given transfer.
-* @property {string} schedule Data transfer schedule in GROC format.
-If the data source does not support a custom schedule, this should be
-empty. If it is empty, the default value for the data source will be
-used.
-The specified times are in UTC.
-Examples of valid GROC include:
-`1st,3rd monday of month 15:30`,
-`every wed,fri of jan,jun 13:15`, and
-`first sunday of quarter 00:00`.
-* @property {string} updateTime Data transfer modification time. Ignored by server on input.
-@OutputOnly
-* @property {integer} dataRefreshWindowDays The number of days to look back to automatically refresh the data.
-For example, if `data_refresh_window_days = 10`, then every day
-BigQuery reingests data for [today-10, today-1], rather than ingesting data
-for just [today-1].
-Only valid if the data source supports the feature. Set the value to  0
-to use the default value.
-* @property {string} dataSourceId Data source id. Cannot be changed once data transfer is created.
-* @property {string} status Status of the most recently updated transfer run.
-@OutputOnly
-* @property {string} destinationDatasetId The BigQuery target dataset id.
-* @property {string} userId GaiaID of the user on whose behalf transfer is done. Applicable only
-to data sources that do not support service accounts. When set to 0,
-the data source service account credentials are used.
-@OutputOnly
-* @property {string} name The resource name of the transfer run.
-Transfer run names have the form
-`projects/{project_id}/transferConfigs/{config_id}`.
-Where `config_id` is usually a uuid, even though it is not
-guaranteed or required. The name is ignored when creating a transfer run.
-*/
 export = Bigquerydatatransfer;

@@ -39,12 +39,12 @@ function Monitoring(options) { // eslint-disable-line
 
   self.projects = {
 
-    collectdTimeSeries: {
+    timeSeries: {
 
       /**
-       * monitoring.projects.collectdTimeSeries.create
+       * monitoring.projects.timeSeries.list
        *
-       * @desc Stackdriver Monitoring Agent only: Creates a new time series.<aside class="caution">This method is only for use by the Stackdriver Monitoring Agent. Use projects.timeSeries.create instead.</aside>
+       * @desc Lists time series that match a filter. This method does not require a Stackdriver account.
        *
        * @example
        * // PRE-REQUISITES:
@@ -69,35 +69,51 @@ function Monitoring(options) { // eslint-disable-line
        *   }
        *
        *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // The project in which to create the time series. The format is `"projects/PROJECT_ID_OR_NUMBER"`.
+       *     // The project on which to execute the request. The format is "projects/{project_id_or_number}".
        *     name: "projects/{MY-PROJECT}",
-       *     resource: {},
        *     // Auth client
        *     auth: authClient
        *   };
        *
-       *   monitoring.projects.collectdTimeSeries.create(request, function(err, result) {
+       *
+       *   var recur = function(err, result) {
        *     if (err) {
        *       console.log(err);
        *     } else {
        *       console.log(result);
+       *       if (result.nextPageToken) {
+       *         request.pageToken = result.nextPageToken;
+       *         monitoring.projects.timeSeries.list(request, recur);
+       *       }
        *     }
-       *   });
+       *   };
+       *
+       *   monitoring.projects.timeSeries.list(request, recur);
        * });
        *
-       * @alias monitoring.projects.collectdTimeSeries.create
+       * @alias monitoring.projects.timeSeries.list
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The project in which to create the time series. The format is "projects/PROJECT_ID_OR_NUMBER".
-       * @param {monitoring(v3).CreateCollectdTimeSeriesRequest} params.resource Request body data
+       * @param {string=} params.aggregation.crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+       * @param {string=} params.filter A monitoring filter that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND     metric.label.instance_name = "my-instance-name" 
+       * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+       * @param {string=} params.aggregation.perSeriesAligner The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+       * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+       * @param {string=} params.view Specifies which information is returned about the time series.
+       * @param {string=} params.aggregation.groupByFields The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
+       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+       * @param {string=} params.interval.endTime Required. The end of the time interval.
+       * @param {string=} params.aggregation.alignmentPeriod The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
+       * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. When view field sets to FULL, it limits the number of Points server will return; if view field is HEADERS, it limits the number of TimeSeries server will return.
+       * @param {string=} params.orderBy Specifies the order in which the points of the time series should be returned. By default, results are not ordered. Currently, this field must be left blank.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, options, callback) {
+      list: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -108,8 +124,8 @@ function Monitoring(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v3/{name}/collectdTimeSeries').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
+            url: (rootUrl + '/v3/{name}/timeSeries').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
           }, options),
           params: params,
           requiredParams: ['name'],
@@ -118,10 +134,7 @@ function Monitoring(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      }
-    },
-
-    timeSeries: {
+      },
 
       /**
        * monitoring.projects.timeSeries.create
@@ -192,101 +205,6 @@ function Monitoring(options) { // eslint-disable-line
           options: Object.assign({
             url: (rootUrl + '/v3/{name}/timeSeries').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * monitoring.projects.timeSeries.list
-       *
-       * @desc Lists time series that match a filter. This method does not require a Stackdriver account.
-       *
-       * @example
-       * // PRE-REQUISITES:
-       * // ---------------
-       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
-       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
-       * var google = require('googleapis');
-       * var monitoring = google.monitoring('v3');
-       *
-       * google.auth.getApplicationDefault(function(err, authClient) {
-       *   if (err) {
-       *     console.log('Authentication failed because of ', err);
-       *     return;
-       *   }
-       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *     authClient = authClient.createScoped(scopes);
-       *   }
-       *
-       *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
-       *
-       *     // The project on which to execute the request. The format is "projects/{project_id_or_number}".
-       *     name: "projects/{MY-PROJECT}",
-       *     // Auth client
-       *     auth: authClient
-       *   };
-       *
-       *
-       *   var recur = function(err, result) {
-       *     if (err) {
-       *       console.log(err);
-       *     } else {
-       *       console.log(result);
-       *       if (result.nextPageToken) {
-       *         request.pageToken = result.nextPageToken;
-       *         monitoring.projects.timeSeries.list(request, recur);
-       *       }
-       *     }
-       *   };
-       *
-       *   monitoring.projects.timeSeries.list(request, recur);
-       * });
-       *
-       * @alias monitoring.projects.timeSeries.list
-       * @memberOf! monitoring(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.interval.endTime Required. The end of the time interval.
-       * @param {string=} params.aggregation.alignmentPeriod The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
-       * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. When view field sets to FULL, it limits the number of Points server will return; if view field is HEADERS, it limits the number of TimeSeries server will return.
-       * @param {string=} params.orderBy Specifies the order in which the points of the time series should be returned. By default, results are not ordered. Currently, this field must be left blank.
-       * @param {string=} params.aggregation.crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
-       * @param {string=} params.filter A monitoring filter that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND     metric.label.instance_name = "my-instance-name" 
-       * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-       * @param {string=} params.aggregation.perSeriesAligner The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
-       * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
-       * @param {string=} params.view Specifies which information is returned about the time series.
-       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
-       * @param {string=} params.aggregation.groupByFields The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v3/{name}/timeSeries').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
           }, options),
           params: params,
           requiredParams: ['name'],
@@ -514,10 +432,10 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics: metric.type = starts_with("custom.googleapis.com/") 
        * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-       * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics: metric.type = starts_with("custom.googleapis.com/") 
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -762,10 +680,10 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter An optional filter describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id 
        * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-       * @param {string=} params.filter An optional filter describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id 
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -795,6 +713,86 @@ function Monitoring(options) { // eslint-disable-line
     },
 
     groups: {
+
+      /**
+       * monitoring.projects.groups.create
+       *
+       * @desc Creates a new group.
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project in which to create the group. The format is `"projects/{project_id_or_number}"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.groups.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
+       * @alias monitoring.projects.groups.create
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
+       * @param {string} params.name The project in which to create the group. The format is "projects/{project_id_or_number}".
+       * @param {monitoring(v3).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * monitoring.projects.groups.delete
@@ -1122,86 +1120,6 @@ function Monitoring(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
-      /**
-       * monitoring.projects.groups.create
-       *
-       * @desc Creates a new group.
-       *
-       * @example
-       * // PRE-REQUISITES:
-       * // ---------------
-       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
-       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
-       * // 3. To install the client library and Application Default Credentials library, run:
-       * //    'npm install googleapis --save'
-       * var google = require('googleapis');
-       * var monitoring = google.monitoring('v3');
-       *
-       * google.auth.getApplicationDefault(function(err, authClient) {
-       *   if (err) {
-       *     console.log('Authentication failed because of ', err);
-       *     return;
-       *   }
-       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *     authClient = authClient.createScoped(scopes);
-       *   }
-       *
-       *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
-       *
-       *     // The project in which to create the group. The format is `"projects/{project_id_or_number}"`.
-       *     name: "projects/{MY-PROJECT}",
-       *     resource: {},
-       *     // Auth client
-       *     auth: authClient
-       *   };
-       *
-       *   monitoring.projects.groups.create(request, function(err, result) {
-       *     if (err) {
-       *       console.log(err);
-       *     } else {
-       *       console.log(result);
-       *     }
-       *   });
-       * });
-       *
-       * @alias monitoring.projects.groups.create
-       * @memberOf! monitoring(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
-       * @param {string} params.name The project in which to create the group. The format is "projects/{project_id_or_number}".
-       * @param {monitoring(v3).Group} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
       members: {
 
         /**
@@ -1265,8 +1183,8 @@ function Monitoring(options) { // eslint-disable-line
          * @param {string=} params.interval.endTime Required. The end of the time interval.
          * @param {string=} params.filter An optional list filter describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = "gce_instance" 
          * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-         * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
          * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+         * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1294,10 +1212,178 @@ function Monitoring(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       }
+    },
+
+    collectdTimeSeries: {
+
+      /**
+       * monitoring.projects.collectdTimeSeries.create
+       *
+       * @desc Stackdriver Monitoring Agent only: Creates a new time series.<aside class="caution">This method is only for use by the Stackdriver Monitoring Agent. Use projects.timeSeries.create instead.</aside>
+       *
+       * @example
+       * // PRE-REQUISITES:
+       * // ---------------
+       * // 1. If not already done, enable the Google Monitoring API and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/monitoring_component/quotas
+       * // 2. This sample uses Application Default Credentials for Auth. If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run 'gcloud beta auth application-default login'
+       * // 3. To install the client library and Application Default Credentials library, run:
+       * //    'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var monitoring = google.monitoring('v3');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+       *
+       *     // The project in which to create the time series. The format is `"projects/PROJECT_ID_OR_NUMBER"`.
+       *     name: "projects/{MY-PROJECT}",
+       *     resource: {},
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   monitoring.projects.collectdTimeSeries.create(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
+       * @alias monitoring.projects.collectdTimeSeries.create
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The project in which to create the time series. The format is "projects/PROJECT_ID_OR_NUMBER".
+       * @param {monitoring(v3).CreateCollectdTimeSeriesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{name}/collectdTimeSeries').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
 }
 
+/**
+ * @typedef Explicit
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {number[]} bounds The values must be monotonically increasing.
+ */
+/**
+ * @typedef TimeInterval
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} endTime Required. The end of the time interval.
+ * @property {string} startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+ */
+/**
+ * @typedef Exponential
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {number} growthFactor Must be greater than 1.
+ * @property {number} scale Must be greater than 0.
+ * @property {integer} numFiniteBuckets Must be greater than 0.
+ */
+/**
+ * @typedef Point
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).TimeInterval} interval The time interval to which the data point applies. For GAUGE metrics, only the end time of the interval is used. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points.
+ * @property {monitoring(v3).TypedValue} value The value of the data point.
+ */
+/**
+ * @typedef Field
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} kind The field type.
+ * @property {string} jsonName The field JSON name.
+ * @property {monitoring(v3).Option[]} options The protocol buffer options.
+ * @property {integer} oneofIndex The index of the field type in Type.oneofs, for message or enumeration types. The first type has index 1; zero means the type is not in the list.
+ * @property {boolean} packed Whether to use alternative packed wire representation.
+ * @property {string} cardinality The field cardinality.
+ * @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
+ * @property {string} name The field name.
+ * @property {string} typeUrl The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
+ * @property {integer} number The field number.
+ */
+/**
+ * @typedef Metric
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} type An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount.
+ * @property {object} labels The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values.
+ */
+/**
+ * @typedef ListTimeSeriesResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).TimeSeries[]} timeSeries One or more time series that match the filter included in the request.
+ * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+ */
+/**
+ * @typedef LabelDescriptor
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} description A human-readable description for the label.
+ * @property {string} valueType The type of data that can be assigned to the label.
+ * @property {string} key The label key.
+ */
+/**
+ * @typedef Group
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {boolean} isCluster If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters.
+ * @property {string} filter The filter used to determine which monitored resources belong to this group.
+ * @property {string} parentName The name of the group&#39;s parent, if it has one. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. For groups with no parent, parentName is the empty string, &quot;&quot;.
+ * @property {string} name Output only. The name of this group. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
+ * @property {string} displayName A user-assigned name for this group, used only for display purposes.
+ */
+/**
+ * @typedef Type
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).Field[]} fields The list of fields.
+ * @property {string} name The fully qualified message name.
+ * @property {string[]} oneofs The list of types appearing in oneof definitions in this type.
+ * @property {monitoring(v3).SourceContext} sourceContext The source context.
+ * @property {string} syntax The source syntax.
+ * @property {monitoring(v3).Option[]} options The protocol buffer options.
+ */
 /**
  * @typedef BucketOptions
  * @memberOf! monitoring(v3)
@@ -1315,10 +1401,15 @@ function Monitoring(options) { // eslint-disable-line
  * @property {string} dataSourceName The data source for the collectd value. For example there are two data sources for network measurements: &quot;rx&quot; and &quot;tx&quot;.
  */
 /**
+ * @typedef SourceContext
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} fileName The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
+ */
+/**
  * @typedef MetricDescriptor
  * @memberOf! monitoring(v3)
  * @type object
-* @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported.
 * @property {string} description A detailed description of the metric, which can be used in documentation.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;.
 * @property {string} unit The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT)
@@ -1370,34 +1461,29 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
 &quot;appengine.googleapis.com/http/server/response_latencies&quot;
 
 * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
+* @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported.
 */
-/**
- * @typedef SourceContext
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} fileName The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
- */
 /**
  * @typedef Range
  * @memberOf! monitoring(v3)
  * @type object
- * @property {number} max The maximum of the population values.
  * @property {number} min The minimum of the population values.
+ * @property {number} max The maximum of the population values.
  */
 /**
  * @typedef ListGroupsResponse
  * @memberOf! monitoring(v3)
  * @type object
- * @property {monitoring(v3).Group[]} group The groups that match the specified filters.
  * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+ * @property {monitoring(v3).Group[]} group The groups that match the specified filters.
  */
 /**
  * @typedef ListGroupMembersResponse
  * @memberOf! monitoring(v3)
  * @type object
+ * @property {monitoring(v3).MonitoredResource[]} members A set of monitored resources in the group.
  * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
  * @property {integer} totalSize The total number of elements matching this request.
- * @property {monitoring(v3).MonitoredResource[]} members A set of monitored resources in the group.
  */
 /**
  * @typedef CreateCollectdTimeSeriesRequest
@@ -1411,18 +1497,18 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  * @typedef ListMonitoredResourceDescriptorsResponse
  * @memberOf! monitoring(v3)
  * @type object
- * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
  * @property {monitoring(v3).MonitoredResourceDescriptor[]} resourceDescriptors The monitored resource descriptors that are available to this project and that match filter, if present.
+ * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
  */
 /**
  * @typedef TimeSeries
  * @memberOf! monitoring(v3)
  * @type object
+ * @property {monitoring(v3).MonitoredResource} resource The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data.
  * @property {string} metricKind The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
  * @property {monitoring(v3).Point[]} points The data points of this time series. When listing time series, the order of the points is specified by the list method.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
  * @property {monitoring(v3).Metric} metric The associated metric. A fully-specified metric used to identify the time series.
  * @property {string} valueType The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
- * @property {monitoring(v3).MonitoredResource} resource The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data.
  */
 /**
  * @typedef CreateTimeSeriesRequest
@@ -1447,8 +1533,8 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  * @typedef MonitoredResource
  * @memberOf! monitoring(v3)
  * @type object
- * @property {object} labels Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels &quot;project_id&quot;, &quot;instance_id&quot;, and &quot;zone&quot;.
  * @property {string} type Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance.
+ * @property {object} labels Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels &quot;project_id&quot;, &quot;instance_id&quot;, and &quot;zone&quot;.
  */
 /**
  * @typedef ListMetricDescriptorsResponse
@@ -1461,11 +1547,11 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  * @typedef MonitoredResourceDescriptor
  * @memberOf! monitoring(v3)
  * @type object
- * @property {monitoring(v3).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
- * @property {string} name Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
  * @property {string} description Optional. A detailed description of the monitored resource type that might be used in documentation.
  * @property {string} displayName Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, &quot;Google Cloud SQL Database&quot;.
  * @property {string} type Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+ * @property {monitoring(v3).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
+ * @property {string} name Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
  */
 /**
  * @typedef TypedValue
@@ -1481,14 +1567,14 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  * @typedef CollectdPayload
  * @memberOf! monitoring(v3)
  * @type object
+ * @property {string} startTime The start time of the interval.
+ * @property {monitoring(v3).CollectdValue[]} values The measured values during this time interval. Each value must have a different dataSourceName.
  * @property {string} typeInstance The measurement type instance. Example: &quot;used&quot;.
  * @property {object} metadata The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
  * @property {string} type The measurement type. Example: &quot;memory&quot;.
  * @property {string} plugin The name of the plugin. Example: &quot;disk&quot;.
  * @property {string} pluginInstance The instance name of the plugin Example: &quot;hdcl&quot;.
  * @property {string} endTime The end time of the interval.
- * @property {string} startTime The start time of the interval.
- * @property {monitoring(v3).CollectdValue[]} values The measured values during this time interval. Each value must have a different dataSourceName.
  */
 /**
  * @typedef Linear
@@ -1499,101 +1585,15 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  * @property {number} offset Lower bound of the first bucket.
  */
 /**
- * @typedef Empty
- * @memberOf! monitoring(v3)
- * @type object
- */
-/**
  * @typedef Option
  * @memberOf! monitoring(v3)
  * @type object
- * @property {string} name The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, &quot;map_entry&quot;. For custom options, it should be the fully-qualified name. For example, &quot;google.api.http&quot;.
  * @property {object} value The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
+ * @property {string} name The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, &quot;map_entry&quot;. For custom options, it should be the fully-qualified name. For example, &quot;google.api.http&quot;.
  */
 /**
- * @typedef Explicit
+ * @typedef Empty
  * @memberOf! monitoring(v3)
  * @type object
- * @property {number[]} bounds The values must be monotonically increasing.
- */
-/**
- * @typedef TimeInterval
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} endTime Required. The end of the time interval.
- * @property {string} startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
- */
-/**
- * @typedef Exponential
- * @memberOf! monitoring(v3)
- * @type object
- * @property {number} scale Must be greater than 0.
- * @property {integer} numFiniteBuckets Must be greater than 0.
- * @property {number} growthFactor Must be greater than 1.
- */
-/**
- * @typedef Point
- * @memberOf! monitoring(v3)
- * @type object
- * @property {monitoring(v3).TimeInterval} interval The time interval to which the data point applies. For GAUGE metrics, only the end time of the interval is used. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points.
- * @property {monitoring(v3).TypedValue} value The value of the data point.
- */
-/**
- * @typedef Metric
- * @memberOf! monitoring(v3)
- * @type object
- * @property {object} labels The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values.
- * @property {string} type An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount.
- */
-/**
- * @typedef Field
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} jsonName The field JSON name.
- * @property {string} kind The field type.
- * @property {monitoring(v3).Option[]} options The protocol buffer options.
- * @property {integer} oneofIndex The index of the field type in Type.oneofs, for message or enumeration types. The first type has index 1; zero means the type is not in the list.
- * @property {boolean} packed Whether to use alternative packed wire representation.
- * @property {string} cardinality The field cardinality.
- * @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
- * @property {string} name The field name.
- * @property {string} typeUrl The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
- * @property {integer} number The field number.
- */
-/**
- * @typedef ListTimeSeriesResponse
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
- * @property {monitoring(v3).TimeSeries[]} timeSeries One or more time series that match the filter included in the request.
- */
-/**
- * @typedef LabelDescriptor
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} valueType The type of data that can be assigned to the label.
- * @property {string} key The label key.
- * @property {string} description A human-readable description for the label.
- */
-/**
- * @typedef Type
- * @memberOf! monitoring(v3)
- * @type object
- * @property {monitoring(v3).Field[]} fields The list of fields.
- * @property {string} name The fully qualified message name.
- * @property {string[]} oneofs The list of types appearing in oneof definitions in this type.
- * @property {monitoring(v3).SourceContext} sourceContext The source context.
- * @property {string} syntax The source syntax.
- * @property {monitoring(v3).Option[]} options The protocol buffer options.
- */
-/**
- * @typedef Group
- * @memberOf! monitoring(v3)
- * @type object
- * @property {string} parentName The name of the group&#39;s parent, if it has one. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. For groups with no parent, parentName is the empty string, &quot;&quot;.
- * @property {string} name Output only. The name of this group. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
- * @property {string} displayName A user-assigned name for this group, used only for display purposes.
- * @property {boolean} isCluster If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters.
- * @property {string} filter The filter used to determine which monitored resources belong to this group.
  */
 export = Monitoring;

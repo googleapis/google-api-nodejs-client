@@ -37,159 +37,7 @@ function Speech(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.speech = {
-
-    /**
-     * speech.speech.syncrecognize
-     *
-     * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
-     *
-     * @alias speech.speech.syncrecognize
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1beta1).SyncRecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    syncrecognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/speech:syncrecognize').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.speech.asyncrecognize
-     *
-     * @desc Performs asynchronous speech recognition: receive results via the [google.longrunning.Operations] (/speech/reference/rest/v1beta1/operations#Operation) interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
-     *
-     * @alias speech.speech.asyncrecognize
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1beta1).AsyncRecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    asyncrecognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/speech:asyncrecognize').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.operations = {
-
-    /**
-     * speech.operations.cancel
-     *
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     *
-     * @alias speech.operations.cancel
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/operations/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.delete
-     *
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     *
-     * @alias speech.operations.delete
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/operations/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * speech.operations.list
@@ -266,49 +114,163 @@ function Speech(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.cancel
+     *
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @alias speech.operations.cancel
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/operations/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.delete
+     *
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @alias speech.operations.delete
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/operations/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.speech = {
+
+    /**
+     * speech.speech.asyncrecognize
+     *
+     * @desc Performs asynchronous speech recognition: receive results via the [google.longrunning.Operations] (/speech/reference/rest/v1beta1/operations#Operation) interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
+     *
+     * @alias speech.speech.asyncrecognize
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1beta1).AsyncRecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asyncrecognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/speech:asyncrecognize').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.speech.syncrecognize
+     *
+     * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
+     *
+     * @alias speech.speech.syncrecognize
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1beta1).SyncRecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    syncrecognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/speech:syncrecognize').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1beta1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef SpeechContext
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
-the speech recognition is more likely to recognize them. This can be used
-to improve the accuracy for specific words and phrases, for example, if
-specific commands are typically spoken by the user. This can also be used
-to add additional words to the vocabulary of the recognizer. See
-[usage limits](https://cloud.google.com/speech/limits#content).
-*/
-/**
- * @typedef SpeechRecognitionAlternative
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
-indicates an estimated greater likelihood that the recognized words are
-correct. This field is typically provided only for the top hypothesis, and
-only for `is_final=true` results. Clients should not rely on the
-`confidence` field as it is not guaranteed to be accurate, or even set, in
-any of the results.
-The default of 0.0 is a sentinel value indicating `confidence` was not set.
-* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
-/**
- * @typedef SpeechRecognitionResult
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {speech(v1beta1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the
-maximum specified in `max_alternatives`).
-*/
 /**
  * @typedef AsyncRecognizeRequest
  * @memberOf! speech(v1beta1)
@@ -321,15 +283,15 @@ process the request.
  * @typedef RecognitionAudio
  * @memberOf! speech(v1beta1)
  * @type object
+* @property {string} content The audio data bytes encoded as specified in
+`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+pure binary representation, whereas JSON representations use base64.
 * @property {string} uri URI that points to a file that contains audio data bytes as specified in
 `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
 supported, which must be specified in the following format:
 `gs://bucket_name/object_name` (other URI formats return
 google.rpc.Code.INVALID_ARGUMENT). For more information, see
 [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-* @property {string} content The audio data bytes encoded as specified in
-`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
-pure binary representation, whereas JSON representations use base64.
 */
 /**
  * @typedef Operation
@@ -375,12 +337,12 @@ Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
 If omitted, defaults to &quot;en-US&quot;. See
 [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
-* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
-* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
 profanities, replacing all but the initial character in each filtered word
 with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
 won&#39;t be filtered out.
+* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
+* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 */
 /**
  * @typedef SyncRecognizeRequest
@@ -389,6 +351,13 @@ won&#39;t be filtered out.
 * @property {speech(v1beta1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
 process the request.
 * @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
+*/
+/**
+ * @typedef SyncRecognizeResponse
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
+sequential portions of audio.
 */
 /**
  * @typedef Status
@@ -402,15 +371,46 @@ user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 */
 /**
- * @typedef SyncRecognizeResponse
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
-sequential portions of audio.
-*/
-/**
  * @typedef Empty
  * @memberOf! speech(v1beta1)
  * @type object
  */
+/**
+ * @typedef SpeechRecognitionAlternative
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are
+correct. This field is typically provided only for the top hypothesis, and
+only for `is_final=true` results. Clients should not rely on the
+`confidence` field as it is not guaranteed to be accurate, or even set, in
+any of the results.
+The default of 0.0 is a sentinel value indicating `confidence` was not set.
+* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
+*/
+/**
+ * @typedef SpeechContext
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
+the speech recognition is more likely to recognize them. This can be used
+to improve the accuracy for specific words and phrases, for example, if
+specific commands are typically spoken by the user. This can also be used
+to add additional words to the vocabulary of the recognizer. See
+[usage limits](https://cloud.google.com/speech/limits#content).
+*/
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! speech(v1beta1)
+ * @type object
+ * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
+ * @typedef SpeechRecognitionResult
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {speech(v1beta1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the
+maximum specified in `max_alternatives`).
+*/
 export = Speech;

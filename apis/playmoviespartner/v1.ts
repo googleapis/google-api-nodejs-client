@@ -88,16 +88,16 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @memberOf! playmoviespartner(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
        * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id. NOTE: this field is deprecated and will be removed on V2; `alt_ids` should be used instead.
        * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {string=} params.territories Filter Avails that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
        * @param {string=} params.title Filter that matches Avails with a `title_internal_alias`, `series_title_internal_alias`, `season_title_internal_alias`, or `episode_title_internal_alias` that contains the given case-insensitive title.
-       * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
+       * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
        * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
        * @param {string=} params.altIds Filter Avails that match (case-insensitive) any of the given partner-specific custom ids.
-       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -175,15 +175,15 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @memberOf! playmoviespartner(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
-       * @param {string=} params.status Filter Orders that match one of the given status.
-       * @param {string=} params.name Filter that matches Orders with a `name`, `show`, `season` or `episode` that contains the given case-insensitive name.
-       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
-       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
        * @param {string=} params.videoIds Filter Orders that match any of the given `video_id`s.
-       * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
        * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
+       * @param {string=} params.status Filter Orders that match one of the given status.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
+       * @param {string=} params.name Filter that matches Orders with a `name`, `show`, `season` or `episode` that contains the given case-insensitive name.
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -223,17 +223,17 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @memberOf! playmoviespartner(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.videoIds Filter StoreInfos that match any of the given `video_id`s.
-       * @param {string=} params.videoId Filter StoreInfos that match a given `video_id`. NOTE: this field is deprecated and will be removed on V2; `video_ids` should be used instead.
+       * @param {string=} params.seasonIds Filter StoreInfos that match any of the given `season_id`s.
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
+       * @param {string=} params.videoId Filter StoreInfos that match a given `video_id`. NOTE: this field is deprecated and will be removed on V2; `video_ids` should be used instead.
+       * @param {string=} params.videoIds Filter StoreInfos that match any of the given `video_id`s.
        * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
        * @param {string=} params.mids Filter StoreInfos that match any of the given `mid`s.
        * @param {string=} params.pphNames See _List methods rules_ for info about this field.
        * @param {string=} params.countries Filter StoreInfos that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
-       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {string=} params.name Filter that matches StoreInfos with a `name` or `show_name` that contains the given case-insensitive name.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
-       * @param {string=} params.seasonIds Filter StoreInfos that match any of the given `season_id`s.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -272,9 +272,9 @@ function Playmoviespartner(options) { // eslint-disable-line
          * @memberOf! playmoviespartner(v1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
          * @param {string} params.videoId REQUIRED. Video ID.
          * @param {string} params.country REQUIRED. Edit country.
+         * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -295,7 +295,7 @@ function Playmoviespartner(options) { // eslint-disable-line
             }, options),
             params: params,
             requiredParams: ['accountId', 'videoId', 'country'],
-            pathParams: ['accountId', 'videoId', 'country'],
+            pathParams: ['videoId', 'country', 'accountId'],
             context: self
           };
 
@@ -310,6 +310,15 @@ function Playmoviespartner(options) { // eslint-disable-line
  * @typedef Order
  * @memberOf! playmoviespartner(v1)
  * @type object
+* @property {string} studioName Name of the studio that owns the Edit ordered.
+* @property {string} receivedTime Timestamp when the Order was fulfilled.
+* @property {string} seasonName Default Season name,
+usually in the language of the country of origin.
+Only available for TV Edits
+Example: &quot;Googlers, The - A Brave New World&quot;.
+* @property {string} customId ID that can be used to externally identify an Order.
+This ID is provided by partners when submitting the Avails.
+Example: &#39;GOOGLER_2006&#39;
 * @property {string} approvedTime Timestamp when the Order was approved.
 * @property {string} channelName YouTube Channel Name that should be used to fulfill the Order.
 Example: &quot;Google_channel&quot;.
@@ -317,21 +326,21 @@ Example: &quot;Google_channel&quot;.
 usually in the language of the country of origin.
 Only available for TV Edits
 Example: &quot;Googlers, The&quot;.
-* @property {string} normalizedPriority A simpler representation of the priority.
 * @property {string} orderId ID internally generated by Google to uniquely identify an Order.
 Example: &#39;abcde12_x&#39;
+* @property {string} normalizedPriority A simpler representation of the priority.
 * @property {string} type Type of the Edit linked to the Order.
 * @property {string} rejectionNote Field explaining why an Order has been rejected.
 Example: &quot;Trailer audio is 2ch mono, please re-deliver in stereo&quot;.
 * @property {string} channelId YouTube Channel ID that should be used to fulfill the Order.
 Example: &quot;UCRG64darCZhb&quot;.
-* @property {string} pphName Name of the post-production house that manages the Edit ordered.
 * @property {string} legacyPriority Legacy Order priority, as defined by Google.
 Example: &#39;P0&#39;
-* @property {string} orderedTime Timestamp when the Order was created.
+* @property {string} pphName Name of the post-production house that manages the Edit ordered.
 * @property {number} priority Order priority, as defined by Google.
 The higher the value, the higher the priority.
 Example: 90
+* @property {string} orderedTime Timestamp when the Order was created.
 * @property {string} videoId Google-generated ID identifying the video linked to this Order, once
 delivered.
 Example: &#39;gtry456_xc&#39;.
@@ -348,15 +357,6 @@ linked to this Order.
 * @property {string} name Default Edit name,
 usually in the language of the country of origin.
 Example: &quot;Googlers, The&quot;.
-* @property {string} studioName Name of the studio that owns the Edit ordered.
-* @property {string} receivedTime Timestamp when the Order was fulfilled.
-* @property {string} seasonName Default Season name,
-usually in the language of the country of origin.
-Only available for TV Edits
-Example: &quot;Googlers, The - A Brave New World&quot;.
-* @property {string} customId ID that can be used to externally identify an Order.
-This ID is provided by partners when submitting the Avails.
-Example: &#39;GOOGLER_2006&#39;
 */
 /**
  * @typedef ListStoreInfosResponse
@@ -378,25 +378,14 @@ Example: &#39;GOOGLER_2006&#39;
  * @typedef ListOrdersResponse
  * @memberOf! playmoviespartner(v1)
  * @type object
- * @property {playmoviespartner(v1).Order[]} orders List of Orders that match the request criteria.
  * @property {string} nextPageToken See _List methods rules_ for info about this field.
  * @property {integer} totalSize See _List methods rules_ for more information about this field.
+ * @property {playmoviespartner(v1).Order[]} orders List of Orders that match the request criteria.
  */
 /**
  * @typedef StoreInfo
  * @memberOf! playmoviespartner(v1)
  * @type object
-* @property {boolean} hasSdOffer Whether the Edit has a SD offer.
-* @property {string} videoId Google-generated ID identifying the video linked to the Edit.
-Example: &#39;gtry456_xc&#39;
-* @property {string} liveTime Timestamp when the Edit went live on the Store.
-* @property {boolean} hasInfoCards Whether the Edit has info cards.
-* @property {boolean} hasVodOffer Whether the Edit has a VOD offer.
-* @property {string[]} pphNames Name of the post-production houses that manage the Edit.
-* @property {string} episodeNumber The number assigned to the episode within a season.
-Only available on TV Edits.
-Example: &quot;1&quot;.
-* @property {string} studioName Name of the studio that owns the Edit ordered.
 * @property {string[]} subtitles Subtitles available for this Edit.
 * @property {string[]} audioTracks Audio tracks available for this Edit.
 * @property {string} showName Default Show name, usually in the language of the country of
@@ -438,6 +427,17 @@ Example: &quot;1&quot;.
 * @property {string} editLevelEidr Edit-level EIDR ID.
 Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-6&quot;.
 * @property {boolean} hasEstOffer Whether the Edit has a EST offer.
+* @property {boolean} hasSdOffer Whether the Edit has a SD offer.
+* @property {string} videoId Google-generated ID identifying the video linked to the Edit.
+Example: &#39;gtry456_xc&#39;
+* @property {string} liveTime Timestamp when the Edit went live on the Store.
+* @property {boolean} hasInfoCards Whether the Edit has info cards.
+* @property {boolean} hasVodOffer Whether the Edit has a VOD offer.
+* @property {string[]} pphNames Name of the post-production houses that manage the Edit.
+* @property {string} episodeNumber The number assigned to the episode within a season.
+Only available on TV Edits.
+Example: &quot;1&quot;.
+* @property {string} studioName Name of the studio that owns the Edit ordered.
 */
 /**
  * @typedef Avail
@@ -447,34 +447,34 @@ Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-6&quot;.
 Only available on TV Avails.
 Example: &quot;Googlers, The&quot;.
 * @property {string} formatProfile Indicates the format profile covered by the transaction.
-* @property {string} contentId Title Identifier. This should be the Title Level EIDR.
-Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-5&quot;.
-* @property {string} titleInternalAlias Title used by involved parties to refer to this content.
-Example: &quot;Googlers, The&quot;.
-Only available on Movie Avails.
 * @property {string} ratingValue Value representing the rating.
 Ratings should be formatted as per http://www.movielabs.com/md/ratings/
 Example: &quot;PG&quot;
+* @property {string} titleInternalAlias Title used by involved parties to refer to this content.
+Example: &quot;Googlers, The&quot;.
+Only available on Movie Avails.
+* @property {string} contentId Title Identifier. This should be the Title Level EIDR.
+Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-5&quot;.
 * @property {string} storeLanguage Spoken language of the intended audience.
 Language shall be encoded in accordance with RFC 5646.
 Example: &quot;fr&quot;.
-* @property {string} displayName The name of the studio that owns the Edit referred in the Avail.
-This is the equivalent of `studio_name` in other resources, but it follows
-the EMA nomenclature.
-Example: &quot;Google Films&quot;.
 * @property {string} captionExemption Communicating an exempt category as defined by FCC regulations.
 It is not required for non-US Avails.
 Example: &quot;1&quot;
 * @property {string} productId Edit Identifier. This should be the Edit Level EIDR.
 Example: &quot;10.2340/1489-49A2-3956-4B2D-FE16-6&quot;
+* @property {string} displayName The name of the studio that owns the Edit referred in the Avail.
+This is the equivalent of `studio_name` in other resources, but it follows
+the EMA nomenclature.
+Example: &quot;Google Films&quot;.
 * @property {string} seasonTitleInternalAlias Title used by involved parties to refer to this season.
 Only available on TV Avails.
 Example: &quot;Googlers, The&quot;.
-* @property {string} priceValue Value to be applied to the pricing type.
-Example: &quot;4&quot; or &quot;2.99&quot;
 * @property {string} episodeAltId Other identifier referring to the episode, as defined by partner.
 Only available on TV avails.
 Example: &quot;rs_googlers_s1_3&quot;.
+* @property {string} priceValue Value to be applied to the pricing type.
+Example: &quot;4&quot; or &quot;2.99&quot;
 * @property {string} territory ISO 3166-1 alpha-2 country code for the country or territory
 of this Avail.
 For Avails, we use Territory in lieu of Country to comply with
@@ -526,13 +526,13 @@ Example: &#39;gtry456_xc&#39;
 * @property {string} start Start of term in YYYY-MM-DD format in the timezone of the
 country of the Avail.
 Example: &quot;2013-05-14&quot;.
+* @property {string[]} pphNames Name of the post-production houses that manage the Avail.
+Not part of EMA Specs.
 * @property {string} ratingSystem Rating system applied to the version of title within territory
 of Avail.
 Rating systems should be formatted as per
 [EMA ratings spec](http://www.movielabs.com/md/ratings/)
 Example: &quot;MPAA&quot;
-* @property {string[]} pphNames Name of the post-production houses that manage the Avail.
-Not part of EMA Specs.
 * @property {string} seriesAltId Other identifier referring to the series, as defined by partner.
 Only available on TV avails.
 Example: &quot;rs_googlers&quot;.

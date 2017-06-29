@@ -129,9 +129,9 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @typedef SiteSummaryResponse
  * @memberOf! adexperiencereport(v1)
  * @type object
+ * @property {adexperiencereport(v1).PlatformSummary} mobileSummary Summary for the mobile review of the site.
  * @property {string} reviewedSite The name of the site reviewed.
  * @property {adexperiencereport(v1).PlatformSummary} desktopSummary Summary for the desktop review of the site.
- * @property {adexperiencereport(v1).PlatformSummary} mobileSummary Summary for the mobile review of the site.
  */
 /**
  * @typedef PlatformSummary
@@ -143,7 +143,7 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @property {string} lastChangeTime The last time that the site changed status.
  * @property {string} egregiousStatus The status of the site reviewed for egregious ads.
  * @property {string} betterAdsStatus The status of the site reviewed for the Better Ads Standards.
- * @property {string} enforcementTime The date on which ad filtering begins.
  * @property {string[]} region The assigned regions for the site and platform.
+ * @property {string} enforcementTime The date on which ad filtering begins.
  */
 export = Adexperiencereport;

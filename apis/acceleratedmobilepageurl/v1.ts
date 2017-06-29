@@ -84,11 +84,11 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
  * @typedef BatchGetAmpUrlsResponse
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
+* @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
 * @property {acceleratedmobilepageurl(v1).AmpUrl[]} ampUrls For each URL in BatchAmpUrlsRequest, the URL response. The response might
 not be in the same order as URLs in the batch request.
 If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated
 only once.
-* @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
 */
 /**
  * @typedef AmpUrl
@@ -96,8 +96,8 @@ only once.
  * @type object
 * @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
 the cached document in the Google AMP Cache.
-* @property {string} originalUrl The original non-AMP URL.
 * @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
+* @property {string} originalUrl The original non-AMP URL.
 */
 /**
  * @typedef AmpUrlError

@@ -52,10 +52,10 @@ function Dlp(options) { // eslint-disable-line
          * @memberOf! dlp(v2beta1)
          *
          * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Maximum number of results to return. If 0, the implementation selects a reasonable value.
          * @param {string=} params.filter Restricts findings to items that match. Supports info_type and likelihood. <p>Examples:<br/> <li>info_type=EMAIL_ADDRESS <li>info_type=PHONE_NUMBER,EMAIL_ADDRESS <li>likelihood=VERY_LIKELY <li>likelihood=VERY_LIKELY,LIKELY <li>info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
          * @param {string=} params.pageToken The value returned by the last `ListInspectFindingsResponse`; indicates that this is a continuation of a prior `ListInspectFindings` call, and that the system should return the next page of data.
          * @param {string} params.name Identifier of the results set returned as metadata of the longrunning operation created by a call to CreateInspectOperation. Should be in the format of `inspect/results/{id}.
-         * @param {integer=} params.pageSize Maximum number of results to return. If 0, the implementation selects a reasonable value.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -86,6 +86,120 @@ function Dlp(options) { // eslint-disable-line
     },
 
     operations: {
+
+      /**
+       * dlp.inspect.operations.get
+       *
+       * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+       *
+       * @alias dlp.inspect.operations.get
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.inspect.operations.list
+       *
+       * @desc Fetch the list of long running operations.
+       *
+       * @alias dlp.inspect.operations.list
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {string} params.name The name of the operation's parent resource.
+       * @param {integer=} params.pageSize The list page size. The max allowed value is 256 and default is 100.
+       * @param {string=} params.filter This parameter supports filtering by done, ie done=true or done=false.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.inspect.operations.create
+       *
+       * @desc Schedules a job scanning content in a Google Cloud Platform data repository.
+       *
+       * @alias dlp.inspect.operations.create
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {dlp(v2beta1).GooglePrivacyDlpV2beta1CreateInspectOperationRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/inspect/operations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: [],
+          pathParams: [],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * dlp.inspect.operations.cancel
@@ -156,120 +270,6 @@ function Dlp(options) { // eslint-disable-line
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dlp.inspect.operations.get
-       *
-       * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-       *
-       * @alias dlp.inspect.operations.get
-       * @memberOf! dlp(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the operation resource.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dlp.inspect.operations.list
-       *
-       * @desc Fetch the list of long running operations.
-       *
-       * @alias dlp.inspect.operations.list
-       * @memberOf! dlp(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize The list page size. The max allowed value is 256 and default is 100.
-       * @param {string=} params.filter This parameter supports filtering by done, ie done=true or done=false.
-       * @param {string=} params.pageToken The standard list page token.
-       * @param {string} params.name The name of the operation's parent resource.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dlp.inspect.operations.create
-       *
-       * @desc Schedules a job scanning content in a Google Cloud Platform data repository.
-       *
-       * @alias dlp.inspect.operations.create
-       * @memberOf! dlp(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {dlp(v2beta1).GooglePrivacyDlpV2beta1CreateInspectOperationRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2beta1/inspect/operations').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
           context: self
         };
 
@@ -439,41 +439,17 @@ function Dlp(options) { // eslint-disable-line
 }
 
 /**
- * @typedef GooglePrivacyDlpV2beta1Color
+ * @typedef GooglePrivacyDlpV2beta1CategoryDescription
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {number} red The amount of red in the color as a value in the interval [0, 1].
- * @property {number} blue The amount of blue in the color as a value in the interval [0, 1].
- * @property {number} green The amount of green in the color as a value in the interval [0, 1].
+ * @property {string} name Internal name of the category.
+ * @property {string} displayName Human readable form of the category name.
  */
-/**
- * @typedef GooglePrivacyDlpV2beta1PathElement
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {string} name The name of the entity.
-A name matching regex `__.*__` is reserved/read-only.
-A name must not be more than 1500 bytes when UTF-8 encoded.
-Cannot be `&quot;&quot;`.
-* @property {string} kind The kind of the entity.
-A kind matching regex `__.*__` is reserved/read-only.
-A kind must not contain more than 1500 bytes when UTF-8 encoded.
-Cannot be `&quot;&quot;`.
-* @property {string} id The auto-allocated ID of the entity.
-Never equal to zero. Values less than zero are discouraged and may not
-be supported in the future.
-*/
 /**
  * @typedef GooglePrivacyDlpV2beta1ListInfoTypesResponse
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoTypeDescription[]} infoTypes Set of sensitive info types belonging to a category.
- */
-/**
- * @typedef GooglePrivacyDlpV2beta1CategoryDescription
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {string} displayName Human readable form of the category name.
- * @property {string} name Internal name of the category.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1ListRootCategoriesResponse
@@ -502,8 +478,8 @@ be supported in the future.
  * @typedef GooglePrivacyDlpV2beta1PartitionId
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {string} namespaceId If not empty, the ID of the namespace to which the entities belong.
  * @property {string} projectId The ID of the project to which the entities belong.
+ * @property {string} namespaceId If not empty, the ID of the namespace to which the entities belong.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1InspectContentResponse
@@ -522,11 +498,11 @@ same order as the request.
  * @typedef GooglePrivacyDlpV2beta1RedactContentRequest
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items The list of items to inspect. Up to 100 are allowed per request.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ReplaceConfig[]} replaceConfigs The strings to replace findings text findings with. Must specify at least
 one of these or one ImageRedactionConfig if redacting images.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ImageRedactionConfig[]} imageRedactionConfigs The configuration for specifying what content to redact from images.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
 */
 /**
  * @typedef GoogleLongrunningListOperationsResponse
@@ -552,19 +528,14 @@ path is allowed.
  * @typedef GooglePrivacyDlpV2beta1DatastoreOptions
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PartitionId} partitionId A partition ID identifies a grouping of entities. The grouping is always
-by project and namespace, however the namespace ID may be empty.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Projection[]} projection Properties to scan. If none are specified, all properties will be scanned
 by default.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KindExpression} kind The kind to process.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PartitionId} partitionId A partition ID identifies a grouping of entities. The grouping is always
+by project and namespace, however the namespace ID may be empty.
 */
 /**
  * @typedef GoogleLongrunningCancelOperationRequest
- * @memberOf! dlp(v2beta1)
- * @type object
- */
-/**
- * @typedef GoogleProtobufEmpty
  * @memberOf! dlp(v2beta1)
  * @type object
  */
@@ -577,9 +548,15 @@ request; this value should be passed in a new `ListInspectFindingsRequest`.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectResult} result The results.
 */
 /**
+ * @typedef GoogleProtobufEmpty
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ */
+/**
  * @typedef GooglePrivacyDlpV2beta1InspectConfig
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {integer} maxFindings Limits the number of findings per content item or long running operation.
 * @property {boolean} excludeTypes When true, excludes type information of the findings.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType[]} infoTypes Restricts what info_types to look for. The values must correspond to
 InfoType values returned by ListInfoTypes or found in documentation.
@@ -587,7 +564,6 @@ Empty info_types runs all enabled detectors.
 * @property {boolean} includeQuote When true, a contextual quote from the data that triggered a finding is
 included in the response; see Finding.quote.
 * @property {string} minLikelihood Only returns findings equal or above this threshold.
-* @property {integer} maxFindings Limits the number of findings per content item.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1Projection
@@ -611,7 +587,6 @@ included in the response; see Finding.quote.
  * @typedef GooglePrivacyDlpV2beta1CreateInspectOperationRequest
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} storageConfig Specification of the data set to process.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OutputStorageConfig} outputConfig Optional location to store findings. The bucket must already exist and
 the Google APIs service account for DLP must have write permission to
@@ -627,13 +602,14 @@ following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;inf
 &lt;li&gt;start_offset&lt;br/&gt;
 &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
 &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1RecordKey
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DatastoreKey} datastoreKey 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStorageKey} cloudStorageKey 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DatastoreKey} datastoreKey 
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1Key
@@ -653,20 +629,20 @@ ID and namespace ID.
 Queries are scoped to a single partition.
 */
 /**
+ * @typedef GooglePrivacyDlpV2beta1InspectContentRequest
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items The list of items to inspect. Items in a single request are
+considered &quot;related&quot; unless inspect_config.independent_inputs is true.
+Up to 100 are allowed per request.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
+*/
+/**
  * @typedef GooglePrivacyDlpV2beta1CloudStoragePath
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {string} path The url, in the format of `gs://bucket/&lt;path&gt;`.
  */
-/**
- * @typedef GooglePrivacyDlpV2beta1InspectContentRequest
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items The list of items to inspect. Items in a single request are
-considered &quot;related&quot; unless inspect_config.independent_inputs is true.
-Up to 100 are allowed per request.
-*/
 /**
  * @typedef GooglePrivacyDlpV2beta1InspectOperationResult
  * @memberOf! dlp(v2beta1)
@@ -679,8 +655,8 @@ originally returns it. If you use the default HTTP mapping, the
  * @typedef GooglePrivacyDlpV2beta1InfoTypeStatistics
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The type of finding this stat is for.
  * @property {string} count Number of findings for this info type.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The type of finding this stat is for.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1RedactContentResponse
@@ -692,14 +668,14 @@ originally returns it. If you use the default HTTP mapping, the
  * @typedef GooglePrivacyDlpV2beta1ImageRedactionConfig
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Color} redactionColor The color to use when redacting content from an image. If not specified,
-the default is black.
-* @property {boolean} redactAllText If true, all text found in the image, regardless if it matches an
-info_type, is redacted.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Only one per info_type should be provided per request. If not
 specified, and redact_all_text is false, the DLP API will redacts all
 text that it matches against all info_types that are found, but not
 specified in another ImageRedactionConfig.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Color} redactionColor The color to use when redacting content from an image. If not specified,
+the default is black.
+* @property {boolean} redactAllText If true, all text found in the image, regardless if it matches an
+info_type, is redacted.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1Range
@@ -719,24 +695,24 @@ If name includes &quot;.&quot;s, it may be interpreted as a property name path.
  * @typedef GooglePrivacyDlpV2beta1Location
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordKey} recordKey Key of the finding.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} codepointRange Character offsets within a content item, included when content type
 is a text. Default charset assumed to be UTF-8.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} fieldId Field id of the field containing the finding.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ImageLocation[]} imageBoxes Location within an image&#39;s pixels.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Range} byteRange Zero-based byte offsets within a content item.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordKey} recordKey Key of the finding.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1InspectResult
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Finding[]} findings List of findings for an item.
 * @property {boolean} findingsTruncated If true, then this item might have more findings than were returned,
 and the findings returned are an arbitrary subset of all findings.
 The findings list might be truncated because the input items were too
 large, or because the server reached the maximum amount of resources
 allowed for a single API call. For best results, divide the input into
 smaller batches.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Finding[]} findings List of findings for an item.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1ImageLocation
@@ -765,53 +741,53 @@ smaller batches.
  * @typedef GoogleRpcStatus
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1StorageConfig
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStorageOptions} cloudStorageOptions Google Cloud Storage options specification.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DatastoreOptions} datastoreOptions Google Cloud Datastore options specification.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStorageOptions} cloudStorageOptions Google Cloud Storage options specification.
  */
 /**
  * @typedef GoogleLongrunningOperation
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {string} name The server-assigned name, The `name` should have the format of `inspect/operations/&lt;identifier&gt;`.
 * @property {dlp(v2beta1).GoogleRpcStatus} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata This field will contain an InspectOperationMetadata object. This will always be returned with the Operation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
 * @property {object} response This field will contain an InspectOperationResult object.
-* @property {string} name The server-assigned name, The `name` should have the format of `inspect/operations/&lt;identifier&gt;`.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1ContentItem
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {string} value String data to inspect or redact.
-* @property {string} data Content data to inspect or redact.
 * @property {string} type Type of the content, as defined in Content-Type HTTP header.
 Supported types are: all &quot;text&quot; types, octet streams, PNG images,
 JPEG images.
+* @property {string} value String data to inspect or redact.
+* @property {string} data Content data to inspect or redact.
 */
 /**
  * @typedef GooglePrivacyDlpV2beta1InspectOperationMetadata
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {string} createTime The time which this request was started.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} requestStorageConfig The storage config used to create the Operation.
  * @property {string} processedBytes Total size in bytes that were processed.
  * @property {string} totalEstimatedBytes Estimate of the number of bytes to process.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoTypeStatistics[]} infoTypeStats 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} requestInspectConfig The inspect config used to create the Operation.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OutputStorageConfig} requestOutputConfig Optional location to store findings.
+ * @property {string} createTime The time which this request was started.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta1InfoType
@@ -826,10 +802,34 @@ and cannot conflict with built-in info type names.
  * @typedef GooglePrivacyDlpV2beta1ReplaceConfig
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {string} replaceWith Content replacing sensitive information of given type. Max 256 chars.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Type of information to replace. Only one ReplaceConfig per info_type
 should be provided. If ReplaceConfig does not have an info_type, the DLP
 API matches it against all info_types that are found but not specified in
 another ReplaceConfig.
-* @property {string} replaceWith Content replacing sensitive information of given type. Max 256 chars.
+*/
+/**
+ * @typedef GooglePrivacyDlpV2beta1Color
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {number} red The amount of red in the color as a value in the interval [0, 1].
+ * @property {number} blue The amount of blue in the color as a value in the interval [0, 1].
+ * @property {number} green The amount of green in the color as a value in the interval [0, 1].
+ */
+/**
+ * @typedef GooglePrivacyDlpV2beta1PathElement
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} id The auto-allocated ID of the entity.
+Never equal to zero. Values less than zero are discouraged and may not
+be supported in the future.
+* @property {string} name The name of the entity.
+A name matching regex `__.*__` is reserved/read-only.
+A name must not be more than 1500 bytes when UTF-8 encoded.
+Cannot be `&quot;&quot;`.
+* @property {string} kind The kind of the entity.
+A kind matching regex `__.*__` is reserved/read-only.
+A kind must not contain more than 1500 bytes when UTF-8 encoded.
+Cannot be `&quot;&quot;`.
 */
 export = Dlp;

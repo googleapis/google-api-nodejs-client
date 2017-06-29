@@ -37,6 +37,48 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
+  self.v1 = {
+
+    /**
+     * firebasedynamiclinks.getLinkStats
+     *
+     * @desc Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
+     *
+     * @alias firebasedynamiclinks.getLinkStats
+     * @memberOf! firebasedynamiclinks(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.durationDays The span of time requested in days.
+     * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getLinkStats: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{dynamicLink}/linkStats').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['dynamicLink'],
+        pathParams: ['dynamicLink'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.shortLinks = {
 
     /**
@@ -70,48 +112,6 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
         params: params,
         requiredParams: [],
         pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.v1 = {
-
-    /**
-     * firebasedynamiclinks.getLinkStats
-     *
-     * @desc Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens.
-     *
-     * @alias firebasedynamiclinks.getLinkStats
-     * @memberOf! firebasedynamiclinks(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
-     * @param {string=} params.durationDays The span of time requested in days.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getLinkStats: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{dynamicLink}/linkStats').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['dynamicLink'],
-        pathParams: ['dynamicLink'],
         context: self
       };
 
@@ -155,10 +155,6 @@ differentiate ads or links that point to the same URL.
  * @typedef DynamicLinkInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
-* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
-* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
-Used to set meta tag data for link previews on social sites.
 * @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
 [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
 * @property {firebasedynamiclinks(v1).NavigationInfo} navigationInfo Information of navigation behavior of a Firebase Dynamic Links.
@@ -175,6 +171,10 @@ the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the
 [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
 
 Required.
+* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
+* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
+Used to set meta tag data for link previews on social sites.
 */
 /**
  * @typedef ITunesConnectAnalytics
@@ -191,32 +191,32 @@ Connect.
  * @typedef SocialMetaTagInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
- * @property {string} socialDescription A short description of the link. Optional.
  * @property {string} socialImageLink An image url string. Optional.
  * @property {string} socialTitle Title to be displayed. Optional.
+ * @property {string} socialDescription A short description of the link. Optional.
  */
 /**
  * @typedef AndroidInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
-* @property {string} androidLink If specified, this overrides the ‘link’ parameter on Android.
 * @property {string} androidFallbackLink Link to open on Android if the app is not installed.
 * @property {string} androidPackageName Android package name of the app.
 * @property {string} androidMinPackageVersionCode Minimum version code for the Android app. If the installed app’s version
 code is lower, then the user is taken to the Play Store.
+* @property {string} androidLink If specified, this overrides the ‘link’ parameter on Android.
 */
+/**
+ * @typedef DynamicLinkWarning
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+ * @property {string} warningMessage The warning message to help developers improve their requests.
+ * @property {string} warningCode The warning code.
+ */
 /**
  * @typedef DynamicLinkStats
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
  * @property {firebasedynamiclinks(v1).DynamicLinkEventStat[]} linkEventStats Dynamic Link event stats.
- */
-/**
- * @typedef DynamicLinkWarning
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
- * @property {string} warningCode The warning code.
- * @property {string} warningMessage The warning message to help developers improve their requests.
  */
 /**
  * @typedef NavigationInfo
@@ -229,14 +229,14 @@ show an interstitial page.
  * @typedef IosInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
+* @property {string} iosFallbackLink Link to open on iOS if the app is not installed.
+* @property {string} iosAppStoreId iOS App Store ID.
+* @property {string} iosIpadFallbackLink If specified, this overrides the ios_fallback_link value on iPads.
 * @property {string} iosIpadBundleId iPad bundle ID of the app.
 * @property {string} iosCustomScheme Custom (destination) scheme to use for iOS. By default, we’ll use the
 bundle ID as the custom scheme. Developer can override this behavior using
 this param.
 * @property {string} iosBundleId iOS bundle ID of the app.
-* @property {string} iosFallbackLink Link to open on iOS if the app is not installed.
-* @property {string} iosAppStoreId iOS App Store ID.
-* @property {string} iosIpadFallbackLink If specified, this overrides the ios_fallback_link value on iPads.
 */
 /**
  * @typedef AnalyticsInfo
@@ -249,20 +249,20 @@ this param.
  * @typedef CreateShortDynamicLinkRequest
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
+* @property {firebasedynamiclinks(v1).DynamicLinkInfo} dynamicLinkInfo Information about the Dynamic Link to be shortened.
+[Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
 * @property {string} longDynamicLink Full long Dynamic Link URL with desired query parameters specified.
 For example,
 &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;,
 [Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
 * @property {firebasedynamiclinks(v1).Suffix} suffix Short Dynamic Link suffix. Optional.
-* @property {firebasedynamiclinks(v1).DynamicLinkInfo} dynamicLinkInfo Information about the Dynamic Link to be shortened.
-[Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
 */
 /**
  * @typedef DynamicLinkEventStat
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
+ * @property {string} event Link event.
  * @property {string} platform Requested platform.
  * @property {string} count The number of times this event occurred.
- * @property {string} event Link event.
  */
 export = Firebasedynamiclinks;
