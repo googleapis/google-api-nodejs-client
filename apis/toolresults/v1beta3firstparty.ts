@@ -963,6 +963,13 @@ Schemes other than `http`, `https` (or the empty scheme) might be used with impl
 * @property {string} value Must be a valid serialized protocol buffer of the above specified type.
 */
 /**
+ * @typedef AppStartTime
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {toolresults(v1beta3firstparty).Duration} fullyDrawnTime Optional. The time from app start to reaching the developer-reported &quot;fully drawn&quot; time. This is only stored if the app includes a call to Activity.reportFullyDrawn(). See https://developer.android.com/topic/performance/launch-time.html#time-full
+ * @property {toolresults(v1beta3firstparty).Duration} initialDisplayTime The time from app start to the first displayed activity being drawn, as reported in Logcat. See https://developer.android.com/topic/performance/launch-time.html#time-initial
+ */
+/**
  * @typedef BasicPerfSampleSeries
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
@@ -1197,6 +1204,7 @@ Required
  * @typedef PerfMetricsSummary
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
+ * @property {toolresults(v1beta3firstparty).AppStartTime} appStartTime 
  * @property {string} executionId A tool results execution ID.
  * @property {string} historyId A tool results history ID.
  * @property {toolresults(v1beta3firstparty).PerfEnvironment} perfEnvironment Describes the environment in which the performance metrics were collected
@@ -1268,7 +1276,7 @@ Required
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
  * @property {integer} code The status code, which should be an enum value of [google.rpc.Code][].
- * @property {toolresults(v1beta3firstparty).Any[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
+ * @property {toolresults(v1beta3firstparty).Any[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][] field, or localized by the client.
  */
 /**

@@ -38,473 +38,6 @@ function Clouddebugger(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.debugger = {
-
-    debuggees: {
-
-      /**
-       * clouddebugger.debugger.debuggees.list
-       *
-       * @desc Lists all the debuggees that the user can set breakpoints to.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Stackdriver Debugger API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/clouddebugger
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var cloudDebugger = google.clouddebugger('v2');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     auth: authClient
-       *   };
-       *
-       *   cloudDebugger.debugger.debuggees.list(request, function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias clouddebugger.debugger.debuggees.list
-       * @memberOf! clouddebugger(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
-       * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-       * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2/debugger/debuggees').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      breakpoints: {
-
-        /**
-         * clouddebugger.debugger.debuggees.breakpoints.set
-         *
-         * @desc Sets the breakpoint to the debuggee.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Debugger API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/clouddebugger
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //    https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var cloudDebugger = google.clouddebugger('v2');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // ID of the debuggee where the breakpoint is to be set.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
-         *
-         *     resource: {
-         *       // TODO: Add desired properties to the request body.
-         *     },
-         *
-         *     auth: authClient
-         *   };
-         *
-         *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err, response) {
-         *     if (err) {
-         *       console.log(err);
-         *       return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
-         *     if (err) {
-         *       console.log('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *       authClient = authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         *
-         * @alias clouddebugger.debugger.debuggees.breakpoints.set
-         * @memberOf! clouddebugger(v2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-         * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
-         * @param {clouddebugger(v2).Breakpoint} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        set: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['debuggeeId'],
-            pathParams: ['debuggeeId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * clouddebugger.debugger.debuggees.breakpoints.delete
-         *
-         * @desc Deletes the breakpoint from the debuggee.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Debugger API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/clouddebugger
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //    https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var cloudDebugger = google.clouddebugger('v2');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // ID of the debuggee whose breakpoint to delete.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
-         *
-         *     // ID of the breakpoint to delete.
-         *     breakpointId: '',  // TODO: Update placeholder value.
-         *
-         *     auth: authClient
-         *   };
-         *
-         *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
-         *     if (err) {
-         *       console.log(err);
-         *       return;
-         *     }
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
-         *     if (err) {
-         *       console.log('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *       authClient = authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         *
-         * @alias clouddebugger.debugger.debuggees.breakpoints.delete
-         * @memberOf! clouddebugger(v2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.breakpointId ID of the breakpoint to delete.
-         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            }, options),
-            params: params,
-            requiredParams: ['debuggeeId', 'breakpointId'],
-            pathParams: ['breakpointId', 'debuggeeId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * clouddebugger.debugger.debuggees.breakpoints.get
-         *
-         * @desc Gets breakpoint information.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Debugger API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/clouddebugger
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //    https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var cloudDebugger = google.clouddebugger('v2');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // ID of the debuggee whose breakpoint to get.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
-         *
-         *     // ID of the breakpoint to get.
-         *     breakpointId: '',  // TODO: Update placeholder value.
-         *
-         *     auth: authClient
-         *   };
-         *
-         *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err, response) {
-         *     if (err) {
-         *       console.log(err);
-         *       return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
-         *     if (err) {
-         *       console.log('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *       authClient = authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         *
-         * @alias clouddebugger.debugger.debuggees.breakpoints.get
-         * @memberOf! clouddebugger(v2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-         * @param {string} params.breakpointId ID of the breakpoint to get.
-         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['debuggeeId', 'breakpointId'],
-            pathParams: ['breakpointId', 'debuggeeId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * clouddebugger.debugger.debuggees.breakpoints.list
-         *
-         * @desc Lists all breakpoints for the debuggee.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Debugger API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/clouddebugger
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //    https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var cloudDebugger = google.clouddebugger('v2');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // ID of the debuggee whose breakpoints to list.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
-         *
-         *     auth: authClient
-         *   };
-         *
-         *   cloudDebugger.debugger.debuggees.breakpoints.list(request, function(err, response) {
-         *     if (err) {
-         *       console.log(err);
-         *       return;
-         *     }
-         *
-         *     // TODO: Change code below to process the `response` object:
-         *     console.log(JSON.stringify(response, null, 2));
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
-         *     if (err) {
-         *       console.log('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *       authClient = authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         *
-         * @alias clouddebugger.debugger.debuggees.breakpoints.list
-         * @memberOf! clouddebugger(v2)
-         *
-         * @param {object} params Parameters for request
-         * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
-         * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
-         * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-         * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
-         * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
-         * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['debuggeeId'],
-            pathParams: ['debuggeeId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      }
-    }
-  };
-
   self.controller = {
 
     debuggees: {
@@ -758,8 +291,8 @@ function Clouddebugger(options) { // eslint-disable-line
          * @memberOf! clouddebugger(v2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
          * @param {string} params.debuggeeId Identifies the debuggee being debugged.
+         * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
          * @param {clouddebugger(v2).UpdateActiveBreakpointRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -781,7 +314,474 @@ function Clouddebugger(options) { // eslint-disable-line
             }, options),
             params: params,
             requiredParams: ['debuggeeId', 'id'],
-            pathParams: ['id', 'debuggeeId'],
+            pathParams: ['debuggeeId', 'id'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    }
+  };
+
+  self.debugger = {
+
+    debuggees: {
+
+      /**
+       * clouddebugger.debugger.debuggees.list
+       *
+       * @desc Lists all the debuggees that the user can set breakpoints to.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Stackdriver Debugger API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouddebugger
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudDebugger = google.clouddebugger('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     auth: authClient
+       *   };
+       *
+       *   cloudDebugger.debugger.debuggees.list(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias clouddebugger.debugger.debuggees.list
+       * @memberOf! clouddebugger(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+       * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
+       * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2/debugger/debuggees').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: [],
+          pathParams: [],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      breakpoints: {
+
+        /**
+         * clouddebugger.debugger.debuggees.breakpoints.get
+         *
+         * @desc Gets breakpoint information.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Stackdriver Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var cloudDebugger = google.clouddebugger('v2');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // ID of the debuggee whose breakpoint to get.
+         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *
+         *     // ID of the breakpoint to get.
+         *     breakpointId: '',  // TODO: Update placeholder value.
+         *
+         *     auth: authClient
+         *   };
+         *
+         *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err, response) {
+         *     if (err) {
+         *       console.log(err);
+         *       return;
+         *     }
+         *
+         *     // TODO: Change code below to process the `response` object:
+         *     console.log(JSON.stringify(response, null, 2));
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *     if (err) {
+         *       console.log('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
+         *
+         * @alias clouddebugger.debugger.debuggees.breakpoints.get
+         * @memberOf! clouddebugger(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string} params.breakpointId ID of the breakpoint to get.
+         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['debuggeeId', 'breakpointId'],
+            pathParams: ['breakpointId', 'debuggeeId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * clouddebugger.debugger.debuggees.breakpoints.list
+         *
+         * @desc Lists all breakpoints for the debuggee.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Stackdriver Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var cloudDebugger = google.clouddebugger('v2');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // ID of the debuggee whose breakpoints to list.
+         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *
+         *     auth: authClient
+         *   };
+         *
+         *   cloudDebugger.debugger.debuggees.breakpoints.list(request, function(err, response) {
+         *     if (err) {
+         *       console.log(err);
+         *       return;
+         *     }
+         *
+         *     // TODO: Change code below to process the `response` object:
+         *     console.log(JSON.stringify(response, null, 2));
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *     if (err) {
+         *       console.log('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
+         *
+         * @alias clouddebugger.debugger.debuggees.breakpoints.list
+         * @memberOf! clouddebugger(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+         * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
+         * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
+         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
+         * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
+         * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['debuggeeId'],
+            pathParams: ['debuggeeId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * clouddebugger.debugger.debuggees.breakpoints.set
+         *
+         * @desc Sets the breakpoint to the debuggee.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Stackdriver Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var cloudDebugger = google.clouddebugger('v2');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // ID of the debuggee where the breakpoint is to be set.
+         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *
+         *     resource: {
+         *       // TODO: Add desired properties to the request body.
+         *     },
+         *
+         *     auth: authClient
+         *   };
+         *
+         *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err, response) {
+         *     if (err) {
+         *       console.log(err);
+         *       return;
+         *     }
+         *
+         *     // TODO: Change code below to process the `response` object:
+         *     console.log(JSON.stringify(response, null, 2));
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *     if (err) {
+         *       console.log('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
+         *
+         * @alias clouddebugger.debugger.debuggees.breakpoints.set
+         * @memberOf! clouddebugger(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
+         * @param {clouddebugger(v2).Breakpoint} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        set: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['debuggeeId'],
+            pathParams: ['debuggeeId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * clouddebugger.debugger.debuggees.breakpoints.delete
+         *
+         * @desc Deletes the breakpoint from the debuggee.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Stackdriver Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var cloudDebugger = google.clouddebugger('v2');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // ID of the debuggee whose breakpoint to delete.
+         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *
+         *     // ID of the breakpoint to delete.
+         *     breakpointId: '',  // TODO: Update placeholder value.
+         *
+         *     auth: authClient
+         *   };
+         *
+         *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
+         *     if (err) {
+         *       console.log(err);
+         *       return;
+         *     }
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *     if (err) {
+         *       console.log('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
+         *
+         * @alias clouddebugger.debugger.debuggees.breakpoints.delete
+         * @memberOf! clouddebugger(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
+         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string} params.breakpointId ID of the breakpoint to delete.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['debuggeeId', 'breakpointId'],
+            pathParams: ['debuggeeId', 'breakpointId'],
             context: self
           };
 
@@ -792,139 +792,6 @@ function Clouddebugger(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef StackFrame
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} function Demangled function name at the call site.
-* @property {clouddebugger(v2).Variable[]} arguments Set of arguments passed to this function.
-Note that this might not be populated for all stack frames.
-* @property {clouddebugger(v2).Variable[]} locals Set of local variables at the stack frame location.
-Note that this might not be populated for all stack frames.
-* @property {clouddebugger(v2).SourceLocation} location Source location of the call site.
-*/
-/**
- * @typedef RepoId
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {clouddebugger(v2).ProjectRepoId} projectRepoId A combination of a project ID and a repo name.
- * @property {string} uid A server-assigned, globally unique identifier.
- */
-/**
- * @typedef FormatMessage
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string[]} parameters Optional parameters to be embedded into the message.
-* @property {string} format Format template for the message. The `format` uses placeholders `$0`,
-`$1`, etc. to reference parameters. `$$` can be used to denote the `$`
-character.
-
-Examples:
-
-*   `Failed to load &#39;$0&#39; which helps debug $1 the first time it
-    is loaded.  Again, $0 is very important.`
-*   `Please pay $$10 to use $0 instead of $1.`
-*/
-/**
- * @typedef ExtendedSourceContext
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {clouddebugger(v2).SourceContext} context Any source context.
- * @property {object} labels Labels with user defined metadata.
- */
-/**
- * @typedef ListDebuggeesResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Debuggee[]} debuggees List of debuggees accessible to the calling user.
-Note that the `description` field is the only human readable field
-that should be displayed to the user.
-The fields `debuggee.id` and  `description` fields are guaranteed to be
-set on each debuggee.
-*/
-/**
- * @typedef AliasContext
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {string} name The alias name.
- * @property {string} kind The alias kind.
- */
-/**
- * @typedef Empty
- * @memberOf! clouddebugger(v2)
- * @type object
- */
-/**
- * @typedef SourceLocation
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {integer} line Line inside the file. The first line in the file has the value `1`.
- * @property {string} path Path to the source file within the source context of the target binary.
- */
-/**
- * @typedef Debuggee
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} uniquifier Debuggee uniquifier within the project.
-Any string that identifies the application within the project can be used.
-Including environment and version or build IDs is recommended.
-* @property {string} description Human readable description of the debuggee.
-Including a human-readable project name, environment name and version
-information is recommended.
-* @property {clouddebugger(v2).SourceContext[]} sourceContexts References to the locations and revisions of the source code used in the
-deployed application.
-
-NOTE: This field is deprecated. Consumers should use
-`ext_source_contexts` if it is not empty. Debug agents should populate
-both this field and `ext_source_contexts`.
-* @property {clouddebugger(v2).ExtendedSourceContext[]} extSourceContexts References to the locations and revisions of the source code used in the
-deployed application.
-
-Contexts describing a remote repo related to the source code
-have a `category` label of `remote_repo`. Source snapshot source
-contexts have a `category` of `snapshot`.
-* @property {object} labels A set of custom debuggee properties, populated by the agent, to be
-displayed to the user.
-* @property {boolean} isInactive If set to `true`, indicates that the debuggee is considered as inactive by
-the Controller service.
-* @property {clouddebugger(v2).StatusMessage} status Human readable message to be displayed to the user about this debuggee.
-Absence of this field indicates no status. The message can be either
-informational or an error status.
-* @property {string} project Project the debuggee is associated with.
-Use the project number when registering a Google Cloud Platform project.
-* @property {string} id Unique identifier for the debuggee generated by the controller service.
-* @property {string} agentVersion Version ID of the agent release. The version ID is structured as
-following: `domain/type/vmajor.minor` (for example
-`google.com/gcp-java/v1.1`).
-* @property {boolean} isDisabled If set to `true`, indicates that the agent should disable itself and
-detach from the debuggee.
-*/
-/**
- * @typedef ListActiveBreakpointsResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of all active breakpoints.
-The fields `id` and `location` are guaranteed to be set on each breakpoint.
-* @property {boolean} waitExpired The `wait_expired` field is set to true by the server when the
-request times out and the field `success_on_timeout` is set to true.
-* @property {string} nextWaitToken A wait token that can be used in the next method call to block until
-the list of breakpoints changes.
-*/
-/**
- * @typedef ProjectRepoId
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {string} projectId The ID of the project.
- * @property {string} repoName The name of the repo. Leave empty for the default repo.
- */
-/**
- * @typedef CloudWorkspaceSourceContext
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} snapshotId The ID of the snapshot.
-An empty snapshot_id refers to the most recent snapshot.
-* @property {clouddebugger(v2).CloudWorkspaceId} workspaceId The ID of the workspace.
-*/
 /**
  * @typedef GerritSourceContext
  * @memberOf! clouddebugger(v2)
@@ -965,6 +832,11 @@ are cleared on each breakpoint regardless of it&#39;s status.
  * @typedef Breakpoint
  * @memberOf! clouddebugger(v2)
  * @type object
+* @property {string} logLevel Indicates the severity of the log. Only relevant when action is `LOG`.
+* @property {string} id Breakpoint identifier, unique in the scope of the debuggee.
+* @property {clouddebugger(v2).SourceLocation} location Breakpoint source location.
+* @property {string} finalTime Time this breakpoint was finalized as seen by the server in seconds
+resolution.
 * @property {clouddebugger(v2).Variable[]} variableTable The `variable_table` exists to aid with computation, memory and network
 traffic optimization.  It enables storing a variable once and reference
 it from multiple variables, including variables stored in the
@@ -1023,11 +895,6 @@ Examples (final state):
 * @property {string} userEmail E-mail address of the user that created this breakpoint
 * @property {string} action Action that the agent should perform when the code at the
 breakpoint location is hit.
-* @property {string} logLevel Indicates the severity of the log. Only relevant when action is `LOG`.
-* @property {string} id Breakpoint identifier, unique in the scope of the debuggee.
-* @property {clouddebugger(v2).SourceLocation} location Breakpoint source location.
-* @property {string} finalTime Time this breakpoint was finalized as seen by the server in seconds
-resolution.
 */
 /**
  * @typedef SetBreakpointResponse
@@ -1047,10 +914,10 @@ The field &#39;id&#39; must be set.
  * @typedef SourceContext
  * @memberOf! clouddebugger(v2)
  * @type object
- * @property {clouddebugger(v2).GitSourceContext} git A SourceContext referring to any third party Git repo (e.g. GitHub).
  * @property {clouddebugger(v2).GerritSourceContext} gerrit A SourceContext referring to a Gerrit project.
  * @property {clouddebugger(v2).CloudRepoSourceContext} cloudRepo A SourceContext referring to a revision in a cloud repo.
  * @property {clouddebugger(v2).CloudWorkspaceSourceContext} cloudWorkspace A SourceContext referring to a snapshot in a cloud workspace.
+ * @property {clouddebugger(v2).GitSourceContext} git A SourceContext referring to any third party Git repo (e.g. GitHub).
  */
 /**
  * @typedef CloudRepoSourceContext
@@ -1128,9 +995,142 @@ Examples of error message applied to value:
 `var_table_index`, `type` goes next to `value`. The interpretation of
 a type is agent specific. It is recommended to include the dynamic type
 rather than a static type of an object.
+* @property {string} value Simple value of the variable.
 * @property {integer} varTableIndex Reference to a variable in the shared variable table. More than
 one variable can reference the same variable in the table. The
 `var_table_index` field is an index into `variable_table` in Breakpoint.
-* @property {string} value Simple value of the variable.
+*/
+/**
+ * @typedef StackFrame
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Variable[]} arguments Set of arguments passed to this function.
+Note that this might not be populated for all stack frames.
+* @property {clouddebugger(v2).Variable[]} locals Set of local variables at the stack frame location.
+Note that this might not be populated for all stack frames.
+* @property {clouddebugger(v2).SourceLocation} location Source location of the call site.
+* @property {string} function Demangled function name at the call site.
+*/
+/**
+ * @typedef RepoId
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).ProjectRepoId} projectRepoId A combination of a project ID and a repo name.
+ * @property {string} uid A server-assigned, globally unique identifier.
+ */
+/**
+ * @typedef FormatMessage
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string[]} parameters Optional parameters to be embedded into the message.
+* @property {string} format Format template for the message. The `format` uses placeholders `$0`,
+`$1`, etc. to reference parameters. `$$` can be used to denote the `$`
+character.
+
+Examples:
+
+*   `Failed to load &#39;$0&#39; which helps debug $1 the first time it
+    is loaded.  Again, $0 is very important.`
+*   `Please pay $$10 to use $0 instead of $1.`
+*/
+/**
+ * @typedef ExtendedSourceContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).SourceContext} context Any source context.
+ * @property {object} labels Labels with user defined metadata.
+ */
+/**
+ * @typedef AliasContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {string} kind The alias kind.
+ * @property {string} name The alias name.
+ */
+/**
+ * @typedef ListDebuggeesResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Debuggee[]} debuggees List of debuggees accessible to the calling user.
+Note that the `description` field is the only human readable field
+that should be displayed to the user.
+The fields `debuggee.id` and  `description` fields are guaranteed to be
+set on each debuggee.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ */
+/**
+ * @typedef SourceLocation
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {string} path Path to the source file within the source context of the target binary.
+ * @property {integer} line Line inside the file. The first line in the file has the value `1`.
+ */
+/**
+ * @typedef Debuggee
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string} project Project the debuggee is associated with.
+Use the project number when registering a Google Cloud Platform project.
+* @property {boolean} isDisabled If set to `true`, indicates that the agent should disable itself and
+detach from the debuggee.
+* @property {string} agentVersion Version ID of the agent release. The version ID is structured as
+following: `domain/type/vmajor.minor` (for example
+`google.com/gcp-java/v1.1`).
+* @property {string} id Unique identifier for the debuggee generated by the controller service.
+* @property {string} uniquifier Debuggee uniquifier within the project.
+Any string that identifies the application within the project can be used.
+Including environment and version or build IDs is recommended.
+* @property {string} description Human readable description of the debuggee.
+Including a human-readable project name, environment name and version
+information is recommended.
+* @property {clouddebugger(v2).SourceContext[]} sourceContexts References to the locations and revisions of the source code used in the
+deployed application.
+
+NOTE: This field is deprecated. Consumers should use
+`ext_source_contexts` if it is not empty. Debug agents should populate
+both this field and `ext_source_contexts`.
+* @property {clouddebugger(v2).ExtendedSourceContext[]} extSourceContexts References to the locations and revisions of the source code used in the
+deployed application.
+
+Contexts describing a remote repo related to the source code
+have a `category` label of `remote_repo`. Source snapshot source
+contexts have a `category` of `snapshot`.
+* @property {object} labels A set of custom debuggee properties, populated by the agent, to be
+displayed to the user.
+* @property {boolean} isInactive If set to `true`, indicates that the debuggee is considered as inactive by
+the Controller service.
+* @property {clouddebugger(v2).StatusMessage} status Human readable message to be displayed to the user about this debuggee.
+Absence of this field indicates no status. The message can be either
+informational or an error status.
+*/
+/**
+ * @typedef ListActiveBreakpointsResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string} nextWaitToken A wait token that can be used in the next method call to block until
+the list of breakpoints changes.
+* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of all active breakpoints.
+The fields `id` and `location` are guaranteed to be set on each breakpoint.
+* @property {boolean} waitExpired The `wait_expired` field is set to true by the server when the
+request times out and the field `success_on_timeout` is set to true.
+*/
+/**
+ * @typedef ProjectRepoId
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {string} projectId The ID of the project.
+ * @property {string} repoName The name of the repo. Leave empty for the default repo.
+ */
+/**
+ * @typedef CloudWorkspaceSourceContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string} snapshotId The ID of the snapshot.
+An empty snapshot_id refers to the most recent snapshot.
+* @property {clouddebugger(v2).CloudWorkspaceId} workspaceId The ID of the workspace.
 */
 export = Clouddebugger;

@@ -199,8 +199,8 @@ function Oslogin(options) { // eslint-disable-line
        * @memberOf! oslogin(v1alpha)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
        * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+       * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
        * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -233,6 +233,15 @@ function Oslogin(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef LoginProfile
+ * @memberOf! oslogin(v1alpha)
+ * @type object
+ * @property {string} name A unique user ID for identifying the user.
+ * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the Directory API user.
+ * @property {boolean} suspended Indicates if the user is suspended.
+ * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
+ */
+/**
  * @typedef Empty
  * @memberOf! oslogin(v1alpha)
  * @type object
@@ -257,23 +266,14 @@ section 6.6.
  * @typedef PosixAccount
  * @memberOf! oslogin(v1alpha)
  * @type object
-* @property {integer} uid The user ID.
-* @property {string} username The username of the POSIX account.
-* @property {string} shell The path to the logic shell for this account.
 * @property {string} homeDirectory The path to the home directory for this account.
 * @property {string} systemId System identifier for which account the username or uid applies to.
 By default, the empty value is used.
 * @property {string} gecos The GECOS (user information) entry for this account.
 * @property {boolean} primary Only one POSIX account can be marked as primary.
 * @property {integer} gid The default group ID.
+* @property {integer} uid The user ID.
+* @property {string} username The username of the POSIX account.
+* @property {string} shell The path to the logic shell for this account.
 */
-/**
- * @typedef LoginProfile
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {string} name A unique user ID for identifying the user.
- * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the Directory API user.
- * @property {boolean} suspended Indicates if the user is suspended.
- * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
- */
 export = Oslogin;

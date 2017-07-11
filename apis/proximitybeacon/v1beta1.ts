@@ -126,8 +126,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
      * @param {string=} params.projectId The project id of the namespace to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
      * @param {proximitybeacon(v1beta1).Namespace} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -209,8 +209,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the beacon to request. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
      * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to request. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -247,8 +247,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.  This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
      * @param {string=} params.projectId The project id of the beacon to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.  This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
      * @param {proximitybeacon(v1beta1).Beacon} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -286,8 +286,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be decommissioned. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID of the beacon's "stable" UID. Required.
      * @param {string=} params.projectId The project id of the beacon to decommission. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.beaconName Beacon that should be decommissioned. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID of the beacon's "stable" UID. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -305,6 +305,44 @@ function Proximitybeacon(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/v1beta1/{beaconName}:decommission').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['beaconName'],
+        pathParams: ['beaconName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * proximitybeacon.beacons.delete
+     *
+     * @desc Deletes the specified beacon including all diagnostics data for the beacon as well as any attachments on the beacon (including those belonging to other projects). This operation cannot be undone.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+     *
+     * @alias proximitybeacon.beacons.delete
+     * @memberOf! proximitybeacon(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.projectId The project id of the beacon to delete. If not provided, the project that is making the request is used. Optional.
+     * @param {string} params.beaconName Beacon that should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/{beaconName}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
         }, options),
         params: params,
         requiredParams: ['beaconName'],
@@ -343,44 +381,6 @@ function Proximitybeacon(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/v1beta1/{beaconName}:deactivate').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['beaconName'],
-        pathParams: ['beaconName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * proximitybeacon.beacons.delete
-     *
-     * @desc Deletes the specified beacon including all diagnostics data for the beacon as well as any attachments on the beacon (including those belonging to other projects). This operation cannot be undone.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
-     *
-     * @alias proximitybeacon.beacons.delete
-     * @memberOf! proximitybeacon(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {string=} params.projectId The project id of the beacon to delete. If not provided, the project that is making the request is used. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/{beaconName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
         }, options),
         params: params,
         requiredParams: ['beaconName'],
@@ -478,8 +478,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the beacon to activate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
      * @param {string} params.beaconName Beacon that should be activated. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to activate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -507,20 +507,22 @@ function Proximitybeacon(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
-    attachments: {
+    diagnostics: {
 
       /**
-       * proximitybeacon.beacons.attachments.list
+       * proximitybeacon.beacons.diagnostics.list
        *
-       * @desc Returns the attachments for the specified beacon that match the specified namespaced-type pattern.  To control which namespaced types are returned, you add the `namespacedType` query parameter to the request. You must either use `x/x`, to return all attachments, or the namespace must be one of the ones returned from the  `namespaces` endpoint.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
+       * @desc List the diagnostics for a single beacon. You can also list diagnostics for all the beacons owned by your Google Developers Console project by using the beacon name `beacons/-`.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
        *
-       * @alias proximitybeacon.beacons.attachments.list
+       * @alias proximitybeacon.beacons.diagnostics.list
        * @memberOf! proximitybeacon(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.projectId The project id to list beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-       * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in <var>namespace/type</var> format. Accepts `x/x` to specify "all types in all namespaces".
-       * @param {string} params.beaconName Beacon whose attachments should be fetched. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId Requests only diagnostic records for the given project id. If not set, then the project making the request will be used for looking up diagnostic records. Optional.
+       * @param {string} params.beaconName Beacon that the diagnostics are for.
+       * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
+       * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
+       * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -536,7 +538,7 @@ function Proximitybeacon(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v1beta1/{beaconName}/attachments').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{beaconName}/diagnostics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -546,7 +548,10 @@ function Proximitybeacon(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      },
+      }
+    },
+
+    attachments: {
 
       /**
        * proximitybeacon.beacons.attachments.batchDelete
@@ -557,9 +562,9 @@ function Proximitybeacon(options) { // eslint-disable-line
        * @memberOf! proximitybeacon(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
        * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
        * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -596,8 +601,8 @@ function Proximitybeacon(options) { // eslint-disable-line
        * @memberOf! proximitybeacon(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
        * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
        * @param {proximitybeacon(v1beta1).BeaconAttachment} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -662,25 +667,20 @@ function Proximitybeacon(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      }
-    },
-
-    diagnostics: {
+      },
 
       /**
-       * proximitybeacon.beacons.diagnostics.list
+       * proximitybeacon.beacons.attachments.list
        *
-       * @desc List the diagnostics for a single beacon. You can also list diagnostics for all the beacons owned by your Google Developers Console project by using the beacon name `beacons/-`.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
+       * @desc Returns the attachments for the specified beacon that match the specified namespaced-type pattern.  To control which namespaced types are returned, you add the `namespacedType` query parameter to the request. You must either use `x/x`, to return all attachments, or the namespace must be one of the ones returned from the  `namespaces` endpoint.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
        *
-       * @alias proximitybeacon.beacons.diagnostics.list
+       * @alias proximitybeacon.beacons.attachments.list
        * @memberOf! proximitybeacon(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.beaconName Beacon that the diagnostics are for.
-       * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
-       * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
-       * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
-       * @param {string=} params.projectId Requests only diagnostic records for the given project id. If not set, then the project making the request will be used for looking up diagnostic records. Optional.
+       * @param {string} params.beaconName Beacon whose attachments should be fetched. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId The project id to list beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
+       * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in <var>namespace/type</var> format. Accepts `x/x` to specify "all types in all namespaces".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -696,7 +696,7 @@ function Proximitybeacon(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v1beta1/{beaconName}/diagnostics').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{beaconName}/attachments').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
@@ -712,127 +712,6 @@ function Proximitybeacon(options) { // eslint-disable-line
 }
 
 /**
- * @typedef DeleteAttachmentsResponse
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
- * @property {integer} numDeleted The number of attachments that were deleted.
- */
-/**
- * @typedef EphemeralIdRegistrationParams
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {string} serviceEcdhPublicKey The beacon service&#39;s public key for use by a beacon to derive its
-Identity Key using Elliptic Curve Diffie-Hellman key exchange.
-* @property {integer} maxRotationPeriodExponent Indicates the maximum rotation period supported by the service.
-See EddystoneEidRegistration.rotation_period_exponent
-* @property {integer} minRotationPeriodExponent Indicates the minimum rotation period supported by the service.
-See EddystoneEidRegistration.rotation_period_exponent
-*/
-/**
- * @typedef Observation
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The ID advertised by the beacon the client has encountered.
-
-If the submitted `advertised_id` type is Eddystone-EID, then the client
-must be authorized to resolve the given beacon. Otherwise no data will be
-returned for that beacon.
-Required.
-* @property {string} telemetry The array of telemetry bytes received from the beacon. The server is
-responsible for parsing it. This field may frequently be empty, as
-with a beacon that transmits telemetry only occasionally.
-* @property {string} timestampMs Time when the beacon was observed.
-*/
-/**
- * @typedef ListDiagnosticsResponse
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {proximitybeacon(v1beta1).Diagnostics[]} diagnostics The diagnostics matching the given request.
-* @property {string} nextPageToken Token that can be used for pagination. Returned only if the
-request matches more beacons than can be returned in this response.
-*/
-/**
- * @typedef GetInfoForObservedBeaconsResponse
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {proximitybeacon(v1beta1).BeaconInfo[]} beacons Public information about beacons.
-May be empty if the request matched no beacons.
-*/
-/**
- * @typedef Beacon
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {proximitybeacon(v1beta1).IndoorLevel} indoorLevel The indoor level information for this beacon, if known. As returned by the
-Google Maps API.
-Optional.
-* @property {string} status Current status of the beacon.
-Required.
-* @property {string} beaconName Resource name of this beacon. A beacon name has the format
-&quot;beacons/N!beaconId&quot; where the beaconId is the base16 ID broadcast by
-the beacon and N is a code for the beacon&#39;s type. Possible values are
-`3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.
-
-This field must be left empty when registering. After reading a beacon,
-clients can use the name for future operations.
-* @property {string} expectedStability Expected location stability. This is set when the beacon is registered or
-updated, not automatically detected in any way.
-Optional.
-* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The identifier of a beacon as advertised by it. This field must be
-populated when registering. It may be empty when updating a beacon
-record because it is ignored in updates.
-
-When registering a beacon that broadcasts Eddystone-EID, this field
-should contain a &quot;stable&quot; Eddystone-UID that identifies the beacon and
-links it to its attachments. The stable Eddystone-UID is only used for
-administering the beacon.
-* @property {string} provisioningKey Some beacons may require a user to provide an authorization key before
-changing any of its configuration (e.g. broadcast frames, transmit power).
-This field provides a place to store and control access to that key.
-This field is populated in responses to `GET /v1beta1/beacons/3!beaconId`
-from users with write access to the given beacon. That is to say: If the
-user is authorized to write the beacon&#39;s confidential data in the service,
-the service considers them authorized to configure the beacon. Note
-that this key grants nothing on the service, only on the beacon itself.
-* @property {proximitybeacon(v1beta1).EphemeralIdRegistration} ephemeralIdRegistration Write-only registration parameters for beacons using Eddystone-EID
-(remotely resolved ephemeral ID) format. This information will not be
-populated in API responses. When submitting this data, the `advertised_id`
-field must contain an ID of type Eddystone-UID. Any other ID type will
-result in an error.
-* @property {string} description Free text used to identify and describe the beacon. Maximum length 140
-characters.
-Optional.
-* @property {string} placeId The [Google Places API](/places/place-id) Place ID of the place where
-the beacon is deployed. This is given when the beacon is registered or
-updated, not automatically detected in any way.
-Optional.
-* @property {proximitybeacon(v1beta1).LatLng} latLng The location of the beacon, expressed as a latitude and longitude pair.
-This location is given when the beacon is registered or updated. It does
-not necessarily indicate the actual current location of the beacon.
-Optional.
-* @property {object} properties Properties of the beacon device, for example battery type or firmware
-version.
-Optional.
-*/
-/**
- * @typedef AdvertisedId
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {string} type Specifies the identifier type.
-Required.
-* @property {string} id The actual beacon identifier, as broadcast by the beacon hardware. Must be
-[base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
-requests, and will be so encoded (with padding) in responses. The base64
-encoding should be of the binary byte-stream and not any textual (such as
-hex) representation thereof.
-Required.
-*/
-/**
- * @typedef IndoorLevel
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
- * @property {string} name The name of this level.
- */
-/**
  * @typedef Date
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
@@ -842,6 +721,12 @@ if specifying a year/month where the day is not significant.
 a year.
 * @property {integer} month Month of year. Must be from 1 to 12.
 */
+/**
+ * @typedef IndoorLevel
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+ * @property {string} name The name of this level.
+ */
 /**
  * @typedef ListNamespacesResponse
  * @memberOf! proximitybeacon(v1beta1)
@@ -891,6 +776,8 @@ Optional.
  * @typedef BeaconAttachment
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
+* @property {string} creationTimeMs The UTC time when this attachment was created, in milliseconds since the
+UNIX epoch.
 * @property {string} attachmentName Resource name of this attachment. Attachment names have the format:
 &lt;code&gt;beacons/&lt;var&gt;beacon_id&lt;/var&gt;/attachments/&lt;var&gt;attachment_id&lt;/var&gt;&lt;/code&gt;.
 Leave this empty on creation.
@@ -903,13 +790,17 @@ Required.
 [base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
 requests, and will be so encoded (with padding) in responses.
 Required.
-* @property {string} creationTimeMs The UTC time when this attachment was created, in milliseconds since the
-UNIX epoch.
 */
 /**
  * @typedef EphemeralIdRegistration
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
+* @property {integer} rotationPeriodExponent Indicates the nominal period between each rotation of the beacon&#39;s
+ephemeral ID. &quot;Nominal&quot; because the beacon should randomize the
+actual interval. See [the spec at github](https://github.com/google/eddystone/tree/master/eddystone-eid)
+for details. This value corresponds to a power-of-two scaler on the
+beacon&#39;s clock: when the scaler value is K, the beacon will begin
+broadcasting a new ephemeral ID on average every 2^K seconds.
 * @property {string} serviceEcdhPublicKey The service&#39;s public key used for the Elliptic curve Diffie-Hellman
 key exchange. When this field is populated, `beacon_ecdh_public_key`
 must also be populated, and `beacon_identity_key` must not be.
@@ -929,12 +820,6 @@ value is not provided, the default is zero.
 * @property {string} beaconEcdhPublicKey The beacon&#39;s public key used for the Elliptic curve Diffie-Hellman
 key exchange. When this field is populated, `service_ecdh_public_key`
 must also be populated, and `beacon_identity_key` must not be.
-* @property {integer} rotationPeriodExponent Indicates the nominal period between each rotation of the beacon&#39;s
-ephemeral ID. &quot;Nominal&quot; because the beacon should randomize the
-actual interval. See [the spec at github](https://github.com/google/eddystone/tree/master/eddystone-eid)
-for details. This value corresponds to a power-of-two scaler on the
-beacon&#39;s clock: when the scaler value is K, the beacon will begin
-broadcasting a new ephemeral ID on average every 2^K seconds.
 */
 /**
  * @typedef LatLng
@@ -959,15 +844,6 @@ broadcasting a new ephemeral ID on average every 2^K seconds.
 via `beaconinfo.getforobserved`.
 */
 /**
- * @typedef AttachmentInfo
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
-interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;, for
-example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
-* @property {string} data An opaque data container for client-provided data.
-*/
-/**
  * @typedef BeaconInfo
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
@@ -975,5 +851,129 @@ example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
 * @property {proximitybeacon(v1beta1).AttachmentInfo[]} attachments Attachments matching the type(s) requested.
 May be empty if no attachment types were requested.
 * @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The ID advertised by the beacon.
+*/
+/**
+ * @typedef AttachmentInfo
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string} data An opaque data container for client-provided data.
+* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
+interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;, for
+example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
+*/
+/**
+ * @typedef EphemeralIdRegistrationParams
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {integer} maxRotationPeriodExponent Indicates the maximum rotation period supported by the service.
+See EddystoneEidRegistration.rotation_period_exponent
+* @property {integer} minRotationPeriodExponent Indicates the minimum rotation period supported by the service.
+See EddystoneEidRegistration.rotation_period_exponent
+* @property {string} serviceEcdhPublicKey The beacon service&#39;s public key for use by a beacon to derive its
+Identity Key using Elliptic Curve Diffie-Hellman key exchange.
+*/
+/**
+ * @typedef DeleteAttachmentsResponse
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+ * @property {integer} numDeleted The number of attachments that were deleted.
+ */
+/**
+ * @typedef Observation
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The ID advertised by the beacon the client has encountered.
+
+If the submitted `advertised_id` type is Eddystone-EID, then the client
+must be authorized to resolve the given beacon. Otherwise no data will be
+returned for that beacon.
+Required.
+* @property {string} telemetry The array of telemetry bytes received from the beacon. The server is
+responsible for parsing it. This field may frequently be empty, as
+with a beacon that transmits telemetry only occasionally.
+* @property {string} timestampMs Time when the beacon was observed.
+*/
+/**
+ * @typedef ListDiagnosticsResponse
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {proximitybeacon(v1beta1).Diagnostics[]} diagnostics The diagnostics matching the given request.
+* @property {string} nextPageToken Token that can be used for pagination. Returned only if the
+request matches more beacons than can be returned in this response.
+*/
+/**
+ * @typedef GetInfoForObservedBeaconsResponse
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {proximitybeacon(v1beta1).BeaconInfo[]} beacons Public information about beacons.
+May be empty if the request matched no beacons.
+*/
+/**
+ * @typedef Beacon
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string} status Current status of the beacon.
+Required.
+* @property {proximitybeacon(v1beta1).IndoorLevel} indoorLevel The indoor level information for this beacon, if known. As returned by the
+Google Maps API.
+Optional.
+* @property {string} beaconName Resource name of this beacon. A beacon name has the format
+&quot;beacons/N!beaconId&quot; where the beaconId is the base16 ID broadcast by
+the beacon and N is a code for the beacon&#39;s type. Possible values are
+`3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.
+
+This field must be left empty when registering. After reading a beacon,
+clients can use the name for future operations.
+* @property {string} expectedStability Expected location stability. This is set when the beacon is registered or
+updated, not automatically detected in any way.
+Optional.
+* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The identifier of a beacon as advertised by it. This field must be
+populated when registering. It may be empty when updating a beacon
+record because it is ignored in updates.
+
+When registering a beacon that broadcasts Eddystone-EID, this field
+should contain a &quot;stable&quot; Eddystone-UID that identifies the beacon and
+links it to its attachments. The stable Eddystone-UID is only used for
+administering the beacon.
+* @property {string} provisioningKey Some beacons may require a user to provide an authorization key before
+changing any of its configuration (e.g. broadcast frames, transmit power).
+This field provides a place to store and control access to that key.
+This field is populated in responses to `GET /v1beta1/beacons/3!beaconId`
+from users with write access to the given beacon. That is to say: If the
+user is authorized to write the beacon&#39;s confidential data in the service,
+the service considers them authorized to configure the beacon. Note
+that this key grants nothing on the service, only on the beacon itself.
+* @property {proximitybeacon(v1beta1).EphemeralIdRegistration} ephemeralIdRegistration Write-only registration parameters for beacons using Eddystone-EID
+(remotely resolved ephemeral ID) format. This information will not be
+populated in API responses. When submitting this data, the `advertised_id`
+field must contain an ID of type Eddystone-UID. Any other ID type will
+result in an error.
+* @property {proximitybeacon(v1beta1).LatLng} latLng The location of the beacon, expressed as a latitude and longitude pair.
+This location is given when the beacon is registered or updated. It does
+not necessarily indicate the actual current location of the beacon.
+Optional.
+* @property {string} placeId The [Google Places API](/places/place-id) Place ID of the place where
+the beacon is deployed. This is given when the beacon is registered or
+updated, not automatically detected in any way.
+Optional.
+* @property {string} description Free text used to identify and describe the beacon. Maximum length 140
+characters.
+Optional.
+* @property {object} properties Properties of the beacon device, for example battery type or firmware
+version.
+Optional.
+*/
+/**
+ * @typedef AdvertisedId
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string} type Specifies the identifier type.
+Required.
+* @property {string} id The actual beacon identifier, as broadcast by the beacon hardware. Must be
+[base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
+requests, and will be so encoded (with padding) in responses. The base64
+encoding should be of the binary byte-stream and not any textual (such as
+hex) representation thereof.
+Required.
 */
 export = Proximitybeacon;

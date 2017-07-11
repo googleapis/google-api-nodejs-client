@@ -40,6 +40,44 @@ function Cloudresourcemanager(options) { // eslint-disable-line
   self.folders = {
 
     /**
+     * cloudresourcemanager.folders.move
+     *
+     * @desc Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the [CreateFolder] documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
+     *
+     * @alias cloudresourcemanager.folders.move
+     * @memberOf! cloudresourcemanager(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     * @param {cloudresourcemanager(v2beta1).MoveFolderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    move: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v2beta1/{name}:move').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * cloudresourcemanager.folders.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified Folder. The `resource` field should be the Folder's resource name, e.g. "folders/1234".  There are no permissions required for making this API call.
@@ -123,10 +161,10 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v2beta1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.parent The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      * @param {boolean=} params.showDeleted Controls whether Folders in the [DELETE_REQUESTED} state should be returned.
      * @param {string=} params.pageToken A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from. This field is optional.
      * @param {integer=} params.pageSize The maximum number of Folders to return in the response. This field is optional.
-     * @param {string=} params.parent The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -144,6 +182,44 @@ function Cloudresourcemanager(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.folders.create
+     *
+     * @desc Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder.  In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folder's that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 4. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 8; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 100.  If the operation fails due to a folder constraint violation, a PreconditionFailure explaining the violation will be returned. If the failure occurs synchronously then the PreconditionFailure will be returned via the Status.details field and if it occurs asynchronously then the PreconditionFailure will be returned via the the Operation.error field.  The caller must have `resourcemanager.folders.create` permission on the identified parent.
+     *
+     * @alias cloudresourcemanager.folders.create
+     * @memberOf! cloudresourcemanager(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.parent The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param {cloudresourcemanager(v2beta1).Folder} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: [],
@@ -186,44 +262,6 @@ function Cloudresourcemanager(options) { // eslint-disable-line
         params: params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.folders.create
-     *
-     * @desc Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder.  In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folder's that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 4. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 8; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 100.  If the operation fails due to a folder constraint violation, a PreconditionFailure explaining the violation will be returned. If the failure occurs synchronously then the PreconditionFailure will be returned via the Status.details field and if it occurs asynchronously then the PreconditionFailure will be returned via the the Operation.error field.  The caller must have `resourcemanager.folders.create` permission on the identified parent.
-     *
-     * @alias cloudresourcemanager.folders.create
-     * @memberOf! cloudresourcemanager(v2beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
-     * @param {cloudresourcemanager(v2beta1).Folder} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
         context: self
       };
 
@@ -417,49 +455,37 @@ function Cloudresourcemanager(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.folders.move
-     *
-     * @desc Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the [CreateFolder] documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
-     *
-     * @alias cloudresourcemanager.folders.move
-     * @memberOf! cloudresourcemanager(v2beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to move. Must be of the form folders/{folder_id}
-     * @param {cloudresourcemanager(v2beta1).MoveFolderRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    move: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v2beta1/{name}:move').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
+allowed.
+*/
+/**
+ * @typedef GetIamPolicyRequest
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+ */
+/**
+ * @typedef UndeleteFolderRequest
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
+permission.
+Follows the same format of Binding.members.
+* @property {string} logType The log type that this config enables.
+*/
 /**
  * @typedef TestIamPermissionsRequest
  * @memberOf! cloudresourcemanager(v2beta1)
@@ -470,11 +496,24 @@ information see
 [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
 */
 /**
- * @typedef FolderOperationError
+ * @typedef Policy
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
- * @property {string} errorMessageId The type of operation error experienced.
- */
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {cloudresourcemanager(v2beta1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+* @property {cloudresourcemanager(v2beta1).Binding[]} bindings Associates a list of `members` to a `role`.
+`bindings` with no members will result in an error.
+*/
 /**
  * @typedef FolderOperation
  * @memberOf! cloudresourcemanager(v2beta1)
@@ -487,33 +526,25 @@ Only applicable when the operation_type is MOVE.
 the folder under or moving the folder to.
 */
 /**
- * @typedef Policy
+ * @typedef FolderOperationError
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
-* @property {cloudresourcemanager(v2beta1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
-* @property {cloudresourcemanager(v2beta1).Binding[]} bindings Associates a list of `members` to a `role`.
-`bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-* @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {string} errorMessageId The type of operation error experienced.
+ */
+/**
+ * @typedef AuditConfig
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
+`allServices` is a special value that covers all services.
+* @property {cloudresourcemanager(v2beta1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
 */
 /**
  * @typedef Operation
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
-* @property {cloudresourcemanager(v2beta1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -528,16 +559,11 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
-*/
-/**
- * @typedef AuditConfig
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
-`allServices` is a special value that covers all services.
-* @property {cloudresourcemanager(v2beta1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
+* @property {cloudresourcemanager(v2beta1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
 */
 /**
  * @typedef ListFoldersResponse
@@ -558,28 +584,28 @@ the folder under.
 Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
 */
 /**
+ * @typedef SearchFoldersResponse
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+* @property {cloudresourcemanager(v2beta1).Folder[]} folders A possibly paginated folder search results.
+the specified parent resource.
+* @property {string} nextPageToken A pagination token returned from a previous call to `SearchFolders`
+that indicates from where searching should continue.
+This field is optional.
+*/
+/**
  * @typedef SetIamPolicyRequest
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
-* @property {cloudresourcemanager(v2beta1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
 the fields in the mask will be modified. If no mask is provided, the
 following default mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
-*/
-/**
- * @typedef SearchFoldersResponse
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
-* @property {string} nextPageToken A pagination token returned from a previous call to `SearchFolders`
-that indicates from where searching should continue.
-This field is optional.
-* @property {cloudresourcemanager(v2beta1).Folder[]} folders A possibly paginated folder search results.
-the specified parent resource.
+* @property {cloudresourcemanager(v2beta1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 */
 /**
  * @typedef Status
@@ -628,6 +654,9 @@ Required
  * @typedef SearchFoldersRequest
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
+* @property {string} pageToken A pagination token returned from a previous call to `SearchFolders`
+that indicates from where search should continue.
+This field is optional.
 * @property {integer} pageSize The maximum number of folders to return in the response.
 This field is optional.
 * @property {string} query Search criteria used to select the Folders to return.
@@ -646,15 +675,21 @@ Some example queries are:
 |parent=folders/123|Folders whose parent is &quot;folders/123&quot;.|
 |parent=folders/123 AND lifecycleState=ACTIVE|Active folders whose
 parent is &quot;folders/123&quot;.|
-* @property {string} pageToken A pagination token returned from a previous call to `SearchFolders`
-that indicates from where search should continue.
-This field is optional.
+*/
+/**
+ * @typedef ProjectCreationStatus
+ * @memberOf! cloudresourcemanager(v2beta1)
+ * @type object
+* @property {boolean} ready True if the project creation process is complete.
+* @property {boolean} gettable True if the project can be retrieved using GetProject. No other operations
+on the project are guaranteed to work until the project creation is
+complete.
+* @property {string} createTime Creation time of the project creation workflow.
 */
 /**
  * @typedef Folder
  * @memberOf! cloudresourcemanager(v2beta1)
  * @type object
-* @property {string} createTime Output only. Timestamp when the Folder was created. Assigned by the server.
 * @property {string} lifecycleState Output only.  The lifecycle state of the folder.
 Updates to the lifecycle_state must be performed via
 [DeleteFolder] and [UndeleteFolder].
@@ -669,41 +704,6 @@ than 30 characters. This is captured by the regular expression:
 [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
 * @property {string} parent The Folder’s parent&#39;s resource name.
 Updates to the folder&#39;s parent must be performed via [MoveFolders].
-*/
-/**
- * @typedef ProjectCreationStatus
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
-* @property {boolean} gettable True if the project can be retrieved using GetProject. No other operations
-on the project are guaranteed to work until the project creation is
-complete.
-* @property {string} createTime Creation time of the project creation workflow.
-* @property {boolean} ready True if the project creation process is complete.
-*/
-/**
- * @typedef TestIamPermissionsResponse
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
-* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
-allowed.
-*/
-/**
- * @typedef GetIamPolicyRequest
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
- */
-/**
- * @typedef UndeleteFolderRequest
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
- */
-/**
- * @typedef AuditLogConfig
- * @memberOf! cloudresourcemanager(v2beta1)
- * @type object
-* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
-permission.
-Follows the same format of Binding.members.
-* @property {string} logType The log type that this config enables.
+* @property {string} createTime Output only. Timestamp when the Folder was created. Assigned by the server.
 */
 export = Cloudresourcemanager;
