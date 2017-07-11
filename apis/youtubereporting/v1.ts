@@ -81,44 +81,6 @@ function Youtubereporting(options) { // eslint-disable-line
   self.jobs = {
 
     /**
-     * youtubereporting.jobs.delete
-     *
-     * @desc Deletes a job.
-     *
-     * @alias youtubereporting.jobs.delete
-     * @memberOf! youtubereporting(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId The ID of the job to delete.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://youtubereporting.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['jobId'],
-        pathParams: ['jobId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * youtubereporting.jobs.get
      *
      * @desc Gets a job.
@@ -165,10 +127,10 @@ function Youtubereporting(options) { // eslint-disable-line
      * @memberOf! youtubereporting(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
      * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -234,6 +196,44 @@ function Youtubereporting(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
+    /**
+     * youtubereporting.jobs.delete
+     *
+     * @desc Deletes a job.
+     *
+     * @alias youtubereporting.jobs.delete
+     * @memberOf! youtubereporting(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The ID of the job to delete.
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://youtubereporting.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['jobId'],
+        pathParams: ['jobId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
     reports: {
 
       /**
@@ -245,9 +245,9 @@ function Youtubereporting(options) { // eslint-disable-line
        * @memberOf! youtubereporting(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.reportId The ID of the report to retrieve.
        * @param {string} params.jobId The ID of the job.
        * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+       * @param {string} params.reportId The ID of the report to retrieve.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -268,7 +268,7 @@ function Youtubereporting(options) { // eslint-disable-line
           }, options),
           params: params,
           requiredParams: ['jobId', 'reportId'],
-          pathParams: ['reportId', 'jobId'],
+          pathParams: ['jobId', 'reportId'],
           context: self
         };
 
@@ -284,13 +284,13 @@ function Youtubereporting(options) { // eslint-disable-line
        * @memberOf! youtubereporting(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
        * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
        * @param {string} params.jobId The ID of the job.
        * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
        * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
        * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
        * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -421,15 +421,15 @@ page of results.
  * @typedef Job
  * @memberOf! youtubereporting(v1)
  * @type object
-* @property {string} createTime The creation date/time of the job.
-* @property {string} reportTypeId The type of reports this job creates. Corresponds to the ID of a
-ReportType.
-* @property {string} expireTime The date/time when this job will expire/expired. After a job expired, no
-new reports are generated.
-* @property {string} name The name of the job (max. 100 characters).
 * @property {boolean} systemManaged True if this a system-managed job that cannot be modified by the user;
 otherwise false.
 * @property {string} id The server-generated ID of the job (max. 40 characters).
+* @property {string} createTime The creation date/time of the job.
+* @property {string} expireTime The date/time when this job will expire/expired. After a job expired, no
+new reports are generated.
+* @property {string} reportTypeId The type of reports this job creates. Corresponds to the ID of a
+ReportType.
+* @property {string} name The name of the job (max. 100 characters).
 */
 /**
  * @typedef ListReportsResponse

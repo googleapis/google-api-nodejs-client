@@ -37,46 +37,6 @@ function Adexperiencereport(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.violatingSites = {
-
-    /**
-     * adexperiencereport.violatingSites.list
-     *
-     * @desc Lists sites with Ad Experience Report statuses of "Failing" or "Warning".
-     *
-     * @alias adexperiencereport.violatingSites.list
-     * @memberOf! adexperiencereport(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://adexperiencereport.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.sites = {
 
     /**
@@ -117,6 +77,46 @@ function Adexperiencereport(options) { // eslint-disable-line
     }
 
   };
+
+  self.violatingSites = {
+
+    /**
+     * adexperiencereport.violatingSites.list
+     *
+     * @desc Lists sites with Ad Experience Report statuses of "Failing" or "Warning".
+     *
+     * @alias adexperiencereport.violatingSites.list
+     * @memberOf! adexperiencereport(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://adexperiencereport.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**
@@ -143,7 +143,7 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @property {string} lastChangeTime The last time that the site changed status.
  * @property {string} egregiousStatus The status of the site reviewed for egregious ads.
  * @property {string} betterAdsStatus The status of the site reviewed for the Better Ads Standards.
- * @property {string[]} region The assigned regions for the site and platform.
  * @property {string} enforcementTime The date on which ad filtering begins.
+ * @property {string[]} region The assigned regions for the site and platform.
  */
 export = Adexperiencereport;

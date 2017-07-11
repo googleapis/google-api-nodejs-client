@@ -38,127 +38,7 @@ function Translate(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.translations = {
-
-    /**
-     * language.translations.translate
-     *
-     * @desc Translates input text, returning translated text.
-     *
-     * @alias language.translations.translate
-     * @memberOf! translate(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {translate(v2).TranslateTextRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    translate: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/language/translate/v2').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * language.translations.list
-     *
-     * @desc Translates input text, returning translated text.
-     *
-     * @alias language.translations.list
-     * @memberOf! translate(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.q The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
-     * @param {string=} params.source The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
-     * @param {string=} params.cid The customization id for translate
-     * @param {string} params.target The language to use for translation of the input text, set to one of the language codes listed in Language Support.
-     * @param {string=} params.format The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
-     * @param {string=} params.model The `model` type requested for this translation. Valid values are listed in public documentation.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/language/translate/v2').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['q', 'target'],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.detections = {
-
-    /**
-     * language.detections.list
-     *
-     * @desc Detects the language of text within a request.
-     *
-     * @alias language.detections.list
-     * @memberOf! translate(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.q The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/language/translate/v2/detect').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['q'],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * language.detections.detect
@@ -190,6 +70,43 @@ function Translate(options) { // eslint-disable-line
         }, options),
         params: params,
         requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * language.detections.list
+     *
+     * @desc Detects the language of text within a request.
+     *
+     * @alias language.detections.list
+     * @memberOf! translate(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.q The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/language/translate/v2/detect').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['q'],
         pathParams: [],
         context: self
       };
@@ -240,16 +157,106 @@ function Translate(options) { // eslint-disable-line
     }
 
   };
+
+  self.translations = {
+
+    /**
+     * language.translations.translate
+     *
+     * @desc Translates input text, returning translated text.
+     *
+     * @alias language.translations.translate
+     * @memberOf! translate(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {translate(v2).TranslateTextRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    translate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/language/translate/v2').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * language.translations.list
+     *
+     * @desc Translates input text, returning translated text.
+     *
+     * @alias language.translations.list
+     * @memberOf! translate(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.target The language to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * @param {string=} params.format The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
+     * @param {string=} params.model The `model` type requested for this translation. Valid values are listed in public documentation.
+     * @param {string} params.q The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
+     * @param {string=} params.source The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
+     * @param {string=} params.cid The customization id for translate
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/language/translate/v2').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['q', 'target'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
+/**
+ * @typedef DetectLanguageRequest
+ * @memberOf! translate(v2)
+ * @type object
+* @property {string[]} q The input text upon which to perform language detection. Repeat this
+parameter to perform language detection on multiple text inputs.
+*/
 /**
  * @typedef LanguagesResource
  * @memberOf! translate(v2)
  * @type object
+* @property {string} name Human readable name of the language localized to the target language.
 * @property {string} language Supported language code, generally consisting of its ISO 639-1
 identifier. (E.g. &#39;en&#39;, &#39;ja&#39;). In certain cases, BCP-47 codes including
 language + region identifiers are returned (e.g. &#39;zh-TW&#39; and &#39;zh-CH&#39;)
-* @property {string} name Human readable name of the language localized to the target language.
 */
 /**
  * @typedef DetectionsListResponse
@@ -279,14 +286,14 @@ languages.
  * @typedef TranslationsResource
  * @memberOf! translate(v2)
  * @type object
-* @property {string} detectedSourceLanguage The source language of the initial request, detected automatically, if
-no source language was passed within the initial request. If the
-source language was passed, auto-detection of the language will not
-occur and this field will be empty.
 * @property {string} model The `model` type used for this translation. Valid values are
 listed in public documentation. Can be different from requested `model`.
 Present only if specific model type was explicitly requested.
 * @property {string} translatedText Text translated into the target language.
+* @property {string} detectedSourceLanguage The source language of the initial request, detected automatically, if
+no source language was passed within the initial request. If the
+source language was passed, auto-detection of the language will not
+occur and this field will be empty.
 */
 /**
  * @typedef TranslationsListResponse
@@ -300,22 +307,15 @@ Present only if specific model type was explicitly requested.
  * @type object
 * @property {string} target The language to use for translation of the input text, set to one of the
 language codes listed in Language Support.
-* @property {string[]} q The input text to translate. Repeat this parameter to perform translation
-operations on multiple text inputs.
 * @property {string} format The format of the source text, in either HTML (default) or plain-text. A
 value of &quot;html&quot; indicates HTML and a value of &quot;text&quot; indicates plain-text.
+* @property {string[]} q The input text to translate. Repeat this parameter to perform translation
+operations on multiple text inputs.
 * @property {string} source The language of the source text, set to one of the language codes listed in
 Language Support. If the source language is not specified, the API will
 attempt to identify the source language automatically and return it within
 the response.
 * @property {string} model The `model` type requested for this translation. Valid values are
 listed in public documentation.
-*/
-/**
- * @typedef DetectLanguageRequest
- * @memberOf! translate(v2)
- * @type object
-* @property {string[]} q The input text upon which to perform language detection. Repeat this
-parameter to perform language detection on multiple text inputs.
 */
 export = Translate;

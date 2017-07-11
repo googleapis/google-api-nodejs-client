@@ -37,12 +37,12 @@ function Genomics(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.operations = {
+  self.pipelines = {
 
     /**
-     * genomics.operations.cancel
+     * genomics.pipelines.create
      *
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation.
+     * @desc Creates a pipeline that can be run later. Create takes a Pipeline that has all fields other than `pipelineId` populated, and then returns the same pipeline with `pipelineId` populated. This id can be used to run the pipeline.  Caller must have WRITE permission to the project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -64,9 +64,6 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the operation resource to be cancelled.
-     *     name: '',  // TODO: Update placeholder value.
-     *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
@@ -74,93 +71,7 @@ function Genomics(options) { // eslint-disable-line
      *     auth: authClient
      *   };
      *
-     *   genomics.operations.cancel(request, function(err) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias genomics.operations.cancel
-     * @memberOf! genomics(v1alpha2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {genomics(v1alpha2).CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1alpha2/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * genomics.operations.get
-     *
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Genomics API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var genomics = google.genomics('v1alpha2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource.
-     *     name: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   genomics.operations.get(request, function(err, response) {
+     *   genomics.pipelines.create(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
      *       return;
@@ -185,16 +96,16 @@ function Genomics(options) { // eslint-disable-line
      *   });
      * }
      *
-     * @alias genomics.operations.get
+     * @alias genomics.pipelines.create
      * @memberOf! genomics(v1alpha2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
+     * @param {genomics(v1alpha2).Pipeline} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    create: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -205,125 +116,17 @@ function Genomics(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1alpha2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
+          url: (rootUrl + '/v1alpha2/pipelines').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
         }, options),
         params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
       return createAPIRequest(parameters, callback);
     },
-
-    /**
-     * genomics.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Genomics API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var genomics = google.genomics('v1alpha2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation collection.
-     *     name: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     var operationsPage = response['operations'];
-     *     if (!operationsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `operationsPage`:
-     *       console.log(JSON.stringify(operationsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       genomics.operations.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   genomics.operations.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias genomics.operations.list
-     * @memberOf! genomics(v1alpha2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1alpha2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.pipelines = {
 
     /**
      * genomics.pipelines.run
@@ -591,92 +394,6 @@ function Genomics(options) { // eslint-disable-line
     },
 
     /**
-     * genomics.pipelines.delete
-     *
-     * @desc Deletes a pipeline based on ID.  Caller must have WRITE permission to the project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Genomics API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/genomics
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var genomics = google.genomics('v1alpha2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Caller must have WRITE access to the project in which this pipeline
-     *     // is defined.
-     *     pipelineId: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   genomics.pipelines.delete(request, function(err) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias genomics.pipelines.delete
-     * @memberOf! genomics(v1alpha2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.pipelineId Caller must have WRITE access to the project in which this pipeline is defined.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['pipelineId'],
-        pathParams: ['pipelineId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * genomics.pipelines.getControllerConfig
      *
      * @desc Gets controller configuration information. Should only be called by VMs created by the Pipelines Service and not by end users.
@@ -756,6 +473,92 @@ function Genomics(options) { // eslint-disable-line
         params: params,
         requiredParams: [],
         pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.pipelines.delete
+     *
+     * @desc Deletes a pipeline based on ID.  Caller must have WRITE permission to the project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var genomics = google.genomics('v1alpha2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Caller must have WRITE access to the project in which this pipeline
+     *     // is defined.
+     *     pipelineId: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   genomics.pipelines.delete(request, function(err) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias genomics.pipelines.delete
+     * @memberOf! genomics(v1alpha2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.pipelineId Caller must have WRITE access to the project in which this pipeline is defined.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['pipelineId'],
+        pathParams: ['pipelineId'],
         context: self
       };
 
@@ -861,12 +664,16 @@ function Genomics(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
+    }
+
+  };
+
+  self.operations = {
 
     /**
-     * genomics.pipelines.create
+     * genomics.operations.get
      *
-     * @desc Creates a pipeline that can be run later. Create takes a Pipeline that has all fields other than `pipelineId` populated, and then returns the same pipeline with `pipelineId` populated. This id can be used to run the pipeline.  Caller must have WRITE permission to the project.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
      * @example
      * // BEFORE RUNNING:
@@ -888,14 +695,13 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
+     *     // The name of the operation resource.
+     *     name: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
      *
-     *   genomics.pipelines.create(request, function(err, response) {
+     *   genomics.operations.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
      *       return;
@@ -920,16 +726,16 @@ function Genomics(options) { // eslint-disable-line
      *   });
      * }
      *
-     * @alias genomics.pipelines.create
+     * @alias genomics.operations.get
      * @memberOf! genomics(v1alpha2)
      *
      * @param {object} params Parameters for request
-     * @param {genomics(v1alpha2).Pipeline} params.resource Request body data
+     * @param {string} params.name The name of the operation resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -940,12 +746,206 @@ function Genomics(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1alpha2/pipelines').replace(/([^:]\/)\/+/g, '$1'),
+          url: (rootUrl + '/v1alpha2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var genomics = google.genomics('v1alpha2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation collection.
+     *     name: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       genomics.operations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   genomics.operations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias genomics.operations.list
+     * @memberOf! genomics(v1alpha2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1alpha2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * genomics.operations.cancel
+     *
+     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Genomics API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/genomics
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var genomics = google.genomics('v1alpha2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource to be cancelled.
+     *     name: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   genomics.operations.cancel(request, function(err) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias genomics.operations.cancel
+     * @memberOf! genomics(v1alpha2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {genomics(v1alpha2).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1alpha2/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: self
       };
 
@@ -956,11 +956,53 @@ function Genomics(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef SetOperationStatusRequest
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+ * @property {string} operationId 
+ * @property {string} validationToken 
+ * @property {string} errorMessage 
+ * @property {string} errorCode 
+ * @property {genomics(v1alpha2).TimestampEvent[]} timestampEvents 
+ */
+/**
+ * @typedef ComputeEngine
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+ * @property {string} zone The availability zone in which the instance resides.
+ * @property {string[]} diskNames The names of the disks that were created for this pipeline.
+ * @property {string} machineType The machine type of the instance.
+ * @property {string} instanceName The instance on which the operation is running.
+ */
+/**
+ * @typedef ImportVariantsResponse
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+ * @property {string[]} callSetIds IDs of the call sets created during the import.
+ */
+/**
+ * @typedef TimestampEvent
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+ * @property {string} description String indicating the type of event
+ * @property {string} timestamp The time this event occured.
+ */
+/**
+ * @typedef LocalCopy
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+* @property {string} path Required. The path within the user&#39;s docker container where
+this input should be localized to and from, relative to the specified
+disk&#39;s mount point. For example: file.txt,
+* @property {string} disk Required. The name of the disk where this parameter is
+located. Can be the name of one of the disks specified in the
+Resources field, or &quot;boot&quot;, which represents the Docker
+instance&#39;s boot disk and has a mount point of `/`.
+*/
+/**
  * @typedef DockerExecutor
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {string} imageName Required. Image name from either Docker Hub or Google Container Registry.
-Users that run pipelines must have READ access to the image.
 * @property {string} cmd Required. The command or newline delimited script to run. The command
 string will be executed within a bash shell.
 
@@ -969,15 +1011,13 @@ de-localization will be skipped and the pipeline operation&#39;s
 `error` field will be populated.
 
 Maximum command string length is 16384.
+* @property {string} imageName Required. Image name from either Docker Hub or Google Container Registry.
+Users that run pipelines must have READ access to the image.
 */
 /**
  * @typedef Disk
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {boolean} autoDelete Deprecated. Disks created by the Pipelines API will be deleted at the end
-of the pipeline run, regardless of what this field is set to.
-* @property {integer} sizeGb The size of the disk. Defaults to 500 (GB).
-This field is not applicable for local SSD.
 * @property {string} mountPoint Required at create time and cannot be overridden at run time.
 Specifies the path in the docker container where files on
 this disk should be located. For example, if `mountPoint`
@@ -997,6 +1037,10 @@ for more details.
 parameters. Must be 1 - 63 characters.
 The name &quot;boot&quot; is reserved for system use.
 * @property {string} type Required. The type of the disk to create.
+* @property {boolean} autoDelete Deprecated. Disks created by the Pipelines API will be deleted at the end
+of the pipeline run, regardless of what this field is set to.
+* @property {integer} sizeGb The size of the disk. Defaults to 500 (GB).
+This field is not applicable for local SSD.
 */
 /**
  * @typedef Empty
@@ -1007,9 +1051,6 @@ The name &quot;boot&quot; is reserved for system use.
  * @typedef PipelineParameter
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {string} defaultValue The default value for this parameter. Can be overridden at runtime.
-If `localCopy` is present, then this must be a Google Cloud Storage path
-beginning with `gs://`.
 * @property {string} name Required. Name of the parameter - the pipeline runner uses this string
 as the key to the input and output maps in RunPipeline.
 * @property {string} description Human-readable description.
@@ -1017,6 +1058,9 @@ as the key to the input and output maps in RunPipeline.
 `LocalCopy` indicates where on the VM the file should be. The value
 given to this parameter (either at runtime or using `defaultValue`)
 must be the remote path where the file should be.
+* @property {string} defaultValue The default value for this parameter. Can be overridden at runtime.
+If `localCopy` is present, then this must be a Google Cloud Storage path
+beginning with `gs://`.
 */
 /**
  * @typedef LoggingOptions
@@ -1035,9 +1079,9 @@ generated and output as `-stdout.log` and `-stderr.log`.
  * @typedef RunPipelineRequest
  * @memberOf! genomics(v1alpha2)
  * @type object
- * @property {genomics(v1alpha2).RunPipelineArgs} pipelineArgs The arguments to use when running this pipeline.
  * @property {string} pipelineId The already created pipeline to run.
  * @property {genomics(v1alpha2).Pipeline} ephemeralPipeline A new pipeline object to run once and then delete.
+ * @property {genomics(v1alpha2).RunPipelineArgs} pipelineArgs The arguments to use when running this pipeline.
  */
 /**
  * @typedef CancelOperationRequest
@@ -1054,13 +1098,13 @@ generated and output as `-stdout.log` and `-stderr.log`.
  * @typedef Operation
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an empty response is returned.
-* @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
 * @property {genomics(v1alpha2).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata An OperationMetadata object. This will always be returned with the Operation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
+* @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an empty response is returned.
+* @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
 */
 /**
  * @typedef ImportReadGroupSetsResponse
@@ -1072,12 +1116,12 @@ available.
  * @typedef Status
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There is a common set of
+message types for APIs to use.
 */
 /**
  * @typedef ServiceAccount
@@ -1098,11 +1142,6 @@ which uses the compute service account associated with the project.
  * @typedef PipelineResources
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
-* @property {boolean} preemptible Whether to use preemptible VMs. Defaults to `false`. In order to use this,
-must be true for both create time and run time. Cannot be true at run time
-if false at create time.
-* @property {number} minimumRamGb The minimum amount of RAM to use. Defaults to 3.75 (GB)
 * @property {string[]} zones List of Google Compute Engine availability zones to which resource
 creation will restricted. If empty, any zone may be chosen.
 * @property {integer} minimumCpuCores The minimum number of cores to use. Defaults to 1.
@@ -1118,11 +1157,19 @@ only load docker images from Google Container Registry and not Docker Hub.
 Before using this, you must
 [configure access to Google services from internal IPs](https://cloud.google.com/compute/docs/configure-private-google-access#configuring_access_to_google_services_from_internal_ips).
 * @property {genomics(v1alpha2).Disk[]} disks Disks to attach.
+* @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
+* @property {number} minimumRamGb The minimum amount of RAM to use. Defaults to 3.75 (GB)
+* @property {boolean} preemptible Whether to use preemptible VMs. Defaults to `false`. In order to use this,
+must be true for both create time and run time. Cannot be true at run time
+if false at create time.
 */
 /**
  * @typedef Pipeline
  * @memberOf! genomics(v1alpha2)
  * @type object
+* @property {genomics(v1alpha2).PipelineParameter[]} outputParameters Output parameters of the pipeline.
+* @property {genomics(v1alpha2).DockerExecutor} docker Specifies the docker run information.
+* @property {string} description User-specified description.
 * @property {genomics(v1alpha2).PipelineParameter[]} inputParameters Input parameters of the pipeline.
 * @property {genomics(v1alpha2).PipelineResources} resources Required. Specifies resource requirements for the pipeline run.
 Required fields:
@@ -1134,16 +1181,13 @@ minimumCpuCores
 minimumRamGb
 * @property {string} name Required. A user specified pipeline name that does not have to be unique.
 This name can be used for filtering Pipelines in ListPipelines.
+* @property {string} projectId Required. The project in which to create the pipeline. The caller must have
+WRITE access.
 * @property {string} pipelineId Unique pipeline id that is generated by the service when CreatePipeline
 is called. Cannot be specified in the Pipeline used in the
 CreatePipelineRequest, and will be populated in the response to
 CreatePipeline and all subsequent Get and List calls. Indicates that the
 service has registered this pipeline.
-* @property {string} projectId Required. The project in which to create the pipeline. The caller must have
-WRITE access.
-* @property {genomics(v1alpha2).PipelineParameter[]} outputParameters Output parameters of the pipeline.
-* @property {genomics(v1alpha2).DockerExecutor} docker Specifies the docker run information.
-* @property {string} description User-specified description.
 */
 /**
  * @typedef OperationEvent
@@ -1158,6 +1202,7 @@ finish time. If an event has a finish time, there must be a start time.
  * @typedef ControllerConfig
  * @memberOf! genomics(v1alpha2)
  * @type object
+ * @property {object} disks 
  * @property {string} machineType 
  * @property {string} cmd 
  * @property {object} vars 
@@ -1165,7 +1210,6 @@ finish time. If an event has a finish time, there must be a start time.
  * @property {string} gcsLogPath 
  * @property {object} gcsSources 
  * @property {object} gcsSinks 
- * @property {object} disks 
  */
 /**
  * @typedef ListOperationsResponse
@@ -1204,18 +1248,8 @@ the operation.
  * @typedef RunPipelineArgs
  * @memberOf! genomics(v1alpha2)
  * @type object
-* @property {string} projectId Required. The project in which to run the pipeline. The caller must have
-WRITER access to all Google Cloud services and resources (e.g. Google
-Compute Engine) will be used.
-* @property {string} clientId This field is deprecated. Use `labels` instead. Client-specified pipeline
-operation identifier.
-* @property {object} inputs Pipeline input arguments; keys are defined in the pipeline documentation.
-All input parameters that do not have default values  must be specified.
-If parameters with defaults are specified here, the defaults will be
-overridden.
-* @property {genomics(v1alpha2).ServiceAccount} serviceAccount The Google Cloud Service Account that will be used to access data and
-services. By default, the compute service account associated with
-`projectId` is used.
+* @property {genomics(v1alpha2).LoggingOptions} logging Required. Logging options. Used by the service to communicate results
+to the user.
 * @property {object} labels Labels to apply to this pipeline run. Labels will also be applied to
 compute resources (VM, disks) created by this pipeline run. When listing
 operations, operations can filtered by labels.
@@ -1227,16 +1261,26 @@ expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
 character must be a lowercase letter, and all following characters must be
 a dash, lowercase letter, or digit, except the last character, which cannot
 be a dash.
-* @property {genomics(v1alpha2).LoggingOptions} logging Required. Logging options. Used by the service to communicate results
-to the user.
-* @property {string} keepVmAliveOnFailureDuration How long to keep the VM up after a failure (for example docker command
-failed, copying input or output files failed, etc). While the VM is up, one
-can ssh into the VM to debug. Default is 0; maximum allowed value is 1 day.
-* @property {genomics(v1alpha2).PipelineResources} resources Specifies resource requirements/overrides for the pipeline run.
 * @property {object} outputs Pipeline output arguments; keys are defined in the pipeline
 documentation.  All output parameters of without default values
 must be specified.  If parameters with defaults are specified
 here, the defaults will be overridden.
+* @property {genomics(v1alpha2).PipelineResources} resources Specifies resource requirements/overrides for the pipeline run.
+* @property {string} keepVmAliveOnFailureDuration How long to keep the VM up after a failure (for example docker command
+failed, copying input or output files failed, etc). While the VM is up, one
+can ssh into the VM to debug. Default is 0; maximum allowed value is 1 day.
+* @property {string} projectId Required. The project in which to run the pipeline. The caller must have
+WRITER access to all Google Cloud services and resources (e.g. Google
+Compute Engine) will be used.
+* @property {string} clientId This field is deprecated. Use `labels` instead. Client-specified pipeline
+operation identifier.
+* @property {genomics(v1alpha2).ServiceAccount} serviceAccount The Google Cloud Service Account that will be used to access data and
+services. By default, the compute service account associated with
+`projectId` is used.
+* @property {object} inputs Pipeline input arguments; keys are defined in the pipeline documentation.
+All input parameters that do not have default values  must be specified.
+If parameters with defaults are specified here, the defaults will be
+overridden.
 */
 /**
  * @typedef ListPipelinesResponse
@@ -1245,48 +1289,4 @@ here, the defaults will be overridden.
  * @property {string} nextPageToken The token to use to get the next page of results.
  * @property {genomics(v1alpha2).Pipeline[]} pipelines The matched pipelines.
  */
-/**
- * @typedef SetOperationStatusRequest
- * @memberOf! genomics(v1alpha2)
- * @type object
- * @property {genomics(v1alpha2).TimestampEvent[]} timestampEvents 
- * @property {string} operationId 
- * @property {string} validationToken 
- * @property {string} errorMessage 
- * @property {string} errorCode 
- */
-/**
- * @typedef ImportVariantsResponse
- * @memberOf! genomics(v1alpha2)
- * @type object
- * @property {string[]} callSetIds IDs of the call sets created during the import.
- */
-/**
- * @typedef ComputeEngine
- * @memberOf! genomics(v1alpha2)
- * @type object
- * @property {string[]} diskNames The names of the disks that were created for this pipeline.
- * @property {string} machineType The machine type of the instance.
- * @property {string} instanceName The instance on which the operation is running.
- * @property {string} zone The availability zone in which the instance resides.
- */
-/**
- * @typedef TimestampEvent
- * @memberOf! genomics(v1alpha2)
- * @type object
- * @property {string} description String indicating the type of event
- * @property {string} timestamp The time this event occured.
- */
-/**
- * @typedef LocalCopy
- * @memberOf! genomics(v1alpha2)
- * @type object
-* @property {string} disk Required. The name of the disk where this parameter is
-located. Can be the name of one of the disks specified in the
-Resources field, or &quot;boot&quot;, which represents the Docker
-instance&#39;s boot disk and has a mount point of `/`.
-* @property {string} path Required. The path within the user&#39;s docker container where
-this input should be localized to and from, relative to the specified
-disk&#39;s mount point. For example: file.txt,
-*/
 export = Genomics;

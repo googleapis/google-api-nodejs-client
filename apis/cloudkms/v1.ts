@@ -87,10 +87,10 @@ function Cloudkms(options) { // eslint-disable-line
        * @memberOf! cloudkms(v1)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize The standard list page size.
        * @param {string=} params.filter The standard list filter.
        * @param {string=} params.pageToken The standard list page token.
        * @param {string} params.name The resource that owns the locations collection, if applicable.
-       * @param {integer=} params.pageSize The standard list page size.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -119,118 +119,6 @@ function Cloudkms(options) { // eslint-disable-line
       },
 
       keyRings: {
-
-        /**
-         * cloudkms.projects.locations.keyRings.getIamPolicy
-         *
-         * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-         *
-         * @alias cloudkms.projects.locations.keyRings.getIamPolicy
-         * @memberOf! cloudkms(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        getIamPolicy: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1/{resource}:getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['resource'],
-            pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * cloudkms.projects.locations.keyRings.get
-         *
-         * @desc Returns metadata for a given KeyRing.
-         *
-         * @alias cloudkms.projects.locations.keyRings.get
-         * @memberOf! cloudkms(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the KeyRing to get.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * cloudkms.projects.locations.keyRings.testIamPermissions
-         *
-         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-         *
-         * @alias cloudkms.projects.locations.keyRings.testIamPermissions
-         * @memberOf! cloudkms(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-         * @param {cloudkms(v1).TestIamPermissionsRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        testIamPermissions: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1/{resource}:testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['resource'],
-            pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * cloudkms.projects.locations.keyRings.list
@@ -348,6 +236,118 @@ function Cloudkms(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         },
 
+        /**
+         * cloudkms.projects.locations.keyRings.getIamPolicy
+         *
+         * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+         *
+         * @alias cloudkms.projects.locations.keyRings.getIamPolicy
+         * @memberOf! cloudkms(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getIamPolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/{resource}:getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudkms.projects.locations.keyRings.get
+         *
+         * @desc Returns metadata for a given KeyRing.
+         *
+         * @alias cloudkms.projects.locations.keyRings.get
+         * @memberOf! cloudkms(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the KeyRing to get.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudkms.projects.locations.keyRings.testIamPermissions
+         *
+         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         *
+         * @alias cloudkms.projects.locations.keyRings.testIamPermissions
+         * @memberOf! cloudkms(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {cloudkms(v1).TestIamPermissionsRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        testIamPermissions: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/{resource}:testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
         cryptoKeys: {
 
           /**
@@ -428,44 +428,6 @@ function Cloudkms(options) { // eslint-disable-line
           },
 
           /**
-           * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-           *
-           * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-           *
-           * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-           * @memberOf! cloudkms(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-           * @param {cloudkms(v1).SetIamPolicyRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          setIamPolicy: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1/{resource}:setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['resource'],
-              pathParams: ['resource'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
            * cloudkms.projects.locations.keyRings.cryptoKeys.create
            *
            * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose is required.
@@ -498,6 +460,44 @@ function Cloudkms(options) { // eslint-disable-line
               params: params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
+           *
+           * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+           *
+           * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
+           * @memberOf! cloudkms(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+           * @param {cloudkms(v1).SetIamPolicyRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          setIamPolicy: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1/{resource}:setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['resource'],
+              pathParams: ['resource'],
               context: self
             };
 
@@ -625,8 +625,8 @@ function Cloudkms(options) { // eslint-disable-line
            * @memberOf! cloudkms(v1)
            *
            * @param {object} params Parameters for request
-           * @param {string=} params.updateMask Required list of fields to be updated in this request.
            * @param {string} params.name Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+           * @param {string=} params.updateMask Required list of fields to be updated in this request.
            * @param {cloudkms(v1).CryptoKey} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
@@ -734,82 +734,6 @@ function Cloudkms(options) { // eslint-disable-line
           cryptoKeyVersions: {
 
             /**
-             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
-             *
-             * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
-             *
-             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
-             * @memberOf! cloudkms(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string=} params.updateMask Required list of fields to be updated in this request.
-             * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
-             * @param {cloudkms(v1).CryptoKeyVersion} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            patch: function (params, options, callback) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options || (options = {});
-
-              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-              const parameters = {
-                options: Object.assign({
-                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'PATCH'
-                }, options),
-                params: params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-
-              return createAPIRequest(parameters, callback);
-            },
-
-            /**
-             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
-             *
-             * @desc Returns metadata for a given CryptoKeyVersion.
-             *
-             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
-             * @memberOf! cloudkms(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.name The name of the CryptoKeyVersion to get.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            get: function (params, options, callback) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options || (options = {});
-
-              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-              const parameters = {
-                options: Object.assign({
-                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                }, options),
-                params: params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-
-              return createAPIRequest(parameters, callback);
-            },
-
-            /**
              * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
              *
              * @desc Lists CryptoKeyVersions.
@@ -838,6 +762,44 @@ function Cloudkms(options) { // eslint-disable-line
                 options: Object.assign({
                   url: (rootUrl + '/v1/{parent}/cryptoKeyVersions').replace(/([^:]\/)\/+/g, '$1'),
                   method: 'GET'
+                }, options),
+                params: params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+
+              return createAPIRequest(parameters, callback);
+            },
+
+            /**
+             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
+             *
+             * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
+             *
+             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
+             * @memberOf! cloudkms(v1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.parent Required. The name of the CryptoKey associated with the CryptoKeyVersions.
+             * @param {cloudkms(v1).CryptoKeyVersion} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            create: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
+              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+              const parameters = {
+                options: Object.assign({
+                  url: (rootUrl + '/v1/{parent}/cryptoKeyVersions').replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
                 }, options),
                 params: params,
                 requiredParams: ['parent'],
@@ -887,44 +849,6 @@ function Cloudkms(options) { // eslint-disable-line
             },
 
             /**
-             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
-             *
-             * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
-             *
-             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
-             * @memberOf! cloudkms(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.parent Required. The name of the CryptoKey associated with the CryptoKeyVersions.
-             * @param {cloudkms(v1).CryptoKeyVersion} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            create: function (params, options, callback) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options || (options = {});
-
-              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
-
-              const parameters = {
-                options: Object.assign({
-                  url: (rootUrl + '/v1/{parent}/cryptoKeyVersions').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                }, options),
-                params: params,
-                requiredParams: ['parent'],
-                pathParams: ['parent'],
-                context: self
-              };
-
-              return createAPIRequest(parameters, callback);
-            },
-
-            /**
              * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
              *
              * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED, state.  Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
@@ -960,6 +884,82 @@ function Cloudkms(options) { // eslint-disable-line
               };
 
               return createAPIRequest(parameters, callback);
+            },
+
+            /**
+             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
+             *
+             * @desc Returns metadata for a given CryptoKeyVersion.
+             *
+             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
+             * @memberOf! cloudkms(v1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.name The name of the CryptoKeyVersion to get.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            get: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
+              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+              const parameters = {
+                options: Object.assign({
+                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                }, options),
+                params: params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+
+              return createAPIRequest(parameters, callback);
+            },
+
+            /**
+             * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
+             *
+             * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
+             *
+             * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
+             * @memberOf! cloudkms(v1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string=} params.updateMask Required list of fields to be updated in this request.
+             * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+             * @param {cloudkms(v1).CryptoKeyVersion} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            patch: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
+              const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+
+              const parameters = {
+                options: Object.assign({
+                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'PATCH'
+                }, options),
+                params: params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+
+              return createAPIRequest(parameters, callback);
             }
           }
         }
@@ -968,188 +968,6 @@ function Cloudkms(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef KeyRing
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} createTime Output only. The time at which this KeyRing was created.
-* @property {string} name Output only. The resource name for the KeyRing in the format
-`projects/x/locations/x/keyRings/x.
-*/
-/**
- * @typedef EncryptResponse
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} ciphertext The encrypted data.
- * @property {string} name The resource name of the CryptoKeyVersion used in encryption.
- */
-/**
- * @typedef ListLocationsResponse
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {cloudkms(v1).Location[]} locations A list of locations that matches the specified filter in the request.
- */
-/**
- * @typedef Policy
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {boolean} iamOwned 
-* @property {cloudkms(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
-* @property {integer} version Version of the `Policy`. The default version is 0.
-* @property {cloudkms(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
-* @property {cloudkms(v1).Binding[]} bindings Associates a list of `members` to a `role`.
-`bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-*/
-/**
- * @typedef UpdateCryptoKeyPrimaryVersionRequest
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} cryptoKeyVersionId The id of the child CryptoKeyVersion to use as primary.
- */
-/**
- * @typedef RestoreCryptoKeyVersionRequest
- * @memberOf! cloudkms(v1)
- * @type object
- */
-/**
- * @typedef DataAccessOptions
- * @memberOf! cloudkms(v1)
- * @type object
- */
-/**
- * @typedef ListKeyRingsResponse
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {cloudkms(v1).KeyRing[]} keyRings The list of KeyRings.
-* @property {string} nextPageToken A token to retrieve next page of results. Pass this value in
-ListKeyRingsRequest.page_token to retrieve the next page of results.
-* @property {integer} totalSize The total number of KeyRings that matched the query.
-*/
-/**
- * @typedef AuditConfig
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
-`allServices` is a special value that covers all services.
-* @property {cloudkms(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-* @property {string[]} exemptedMembers 
-*/
-/**
- * @typedef CryptoKeyVersion
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} createTime Output only. The time at which this CryptoKeyVersion was created.
-* @property {string} state The current state of the CryptoKeyVersion.
-* @property {string} name Output only. The resource name for this CryptoKeyVersion in the format
-`projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
-* @property {string} destroyEventTime Output only. The time this CryptoKeyVersion&#39;s key material was
-destroyed. Only present if state is
-DESTROYED.
-* @property {string} destroyTime Output only. The time this CryptoKeyVersion&#39;s key material is scheduled
-for destruction. Only present if state is
-DESTROY_SCHEDULED.
-*/
-/**
- * @typedef CloudAuditOptions
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} logName The log_name to populate in the Cloud Audit Record.
- */
-/**
- * @typedef Binding
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
-`members` can have the following values:
-
-* `allUsers`: A special identifier that represents anyone who is
-   on the internet; with or without a Google account.
-
-* `allAuthenticatedUsers`: A special identifier that represents anyone
-   who is authenticated with a Google account or a service account.
-
-* `user:{emailid}`: An email address that represents a specific Google
-   account. For example, `alice@gmail.com` or `joe@example.com`.
-
-
-* `serviceAccount:{emailid}`: An email address that represents a service
-   account. For example, `my-other-app@appspot.gserviceaccount.com`.
-
-* `group:{emailid}`: An email address that represents a Google group.
-   For example, `admins@example.com`.
-
-
-* `domain:{domain}`: A Google Apps domain name that represents all the
-   users of that domain. For example, `google.com` or `example.com`.
-
-
-* @property {string} role Role that is assigned to `members`.
-For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-Required
-* @property {cloudkms(v1).Expr} condition The condition that is associated with this binding.
-NOTE: an unsatisfied condition will not allow user access via current
-binding. Different bindings, including their conditions, are examined
-independently.
-This field is GOOGLE_INTERNAL.
-*/
-/**
- * @typedef Expr
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} location An optional string indicating the location of the expression for error
-reporting, e.g. a file name and a position in the file.
-* @property {string} title An optional title for the expression, i.e. a short string describing
-its purpose. This can be used e.g. in UIs which allow to enter the
-expression.
-* @property {string} description An optional description of the expression. This is a longer text which
-describes the expression, e.g. when hovered over it in a UI.
-* @property {string} expression Textual representation of an expression in
-Common Expression Language syntax.
-
-The application context of the containing message determines which
-well-known feature set of CEL is supported.
-*/
-/**
- * @typedef EncryptRequest
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} additionalAuthenticatedData Optional data that, if specified, must also be provided during decryption
-through DecryptRequest.additional_authenticated_data.  Must be no
-larger than 64KiB.
-* @property {string} plaintext Required. The data to encrypt. Must be no larger than 64KiB.
-*/
-/**
- * @typedef ListCryptoKeyVersionsResponse
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {cloudkms(v1).CryptoKeyVersion[]} cryptoKeyVersions The list of CryptoKeyVersions.
-* @property {string} nextPageToken A token to retrieve next page of results. Pass this value in
-ListCryptoKeyVersionsRequest.page_token to retrieve the next page of
-results.
-* @property {integer} totalSize The total number of CryptoKeyVersions that matched the
-query.
-*/
 /**
  * @typedef TestIamPermissionsResponse
  * @memberOf! cloudkms(v1)
@@ -1162,6 +980,25 @@ allowed.
  * @memberOf! cloudkms(v1)
  * @type object
  */
+/**
+ * @typedef Rule
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} description Human-readable description of the rule.
+* @property {cloudkms(v1).Condition[]} conditions Additional restrictions that must be met
+* @property {cloudkms(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
+that match the LOG action.
+* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
+the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
+(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
+and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+* @property {string} action Required
+* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
+if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+The format for in and not_in entries is the same as for members in a
+Binding (see google/iam/v1/policy.proto).
+*/
 /**
  * @typedef CryptoKey
  * @memberOf! cloudkms(v1)
@@ -1192,25 +1029,6 @@ UpdateCryptoKeyPrimaryVersion
 do not affect next_rotation_time.
 */
 /**
- * @typedef Rule
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} description Human-readable description of the rule.
-* @property {cloudkms(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {cloudkms(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-* @property {string} action Required
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-*/
-/**
  * @typedef LogConfig
  * @memberOf! cloudkms(v1)
  * @type object
@@ -1222,15 +1040,15 @@ Binding (see google/iam/v1/policy.proto).
  * @typedef SetIamPolicyRequest
  * @memberOf! cloudkms(v1)
  * @type object
+* @property {cloudkms(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
 the fields in the mask will be modified. If no mask is provided, the
 following default mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
-* @property {cloudkms(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
 */
 /**
  * @typedef DecryptRequest
@@ -1245,14 +1063,14 @@ EncryptResponse.ciphertext.
  * @typedef Location
  * @memberOf! cloudkms(v1)
  * @type object
-* @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
-* @property {object} metadata Service-specific metadata. For example the available capacity at the given
-location.
 * @property {object} labels Cross-service attributes for the location. For example
 
     {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
 * @property {string} name Resource name for the location, which may vary between implementations.
 For example: `&quot;projects/example-project/locations/us-east1&quot;`
+* @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
+* @property {object} metadata Service-specific metadata. For example the available capacity at the given
+location.
 */
 /**
  * @typedef ListCryptoKeysResponse
@@ -1267,13 +1085,13 @@ ListCryptoKeysRequest.page_token to retrieve the next page of results.
  * @typedef Condition
  * @memberOf! cloudkms(v1)
  * @type object
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
 * @property {string} svc Trusted attributes discharged by the service.
 * @property {string} sys Trusted attributes supplied by any service that owns resources and uses
 the IAM system for access control.
 * @property {string} value DEPRECATED. Use &#39;values&#39; instead.
+* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+* @property {string} iam Trusted attributes supplied by the IAM system.
+* @property {string} op An operator to apply the subject with.
 */
 /**
  * @typedef CounterOptions
@@ -1305,5 +1123,187 @@ Follows the same format of Binding.members.
 wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
 information see
 [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+*/
+/**
+ * @typedef KeyRing
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} name Output only. The resource name for the KeyRing in the format
+`projects/x/locations/x/keyRings/x.
+* @property {string} createTime Output only. The time at which this KeyRing was created.
+*/
+/**
+ * @typedef EncryptResponse
+ * @memberOf! cloudkms(v1)
+ * @type object
+ * @property {string} ciphertext The encrypted data.
+ * @property {string} name The resource name of the CryptoKeyVersion used in encryption.
+ */
+/**
+ * @typedef ListLocationsResponse
+ * @memberOf! cloudkms(v1)
+ * @type object
+ * @property {cloudkms(v1).Location[]} locations A list of locations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
+ * @typedef Policy
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {cloudkms(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+* @property {cloudkms(v1).Binding[]} bindings Associates a list of `members` to a `role`.
+`bindings` with no members will result in an error.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {cloudkms(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
+manner:
+- All matching LOG rules are always applied.
+- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
+  granted.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if no rule applies, permission is denied.
+*/
+/**
+ * @typedef UpdateCryptoKeyPrimaryVersionRequest
+ * @memberOf! cloudkms(v1)
+ * @type object
+ * @property {string} cryptoKeyVersionId The id of the child CryptoKeyVersion to use as primary.
+ */
+/**
+ * @typedef RestoreCryptoKeyVersionRequest
+ * @memberOf! cloudkms(v1)
+ * @type object
+ */
+/**
+ * @typedef DataAccessOptions
+ * @memberOf! cloudkms(v1)
+ * @type object
+ */
+/**
+ * @typedef ListKeyRingsResponse
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} nextPageToken A token to retrieve next page of results. Pass this value in
+ListKeyRingsRequest.page_token to retrieve the next page of results.
+* @property {integer} totalSize The total number of KeyRings that matched the query.
+* @property {cloudkms(v1).KeyRing[]} keyRings The list of KeyRings.
+*/
+/**
+ * @typedef AuditConfig
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {cloudkms(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+* @property {string[]} exemptedMembers 
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
+`allServices` is a special value that covers all services.
+*/
+/**
+ * @typedef CryptoKeyVersion
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} destroyTime Output only. The time this CryptoKeyVersion&#39;s key material is scheduled
+for destruction. Only present if state is
+DESTROY_SCHEDULED.
+* @property {string} createTime Output only. The time at which this CryptoKeyVersion was created.
+* @property {string} state The current state of the CryptoKeyVersion.
+* @property {string} name Output only. The resource name for this CryptoKeyVersion in the format
+`projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
+* @property {string} destroyEventTime Output only. The time this CryptoKeyVersion&#39;s key material was
+destroyed. Only present if state is
+DESTROYED.
+*/
+/**
+ * @typedef CloudAuditOptions
+ * @memberOf! cloudkms(v1)
+ * @type object
+ * @property {string} logName The log_name to populate in the Cloud Audit Record.
+ */
+/**
+ * @typedef Binding
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {cloudkms(v1).Expr} condition The condition that is associated with this binding.
+NOTE: an unsatisfied condition will not allow user access via current
+binding. Different bindings, including their conditions, are examined
+independently.
+This field is GOOGLE_INTERNAL.
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
+`members` can have the following values:
+
+* `allUsers`: A special identifier that represents anyone who is
+   on the internet; with or without a Google account.
+
+* `allAuthenticatedUsers`: A special identifier that represents anyone
+   who is authenticated with a Google account or a service account.
+
+* `user:{emailid}`: An email address that represents a specific Google
+   account. For example, `alice@gmail.com` or `joe@example.com`.
+
+
+* `serviceAccount:{emailid}`: An email address that represents a service
+   account. For example, `my-other-app@appspot.gserviceaccount.com`.
+
+* `group:{emailid}`: An email address that represents a Google group.
+   For example, `admins@example.com`.
+
+
+* `domain:{domain}`: A Google Apps domain name that represents all the
+   users of that domain. For example, `google.com` or `example.com`.
+
+
+* @property {string} role Role that is assigned to `members`.
+For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+Required
+*/
+/**
+ * @typedef Expr
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} description An optional description of the expression. This is a longer text which
+describes the expression, e.g. when hovered over it in a UI.
+* @property {string} expression Textual representation of an expression in
+Common Expression Language syntax.
+
+The application context of the containing message determines which
+well-known feature set of CEL is supported.
+* @property {string} location An optional string indicating the location of the expression for error
+reporting, e.g. a file name and a position in the file.
+* @property {string} title An optional title for the expression, i.e. a short string describing
+its purpose. This can be used e.g. in UIs which allow to enter the
+expression.
+*/
+/**
+ * @typedef EncryptRequest
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {string} plaintext Required. The data to encrypt. Must be no larger than 64KiB.
+* @property {string} additionalAuthenticatedData Optional data that, if specified, must also be provided during decryption
+through DecryptRequest.additional_authenticated_data.  Must be no
+larger than 64KiB.
+*/
+/**
+ * @typedef ListCryptoKeyVersionsResponse
+ * @memberOf! cloudkms(v1)
+ * @type object
+* @property {cloudkms(v1).CryptoKeyVersion[]} cryptoKeyVersions The list of CryptoKeyVersions.
+* @property {string} nextPageToken A token to retrieve next page of results. Pass this value in
+ListCryptoKeyVersionsRequest.page_token to retrieve the next page of
+results.
+* @property {integer} totalSize The total number of CryptoKeyVersions that matched the
+query.
 */
 export = Cloudkms;

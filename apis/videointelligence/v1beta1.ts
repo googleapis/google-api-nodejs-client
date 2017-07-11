@@ -80,6 +80,34 @@ function Videointelligence(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ */
+/**
+ * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {string} inputUri Video file location in
+[Google Cloud Storage](https://cloud.google.com/storage/).
+* @property {integer} progressPercent Approximate percentage processed thus far.
+Guaranteed to be 100 when fully processed.
+* @property {string} updateTime Time of the most recent update.
+* @property {string} startTime Time when the request was received.
+*/
+/**
+ * @typedef GoogleCloudVideointelligenceV1_LabelLocation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment} segment Video segment. Unset for video-level labels.
+Set to a frame timestamp for frame-level labels.
+Otherwise, corresponds to one of `AnnotateSpec.segments`
+(if specified) or to shot boundaries (if requested).
+* @property {string} level Label level.
+* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+*/
+/**
  * @typedef GoogleCloudVideointelligenceV1_AnnotateVideoProgress
  * @memberOf! videointelligence(v1beta1)
  * @type object
@@ -89,24 +117,13 @@ function Videointelligence(options) { // eslint-disable-line
  * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationResults
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-some videos may succeed and some may fail.
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_SafeSearchAnnotation[]} safeSearchAnnotations Safe search annotations.
 * @property {string} inputUri Video file location in
 [Google Cloud Storage](https://cloud.google.com/storage/).
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} labelAnnotations Label annotations. There is exactly one element for each unique label.
-*/
-/**
- * @typedef GoogleCloudVideointelligenceV1_LabelLocation
- * @memberOf! videointelligence(v1beta1)
- * @type object
-* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
-* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment} segment Video segment. Unset for video-level labels.
-Set to a frame timestamp for frame-level labels.
-Otherwise, corresponds to one of `AnnotateSpec.segments`
-(if specified) or to shot boundaries (if requested).
-* @property {string} level Label level.
+* @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+some videos may succeed and some may fail.
 */
 /**
  * @typedef GoogleLongrunning_Operation
@@ -136,12 +153,12 @@ available.
  * @typedef GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
-some videos may succeed and some may fail.
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
 * @property {string} inputUri Video file location in
 [Google Cloud Storage](https://cloud.google.com/storage/).
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_LabelAnnotation[]} labelAnnotations Label annotations. There is exactly one element for each unique label.
+* @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+some videos may succeed and some may fail.
 */
 /**
  * @typedef GoogleCloudVideointelligenceV1beta1_LabelAnnotation
@@ -212,25 +229,15 @@ Guaranteed to be 100 when fully processed.
  * @typedef GoogleCloudVideointelligenceV1_VideoSegment
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {string} startTime Time-offset, relative to the beginning of the video,
-corresponding to the start of the segment (inclusive).
 * @property {string} endTime Time-offset, relative to the beginning of the video,
 corresponding to the end of the segment (inclusive).
+* @property {string} startTime Time-offset, relative to the beginning of the video,
+corresponding to the start of the segment (inclusive).
 */
 /**
  * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {string} inputUri Input video location. Currently, only
-[Google Cloud Storage](https://cloud.google.com/storage/) URIs are
-supported, which must be specified in the following format:
-`gs://bucket-id/object-id` (other URI formats return
-google.rpc.Code.INVALID_ARGUMENT). For more information, see
-[Request URIs](/storage/docs/reference-uris).
-A video URI may include wildcards in `object-id`, and thus identify
-multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters;
-&#39;?&#39; to match 1 character. If unset, the input video should be embedded
-in the request as `input_content`. If set, `input_content` should be unset.
 * @property {string} inputContent The video data bytes. Encoding: base64. If unset, the input video(s)
 should be specified via `input_uri`. If set, `input_uri` should be unset.
 * @property {string} outputUri Optional location where the output (in JSON format) should be stored.
@@ -244,17 +251,27 @@ google.rpc.Code.INVALID_ARGUMENT). For more information, see
 * @property {string} locationId Optional cloud region where annotation should take place. Supported cloud
 regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
 is specified, a region will be determined based on video file location.
+* @property {string} inputUri Input video location. Currently, only
+[Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+supported, which must be specified in the following format:
+`gs://bucket-id/object-id` (other URI formats return
+google.rpc.Code.INVALID_ARGUMENT). For more information, see
+[Request URIs](/storage/docs/reference-uris).
+A video URI may include wildcards in `object-id`, and thus identify
+multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters;
+&#39;?&#39; to match 1 character. If unset, the input video should be embedded
+in the request as `input_content`. If set, `input_content` should be unset.
 */
 /**
  * @typedef GoogleCloudVideointelligenceV1beta1_LabelLocation
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {string} level Label level.
-* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoSegment} segment Video segment. Set to [-1, -1] for video-level labels.
 Set to [timestamp, timestamp] for frame-level labels.
 Otherwise, corresponds to one of `AnnotateSpec.segments`
 (if specified) or to shot boundaries (if requested).
+* @property {string} level Label level.
+* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
 */
 /**
  * @typedef GoogleCloudVideointelligenceV1beta1_VideoSegment
@@ -270,22 +287,5 @@ Otherwise, corresponds to one of `AnnotateSpec.segments`
 * @property {string} time Time-offset, relative to the beginning of the video,
 corresponding to the video frame for this annotation.
 * @property {string} adult Likelihood of adult content.
-*/
-/**
- * @typedef GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
- */
-/**
- * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationProgress
- * @memberOf! videointelligence(v1beta1)
- * @type object
-* @property {string} updateTime Time of the most recent update.
-* @property {string} startTime Time when the request was received.
-* @property {string} inputUri Video file location in
-[Google Cloud Storage](https://cloud.google.com/storage/).
-* @property {integer} progressPercent Approximate percentage processed thus far.
-Guaranteed to be 100 when fully processed.
 */
 export = Videointelligence;

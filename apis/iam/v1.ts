@@ -37,25 +37,67 @@ function Iam(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
+  self.roles = {
+
+    /**
+     * iam.roles.queryGrantableRoles
+     *
+     * @desc Queries roles that can be granted on a particular resource. A role is grantable if it can be used as the role in a binding for a policy for that resource.
+     *
+     * @alias iam.roles.queryGrantableRoles
+     * @memberOf! iam(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {iam(v1).QueryGrantableRolesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    queryGrantableRoles: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/roles:queryGrantableRoles').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.projects = {
 
     serviceAccounts: {
 
       /**
-       * iam.projects.serviceAccounts.delete
+       * iam.projects.serviceAccounts.setIamPolicy
        *
-       * @desc Deletes a ServiceAccount.
+       * @desc Sets the IAM access control policy for a ServiceAccount.
        *
-       * @alias iam.projects.serviceAccounts.delete
+       * @alias iam.projects.serviceAccounts.setIamPolicy
        * @memberOf! iam(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`. Using `-` as a wildcard for the project will infer the project from the account. The `account` value can be the `email` address or the `unique_id` of the service account.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+       * @param {iam(v1).SetIamPolicyRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, options, callback) {
+      setIamPolicy: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -66,127 +108,12 @@ function Iam(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * iam.projects.serviceAccounts.list
-       *
-       * @desc Lists ServiceAccounts for a project.
-       *
-       * @alias iam.projects.serviceAccounts.list
-       * @memberOf! iam(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional pagination token returned in an earlier ListServiceAccountsResponse.next_page_token.
-       * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
-       * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}/serviceAccounts').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * iam.projects.serviceAccounts.signBlob
-       *
-       * @desc Signs a blob using a service account's system-managed private key.
-       *
-       * @alias iam.projects.serviceAccounts.signBlob
-       * @memberOf! iam(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`. Using `-` as a wildcard for the project will infer the project from the account. The `account` value can be the `email` address or the `unique_id` of the service account.
-       * @param {iam(v1).SignBlobRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      signBlob: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}:signBlob').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{resource}:setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * iam.projects.serviceAccounts.create
-       *
-       * @desc Creates a ServiceAccount and returns it.
-       *
-       * @alias iam.projects.serviceAccounts.create
-       * @memberOf! iam(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
-       * @param {iam(v1).CreateServiceAccountRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}/serviceAccounts').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
           context: self
         };
 
@@ -232,21 +159,21 @@ function Iam(options) { // eslint-disable-line
       },
 
       /**
-       * iam.projects.serviceAccounts.setIamPolicy
+       * iam.projects.serviceAccounts.create
        *
-       * @desc Sets the IAM access control policy for a ServiceAccount.
+       * @desc Creates a ServiceAccount and returns it.
        *
-       * @alias iam.projects.serviceAccounts.setIamPolicy
+       * @alias iam.projects.serviceAccounts.create
        * @memberOf! iam(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-       * @param {iam(v1).SetIamPolicyRequest} params.resource Request body data
+       * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
+       * @param {iam(v1).CreateServiceAccountRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function (params, options, callback) {
+      create: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -257,12 +184,12 @@ function Iam(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v1/{resource}:setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{name}/serviceAccounts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -413,6 +340,120 @@ function Iam(options) { // eslint-disable-line
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * iam.projects.serviceAccounts.delete
+       *
+       * @desc Deletes a ServiceAccount.
+       *
+       * @alias iam.projects.serviceAccounts.delete
+       * @memberOf! iam(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`. Using `-` as a wildcard for the project will infer the project from the account. The `account` value can be the `email` address or the `unique_id` of the service account.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * iam.projects.serviceAccounts.list
+       *
+       * @desc Lists ServiceAccounts for a project.
+       *
+       * @alias iam.projects.serviceAccounts.list
+       * @memberOf! iam(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken Optional pagination token returned in an earlier ListServiceAccountsResponse.next_page_token.
+       * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as `projects/my-project-123`.
+       * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the ListServiceAccountsResponse.next_page_token in a subsequent request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}/serviceAccounts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * iam.projects.serviceAccounts.signBlob
+       *
+       * @desc Signs a blob using a service account's system-managed private key.
+       *
+       * @alias iam.projects.serviceAccounts.signBlob
+       * @memberOf! iam(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`. Using `-` as a wildcard for the project will infer the project from the account. The `account` value can be the `email` address or the `unique_id` of the service account.
+       * @param {iam(v1).SignBlobRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      signBlob: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}:signBlob').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -574,47 +615,6 @@ function Iam(options) { // eslint-disable-line
       }
     }
   };
-
-  self.roles = {
-
-    /**
-     * iam.roles.queryGrantableRoles
-     *
-     * @desc Queries roles that can be granted on a particular resource. A role is grantable if it can be used as the role in a binding for a policy for that resource.
-     *
-     * @alias iam.roles.queryGrantableRoles
-     * @memberOf! iam(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {iam(v1).QueryGrantableRolesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    queryGrantableRoles: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/roles:queryGrantableRoles').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 }
 
 /**
@@ -634,9 +634,6 @@ allowed.
  * @typedef ServiceAccountKey
  * @memberOf! iam(v1)
  * @type object
-* @property {string} name The resource name of the service account key in the following format
-`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`.
-* @property {string} validBeforeTime The key can be used before this timestamp.
 * @property {string} keyAlgorithm Specifies the algorithm (and possibly key size) for the key.
 * @property {string} validAfterTime The key can be used after this timestamp.
 * @property {string} privateKeyType The output format for the private key.
@@ -649,6 +646,9 @@ user-managed private keys.
 responses. Make sure to keep the private key data secure because it
 allows for the assertion of the service account identity.
 * @property {string} publicKeyData The public key data. Only provided in `GetServiceAccountKey` responses.
+* @property {string} name The resource name of the service account key in the following format
+`projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}/keys/{key}`.
+* @property {string} validBeforeTime The key can be used before this timestamp.
 */
 /**
  * @typedef CreateServiceAccountKeyRequest
@@ -671,18 +671,18 @@ information see
 [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
 */
 /**
- * @typedef SignBlobResponse
- * @memberOf! iam(v1)
- * @type object
- * @property {string} keyId The id of the key used to sign the blob.
- * @property {string} signature The signed blob.
- */
-/**
  * @typedef SignJwtResponse
  * @memberOf! iam(v1)
  * @type object
  * @property {string} signedJwt The signed JWT.
  * @property {string} keyId The id of the key used to sign the JWT.
+ */
+/**
+ * @typedef SignBlobResponse
+ * @memberOf! iam(v1)
+ * @type object
+ * @property {string} signature The signed blob.
+ * @property {string} keyId The id of the key used to sign the blob.
  */
 /**
  * @typedef Policy
@@ -718,13 +718,13 @@ policy is overwritten blindly.
  * @typedef BindingDelta
  * @memberOf! iam(v1)
  * @type object
-* @property {string} role Role that is assigned to `members`.
-For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-Required
 * @property {string} action The action that was performed on a Binding.
 Required
 * @property {string} member A single identity requesting access for a Cloud Platform resource.
 Follows the same format of Binding.members.
+Required
+* @property {string} role Role that is assigned to `members`.
+For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
 */
 /**
@@ -733,15 +733,6 @@ Required
  * @type object
  * @property {iam(v1).BindingDelta[]} bindingDeltas The delta for Bindings between two policies.
  */
-/**
- * @typedef ListServiceAccountsResponse
- * @memberOf! iam(v1)
- * @type object
-* @property {iam(v1).ServiceAccount[]} accounts The list of matching service accounts.
-* @property {string} nextPageToken To retrieve the next page of results, set
-ListServiceAccountsRequest.page_token
-to this value.
-*/
 /**
  * @typedef CreateServiceAccountRequest
  * @memberOf! iam(v1)
@@ -755,6 +746,15 @@ Currently, only the following values are user assignable:
 `display_name` .
 */
 /**
+ * @typedef ListServiceAccountsResponse
+ * @memberOf! iam(v1)
+ * @type object
+* @property {string} nextPageToken To retrieve the next page of results, set
+ListServiceAccountsRequest.page_token
+to this value.
+* @property {iam(v1).ServiceAccount[]} accounts The list of matching service accounts.
+*/
+/**
  * @typedef QueryGrantableRolesResponse
  * @memberOf! iam(v1)
  * @type object
@@ -766,6 +766,8 @@ Currently, only the following values are user assignable:
  * @typedef Role
  * @memberOf! iam(v1)
  * @type object
+* @property {string} title Optional.  A human-readable title for the role.  Typically this
+is limited to 100 UTF-8 bytes.
 * @property {string} name The name of the role.
 
 When Role is used in CreateRole, the role name must not be set.
@@ -774,8 +776,6 @@ When Role is used in output and other input such as UpdateRole, the role
 name is the complete path, e.g., roles/logging.viewer for curated roles
 and organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.
 * @property {string} description Optional.  A human-readable description for the role.
-* @property {string} title Optional.  A human-readable title for the role.  Typically this
-is limited to 100 UTF-8 bytes.
 */
 /**
  * @typedef SignBlobRequest
@@ -828,6 +828,14 @@ Required
  * @typedef ServiceAccount
  * @memberOf! iam(v1)
  * @type object
+* @property {string} uniqueId @OutputOnly The unique and stable id of the service account.
+* @property {string} oauth2ClientId @OutputOnly. The OAuth2 client id for the service account.
+This is used in conjunction with the OAuth2 clientconfig API to make
+three legged OAuth2 (3LO) flows to access the data of Google users.
+* @property {string} displayName Optional. A user-specified description of the service account.  Must be
+fewer than 100 UTF-8 bytes.
+* @property {string} etag Used to perform a consistent read-modify-write.
+* @property {string} email @OutputOnly The email address of the service account.
 * @property {string} name The resource name of the service account in the following format:
 `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.
 
@@ -837,15 +845,7 @@ the `unique_id` of the service account.
 
 In responses the resource name will always be in the format
 `projects/{PROJECT_ID}/serviceAccounts/{SERVICE_ACCOUNT_EMAIL}`.
-* @property {string} email @OutputOnly The email address of the service account.
 * @property {string} projectId @OutputOnly The id of the project that owns the service account.
-* @property {string} oauth2ClientId @OutputOnly. The OAuth2 client id for the service account.
-This is used in conjunction with the OAuth2 clientconfig API to make
-three legged OAuth2 (3LO) flows to access the data of Google users.
-* @property {string} uniqueId @OutputOnly The unique and stable id of the service account.
-* @property {string} displayName Optional. A user-specified description of the service account.  Must be
-fewer than 100 UTF-8 bytes.
-* @property {string} etag Used to perform a consistent read-modify-write.
 */
 /**
  * @typedef Empty

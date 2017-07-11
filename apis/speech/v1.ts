@@ -193,46 +193,6 @@ function Speech(options) { // eslint-disable-line
     },
 
     /**
-     * speech.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     *
-     * @alias speech.operations.list
-     * @memberOf! speech(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation's parent resource.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * speech.operations.get
      *
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
@@ -267,74 +227,51 @@ function Speech(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     *
+     * @alias speech.operations.list
+     * @memberOf! speech(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {string=} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
-/**
- * @typedef Status
- * @memberOf! speech(v1)
- * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
- * @typedef Empty
- * @memberOf! speech(v1)
- * @type object
- */
-/**
- * @typedef RecognizeRequest
- * @memberOf! speech(v1)
- * @type object
-* @property {speech(v1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
-process the request.
-* @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
-*/
-/**
- * @typedef SpeechContext
- * @memberOf! speech(v1)
- * @type object
-* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
-the speech recognition is more likely to recognize them. This can be used
-to improve the accuracy for specific words and phrases, for example, if
-specific commands are typically spoken by the user. This can also be used
-to add additional words to the vocabulary of the recognizer. See
-[usage limits](https://cloud.google.com/speech/limits#content).
-*/
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef SpeechRecognitionAlternative
- * @memberOf! speech(v1)
- * @type object
-* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
-indicates an estimated greater likelihood that the recognized words are
-correct. This field is typically provided only for the top hypothesis, and
-only for `is_final=true` results. Clients should not rely on the
-`confidence` field as it is not guaranteed to be accurate or consistent.
-The default of 0.0 is a sentinel value indicating `confidence` was not set.
-* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
-/**
- * @typedef SpeechRecognitionResult
- * @memberOf! speech(v1)
- * @type object
-* @property {speech(v1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the
-maximum specified in `max_alternatives`).
-These alternatives are ordered in terms of accuracy, with the first/top
-alternative being the most probable, as ranked by the recognizer.
-*/
 /**
  * @typedef RecognitionAudio
  * @memberOf! speech(v1)
@@ -353,9 +290,9 @@ google.rpc.Code.INVALID_ARGUMENT). For more information, see
  * @typedef LongRunningRecognizeRequest
  * @memberOf! speech(v1)
  * @type object
+* @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
 * @property {speech(v1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
 process the request.
-* @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
 /**
  * @typedef RecognizeResponse
@@ -419,5 +356,68 @@ won&#39;t be filtered out.
 16000 is optimal. For best results, set the sampling rate of the audio
 source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
 the audio source (instead of re-sampling).
+*/
+/**
+ * @typedef Status
+ * @memberOf! speech(v1)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! speech(v1)
+ * @type object
+ */
+/**
+ * @typedef RecognizeRequest
+ * @memberOf! speech(v1)
+ * @type object
+* @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
+* @property {speech(v1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
+process the request.
+*/
+/**
+ * @typedef SpeechRecognitionAlternative
+ * @memberOf! speech(v1)
+ * @type object
+* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are
+correct. This field is typically provided only for the top hypothesis, and
+only for `is_final=true` results. Clients should not rely on the
+`confidence` field as it is not guaranteed to be accurate or consistent.
+The default of 0.0 is a sentinel value indicating `confidence` was not set.
+* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
+*/
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! speech(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef SpeechContext
+ * @memberOf! speech(v1)
+ * @type object
+* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
+the speech recognition is more likely to recognize them. This can be used
+to improve the accuracy for specific words and phrases, for example, if
+specific commands are typically spoken by the user. This can also be used
+to add additional words to the vocabulary of the recognizer. See
+[usage limits](https://cloud.google.com/speech/limits#content).
+*/
+/**
+ * @typedef SpeechRecognitionResult
+ * @memberOf! speech(v1)
+ * @type object
+* @property {speech(v1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the
+maximum specified in `max_alternatives`).
+These alternatives are ordered in terms of accuracy, with the first/top
+alternative being the most probable, as ranked by the recognizer.
 */
 export = Speech;

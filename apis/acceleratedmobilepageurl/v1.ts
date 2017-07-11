@@ -94,10 +94,10 @@ only once.
  * @typedef AmpUrl
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
-* @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
-the cached document in the Google AMP Cache.
 * @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
 * @property {string} originalUrl The original non-AMP URL.
+* @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
+the cached document in the Google AMP Cache.
 */
 /**
  * @typedef AmpUrlError
@@ -111,9 +111,9 @@ the cached document in the Google AMP Cache.
  * @typedef BatchGetAmpUrlsRequest
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
-* @property {string} lookupStrategy The lookup_strategy being requested.
 * @property {string[]} urls List of URLs to look up for the paired AMP URLs.
 The URLs are case-sensitive. Up to 50 URLs per lookup
 (see [Usage Limits](/amp/cache/reference/limits)).
+* @property {string} lookupStrategy The lookup_strategy being requested.
 */
 export = Acceleratedmobilepageurl;

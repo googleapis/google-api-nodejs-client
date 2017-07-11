@@ -40,23 +40,20 @@ function Speech(options) { // eslint-disable-line
   self.operations = {
 
     /**
-     * speech.operations.list
+     * speech.operations.delete
      *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      *
-     * @alias speech.operations.list
+     * @alias speech.operations.delete
      * @memberOf! speech(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation's parent resource.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string} params.name The name of the operation resource to be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    delete: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,12 +64,12 @@ function Speech(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1beta1/operations').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
+          url: (rootUrl + '/v1beta1/operations/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: self
       };
 
@@ -117,6 +114,46 @@ function Speech(options) { // eslint-disable-line
     },
 
     /**
+     * speech.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     *
+     * @alias speech.operations.list
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {string=} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.filter The standard list filter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1/operations').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * speech.operations.cancel
      *
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
@@ -143,43 +180,6 @@ function Speech(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/v1beta1/operations/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.delete
-     *
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     *
-     * @alias speech.operations.delete
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1/operations/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
         }, options),
         params: params,
         requiredParams: ['name'],
@@ -272,39 +272,9 @@ function Speech(options) { // eslint-disable-line
 }
 
 /**
- * @typedef AsyncRecognizeRequest
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {speech(v1beta1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
-process the request.
-* @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
-*/
-/**
- * @typedef RecognitionAudio
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {string} content The audio data bytes encoded as specified in
-`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
-pure binary representation, whereas JSON representations use base64.
-* @property {string} uri URI that points to a file that contains audio data bytes as specified in
-`RecognitionConfig`. Currently, only Google Cloud Storage URIs are
-supported, which must be specified in the following format:
-`gs://bucket_name/object_name` (other URI formats return
-google.rpc.Code.INVALID_ARGUMENT). For more information, see
-[Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-*/
-/**
  * @typedef Operation
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
@@ -316,6 +286,14 @@ long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
 */
 /**
  * @typedef RecognitionConfig
@@ -337,20 +315,20 @@ Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
 If omitted, defaults to &quot;en-US&quot;. See
 [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
+* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
 profanities, replacing all but the initial character in each filtered word
 with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
 won&#39;t be filtered out.
 * @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
-* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 */
 /**
  * @typedef SyncRecognizeRequest
  * @memberOf! speech(v1beta1)
  * @type object
+* @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
 * @property {speech(v1beta1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
 process the request.
-* @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
 /**
  * @typedef SyncRecognizeResponse
@@ -363,12 +341,12 @@ sequential portions of audio.
  * @typedef Status
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef Empty
@@ -403,8 +381,8 @@ to add additional words to the vocabulary of the recognizer. See
  * @typedef ListOperationsResponse
  * @memberOf! speech(v1beta1)
  * @type object
- * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
  * @property {string} nextPageToken The standard List next-page token.
+ * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
  */
 /**
  * @typedef SpeechRecognitionResult
@@ -412,5 +390,27 @@ to add additional words to the vocabulary of the recognizer. See
  * @type object
 * @property {speech(v1beta1).SpeechRecognitionAlternative[]} alternatives *Output-only* May contain one or more recognition hypotheses (up to the
 maximum specified in `max_alternatives`).
+*/
+/**
+ * @typedef RecognitionAudio
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {string} content The audio data bytes encoded as specified in
+`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+pure binary representation, whereas JSON representations use base64.
+* @property {string} uri URI that points to a file that contains audio data bytes as specified in
+`RecognitionConfig`. Currently, only Google Cloud Storage URIs are
+supported, which must be specified in the following format:
+`gs://bucket_name/object_name` (other URI formats return
+google.rpc.Code.INVALID_ARGUMENT). For more information, see
+[Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+*/
+/**
+ * @typedef AsyncRecognizeRequest
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
+* @property {speech(v1beta1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
+process the request.
 */
 export = Speech;

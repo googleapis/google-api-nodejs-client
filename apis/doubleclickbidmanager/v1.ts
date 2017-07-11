@@ -400,7 +400,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @typedef DownloadLineItemsResponse
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
- * @property {string} lineItems Retrieved line items in CSV format. Refer to  Entity Write File Format or  Structured Data File Format for more information on file formats.
+ * @property {string} lineItems Retrieved line items in CSV format. For more information about file formats, see  Entity Write File Format.
  */
 /**
  * @typedef DownloadRequest

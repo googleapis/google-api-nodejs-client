@@ -41,80 +41,6 @@ function Pubsub(options) { // eslint-disable-line
   self.subscriptions = {
 
     /**
-     * pubsub.subscriptions.pullBatch
-     *
-     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
-     *
-     * @alias pubsub.subscriptions.pullBatch
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).PullBatchRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    pullBatch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1a/subscriptions/pullBatch').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.subscriptions.get
-     *
-     * @desc Gets the configuration details of a subscription.
-     *
-     * @alias pubsub.subscriptions.get
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription The name of the subscription to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1a/subscriptions/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['subscription'],
-        pathParams: ['subscription'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * pubsub.subscriptions.modifyPushConfig
      *
      * @desc Modifies the <code>PushConfig</code> for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the <code>PushConfig</code> field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
@@ -140,43 +66,6 @@ function Pubsub(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/v1beta1a/subscriptions/modifyPushConfig').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.subscriptions.pull
-     *
-     * @desc Pulls a single message from the server. If return_immediately is true, and no messages are available in the subscription, this method returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE error if no messages are available in a reasonable amount of time (to reduce system load).
-     *
-     * @alias pubsub.subscriptions.pull
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).PullRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    pull: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1a/subscriptions/pull').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -219,6 +108,43 @@ function Pubsub(options) { // eslint-disable-line
         params: params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.subscriptions.pull
+     *
+     * @desc Pulls a single message from the server. If return_immediately is true, and no messages are available in the subscription, this method returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE error if no messages are available in a reasonable amount of time (to reduce system load).
+     *
+     * @alias pubsub.subscriptions.pull
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).PullRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    pull: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/subscriptions/pull').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -302,6 +228,43 @@ function Pubsub(options) { // eslint-disable-line
     },
 
     /**
+     * pubsub.subscriptions.modifyAckDeadline
+     *
+     * @desc Modifies the Ack deadline for a message received from a pull request.
+     *
+     * @alias pubsub.subscriptions.modifyAckDeadline
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).ModifyAckDeadlineRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    modifyAckDeadline: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/subscriptions/modifyAckDeadline').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * pubsub.subscriptions.acknowledge
      *
      * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
@@ -339,20 +302,20 @@ function Pubsub(options) { // eslint-disable-line
     },
 
     /**
-     * pubsub.subscriptions.modifyAckDeadline
+     * pubsub.subscriptions.get
      *
-     * @desc Modifies the Ack deadline for a message received from a pull request.
+     * @desc Gets the configuration details of a subscription.
      *
-     * @alias pubsub.subscriptions.modifyAckDeadline
+     * @alias pubsub.subscriptions.get
      * @memberOf! pubsub(v1beta1a)
      *
      * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).ModifyAckDeadlineRequest} params.resource Request body data
+     * @param {string} params.subscription The name of the subscription to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyAckDeadline: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -363,7 +326,44 @@ function Pubsub(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1beta1a/subscriptions/modifyAckDeadline').replace(/([^:]\/)\/+/g, '$1'),
+          url: (rootUrl + '/v1beta1a/subscriptions/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.subscriptions.pullBatch
+     *
+     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
+     *
+     * @alias pubsub.subscriptions.pullBatch
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).PullBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    pullBatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/subscriptions/pullBatch').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -378,6 +378,43 @@ function Pubsub(options) { // eslint-disable-line
   };
 
   self.topics = {
+
+    /**
+     * pubsub.topics.publish
+     *
+     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
+     *
+     * @alias pubsub.topics.publish
+     * @memberOf! pubsub(v1beta1a)
+     *
+     * @param {object} params Parameters for request
+     * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    publish: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta1a/topics/publish').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * pubsub.topics.delete
@@ -564,58 +601,39 @@ function Pubsub(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * pubsub.topics.publish
-     *
-     * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic does not exist.
-     *
-     * @alias pubsub.topics.publish
-     * @memberOf! pubsub(v1beta1a)
-     *
-     * @param {object} params Parameters for request
-     * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    publish: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta1a/topics/publish').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
 /**
+ * @typedef PushConfig
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
+For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+*/
+/**
+ * @typedef PullRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} subscription The subscription from which a message should be pulled.
+* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
+it is not able to return a message in the Pull response. Otherwise the
+system is allowed to wait until at least one message is available rather
+than returning FAILED_PRECONDITION. The client may cancel the request if
+it does not wish to wait any longer for the response.
+*/
+/**
  * @typedef PubsubEvent
  * @memberOf! pubsub(v1beta1a)
  * @type object
+* @property {pubsub(v1beta1a).PubsubMessage} message A received message.
+* @property {string} subscription The subscription that received the event.
 * @property {boolean} deleted Indicates that this subscription has been deleted. (Note that pull
 subscribers will always receive NOT_FOUND in response in their pull
 request on the subscription, rather than seeing this boolean.)
 * @property {boolean} truncated Indicates that this subscription has been truncated.
-* @property {pubsub(v1beta1a).PubsubMessage} message A received message.
-* @property {string} subscription The subscription that received the event.
 */
 /**
  * @typedef ListSubscriptionsResponse
@@ -634,9 +652,19 @@ request and this value should be passed to the next
  * @property {string} topic The message in the request will be published on this topic.
  */
 /**
+ * @typedef PublishBatchResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
+the messages in the request. IDs are guaranteed to be unique within
+the topic.
+*/
+/**
  * @typedef Subscription
  * @memberOf! pubsub(v1beta1a)
  * @type object
+* @property {pubsub(v1beta1a).PushConfig} pushConfig If push delivery is used with this subscription, this field is
+used to configure it.
 * @property {integer} ackDeadlineSeconds For either push or pull delivery, the value is the maximum time after a
 subscriber receives a message before the subscriber should acknowledge or
 Nack the message. If the Ack deadline for a message passes without an
@@ -658,16 +686,6 @@ system will not deliver that message to another pull subscriber
 (on a best-effort basis).
 * @property {string} name Name of the subscription.
 * @property {string} topic The name of the topic from which this subscription is receiving messages.
-* @property {pubsub(v1beta1a).PushConfig} pushConfig If push delivery is used with this subscription, this field is
-used to configure it.
-*/
-/**
- * @typedef PublishBatchResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
-the messages in the request. IDs are guaranteed to be unique within
-the topic.
 */
 /**
  * @typedef Topic
@@ -720,14 +738,14 @@ should be populated, not both.
  * @typedef PullBatchRequest
  * @memberOf! pubsub(v1beta1a)
  * @type object
+* @property {integer} maxEvents The maximum number of PubsubEvents returned for this request. The Pub/Sub
+system may return fewer than the number of events specified.
 * @property {string} subscription The subscription from which messages should be pulled.
 * @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
 it is not able to return a message in the Pull response. Otherwise the
 system is allowed to wait until at least one message is available rather
 than returning no messages. The client may cancel the request if it does
 not wish to wait any longer for the response.
-* @property {integer} maxEvents The maximum number of PubsubEvents returned for this request. The Pub/Sub
-system may return fewer than the number of events specified.
 */
 /**
  * @typedef ModifyPushConfigRequest
@@ -752,22 +770,6 @@ be unique.
 * @property {string} data The message payload.
 */
 /**
- * @typedef ListTopicsResponse
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} nextPageToken If not empty, indicates that there are more topics that match the request,
-and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt;
-to continue.
-* @property {pubsub(v1beta1a).Topic[]} topic The resulting topics.
-*/
-/**
- * @typedef PublishBatchRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
- * @property {pubsub(v1beta1a).PubsubMessage[]} messages The messages to publish.
- * @property {string} topic The messages in the request will be published on this topic.
- */
-/**
  * @typedef Empty
  * @memberOf! pubsub(v1beta1a)
  * @type object
@@ -790,28 +792,26 @@ there are more messages available in the backlog.
 returned by the Pub/Sub system in the Pull response.
 */
 /**
+ * @typedef ListTopicsResponse
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+* @property {string} nextPageToken If not empty, indicates that there are more topics that match the request,
+and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt;
+to continue.
+* @property {pubsub(v1beta1a).Topic[]} topic The resulting topics.
+*/
+/**
+ * @typedef PublishBatchRequest
+ * @memberOf! pubsub(v1beta1a)
+ * @type object
+ * @property {pubsub(v1beta1a).PubsubMessage[]} messages The messages to publish.
+ * @property {string} topic The messages in the request will be published on this topic.
+ */
+/**
  * @typedef PullResponse
  * @memberOf! pubsub(v1beta1a)
  * @type object
- * @property {pubsub(v1beta1a).PubsubEvent} pubsubEvent A pubsub message or truncation event.
  * @property {string} ackId This ID must be used to acknowledge the received event or message.
+ * @property {pubsub(v1beta1a).PubsubEvent} pubsubEvent A pubsub message or truncation event.
  */
-/**
- * @typedef PushConfig
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
-For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
-*/
-/**
- * @typedef PullRequest
- * @memberOf! pubsub(v1beta1a)
- * @type object
-* @property {string} subscription The subscription from which a message should be pulled.
-* @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
-it is not able to return a message in the Pull response. Otherwise the
-system is allowed to wait until at least one message is available rather
-than returning FAILED_PRECONDITION. The client may cancel the request if
-it does not wish to wait any longer for the response.
-*/
 export = Pubsub;

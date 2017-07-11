@@ -77,603 +77,22 @@ function Dataflow(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
-    locations: {
+    jobs: {
 
       /**
-       * dataflow.projects.locations.workerMessages
+       * dataflow.projects.jobs.create
        *
-       * @desc Send a worker_message to the service.
+       * @desc Creates a Cloud Dataflow job.
        *
-       * @alias dataflow.projects.locations.workerMessages
+       * @alias dataflow.projects.jobs.create
        * @memberOf! dataflow(v1b3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.location The location which contains the job
-       * @param {string} params.projectId The project to send the WorkerMessages to.
-       * @param {dataflow(v1b3).SendWorkerMessagesRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      workerMessages: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      templates: {
-
-        /**
-         * dataflow.projects.locations.templates.launch
-         *
-         * @desc Launch a template.
-         *
-         * @alias dataflow.projects.locations.templates.launch
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The location to which to direct the request.
-         * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-         * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-         * @param {dataflow(v1b3).LaunchTemplateParameters} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        launch: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates:launch').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['location', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.templates.get
-         *
-         * @desc Get the template associated with a template.
-         *
-         * @alias dataflow.projects.locations.templates.get
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The location to which to direct the request.
-         * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
-         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-         * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates:get').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['location', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.templates.create
-         *
-         * @desc Creates a Cloud Dataflow job from a template.
-         *
-         * @alias dataflow.projects.locations.templates.create
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-         * @param {string} params.location The location to which to direct the request.
-         * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['projectId', 'location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      },
-
-      jobs: {
-
-        /**
-         * dataflow.projects.locations.jobs.getMetrics
-         *
-         * @desc Request the job status.
-         *
-         * @alias dataflow.projects.locations.jobs.getMetrics
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The location which contains the job specified by job_id.
-         * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-         * @param {string} params.jobId The job to get messages for.
-         * @param {string} params.projectId A project id.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        getMetrics: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location', 'jobId'],
-            pathParams: ['location', 'jobId', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.jobs.list
-         *
-         * @desc List the jobs of a project.
-         *
-         * @alias dataflow.projects.locations.jobs.list
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.projectId The project which owns the jobs.
-         * @param {string=} params.filter The kind of filter to use.
-         * @param {string} params.location The location that contains this job.
-         * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-         * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-         * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['projectId', 'location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.jobs.get
-         *
-         * @desc Gets the state of the specified Cloud Dataflow job.
-         *
-         * @alias dataflow.projects.locations.jobs.get
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.view The level of information requested in response.
-         * @param {string} params.jobId The job ID.
-         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-         * @param {string} params.location The location that contains this job.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location', 'jobId'],
-            pathParams: ['jobId', 'projectId', 'location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.jobs.update
-         *
-         * @desc Updates the state of an existing Cloud Dataflow job.
-         *
-         * @alias dataflow.projects.locations.jobs.update
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The location that contains this job.
-         * @param {string} params.jobId The job ID.
-         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-         * @param {dataflow(v1b3).Job} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        update: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location', 'jobId'],
-            pathParams: ['location', 'jobId', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.jobs.create
-         *
-         * @desc Creates a Cloud Dataflow job.
-         *
-         * @alias dataflow.projects.locations.jobs.create
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The location that contains this job.
-         * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
-         * @param {string=} params.view The level of information requested in response.
-         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-         * @param {dataflow(v1b3).Job} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['location', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        workItems: {
-
-          /**
-           * dataflow.projects.locations.jobs.workItems.reportStatus
-           *
-           * @desc Reports the status of dataflow WorkItems leased by a worker.
-           *
-           * @alias dataflow.projects.locations.jobs.workItems.reportStatus
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.jobId The job which the WorkItem is part of.
-           * @param {string} params.projectId The project which owns the WorkItem's job.
-           * @param {string} params.location The location which contains the WorkItem's job.
-           * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          reportStatus: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['jobId', 'projectId', 'location'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
-           * dataflow.projects.locations.jobs.workItems.lease
-           *
-           * @desc Leases a dataflow WorkItem to run.
-           *
-           * @alias dataflow.projects.locations.jobs.workItems.lease
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.location The location which contains the WorkItem's job.
-           * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-           * @param {string} params.projectId Identifies the project this worker belongs to.
-           * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          lease: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['location', 'jobId', 'projectId'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          }
-        },
-
-        debug: {
-
-          /**
-           * dataflow.projects.locations.jobs.debug.sendCapture
-           *
-           * @desc Send encoded debug capture data for component.
-           *
-           * @alias dataflow.projects.locations.jobs.debug.sendCapture
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.location The location which contains the job specified by job_id.
-           * @param {string} params.jobId The job id.
-           * @param {string} params.projectId The project id.
-           * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          sendCapture: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['location', 'jobId', 'projectId'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
-
-          /**
-           * dataflow.projects.locations.jobs.debug.getConfig
-           *
-           * @desc Get encoded debug configuration for component. Not cacheable.
-           *
-           * @alias dataflow.projects.locations.jobs.debug.getConfig
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.jobId The job id.
-           * @param {string} params.projectId The project id.
-           * @param {string} params.location The location which contains the job specified by job_id.
-           * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          getConfig: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['jobId', 'projectId', 'location'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          }
-        },
-
-        messages: {
-
-          /**
-           * dataflow.projects.locations.jobs.messages.list
-           *
-           * @desc Request the job status.
-           *
-           * @alias dataflow.projects.locations.jobs.messages.list
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-           * @param {string} params.location The location which contains the job specified by job_id.
-           * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-           * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-           * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-           * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-           * @param {string} params.jobId The job to get messages about.
-           * @param {string} params.projectId A project id.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          list: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-            const parameters = {
-              options: Object.assign({
-                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['location', 'jobId', 'projectId'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          }
-        }
-      }
-    },
-
-    templates: {
-
-      /**
-       * dataflow.projects.templates.create
-       *
-       * @desc Creates a Cloud Dataflow job from a template.
-       *
-       * @alias dataflow.projects.templates.create
-       * @memberOf! dataflow(v1b3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-       * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
+       * @param {string=} params.location The location that contains this job.
+       * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
+       * @param {string=} params.view The level of information requested in response.
+       * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+       * @param {dataflow(v1b3).Job} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -689,7 +108,7 @@ function Dataflow(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v1b3/projects/{projectId}/templates').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -700,90 +119,6 @@ function Dataflow(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
-      /**
-       * dataflow.projects.templates.launch
-       *
-       * @desc Launch a template.
-       *
-       * @alias dataflow.projects.templates.launch
-       * @memberOf! dataflow(v1b3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-       * @param {string=} params.location The location to which to direct the request.
-       * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-       * @param {dataflow(v1b3).LaunchTemplateParameters} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      launch: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dataflow.projects.templates.get
-       *
-       * @desc Get the template associated with a template.
-       *
-       * @alias dataflow.projects.templates.get
-       * @memberOf! dataflow(v1b3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.location The location to which to direct the request.
-       * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
-       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-       * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
-    jobs: {
 
       /**
        * dataflow.projects.jobs.getMetrics
@@ -794,10 +129,10 @@ function Dataflow(options) { // eslint-disable-line
        * @memberOf! dataflow(v1b3)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.location The location which contains the job specified by job_id.
        * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
        * @param {string} params.jobId The job to get messages for.
        * @param {string} params.projectId A project id.
+       * @param {string=} params.location The location which contains the job specified by job_id.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -876,10 +211,10 @@ function Dataflow(options) { // eslint-disable-line
        * @memberOf! dataflow(v1b3)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.location The location that contains this job.
        * @param {string=} params.view The level of information requested in response.
        * @param {string} params.jobId The job ID.
        * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+       * @param {string=} params.location The location that contains this job.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -947,87 +282,7 @@ function Dataflow(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
-      /**
-       * dataflow.projects.jobs.create
-       *
-       * @desc Creates a Cloud Dataflow job.
-       *
-       * @alias dataflow.projects.jobs.create
-       * @memberOf! dataflow(v1b3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.view The level of information requested in response.
-       * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-       * @param {string=} params.location The location that contains this job.
-       * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
-       * @param {dataflow(v1b3).Job} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
       workItems: {
-
-        /**
-         * dataflow.projects.jobs.workItems.lease
-         *
-         * @desc Leases a dataflow WorkItem to run.
-         *
-         * @alias dataflow.projects.jobs.workItems.lease
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-         * @param {string} params.projectId Identifies the project this worker belongs to.
-         * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        lease: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'jobId'],
-            pathParams: ['jobId', 'projectId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * dataflow.projects.jobs.workItems.reportStatus
@@ -1057,6 +312,45 @@ function Dataflow(options) { // eslint-disable-line
           const parameters = {
             options: Object.assign({
               url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'jobId'],
+            pathParams: ['jobId', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.jobs.workItems.lease
+         *
+         * @desc Leases a dataflow WorkItem to run.
+         *
+         * @alias dataflow.projects.jobs.workItems.lease
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+         * @param {string} params.projectId Identifies the project this worker belongs to.
+         * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        lease: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             }, options),
             params: params,
@@ -1161,14 +455,14 @@ function Dataflow(options) { // eslint-disable-line
          * @memberOf! dataflow(v1b3)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.jobId The job to get messages about.
-         * @param {string} params.projectId A project id.
-         * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-         * @param {string=} params.location The location which contains the job specified by job_id.
          * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
          * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
          * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
          * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
+         * @param {string} params.jobId The job to get messages about.
+         * @param {string} params.projectId A project id.
+         * @param {string=} params.location The location which contains the job specified by job_id.
+         * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1196,811 +490,730 @@ function Dataflow(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       }
+    },
+
+    locations: {
+
+      /**
+       * dataflow.projects.locations.workerMessages
+       *
+       * @desc Send a worker_message to the service.
+       *
+       * @alias dataflow.projects.locations.workerMessages
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId The project to send the WorkerMessages to.
+       * @param {string} params.location The location which contains the job
+       * @param {dataflow(v1b3).SendWorkerMessagesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      workerMessages: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'location'],
+          pathParams: ['projectId', 'location'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      templates: {
+
+        /**
+         * dataflow.projects.locations.templates.create
+         *
+         * @desc Creates a Cloud Dataflow job from a template.
+         *
+         * @alias dataflow.projects.locations.templates.create
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location to which to direct the request.
+         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+         * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['location', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.templates.launch
+         *
+         * @desc Launch a template.
+         *
+         * @alias dataflow.projects.locations.templates.launch
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location to which to direct the request.
+         * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
+         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+         * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+         * @param {dataflow(v1b3).LaunchTemplateParameters} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        launch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates:launch').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['location', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.templates.get
+         *
+         * @desc Get the template associated with a template.
+         *
+         * @alias dataflow.projects.locations.templates.get
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
+         * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+         * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+         * @param {string} params.location The location to which to direct the request.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/templates:get').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['projectId', 'location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
+
+      jobs: {
+
+        /**
+         * dataflow.projects.locations.jobs.list
+         *
+         * @desc List the jobs of a project.
+         *
+         * @alias dataflow.projects.locations.jobs.list
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The project which owns the jobs.
+         * @param {string=} params.filter The kind of filter to use.
+         * @param {string} params.location The location that contains this job.
+         * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
+         * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
+         * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['projectId', 'location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.jobs.get
+         *
+         * @desc Gets the state of the specified Cloud Dataflow job.
+         *
+         * @alias dataflow.projects.locations.jobs.get
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location that contains this job.
+         * @param {string=} params.view The level of information requested in response.
+         * @param {string} params.jobId The job ID.
+         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location', 'jobId'],
+            pathParams: ['location', 'jobId', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.jobs.update
+         *
+         * @desc Updates the state of an existing Cloud Dataflow job.
+         *
+         * @alias dataflow.projects.locations.jobs.update
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location that contains this job.
+         * @param {string} params.jobId The job ID.
+         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+         * @param {dataflow(v1b3).Job} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location', 'jobId'],
+            pathParams: ['location', 'jobId', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.jobs.create
+         *
+         * @desc Creates a Cloud Dataflow job.
+         *
+         * @alias dataflow.projects.locations.jobs.create
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location that contains this job.
+         * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
+         * @param {string=} params.view The level of information requested in response.
+         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+         * @param {dataflow(v1b3).Job} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['location', 'projectId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.jobs.getMetrics
+         *
+         * @desc Request the job status.
+         *
+         * @alias dataflow.projects.locations.jobs.getMetrics
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.jobId The job to get messages for.
+         * @param {string} params.projectId A project id.
+         * @param {string} params.location The location which contains the job specified by job_id.
+         * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getMetrics: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location', 'jobId'],
+            pathParams: ['jobId', 'projectId', 'location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        workItems: {
+
+          /**
+           * dataflow.projects.locations.jobs.workItems.lease
+           *
+           * @desc Leases a dataflow WorkItem to run.
+           *
+           * @alias dataflow.projects.locations.jobs.workItems.lease
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+           * @param {string} params.projectId Identifies the project this worker belongs to.
+           * @param {string} params.location The location which contains the WorkItem's job.
+           * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          lease: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['jobId', 'projectId', 'location'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * dataflow.projects.locations.jobs.workItems.reportStatus
+           *
+           * @desc Reports the status of dataflow WorkItems leased by a worker.
+           *
+           * @alias dataflow.projects.locations.jobs.workItems.reportStatus
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.location The location which contains the WorkItem's job.
+           * @param {string} params.jobId The job which the WorkItem is part of.
+           * @param {string} params.projectId The project which owns the WorkItem's job.
+           * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          reportStatus: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['location', 'jobId', 'projectId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+
+        debug: {
+
+          /**
+           * dataflow.projects.locations.jobs.debug.sendCapture
+           *
+           * @desc Send encoded debug capture data for component.
+           *
+           * @alias dataflow.projects.locations.jobs.debug.sendCapture
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.jobId The job id.
+           * @param {string} params.projectId The project id.
+           * @param {string} params.location The location which contains the job specified by job_id.
+           * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          sendCapture: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['jobId', 'projectId', 'location'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * dataflow.projects.locations.jobs.debug.getConfig
+           *
+           * @desc Get encoded debug configuration for component. Not cacheable.
+           *
+           * @alias dataflow.projects.locations.jobs.debug.getConfig
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.jobId The job id.
+           * @param {string} params.projectId The project id.
+           * @param {string} params.location The location which contains the job specified by job_id.
+           * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          getConfig: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['jobId', 'projectId', 'location'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+
+        messages: {
+
+          /**
+           * dataflow.projects.locations.jobs.messages.list
+           *
+           * @desc Request the job status.
+           *
+           * @alias dataflow.projects.locations.jobs.messages.list
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.projectId A project id.
+           * @param {string} params.jobId The job to get messages about.
+           * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+           * @param {string} params.location The location which contains the job specified by job_id.
+           * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+           * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+           * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+           * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['projectId', 'jobId', 'location'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        }
+      }
+    },
+
+    templates: {
+
+      /**
+       * dataflow.projects.templates.launch
+       *
+       * @desc Launch a template.
+       *
+       * @alias dataflow.projects.templates.launch
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
+       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+       * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+       * @param {string=} params.location The location to which to direct the request.
+       * @param {dataflow(v1b3).LaunchTemplateParameters} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      launch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dataflow.projects.templates.get
+       *
+       * @desc Get the template associated with a template.
+       *
+       * @alias dataflow.projects.templates.get
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.location The location to which to direct the request.
+       * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
+       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+       * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dataflow.projects.templates.create
+       *
+       * @desc Creates a Cloud Dataflow job from a template.
+       *
+       * @alias dataflow.projects.templates.create
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+       * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
 }
 
 /**
- * @typedef SourceOperationResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SourceSplitResponse} split A response to a request to split a source.
- * @property {dataflow(v1b3).SourceGetMetadataResponse} getMetadata A response to a request to get metadata about a source.
- */
-/**
- * @typedef SendDebugCaptureResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- */
-/**
- * @typedef SideInputInfo
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} tag The id of the tag the user code will access this side input by;
-this should correspond to the tag of some MultiOutputInfo.
-* @property {object} kind How to interpret the source element(s) as a side input value.
-* @property {dataflow(v1b3).Source[]} sources The source(s) to read element(s) from to get the value of this side input.
-If more than one source, then the elements are taken from the
-sources, in the specified order if order matters.
-At least one source is required.
-*/
-/**
- * @typedef CounterStructuredNameAndMetadata
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).CounterMetadata} metadata Metadata associated with a counter
- * @property {dataflow(v1b3).CounterStructuredName} name Structured name of the counter.
- */
-/**
- * @typedef ConcatPosition
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).Position} position Position within the inner source.
- * @property {integer} index Index of the inner source.
- */
-/**
- * @typedef WriteInstruction
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).InstructionInput} input The input.
- * @property {dataflow(v1b3).Sink} sink The sink to write to.
- */
-/**
- * @typedef AutoscalingSettings
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {integer} maxNumWorkers The maximum number of workers to cap scaling at.
- * @property {string} algorithm The algorithm to use for autoscaling.
- */
-/**
- * @typedef StreamingComputationRanges
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} computationId The ID of the computation.
- * @property {dataflow(v1b3).KeyRangeDataDiskAssignment[]} rangeAssignments Data disk assignments for ranges from this computation.
- */
-/**
- * @typedef ExecutionStageSummary
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).ComponentSource[]} componentSource Collections produced and consumed by component transforms of this stage.
- * @property {string} kind Type of tranform this stage is executing.
- * @property {dataflow(v1b3).StageSource[]} outputSource Output sources for this stage.
- * @property {string} name Dataflow service generated name for this stage.
- * @property {dataflow(v1b3).StageSource[]} inputSource Input sources for this stage.
- * @property {string} id Dataflow service generated id for this stage.
- * @property {dataflow(v1b3).ComponentTransform[]} componentTransform Transforms that comprise this execution stage.
- */
-/**
- * @typedef LogBucket
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} count Number of values in this bucket.
-* @property {integer} log floor(log2(value)); defined to be zero for nonpositive values.
-  log(-1) = 0
-  log(0) = 0
-  log(1) = 0
-  log(2) = 1
-  log(3) = 1
-  log(4) = 2
-  log(5) = 2
-*/
-/**
- * @typedef SendWorkerMessagesRequest
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).WorkerMessage[]} workerMessages The WorkerMessages to send.
- * @property {string} location The location which contains the job
- */
-/**
- * @typedef SourceSplitShard
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} derivationMode DEPRECATED
- * @property {dataflow(v1b3).Source} source DEPRECATED
- */
-/**
- * @typedef CPUTime
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {number} rate Average CPU utilization rate (% non-idle cpu / second) since previous
-sample.
-* @property {string} timestamp Timestamp of the measurement.
-* @property {string} totalMs Total active CPU time across all cores (ie., non-idle) in milliseconds
-since start-up.
-*/
-/**
- * @typedef Environment
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} serviceAccountEmail Identity to run virtual machines as. Defaults to the default account.
-* @property {object} sdkPipelineOptions The Cloud Dataflow SDK pipeline options specified by the user. These
-options are passed through the service and are used to recreate the
-SDK pipeline options on the worker in a language agnostic and platform
-independent way.
-* @property {object} userAgent A description of the process that generated the request.
-* @property {string} clusterManagerApiService The type of cluster manager API to use.  If unknown or
-unspecified, the service will attempt to choose a reasonable
-default.  This should be in the form of the API service name,
-e.g. &quot;compute.googleapis.com&quot;.
-* @property {string} tempStoragePrefix The prefix of the resources the system should use for temporary
-storage.  The system will append the suffix &quot;/temp-{JOBNAME} to
-this resource prefix, where {JOBNAME} is the value of the
-job_name field.  The resulting bucket and object prefix is used
-as the prefix of the resources used to store temporary data
-needed during the job execution.  NOTE: This will override the
-value in taskrunner_settings.
-The supported resource type is:
-
-Google Cloud Storage:
-
-  storage.googleapis.com/{bucket}/{object}
-  bucket.storage.googleapis.com/{object}
-* @property {dataflow(v1b3).WorkerPool[]} workerPools The worker pools. At least one &quot;harness&quot; worker pool must be
-specified in order for the job to have workers.
-* @property {string} dataset The dataset for the current project where various workflow
-related tables are stored.
-
-The supported resource type is:
-
-Google BigQuery:
-  bigquery.googleapis.com/{dataset}
-* @property {string[]} experiments The list of experiments to enable.
-* @property {object} internalExperiments Experimental settings.
-* @property {object} version A structure describing which components and their versions of the service
-are required in order to run the job.
-*/
-/**
- * @typedef StreamingComputationTask
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).StreamingComputationRanges[]} computationRanges Contains ranges of a streaming computation this task should apply to.
- * @property {dataflow(v1b3).MountedDataDisk[]} dataDisks Describes the set of data disks this task should apply to.
- * @property {string} taskType A type of streaming computation task.
- */
-/**
- * @typedef SendDebugCaptureRequest
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} componentId The internal component id for which debug information is sent.
- * @property {string} workerId The worker id, i.e., VM hostname.
- * @property {string} location The location which contains the job specified by job_id.
- * @property {string} data The encoded debug information.
- */
-/**
- * @typedef GetDebugConfigResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} config The encoded debug configuration for the requested component.
- */
-/**
- * @typedef ComponentTransform
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} originalTransform User name for the original user transform with which this transform is
-most closely associated.
-* @property {string} name Dataflow service generated name for this source.
-* @property {string} userName Human-readable name for this transform; may be user or system generated.
-*/
-/**
- * @typedef StreamingSetupTask
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {boolean} drain The user has requested drain.
-* @property {integer} workerHarnessPort The TCP port used by the worker to communicate with the Dataflow
-worker harness.
-* @property {integer} receiveWorkPort The TCP port on which the worker should listen for messages from
-other streaming computation workers.
-* @property {dataflow(v1b3).TopologyConfig} streamingComputationTopology The global topology of the streaming Dataflow job.
-*/
-/**
- * @typedef PubsubLocation
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} trackingSubscription If set, specifies the pubsub subscription that will be used for tracking
-custom time timestamps for watermark estimation.
-* @property {boolean} withAttributes If true, then the client has requested to get pubsub attributes.
-* @property {string} idLabel If set, contains a pubsub label from which to extract record ids.
-If left empty, record deduplication will be strictly best effort.
-* @property {string} topic A pubsub topic, in the form of
-&quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
-* @property {string} timestampLabel If set, contains a pubsub label from which to extract record timestamps.
-If left empty, record timestamps will be generated upon arrival.
-* @property {string} subscription A pubsub subscription, in the form of
-&quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
-* @property {boolean} dropLateData Indicates whether the pipeline allows late-arriving data.
-*/
-/**
- * @typedef WorkerHealthReport
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} vmStartupTime The time the VM was booted.
-* @property {string} reportInterval The interval at which the worker is sending health reports.
-The default value of 0 should be interpreted as the field is not being
-explicitly set by the worker.
-* @property {boolean} vmIsHealthy Whether the VM is healthy.
-* @property {object[]} pods The pods running on the worker. See:
-http://kubernetes.io/v1.1/docs/api-reference/v1/definitions.html#_v1_pod
-
-This field is used by the worker to send the status of the indvidual
-containers running on each worker.
-*/
-/**
- * @typedef JobMessage
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} messageImportance Importance level of the message.
- * @property {string} messageText The text of the message.
- * @property {string} time The timestamp of the message.
- * @property {string} id Deprecated.
- */
-/**
- * @typedef ParameterMetadata
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string[]} regexes Optional. Regexes that the parameter must match.
- * @property {string} label Required. The label to display for the parameter.
- * @property {string} helpText Required. The help text to display for the parameter.
- * @property {boolean} isOptional Optional. Whether the parameter is optional. Defaults to false.
- * @property {string} name Required. The name of the parameter.
- */
-/**
- * @typedef MultiOutputInfo
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} tag The id of the tag the user code will emit to this output by; this
-should correspond to the tag of some SideInputInfo.
-*/
-/**
- * @typedef SourceSplitRequest
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SourceSplitOptions} options Hints for tuning the splitting process.
- * @property {dataflow(v1b3).Source} source Specification of the source to be split.
- */
-/**
- * @typedef SourceGetMetadataResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SourceMetadata} metadata The computed metadata.
- */
-/**
- * @typedef ShellTask
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {integer} exitCode Exit code for the task.
- * @property {string} command The shell command to run.
- */
-/**
- * @typedef MetricShortId
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {integer} metricIndex The index of the corresponding metric in
-the ReportWorkItemStatusRequest. Required.
-* @property {string} shortId The service-generated short identifier for the metric.
-*/
-/**
- * @typedef AutoscalingEvent
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} time The time this event was emitted to indicate a new target or current
-num_workers value.
-* @property {dataflow(v1b3).StructuredMessage} description A message describing why the system decided to adjust the current
-number of workers, why it failed, or why the system decided to
-not make any changes to the number of workers.
-* @property {string} eventType The type of autoscaling event to report.
-* @property {string} targetNumWorkers The target number of workers the worker pool wants to resize to use.
-* @property {string} currentNumWorkers The current number of workers the job has.
-*/
-/**
- * @typedef TaskRunnerSettings
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} taskUser The UNIX user ID on the worker VM to use for tasks launched by
-taskrunner; e.g. &quot;root&quot;.
-* @property {string} vmId The ID string of the VM.
-* @property {boolean} alsologtostderr Whether to also send taskrunner log info to stderr.
-* @property {string} taskGroup The UNIX group ID on the worker VM to use for tasks launched by
-taskrunner; e.g. &quot;wheel&quot;.
-* @property {string} harnessCommand The command to launch the worker harness.
-* @property {string} logDir The directory on the VM to store logs.
-* @property {string[]} oauthScopes The OAuth2 scopes to be requested by the taskrunner in order to
-access the Cloud Dataflow API.
-* @property {string} dataflowApiVersion The API version of endpoint, e.g. &quot;v1b3&quot;
-* @property {string} logUploadLocation Indicates where to put logs.  If this is not specified, the logs
-will not be uploaded.
-
-The supported resource type is:
-
-Google Cloud Storage:
-  storage.googleapis.com/{bucket}/{object}
-  bucket.storage.googleapis.com/{object}
-* @property {string} streamingWorkerMainClass The streaming worker main class name.
-* @property {string} workflowFileName The file to store the workflow in.
-* @property {string} languageHint The suggested backend language.
-* @property {string} commandlinesFileName The file to store preprocessing commands in.
-* @property {string} baseTaskDir The location on the worker for task-specific subdirectories.
-* @property {string} tempStoragePrefix The prefix of the resources the taskrunner should use for
-temporary storage.
-
-The supported resource type is:
-
-Google Cloud Storage:
-  storage.googleapis.com/{bucket}/{object}
-  bucket.storage.googleapis.com/{object}
-* @property {string} baseUrl The base URL for the taskrunner to use when accessing Google Cloud APIs.
-
-When workers access Google Cloud APIs, they logically do so via
-relative URLs.  If this field is specified, it supplies the base
-URL to use for resolving these relative URLs.  The normative
-algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
-Locators&quot;.
-
-If not specified, the default value is &quot;http://www.googleapis.com/&quot;
-* @property {boolean} logToSerialconsole Whether to send taskrunner log info to Google Compute Engine VM serial
-console.
-* @property {boolean} continueOnException Whether to continue taskrunner if an exception is hit.
-* @property {dataflow(v1b3).WorkerSettings} parallelWorkerSettings The settings to pass to the parallel worker harness.
-*/
-/**
- * @typedef Position
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).ConcatPosition} concatPosition CloudPosition is a concat position.
-* @property {string} byteOffset Position is a byte offset.
-* @property {boolean} end Position is past all other positions. Also useful for the end
-position of an unbounded range.
-* @property {string} key Position is a string key, ordered lexicographically.
-* @property {string} recordIndex Position is a record index.
-* @property {string} shufflePosition CloudPosition is a base64 encoded BatchShufflePosition (with FIXED
-sharding).
-*/
-/**
- * @typedef Source
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).SourceMetadata} metadata Optionally, metadata for this source can be supplied right away,
-avoiding a SourceGetMetadataOperation roundtrip
-(see SourceOperationRequest).
-
-This field is meaningful only in the Source objects populated
-by the user (e.g. when filling in a DerivedSource).
-Source objects supplied by the framework to the user don&#39;t have
-this field populated.
-* @property {object[]} baseSpecs While splitting, sources may specify the produced bundles
-as differences against another source, in order to save backend-side
-memory and allow bigger jobs. For details, see SourceSplitRequest.
-To support this use case, the full set of parameters of the source
-is logically obtained by taking the latest explicitly specified value
-of each parameter in the order:
-base_specs (later items win), spec (overrides anything in base_specs).
-* @property {boolean} doesNotNeedSplitting Setting this value to true hints to the framework that the source
-doesn&#39;t need splitting, and using SourceSplitRequest on it would
-yield SOURCE_SPLIT_OUTCOME_USE_CURRENT.
-
-E.g. a file splitter may set this to true when splitting a single file
-into a set of byte ranges of appropriate size, and set this
-to false when splitting a filepattern into individual files.
-However, for efficiency, a file splitter may decide to produce
-file subranges directly from the filepattern to avoid a splitting
-round-trip.
-
-See SourceSplitRequest for an overview of the splitting process.
-
-This field is meaningful only in the Source objects populated
-by the user (e.g. when filling in a DerivedSource).
-Source objects supplied by the framework to the user don&#39;t have
-this field populated.
-* @property {object} codec The codec to use to decode data read from the source.
-* @property {object} spec The source to read from, plus its parameters.
-*/
-/**
- * @typedef SplitInt64
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {integer} highBits The high order bits, including the sign: n &gt;&gt; 32.
- * @property {integer} lowBits The low order bits: n &amp; 0xffffffff.
- */
-/**
- * @typedef WorkerPool
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {integer} diskSizeGb Size of root disk for VMs, in GB.  If zero or unspecified, the service will
-attempt to choose a reasonable default.
-* @property {string} workerHarnessContainerImage Required. Docker container image that executes the Cloud Dataflow worker
-harness, residing in Google Container Registry.
-* @property {string} machineType Machine type (e.g. &quot;n1-standard-1&quot;).  If empty or unspecified, the
-service will attempt to choose a reasonable default.
-* @property {string} diskType Type of root disk for VMs.  If empty or unspecified, the service will
-attempt to choose a reasonable default.
-* @property {string} kind The kind of the worker pool; currently only `harness` and `shuffle`
-are supported.
-* @property {dataflow(v1b3).Disk[]} dataDisks Data disks that are used by a VM in this workflow.
-* @property {string} subnetwork Subnetwork to which VMs will be assigned, if desired.  Expected to be of
-the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
-* @property {string} ipConfiguration Configuration for VM IPs.
-* @property {dataflow(v1b3).AutoscalingSettings} autoscalingSettings Settings for autoscaling of this WorkerPool.
-* @property {dataflow(v1b3).TaskRunnerSettings} taskrunnerSettings Settings passed through to Google Compute Engine workers when
-using the standard Dataflow task runner.  Users should ignore
-this field.
-* @property {object} metadata Metadata to set on the Google Compute Engine VMs.
-* @property {string} network Network to which VMs will be assigned.  If empty or unspecified,
-the service will use the network &quot;default&quot;.
-* @property {string} defaultPackageSet The default package set to install.  This allows the service to
-select a default set of packages which are useful to worker
-harnesses written in a particular language.
-* @property {integer} numThreadsPerWorker The number of threads per worker harness. If empty or unspecified, the
-service will choose a number of threads (according to the number of cores
-on the selected machine type for batch, or 1 by convention for streaming).
-* @property {integer} numWorkers Number of Google Compute Engine workers in this pool needed to
-execute the job.  If zero or unspecified, the service will
-attempt to choose a reasonable default.
-* @property {string} zone Zone to run the worker pools in.  If empty or unspecified, the service
-will attempt to choose a reasonable default.
-* @property {string} diskSourceImage Fully qualified source image for disks.
-* @property {dataflow(v1b3).Package[]} packages Packages to be installed on workers.
-* @property {string} teardownPolicy Sets the policy for determining when to turndown worker pool.
-Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and
-`TEARDOWN_NEVER`.
-`TEARDOWN_ALWAYS` means workers are always torn down regardless of whether
-the job succeeds. `TEARDOWN_ON_SUCCESS` means workers are torn down
-if the job succeeds. `TEARDOWN_NEVER` means the workers are never torn
-down.
-
-If the workers are not torn down by the service, they will
-continue to run and use Google Compute Engine VM resources in the
-user&#39;s project until they are explicitly terminated by the user.
-Because of this, Google recommends using the `TEARDOWN_ALWAYS`
-policy except for small, manually supervised test jobs.
-
-If unknown or unspecified, the service will attempt to choose a reasonable
-default.
-* @property {string} onHostMaintenance The action to take on host maintenance, as defined by the Google
-Compute Engine API.
-* @property {object} poolArgs Extra arguments for this worker pool.
-*/
-/**
- * @typedef SourceOperationRequest
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
- * @property {dataflow(v1b3).SourceSplitRequest} split Information about a request to split a source.
- */
-/**
- * @typedef WorkItem
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} initialReportIndex The initial index to use when reporting the status of the WorkItem.
-* @property {dataflow(v1b3).ShellTask} shellTask Additional information for ShellTask WorkItems.
-* @property {dataflow(v1b3).StreamingComputationTask} streamingComputationTask Additional information for StreamingComputationTask WorkItems.
-* @property {string} jobId Identifies the workflow job this WorkItem belongs to.
-* @property {string} id Identifies this WorkItem.
-* @property {string} configuration Work item-specific configuration as an opaque blob.
-* @property {dataflow(v1b3).MapTask} mapTask Additional information for MapTask WorkItems.
-* @property {dataflow(v1b3).SeqMapTask} seqMapTask Additional information for SeqMapTask WorkItems.
-* @property {dataflow(v1b3).Package[]} packages Any required packages that need to be fetched in order to execute
-this WorkItem.
-* @property {string} projectId Identifies the cloud project this WorkItem belongs to.
-* @property {dataflow(v1b3).SourceOperationRequest} sourceOperationTask Additional information for source operation WorkItems.
-* @property {dataflow(v1b3).StreamingSetupTask} streamingSetupTask Additional information for StreamingSetupTask WorkItems.
-* @property {string} reportStatusInterval Recommended reporting interval.
-* @property {string} leaseExpireTime Time when the lease on this Work will expire.
-* @property {dataflow(v1b3).StreamingConfigTask} streamingConfigTask Additional information for StreamingConfigTask WorkItems.
-*/
-/**
- * @typedef StructuredMessage
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} messageKey Idenfier for this message type.  Used by external systems to
-internationalize or personalize message.
-* @property {string} messageText Human-readable version of message.
-* @property {dataflow(v1b3).Parameter[]} parameters The structured data associated with this message.
-*/
-/**
- * @typedef ReportedParallelism
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {boolean} isInfinite Specifies whether the parallelism is infinite. If true, &quot;value&quot; is
-ignored.
-Infinite parallelism means the service will assume that the work item
-can always be split into more non-empty work items by dynamic splitting.
-This is a work-around for lack of support for infinity by the current
-JSON-based Java RPC stack.
-* @property {number} value Specifies the level of parallelism in case it is finite.
-*/
-/**
- * @typedef ResourceUtilizationReport
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).CPUTime[]} cpuTime CPU utilization samples.
- */
-/**
- * @typedef TopologyConfig
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {object} userStageToComputationNameMap Maps user stage names to stable computation names.
- * @property {dataflow(v1b3).ComputationTopology[]} computations The computations associated with a streaming Dataflow job.
- * @property {integer} persistentStateVersion Version number for persistent state.
- * @property {dataflow(v1b3).DataDiskAssignment[]} dataDiskAssignments The disks assigned to a streaming Dataflow job.
- * @property {integer} forwardingKeyBits The size (in bits) of keys that will be assigned to source messages.
- */
-/**
- * @typedef SourceSplitOptions
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} desiredBundleSizeBytes The source should be split into a set of bundles where the estimated size
-of each is approximately this many bytes.
-* @property {string} desiredShardSizeBytes DEPRECATED in favor of desired_bundle_size_bytes.
-*/
-/**
- * @typedef ReadInstruction
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).Source} source The source to read from.
- */
-/**
- * @typedef WorkerSettings
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} servicePath The Cloud Dataflow service path relative to the root URL, for example,
-&quot;dataflow/v1b3/projects&quot;.
-* @property {string} shuffleServicePath The Shuffle service path relative to the root URL, for example,
-&quot;shuffle/v1beta1&quot;.
-* @property {string} workerId The ID of the worker running this pipeline.
-* @property {string} tempStoragePrefix The prefix of the resources the system should use for temporary
-storage.
-
-The supported resource type is:
-
-Google Cloud Storage:
-
-  storage.googleapis.com/{bucket}/{object}
-  bucket.storage.googleapis.com/{object}
-* @property {boolean} reportingEnabled Whether to send work progress updates to the service.
-* @property {string} baseUrl The base URL for accessing Google Cloud APIs.
-
-When workers access Google Cloud APIs, they logically do so via
-relative URLs.  If this field is specified, it supplies the base
-URL to use for resolving these relative URLs.  The normative
-algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
-Locators&quot;.
-
-If not specified, the default value is &quot;http://www.googleapis.com/&quot;
-*/
-/**
- * @typedef DataDiskAssignment
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} vmInstance VM instance name the data disks mounted to, for example
-&quot;myproject-1014-104817-4c2-harness-0&quot;.
-* @property {string[]} dataDisks Mounted data disks. The order is important a data disk&#39;s 0-based index in
-this list defines which persistent directory the disk is mounted to, for
-example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; },
-{ &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
-*/
-/**
- * @typedef StreamingStageLocation
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} streamId Identifies the particular stream within the streaming Dataflow
-job.
-*/
-/**
- * @typedef ApproximateSplitRequest
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).Position} position A Position at which to split the work item.
-* @property {number} fractionConsumed A fraction at which to split the work item, from 0.0 (beginning of the
-input) to 1.0 (end of the input).
-*/
-/**
- * @typedef Status
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
- * @typedef ExecutionStageState
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} currentStateTime The time at which the stage transitioned to this state.
- * @property {string} executionStageState Executions stage states allow the same set of values as JobState.
- * @property {string} executionStageName The name of the execution stage.
- */
-/**
- * @typedef StreamLocation
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).CustomSourceLocation} customSourceLocation The stream is a custom source.
-* @property {dataflow(v1b3).StreamingSideInputLocation} sideInputLocation The stream is a streaming side input.
-* @property {dataflow(v1b3).PubsubLocation} pubsubLocation The stream is a pubsub stream.
-* @property {dataflow(v1b3).StreamingStageLocation} streamingStageLocation The stream is part of another computation within the current
-streaming Dataflow job.
-*/
-/**
- * @typedef SendWorkerMessagesResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).WorkerMessageResponse[]} workerMessageResponses The servers response to the worker messages.
- */
-/**
- * @typedef StreamingComputationConfig
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} computationId Unique identifier for this computation.
- * @property {string} stageName Stage name of this computation.
- * @property {string} systemName System defined name for this computation.
- * @property {dataflow(v1b3).ParallelInstruction[]} instructions Instructions that comprise the computation.
- */
-/**
- * @typedef TransformSummary
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).DisplayData[]} displayData Transform-specific display data.
- * @property {string[]} outputCollectionName User  names for all collection outputs to this transform.
- * @property {string} kind Type of transform.
- * @property {string[]} inputCollectionName User names for all collection inputs to this transform.
- * @property {string} name User provided name for this transform instance.
- * @property {string} id SDK generated id of this transform instance.
- */
-/**
- * @typedef LeaseWorkItemResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).WorkItem[]} workItems A list of the leased WorkItems.
- */
-/**
- * @typedef Sink
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {object} codec The codec to use to encode data written to the sink.
- * @property {object} spec The sink to write to, plus its parameters.
- */
-/**
- * @typedef LaunchTemplateParameters
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} jobName Required. The job name to use for the created job.
- * @property {dataflow(v1b3).RuntimeEnvironment} environment The runtime environment for the job.
- * @property {object} parameters The runtime parameters to pass to the job.
- */
-/**
- * @typedef FlattenInstruction
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).InstructionInput[]} inputs Describes the inputs to the flatten instruction.
- */
-/**
- * @typedef PartialGroupByKeyInstruction
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).InstructionInput} input Describes the input to the partial group-by-key instruction.
-* @property {object} inputElementCodec The codec to use for interpreting an element in the input PTable.
-* @property {object} valueCombiningFn The value combining function to invoke.
-* @property {string} originalCombineValuesInputStoreName If this instruction includes a combining function this is the name of the
-intermediate store between the GBK and the CombineValues.
-* @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
-* @property {string} originalCombineValuesStepName If this instruction includes a combining function, this is the name of the
-CombineValues instruction lifted into this instruction.
-*/
-/**
- * @typedef InstructionInput
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {integer} producerInstructionIndex The index (origin zero) of the parallel instruction that produces
-the output to be consumed by this input.  This index is relative
-to the list of instructions in this input&#39;s instruction&#39;s
-containing MapTask.
-* @property {integer} outputNum The output index (origin zero) within the producer.
-*/
-/**
- * @typedef StageSource
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} sizeBytes Size of the source, if measurable.
-* @property {string} name Dataflow service generated name for this source.
-* @property {string} userName Human-readable name for this source; may be user or system generated.
-* @property {string} originalTransformOrCollection User name for the original user transform or collection with which this
-source is most closely associated.
-*/
-/**
- * @typedef StringList
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string[]} elements Elements of the list.
- */
-/**
- * @typedef DisplayData
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} key The key identifying the display data.
-This is intended to be used as a label for the display data
-when viewed in a dax monitoring system.
-* @property {string} shortStrValue A possible additional shorter value to display.
-For example a java_class_name_value of com.mypackage.MyDoFn
-will be stored with MyDoFn as the short_str_value and
-com.mypackage.MyDoFn as the java_class_name value.
-short_str_value can be displayed and java_class_name_value
-will be displayed as a tooltip.
-* @property {string} url An optional full URL.
-* @property {string} label An optional label to display in a dax UI for the element.
-* @property {string} timestampValue Contains value if the data is of timestamp type.
-* @property {string} javaClassValue Contains value if the data is of java class type.
-* @property {boolean} boolValue Contains value if the data is of a boolean type.
-* @property {string} strValue Contains value if the data is of string type.
-* @property {string} durationValue Contains value if the data is of duration type.
-* @property {string} int64Value Contains value if the data is of int64 type.
-* @property {string} namespace The namespace for the key. This is usually a class name or programming
-language namespace (i.e. python module) which defines the display data.
-This allows a dax monitoring system to specially handle the data
-and perform custom rendering.
-* @property {number} floatValue Contains value if the data is of float type.
-*/
-/**
- * @typedef LeaseWorkItemRequest
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} currentWorkerTime The current timestamp at the worker.
-* @property {string[]} workItemTypes Filter for WorkItem type.
-* @property {string} location The location which contains the WorkItem&#39;s job.
-* @property {string} workerId Identifies the worker leasing work -- typically the ID of the
-virtual machine running the worker.
-* @property {string[]} workerCapabilities Worker capabilities. WorkItems might be limited to workers with specific
-capabilities.
-* @property {string} requestedLeaseDuration The initial lease period.
-*/
-/**
- * @typedef GetDebugConfigRequest
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} componentId The internal component id for which debug configuration is
-requested.
-* @property {string} workerId The worker id, i.e., VM hostname.
-* @property {string} location The location which contains the job specified by job_id.
-*/
-/**
- * @typedef GetTemplateResponse
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).TemplateMetadata} metadata The template metadata describing the template name, available
-parameters, etc.
-* @property {dataflow(v1b3).Status} status The status of the get template request. Any problems with the
-request will be indicated in the error_details.
-*/
-/**
- * @typedef Parameter
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} key Key or name for this parameter.
- * @property {any} value Value for this parameter.
- */
-/**
  * @typedef ReportWorkItemStatusRequest
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).WorkItemStatus[]} workItemStatuses The order is unimportant, except that the order of the
+WorkItemServiceState messages in the ReportWorkItemStatusResponse
+corresponds to the order of WorkItemStatus messages here.
 * @property {string} currentWorkerTime The current timestamp at the worker.
 * @property {string} workerId The ID of the worker reporting the WorkItem status.  If this
 does not match the ID of the worker which the Dataflow service
 believes currently has the lease on the WorkItem, the report
 will be dropped (with an error response).
 * @property {string} location The location which contains the WorkItem&#39;s job.
-* @property {dataflow(v1b3).WorkItemStatus[]} workItemStatuses The order is unimportant, except that the order of the
-WorkItemServiceState messages in the ReportWorkItemStatusResponse
-corresponds to the order of WorkItemStatus messages here.
 */
-/**
- * @typedef PipelineDescription
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).TransformSummary[]} originalPipelineTransform Description of each transform in the pipeline and collections between them.
- * @property {dataflow(v1b3).DisplayData[]} displayData Pipeline level display data.
- * @property {dataflow(v1b3).ExecutionStageSummary[]} executionPipelineStage Description of each stage of execution of the pipeline.
- */
 /**
  * @typedef StreamingConfigTask
  * @memberOf! dataflow(v1b3)
@@ -2014,6 +1227,14 @@ endpoint it had been using.
 Service dispatchers. Only applicable when windmill_service_endpoint is
 specified.
 */
+/**
+ * @typedef PipelineDescription
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).TransformSummary[]} originalPipelineTransform Description of each transform in the pipeline and collections between them.
+ * @property {dataflow(v1b3).DisplayData[]} displayData Pipeline level display data.
+ * @property {dataflow(v1b3).ExecutionStageSummary[]} executionPipelineStage Description of each stage of execution of the pipeline.
+ */
 /**
  * @typedef Step
  * @memberOf! dataflow(v1b3)
@@ -2041,7 +1262,6 @@ Must be provided on Create.  Only retrieved with JOB_VIEW_ALL.
  * @typedef Disk
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} mountPoint Directory in a VM where disk is mounted.
 * @property {string} diskType Disk storage type, as defined by Google Compute Engine.  This
 must be a disk type appropriate to the project and zone in which
 the workers will run.  If unknown or unspecified, the service
@@ -2062,15 +1282,8 @@ typically look something like this:
 compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
 * @property {integer} sizeGb Size of disk in GB.  If zero or unspecified, the service will
 attempt to choose a reasonable default.
+* @property {string} mountPoint Directory in a VM where disk is mounted.
 */
-/**
- * @typedef ListJobMessagesResponse
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} nextPageToken The token to obtain the next page of results if there are more.
- * @property {dataflow(v1b3).AutoscalingEvent[]} autoscalingEvents Autoscaling events in ascending timestamp order.
- * @property {dataflow(v1b3).JobMessage[]} jobMessages Messages in ascending timestamp order.
- */
 /**
  * @typedef CounterMetadata
  * @memberOf! dataflow(v1b3)
@@ -2081,10 +1294,17 @@ attempt to choose a reasonable default.
  * @property {string} otherUnits A string referring to the unit type.
  */
 /**
+ * @typedef ListJobMessagesResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).JobMessage[]} jobMessages Messages in ascending timestamp order.
+ * @property {string} nextPageToken The token to obtain the next page of results if there are more.
+ * @property {dataflow(v1b3).AutoscalingEvent[]} autoscalingEvents Autoscaling events in ascending timestamp order.
+ */
+/**
  * @typedef ApproximateReportedProgress
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).Position} position A Position within the work to represent a progress.
 * @property {number} fractionConsumed Completion as fraction of the input consumed, from 0.0 (beginning, nothing
 consumed), to 1.0 (end of the input, entire input consumed).
 * @property {dataflow(v1b3).ReportedParallelism} consumedParallelism Total amount of parallelism in the portion of input of this task that has
@@ -2118,19 +1338,20 @@ Examples:
   or reading or processing the last record in a perfectly splittable
   input, this value should be 1, because apart from the current task, no
   additional remainder can be split off.
+* @property {dataflow(v1b3).Position} position A Position within the work to represent a progress.
 */
+/**
+ * @typedef IntegerList
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).SplitInt64[]} elements Elements of the list.
+ */
 /**
  * @typedef StateFamilyConfig
  * @memberOf! dataflow(v1b3)
  * @type object
  * @property {string} stateFamily The state family value.
  * @property {boolean} isRead If true, this family corresponds to a read operation.
- */
-/**
- * @typedef IntegerList
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SplitInt64[]} elements Elements of the list.
  */
 /**
  * @typedef ResourceUtilizationReportResponse
@@ -2155,27 +1376,27 @@ This list can be empty, which means the source represents an empty input.
  * @typedef ParallelInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).WriteInstruction} write Additional information for Write instructions.
+* @property {dataflow(v1b3).ParDoInstruction} parDo Additional information for ParDo instructions.
+* @property {dataflow(v1b3).ReadInstruction} read Additional information for Read instructions.
+* @property {dataflow(v1b3).FlattenInstruction} flatten Additional information for Flatten instructions.
+* @property {string} originalName System-defined name for the operation in the original workflow graph.
 * @property {string} systemName System-defined name of this operation.
 Unique across the workflow.
+* @property {dataflow(v1b3).WriteInstruction} write Additional information for Write instructions.
 * @property {dataflow(v1b3).PartialGroupByKeyInstruction} partialGroupByKey Additional information for PartialGroupByKey instructions.
 * @property {dataflow(v1b3).InstructionOutput[]} outputs Describes the outputs of the instruction.
 * @property {string} name User-provided name of this operation.
-* @property {dataflow(v1b3).ReadInstruction} read Additional information for Read instructions.
-* @property {dataflow(v1b3).ParDoInstruction} parDo Additional information for ParDo instructions.
-* @property {string} originalName System-defined name for the operation in the original workflow graph.
-* @property {dataflow(v1b3).FlattenInstruction} flatten Additional information for Flatten instructions.
 */
 /**
  * @typedef KeyRangeDataDiskAssignment
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} end The end (exclusive) of the key range.
 * @property {string} dataDisk The name of the data disk where data for this range is stored.
 This name is local to the Google Cloud Platform project and uniquely
 identifies the disk within that project, for example
 &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
 * @property {string} start The start (inclusive) of the key range.
-* @property {string} end The end (exclusive) of the key range.
 */
 /**
  * @typedef Package
@@ -2193,17 +1414,16 @@ Google Cloud Storage:
  * @typedef ParDoInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
  * @property {dataflow(v1b3).MultiOutputInfo[]} multiOutputInfos Information about each of the outputs, if user_fn is a  MultiDoFn.
  * @property {object} userFn The user function to invoke.
  * @property {dataflow(v1b3).InstructionInput} input The input.
  * @property {integer} numOutputs The number of outputs.
- * @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
  */
 /**
  * @typedef CounterStructuredName
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} componentStepName Name of the optimized step being executed by the workers.
 * @property {string} portion Portion of this counter, either key or value.
 * @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
 optimization.
@@ -2214,6 +1434,7 @@ optimization.
 context of the other fields.
 Required.
 * @property {string} origin One of the standard Origins defined above.
+* @property {string} componentStepName Name of the optimized step being executed by the workers.
 */
 /**
  * @typedef MetricUpdate
@@ -2255,16 +1476,16 @@ metrics API.
  * @typedef ApproximateProgress
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {string} remainingTime Obsolete.
  * @property {dataflow(v1b3).Position} position Obsolete.
  * @property {number} percentComplete Obsolete.
- * @property {string} remainingTime Obsolete.
  */
 /**
  * @typedef WorkerMessageResponse
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).ResourceUtilizationReportResponse} workerMetricsResponse Service&#39;s response to reporting worker metrics (currently empty).
  * @property {dataflow(v1b3).WorkerHealthReportResponse} workerHealthReportResponse The service&#39;s response to a worker&#39;s health report.
+ * @property {dataflow(v1b3).ResourceUtilizationReportResponse} workerMetricsResponse Service&#39;s response to reporting worker metrics (currently empty).
  */
 /**
  * @typedef TemplateMetadata
@@ -2278,6 +1499,7 @@ metrics API.
  * @typedef WorkerMessage
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} time The timestamp of the worker_message.
 * @property {dataflow(v1b3).WorkerHealthReport} workerHealthReport The health of a worker.
 * @property {dataflow(v1b3).ResourceUtilizationReport} workerMetrics Resource metrics reported by workers.
 * @property {dataflow(v1b3).WorkerMessageCode} workerMessageCode A worker message code.
@@ -2291,7 +1513,6 @@ might have the labels:
 Label tags typically correspond to Label enum values. However, for ease
 of development other strings can be used as tags. LABEL_UNSPECIFIED should
 not be used here.
-* @property {string} time The timestamp of the worker_message.
 */
 /**
  * @typedef JobMetrics
@@ -2310,12 +1531,6 @@ not be used here.
  * @typedef CounterUpdate
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).NameAndKind} nameAndKind Counter name and aggregation type.
-* @property {dataflow(v1b3).StringList} stringList List of strings, for Set.
-* @property {dataflow(v1b3).DistributionUpdate} distribution Distribution data
-* @property {string} shortId The service-generated short identifier for this counter.
-The short_id -&gt; (name, metadata) mapping is constant for the lifetime of
-a job.
 * @property {dataflow(v1b3).FloatingPointList} floatingPointList List of floating point numbers, for Set.
 * @property {dataflow(v1b3).SplitInt64} integer Integer value for Sum, Max, Min.
 * @property {dataflow(v1b3).IntegerList} integerList List of integers, for Set.
@@ -2329,6 +1544,12 @@ as a delta.
 * @property {any} internal Value for internally-defined counters used by the Dataflow service.
 * @property {dataflow(v1b3).FloatingPointMean} floatingPointMean Floating point mean aggregation value for Mean.
 * @property {boolean} boolean Boolean value for And, Or.
+* @property {dataflow(v1b3).NameAndKind} nameAndKind Counter name and aggregation type.
+* @property {dataflow(v1b3).DistributionUpdate} distribution Distribution data
+* @property {dataflow(v1b3).StringList} stringList List of strings, for Set.
+* @property {string} shortId The service-generated short identifier for this counter.
+The short_id -&gt; (name, metadata) mapping is constant for the lifetime of
+a job.
 */
 /**
  * @typedef SourceMetadata
@@ -2346,6 +1567,7 @@ the (encoded) keys in lexicographically sorted order.
  * @typedef DistributionUpdate
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).SplitInt64} max The maximum value present in the distribution.
 * @property {dataflow(v1b3).LogBucket[]} logBuckets (Optional) Logarithmic histogram of values.
 Each log may be in no more than one bucket. Order does not matter.
 * @property {dataflow(v1b3).SplitInt64} count The count of the number of elements present in the distribution.
@@ -2353,8 +1575,16 @@ Each log may be in no more than one bucket. Order does not matter.
 * @property {number} sumOfSquares Use a double since the sum of squares is likely to overflow int64.
 * @property {dataflow(v1b3).SplitInt64} sum Use an int64 since we&#39;d prefer the added precision. If overflow is a common
 problem we can detect it and use an additional int64 or a double.
-* @property {dataflow(v1b3).SplitInt64} max The maximum value present in the distribution.
 */
+/**
+ * @typedef SourceFork
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).DerivedSource} residualSource DEPRECATED
+ * @property {dataflow(v1b3).SourceSplitShard} primary DEPRECATED
+ * @property {dataflow(v1b3).DerivedSource} primarySource DEPRECATED
+ * @property {dataflow(v1b3).SourceSplitShard} residual DEPRECATED
+ */
 /**
  * @typedef WorkerHealthReportResponse
  * @memberOf! dataflow(v1b3)
@@ -2366,24 +1596,15 @@ The default value of zero means no change in report rate is requested by
 the server.
 */
 /**
- * @typedef SourceFork
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SourceSplitShard} primary DEPRECATED
- * @property {dataflow(v1b3).DerivedSource} primarySource DEPRECATED
- * @property {dataflow(v1b3).SourceSplitShard} residual DEPRECATED
- * @property {dataflow(v1b3).DerivedSource} residualSource DEPRECATED
- */
-/**
  * @typedef WorkItemStatus
  * @memberOf! dataflow(v1b3)
  * @type object
 * @property {dataflow(v1b3).CounterUpdate[]} counterUpdates Worker output counters for this WorkItem.
 * @property {string} workItemId Identifies the WorkItem.
-* @property {dataflow(v1b3).MetricUpdate[]} metricUpdates DEPRECATED in favor of counter_updates.
 * @property {dataflow(v1b3).Status[]} errors Specifies errors which occurred during processing.  If errors are
 provided, and completed = true, then the WorkItem is considered
 to have failed.
+* @property {dataflow(v1b3).MetricUpdate[]} metricUpdates DEPRECATED in favor of counter_updates.
 * @property {dataflow(v1b3).DynamicSourceSplit} dynamicSourceSplit See documentation of stop_position.
 * @property {dataflow(v1b3).SourceOperationResponse} sourceOperationResponse If the work item represented a SourceOperationRequest, and the work
 is completed, contains the result of the operation.
@@ -2450,8 +1671,8 @@ source is most closely associated.
  * @type object
 * @property {dataflow(v1b3).ApproximateSplitRequest} splitRequest The progress point in the WorkItem where the Dataflow service
 suggests that the worker truncate the task.
-* @property {string} reportStatusInterval New recommended reporting interval.
 * @property {dataflow(v1b3).Position} suggestedStopPosition Obsolete, always empty.
+* @property {string} reportStatusInterval New recommended reporting interval.
 * @property {object} harnessData Other data returned by the service, specific to the particular
 worker harness.
 * @property {string} leaseExpireTime Time at which the current lease will expire.
@@ -2470,22 +1691,22 @@ reuse this index for subsequent report attempts.
  * @typedef MetricStructuredName
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} name Worker-defined metric name.
-* @property {string} origin Origin (namespace) of metric name. May be blank for user-define metrics;
-will be &quot;dataflow&quot; for metrics defined by the Dataflow service or SDK.
 * @property {object} context Zero or more labeled fields which identify the part of the job this
 metric is associated with, such as the name of a step or collection.
 
 For example, built-in counters associated with steps will have
 context[&#39;step&#39;] = &lt;step-name&gt;. Counters associated with PCollections
 in the SDK will have context[&#39;pcollection&#39;] = &lt;pcollection-name&gt;.
+* @property {string} name Worker-defined metric name.
+* @property {string} origin Origin (namespace) of metric name. May be blank for user-define metrics;
+will be &quot;dataflow&quot; for metrics defined by the Dataflow service or SDK.
 */
 /**
  * @typedef SeqMapTaskOutputInfo
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} tag The id of the TupleTag the user code will tag the output value by.
  * @property {dataflow(v1b3).Sink} sink The sink to write the output value to.
+ * @property {string} tag The id of the TupleTag the user code will tag the output value by.
  */
 /**
  * @typedef JobExecutionStageInfo
@@ -2499,6 +1720,8 @@ might be run by more than one stage.
  * @typedef KeyRangeLocation
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} deprecatedPersistentDirectory DEPRECATED. The location of the persistent state for this range, as a
+persistent directory in the worker local filesystem.
 * @property {string} deliveryEndpoint The physical location of this range assignment to be used for
 streaming computation cross-worker message delivery.
 * @property {string} dataDisk The name of the data disk where data for this range is stored.
@@ -2507,14 +1730,19 @@ identifies the disk within that project, for example
 &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
 * @property {string} start The start (inclusive) of the key range.
 * @property {string} end The end (exclusive) of the key range.
-* @property {string} deprecatedPersistentDirectory DEPRECATED. The location of the persistent state for this range, as a
-persistent directory in the worker local filesystem.
 */
 /**
  * @typedef SourceGetMetadataRequest
  * @memberOf! dataflow(v1b3)
  * @type object
  * @property {dataflow(v1b3).Source} source Specification of the source whose metadata should be computed.
+ */
+/**
+ * @typedef NameAndKind
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} name Name of the counter.
+ * @property {string} kind Counter aggregation kind.
  */
 /**
  * @typedef SeqMapTask
@@ -2524,18 +1752,11 @@ persistent directory in the worker local filesystem.
 * @property {string} name The user-provided name of the SeqDo operation.
 * @property {dataflow(v1b3).SeqMapTaskOutputInfo[]} outputInfos Information about each of the outputs.
 * @property {dataflow(v1b3).SideInputInfo[]} inputs Information about each of the inputs.
-* @property {string} stageName System-defined name of the stage containing the SeqDo operation.
-Unique across the workflow.
 * @property {string} systemName System-defined name of the SeqDo operation.
 Unique across the workflow.
+* @property {string} stageName System-defined name of the stage containing the SeqDo operation.
+Unique across the workflow.
 */
-/**
- * @typedef NameAndKind
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} name Name of the counter.
- * @property {string} kind Counter aggregation kind.
- */
 /**
  * @typedef WorkerMessageCode
  * @memberOf! dataflow(v1b3)
@@ -2607,6 +1828,8 @@ resulting in this response.
  * @typedef InstructionOutput
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {object} codec The codec to use to encode data being written via this output.
+* @property {string} name The user-provided name of this output.
 * @property {string} originalName System-defined name for this output in the original workflow graph.
 Outputs that do not contribute to an original instruction do not set this.
 * @property {string} systemName System-defined name of this output.
@@ -2615,35 +1838,33 @@ Unique across the workflow.
 should only report the key size.
 * @property {boolean} onlyCountValueBytes For system-generated byte and mean byte metrics, certain instructions
 should only report the value size.
-* @property {object} codec The codec to use to encode data being written via this output.
-* @property {string} name The user-provided name of this output.
 */
 /**
  * @typedef CreateJobFromTemplateRequest
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} location The location to which to direct the request.
-* @property {object} parameters The runtime parameters to pass to the job.
 * @property {string} jobName Required. The job name to use for the created job.
 * @property {string} gcsPath Required. A Cloud Storage path to the template from which to
 create the job.
 Must be a valid Cloud Storage URL, beginning with `gs://`.
 * @property {dataflow(v1b3).RuntimeEnvironment} environment The runtime environment for the job.
+* @property {string} location The location to which to direct the request.
+* @property {object} parameters The runtime parameters to pass to the job.
 */
 /**
  * @typedef IntegerMean
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).SplitInt64} sum The sum of all values being aggregated.
  * @property {dataflow(v1b3).SplitInt64} count The number of values being aggregated.
+ * @property {dataflow(v1b3).SplitInt64} sum The sum of all values being aggregated.
  */
 /**
  * @typedef ListJobsResponse
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {dataflow(v1b3).Job[]} jobs A subset of the requested job information.
  * @property {dataflow(v1b3).FailedLocation[]} failedLocation Zero or more messages describing locations that failed to respond.
  * @property {string} nextPageToken Set if there may be more results than fit in this response.
- * @property {dataflow(v1b3).Job[]} jobs A subset of the requested job information.
  */
 /**
  * @typedef ComputationTopology
@@ -2653,13 +1874,16 @@ Must be a valid Cloud Storage URL, beginning with `gs://`.
  * @property {string} computationId The ID of the computation.
  * @property {dataflow(v1b3).StreamLocation[]} inputs The inputs to the computation.
  * @property {dataflow(v1b3).KeyRangeLocation[]} keyRanges The key ranges processed by the computation.
- * @property {dataflow(v1b3).StateFamilyConfig[]} stateFamilies The state family values.
  * @property {dataflow(v1b3).StreamLocation[]} outputs The outputs from the computation.
+ * @property {dataflow(v1b3).StateFamilyConfig[]} stateFamilies The state family values.
  */
 /**
  * @typedef RuntimeEnvironment
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} zone The Compute Engine [availability
+zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
+for launching worker instances to run your pipeline.
 * @property {integer} maxWorkers The maximum number of Google Compute Engine instances to be made
 available to your pipeline during execution, from 1 to 1000.
 * @property {string} serviceAccountEmail The email address of the service account to run the job as.
@@ -2669,9 +1893,6 @@ Must be a valid Cloud Storage URL, beginning with `gs://`.
 Use with caution.
 * @property {string} machineType The machine type to use for the job. Defaults to the value from the
 template if not specified.
-* @property {string} zone The Compute Engine [availability
-zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
-for launching worker instances to run your pipeline.
 */
 /**
  * @typedef MountedDataDisk
@@ -2697,45 +1918,28 @@ identifies the disk within that project, for example
 the job was successfully launched.
 */
 /**
+ * @typedef DerivedSource
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} derivationMode What source to base the produced source on (if any).
+ * @property {dataflow(v1b3).Source} source Specification of the source.
+ */
+/**
+ * @typedef DynamicSourceSplit
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).DerivedSource} residual Residual part (returned to the pool of work).
+Specified relative to the previously-current source.
+* @property {dataflow(v1b3).DerivedSource} primary Primary part (continued to be processed by worker).
+Specified relative to the previously-current source.
+Becomes current.
+*/
+/**
  * @typedef Job
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} id The unique ID of this job.
-
-This field is set by the Cloud Dataflow service when the Job is
-created, and is immutable for the life of the job.
-* @property {dataflow(v1b3).JobExecutionInfo} executionInfo Deprecated.
-* @property {string} currentState The current state of the job.
-
-Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise
-specified.
-
-A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
-terminal state. After a job has reached a terminal state, no
-further state updates may be made.
-
-This field may be mutated by the Cloud Dataflow service;
-callers cannot mutate it.
-* @property {string} location The location that contains this job.
-* @property {string} currentStateTime The timestamp associated with the current state.
-* @property {object} transformNameMapping The map of transform name prefixes of the job to be replaced to the
-corresponding name prefixes of the new job.
-* @property {string} createTime The timestamp when the job was initially created. Immutable and set by the
-Cloud Dataflow service.
-* @property {object} labels User-defined labels for this job.
-
-The labels map can contain no more than 64 entries.  Entries of the labels
-map are UTF8 strings that comply with the following restrictions:
-
-* Keys must conform to regexp:  \p{Ll}\p{Lo}{0,62}
-* Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63}
-* Both keys and values are additionally constrained to be &lt;= 128 bytes in
-size.
-* @property {dataflow(v1b3).Environment} environment The environment for the job.
-* @property {dataflow(v1b3).ExecutionStageState[]} stageStates This field may be mutated by the Cloud Dataflow service;
-callers cannot mutate it.
-* @property {string} type The type of Cloud Dataflow job.
 * @property {string} projectId The ID of the Cloud Platform project that the job belongs to.
+* @property {string} type The type of Cloud Dataflow job.
 * @property {dataflow(v1b3).PipelineDescription} pipelineDescription Preliminary field: The format of this data may change at any time.
 A description of the user pipeline and stages through which it is executed.
 Created by Cloud Dataflow service.  Only retrieved with
@@ -2784,22 +1988,818 @@ The name must match the regular expression
 * @property {string} replacedByJobId If another job is an update of this job (and thus, this job is in
 `JOB_STATE_UPDATED`), this field contains the ID of that job.
 * @property {dataflow(v1b3).Step[]} steps The top-level steps that constitute the entire job.
+* @property {string} id The unique ID of this job.
+
+This field is set by the Cloud Dataflow service when the Job is
+created, and is immutable for the life of the job.
+* @property {dataflow(v1b3).JobExecutionInfo} executionInfo Deprecated.
+* @property {string} currentState The current state of the job.
+
+Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise
+specified.
+
+A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
+terminal state. After a job has reached a terminal state, no
+further state updates may be made.
+
+This field may be mutated by the Cloud Dataflow service;
+callers cannot mutate it.
+* @property {string} location The location that contains this job.
+* @property {string} currentStateTime The timestamp associated with the current state.
+* @property {object} transformNameMapping The map of transform name prefixes of the job to be replaced to the
+corresponding name prefixes of the new job.
+* @property {dataflow(v1b3).Environment} environment The environment for the job.
+* @property {object} labels User-defined labels for this job.
+
+The labels map can contain no more than 64 entries.  Entries of the labels
+map are UTF8 strings that comply with the following restrictions:
+
+* Keys must conform to regexp:  \p{Ll}\p{Lo}{0,62}
+* Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+* Both keys and values are additionally constrained to be &lt;= 128 bytes in
+size.
+* @property {string} createTime The timestamp when the job was initially created. Immutable and set by the
+Cloud Dataflow service.
+* @property {dataflow(v1b3).ExecutionStageState[]} stageStates This field may be mutated by the Cloud Dataflow service;
+callers cannot mutate it.
 */
 /**
- * @typedef DynamicSourceSplit
+ * @typedef SourceOperationResponse
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).DerivedSource} residual Residual part (returned to the pool of work).
-Specified relative to the previously-current source.
-* @property {dataflow(v1b3).DerivedSource} primary Primary part (continued to be processed by worker).
-Specified relative to the previously-current source.
-Becomes current.
+ * @property {dataflow(v1b3).SourceGetMetadataResponse} getMetadata A response to a request to get metadata about a source.
+ * @property {dataflow(v1b3).SourceSplitResponse} split A response to a request to split a source.
+ */
+/**
+ * @typedef SideInputInfo
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} tag The id of the tag the user code will access this side input by;
+this should correspond to the tag of some MultiOutputInfo.
+* @property {object} kind How to interpret the source element(s) as a side input value.
+* @property {dataflow(v1b3).Source[]} sources The source(s) to read element(s) from to get the value of this side input.
+If more than one source, then the elements are taken from the
+sources, in the specified order if order matters.
+At least one source is required.
 */
 /**
- * @typedef DerivedSource
+ * @typedef SendDebugCaptureResponse
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} derivationMode What source to base the produced source on (if any).
- * @property {dataflow(v1b3).Source} source Specification of the source.
+ */
+/**
+ * @typedef WriteInstruction
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).InstructionInput} input The input.
+ * @property {dataflow(v1b3).Sink} sink The sink to write to.
+ */
+/**
+ * @typedef ConcatPosition
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).Position} position Position within the inner source.
+ * @property {integer} index Index of the inner source.
+ */
+/**
+ * @typedef CounterStructuredNameAndMetadata
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).CounterStructuredName} name Structured name of the counter.
+ * @property {dataflow(v1b3).CounterMetadata} metadata Metadata associated with a counter
+ */
+/**
+ * @typedef StreamingComputationRanges
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).KeyRangeDataDiskAssignment[]} rangeAssignments Data disk assignments for ranges from this computation.
+ * @property {string} computationId The ID of the computation.
+ */
+/**
+ * @typedef AutoscalingSettings
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} algorithm The algorithm to use for autoscaling.
+ * @property {integer} maxNumWorkers The maximum number of workers to cap scaling at.
+ */
+/**
+ * @typedef ExecutionStageSummary
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} id Dataflow service generated id for this stage.
+ * @property {dataflow(v1b3).ComponentTransform[]} componentTransform Transforms that comprise this execution stage.
+ * @property {dataflow(v1b3).ComponentSource[]} componentSource Collections produced and consumed by component transforms of this stage.
+ * @property {string} kind Type of tranform this stage is executing.
+ * @property {dataflow(v1b3).StageSource[]} outputSource Output sources for this stage.
+ * @property {string} name Dataflow service generated name for this stage.
+ * @property {dataflow(v1b3).StageSource[]} inputSource Input sources for this stage.
+ */
+/**
+ * @typedef SendWorkerMessagesRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).WorkerMessage[]} workerMessages The WorkerMessages to send.
+ * @property {string} location The location which contains the job
+ */
+/**
+ * @typedef LogBucket
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} count Number of values in this bucket.
+* @property {integer} log floor(log2(value)); defined to be zero for nonpositive values.
+  log(-1) = 0
+  log(0) = 0
+  log(1) = 0
+  log(2) = 1
+  log(3) = 1
+  log(4) = 2
+  log(5) = 2
+*/
+/**
+ * @typedef SourceSplitShard
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} derivationMode DEPRECATED
+ * @property {dataflow(v1b3).Source} source DEPRECATED
+ */
+/**
+ * @typedef CPUTime
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {number} rate Average CPU utilization rate (% non-idle cpu / second) since previous
+sample.
+* @property {string} timestamp Timestamp of the measurement.
+* @property {string} totalMs Total active CPU time across all cores (ie., non-idle) in milliseconds
+since start-up.
+*/
+/**
+ * @typedef Environment
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} serviceAccountEmail Identity to run virtual machines as. Defaults to the default account.
+* @property {object} sdkPipelineOptions The Cloud Dataflow SDK pipeline options specified by the user. These
+options are passed through the service and are used to recreate the
+SDK pipeline options on the worker in a language agnostic and platform
+independent way.
+* @property {object} userAgent A description of the process that generated the request.
+* @property {string} clusterManagerApiService The type of cluster manager API to use.  If unknown or
+unspecified, the service will attempt to choose a reasonable
+default.  This should be in the form of the API service name,
+e.g. &quot;compute.googleapis.com&quot;.
+* @property {string} tempStoragePrefix The prefix of the resources the system should use for temporary
+storage.  The system will append the suffix &quot;/temp-{JOBNAME} to
+this resource prefix, where {JOBNAME} is the value of the
+job_name field.  The resulting bucket and object prefix is used
+as the prefix of the resources used to store temporary data
+needed during the job execution.  NOTE: This will override the
+value in taskrunner_settings.
+The supported resource type is:
+
+Google Cloud Storage:
+
+  storage.googleapis.com/{bucket}/{object}
+  bucket.storage.googleapis.com/{object}
+* @property {dataflow(v1b3).WorkerPool[]} workerPools The worker pools. At least one &quot;harness&quot; worker pool must be
+specified in order for the job to have workers.
+* @property {string} dataset The dataset for the current project where various workflow
+related tables are stored.
+
+The supported resource type is:
+
+Google BigQuery:
+  bigquery.googleapis.com/{dataset}
+* @property {string[]} experiments The list of experiments to enable.
+* @property {object} internalExperiments Experimental settings.
+* @property {object} version A structure describing which components and their versions of the service
+are required in order to run the job.
+*/
+/**
+ * @typedef StreamingComputationTask
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} taskType A type of streaming computation task.
+ * @property {dataflow(v1b3).StreamingComputationRanges[]} computationRanges Contains ranges of a streaming computation this task should apply to.
+ * @property {dataflow(v1b3).MountedDataDisk[]} dataDisks Describes the set of data disks this task should apply to.
+ */
+/**
+ * @typedef SendDebugCaptureRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} workerId The worker id, i.e., VM hostname.
+ * @property {string} location The location which contains the job specified by job_id.
+ * @property {string} data The encoded debug information.
+ * @property {string} componentId The internal component id for which debug information is sent.
+ */
+/**
+ * @typedef GetDebugConfigResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} config The encoded debug configuration for the requested component.
+ */
+/**
+ * @typedef ComponentTransform
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} originalTransform User name for the original user transform with which this transform is
+most closely associated.
+* @property {string} name Dataflow service generated name for this source.
+* @property {string} userName Human-readable name for this transform; may be user or system generated.
+*/
+/**
+ * @typedef StreamingSetupTask
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {boolean} drain The user has requested drain.
+* @property {integer} workerHarnessPort The TCP port used by the worker to communicate with the Dataflow
+worker harness.
+* @property {integer} receiveWorkPort The TCP port on which the worker should listen for messages from
+other streaming computation workers.
+* @property {dataflow(v1b3).TopologyConfig} streamingComputationTopology The global topology of the streaming Dataflow job.
+*/
+/**
+ * @typedef PubsubLocation
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {boolean} withAttributes If true, then the client has requested to get pubsub attributes.
+* @property {string} idLabel If set, contains a pubsub label from which to extract record ids.
+If left empty, record deduplication will be strictly best effort.
+* @property {string} timestampLabel If set, contains a pubsub label from which to extract record timestamps.
+If left empty, record timestamps will be generated upon arrival.
+* @property {string} topic A pubsub topic, in the form of
+&quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
+* @property {string} subscription A pubsub subscription, in the form of
+&quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
+* @property {boolean} dropLateData Indicates whether the pipeline allows late-arriving data.
+* @property {string} trackingSubscription If set, specifies the pubsub subscription that will be used for tracking
+custom time timestamps for watermark estimation.
+*/
+/**
+ * @typedef WorkerHealthReport
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} reportInterval The interval at which the worker is sending health reports.
+The default value of 0 should be interpreted as the field is not being
+explicitly set by the worker.
+* @property {boolean} vmIsHealthy Whether the VM is healthy.
+* @property {object[]} pods The pods running on the worker. See:
+http://kubernetes.io/v1.1/docs/api-reference/v1/definitions.html#_v1_pod
+
+This field is used by the worker to send the status of the indvidual
+containers running on each worker.
+* @property {string} vmStartupTime The time the VM was booted.
+*/
+/**
+ * @typedef JobMessage
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} messageImportance Importance level of the message.
+ * @property {string} messageText The text of the message.
+ * @property {string} time The timestamp of the message.
+ * @property {string} id Deprecated.
+ */
+/**
+ * @typedef ParameterMetadata
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string[]} regexes Optional. Regexes that the parameter must match.
+ * @property {string} label Required. The label to display for the parameter.
+ * @property {string} helpText Required. The help text to display for the parameter.
+ * @property {boolean} isOptional Optional. Whether the parameter is optional. Defaults to false.
+ * @property {string} name Required. The name of the parameter.
+ */
+/**
+ * @typedef MultiOutputInfo
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} tag The id of the tag the user code will emit to this output by; this
+should correspond to the tag of some SideInputInfo.
+*/
+/**
+ * @typedef SourceSplitRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).SourceSplitOptions} options Hints for tuning the splitting process.
+ * @property {dataflow(v1b3).Source} source Specification of the source to be split.
+ */
+/**
+ * @typedef SourceGetMetadataResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).SourceMetadata} metadata The computed metadata.
+ */
+/**
+ * @typedef AutoscalingEvent
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} time The time this event was emitted to indicate a new target or current
+num_workers value.
+* @property {dataflow(v1b3).StructuredMessage} description A message describing why the system decided to adjust the current
+number of workers, why it failed, or why the system decided to
+not make any changes to the number of workers.
+* @property {string} eventType The type of autoscaling event to report.
+* @property {string} targetNumWorkers The target number of workers the worker pool wants to resize to use.
+* @property {string} currentNumWorkers The current number of workers the job has.
+*/
+/**
+ * @typedef MetricShortId
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {integer} metricIndex The index of the corresponding metric in
+the ReportWorkItemStatusRequest. Required.
+* @property {string} shortId The service-generated short identifier for the metric.
+*/
+/**
+ * @typedef ShellTask
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} command The shell command to run.
+ * @property {integer} exitCode Exit code for the task.
+ */
+/**
+ * @typedef TaskRunnerSettings
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} taskUser The UNIX user ID on the worker VM to use for tasks launched by
+taskrunner; e.g. &quot;root&quot;.
+* @property {string} vmId The ID string of the VM.
+* @property {boolean} alsologtostderr Whether to also send taskrunner log info to stderr.
+* @property {string} taskGroup The UNIX group ID on the worker VM to use for tasks launched by
+taskrunner; e.g. &quot;wheel&quot;.
+* @property {string} harnessCommand The command to launch the worker harness.
+* @property {string} logDir The directory on the VM to store logs.
+* @property {string[]} oauthScopes The OAuth2 scopes to be requested by the taskrunner in order to
+access the Cloud Dataflow API.
+* @property {string} dataflowApiVersion The API version of endpoint, e.g. &quot;v1b3&quot;
+* @property {string} logUploadLocation Indicates where to put logs.  If this is not specified, the logs
+will not be uploaded.
+
+The supported resource type is:
+
+Google Cloud Storage:
+  storage.googleapis.com/{bucket}/{object}
+  bucket.storage.googleapis.com/{object}
+* @property {string} streamingWorkerMainClass The streaming worker main class name.
+* @property {string} workflowFileName The file to store the workflow in.
+* @property {string} languageHint The suggested backend language.
+* @property {string} commandlinesFileName The file to store preprocessing commands in.
+* @property {string} tempStoragePrefix The prefix of the resources the taskrunner should use for
+temporary storage.
+
+The supported resource type is:
+
+Google Cloud Storage:
+  storage.googleapis.com/{bucket}/{object}
+  bucket.storage.googleapis.com/{object}
+* @property {string} baseTaskDir The location on the worker for task-specific subdirectories.
+* @property {string} baseUrl The base URL for the taskrunner to use when accessing Google Cloud APIs.
+
+When workers access Google Cloud APIs, they logically do so via
+relative URLs.  If this field is specified, it supplies the base
+URL to use for resolving these relative URLs.  The normative
+algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
+Locators&quot;.
+
+If not specified, the default value is &quot;http://www.googleapis.com/&quot;
+* @property {boolean} logToSerialconsole Whether to send taskrunner log info to Google Compute Engine VM serial
+console.
+* @property {boolean} continueOnException Whether to continue taskrunner if an exception is hit.
+* @property {dataflow(v1b3).WorkerSettings} parallelWorkerSettings The settings to pass to the parallel worker harness.
+*/
+/**
+ * @typedef Position
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} key Position is a string key, ordered lexicographically.
+* @property {string} recordIndex Position is a record index.
+* @property {string} shufflePosition CloudPosition is a base64 encoded BatchShufflePosition (with FIXED
+sharding).
+* @property {dataflow(v1b3).ConcatPosition} concatPosition CloudPosition is a concat position.
+* @property {string} byteOffset Position is a byte offset.
+* @property {boolean} end Position is past all other positions. Also useful for the end
+position of an unbounded range.
+*/
+/**
+ * @typedef SplitInt64
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {integer} lowBits The low order bits: n &amp; 0xffffffff.
+ * @property {integer} highBits The high order bits, including the sign: n &gt;&gt; 32.
+ */
+/**
+ * @typedef Source
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).SourceMetadata} metadata Optionally, metadata for this source can be supplied right away,
+avoiding a SourceGetMetadataOperation roundtrip
+(see SourceOperationRequest).
+
+This field is meaningful only in the Source objects populated
+by the user (e.g. when filling in a DerivedSource).
+Source objects supplied by the framework to the user don&#39;t have
+this field populated.
+* @property {object[]} baseSpecs While splitting, sources may specify the produced bundles
+as differences against another source, in order to save backend-side
+memory and allow bigger jobs. For details, see SourceSplitRequest.
+To support this use case, the full set of parameters of the source
+is logically obtained by taking the latest explicitly specified value
+of each parameter in the order:
+base_specs (later items win), spec (overrides anything in base_specs).
+* @property {boolean} doesNotNeedSplitting Setting this value to true hints to the framework that the source
+doesn&#39;t need splitting, and using SourceSplitRequest on it would
+yield SOURCE_SPLIT_OUTCOME_USE_CURRENT.
+
+E.g. a file splitter may set this to true when splitting a single file
+into a set of byte ranges of appropriate size, and set this
+to false when splitting a filepattern into individual files.
+However, for efficiency, a file splitter may decide to produce
+file subranges directly from the filepattern to avoid a splitting
+round-trip.
+
+See SourceSplitRequest for an overview of the splitting process.
+
+This field is meaningful only in the Source objects populated
+by the user (e.g. when filling in a DerivedSource).
+Source objects supplied by the framework to the user don&#39;t have
+this field populated.
+* @property {object} codec The codec to use to decode data read from the source.
+* @property {object} spec The source to read from, plus its parameters.
+*/
+/**
+ * @typedef WorkerPool
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).Package[]} packages Packages to be installed on workers.
+* @property {string} teardownPolicy Sets the policy for determining when to turndown worker pool.
+Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and
+`TEARDOWN_NEVER`.
+`TEARDOWN_ALWAYS` means workers are always torn down regardless of whether
+the job succeeds. `TEARDOWN_ON_SUCCESS` means workers are torn down
+if the job succeeds. `TEARDOWN_NEVER` means the workers are never torn
+down.
+
+If the workers are not torn down by the service, they will
+continue to run and use Google Compute Engine VM resources in the
+user&#39;s project until they are explicitly terminated by the user.
+Because of this, Google recommends using the `TEARDOWN_ALWAYS`
+policy except for small, manually supervised test jobs.
+
+If unknown or unspecified, the service will attempt to choose a reasonable
+default.
+* @property {string} onHostMaintenance The action to take on host maintenance, as defined by the Google
+Compute Engine API.
+* @property {object} poolArgs Extra arguments for this worker pool.
+* @property {integer} diskSizeGb Size of root disk for VMs, in GB.  If zero or unspecified, the service will
+attempt to choose a reasonable default.
+* @property {string} workerHarnessContainerImage Required. Docker container image that executes the Cloud Dataflow worker
+harness, residing in Google Container Registry.
+* @property {string} machineType Machine type (e.g. &quot;n1-standard-1&quot;).  If empty or unspecified, the
+service will attempt to choose a reasonable default.
+* @property {string} diskType Type of root disk for VMs.  If empty or unspecified, the service will
+attempt to choose a reasonable default.
+* @property {string} kind The kind of the worker pool; currently only `harness` and `shuffle`
+are supported.
+* @property {dataflow(v1b3).Disk[]} dataDisks Data disks that are used by a VM in this workflow.
+* @property {string} subnetwork Subnetwork to which VMs will be assigned, if desired.  Expected to be of
+the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
+* @property {string} ipConfiguration Configuration for VM IPs.
+* @property {dataflow(v1b3).AutoscalingSettings} autoscalingSettings Settings for autoscaling of this WorkerPool.
+* @property {dataflow(v1b3).TaskRunnerSettings} taskrunnerSettings Settings passed through to Google Compute Engine workers when
+using the standard Dataflow task runner.  Users should ignore
+this field.
+* @property {object} metadata Metadata to set on the Google Compute Engine VMs.
+* @property {string} network Network to which VMs will be assigned.  If empty or unspecified,
+the service will use the network &quot;default&quot;.
+* @property {string} defaultPackageSet The default package set to install.  This allows the service to
+select a default set of packages which are useful to worker
+harnesses written in a particular language.
+* @property {integer} numThreadsPerWorker The number of threads per worker harness. If empty or unspecified, the
+service will choose a number of threads (according to the number of cores
+on the selected machine type for batch, or 1 by convention for streaming).
+* @property {integer} numWorkers Number of Google Compute Engine workers in this pool needed to
+execute the job.  If zero or unspecified, the service will
+attempt to choose a reasonable default.
+* @property {string} zone Zone to run the worker pools in.  If empty or unspecified, the service
+will attempt to choose a reasonable default.
+* @property {string} diskSourceImage Fully qualified source image for disks.
+*/
+/**
+ * @typedef SourceOperationRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
+ * @property {dataflow(v1b3).SourceSplitRequest} split Information about a request to split a source.
+ */
+/**
+ * @typedef StructuredMessage
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} messageKey Idenfier for this message type.  Used by external systems to
+internationalize or personalize message.
+* @property {string} messageText Human-readable version of message.
+* @property {dataflow(v1b3).Parameter[]} parameters The structured data associated with this message.
+*/
+/**
+ * @typedef WorkItem
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).MapTask} mapTask Additional information for MapTask WorkItems.
+* @property {dataflow(v1b3).SeqMapTask} seqMapTask Additional information for SeqMapTask WorkItems.
+* @property {dataflow(v1b3).Package[]} packages Any required packages that need to be fetched in order to execute
+this WorkItem.
+* @property {string} projectId Identifies the cloud project this WorkItem belongs to.
+* @property {string} reportStatusInterval Recommended reporting interval.
+* @property {dataflow(v1b3).StreamingSetupTask} streamingSetupTask Additional information for StreamingSetupTask WorkItems.
+* @property {dataflow(v1b3).SourceOperationRequest} sourceOperationTask Additional information for source operation WorkItems.
+* @property {dataflow(v1b3).StreamingConfigTask} streamingConfigTask Additional information for StreamingConfigTask WorkItems.
+* @property {string} leaseExpireTime Time when the lease on this Work will expire.
+* @property {string} initialReportIndex The initial index to use when reporting the status of the WorkItem.
+* @property {dataflow(v1b3).StreamingComputationTask} streamingComputationTask Additional information for StreamingComputationTask WorkItems.
+* @property {dataflow(v1b3).ShellTask} shellTask Additional information for ShellTask WorkItems.
+* @property {string} jobId Identifies the workflow job this WorkItem belongs to.
+* @property {string} id Identifies this WorkItem.
+* @property {string} configuration Work item-specific configuration as an opaque blob.
+*/
+/**
+ * @typedef ResourceUtilizationReport
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).CPUTime[]} cpuTime CPU utilization samples.
+ */
+/**
+ * @typedef ReportedParallelism
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {boolean} isInfinite Specifies whether the parallelism is infinite. If true, &quot;value&quot; is
+ignored.
+Infinite parallelism means the service will assume that the work item
+can always be split into more non-empty work items by dynamic splitting.
+This is a work-around for lack of support for infinity by the current
+JSON-based Java RPC stack.
+* @property {number} value Specifies the level of parallelism in case it is finite.
+*/
+/**
+ * @typedef TopologyConfig
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {object} userStageToComputationNameMap Maps user stage names to stable computation names.
+ * @property {dataflow(v1b3).ComputationTopology[]} computations The computations associated with a streaming Dataflow job.
+ * @property {integer} persistentStateVersion Version number for persistent state.
+ * @property {dataflow(v1b3).DataDiskAssignment[]} dataDiskAssignments The disks assigned to a streaming Dataflow job.
+ * @property {integer} forwardingKeyBits The size (in bits) of keys that will be assigned to source messages.
+ */
+/**
+ * @typedef SourceSplitOptions
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} desiredBundleSizeBytes The source should be split into a set of bundles where the estimated size
+of each is approximately this many bytes.
+* @property {string} desiredShardSizeBytes DEPRECATED in favor of desired_bundle_size_bytes.
+*/
+/**
+ * @typedef ReadInstruction
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).Source} source The source to read from.
+ */
+/**
+ * @typedef WorkerSettings
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} tempStoragePrefix The prefix of the resources the system should use for temporary
+storage.
+
+The supported resource type is:
+
+Google Cloud Storage:
+
+  storage.googleapis.com/{bucket}/{object}
+  bucket.storage.googleapis.com/{object}
+* @property {string} baseUrl The base URL for accessing Google Cloud APIs.
+
+When workers access Google Cloud APIs, they logically do so via
+relative URLs.  If this field is specified, it supplies the base
+URL to use for resolving these relative URLs.  The normative
+algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
+Locators&quot;.
+
+If not specified, the default value is &quot;http://www.googleapis.com/&quot;
+* @property {boolean} reportingEnabled Whether to send work progress updates to the service.
+* @property {string} servicePath The Cloud Dataflow service path relative to the root URL, for example,
+&quot;dataflow/v1b3/projects&quot;.
+* @property {string} shuffleServicePath The Shuffle service path relative to the root URL, for example,
+&quot;shuffle/v1beta1&quot;.
+* @property {string} workerId The ID of the worker running this pipeline.
+*/
+/**
+ * @typedef StreamingStageLocation
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} streamId Identifies the particular stream within the streaming Dataflow
+job.
+*/
+/**
+ * @typedef DataDiskAssignment
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} vmInstance VM instance name the data disks mounted to, for example
+&quot;myproject-1014-104817-4c2-harness-0&quot;.
+* @property {string[]} dataDisks Mounted data disks. The order is important a data disk&#39;s 0-based index in
+this list defines which persistent directory the disk is mounted to, for
+example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; },
+{ &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
+*/
+/**
+ * @typedef ApproximateSplitRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).Position} position A Position at which to split the work item.
+* @property {number} fractionConsumed A fraction at which to split the work item, from 0.0 (beginning of the
+input) to 1.0 (end of the input).
+*/
+/**
+ * @typedef Status
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef ExecutionStageState
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} executionStageName The name of the execution stage.
+ * @property {string} currentStateTime The time at which the stage transitioned to this state.
+ * @property {string} executionStageState Executions stage states allow the same set of values as JobState.
+ */
+/**
+ * @typedef StreamLocation
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).CustomSourceLocation} customSourceLocation The stream is a custom source.
+* @property {dataflow(v1b3).StreamingSideInputLocation} sideInputLocation The stream is a streaming side input.
+* @property {dataflow(v1b3).PubsubLocation} pubsubLocation The stream is a pubsub stream.
+* @property {dataflow(v1b3).StreamingStageLocation} streamingStageLocation The stream is part of another computation within the current
+streaming Dataflow job.
+*/
+/**
+ * @typedef SendWorkerMessagesResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).WorkerMessageResponse[]} workerMessageResponses The servers response to the worker messages.
+ */
+/**
+ * @typedef LeaseWorkItemResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).WorkItem[]} workItems A list of the leased WorkItems.
+ */
+/**
+ * @typedef TransformSummary
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string[]} inputCollectionName User names for all collection inputs to this transform.
+ * @property {string} name User provided name for this transform instance.
+ * @property {string} id SDK generated id of this transform instance.
+ * @property {dataflow(v1b3).DisplayData[]} displayData Transform-specific display data.
+ * @property {string[]} outputCollectionName User  names for all collection outputs to this transform.
+ * @property {string} kind Type of transform.
+ */
+/**
+ * @typedef StreamingComputationConfig
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} stageName Stage name of this computation.
+ * @property {string} systemName System defined name for this computation.
+ * @property {dataflow(v1b3).ParallelInstruction[]} instructions Instructions that comprise the computation.
+ * @property {string} computationId Unique identifier for this computation.
+ */
+/**
+ * @typedef LaunchTemplateParameters
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} jobName Required. The job name to use for the created job.
+ * @property {dataflow(v1b3).RuntimeEnvironment} environment The runtime environment for the job.
+ * @property {object} parameters The runtime parameters to pass to the job.
+ */
+/**
+ * @typedef Sink
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {object} codec The codec to use to encode data written to the sink.
+ * @property {object} spec The sink to write to, plus its parameters.
+ */
+/**
+ * @typedef FlattenInstruction
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).InstructionInput[]} inputs Describes the inputs to the flatten instruction.
+ */
+/**
+ * @typedef PartialGroupByKeyInstruction
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {object} inputElementCodec The codec to use for interpreting an element in the input PTable.
+* @property {object} valueCombiningFn The value combining function to invoke.
+* @property {string} originalCombineValuesInputStoreName If this instruction includes a combining function this is the name of the
+intermediate store between the GBK and the CombineValues.
+* @property {string} originalCombineValuesStepName If this instruction includes a combining function, this is the name of the
+CombineValues instruction lifted into this instruction.
+* @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
+* @property {dataflow(v1b3).InstructionInput} input Describes the input to the partial group-by-key instruction.
+*/
+/**
+ * @typedef StageSource
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} originalTransformOrCollection User name for the original user transform or collection with which this
+source is most closely associated.
+* @property {string} sizeBytes Size of the source, if measurable.
+* @property {string} name Dataflow service generated name for this source.
+* @property {string} userName Human-readable name for this source; may be user or system generated.
+*/
+/**
+ * @typedef InstructionInput
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {integer} producerInstructionIndex The index (origin zero) of the parallel instruction that produces
+the output to be consumed by this input.  This index is relative
+to the list of instructions in this input&#39;s instruction&#39;s
+containing MapTask.
+* @property {integer} outputNum The output index (origin zero) within the producer.
+*/
+/**
+ * @typedef StringList
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string[]} elements Elements of the list.
+ */
+/**
+ * @typedef DisplayData
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} durationValue Contains value if the data is of duration type.
+* @property {string} int64Value Contains value if the data is of int64 type.
+* @property {string} namespace The namespace for the key. This is usually a class name or programming
+language namespace (i.e. python module) which defines the display data.
+This allows a dax monitoring system to specially handle the data
+and perform custom rendering.
+* @property {number} floatValue Contains value if the data is of float type.
+* @property {string} key The key identifying the display data.
+This is intended to be used as a label for the display data
+when viewed in a dax monitoring system.
+* @property {string} shortStrValue A possible additional shorter value to display.
+For example a java_class_name_value of com.mypackage.MyDoFn
+will be stored with MyDoFn as the short_str_value and
+com.mypackage.MyDoFn as the java_class_name value.
+short_str_value can be displayed and java_class_name_value
+will be displayed as a tooltip.
+* @property {string} url An optional full URL.
+* @property {string} label An optional label to display in a dax UI for the element.
+* @property {string} timestampValue Contains value if the data is of timestamp type.
+* @property {boolean} boolValue Contains value if the data is of a boolean type.
+* @property {string} javaClassValue Contains value if the data is of java class type.
+* @property {string} strValue Contains value if the data is of string type.
+*/
+/**
+ * @typedef GetDebugConfigRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} componentId The internal component id for which debug configuration is
+requested.
+* @property {string} workerId The worker id, i.e., VM hostname.
+* @property {string} location The location which contains the job specified by job_id.
+*/
+/**
+ * @typedef LeaseWorkItemRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} currentWorkerTime The current timestamp at the worker.
+* @property {string[]} workItemTypes Filter for WorkItem type.
+* @property {string} location The location which contains the WorkItem&#39;s job.
+* @property {string[]} workerCapabilities Worker capabilities. WorkItems might be limited to workers with specific
+capabilities.
+* @property {string} workerId Identifies the worker leasing work -- typically the ID of the
+virtual machine running the worker.
+* @property {string} requestedLeaseDuration The initial lease period.
+*/
+/**
+ * @typedef GetTemplateResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).TemplateMetadata} metadata The template metadata describing the template name, available
+parameters, etc.
+* @property {dataflow(v1b3).Status} status The status of the get template request. Any problems with the
+request will be indicated in the error_details.
+*/
+/**
+ * @typedef Parameter
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} key Key or name for this parameter.
+ * @property {any} value Value for this parameter.
  */
 export = Dataflow;
