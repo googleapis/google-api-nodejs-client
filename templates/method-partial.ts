@@ -1,6 +1,6 @@
 {% set lb = "{" %}
 {% set rb = "}" %}
-{%- set pathParams = m.parameters|getPathParams -%}
+{%- set pathParams = m.parameters|getPathParams|sort -%}
 /**
  * {{ m.id }}
  *
@@ -15,7 +15,8 @@
  * @memberOf! {{ name }}({{ version }})
  *
  * @param {object{% if !m.parameterOrder && !m.request %}={% endif %}} params Parameters for request
- {% for pname, p in m.parameters -%}
+ {% for pname in m.parameters|sort -%}
+ {% set p = m.parameters[pname] -%}
  * @param {{ lb }}{{ p.type }}{% if ! p.required %}={% endif %}{{ rb }} params.{{ pname|getSafeParamName }} {{ p.description|oneLine|cleanComments|safe }}
  {% endfor -%}
 {% if m.supportsMediaUpload -%}

@@ -43,14 +43,16 @@ function {{ Name }} (options) { // eslint-disable-line
 
 {% if methods %}
   {% set globalmethods = true %}
-  {% for mname, m in methods %}
+  {% for mname in methods|sort %}
+  {% set m = methods[mname] %}
     {% include "./method-partial.ts" with m %}
   {% endfor -%}
 {%- endif -%}
 
 {% if resources %}
 {% set globalmethods = false %}
-{% for rname, r in resources %}
+{% for rname in resources|sort %}
+{% set r = resources[rname] %}
 {% set ResourceNamespace = [Name, rname]|join('.') %}
   self.{{ rname }} = {
     {% include "./resource-partial.ts" with r %}
@@ -62,13 +64,15 @@ function {{ Name }} (options) { // eslint-disable-line
 {% set lb = "{" %}
 {% set rb = "}" %}
 
-{% for schemaName, schema in schemas %}
+{% for schemaName in schemas|sort %}
+{% set schema = schemas[schemaName] %}
 /**
  * @typedef {{ schema.id }}
  * @memberOf! {{ name }}({{ version }})
  * @type {{ schema.type }}
 {% if schema.properties -%}
-{%- for pname, p in schema.properties -%}
+{%- for pname in schema.properties|sort -%}
+{%- set p = schema.properties[pname] -%}
 {%- if p.$ref -%}
  * @property {{ lb }}{{ name }}({{ version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
 {%- elif p.items and p.items.type -%}
