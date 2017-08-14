@@ -15,22 +15,12 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-import googleauth from '../lib/googleauth';
 const googleapis = require('../');
 
 
 describe('JWT client', () => {
   it('should expose the default auth module', () => {
     assert(googleapis.auth.getApplicationDefault);
-  });
-  it('should create a jwt', () => {
-    const JWT = googleauth.jwtclient;
-    const jwt = new JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
-    assert.equal(jwt.email, 'someone@somewhere.com');
-    assert.equal(jwt.keyFile, 'file1');
-    assert.equal(jwt.key, 'key1');
-    assert.equal(jwt.scopes, 'scope1');
-    assert.equal(jwt.subject, 'subject1');
   });
   it('should create a jwt through googleapis', () => {
     const jwt = new googleapis.auth.JWT(
@@ -60,12 +50,7 @@ describe('JWT client', () => {
 });
 
 describe('Compute client', () => {
-  const Compute = googleauth.computeclient;
 
-  it('should create a computeclient', () => {
-    const compute = new Compute();
-    assert.equal(compute.createScopedRequired(), false);
-  });
   it('should create a computeclient', () => {
     const compute = new googleapis.auth.Compute();
     assert.equal(compute.createScopedRequired(), false);
