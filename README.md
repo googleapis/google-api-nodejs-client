@@ -177,6 +177,9 @@ var url = oauth2Client.generateAuthUrl({
   // state: { foo: 'bar' }
 });
 ```
+##### IMPORTANT NOTE
+`refresh_token` is only returned on the first authorization.  
+ More details [here](https://github.com/google/google-api-nodejs-client/issues/750#issuecomment-304521450)
 
 ##### Retrieve authorization code
 
