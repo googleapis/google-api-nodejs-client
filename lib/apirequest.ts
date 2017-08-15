@@ -11,11 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import googleauth from './googleauth';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
 
-const DefaultTransporter = googleauth.transporters;
+const DefaultTransporter = require('google-auth-library/lib/transporters.js');
+
 
 function isReadableStream (obj) {
   return obj instanceof stream.Stream &&
