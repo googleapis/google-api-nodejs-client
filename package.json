@@ -92,7 +92,10 @@
     "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
     "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "build": "tsc",
-    "test": "npm run lint && npm run cover",
+    "prepare": "npm run build",
+    "pretest": "npm run build",
+    "test": "npm run cover",
+    "posttest": "npm run lint",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "find . -name '*.js.map' -type f -delete && find -E . -regex '\\./(test|lib|apis|scripts)/.*.js$' -type f -delete"
   },
