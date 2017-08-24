@@ -609,6 +609,7 @@ function Tasks(options) { // eslint-disable-line
  * @property {string} title Title of the task.
  * @property {string} updated Last modification time of the task (as a RFC 3339 timestamp).
  */
+
 /**
  * @typedef TaskList
  * @memberOf! tasks(v1)
@@ -620,6 +621,7 @@ function Tasks(options) { // eslint-disable-line
  * @property {string} title Title of the task list.
  * @property {string} updated Last modification time of the task list (as a RFC 3339 timestamp).
  */
+
 /**
  * @typedef TaskLists
  * @memberOf! tasks(v1)
@@ -629,6 +631,7 @@ function Tasks(options) { // eslint-disable-line
  * @property {string} kind Type of the resource. This is always &quot;tasks#taskLists&quot;.
  * @property {string} nextPageToken Token that can be used to request the next page of this result.
  */
+
 /**
  * @typedef Tasks
  * @memberOf! tasks(v1)

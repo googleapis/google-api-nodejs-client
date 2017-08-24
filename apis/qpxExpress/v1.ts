@@ -87,6 +87,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as an aircraftData object. Value: the fixed string qpxexpress#aircraftData
  * @property {string} name The name of an aircraft, for example Boeing 777.
  */
+
 /**
  * @typedef AirportData
  * @memberOf! qpxExpress(v1)
@@ -96,6 +97,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as an airport object. Value: the fixed string qpxexpress#airportData.
  * @property {string} name The name of an airport. For example, for airport BOS the name is &quot;Boston Logan International&quot;.
  */
+
 /**
  * @typedef BagDescriptor
  * @memberOf! qpxExpress(v1)
@@ -106,6 +108,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a baggage object. Value: the fixed string qpxexpress#bagDescriptor.
  * @property {string} subcode The standard IATA subcode used to identify this optional service.
  */
+
 /**
  * @typedef CarrierData
  * @memberOf! qpxExpress(v1)
@@ -114,6 +117,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a kind of carrier (ie. an airline, bus line, railroad, etc). Value: the fixed string qpxexpress#carrierData.
  * @property {string} name The long, full name of a carrier. For example: American Airlines.
  */
+
 /**
  * @typedef CityData
  * @memberOf! qpxExpress(v1)
@@ -123,6 +127,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a city, typically with one or more airports. Value: the fixed string qpxexpress#cityData.
  * @property {string} name The full name of a city. An example would be: New York.
  */
+
 /**
  * @typedef Data
  * @memberOf! qpxExpress(v1)
@@ -134,6 +139,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as QPX Express response resource, including a trip&#39;s airport, city, taxes, airline, and aircraft. Value: the fixed string qpxexpress#data.
  * @property {qpxExpress(v1).TaxData[]} tax The taxes due for flying between an origin and a destination.
  */
+
 /**
  * @typedef FareInfo
  * @memberOf! qpxExpress(v1)
@@ -146,6 +152,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} origin The city code of the city the trip begins at.
  * @property {boolean} private Whether this is a private fare, for example one offered only to select customers rather than the general public.
  */
+
 /**
  * @typedef FlightInfo
  * @memberOf! qpxExpress(v1)
@@ -153,6 +160,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} carrier 
  * @property {string} number The flight number.
  */
+
 /**
  * @typedef FreeBaggageAllowance
  * @memberOf! qpxExpress(v1)
@@ -164,6 +172,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {integer} pieces The number of free pieces of baggage allowed.
  * @property {integer} pounds The number of pounds of free baggage allowed.
  */
+
 /**
  * @typedef LegInfo
  * @memberOf! qpxExpress(v1)
@@ -186,6 +195,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} originTerminal The terminal the flight is scheduled to depart from.
  * @property {boolean} secure Whether passenger information must be furnished to the United States Transportation Security Administration (TSA) prior to departure.
  */
+
 /**
  * @typedef PassengerCounts
  * @memberOf! qpxExpress(v1)
@@ -197,6 +207,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a passenger count object, representing the number of passengers. Value: the fixed string qpxexpress#passengerCounts.
  * @property {integer} seniorCount The number of passengers that are senior citizens.
  */
+
 /**
  * @typedef PricingInfo
  * @memberOf! qpxExpress(v1)
@@ -215,6 +226,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {qpxExpress(v1).SegmentPricing[]} segmentPricing The per-segment price and baggage information.
  * @property {qpxExpress(v1).TaxInfo[]} tax The taxes used to calculate the tax total per ticket.
  */
+
 /**
  * @typedef SegmentInfo
  * @memberOf! qpxExpress(v1)
@@ -231,6 +243,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} marriedSegmentGroup The solution-based index of a segment in a married segment group. Married segments can only be booked together. For example, an airline might report a certain booking code as sold out from Boston to Pittsburgh, but as available as part of two married segments Boston to Chicago connecting through Pittsburgh. For example content of this field, consider the round-trip flight ZZ1 PHX-PHL ZZ2 PHL-CLT ZZ3 CLT-PHX. This has three segments, with the two outbound ones (ZZ1 ZZ2) married. In this case, the two outbound segments belong to married segment group 0, and the return segment belongs to married segment group 1.
  * @property {boolean} subjectToGovernmentApproval Whether the operation of this segment remains subject to government approval.
  */
+
 /**
  * @typedef SegmentPricing
  * @memberOf! qpxExpress(v1)
@@ -240,6 +253,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a segment pricing object, representing the price of this segment. Value: the fixed string qpxexpress#segmentPricing.
  * @property {string} segmentId Unique identifier in the response of this segment.
  */
+
 /**
  * @typedef SliceInfo
  * @memberOf! qpxExpress(v1)
@@ -248,6 +262,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a slice object. A slice represents a traveller&#39;s intent, the portion of a low-fare search corresponding to a traveler&#39;s request to get between two points. One-way journeys are generally expressed using 1 slice, round-trips using 2. Value: the fixed string qpxexpress#sliceInfo.
  * @property {qpxExpress(v1).SegmentInfo[]} segment The segment(s) constituting the slice.
  */
+
 /**
  * @typedef SliceInput
  * @memberOf! qpxExpress(v1)
@@ -264,6 +279,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} preferredCabin Prefer solutions that book in this cabin for this slice. Allowed values are COACH, PREMIUM_COACH, BUSINESS, and FIRST.
  * @property {string[]} prohibitedCarrier A list of 2-letter IATA airline designators. Exclude slices that use these carriers.
  */
+
 /**
  * @typedef TaxData
  * @memberOf! qpxExpress(v1)
@@ -272,6 +288,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a tax data object, representing some tax. Value: the fixed string qpxexpress#taxData.
  * @property {string} name The name of a tax.
  */
+
 /**
  * @typedef TaxInfo
  * @memberOf! qpxExpress(v1)
@@ -283,6 +300,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a tax information object. Value: the fixed string qpxexpress#taxInfo.
  * @property {string} salePrice The price of the tax in the sales or equivalent currency.
  */
+
 /**
  * @typedef TimeOfDayRange
  * @memberOf! qpxExpress(v1)
@@ -291,6 +309,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a time of day range object, representing two times in a single day defining a time range. Value: the fixed string qpxexpress#timeOfDayRange.
  * @property {string} latestTime The latest time of day in HH:MM format.
  */
+
 /**
  * @typedef TripOption
  * @memberOf! qpxExpress(v1)
@@ -301,6 +320,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} saleTotal The total price for all passengers on the trip, in the form of a currency followed by an amount, e.g. USD253.35.
  * @property {qpxExpress(v1).SliceInfo[]} slice The slices that make up this trip&#39;s itinerary.
  */
+
 /**
  * @typedef TripOptionsRequest
  * @memberOf! qpxExpress(v1)
@@ -313,6 +333,7 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {integer} solutions The number of solutions to return, maximum 500.
  * @property {string} ticketingCountry IATA country code representing the point of ticketing.
  */
+
 /**
  * @typedef TripOptionsResponse
  * @memberOf! qpxExpress(v1)
@@ -322,12 +343,14 @@ function Qpxexpress(options) { // eslint-disable-line
  * @property {string} requestId An identifier uniquely identifying this response.
  * @property {qpxExpress(v1).TripOption[]} tripOption A list of priced itinerary solutions to the QPX Express query.
  */
+
 /**
  * @typedef TripsSearchRequest
  * @memberOf! qpxExpress(v1)
  * @type object
  * @property {qpxExpress(v1).TripOptionsRequest} request A QPX Express search request. Required values are at least one adult or senior passenger, an origin, a destination, and a date.
  */
+
 /**
  * @typedef TripsSearchResponse
  * @memberOf! qpxExpress(v1)

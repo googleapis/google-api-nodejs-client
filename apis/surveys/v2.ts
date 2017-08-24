@@ -472,6 +472,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {surveys(v2).FieldMask[]} fields 
  * @property {integer} id 
  */
+
 /**
  * @typedef MobileAppPanel
  * @memberOf! surveys(v2)
@@ -483,6 +484,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} name Human readable name of the audience panel.
  * @property {string[]} owners List of email addresses for users who can target members of this panel. Must contain at least the address of the user making the API call for panels that are not public. This field will be empty for public panels.
  */
+
 /**
  * @typedef MobileAppPanelsListResponse
  * @memberOf! surveys(v2)
@@ -492,6 +494,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {surveys(v2).MobileAppPanel[]} resources An individual predefined panel of Opinion Rewards mobile users.
  * @property {surveys(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef PageInfo
  * @memberOf! surveys(v2)
@@ -500,12 +503,14 @@ function Surveys(options) { // eslint-disable-line
  * @property {integer} startIndex 
  * @property {integer} totalResults 
  */
+
 /**
  * @typedef ResultsGetRequest
  * @memberOf! surveys(v2)
  * @type object
  * @property {surveys(v2).ResultsMask} resultMask 
  */
+
 /**
  * @typedef ResultsMask
  * @memberOf! surveys(v2)
@@ -513,6 +518,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {surveys(v2).FieldMask[]} fields 
  * @property {string} projection 
  */
+
 /**
  * @typedef Survey
  * @memberOf! surveys(v2)
@@ -529,6 +535,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} title Optional name that will be given to the survey.
  * @property {integer} wantedResponseCount Number of responses desired for the survey.
  */
+
 /**
  * @typedef SurveyAudience
  * @memberOf! surveys(v2)
@@ -541,6 +548,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} mobileAppPanelId Key for predefined panel that causes survey to be sent to a predefined set of Opinion Rewards App users. You must set PopulationSource to ANDROID_APP_PANEL to use this field.
  * @property {string} populationSource Online population source where the respondents are sampled from.
  */
+
 /**
  * @typedef SurveyCost
  * @memberOf! surveys(v2)
@@ -550,6 +558,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} maxCostPerResponseNanos Threshold to start a survey automatically if the quoted price is at most this value. When a survey has a Screener (threshold) question, it must go through an incidence pricing test to determine the final cost per response. Typically you will have to make a followup call to start the survey giving the final computed cost per response. If the survey has no threshold_answers, setting this property will return an error. By specifying this property, you indicate the max price per response you are willing to pay in advance of the incidence test. If the price turns out to be lower than the specified value, the survey will begin immediately and you will be charged at the rate determined by the incidence pricing test. If the price turns out to be greater than the specified value the survey will not be started and you will instead be notified what price was determined by the incidence test. At that point, you must raise the value of this property to be greater than or equal to that cost before attempting to start the survey again. This will immediately start the survey as long the incidence test was run within the last 21 days.
  * @property {string} nanos Cost of survey in nano units of the given currency. DEPRECATED in favor of cost_per_response_nanos
  */
+
 /**
  * @typedef SurveyQuestion
  * @memberOf! surveys(v2)
@@ -573,6 +582,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} unitOfMeasurementLabel Optional unit of measurement for display (for example: hours, people, miles).
  * @property {string} videoId The YouTube video ID to be show in video questions.
  */
+
 /**
  * @typedef SurveyQuestionImage
  * @memberOf! surveys(v2)
@@ -581,6 +591,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} data Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
  * @property {string} url The read-only URL for the hosted images.
  */
+
 /**
  * @typedef SurveyRejection
  * @memberOf! surveys(v2)
@@ -588,6 +599,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} explanation A human-readable explanation of what was wrong with the survey.
  * @property {string} type Which category of rejection this was. See the  Google Surveys Help Center for additional details on each category.
  */
+
 /**
  * @typedef SurveyResults
  * @memberOf! surveys(v2)
@@ -595,12 +607,14 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} status Human readable string describing the status of the request.
  * @property {string} surveyUrlId External survey ID as viewable by survey owners in the editor view.
  */
+
 /**
  * @typedef SurveysDeleteResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef SurveysListResponse
  * @memberOf! surveys(v2)
@@ -610,24 +624,28 @@ function Surveys(options) { // eslint-disable-line
  * @property {surveys(v2).Survey[]} resources An individual survey resource.
  * @property {surveys(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef SurveysStartRequest
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} maxCostPerResponseNanos Threshold to start a survey automically if the quoted prices is less than or equal to this value. See Survey.Cost for more details.
  */
+
 /**
  * @typedef SurveysStartResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef SurveysStopResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef TokenPagination
  * @memberOf! surveys(v2)

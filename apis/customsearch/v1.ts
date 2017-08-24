@@ -116,6 +116,7 @@ function Customsearch(options) { // eslint-disable-line
  * @property {array[]} facets 
  * @property {string} title 
  */
+
 /**
  * @typedef Promotion
  * @memberOf! customsearch(v1)
@@ -127,6 +128,7 @@ function Customsearch(options) { // eslint-disable-line
  * @property {string} link 
  * @property {string} title 
  */
+
 /**
  * @typedef Query
  * @memberOf! customsearch(v1)
@@ -168,6 +170,7 @@ function Customsearch(options) { // eslint-disable-line
  * @property {string} title 
  * @property {string} totalResults 
  */
+
 /**
  * @typedef Result
  * @memberOf! customsearch(v1)
@@ -188,6 +191,7 @@ function Customsearch(options) { // eslint-disable-line
  * @property {string} snippet 
  * @property {string} title 
  */
+
 /**
  * @typedef Search
  * @memberOf! customsearch(v1)

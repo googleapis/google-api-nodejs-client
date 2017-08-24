@@ -377,6 +377,7 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {integer} retry_count The number of leases applied to this task.
  * @property {string} tag Tag for the task, could be used later to lease tasks grouped by a specific tag.
  */
+
 /**
  * @typedef TaskQueue
  * @memberOf! taskqueue(v1beta2)
@@ -387,6 +388,7 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {integer} maxLeases The number of times we should lease out tasks before giving up on them. If unset we lease them out forever until a worker deletes the task.
  * @property {object} stats Statistics for the TaskQueue object in question.
  */
+
 /**
  * @typedef Tasks
  * @memberOf! taskqueue(v1beta2)
@@ -394,6 +396,7 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {taskqueue(v1beta2).Task[]} items The actual list of tasks returned as a result of the lease operation.
  * @property {string} kind The kind of object returned, a list of tasks.
  */
+
 /**
  * @typedef Tasks2
  * @memberOf! taskqueue(v1beta2)

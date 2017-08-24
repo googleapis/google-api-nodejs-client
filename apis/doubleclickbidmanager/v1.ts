@@ -396,12 +396,14 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} filterType Filter type used to filter line items to fetch.
  * @property {string} format Format in which the line items will be returned. Default to CSV.
  */
+
 /**
  * @typedef DownloadLineItemsResponse
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
  * @property {string} lineItems Retrieved line items in CSV format. For more information about file formats, see  Entity Write File Format.
  */
+
 /**
  * @typedef DownloadRequest
  * @memberOf! doubleclickbidmanager(v1)
@@ -411,6 +413,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} filterType Filter type used to filter line items to fetch.
  * @property {string} version SDF Version (column names, types, order) in which the entities will be returned. Default to 3.
  */
+
 /**
  * @typedef DownloadResponse
  * @memberOf! doubleclickbidmanager(v1)
@@ -420,6 +423,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} insertionOrders Retrieved insertion orders in SDF format.
  * @property {string} lineItems Retrieved line items in SDF format.
  */
+
 /**
  * @typedef FilterPair
  * @memberOf! doubleclickbidmanager(v1)
@@ -427,6 +431,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} type Filter type.
  * @property {string} value Filter value.
  */
+
 /**
  * @typedef ListQueriesResponse
  * @memberOf! doubleclickbidmanager(v1)
@@ -434,6 +439,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
  * @property {doubleclickbidmanager(v1).Query[]} queries Retrieved queries.
  */
+
 /**
  * @typedef ListReportsResponse
  * @memberOf! doubleclickbidmanager(v1)
@@ -441,6 +447,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
  * @property {doubleclickbidmanager(v1).Report[]} reports Retrieved reports.
  */
+
 /**
  * @typedef Parameters
  * @memberOf! doubleclickbidmanager(v1)
@@ -451,6 +458,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string[]} metrics Metrics to include as columns in your report.
  * @property {string} type Report type.
  */
+
 /**
  * @typedef Query
  * @memberOf! doubleclickbidmanager(v1)
@@ -464,6 +472,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {doubleclickbidmanager(v1).QuerySchedule} schedule Information on how often and when to run a query.
  * @property {string} timezoneCode Canonical timezone code for report data time. Defaults to America/New_York.
  */
+
 /**
  * @typedef QueryMetadata
  * @memberOf! doubleclickbidmanager(v1)
@@ -482,6 +491,7 @@ An locale string not in the list above will generate reports in English.
 * @property {string[]} shareEmailAddress List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.
 * @property {string} title Query title. It is used to name the reports generated from this query.
 */
+
 /**
  * @typedef QuerySchedule
  * @memberOf! doubleclickbidmanager(v1)
@@ -491,6 +501,7 @@ An locale string not in the list above will generate reports in English.
  * @property {integer} nextRunMinuteOfDay Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
  * @property {string} nextRunTimezoneCode Canonical timezone code for report generation time. Defaults to America/New_York.
  */
+
 /**
  * @typedef Report
  * @memberOf! doubleclickbidmanager(v1)
@@ -499,12 +510,14 @@ An locale string not in the list above will generate reports in English.
  * @property {doubleclickbidmanager(v1).ReportMetadata} metadata Report metadata.
  * @property {doubleclickbidmanager(v1).Parameters} params Report parameters.
  */
+
 /**
  * @typedef ReportFailure
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
  * @property {string} errorCode Error code that shows why the report was not created.
  */
+
 /**
  * @typedef ReportKey
  * @memberOf! doubleclickbidmanager(v1)
@@ -512,6 +525,7 @@ An locale string not in the list above will generate reports in English.
  * @property {string} queryId Query ID.
  * @property {string} reportId Report ID.
  */
+
 /**
  * @typedef ReportMetadata
  * @memberOf! doubleclickbidmanager(v1)
@@ -521,6 +535,7 @@ An locale string not in the list above will generate reports in English.
  * @property {string} reportDataStartTimeMs The starting time for the data that is shown in the report.
  * @property {doubleclickbidmanager(v1).ReportStatus} status Report status.
  */
+
 /**
  * @typedef ReportStatus
  * @memberOf! doubleclickbidmanager(v1)
@@ -530,6 +545,7 @@ An locale string not in the list above will generate reports in English.
  * @property {string} format The file type of the report.
  * @property {string} state The state of the report.
  */
+
 /**
  * @typedef RowStatus
  * @memberOf! doubleclickbidmanager(v1)
@@ -541,6 +557,7 @@ An locale string not in the list above will generate reports in English.
  * @property {boolean} persisted Whether the entity is persisted.
  * @property {integer} rowNumber Row number.
  */
+
 /**
  * @typedef RunQueryRequest
  * @memberOf! doubleclickbidmanager(v1)
@@ -550,6 +567,7 @@ An locale string not in the list above will generate reports in English.
  * @property {string} reportDataStartTimeMs The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
  * @property {string} timezoneCode Canonical timezone code for report data time. Defaults to America/New_York.
  */
+
 /**
  * @typedef UploadLineItemsRequest
  * @memberOf! doubleclickbidmanager(v1)
@@ -558,12 +576,14 @@ An locale string not in the list above will generate reports in English.
  * @property {string} format Format the line items are in. Default to CSV.
  * @property {string} lineItems Line items in CSV to upload. Refer to  Entity Write File Format for more information on file format.
  */
+
 /**
  * @typedef UploadLineItemsResponse
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
  * @property {doubleclickbidmanager(v1).UploadStatus} uploadStatus Status of upload.
  */
+
 /**
  * @typedef UploadStatus
  * @memberOf! doubleclickbidmanager(v1)

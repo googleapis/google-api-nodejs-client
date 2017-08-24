@@ -278,6 +278,7 @@ function Prediction(options) { // eslint-disable-line
  * @type object
  * @property {object} input 
  */
+
 /**
  * @typedef Output
  * @memberOf! prediction(v1.2)
@@ -289,6 +290,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {number} outputValue 
  * @property {string} selfLink 
  */
+
 /**
  * @typedef Training
  * @memberOf! prediction(v1.2)
@@ -299,6 +301,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {string} selfLink 
  * @property {string} trainingStatus 
  */
+
 /**
  * @typedef Update
  * @memberOf! prediction(v1.2)

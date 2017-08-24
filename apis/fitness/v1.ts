@@ -38,7 +38,6 @@ function Fitness(options) { // eslint-disable-line
   self._options = options || {};
 
   self.users = {
-
     dataSources: {
 
       /**
@@ -270,7 +269,6 @@ function Fitness(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       datasets: {
 
         /**
@@ -397,7 +395,6 @@ function Fitness(options) { // eslint-disable-line
         }
       }
     },
-
     dataset: {
 
       /**
@@ -438,7 +435,6 @@ function Fitness(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     sessions: {
 
       /**
@@ -575,6 +571,7 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} startTimeMillis The start time for the aggregated data, in milliseconds since epoch, inclusive.
  * @property {string} type The type of a bucket signifies how the data aggregation is performed in the bucket.
  */
+
 /**
  * @typedef AggregateBy
  * @memberOf! fitness(v1)
@@ -582,6 +579,7 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} dataSourceId A data source ID to aggregate. Mutually exclusive of dataTypeName. Only data from the specified data source ID will be included in the aggregation. The dataset in the response will have the same data source ID.
  * @property {string} dataTypeName The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived:com.google.:com.google.android.gms:aggregated
  */
+
 /**
  * @typedef AggregateRequest
  * @memberOf! fitness(v1)
@@ -595,12 +593,14 @@ function Fitness(options) { // eslint-disable-line
  * @property {string[]} filteredDataQualityStandard A list of acceptable data quality standards. Only data points which conform to at least one of the specified data quality standards will be returned. If the list is empty, all data points are returned.
  * @property {string} startTimeMillis The start of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
  */
+
 /**
  * @typedef AggregateResponse
  * @memberOf! fitness(v1)
  * @type object
  * @property {fitness(v1).AggregateBucket[]} bucket A list of buckets containing the aggregated data.
  */
+
 /**
  * @typedef Application
  * @memberOf! fitness(v1)
@@ -610,6 +610,7 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} packageName Package name for this application. This is used as a unique identifier when created by Android applications, but cannot be specified by REST clients. REST clients will have their developer project number reflected into the Data Source data stream IDs, instead of the packageName.
  * @property {string} version Version of the application. You should update this field whenever the application changes in a way that affects the computation of the data.
  */
+
 /**
  * @typedef BucketByActivity
  * @memberOf! fitness(v1)
@@ -617,12 +618,14 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} activityDataSourceId The default activity stream will be used if a specific activityDataSourceId is not specified.
  * @property {string} minDurationMillis Specifies that only activity segments of duration longer than minDurationMillis are considered and used as a container for aggregated data.
  */
+
 /**
  * @typedef BucketBySession
  * @memberOf! fitness(v1)
  * @type object
  * @property {string} minDurationMillis Specifies that only sessions of duration longer than minDurationMillis are considered and used as a container for aggregated data.
  */
+
 /**
  * @typedef BucketByTime
  * @memberOf! fitness(v1)
@@ -630,6 +633,7 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} durationMillis Specifies that result buckets aggregate data by exactly durationMillis time frames. Time frames that contain no data will be included in the response with an empty dataset.
  * @property {fitness(v1).BucketByTimePeriod} period 
  */
+
 /**
  * @typedef BucketByTimePeriod
  * @memberOf! fitness(v1)
@@ -638,6 +642,7 @@ function Fitness(options) { // eslint-disable-line
  * @property {string} type 
  * @property {integer} value 
  */
+
 /**
  * @typedef DataPoint
  * @memberOf! fitness(v1)
@@ -653,6 +658,7 @@ function Fitness(options) { // eslint-disable-line
 
 Only one of integer and floating point fields will be populated, depending on the format enum value within data source&#39;s type field.
 */
+
 /**
  * @typedef DataSource
  * @memberOf! fitness(v1)
@@ -671,7 +677,7 @@ The exact format of the data stream ID created by an Android application is: typ
 
 The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName 
 
-When any of the optional fields that comprise of the data stream ID are blank, they will be omitted from the data stream ID. The minnimum viable data stream ID would be: type:dataType.name:developer project number
+When any of the optional fields that comprise of the data stream ID are blank, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number
 
 Finally, the developer project number is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form.
 * @property {string} dataStreamName The stream name uniquely identifies this particular data source among other data sources of the same type from the same underlying producer. Setting the stream name is optional, but should be done whenever an application exposes two streams for the same data type, or when a device has two equivalent sensors.
@@ -680,6 +686,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
 * @property {string} name An end-user visible name for this data source.
 * @property {string} type A constant describing the type of this data source. Indicates whether this data source produces raw or derived data.
 */
+
 /**
  * @typedef DataType
  * @memberOf! fitness(v1)
@@ -687,6 +694,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {fitness(v1).DataTypeField[]} field A field represents one dimension of a data type.
  * @property {string} name Each data type has a unique, namespaced, name. All data types in the com.google namespace are shared as part of the platform.
  */
+
 /**
  * @typedef DataTypeField
  * @memberOf! fitness(v1)
@@ -695,6 +703,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} name Defines the name and format of data. Unlike data type names, field names are not namespaced, and only need to be unique within the data type.
  * @property {boolean} optional 
  */
+
 /**
  * @typedef Dataset
  * @memberOf! fitness(v1)
@@ -705,6 +714,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} nextPageToken This token will be set when a dataset is received in response to a GET request and the dataset is too large to be included in a single response. Provide this value in a subsequent GET request to return the next page of data points within this dataset.
  * @property {fitness(v1).DataPoint[]} point A partial list of data points contained in the dataset, ordered by largest endTimeNanos first. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.
  */
+
 /**
  * @typedef Device
  * @memberOf! fitness(v1)
@@ -715,12 +725,14 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} uid The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.
  * @property {string} version Version string for the device hardware/software.
  */
+
 /**
  * @typedef ListDataSourcesResponse
  * @memberOf! fitness(v1)
  * @type object
  * @property {fitness(v1).DataSource[]} dataSource A previously created data source.
  */
+
 /**
  * @typedef ListSessionsResponse
  * @memberOf! fitness(v1)
@@ -730,12 +742,14 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  * @property {fitness(v1).Session[]} session Sessions with an end time that is between startTime and endTime of the request.
  */
+
 /**
  * @typedef MapValue
  * @memberOf! fitness(v1)
  * @type object
  * @property {number} fpVal Floating point value.
  */
+
 /**
  * @typedef Session
  * @memberOf! fitness(v1)
@@ -750,6 +764,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} name A human readable name of the session.
  * @property {string} startTimeMillis A start time, in milliseconds since epoch, inclusive.
  */
+
 /**
  * @typedef Value
  * @memberOf! fitness(v1)
@@ -759,6 +774,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {fitness(v1).ValueMapValEntry[]} mapVal Map value. The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled.
  * @property {string} stringVal String value. When this is set, other values must not be set. Strings should be kept small whenever possible. Data streams with large string values and high data frequency may be down sampled.
  */
+
 /**
  * @typedef ValueMapValEntry
  * @memberOf! fitness(v1)

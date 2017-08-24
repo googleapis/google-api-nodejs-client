@@ -817,7 +817,6 @@ function Mirror(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     attachments: {
 
       /**
@@ -986,6 +985,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {string} password 
  * @property {mirror(v1).UserData[]} userData 
  */
+
 /**
  * @typedef Attachment
  * @memberOf! mirror(v1)
@@ -995,6 +995,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {string} id The ID of the attachment.
  * @property {boolean} isProcessingContent Indicates that the contentUrl is not available because the attachment content is still being processed. If the caller wishes to retrieve the content, it should try again later.
  */
+
 /**
  * @typedef AttachmentsListResponse
  * @memberOf! mirror(v1)
@@ -1002,6 +1003,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {mirror(v1).Attachment[]} items The list of attachments.
  * @property {string} kind The type of resource. This is always mirror#attachmentsList.
  */
+
 /**
  * @typedef AuthToken
  * @memberOf! mirror(v1)
@@ -1009,6 +1011,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {string} authToken 
  * @property {string} type 
  */
+
 /**
  * @typedef Command
  * @memberOf! mirror(v1)
@@ -1017,6 +1020,7 @@ function Mirror(options) { // eslint-disable-line
 - TAKE_A_NOTE - Shares a timeline item with the transcription of user speech from the &quot;Take a note&quot; voice menu command.  
 - POST_AN_UPDATE - Shares a timeline item with the transcription of user speech from the &quot;Post an update&quot; voice menu command.
 */
+
 /**
  * @typedef Contact
  * @memberOf! mirror(v1)
@@ -1037,6 +1041,7 @@ function Mirror(options) { // eslint-disable-line
 - INDIVIDUAL - Represents a single person. This is the default. 
 - GROUP - Represents more than a single person.
 */
+
 /**
  * @typedef ContactsListResponse
  * @memberOf! mirror(v1)
@@ -1044,6 +1049,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {mirror(v1).Contact[]} items Contact list.
  * @property {string} kind The type of resource. This is always mirror#contacts.
  */
+
 /**
  * @typedef Location
  * @memberOf! mirror(v1)
@@ -1057,6 +1063,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {number} longitude The longitude, in degrees.
  * @property {string} timestamp The time at which this location was captured, formatted according to RFC 3339.
  */
+
 /**
  * @typedef LocationsListResponse
  * @memberOf! mirror(v1)
@@ -1064,6 +1071,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {mirror(v1).Location[]} items The list of locations.
  * @property {string} kind The type of resource. This is always mirror#locationsList.
  */
+
 /**
  * @typedef MenuItem
  * @memberOf! mirror(v1)
@@ -1094,6 +1102,7 @@ function Mirror(options) { // eslint-disable-line
 * @property {boolean} removeWhenSelected If set to true on a CUSTOM menu item, that item will be removed from the menu after it is selected.
 * @property {mirror(v1).MenuValue[]} values For CUSTOM items, a list of values controlling the appearance of the menu item in each of its states. A value for the DEFAULT state must be provided. If the PENDING or CONFIRMED states are missing, they will not be shown.
 */
+
 /**
  * @typedef MenuValue
  * @memberOf! mirror(v1)
@@ -1105,6 +1114,7 @@ function Mirror(options) { // eslint-disable-line
 - PENDING - Value shown when the menuItem has been selected by the user but can still be cancelled. 
 - CONFIRMED - Value shown when the menuItem has been selected by the user and can no longer be cancelled.
 */
+
 /**
  * @typedef Notification
  * @memberOf! mirror(v1)
@@ -1116,6 +1126,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {string} userToken The user token provided by the service when it subscribed for notifications.
  * @property {string} verifyToken The secret verify token provided by the service when it subscribed for notifications.
  */
+
 /**
  * @typedef NotificationConfig
  * @memberOf! mirror(v1)
@@ -1124,6 +1135,7 @@ function Mirror(options) { // eslint-disable-line
 * @property {string} level Describes how important the notification is. Allowed values are:  
 - DEFAULT - Notifications of default importance. A chime will be played to alert users.
 */
+
 /**
  * @typedef Setting
  * @memberOf! mirror(v1)
@@ -1134,6 +1146,7 @@ function Mirror(options) { // eslint-disable-line
 * @property {string} kind The type of resource. This is always mirror#setting.
 * @property {string} value The setting value, as a string.
 */
+
 /**
  * @typedef Subscription
  * @memberOf! mirror(v1)
@@ -1155,6 +1168,7 @@ function Mirror(options) { // eslint-disable-line
 * @property {string} userToken An opaque token sent to the subscriber in notifications so that it can determine the ID of the user.
 * @property {string} verifyToken A secret token sent to the subscriber in notifications so that it can verify that the notification was generated by Google.
 */
+
 /**
  * @typedef SubscriptionsListResponse
  * @memberOf! mirror(v1)
@@ -1162,6 +1176,7 @@ function Mirror(options) { // eslint-disable-line
  * @property {mirror(v1).Subscription[]} items The list of subscriptions.
  * @property {string} kind The type of resource. This is always mirror#subscriptionsList.
  */
+
 /**
  * @typedef TimelineItem
  * @memberOf! mirror(v1)
@@ -1224,6 +1239,7 @@ Glassware are encouraged to populate this field for every timeline item, even if
 * @property {string} title The title of this item.
 * @property {string} updated The time at which this item was last modified, formatted according to RFC 3339.
 */
+
 /**
  * @typedef TimelineListResponse
  * @memberOf! mirror(v1)
@@ -1232,6 +1248,7 @@ Glassware are encouraged to populate this field for every timeline item, even if
  * @property {string} kind The type of resource. This is always mirror#timeline.
  * @property {string} nextPageToken The next page token. Provide this as the pageToken parameter in the request to retrieve the next page of results.
  */
+
 /**
  * @typedef UserAction
  * @memberOf! mirror(v1)
@@ -1249,6 +1266,7 @@ For actions of type CUSTOM, this is the ID of the custom menu item that was sele
 - UNPIN - the user unpinned the item. 
 - LAUNCH - the user initiated a voice command.  In the future, additional types may be added. UserActions with unrecognized types should be ignored.
 */
+
 /**
  * @typedef UserData
  * @memberOf! mirror(v1)

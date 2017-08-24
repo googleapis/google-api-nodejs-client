@@ -295,9 +295,7 @@ function Oauth2(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     v2: {
-
       me: {
 
         /**
@@ -346,12 +344,14 @@ function Oauth2(options) { // eslint-disable-line
  * @type object
  * @property {object[]} keys 
  */
+
 /**
  * @typedef Raw
  * @memberOf! oauth2(v1)
  * @type object
  * @property {object[]} keyvalues 
  */
+
 /**
  * @typedef Tokeninfo
  * @memberOf! oauth2(v1)
@@ -369,6 +369,7 @@ function Oauth2(options) { // eslint-disable-line
  * @property {string} user_id The obfuscated user id.
  * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
  */
+
 /**
  * @typedef Userinfoplus
  * @memberOf! oauth2(v1)
@@ -385,6 +386,7 @@ function Oauth2(options) { // eslint-disable-line
  * @property {string} picture URL of the user&#39;s picture image.
  * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
  */
+
 /**
  * @typedef X509
  * @memberOf! oauth2(v1)

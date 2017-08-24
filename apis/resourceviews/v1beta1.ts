@@ -609,18 +609,21 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} key Key of the label.
  * @property {string} value Value of the label.
  */
+
 /**
  * @typedef RegionViewsAddResourcesRequest
  * @memberOf! resourceviews(v1beta1)
  * @type object
  * @property {string[]} resources The list of resources to be added.
  */
+
 /**
  * @typedef RegionViewsInsertResponse
  * @memberOf! resourceviews(v1beta1)
  * @type object
  * @property {resourceviews(v1beta1).ResourceView} resource The resource view object inserted.
  */
+
 /**
  * @typedef RegionViewsListResourcesResponse
  * @memberOf! resourceviews(v1beta1)
@@ -628,6 +631,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string[]} members The resources in the view.
  * @property {string} nextPageToken A token used for pagination.
  */
+
 /**
  * @typedef RegionViewsListResponse
  * @memberOf! resourceviews(v1beta1)
@@ -635,12 +639,14 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used for pagination.
  * @property {resourceviews(v1beta1).ResourceView[]} resourceViews The list of resource views that meet the criteria.
  */
+
 /**
  * @typedef RegionViewsRemoveResourcesRequest
  * @memberOf! resourceviews(v1beta1)
  * @type object
  * @property {string[]} resources The list of resources to be removed.
  */
+
 /**
  * @typedef ResourceView
  * @memberOf! resourceviews(v1beta1)
@@ -656,18 +662,21 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {integer} numMembers The total number of resources in the resource view.
  * @property {string} selfLink [Output Only] A self-link to the resource view.
  */
+
 /**
  * @typedef ZoneViewsAddResourcesRequest
  * @memberOf! resourceviews(v1beta1)
  * @type object
  * @property {string[]} resources The list of resources to be added.
  */
+
 /**
  * @typedef ZoneViewsInsertResponse
  * @memberOf! resourceviews(v1beta1)
  * @type object
  * @property {resourceviews(v1beta1).ResourceView} resource The resource view object that has been inserted.
  */
+
 /**
  * @typedef ZoneViewsListResourcesResponse
  * @memberOf! resourceviews(v1beta1)
@@ -675,6 +684,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string[]} members The full URL of resources in the view.
  * @property {string} nextPageToken A token used for pagination.
  */
+
 /**
  * @typedef ZoneViewsListResponse
  * @memberOf! resourceviews(v1beta1)
@@ -682,6 +692,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used for pagination.
  * @property {resourceviews(v1beta1).ResourceView[]} resourceViews The result that contains all resource views that meet the criteria.
  */
+
 /**
  * @typedef ZoneViewsRemoveResourcesRequest
  * @memberOf! resourceviews(v1beta1)

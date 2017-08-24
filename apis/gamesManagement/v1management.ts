@@ -1068,6 +1068,7 @@ function Gamesmanagement(options) { // eslint-disable-line
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.
  * @property {gamesManagement(v1management).AchievementResetResponse[]} results The achievement reset results.
  */
+
 /**
  * @typedef AchievementResetMultipleForAllRequest
  * @memberOf! gamesManagement(v1management)
@@ -1075,6 +1076,7 @@ function Gamesmanagement(options) { // eslint-disable-line
  * @property {string[]} achievement_ids The IDs of achievements to reset.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.
  */
+
 /**
  * @typedef AchievementResetResponse
  * @memberOf! gamesManagement(v1management)
@@ -1088,6 +1090,7 @@ Possible values are:
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.
 * @property {boolean} updateOccurred Flag to indicate if the requested update actually occurred.
 */
+
 /**
  * @typedef EventsResetMultipleForAllRequest
  * @memberOf! gamesManagement(v1management)
@@ -1095,6 +1098,7 @@ Possible values are:
  * @property {string[]} event_ids The IDs of events to reset.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.
  */
+
 /**
  * @typedef GamesPlayedResource
  * @memberOf! gamesManagement(v1management)
@@ -1102,6 +1106,7 @@ Possible values are:
  * @property {boolean} autoMatched True if the player was auto-matched with the currently authenticated user.
  * @property {string} timeMillis The last time the player played the game in milliseconds since the epoch in UTC.
  */
+
 /**
  * @typedef GamesPlayerExperienceInfoResource
  * @memberOf! gamesManagement(v1management)
@@ -1111,6 +1116,7 @@ Possible values are:
  * @property {string} lastLevelUpTimestampMillis The timestamp when the player was leveled up, in millis since Unix epoch UTC.
  * @property {gamesManagement(v1management).GamesPlayerLevelResource} nextLevel The next level of the player. If the current level is the maximum level, this should be same as the current level.
  */
+
 /**
  * @typedef GamesPlayerLevelResource
  * @memberOf! gamesManagement(v1management)
@@ -1119,6 +1125,7 @@ Possible values are:
  * @property {string} maxExperiencePoints The maximum experience points for this level.
  * @property {string} minExperiencePoints The minimum experience points for this level.
  */
+
 /**
  * @typedef HiddenPlayer
  * @memberOf! gamesManagement(v1management)
@@ -1127,6 +1134,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.
  * @property {gamesManagement(v1management).Player} player The player information.
  */
+
 /**
  * @typedef HiddenPlayerList
  * @memberOf! gamesManagement(v1management)
@@ -1135,6 +1143,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef Player
  * @memberOf! gamesManagement(v1management)
@@ -1152,6 +1161,7 @@ Possible values are:
  * @property {gamesManagement(v1management).ProfileSettings} profileSettings The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
  * @property {string} title The player&#39;s title rewarded for their game activities.
  */
+
 /**
  * @typedef PlayerScoreResetAllResponse
  * @memberOf! gamesManagement(v1management)
@@ -1159,6 +1169,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
  * @property {gamesManagement(v1management).PlayerScoreResetResponse[]} results The leaderboard reset results.
  */
+
 /**
  * @typedef PlayerScoreResetResponse
  * @memberOf! gamesManagement(v1management)
@@ -1171,6 +1182,7 @@ Possible values are:
 - &quot;WEEKLY&quot; - The score is a weekly score. 
 - &quot;DAILY&quot; - The score is a daily score.
 */
+
 /**
  * @typedef ProfileSettings
  * @memberOf! gamesManagement(v1management)
@@ -1178,6 +1190,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.
  * @property {boolean} profileVisible The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
  */
+
 /**
  * @typedef QuestsResetMultipleForAllRequest
  * @memberOf! gamesManagement(v1management)
@@ -1185,6 +1198,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#questsResetMultipleForAllRequest.
  * @property {string[]} quest_ids The IDs of quests to reset.
  */
+
 /**
  * @typedef ScoresResetMultipleForAllRequest
  * @memberOf! gamesManagement(v1management)

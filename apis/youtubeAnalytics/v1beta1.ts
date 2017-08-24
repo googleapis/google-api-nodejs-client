@@ -375,6 +375,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
  * @property {string} kind 
  * @property {object} snippet 
  */
+
 /**
  * @typedef GroupItem
  * @memberOf! youtubeAnalytics(v1beta1)
@@ -385,6 +386,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
  * @property {string} kind 
  * @property {object} resource 
  */
+
 /**
  * @typedef GroupItemListResponse
  * @memberOf! youtubeAnalytics(v1beta1)
@@ -393,6 +395,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
  * @property {youtubeAnalytics(v1beta1).GroupItem[]} items 
  * @property {string} kind 
  */
+
 /**
  * @typedef GroupListResponse
  * @memberOf! youtubeAnalytics(v1beta1)
@@ -402,6 +405,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
  * @property {string} kind 
  * @property {string} nextPageToken 
  */
+
 /**
  * @typedef ResultTable
  * @memberOf! youtubeAnalytics(v1beta1)

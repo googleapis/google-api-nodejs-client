@@ -91,6 +91,7 @@ function Pagespeedonline(options) { // eslint-disable-line
  * @property {object[]} args List of arguments for the format string.
  * @property {string} format A localized format string with {{FOO}} placeholders, where &#39;FOO&#39; is the key of the argument whose value should be substituted. For HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}} and {{END_FOO}} for the argument with key &#39;FOO&#39;.
  */
+
 /**
  * @typedef PagespeedApiImageV2
  * @memberOf! pagespeedonline(v2)
@@ -102,6 +103,7 @@ function Pagespeedonline(options) { // eslint-disable-line
  * @property {object} page_rect The region of the page that is captured by this image, with dimensions measured in CSS pixels.
  * @property {integer} width Width of screenshot in pixels.
  */
+
 /**
  * @typedef Result
  * @memberOf! pagespeedonline(v2)

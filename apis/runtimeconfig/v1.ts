@@ -123,10 +123,10 @@ function Runtimeconfig(options) { // eslint-disable-line
      * @memberOf! runtimeconfig(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.pageToken The standard list page token.
+     * @param {string=} params.filter The standard list filter.
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -162,17 +162,21 @@ function Runtimeconfig(options) { // eslint-disable-line
  * @memberOf! runtimeconfig(v1)
  * @type object
  */
+
 /**
- * @typedef Status
+ * @typedef Empty
  * @memberOf! runtimeconfig(v1)
  * @type object
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-*/
+ */
+
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! runtimeconfig(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {runtimeconfig(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+
 /**
  * @typedef Operation
  * @memberOf! runtimeconfig(v1)
@@ -180,6 +184,14 @@ common set of message types for APIs to use.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
+* @property {runtimeconfig(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -188,25 +200,17 @@ methods, the response should have the type `XxxResponse`, where `Xxx`
 is the original method name.  For example, if the original method name
 is `TakeSnapshot()`, the inferred response type is
 `TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
-* @property {runtimeconfig(v1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
 */
+
 /**
- * @typedef ListOperationsResponse
+ * @typedef Status
  * @memberOf! runtimeconfig(v1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {runtimeconfig(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef Empty
- * @memberOf! runtimeconfig(v1)
- * @type object
- */
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There is a common set of
+message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
 export = Runtimeconfig;

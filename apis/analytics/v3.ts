@@ -38,7 +38,6 @@ function Analytics(options) { // eslint-disable-line
   self._options = options || {};
 
   self.data = {
-
     ga: {
 
       /**
@@ -90,7 +89,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     mcf: {
 
       /**
@@ -139,7 +137,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     realtime: {
 
       /**
@@ -187,7 +184,6 @@ function Analytics(options) { // eslint-disable-line
   };
 
   self.management = {
-
     accountSummaries: {
 
       /**
@@ -228,7 +224,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     accountUserLinks: {
 
       /**
@@ -385,7 +380,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     accounts: {
 
       /**
@@ -426,7 +420,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     customDataSources: {
 
       /**
@@ -469,7 +462,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     customDimensions: {
 
       /**
@@ -672,7 +664,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     customMetrics: {
 
       /**
@@ -875,7 +866,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     experiments: {
 
       /**
@@ -1121,7 +1111,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     filters: {
 
       /**
@@ -1355,7 +1344,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     goals: {
 
       /**
@@ -1561,7 +1549,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     profileFilterLinks: {
 
       /**
@@ -1807,7 +1794,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     profileUserLinks: {
 
       /**
@@ -1972,7 +1958,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     profiles: {
 
       /**
@@ -2212,7 +2197,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     remarketingAudience: {
 
       /**
@@ -2453,7 +2437,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     segments: {
 
       /**
@@ -2494,7 +2477,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     unsampledReports: {
 
       /**
@@ -2658,7 +2640,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     uploads: {
 
       /**
@@ -2825,7 +2806,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     webPropertyAdWordsLinks: {
 
       /**
@@ -3065,7 +3045,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     webproperties: {
 
       /**
@@ -3261,7 +3240,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     webpropertyUserLinks: {
 
       /**
@@ -3425,7 +3403,6 @@ function Analytics(options) { // eslint-disable-line
   };
 
   self.metadata = {
-
     columns: {
 
       /**
@@ -3523,6 +3500,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {boolean} starred Indicates whether this account is starred or not.
  * @property {string} updated Time the account was last modified.
  */
+
 /**
  * @typedef AccountRef
  * @memberOf! analytics(v3)
@@ -3532,6 +3510,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} kind Analytics account reference.
  * @property {string} name Account name.
  */
+
 /**
  * @typedef AccountSummaries
  * @memberOf! analytics(v3)
@@ -3545,6 +3524,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef AccountSummary
  * @memberOf! analytics(v3)
@@ -3555,6 +3535,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {boolean} starred Indicates whether this account is starred or not.
  * @property {analytics(v3).WebPropertySummary[]} webProperties List of web properties under this account.
  */
+
 /**
  * @typedef AccountTicket
  * @memberOf! analytics(v3)
@@ -3566,6 +3547,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} redirectUri Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in APIs console as a callback URL.
  * @property {analytics(v3).Webproperty} webproperty Web property for the account.
  */
+
 /**
  * @typedef Accounts
  * @memberOf! analytics(v3)
@@ -3579,6 +3561,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef AdWordsAccount
  * @memberOf! analytics(v3)
@@ -3587,12 +3570,14 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} customerId Customer ID. This field is required when creating an AdWords link.
  * @property {string} kind Resource type for AdWords account.
  */
+
 /**
  * @typedef AnalyticsDataimportDeleteUploadDataRequest
  * @memberOf! analytics(v3)
  * @type object
  * @property {string[]} customDataImportUids A list of upload UIDs.
  */
+
 /**
  * @typedef Column
  * @memberOf! analytics(v3)
@@ -3601,6 +3586,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} id Column id.
  * @property {string} kind Resource type for Analytics column.
  */
+
 /**
  * @typedef Columns
  * @memberOf! analytics(v3)
@@ -3611,6 +3597,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} kind Collection type.
  * @property {integer} totalResults Total number of columns returned in the response.
  */
+
 /**
  * @typedef CustomDataSource
  * @memberOf! analytics(v3)
@@ -3625,12 +3612,14 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} name Name of this custom data source.
  * @property {object} parentLink Parent link for this custom data source. Points to the web property to which this custom data source belongs.
  * @property {string[]} profilesLinked IDs of views (profiles) linked to the custom data source.
+ * @property {string[]} schema Collection of schema headers of the custom data source.
  * @property {string} selfLink Link for this Analytics custom data source.
  * @property {string} type Type of the custom data source.
  * @property {string} updated Time this custom data source was last modified.
- * @property {string} uploadType 
+ * @property {string} uploadType Upload type of the custom data source.
  * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.
  */
+
 /**
  * @typedef CustomDataSources
  * @memberOf! analytics(v3)
@@ -3644,6 +3633,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef CustomDimension
  * @memberOf! analytics(v3)
@@ -3661,6 +3651,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} updated Time the custom dimension was last modified.
  * @property {string} webPropertyId Property ID.
  */
+
 /**
  * @typedef CustomDimensions
  * @memberOf! analytics(v3)
@@ -3674,6 +3665,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef CustomMetric
  * @memberOf! analytics(v3)
@@ -3694,6 +3686,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} updated Time the custom metric was last modified.
  * @property {string} webPropertyId Property ID.
  */
+
 /**
  * @typedef CustomMetrics
  * @memberOf! analytics(v3)
@@ -3707,6 +3700,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef EntityAdWordsLink
  * @memberOf! analytics(v3)
@@ -3719,6 +3713,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string[]} profileIds IDs of linked Views (Profiles) represented as strings.
  * @property {string} selfLink URL link for this Google Analytics - Google AdWords link.
  */
+
 /**
  * @typedef EntityAdWordsLinks
  * @memberOf! analytics(v3)
@@ -3731,6 +3726,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} startIndex The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  */
+
 /**
  * @typedef EntityUserLink
  * @memberOf! analytics(v3)
@@ -3742,6 +3738,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} selfLink Self link for this resource.
  * @property {analytics(v3).UserRef} userRef User reference.
  */
+
 /**
  * @typedef EntityUserLinks
  * @memberOf! analytics(v3)
@@ -3754,6 +3751,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} startIndex The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  */
+
 /**
  * @typedef Experiment
  * @memberOf! analytics(v3)
@@ -3790,6 +3788,7 @@ function Analytics(options) { // eslint-disable-line
 * @property {number} winnerConfidenceLevel A floating-point number in (0, 1). Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
 * @property {boolean} winnerFound Boolean specifying whether a winner has been found for this experiment. This field is read-only.
 */
+
 /**
  * @typedef Experiments
  * @memberOf! analytics(v3)
@@ -3803,6 +3802,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef Filter
  * @memberOf! analytics(v3)
@@ -3823,6 +3823,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} updated Time this filter was last modified.
  * @property {object} uppercaseDetails Details for the filter of the type UPPER.
  */
+
 /**
  * @typedef FilterExpression
  * @memberOf! analytics(v3)
@@ -3920,6 +3921,7 @@ function Analytics(options) { // eslint-disable-line
 * @property {string} kind Kind value for filter expression
 * @property {string} matchType Match type for this filter. Possible values are BEGINS_WITH, EQUAL, ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS, PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all other filters must use MATCHES.
 */
+
 /**
  * @typedef FilterRef
  * @memberOf! analytics(v3)
@@ -3930,6 +3932,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} kind Kind value for filter reference.
  * @property {string} name Name of this filter.
  */
+
 /**
  * @typedef Filters
  * @memberOf! analytics(v3)
@@ -3943,6 +3946,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef GaData
  * @memberOf! analytics(v3)
@@ -3965,6 +3969,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
  * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
  */
+
 /**
  * @typedef Goal
  * @memberOf! analytics(v3)
@@ -3988,6 +3993,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {object} visitTimeOnSiteDetails Details for the goal of the type VISIT_TIME_ON_SITE.
  * @property {string} webPropertyId Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.
  */
+
 /**
  * @typedef Goals
  * @memberOf! analytics(v3)
@@ -4001,6 +4007,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef IncludeConditions
  * @memberOf! analytics(v3)
@@ -4011,6 +4018,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} membershipDurationDays Number of days (in the range 1 to 540) a user remains in the audience.
  * @property {string} segment The segment condition that will cause a user to be added to an audience.
  */
+
 /**
  * @typedef LinkedForeignAccount
  * @memberOf! analytics(v3)
@@ -4023,9 +4031,10 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} linkedAccountId The foreign account ID. For example the an AdWords `linkedAccountId` has the following format XXX-XXX-XXXX.
  * @property {string} remarketingAudienceId Remarketing audience ID to which this linked foreign account belongs.
  * @property {string} status The status of this foreign account link.
- * @property {string} type The type of the foreign account. For example `ADWORDS_LINKS`.
+ * @property {string} type The type of the foreign account. For example, `ADWORDS_LINKS`, `DBM_LINKS`, `MCC_LINKS` or `OPTIMIZE`.
  * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this linked foreign account belongs.
  */
+
 /**
  * @typedef McfData
  * @memberOf! analytics(v3)
@@ -4046,6 +4055,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
  * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
  */
+
 /**
  * @typedef Profile
  * @memberOf! analytics(v3)
@@ -4078,6 +4088,7 @@ USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, 
 * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
 * @property {string} websiteUrl Website URL for this view (profile).
 */
+
 /**
  * @typedef ProfileFilterLink
  * @memberOf! analytics(v3)
@@ -4091,6 +4102,7 @@ For readonly (i.e., list and get) operations, the rank always starts at 1.
 For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
 * @property {string} selfLink Link for this profile filter link.
 */
+
 /**
  * @typedef ProfileFilterLinks
  * @memberOf! analytics(v3)
@@ -4104,6 +4116,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef ProfileRef
  * @memberOf! analytics(v3)
@@ -4116,6 +4129,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} name Name of this view (profile).
  * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
  */
+
 /**
  * @typedef ProfileSummary
  * @memberOf! analytics(v3)
@@ -4126,6 +4140,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {boolean} starred Indicates whether this view (profile) is starred or not.
  * @property {string} type View (Profile) type. Supported types: WEB or APP.
  */
+
 /**
  * @typedef Profiles
  * @memberOf! analytics(v3)
@@ -4139,6 +4154,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef RealtimeData
  * @memberOf! analytics(v3)
@@ -4153,6 +4169,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
  * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
  */
+
 /**
  * @typedef RemarketingAudience
  * @memberOf! analytics(v3)
@@ -4172,6 +4189,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} updated Time this remarketing audience was last modified.
  * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this remarketing audience belongs.
  */
+
 /**
  * @typedef RemarketingAudiences
  * @memberOf! analytics(v3)
@@ -4185,6 +4203,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef Segment
  * @memberOf! analytics(v3)
@@ -4199,6 +4218,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} type Type for a segment. Possible values are &quot;BUILT_IN&quot; or &quot;CUSTOM&quot;.
  * @property {string} updated Time the segment was last modified.
  */
+
 /**
  * @typedef Segments
  * @memberOf! analytics(v3)
@@ -4212,6 +4232,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef UnsampledReport
  * @memberOf! analytics(v3)
@@ -4236,6 +4257,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} updated Time this unsampled report was last modified.
  * @property {string} webPropertyId Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.
  */
+
 /**
  * @typedef UnsampledReports
  * @memberOf! analytics(v3)
@@ -4249,6 +4271,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef Upload
  * @memberOf! analytics(v3)
@@ -4259,7 +4282,9 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} id A unique ID for this upload.
  * @property {string} kind Resource type for Analytics upload.
  * @property {string} status Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.
+ * @property {string} uploadTime Time this file is uploaded.
  */
+
 /**
  * @typedef Uploads
  * @memberOf! analytics(v3)
@@ -4272,6 +4297,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
  * @property {integer} totalResults The total number of results for the query, regardless of the number of resources in the result.
  */
+
 /**
  * @typedef UserRef
  * @memberOf! analytics(v3)
@@ -4280,6 +4306,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} id User ID.
  * @property {string} kind 
  */
+
 /**
  * @typedef WebPropertyRef
  * @memberOf! analytics(v3)
@@ -4291,6 +4318,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} kind Analytics web property reference.
  * @property {string} name Name of this web property.
  */
+
 /**
  * @typedef WebPropertySummary
  * @memberOf! analytics(v3)
@@ -4304,6 +4332,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {boolean} starred Indicates whether this web property is starred or not.
  * @property {string} websiteUrl Website url for this web property.
  */
+
 /**
  * @typedef Webproperties
  * @memberOf! analytics(v3)
@@ -4317,6 +4346,7 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
  * @property {string} username Email ID of the authenticated user
  */
+
 /**
  * @typedef Webproperty
  * @memberOf! analytics(v3)

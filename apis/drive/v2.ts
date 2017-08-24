@@ -2807,6 +2807,7 @@ function Drive(options) { // eslint-disable-line
 * @property {object[]} teamDriveThemes A list of themes that are supported for Team Drives.
 * @property {drive(v2).User} user The authenticated user.
 */
+
 /**
  * @typedef App
  * @memberOf! drive(v2)
@@ -2836,6 +2837,7 @@ function Drive(options) { // eslint-disable-line
  * @property {boolean} supportsOfflineCreate Whether this app supports creating new files when offline.
  * @property {boolean} useByDefault Whether the app is selected as the default handler for the types it supports.
  */
+
 /**
  * @typedef AppList
  * @memberOf! drive(v2)
@@ -2846,6 +2848,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} kind This is always drive#appList.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef Change
  * @memberOf! drive(v2)
@@ -2861,6 +2864,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} teamDriveId The ID of the Team Drive associated with this change.
  * @property {string} type The type of the change. Possible values are file and teamDrive.
  */
+
 /**
  * @typedef ChangeList
  * @memberOf! drive(v2)
@@ -2874,6 +2878,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef Channel
  * @memberOf! drive(v2)
@@ -2889,6 +2894,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef ChildList
  * @memberOf! drive(v2)
@@ -2900,6 +2906,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} nextPageToken The page token for the next page of children. This will be absent if the end of the children list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef ChildReference
  * @memberOf! drive(v2)
@@ -2909,6 +2916,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} kind This is always drive#childReference.
  * @property {string} selfLink A link back to this reference.
  */
+
 /**
  * @typedef Comment
  * @memberOf! drive(v2)
@@ -2931,6 +2939,7 @@ function Drive(options) { // eslint-disable-line
 - &quot;open&quot; - The comment is still open. 
 - &quot;resolved&quot; - The comment has been resolved by one of its replies.
 */
+
 /**
  * @typedef CommentList
  * @memberOf! drive(v2)
@@ -2941,6 +2950,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef CommentReply
  * @memberOf! drive(v2)
@@ -2957,6 +2967,7 @@ function Drive(options) { // eslint-disable-line
 - &quot;resolve&quot; - To resolve a comment. 
 - &quot;reopen&quot; - To reopen (un-resolve) a comment.
 */
+
 /**
  * @typedef CommentReplyList
  * @memberOf! drive(v2)
@@ -2967,6 +2978,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef File
  * @memberOf! drive(v2)
@@ -3038,6 +3050,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string} webViewLink A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
 * @property {boolean} writersCanShare Whether writers can share the document with other users. Not populated for Team Drive files.
 */
+
 /**
  * @typedef FileList
  * @memberOf! drive(v2)
@@ -3050,6 +3063,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef GeneratedIds
  * @memberOf! drive(v2)
@@ -3058,6 +3072,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} kind This is always drive#generatedIds
  * @property {string} space The type of file that can be created with these IDs.
  */
+
 /**
  * @typedef ParentList
  * @memberOf! drive(v2)
@@ -3067,6 +3082,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} kind This is always drive#parentList.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef ParentReference
  * @memberOf! drive(v2)
@@ -3077,6 +3093,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} parentLink A link to the parent.
  * @property {string} selfLink A link back to this reference.
  */
+
 /**
  * @typedef Permission
  * @memberOf! drive(v2)
@@ -3111,6 +3128,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
 * @property {boolean} withLink Whether the link is required for this permission.
 */
+
 /**
  * @typedef PermissionId
  * @memberOf! drive(v2)
@@ -3118,6 +3136,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} id The permission ID.
  * @property {string} kind This is always drive#permissionId.
  */
+
 /**
  * @typedef PermissionList
  * @memberOf! drive(v2)
@@ -3128,6 +3147,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} nextPageToken The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef Property
  * @memberOf! drive(v2)
@@ -3139,6 +3159,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} value The value of this property.
  * @property {string} visibility The visibility of this property.
  */
+
 /**
  * @typedef PropertyList
  * @memberOf! drive(v2)
@@ -3148,6 +3169,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} kind This is always drive#propertyList.
  * @property {string} selfLink The link back to this list.
  */
+
 /**
  * @typedef Revision
  * @memberOf! drive(v2)
@@ -3171,6 +3193,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {boolean} publishedOutsideDomain Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
  * @property {string} selfLink A link back to this revision.
  */
+
 /**
  * @typedef RevisionList
  * @memberOf! drive(v2)
@@ -3181,6 +3204,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} nextPageToken The page token for the next page of revisions. This field will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
+
 /**
  * @typedef StartPageToken
  * @memberOf! drive(v2)
@@ -3188,6 +3212,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
  * @property {string} startPageToken The starting page token for listing changes.
  */
+
 /**
  * @typedef TeamDrive
  * @memberOf! drive(v2)
@@ -3201,6 +3226,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} name The name of this Team Drive.
  * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
  */
+
 /**
  * @typedef TeamDriveList
  * @memberOf! drive(v2)
@@ -3209,6 +3235,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} kind This is always drive#teamDriveList
  * @property {string} nextPageToken The page token for the next page of Team Drives.
  */
+
 /**
  * @typedef User
  * @memberOf! drive(v2)

@@ -258,6 +258,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The name of the jurisdiction.
  * @property {civicinfo(v2).Source[]} sources A list of sources for this area. If multiple sources are listed the data has been aggregated from those sources.
  */
+
 /**
  * @typedef AdministrativeBody
  * @memberOf! civicinfo(v2)
@@ -277,6 +278,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string[]} voter_services A description of the services this administrative body may provide.
  * @property {string} votingLocationFinderUrl A URL provided by this administrative body for looking up where to vote.
  */
+
 /**
  * @typedef Candidate
  * @memberOf! civicinfo(v2)
@@ -290,6 +292,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} phone The voice phone number for the candidate&#39;s campaign office.
  * @property {string} photoUrl A URL for a photo of the candidate.
  */
+
 /**
  * @typedef Channel
  * @memberOf! civicinfo(v2)
@@ -297,6 +300,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} id The unique public identifier for the candidate&#39;s channel.
  * @property {string} type The type of channel. The following is a list of types of channels, but is not exhaustive. More channel types may be added at a later time. One of: GooglePlus, YouTube, Facebook, Twitter
  */
+
 /**
  * @typedef Contest
  * @memberOf! civicinfo(v2)
@@ -326,24 +330,28 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} special &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
  * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
  */
+
 /**
  * @typedef ContextParams
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {string} clientProfile 
  */
+
 /**
  * @typedef DivisionRepresentativeInfoRequest
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {civicinfo(v2).ContextParams} contextParams 
  */
+
 /**
  * @typedef DivisionSearchRequest
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {civicinfo(v2).ContextParams} contextParams 
  */
+
 /**
  * @typedef DivisionSearchResponse
  * @memberOf! civicinfo(v2)
@@ -351,6 +359,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#divisionSearchResponse&quot;.
  * @property {civicinfo(v2).DivisionSearchResult[]} results 
  */
+
 /**
  * @typedef DivisionSearchResult
  * @memberOf! civicinfo(v2)
@@ -359,6 +368,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The name of the division.
  * @property {string} ocdId The unique Open Civic Data identifier for this division.
  */
+
 /**
  * @typedef Election
  * @memberOf! civicinfo(v2)
@@ -368,6 +378,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name A displayable name for the election.
  * @property {string} ocdDivisionId The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).
  */
+
 /**
  * @typedef ElectionOfficial
  * @memberOf! civicinfo(v2)
@@ -378,12 +389,14 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} officePhoneNumber The office phone number of the election official.
  * @property {string} title The title of the election official.
  */
+
 /**
  * @typedef ElectionsQueryRequest
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {civicinfo(v2).ContextParams} contextParams 
  */
+
 /**
  * @typedef ElectionsQueryResponse
  * @memberOf! civicinfo(v2)
@@ -391,6 +404,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {civicinfo(v2).Election[]} elections A list of available elections
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#electionsQueryResponse&quot;.
  */
+
 /**
  * @typedef ElectoralDistrict
  * @memberOf! civicinfo(v2)
@@ -400,6 +414,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The name of the district.
  * @property {string} scope The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
  */
+
 /**
  * @typedef GeographicDivision
  * @memberOf! civicinfo(v2)
@@ -412,6 +427,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
 * @property {string} name The name of the division.
 * @property {integer[]} officeIndices List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
 */
+
 /**
  * @typedef Office
  * @memberOf! civicinfo(v2)
@@ -423,6 +439,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string[]} roles The roles which this office fulfills. Roles are not meant to be exhaustive, or to exactly specify the entire set of responsibilities of a given office, but are meant to be rough categories that are useful for general selection from or sorting of a list of offices.
  * @property {civicinfo(v2).Source[]} sources A list of sources for this office. If multiple sources are listed, the data has been aggregated from those sources.
  */
+
 /**
  * @typedef Official
  * @memberOf! civicinfo(v2)
@@ -436,6 +453,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} photoUrl A URL for a photo of the official.
  * @property {string[]} urls The official&#39;s public website URLs.
  */
+
 /**
  * @typedef PollingLocation
  * @memberOf! civicinfo(v2)
@@ -450,6 +468,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} startDate The first date that this early vote site or drop off location may be used. This field is not populated for polling locations.
  * @property {string} voterServices The services provided by this early vote site or drop off location. This field is not populated for polling locations.
  */
+
 /**
  * @typedef PostalAddress
  * @memberOf! civicinfo(v2)
@@ -486,6 +505,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} thoroughfarePreDirection 
  * @property {string} thoroughfareTrailingType 
  */
+
 /**
  * @typedef RepresentativeInfoData
  * @memberOf! civicinfo(v2)
@@ -494,12 +514,14 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
  * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
  */
+
 /**
  * @typedef RepresentativeInfoRequest
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {civicinfo(v2).ContextParams} contextParams 
  */
+
 /**
  * @typedef RepresentativeInfoResponse
  * @memberOf! civicinfo(v2)
@@ -510,6 +532,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
  * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
  */
+
 /**
  * @typedef SimpleAddressType
  * @memberOf! civicinfo(v2)
@@ -522,6 +545,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} state The US two letter state abbreviation of the address.
  * @property {string} zip The US Postal Zip Code of the address.
  */
+
 /**
  * @typedef Source
  * @memberOf! civicinfo(v2)
@@ -529,6 +553,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} name The name of the data source.
  * @property {boolean} official Whether this data comes from an official government source.
  */
+
 /**
  * @typedef VoterInfoRequest
  * @memberOf! civicinfo(v2)
@@ -536,6 +561,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).ContextParams} contextParams 
  * @property {civicinfo(v2).VoterInfoSegmentResult} voterInfoSegmentResult 
  */
+
 /**
  * @typedef VoterInfoResponse
  * @memberOf! civicinfo(v2)
@@ -552,6 +578,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} precinctId 
  * @property {civicinfo(v2).AdministrationRegion[]} state Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
  */
+
 /**
  * @typedef VoterInfoSegmentResult
  * @memberOf! civicinfo(v2)

@@ -1136,8 +1136,8 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
      * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1355,8 +1355,8 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
      * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {calendar(v3).Channel} params.resource Request body data
@@ -1561,6 +1561,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} nextPageToken Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
  * @property {string} nextSyncToken Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
  */
+
 /**
  * @typedef AclRule
  * @memberOf! calendar(v3)
@@ -1576,6 +1577,7 @@ function Calendar(options) { // eslint-disable-line
 - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
 * @property {object} scope The scope of the rule.
 */
+
 /**
  * @typedef Calendar
  * @memberOf! calendar(v3)
@@ -1588,6 +1590,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} summary Title of the calendar.
  * @property {string} timeZone The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) Optional.
  */
+
 /**
  * @typedef CalendarList
  * @memberOf! calendar(v3)
@@ -1598,6 +1601,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} nextPageToken Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
  * @property {string} nextSyncToken Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
  */
+
 /**
  * @typedef CalendarListEntry
  * @memberOf! calendar(v3)
@@ -1625,6 +1629,7 @@ function Calendar(options) { // eslint-disable-line
 * @property {string} summaryOverride The summary that the authenticated user has set for this calendar. Optional.
 * @property {string} timeZone The time zone of the calendar. Optional. Read-only.
 */
+
 /**
  * @typedef CalendarNotification
  * @memberOf! calendar(v3)
@@ -1639,6 +1644,7 @@ function Calendar(options) { // eslint-disable-line
 - &quot;eventResponse&quot; - Notification sent when an event is changed. 
 - &quot;agenda&quot; - An agenda with the events of the day (sent out in the morning).
 */
+
 /**
  * @typedef Channel
  * @memberOf! calendar(v3)
@@ -1654,6 +1660,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef ColorDefinition
  * @memberOf! calendar(v3)
@@ -1661,6 +1668,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} background The background color associated with this color definition.
  * @property {string} foreground The foreground color that can be used to write on top of a background with &#39;background&#39; color.
  */
+
 /**
  * @typedef Colors
  * @memberOf! calendar(v3)
@@ -1670,23 +1678,7 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} kind Type of the resource (&quot;calendar#colors&quot;).
  * @property {string} updated Last modification time of the color palette (as a RFC3339 timestamp). Read-only.
  */
-/**
- * @typedef DeepLinkData
- * @memberOf! calendar(v3)
- * @type object
- * @property {calendar(v3).Link[]} links 
- * @property {string} url 
- */
-/**
- * @typedef DisplayInfo
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} appIconUrl 
- * @property {string} appShortTitle 
- * @property {string} appTitle 
- * @property {string} linkShortTitle 
- * @property {string} linkTitle 
- */
+
 /**
  * @typedef Error
  * @memberOf! calendar(v3)
@@ -1698,6 +1690,7 @@ function Calendar(options) { // eslint-disable-line
 - &quot;notFound&quot; - The requested resource was not found. 
 - &quot;internalError&quot; - The API service has encountered an internal error.  Additional error types may be added in the future, so clients should gracefully handle additional error statuses not included in this list.
 */
+
 /**
  * @typedef Event
  * @memberOf! calendar(v3)
@@ -1748,8 +1741,8 @@ Note that the icalUID and the id are not identical and only one of them should b
 - &quot;cancelled&quot; - The event is cancelled.
 * @property {string} summary Title of the event.
 * @property {string} transparency Whether the event blocks time on the calendar. Optional. Possible values are:  
-- &quot;opaque&quot; - The event blocks time on the calendar. This is the default value. 
-- &quot;transparent&quot; - The event does not block time on the calendar.
+- &quot;opaque&quot; - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI. 
+- &quot;transparent&quot; - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
 * @property {string} updated Last modification time of the event (as a RFC3339 timestamp). Read-only.
 * @property {string} visibility Visibility of the event. Optional. Possible values are:  
 - &quot;default&quot; - Uses the default visibility for events on the calendar. This is the default value. 
@@ -1757,6 +1750,7 @@ Note that the icalUID and the id are not identical and only one of them should b
 - &quot;private&quot; - The event is private and only event attendees may view event details. 
 - &quot;confidential&quot; - The event is private. This value is provided for compatibility reasons.
 */
+
 /**
  * @typedef EventAttachment
  * @memberOf! calendar(v3)
@@ -1769,6 +1763,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
 * @property {string} mimeType Internet media type (MIME type) of the attachment.
 * @property {string} title Attachment title.
 */
+
 /**
  * @typedef EventAttendee
  * @memberOf! calendar(v3)
@@ -1788,6 +1783,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
 - &quot;accepted&quot; - The attendee has accepted the invitation.
 * @property {boolean} self Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
 */
+
 /**
  * @typedef EventDateTime
  * @memberOf! calendar(v3)
@@ -1796,13 +1792,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} dateTime The time, as a combined date-time value (formatted according to RFC3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.
  * @property {string} timeZone The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
  */
-/**
- * @typedef EventHabitInstance
- * @memberOf! calendar(v3)
- * @type object
- * @property {calendar(v3).HabitInstanceData} data Metadata specific to this instance.
- * @property {string} parentId Id of the habit this instance belongs to.
- */
+
 /**
  * @typedef EventReminder
  * @memberOf! calendar(v3)
@@ -1813,6 +1803,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
 - &quot;popup&quot; - Reminders are sent via a UI popup.
 * @property {integer} minutes Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
 */
+
 /**
  * @typedef Events
  * @memberOf! calendar(v3)
@@ -1834,6 +1825,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
 * @property {string} timeZone The time zone of the calendar. Read-only.
 * @property {string} updated Last modification time of the calendar (as a RFC3339 timestamp). Read-only.
 */
+
 /**
  * @typedef FreeBusyCalendar
  * @memberOf! calendar(v3)
@@ -1841,6 +1833,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {calendar(v3).TimePeriod[]} busy List of time ranges during which this calendar should be regarded as busy.
  * @property {calendar(v3).Error[]} errors Optional error(s) (if computation for the calendar failed).
  */
+
 /**
  * @typedef FreeBusyGroup
  * @memberOf! calendar(v3)
@@ -1848,6 +1841,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string[]} calendars List of calendars&#39; identifiers within a group.
  * @property {calendar(v3).Error[]} errors Optional error(s) (if computation for the group failed).
  */
+
 /**
  * @typedef FreeBusyRequest
  * @memberOf! calendar(v3)
@@ -1859,12 +1853,14 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} timeMin The start of the interval for the query.
  * @property {string} timeZone Time zone used in the response. Optional. The default is UTC.
  */
+
 /**
  * @typedef FreeBusyRequestItem
  * @memberOf! calendar(v3)
  * @type object
  * @property {string} id The identifier of a calendar or a group.
  */
+
 /**
  * @typedef FreeBusyResponse
  * @memberOf! calendar(v3)
@@ -1875,33 +1871,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} timeMax The end of the interval.
  * @property {string} timeMin The start of the interval.
  */
-/**
- * @typedef HabitInstanceData
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} status 
- * @property {boolean} statusInferred 
- * @property {string} type 
- */
-/**
- * @typedef LaunchInfo
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} appId 
- * @property {string} installUrl 
- * @property {string} intentAction 
- * @property {string} uri 
- */
-/**
- * @typedef Link
- * @memberOf! calendar(v3)
- * @type object
- * @property {string} applinkingSource 
- * @property {calendar(v3).DisplayInfo} displayInfo 
- * @property {calendar(v3).LaunchInfo} launchInfo 
- * @property {string} platform 
- * @property {string} url 
- */
+
 /**
  * @typedef Setting
  * @memberOf! calendar(v3)
@@ -1911,6 +1881,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} kind Type of the resource (&quot;calendar#setting&quot;).
  * @property {string} value Value of the user setting. The format of the value depends on the ID of the setting. It must always be a UTF-8 string of length up to 1024 characters.
  */
+
 /**
  * @typedef Settings
  * @memberOf! calendar(v3)
@@ -1921,6 +1892,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} nextPageToken Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
  * @property {string} nextSyncToken Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
  */
+
 /**
  * @typedef TimePeriod
  * @memberOf! calendar(v3)

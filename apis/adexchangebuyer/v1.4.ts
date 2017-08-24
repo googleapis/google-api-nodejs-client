@@ -1547,6 +1547,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} maximumTotalQps The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
  * @property {integer} numberActiveCreatives The number of creatives that this account inserted or bid with in the last 30 days.
  */
+
 /**
  * @typedef AccountsList
  * @memberOf! adexchangebuyer(v1.4)
@@ -1554,6 +1555,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Account[]} items A list of accounts.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef AddOrderDealsRequest
  * @memberOf! adexchangebuyer(v1.4)
@@ -1562,6 +1564,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} proposalRevisionNumber The last known proposal revision number.
  * @property {string} updateAction Indicates an optional action to take on the proposal
  */
+
 /**
  * @typedef AddOrderDealsResponse
  * @memberOf! adexchangebuyer(v1.4)
@@ -1569,18 +1572,21 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).MarketplaceDeal[]} deals List of deals added (in the same proposal as passed in the request)
  * @property {string} proposalRevisionNumber The updated revision number for the proposal.
  */
+
 /**
  * @typedef AddOrderNotesRequest
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).MarketplaceNote[]} notes The list of notes to add.
  */
+
 /**
  * @typedef AddOrderNotesResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).MarketplaceNote[]} notes 
  */
+
 /**
  * @typedef BillingInfo
  * @memberOf! adexchangebuyer(v1.4)
@@ -1590,6 +1596,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} billingId A list of adgroup IDs associated with this particular account. These IDs may show up as part of a realtime bidding BidRequest, which indicates a bid request for this account.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef BillingInfoList
  * @memberOf! adexchangebuyer(v1.4)
@@ -1597,6 +1604,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).BillingInfo[]} items A list of billing info relevant for your account.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Budget
  * @memberOf! adexchangebuyer(v1.4)
@@ -1608,12 +1616,14 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} id The unique id that describes this item.
  * @property {string} kind The kind of the resource, i.e. &quot;adexchangebuyer#budget&quot;.
  */
+
 /**
  * @typedef Buyer
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {string} accountId Adx account id of the buyer.
  */
+
 /**
  * @typedef ContactInformation
  * @memberOf! adexchangebuyer(v1.4)
@@ -1621,6 +1631,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} email Email address of the contact.
  * @property {string} name The name of the contact.
  */
+
 /**
  * @typedef CreateOrdersRequest
  * @memberOf! adexchangebuyer(v1.4)
@@ -1628,12 +1639,14 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Proposal[]} proposals The list of proposals to create.
  * @property {string} webPropertyCode Web property id of the seller creating these orders
  */
+
 /**
  * @typedef CreateOrdersResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).Proposal[]} proposals The list of proposals successfully created.
  */
+
 /**
  * @typedef Creative
  * @memberOf! adexchangebuyer(v1.4)
@@ -1667,6 +1680,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
  * @property {integer} width Ad width.
  */
+
 /**
  * @typedef CreativeDealIds
  * @memberOf! adexchangebuyer(v1.4)
@@ -1674,6 +1688,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {object[]} dealStatuses A list of external deal ids and ARC approval status.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef CreativesList
  * @memberOf! adexchangebuyer(v1.4)
@@ -1682,6 +1697,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {string} nextPageToken Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef DealServingMetadata
  * @memberOf! adexchangebuyer(v1.4)
@@ -1689,6 +1705,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {boolean} alcoholAdsAllowed True if alcohol ads are allowed for this deal (read-only). This field is only populated when querying for finalized orders using the method GetFinalizedOrderDeals
  * @property {adexchangebuyer(v1.4).DealServingMetadataDealPauseStatus} dealPauseStatus Tracks which parties (if any) have paused a deal. (readonly, except via PauseResumeOrderDeals action)
  */
+
 /**
  * @typedef DealServingMetadataDealPauseStatus
  * @memberOf! adexchangebuyer(v1.4)
@@ -1699,6 +1716,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {boolean} hasSellerPaused 
  * @property {string} sellerPauseReason 
  */
+
 /**
  * @typedef DealTerms
  * @memberOf! adexchangebuyer(v1.4)
@@ -1714,6 +1732,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).DealTermsRubiconNonGuaranteedTerms} rubiconNonGuaranteedTerms The terms for rubicon non-guaranteed deals.
  * @property {string} sellerTimeZone For deals with Cost Per Day billing, defines the timezone used to mark the boundaries of a day (buyer-readonly)
  */
+
 /**
  * @typedef DealTermsGuaranteedFixedPriceTerms
  * @memberOf! adexchangebuyer(v1.4)
@@ -1724,6 +1743,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} guaranteedLooks Count of guaranteed looks. Required for deal, optional for product. For CPD deals, buyer changes to guaranteed_looks will be ignored.
  * @property {string} minimumDailyLooks Count of minimum daily looks for a CPD deal. For CPD deals, buyer should negotiate on this field instead of guaranteed_looks.
  */
+
 /**
  * @typedef DealTermsGuaranteedFixedPriceTermsBillingInfo
  * @memberOf! adexchangebuyer(v1.4)
@@ -1733,6 +1753,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} originalContractedQuantity The original contracted quantity (# impressions) for this deal. To ensure delivery, sometimes the publisher will book the deal with a impression buffer, such that guaranteed_looks is greater than the contracted quantity. However clients are billed using the original contracted quantity.
  * @property {adexchangebuyer(v1.4).Price} price The original reservation price for the deal, if the currency code is different from the one used in negotiation.
  */
+
 /**
  * @typedef DealTermsNonGuaranteedAuctionTerms
  * @memberOf! adexchangebuyer(v1.4)
@@ -1740,12 +1761,14 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {boolean} autoOptimizePrivateAuction True if open auction buyers are allowed to compete with invited buyers in this private auction (buyer-readonly).
  * @property {adexchangebuyer(v1.4).PricePerBuyer[]} reservePricePerBuyers Reserve price for the specified buyer.
  */
+
 /**
  * @typedef DealTermsNonGuaranteedFixedPriceTerms
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).PricePerBuyer[]} fixedPrices Fixed price for the specified buyer.
  */
+
 /**
  * @typedef DealTermsRubiconNonGuaranteedTerms
  * @memberOf! adexchangebuyer(v1.4)
@@ -1753,6 +1776,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Price} priorityPrice Optional price for Rubicon priority access in the auction.
  * @property {adexchangebuyer(v1.4).Price} standardPrice Optional price for Rubicon standard access in the auction.
  */
+
 /**
  * @typedef DeleteOrderDealsRequest
  * @memberOf! adexchangebuyer(v1.4)
@@ -1761,6 +1785,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} proposalRevisionNumber The last known proposal revision number.
  * @property {string} updateAction Indicates an optional action to take on the proposal
  */
+
 /**
  * @typedef DeleteOrderDealsResponse
  * @memberOf! adexchangebuyer(v1.4)
@@ -1768,6 +1793,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).MarketplaceDeal[]} deals List of deals deleted (in the same proposal as passed in the request)
  * @property {string} proposalRevisionNumber The updated revision number for the proposal.
  */
+
 /**
  * @typedef DeliveryControl
  * @memberOf! adexchangebuyer(v1.4)
@@ -1776,6 +1802,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} deliveryRateType 
  * @property {adexchangebuyer(v1.4).DeliveryControlFrequencyCap[]} frequencyCaps 
  */
+
 /**
  * @typedef DeliveryControlFrequencyCap
  * @memberOf! adexchangebuyer(v1.4)
@@ -1784,6 +1811,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} numTimeUnits 
  * @property {string} timeUnitType 
  */
+
 /**
  * @typedef Dimension
  * @memberOf! adexchangebuyer(v1.4)
@@ -1791,6 +1819,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} dimensionType 
  * @property {adexchangebuyer(v1.4).DimensionDimensionValue[]} dimensionValues 
  */
+
 /**
  * @typedef DimensionDimensionValue
  * @memberOf! adexchangebuyer(v1.4)
@@ -1799,6 +1828,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} name Name of the dimension mainly for debugging purposes, except for the case of CREATIVE_SIZE. For CREATIVE_SIZE, strings are used instead of ids.
  * @property {integer} percentage Percent of total impressions for a dimension type. e.g. {dimension_type: &#39;GENDER&#39;, [{dimension_value: {id: 1, name: &#39;MALE&#39;, percentage: 60}}]} Gender MALE is 60% of all impressions which have gender.
  */
+
 /**
  * @typedef EditAllOrderDealsRequest
  * @memberOf! adexchangebuyer(v1.4)
@@ -1808,6 +1838,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} proposalRevisionNumber The last known revision number for the proposal.
  * @property {string} updateAction Indicates an optional action to take on the proposal
  */
+
 /**
  * @typedef EditAllOrderDealsResponse
  * @memberOf! adexchangebuyer(v1.4)
@@ -1815,36 +1846,42 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).MarketplaceDeal[]} deals List of all deals in the proposal after edit.
  * @property {string} orderRevisionNumber The latest revision number after the update has been applied.
  */
+
 /**
  * @typedef GetOffersResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).Product[]} products The returned list of products.
  */
+
 /**
  * @typedef GetOrderDealsResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).MarketplaceDeal[]} deals List of deals for the proposal
  */
+
 /**
  * @typedef GetOrderNotesResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).MarketplaceNote[]} notes The list of matching notes. The notes for a proposal are ordered from oldest to newest. If the notes span multiple proposals, they will be grouped by proposal, with the notes for the most recently modified proposal appearing first.
  */
+
 /**
  * @typedef GetOrdersResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).Proposal[]} proposals The list of matching proposals.
  */
+
 /**
  * @typedef GetPublisherProfilesByAccountIdResponse
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {adexchangebuyer(v1.4).PublisherProfileApiProto[]} profiles Profiles for the requested publisher
  */
+
 /**
  * @typedef MarketplaceDeal
  * @memberOf! adexchangebuyer(v1.4)
@@ -1875,6 +1912,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).DealTerms} terms The negotiable terms of the deal. (updatable)
  * @property {string} webPropertyCode 
  */
+
 /**
  * @typedef MarketplaceDealParty
  * @memberOf! adexchangebuyer(v1.4)
@@ -1882,6 +1920,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Buyer} buyer The buyer/seller associated with the deal. One of buyer/seller is specified for a deal-party.
  * @property {adexchangebuyer(v1.4).Seller} seller The buyer/seller associated with the deal. One of buyer/seller is specified for a deal party.
  */
+
 /**
  * @typedef MarketplaceLabel
  * @memberOf! adexchangebuyer(v1.4)
@@ -1891,6 +1930,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).MarketplaceDealParty} deprecatedMarketplaceDealParty Information about the party that created the label.
  * @property {string} label The label to use.
  */
+
 /**
  * @typedef MarketplaceNote
  * @memberOf! adexchangebuyer(v1.4)
@@ -1904,6 +1944,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} proposalRevisionNumber If the note is associated with a proposal revision number, then store that here. (readonly, except on create)
  * @property {string} timestampMs The timestamp (ms since epoch) that this note was created. (readonly)
  */
+
 /**
  * @typedef PerformanceReport
  * @memberOf! adexchangebuyer(v1.4)
@@ -1931,6 +1972,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} timestamp The unix timestamp of the starting time of this performance data.
  * @property {number} unsuccessfulRequestRate The number of bid responses that were unsuccessful due to timeouts, incorrect formatting, etc.
  */
+
 /**
  * @typedef PerformanceReportList
  * @memberOf! adexchangebuyer(v1.4)
@@ -1938,6 +1980,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {adexchangebuyer(v1.4).PerformanceReport[]} performanceReport A list of performance reports relevant for the account.
  */
+
 /**
  * @typedef PretargetingConfig
  * @memberOf! adexchangebuyer(v1.4)
@@ -1969,6 +2012,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} verticals Requests containing any of these vertical ids will match.
  * @property {object[]} videoPlayerSizes Video requests satisfying any of these player size constraints will match.
  */
+
 /**
  * @typedef PretargetingConfigList
  * @memberOf! adexchangebuyer(v1.4)
@@ -1976,6 +2020,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).PretargetingConfig[]} items A list of pretargeting configs
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Price
  * @memberOf! adexchangebuyer(v1.4)
@@ -1985,6 +2030,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {number} expectedCpmMicros In case of CPD deals, the expected CPM in micros.
  * @property {string} pricingType The pricing type for the deal/product.
  */
+
 /**
  * @typedef PricePerBuyer
  * @memberOf! adexchangebuyer(v1.4)
@@ -1994,6 +2040,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Buyer} buyer The buyer who will pay this price. If unset, all buyers can pay this price (if the advertisers match, and there&#39;s no more specific rule matching the buyer).
  * @property {adexchangebuyer(v1.4).Price} price The specified price
  */
+
 /**
  * @typedef PrivateData
  * @memberOf! adexchangebuyer(v1.4)
@@ -2001,6 +2048,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} referenceId 
  * @property {string} referencePayload 
  */
+
 /**
  * @typedef Product
  * @memberOf! adexchangebuyer(v1.4)
@@ -2033,6 +2081,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).DealTerms} terms The negotiable terms of the deal (buyer-readonly)
  * @property {string} webPropertyCode The web property code for the seller. This field is meant to be copied over as is when creating deals.
  */
+
 /**
  * @typedef Proposal
  * @memberOf! adexchangebuyer(v1.4)
@@ -2061,11 +2110,12 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Seller} seller Reference to the seller on the proposal. (readonly, except on create)
  * @property {adexchangebuyer(v1.4).ContactInformation[]} sellerContacts Optional contact information of the seller (buyer-readonly).
  */
+
 /**
  * @typedef PublisherProfileApiProto
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
- * @property {string} accountId The account id of the seller.
+ * @property {string} accountId Deprecated: use the seller.account_id. The account id of the seller.
  * @property {string} audience Publisher provided info on its audience.
  * @property {string} buyerPitchStatement A pitch statement for the buyer
  * @property {string} directContact Direct contact for the publisher profile.
@@ -2089,6 +2139,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} state State of the publisher profile.
  * @property {string[]} topHeadlines Publisher provided key metrics and rankings.
  */
+
 /**
  * @typedef PublisherProvidedForecast
  * @memberOf! adexchangebuyer(v1.4)
@@ -2097,6 +2148,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} weeklyImpressions Publisher provided weekly impressions.
  * @property {string} weeklyUniques Publisher provided weekly uniques.
  */
+
 /**
  * @typedef Seller
  * @memberOf! adexchangebuyer(v1.4)
@@ -2104,6 +2156,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} accountId The unique id for the seller. The seller fills in this field. The seller account id is then available to buyer in the product.
  * @property {string} subAccountId Optional sub-account id for the seller.
  */
+
 /**
  * @typedef SharedTargeting
  * @memberOf! adexchangebuyer(v1.4)
@@ -2112,6 +2165,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).TargetingValue[]} inclusions The list of value to include as part of the targeting. Each value is OR&#39;d together.
  * @property {string} key The key representing the shared targeting criterion.
  */
+
 /**
  * @typedef TargetingValue
  * @memberOf! adexchangebuyer(v1.4)
@@ -2121,6 +2175,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} longValue The long value to exclude/include.
  * @property {string} stringValue The string value to exclude/include.
  */
+
 /**
  * @typedef TargetingValueCreativeSize
  * @memberOf! adexchangebuyer(v1.4)
@@ -2131,6 +2186,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).TargetingValueSize} size For regular or video creative size type, specifies the size of the creative.
  * @property {string} skippableAdType The skippable ad type for video size.
  */
+
 /**
  * @typedef TargetingValueDayPartTargeting
  * @memberOf! adexchangebuyer(v1.4)
@@ -2138,6 +2194,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).TargetingValueDayPartTargetingDayPart[]} dayParts 
  * @property {string} timeZoneType 
  */
+
 /**
  * @typedef TargetingValueDayPartTargetingDayPart
  * @memberOf! adexchangebuyer(v1.4)
@@ -2148,6 +2205,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} startHour 
  * @property {integer} startMinute 
  */
+
 /**
  * @typedef TargetingValueSize
  * @memberOf! adexchangebuyer(v1.4)
@@ -2155,6 +2213,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} height The height of the creative.
  * @property {integer} width The width of the creative.
  */
+
 /**
  * @typedef UpdatePrivateAuctionProposalRequest
  * @memberOf! adexchangebuyer(v1.4)

@@ -115,7 +115,6 @@ function Books(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     volumes: {
 
       /**
@@ -403,7 +402,6 @@ function Books(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     annotationData: {
 
       /**
@@ -501,7 +499,6 @@ function Books(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     volumeAnnotations: {
 
       /**
@@ -802,7 +799,6 @@ function Books(options) { // eslint-disable-line
   };
 
   self.mylibrary = {
-
     annotations: {
 
       /**
@@ -1007,7 +1003,6 @@ function Books(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     bookshelves: {
 
       /**
@@ -1242,7 +1237,6 @@ function Books(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       volumes: {
 
         /**
@@ -1290,7 +1284,6 @@ function Books(options) { // eslint-disable-line
         }
       }
     },
-
     readingpositions: {
 
       /**
@@ -1716,7 +1709,6 @@ function Books(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     membership: {
 
       /**
@@ -1854,7 +1846,6 @@ function Books(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     associated: {
 
       /**
@@ -1898,7 +1889,6 @@ function Books(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     mybooks: {
 
       /**
@@ -1944,7 +1934,6 @@ function Books(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     recommended: {
 
       /**
@@ -2026,7 +2015,6 @@ function Books(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     useruploaded: {
 
       /**
@@ -2096,6 +2084,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} updated Timestamp for the last time this annotation was modified.
  * @property {string} volumeId The volume that this annotation belongs to.
  */
+
 /**
  * @typedef Annotationdata
  * @memberOf! books(v1)
@@ -2110,6 +2099,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} updated Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
  * @property {string} volumeId The volume id for this data. *
  */
+
 /**
  * @typedef Annotations
  * @memberOf! books(v1)
@@ -2119,6 +2109,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} nextPageToken Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
  * @property {integer} totalItems Total number of annotations found. This may be greater than the number of notes returned in this response if results have been paginated.
  */
+
 /**
  * @typedef AnnotationsSummary
  * @memberOf! books(v1)
@@ -2126,6 +2117,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind 
  * @property {object[]} layers 
  */
+
 /**
  * @typedef Annotationsdata
  * @memberOf! books(v1)
@@ -2135,6 +2127,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} nextPageToken Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
  * @property {integer} totalItems The total number of volume annotations found.
  */
+
 /**
  * @typedef BooksAnnotationsRange
  * @memberOf! books(v1)
@@ -2144,6 +2137,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} startOffset The offset from the starting position.
  * @property {string} startPosition The starting position for the range.
  */
+
 /**
  * @typedef BooksCloudloadingResource
  * @memberOf! books(v1)
@@ -2153,12 +2147,14 @@ function Books(options) { // eslint-disable-line
  * @property {string} title 
  * @property {string} volumeId 
  */
+
 /**
  * @typedef BooksVolumesRecommendedRateResponse
  * @memberOf! books(v1)
  * @type object
  * @property {string} consistency_token 
  */
+
 /**
  * @typedef Bookshelf
  * @memberOf! books(v1)
@@ -2174,6 +2170,7 @@ function Books(options) { // eslint-disable-line
  * @property {integer} volumeCount Number of volumes in this bookshelf.
  * @property {string} volumesLastUpdated Last time a volume was added or removed from this bookshelf (formatted UTC timestamp with millisecond resolution).
  */
+
 /**
  * @typedef Bookshelves
  * @memberOf! books(v1)
@@ -2181,6 +2178,7 @@ function Books(options) { // eslint-disable-line
  * @property {books(v1).Bookshelf[]} items A list of bookshelves.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Category
  * @memberOf! books(v1)
@@ -2188,6 +2186,7 @@ function Books(options) { // eslint-disable-line
  * @property {object[]} items A list of onboarding categories.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef ConcurrentAccessRestriction
  * @memberOf! books(v1)
@@ -2204,6 +2203,7 @@ function Books(options) { // eslint-disable-line
  * @property {integer} timeWindowSeconds Time in seconds for license auto-expiration.
  * @property {string} volumeId Identifies the volume for which this entry applies.
  */
+
 /**
  * @typedef Dictlayerdata
  * @memberOf! books(v1)
@@ -2212,6 +2212,7 @@ function Books(options) { // eslint-disable-line
  * @property {object} dict 
  * @property {string} kind 
  */
+
 /**
  * @typedef Discoveryclusters
  * @memberOf! books(v1)
@@ -2220,6 +2221,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind Resorce type.
  * @property {integer} totalClusters 
  */
+
 /**
  * @typedef DownloadAccessRestriction
  * @memberOf! books(v1)
@@ -2237,6 +2239,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} source Client app identifier for verification. Download access and client-validation only.
  * @property {string} volumeId Identifies the volume for which this entry applies.
  */
+
 /**
  * @typedef DownloadAccesses
  * @memberOf! books(v1)
@@ -2244,6 +2247,7 @@ function Books(options) { // eslint-disable-line
  * @property {books(v1).DownloadAccessRestriction[]} downloadAccessList A list of download access responses.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Geolayerdata
  * @memberOf! books(v1)
@@ -2252,6 +2256,7 @@ function Books(options) { // eslint-disable-line
  * @property {object} geo 
  * @property {string} kind 
  */
+
 /**
  * @typedef Layersummaries
  * @memberOf! books(v1)
@@ -2260,6 +2265,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {integer} totalItems The total number of layer summaries found.
  */
+
 /**
  * @typedef Layersummary
  * @memberOf! books(v1)
@@ -2278,6 +2284,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} volumeAnnotationsVersion The current version of this layer&#39;s volume annotations. Note that this version applies only to the data in the books.layers.volumeAnnotations.* responses. The actual annotation data is versioned separately.
  * @property {string} volumeId The volume id this resource is for.
  */
+
 /**
  * @typedef Metadata
  * @memberOf! books(v1)
@@ -2285,6 +2292,7 @@ function Books(options) { // eslint-disable-line
  * @property {object[]} items A list of offline dictionary metadata.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Notification
  * @memberOf! books(v1)
@@ -2304,6 +2312,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} targetUrl 
  * @property {string} title 
  */
+
 /**
  * @typedef Offers
  * @memberOf! books(v1)
@@ -2311,6 +2320,7 @@ function Books(options) { // eslint-disable-line
  * @property {object[]} items A list of offers.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef ReadingPosition
  * @memberOf! books(v1)
@@ -2323,6 +2333,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} updated Timestamp when this reading position was last updated (formatted UTC timestamp with millisecond resolution).
  * @property {string} volumeId Volume id associated with this reading position.
  */
+
 /**
  * @typedef RequestAccess
  * @memberOf! books(v1)
@@ -2331,6 +2342,7 @@ function Books(options) { // eslint-disable-line
  * @property {books(v1).DownloadAccessRestriction} downloadAccess A download access response.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Review
  * @memberOf! books(v1)
@@ -2346,6 +2358,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} type Source type for this review. Possible values are EDITORIAL, WEB_USER or GOOGLE_USER.
  * @property {string} volumeId Volume that this review is for.
  */
+
 /**
  * @typedef Series
  * @memberOf! books(v1)
@@ -2353,6 +2366,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {object[]} series 
  */
+
 /**
  * @typedef Seriesmembership
  * @memberOf! books(v1)
@@ -2361,6 +2375,7 @@ function Books(options) { // eslint-disable-line
  * @property {books(v1).Volume[]} member 
  * @property {string} nextPageToken 
  */
+
 /**
  * @typedef Usersettings
  * @memberOf! books(v1)
@@ -2369,6 +2384,7 @@ function Books(options) { // eslint-disable-line
  * @property {object} notesExport User settings in sub-objects, each for different purposes.
  * @property {object} notification 
  */
+
 /**
  * @typedef Volume
  * @memberOf! books(v1)
@@ -2385,6 +2401,7 @@ function Books(options) { // eslint-disable-line
  * @property {object} userInfo User specific information related to this volume. (e.g. page this user last read or whether they purchased this book)
  * @property {object} volumeInfo General volume information.
  */
+
 /**
  * @typedef Volume2
  * @memberOf! books(v1)
@@ -2393,6 +2410,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {string} nextPageToken 
  */
+
 /**
  * @typedef Volumeannotation
  * @memberOf! books(v1)
@@ -2412,6 +2430,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} updated Timestamp for the last time this anntoation was updated. (RFC 3339 UTC date-time format).
  * @property {string} volumeId The Volume this annotation is for.
  */
+
 /**
  * @typedef Volumeannotations
  * @memberOf! books(v1)
@@ -2422,6 +2441,7 @@ function Books(options) { // eslint-disable-line
  * @property {integer} totalItems The total number of volume annotations found.
  * @property {string} version The version string for all of the volume annotations in this layer (not just the ones in this response). Note: the version string doesn&#39;t apply to the annotation data, just the information in this response (e.g. the location of annotations in the book).
  */
+
 /**
  * @typedef Volumes
  * @memberOf! books(v1)
@@ -2430,6 +2450,7 @@ function Books(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {integer} totalItems Total number of volumes found. This might be greater than the number of volumes returned in this response if results have been paginated.
  */
+
 /**
  * @typedef Volumeseriesinfo
  * @memberOf! books(v1)

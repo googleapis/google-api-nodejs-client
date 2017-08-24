@@ -277,6 +277,7 @@ function Prediction(options) { // eslint-disable-line
  * @type object
  * @property {object} input Input to the model for a prediction
  */
+
 /**
  * @typedef Output
  * @memberOf! prediction(v1.3)
@@ -288,6 +289,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {number} outputValue The estimated regression value [Regression models only].
  * @property {string} selfLink A URL to re-request this resource.
  */
+
 /**
  * @typedef Training
  * @memberOf! prediction(v1.3)
@@ -299,6 +301,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {string} trainingStatus The current status of the training job. This can be one of following: RUNNING; DONE; ERROR; ERROR: TRAINING JOB NOT FOUND
  * @property {object[]} utility A class weighting function, which allows the importance weights for classes to be specified [Categorical models only].
  */
+
 /**
  * @typedef Update
  * @memberOf! prediction(v1.3)

@@ -450,6 +450,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
  * @property {string} segmentationName The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name).
  * @property {string} segmentationType The segmentation type that this availability is for (its default value is FLOODLIGHT).
  */
+
 /**
  * @typedef Conversion
  * @memberOf! doubleclicksearch(v2)
@@ -491,6 +492,7 @@ For online conversions, DS copies the dsConversionId or floodlightOrderId into t
 * @property {string} storeId The ID of the local store for which the product was advertised. Applicable only when the channel is &quot;local&quot;.
 * @property {string} type The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION).
 */
+
 /**
  * @typedef ConversionList
  * @memberOf! doubleclicksearch(v2)
@@ -498,6 +500,7 @@ For online conversions, DS copies the dsConversionId or floodlightOrderId into t
  * @property {doubleclicksearch(v2).Conversion[]} conversion The conversions being requested.
  * @property {string} kind Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.
  */
+
 /**
  * @typedef CustomDimension
  * @memberOf! doubleclicksearch(v2)
@@ -505,6 +508,7 @@ For online conversions, DS copies the dsConversionId or floodlightOrderId into t
  * @property {string} name Custom dimension name.
  * @property {string} value Custom dimension value.
  */
+
 /**
  * @typedef CustomMetric
  * @memberOf! doubleclicksearch(v2)
@@ -512,6 +516,7 @@ For online conversions, DS copies the dsConversionId or floodlightOrderId into t
  * @property {string} name Custom metric name.
  * @property {number} value Custom metric numeric value.
  */
+
 /**
  * @typedef Report
  * @memberOf! doubleclicksearch(v2)
@@ -526,6 +531,7 @@ For online conversions, DS copies the dsConversionId or floodlightOrderId into t
  * @property {string} statisticsCurrencyCode The currency code of all monetary values produced in the report, including values that are set by users (e.g., keyword bid settings) and metrics (e.g., cost and revenue). The currency code of a report is determined by the statisticsCurrency field of the report request.
  * @property {string} statisticsTimeZone If all statistics of the report are sourced from the same time zone, this would be it. Otherwise the field is unset.
  */
+
 /**
  * @typedef ReportApiColumnSpec
  * @memberOf! doubleclicksearch(v2)
@@ -544,6 +550,7 @@ If used in a conversion report, returns the value of the specified custom dimens
 * @property {string} savedColumnName Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI.
 * @property {string} startDate Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate.
 */
+
 /**
  * @typedef ReportRequest
  * @memberOf! doubleclicksearch(v2)
@@ -563,11 +570,13 @@ If used in a conversion report, returns the value of the specified custom dimens
  * @property {object} timeRange If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range.
  * @property {boolean} verifySingleTimeZone If true, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to false.
  */
+
 /**
  * @typedef ReportRow
  * @memberOf! doubleclicksearch(v2)
  * @type object
  */
+
 /**
  * @typedef SavedColumn
  * @memberOf! doubleclicksearch(v2)
@@ -576,6 +585,7 @@ If used in a conversion report, returns the value of the specified custom dimens
  * @property {string} savedColumnName The name of the saved column.
  * @property {string} type The type of data this saved column will produce.
  */
+
 /**
  * @typedef SavedColumnList
  * @memberOf! doubleclicksearch(v2)
@@ -583,12 +593,14 @@ If used in a conversion report, returns the value of the specified custom dimens
  * @property {doubleclicksearch(v2).SavedColumn[]} items The saved columns being requested.
  * @property {string} kind Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList.
  */
+
 /**
  * @typedef UpdateAvailabilityRequest
  * @memberOf! doubleclicksearch(v2)
  * @type object
  * @property {doubleclicksearch(v2).Availability[]} availabilities The availabilities being requested.
  */
+
 /**
  * @typedef UpdateAvailabilityResponse
  * @memberOf! doubleclicksearch(v2)

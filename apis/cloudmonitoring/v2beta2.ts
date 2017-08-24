@@ -305,12 +305,14 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;cloudmonitoring#deleteMetricDescriptorResponse&quot;.
  */
+
 /**
  * @typedef ListMetricDescriptorsRequest
  * @memberOf! cloudmonitoring(v2beta2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;cloudmonitoring#listMetricDescriptorsRequest&quot;.
  */
+
 /**
  * @typedef ListMetricDescriptorsResponse
  * @memberOf! cloudmonitoring(v2beta2)
@@ -319,12 +321,14 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).MetricDescriptor[]} metrics The returned metric descriptors.
  * @property {string} nextPageToken Pagination token. If present, indicates that additional results are available for retrieval. To access the results past the pagination limit, pass this value to the pageToken query parameter.
  */
+
 /**
  * @typedef ListTimeseriesDescriptorsRequest
  * @memberOf! cloudmonitoring(v2beta2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;cloudmonitoring#listTimeseriesDescriptorsRequest&quot;.
  */
+
 /**
  * @typedef ListTimeseriesDescriptorsResponse
  * @memberOf! cloudmonitoring(v2beta2)
@@ -335,12 +339,14 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).TimeseriesDescriptor[]} timeseries The returned time series descriptors.
  * @property {string} youngest The youngest timestamp of the interval of this query, as an RFC 3339 string.
  */
+
 /**
  * @typedef ListTimeseriesRequest
  * @memberOf! cloudmonitoring(v2beta2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;cloudmonitoring#listTimeseriesRequest&quot;.
  */
+
 /**
  * @typedef ListTimeseriesResponse
  * @memberOf! cloudmonitoring(v2beta2)
@@ -351,6 +357,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).Timeseries[]} timeseries The returned time series.
  * @property {string} youngest The youngest timestamp of the interval of this query as an RFC 3339 string.
  */
+
 /**
  * @typedef MetricDescriptor
  * @memberOf! cloudmonitoring(v2beta2)
@@ -361,6 +368,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} project The project ID to which the metric belongs.
  * @property {cloudmonitoring(v2beta2).MetricDescriptorTypeDescriptor} typeDescriptor Type description for this metric.
  */
+
 /**
  * @typedef MetricDescriptorLabelDescriptor
  * @memberOf! cloudmonitoring(v2beta2)
@@ -368,6 +376,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} description Label description.
  * @property {string} key Label key.
  */
+
 /**
  * @typedef MetricDescriptorTypeDescriptor
  * @memberOf! cloudmonitoring(v2beta2)
@@ -375,6 +384,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} metricType The method of collecting data for the metric. See Metric types.
  * @property {string} valueType The data type of of individual points in the metric&#39;s time series. See Metric value types.
  */
+
 /**
  * @typedef Point
  * @memberOf! cloudmonitoring(v2beta2)
@@ -387,6 +397,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} start The interval [start, end] is the time period to which the point&#39;s value applies. For gauge metrics, whose values are instantaneous measurements, this interval should be empty (start should equal end). For cumulative metrics (of which deltas and rates are special cases), the interval should be non-empty. Both start and end are RFC 3339 strings.
  * @property {string} stringValue The value of this data point in string format.
  */
+
 /**
  * @typedef PointDistribution
  * @memberOf! cloudmonitoring(v2beta2)
@@ -395,6 +406,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).PointDistributionOverflowBucket} overflowBucket The overflow bucket.
  * @property {cloudmonitoring(v2beta2).PointDistributionUnderflowBucket} underflowBucket The underflow bucket.
  */
+
 /**
  * @typedef PointDistributionBucket
  * @memberOf! cloudmonitoring(v2beta2)
@@ -403,6 +415,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {number} lowerBound The lower bound of the value interval of this bucket (inclusive).
  * @property {number} upperBound The upper bound of the value interval of this bucket (exclusive).
  */
+
 /**
  * @typedef PointDistributionOverflowBucket
  * @memberOf! cloudmonitoring(v2beta2)
@@ -410,6 +423,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} count The number of events whose values are in the interval defined by this bucket.
  * @property {number} lowerBound The lower bound of the value interval of this bucket (inclusive).
  */
+
 /**
  * @typedef PointDistributionUnderflowBucket
  * @memberOf! cloudmonitoring(v2beta2)
@@ -417,6 +431,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} count The number of events whose values are in the interval defined by this bucket.
  * @property {number} upperBound The upper bound of the value interval of this bucket (exclusive).
  */
+
 /**
  * @typedef Timeseries
  * @memberOf! cloudmonitoring(v2beta2)
@@ -424,6 +439,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).Point[]} points The data points of this time series. The points are listed in order of their end timestamp, from younger to older.
  * @property {cloudmonitoring(v2beta2).TimeseriesDescriptor} timeseriesDesc The descriptor of this time series.
  */
+
 /**
  * @typedef TimeseriesDescriptor
  * @memberOf! cloudmonitoring(v2beta2)
@@ -432,6 +448,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} metric The name of the metric.
  * @property {string} project The Developers Console project number to which this time series belongs.
  */
+
 /**
  * @typedef TimeseriesDescriptorLabel
  * @memberOf! cloudmonitoring(v2beta2)
@@ -439,6 +456,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {string} key The label&#39;s name.
  * @property {string} value The label&#39;s value.
  */
+
 /**
  * @typedef TimeseriesPoint
  * @memberOf! cloudmonitoring(v2beta2)
@@ -446,6 +464,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {cloudmonitoring(v2beta2).Point} point The data point in this time series snapshot.
  * @property {cloudmonitoring(v2beta2).TimeseriesDescriptor} timeseriesDesc The descriptor of this time series.
  */
+
 /**
  * @typedef WriteTimeseriesRequest
  * @memberOf! cloudmonitoring(v2beta2)
@@ -453,6 +472,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
  * @property {object} commonLabels The label&#39;s name.
  * @property {cloudmonitoring(v2beta2).TimeseriesPoint[]} timeseries Provide time series specific labels and the data points for each time series. The labels in timeseries and the common_labels should form a complete list of labels that required by the metric.
  */
+
 /**
  * @typedef WriteTimeseriesResponse
  * @memberOf! cloudmonitoring(v2beta2)

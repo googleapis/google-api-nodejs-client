@@ -942,6 +942,7 @@ function Dns(options) { // eslint-disable-line
  * @property {string} startTime The time that this operation was started by the server (output only). This is in RFC3339 text format.
  * @property {string} status Status of the operation (output only).
  */
+
 /**
  * @typedef ChangesListResponse
  * @memberOf! dns(v1)
@@ -952,6 +953,7 @@ function Dns(options) { // eslint-disable-line
 
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
 */
+
 /**
  * @typedef ManagedZone
  * @memberOf! dns(v1)
@@ -965,6 +967,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} nameServerSet Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
  * @property {string[]} nameServers Delegate your managed_zone to these virtual name servers; defined by the server (output only)
  */
+
 /**
  * @typedef ManagedZonesListResponse
  * @memberOf! dns(v1)
@@ -975,6 +978,7 @@ In this way you can retrieve the complete contents of even very large collection
 
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
 */
+
 /**
  * @typedef Project
  * @memberOf! dns(v1)
@@ -984,6 +988,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} number Unique numeric identifier for the resource; defined by the server (output only).
  * @property {dns(v1).Quota} quota Quotas assigned to this project (output only).
  */
+
 /**
  * @typedef Quota
  * @memberOf! dns(v1)
@@ -996,6 +1001,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {integer} rrsetsPerManagedZone Maximum allowed number of ResourceRecordSets per zone in the project.
  * @property {integer} totalRrdataSizePerChange Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
  */
+
 /**
  * @typedef ResourceRecordSet
  * @memberOf! dns(v1)
@@ -1006,6 +1012,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {integer} ttl Number of seconds that this ResourceRecordSet can be cached by resolvers.
  * @property {string} type The identifier of a supported record type, for example, A, AAAA, MX, TXT, and so on.
  */
+
 /**
  * @typedef ResourceRecordSetsListResponse
  * @memberOf! dns(v1)

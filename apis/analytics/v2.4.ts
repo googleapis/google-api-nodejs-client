@@ -88,7 +88,6 @@ function Analytics(options) { // eslint-disable-line
   };
 
   self.management = {
-
     accounts: {
 
       /**
@@ -129,7 +128,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     goals: {
 
       /**
@@ -173,7 +171,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     profiles: {
 
       /**
@@ -216,7 +213,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     segments: {
 
       /**
@@ -257,7 +253,6 @@ function Analytics(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     webproperties: {
 
       /**

@@ -566,6 +566,7 @@ Possible values are:
 * @property {integer} stepsToUnlock Steps to unlock. Only applicable to incremental achievements.
 * @property {string} token The token for this resource.
 */
+
 /**
  * @typedef AchievementConfigurationDetail
  * @memberOf! gamesConfiguration(v1configuration)
@@ -577,6 +578,7 @@ Possible values are:
  * @property {integer} pointValue Point value for the achievement.
  * @property {integer} sortRank The sort rank of this achievement. Writes to this field are ignored.
  */
+
 /**
  * @typedef AchievementConfigurationListResponse
  * @memberOf! gamesConfiguration(v1configuration)
@@ -585,6 +587,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef GamesNumberAffixConfiguration
  * @memberOf! gamesConfiguration(v1configuration)
@@ -596,6 +599,7 @@ Possible values are:
  * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} two When the language requires special treatment of numbers like two (as with 2 in Welsh, or 102 in Slovenian).
  * @property {gamesConfiguration(v1configuration).LocalizedStringBundle} zero When the language requires special treatment of the number 0 (as in Arabic).
  */
+
 /**
  * @typedef GamesNumberFormatConfiguration
  * @memberOf! gamesConfiguration(v1configuration)
@@ -609,6 +613,7 @@ Possible values are:
 - &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
 * @property {gamesConfiguration(v1configuration).GamesNumberAffixConfiguration} suffix An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
 */
+
 /**
  * @typedef ImageConfiguration
  * @memberOf! gamesConfiguration(v1configuration)
@@ -618,6 +623,7 @@ Possible values are:
  * @property {string} resourceId The resource ID of resource which the image belongs to.
  * @property {string} url The url for this image.
  */
+
 /**
  * @typedef LeaderboardConfiguration
  * @memberOf! gamesConfiguration(v1configuration)
@@ -634,6 +640,7 @@ Possible values are:
 - &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
 * @property {string} token The token for this resource.
 */
+
 /**
  * @typedef LeaderboardConfigurationDetail
  * @memberOf! gamesConfiguration(v1configuration)
@@ -644,6 +651,7 @@ Possible values are:
  * @property {gamesConfiguration(v1configuration).GamesNumberFormatConfiguration} scoreFormat The score formatting for the leaderboard.
  * @property {integer} sortRank The sort rank of this leaderboard. Writes to this field are ignored.
  */
+
 /**
  * @typedef LeaderboardConfigurationListResponse
  * @memberOf! gamesConfiguration(v1configuration)
@@ -652,6 +660,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef LocalizedString
  * @memberOf! gamesConfiguration(v1configuration)
@@ -660,6 +669,7 @@ Possible values are:
  * @property {string} locale The locale string.
  * @property {string} value The string value.
  */
+
 /**
  * @typedef LocalizedStringBundle
  * @memberOf! gamesConfiguration(v1configuration)

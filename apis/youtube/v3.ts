@@ -3081,6 +3081,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {boolean} allowed The value of allowed indicates whether the access to the policy is allowed or denied by default.
  * @property {string[]} exception A list of region codes that identify countries where the default policy do not apply.
  */
+
 /**
  * @typedef Activity
  * @memberOf! youtube(v3)
@@ -3091,6 +3092,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#activity&quot;.
  * @property {youtube(v3).ActivitySnippet} snippet The snippet object contains basic details about the activity, including the activity&#39;s type and group ID.
  */
+
 /**
  * @typedef ActivityContentDetails
  * @memberOf! youtube(v3)
@@ -3107,36 +3109,42 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ActivityContentDetailsSubscription} subscription The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription.
  * @property {youtube(v3).ActivityContentDetailsUpload} upload The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload.
  */
+
 /**
  * @typedef ActivityContentDetailsBulletin
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the resource associated with a bulletin post.
  */
+
 /**
  * @typedef ActivityContentDetailsChannelItem
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the resource that was added to the channel.
  */
+
 /**
  * @typedef ActivityContentDetailsComment
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the resource associated with the comment.
  */
+
 /**
  * @typedef ActivityContentDetailsFavorite
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the resource that was marked as a favorite.
  */
+
 /**
  * @typedef ActivityContentDetailsLike
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the rated resource.
  */
+
 /**
  * @typedef ActivityContentDetailsPlaylistItem
  * @memberOf! youtube(v3)
@@ -3145,6 +3153,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} playlistItemId ID of the item within the playlist.
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information about the resource that was added to the playlist.
  */
+
 /**
  * @typedef ActivityContentDetailsPromotedItem
  * @memberOf! youtube(v3)
@@ -3160,6 +3169,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string[]} impressionUrl The list of impression URLs. The client should ping all of these URLs to indicate that the user was shown this promoted item.
  * @property {string} videoId The ID that YouTube uses to uniquely identify the promoted video.
  */
+
 /**
  * @typedef ActivityContentDetailsRecommendation
  * @memberOf! youtube(v3)
@@ -3168,6 +3178,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the recommended resource.
  * @property {youtube(v3).ResourceId} seedResourceId The seedResourceId object contains information about the resource that caused the recommendation.
  */
+
 /**
  * @typedef ActivityContentDetailsSocial
  * @memberOf! youtube(v3)
@@ -3178,18 +3189,21 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ResourceId} resourceId The resourceId object encapsulates information that identifies the resource associated with a social network post.
  * @property {string} type The name of the social network.
  */
+
 /**
  * @typedef ActivityContentDetailsSubscription
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ResourceId} resourceId The resourceId object contains information that identifies the resource that the user subscribed to.
  */
+
 /**
  * @typedef ActivityContentDetailsUpload
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} videoId The ID that YouTube uses to uniquely identify the uploaded video.
  */
+
 /**
  * @typedef ActivityListResponse
  * @memberOf! youtube(v3)
@@ -3204,6 +3218,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef ActivitySnippet
  * @memberOf! youtube(v3)
@@ -3217,6 +3232,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} title The title of the resource primarily associated with the activity.
  * @property {string} type The type of activity that the resource describes.
  */
+
 /**
  * @typedef Caption
  * @memberOf! youtube(v3)
@@ -3226,6 +3242,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#caption&quot;.
  * @property {youtube(v3).CaptionSnippet} snippet The snippet object contains basic details about the caption.
  */
+
 /**
  * @typedef CaptionListResponse
  * @memberOf! youtube(v3)
@@ -3236,6 +3253,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#captionListResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef CaptionSnippet
  * @memberOf! youtube(v3)
@@ -3254,6 +3272,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} trackKind The caption track&#39;s type.
  * @property {string} videoId The ID that YouTube uses to uniquely identify the video associated with the caption track.
  */
+
 /**
  * @typedef CdnSettings
  * @memberOf! youtube(v3)
@@ -3264,6 +3283,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} ingestionType The method or protocol used to transmit the video stream.
  * @property {string} resolution The resolution of the inbound video data.
  */
+
 /**
  * @typedef Channel
  * @memberOf! youtube(v3)
@@ -3283,6 +3303,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ChannelStatus} status The status object encapsulates information about the privacy status of the channel.
  * @property {youtube(v3).ChannelTopicDetails} topicDetails The topicDetails object encapsulates information about Freebase topics associated with the channel.
  */
+
 /**
  * @typedef ChannelAuditDetails
  * @memberOf! youtube(v3)
@@ -3292,6 +3313,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {boolean} copyrightStrikesGoodStanding Whether or not the channel has any copyright strikes.
  * @property {boolean} overallGoodStanding Describes the general state of the channel. This field will always show if there are any issues whatsoever with the channel. Currently this field represents the result of the logical and operation over the community guidelines good standing, the copyright strikes good standing and the content ID claims good standing, but this may change in the future.
  */
+
 /**
  * @typedef ChannelBannerResource
  * @memberOf! youtube(v3)
@@ -3300,6 +3322,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelBannerResource&quot;.
  * @property {string} url The URL of this banner image.
  */
+
 /**
  * @typedef ChannelBrandingSettings
  * @memberOf! youtube(v3)
@@ -3309,12 +3332,14 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ImageSettings} image Branding properties for branding images.
  * @property {youtube(v3).WatchSettings} watch Branding properties for the watch page.
  */
+
 /**
  * @typedef ChannelContentDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {object} relatedPlaylists 
  */
+
 /**
  * @typedef ChannelContentOwnerDetails
  * @memberOf! youtube(v3)
@@ -3322,6 +3347,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} contentOwner The ID of the content owner linked to the channel.
  * @property {string} timeLinked The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  */
+
 /**
  * @typedef ChannelConversionPing
  * @memberOf! youtube(v3)
@@ -3329,12 +3355,14 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} context Defines the context of the ping.
  * @property {string} conversionUrl The url (without the schema) that the player shall send the ping to. It&#39;s at caller&#39;s descretion to decide which schema to use (http vs https) Example of a returned url: //googleads.g.doubleclick.net/pagead/ viewthroughconversion/962985656/?data=path%3DtHe_path%3Btype%3D cview%3Butuid%3DGISQtTNGYqaYl4sKxoVvKA&amp;labe=default The caller must append biscotti authentication (ms param in case of mobile, for example) to this ping.
  */
+
 /**
  * @typedef ChannelConversionPings
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).ChannelConversionPing[]} pings Pings that the app shall fire (authenticated by biscotti cookie). Each ping has a context, in which the app must fire the ping, and a url identifying the ping.
  */
+
 /**
  * @typedef ChannelListResponse
  * @memberOf! youtube(v3)
@@ -3349,6 +3377,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef ChannelLocalization
  * @memberOf! youtube(v3)
@@ -3356,6 +3385,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} description The localized strings for channel&#39;s description.
  * @property {string} title The localized strings for channel&#39;s title.
  */
+
 /**
  * @typedef ChannelProfileDetails
  * @memberOf! youtube(v3)
@@ -3365,6 +3395,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} displayName The channel&#39;s display name.
  * @property {string} profileImageUrl The channels&#39;s avatar URL.
  */
+
 /**
  * @typedef ChannelSection
  * @memberOf! youtube(v3)
@@ -3377,6 +3408,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ChannelSectionSnippet} snippet The snippet object contains basic details about the channel section, such as its type, style and title.
  * @property {youtube(v3).ChannelSectionTargeting} targeting The targeting object contains basic targeting settings about the channel section.
  */
+
 /**
  * @typedef ChannelSectionContentDetails
  * @memberOf! youtube(v3)
@@ -3384,6 +3416,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string[]} channels The channel ids for type multiple_channels.
  * @property {string[]} playlists The playlist ids for type single_playlist and multiple_playlists. For singlePlaylist, only one playlistId is allowed.
  */
+
 /**
  * @typedef ChannelSectionListResponse
  * @memberOf! youtube(v3)
@@ -3394,12 +3427,14 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#channelSectionListResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef ChannelSectionLocalization
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} title The localized strings for channel section&#39;s title.
  */
+
 /**
  * @typedef ChannelSectionSnippet
  * @memberOf! youtube(v3)
@@ -3412,6 +3447,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} title The channel section&#39;s title for multiple_playlists and multiple_channels.
  * @property {string} type The type of the channel section.
  */
+
 /**
  * @typedef ChannelSectionTargeting
  * @memberOf! youtube(v3)
@@ -3420,6 +3456,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string[]} languages The language the channel section is targeting.
  * @property {string[]} regions The region the channel section is targeting.
  */
+
 /**
  * @typedef ChannelSettings
  * @memberOf! youtube(v3)
@@ -3439,6 +3476,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} trackingAnalyticsAccountId The ID for a Google Analytics account to track and measure traffic to the channels.
  * @property {string} unsubscribedTrailer The trailer of the channel, for users that are not subscribers.
  */
+
 /**
  * @typedef ChannelSnippet
  * @memberOf! youtube(v3)
@@ -3452,6 +3490,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The channel&#39;s title.
  */
+
 /**
  * @typedef ChannelStatistics
  * @memberOf! youtube(v3)
@@ -3462,6 +3501,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} videoCount The number of videos uploaded to the channel.
  * @property {string} viewCount The number of times the channel has been viewed.
  */
+
 /**
  * @typedef ChannelStatus
  * @memberOf! youtube(v3)
@@ -3470,6 +3510,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} longUploadsStatus The long uploads status of this channel. See
  * @property {string} privacyStatus Privacy status of the channel.
  */
+
 /**
  * @typedef ChannelTopicDetails
  * @memberOf! youtube(v3)
@@ -3477,6 +3518,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string[]} topicCategories A list of Wikipedia URLs that describe the channel&#39;s content.
  * @property {string[]} topicIds A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API.
  */
+
 /**
  * @typedef Comment
  * @memberOf! youtube(v3)
@@ -3486,6 +3528,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#comment&quot;.
  * @property {youtube(v3).CommentSnippet} snippet The snippet object contains basic details about the comment.
  */
+
 /**
  * @typedef CommentListResponse
  * @memberOf! youtube(v3)
@@ -3499,6 +3542,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef CommentSnippet
  * @memberOf! youtube(v3)
@@ -3519,6 +3563,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} videoId The ID of the video the comment refers to, if any.
  * @property {string} viewerRating The rating the viewer has given to this comment. For the time being this will never return RATE_TYPE_DISLIKE and instead return RATE_TYPE_NONE. This may change in the future.
  */
+
 /**
  * @typedef CommentThread
  * @memberOf! youtube(v3)
@@ -3529,6 +3574,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).CommentThreadReplies} replies The replies object contains a limited number of replies (if any) to the top level comment found in the snippet.
  * @property {youtube(v3).CommentThreadSnippet} snippet The snippet object contains basic details about the comment thread and also the top level comment.
  */
+
 /**
  * @typedef CommentThreadListResponse
  * @memberOf! youtube(v3)
@@ -3542,12 +3588,14 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef CommentThreadReplies
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).Comment[]} comments A limited number of replies. Unless the number of replies returned equals total_reply_count in the snippet the returned replies are only a subset of the total number of replies.
  */
+
 /**
  * @typedef CommentThreadSnippet
  * @memberOf! youtube(v3)
@@ -3559,6 +3607,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {integer} totalReplyCount The total number of replies (not including the top level comment).
  * @property {string} videoId The ID of the video the comments refer to, if any. No video_id implies a channel discussion comment.
  */
+
 /**
  * @typedef ContentRating
  * @memberOf! youtube(v3)
@@ -3632,6 +3681,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} tvpgRating The video&#39;s TV Parental Guidelines (TVPG) rating.
  * @property {string} ytRating A rating that YouTube uses to identify age-restricted content.
  */
+
 /**
  * @typedef FanFundingEvent
  * @memberOf! youtube(v3)
@@ -3641,6 +3691,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#fanFundingEvent&quot;.
  * @property {youtube(v3).FanFundingEventSnippet} snippet The snippet object contains basic details about the fan funding event.
  */
+
 /**
  * @typedef FanFundingEventListResponse
  * @memberOf! youtube(v3)
@@ -3654,6 +3705,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef FanFundingEventSnippet
  * @memberOf! youtube(v3)
@@ -3666,6 +3718,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} displayString A rendered string that displays the fund amount and currency (e.g., &quot;$1.00&quot;). The string is rendered for the given language.
  * @property {youtube(v3).ChannelProfileDetails} supporterDetails Details about the supporter. Only filled if the event was made public by the user.
  */
+
 /**
  * @typedef GeoPoint
  * @memberOf! youtube(v3)
@@ -3674,6 +3727,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {number} latitude Latitude in degrees.
  * @property {number} longitude Longitude in degrees.
  */
+
 /**
  * @typedef GuideCategory
  * @memberOf! youtube(v3)
@@ -3683,6 +3737,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#guideCategory&quot;.
  * @property {youtube(v3).GuideCategorySnippet} snippet The snippet object contains basic details about the category, such as its title.
  */
+
 /**
  * @typedef GuideCategoryListResponse
  * @memberOf! youtube(v3)
@@ -3697,6 +3752,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef GuideCategorySnippet
  * @memberOf! youtube(v3)
@@ -3704,6 +3760,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} channelId 
  * @property {string} title Description of the guide category.
  */
+
 /**
  * @typedef I18nLanguage
  * @memberOf! youtube(v3)
@@ -3713,6 +3770,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguage&quot;.
  * @property {youtube(v3).I18nLanguageSnippet} snippet The snippet object contains basic details about the i18n language, such as language code and human-readable name.
  */
+
 /**
  * @typedef I18nLanguageListResponse
  * @memberOf! youtube(v3)
@@ -3723,6 +3781,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nLanguageListResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef I18nLanguageSnippet
  * @memberOf! youtube(v3)
@@ -3730,6 +3789,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} hl A short BCP-47 code that uniquely identifies a language.
  * @property {string} name The human-readable name of the language in the language itself.
  */
+
 /**
  * @typedef I18nRegion
  * @memberOf! youtube(v3)
@@ -3739,6 +3799,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegion&quot;.
  * @property {youtube(v3).I18nRegionSnippet} snippet The snippet object contains basic details about the i18n region, such as region code and human-readable name.
  */
+
 /**
  * @typedef I18nRegionListResponse
  * @memberOf! youtube(v3)
@@ -3749,6 +3810,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#i18nRegionListResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef I18nRegionSnippet
  * @memberOf! youtube(v3)
@@ -3756,6 +3818,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} gl The region code as a 2-letter ISO country code.
  * @property {string} name The human-readable name of the region.
  */
+
 /**
  * @typedef ImageSettings
  * @memberOf! youtube(v3)
@@ -3783,6 +3846,7 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} trackingImageUrl The URL for a 1px by 1px tracking pixel that can be used to collect statistics for views of the channel or video pages.
  * @property {string} watchIconImageUrl The URL for the image that appears above the top-left corner of the video player. This is a 25-pixel-high image with a flexible width that cannot exceed 170 pixels.
  */
+
 /**
  * @typedef IngestionInfo
  * @memberOf! youtube(v3)
@@ -3795,6 +3859,7 @@ Depending on which application or tool you use to encode your video stream, you 
 STREAM_URL/STREAM_NAME
 * @property {string} streamName The HTTP or RTMP stream name that YouTube assigns to the video stream.
 */
+
 /**
  * @typedef InvideoBranding
  * @memberOf! youtube(v3)
@@ -3805,6 +3870,7 @@ STREAM_URL/STREAM_NAME
  * @property {string} targetChannelId 
  * @property {youtube(v3).InvideoTiming} timing 
  */
+
 /**
  * @typedef InvideoPosition
  * @memberOf! youtube(v3)
@@ -3812,6 +3878,7 @@ STREAM_URL/STREAM_NAME
  * @property {string} cornerPosition Describes in which corner of the video the visual widget will appear.
  * @property {string} type Defines the position type.
  */
+
 /**
  * @typedef InvideoPromotion
  * @memberOf! youtube(v3)
@@ -3821,6 +3888,7 @@ STREAM_URL/STREAM_NAME
  * @property {youtube(v3).InvideoPosition} position The spatial position within the video where the promoted item will be displayed.
  * @property {boolean} useSmartTiming Indicates whether the channel&#39;s promotional campaign uses &quot;smart timing.&quot; This feature attempts to show promotions at a point in the video when they are more likely to be clicked and less likely to disrupt the viewing experience. This feature also picks up a single promotion to show on each video.
  */
+
 /**
  * @typedef InvideoTiming
  * @memberOf! youtube(v3)
@@ -3829,12 +3897,14 @@ STREAM_URL/STREAM_NAME
  * @property {string} offsetMs Defines the time at which the promotion will appear. Depending on the value of type the value of the offsetMs field will represent a time offset from the start or from the end of the video, expressed in milliseconds.
  * @property {string} type Describes a timing type. If the value is offsetFromStart, then the offsetMs field represents an offset from the start of the video. If the value is offsetFromEnd, then the offsetMs field represents an offset from the end of the video.
  */
+
 /**
  * @typedef LanguageTag
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} value 
  */
+
 /**
  * @typedef LiveBroadcast
  * @memberOf! youtube(v3)
@@ -3848,6 +3918,7 @@ STREAM_URL/STREAM_NAME
  * @property {youtube(v3).LiveBroadcastStatus} status The status object contains information about the event&#39;s status.
  * @property {youtube(v3).LiveBroadcastTopicDetails} topicDetails 
  */
+
 /**
  * @typedef LiveBroadcastContentDetails
  * @memberOf! youtube(v3)
@@ -3873,6 +3944,7 @@ Important: You must set the value to true and also set the enableArchive propert
 Important: You must also set the enableDvr property&#39;s value to true if you want the playback to be available immediately after the broadcast ends. If you set this property&#39;s value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback.
 * @property {boolean} startWithSlate This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast&#39;s status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint&#39;s eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.
 */
+
 /**
  * @typedef LiveBroadcastListResponse
  * @memberOf! youtube(v3)
@@ -3887,6 +3959,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef LiveBroadcastSnippet
  * @memberOf! youtube(v3)
@@ -3903,6 +3976,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the broadcast. For each nested object in this object, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The broadcast&#39;s title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource.
  */
+
 /**
  * @typedef LiveBroadcastStatistics
  * @memberOf! youtube(v3)
@@ -3910,6 +3984,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} concurrentViewers The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended.
  * @property {string} totalChatCount The total number of live chat messages currently on the broadcast. The property and its value will be present if the broadcast is public, has the live chat feature enabled, and has at least one message. Note that this field will not be filled after the broadcast ends. So this property would not identify the number of chat messages for an archived video of a completed live broadcast.
  */
+
 /**
  * @typedef LiveBroadcastStatus
  * @memberOf! youtube(v3)
@@ -3919,6 +3994,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} privacyStatus The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.
  * @property {string} recordingStatus The broadcast&#39;s recording status.
  */
+
 /**
  * @typedef LiveBroadcastTopic
  * @memberOf! youtube(v3)
@@ -3927,12 +4003,14 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} type The type of the topic.
  * @property {boolean} unmatched If this flag is set it means that we have not been able to match the topic title and type provided to a known entity.
  */
+
 /**
  * @typedef LiveBroadcastTopicDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).LiveBroadcastTopic[]} topics 
  */
+
 /**
  * @typedef LiveBroadcastTopicSnippet
  * @memberOf! youtube(v3)
@@ -3940,6 +4018,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} name The name of the topic.
  * @property {string} releaseDate The date at which the topic was released. Filled for types: videoGame
  */
+
 /**
  * @typedef LiveChatBan
  * @memberOf! youtube(v3)
@@ -3949,6 +4028,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatBan&quot;.
  * @property {youtube(v3).LiveChatBanSnippet} snippet The snippet object contains basic details about the ban.
  */
+
 /**
  * @typedef LiveChatBanSnippet
  * @memberOf! youtube(v3)
@@ -3958,6 +4038,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} liveChatId The chat this ban is pertinent to.
  * @property {string} type The type of ban.
  */
+
 /**
  * @typedef LiveChatFanFundingEventDetails
  * @memberOf! youtube(v3)
@@ -3967,6 +4048,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} currency The currency in which the fund was made.
  * @property {string} userComment The comment added by the user to this fan funding event.
  */
+
 /**
  * @typedef LiveChatMessage
  * @memberOf! youtube(v3)
@@ -3977,6 +4059,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatMessage&quot;.
  * @property {youtube(v3).LiveChatMessageSnippet} snippet The snippet object contains basic details about the message.
  */
+
 /**
  * @typedef LiveChatMessageAuthorDetails
  * @memberOf! youtube(v3)
@@ -3990,12 +4073,14 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {boolean} isVerified Whether the author&#39;s identity has been verified by YouTube.
  * @property {string} profileImageUrl The channels&#39;s avatar URL.
  */
+
 /**
  * @typedef LiveChatMessageDeletedDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} deletedMessageId 
  */
+
 /**
  * @typedef LiveChatMessageListResponse
  * @memberOf! youtube(v3)
@@ -4011,12 +4096,14 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef LiveChatMessageRetractedDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} retractedMessageId 
  */
+
 /**
  * @typedef LiveChatMessageSnippet
  * @memberOf! youtube(v3)
@@ -4038,6 +4125,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} type The type of message, this will always be present, it determines the contents of the message as well as which fields will be present.
  * @property {youtube(v3).LiveChatUserBannedMessageDetails} userBannedDetails 
  */
+
 /**
  * @typedef LiveChatModerator
  * @memberOf! youtube(v3)
@@ -4047,6 +4135,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#liveChatModerator&quot;.
  * @property {youtube(v3).LiveChatModeratorSnippet} snippet The snippet object contains basic details about the moderator.
  */
+
 /**
  * @typedef LiveChatModeratorListResponse
  * @memberOf! youtube(v3)
@@ -4061,6 +4150,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef LiveChatModeratorSnippet
  * @memberOf! youtube(v3)
@@ -4068,12 +4158,14 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} liveChatId The ID of the live chat this moderator can act on.
  * @property {youtube(v3).ChannelProfileDetails} moderatorDetails Details about the moderator.
  */
+
 /**
  * @typedef LiveChatPollClosedDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} pollId The id of the poll that was closed.
  */
+
 /**
  * @typedef LiveChatPollEditedDetails
  * @memberOf! youtube(v3)
@@ -4082,6 +4174,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).LiveChatPollItem[]} items 
  * @property {string} prompt 
  */
+
 /**
  * @typedef LiveChatPollItem
  * @memberOf! youtube(v3)
@@ -4089,6 +4182,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} description Plain text description of the item.
  * @property {string} itemId 
  */
+
 /**
  * @typedef LiveChatPollOpenedDetails
  * @memberOf! youtube(v3)
@@ -4097,6 +4191,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).LiveChatPollItem[]} items 
  * @property {string} prompt 
  */
+
 /**
  * @typedef LiveChatPollVotedDetails
  * @memberOf! youtube(v3)
@@ -4104,6 +4199,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} itemId The poll item the user chose.
  * @property {string} pollId The poll the user voted on.
  */
+
 /**
  * @typedef LiveChatSuperChatDetails
  * @memberOf! youtube(v3)
@@ -4114,12 +4210,14 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {integer} tier The tier in which the amount belongs to. Lower amounts belong to lower tiers. Starts at 1.
  * @property {string} userComment The comment added by the user to this Super Chat event.
  */
+
 /**
  * @typedef LiveChatTextMessageDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} messageText The user&#39;s message.
  */
+
 /**
  * @typedef LiveChatUserBannedMessageDetails
  * @memberOf! youtube(v3)
@@ -4128,6 +4226,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} banType The type of ban.
  * @property {youtube(v3).ChannelProfileDetails} bannedUserDetails The details of the user that was banned.
  */
+
 /**
  * @typedef LiveStream
  * @memberOf! youtube(v3)
@@ -4140,6 +4239,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).LiveStreamSnippet} snippet The snippet object contains basic details about the stream, including its channel, title, and description.
  * @property {youtube(v3).LiveStreamStatus} status The status object contains information about live stream&#39;s status.
  */
+
 /**
  * @typedef LiveStreamConfigurationIssue
  * @memberOf! youtube(v3)
@@ -4149,6 +4249,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} severity How severe this issue is to the stream.
  * @property {string} type The kind of error happening.
  */
+
 /**
  * @typedef LiveStreamContentDetails
  * @memberOf! youtube(v3)
@@ -4161,6 +4262,7 @@ If you set this value to false, then the stream will not be reusable, which mean
 - A non-reusable stream might be deleted by an automated process after the broadcast ends. 
 - The  liveStreams.list method does not list non-reusable streams if you call the method and set the mine parameter to true. The only way to use that method to retrieve the resource for a non-reusable stream is to use the id parameter to identify the stream.
 */
+
 /**
  * @typedef LiveStreamHealthStatus
  * @memberOf! youtube(v3)
@@ -4169,6 +4271,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {string} lastUpdateTimeSeconds The last time this status was updated (in seconds)
  * @property {string} status The status code of this stream
  */
+
 /**
  * @typedef LiveStreamListResponse
  * @memberOf! youtube(v3)
@@ -4183,6 +4286,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef LiveStreamSnippet
  * @memberOf! youtube(v3)
@@ -4193,6 +4297,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {string} publishedAt The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  * @property {string} title The stream&#39;s title. The value must be between 1 and 128 characters long.
  */
+
 /**
  * @typedef LiveStreamStatus
  * @memberOf! youtube(v3)
@@ -4200,6 +4305,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {youtube(v3).LiveStreamHealthStatus} healthStatus The health status of the stream.
  * @property {string} streamStatus 
  */
+
 /**
  * @typedef LocalizedProperty
  * @memberOf! youtube(v3)
@@ -4208,6 +4314,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {youtube(v3).LanguageTag} defaultLanguage The language of the default property.
  * @property {youtube(v3).LocalizedString[]} localized 
  */
+
 /**
  * @typedef LocalizedString
  * @memberOf! youtube(v3)
@@ -4215,6 +4322,7 @@ If you set this value to false, then the stream will not be reusable, which mean
  * @property {string} language 
  * @property {string} value 
  */
+
 /**
  * @typedef MonitorStreamInfo
  * @memberOf! youtube(v3)
@@ -4227,6 +4335,7 @@ You need to set this value to true if you intend to have a broadcast delay for y
 
 Note: This property cannot be updated once the broadcast is in the testing or live state.
 */
+
 /**
  * @typedef PageInfo
  * @memberOf! youtube(v3)
@@ -4234,6 +4343,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {integer} resultsPerPage The number of results included in the API response.
  * @property {integer} totalResults The total number of results in the result set.
  */
+
 /**
  * @typedef Playlist
  * @memberOf! youtube(v3)
@@ -4247,12 +4357,14 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).PlaylistSnippet} snippet The snippet object contains basic details about the playlist, such as its title and description.
  * @property {youtube(v3).PlaylistStatus} status The status object contains status information for the playlist.
  */
+
 /**
  * @typedef PlaylistContentDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {integer} itemCount The number of videos in the playlist.
  */
+
 /**
  * @typedef PlaylistItem
  * @memberOf! youtube(v3)
@@ -4264,6 +4376,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).PlaylistItemSnippet} snippet The snippet object contains basic details about the playlist item, such as its title and position in the playlist.
  * @property {youtube(v3).PlaylistItemStatus} status The status object contains information about the playlist item&#39;s privacy status.
  */
+
 /**
  * @typedef PlaylistItemContentDetails
  * @memberOf! youtube(v3)
@@ -4274,6 +4387,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} videoId The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request.
  * @property {string} videoPublishedAt The date and time that the video was published to YouTube. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  */
+
 /**
  * @typedef PlaylistItemListResponse
  * @memberOf! youtube(v3)
@@ -4288,6 +4402,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef PlaylistItemSnippet
  * @memberOf! youtube(v3)
@@ -4302,12 +4417,14 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the playlist item. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The item&#39;s title.
  */
+
 /**
  * @typedef PlaylistItemStatus
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} privacyStatus This resource&#39;s privacy status.
  */
+
 /**
  * @typedef PlaylistListResponse
  * @memberOf! youtube(v3)
@@ -4322,6 +4439,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef PlaylistLocalization
  * @memberOf! youtube(v3)
@@ -4329,12 +4447,14 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} description The localized strings for playlist&#39;s description.
  * @property {string} title The localized strings for playlist&#39;s title.
  */
+
 /**
  * @typedef PlaylistPlayer
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} embedHtml An &lt;iframe&gt; tag that embeds a player that will play the playlist.
  */
+
 /**
  * @typedef PlaylistSnippet
  * @memberOf! youtube(v3)
@@ -4349,12 +4469,14 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The playlist&#39;s title.
  */
+
 /**
  * @typedef PlaylistStatus
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} privacyStatus The playlist&#39;s privacy status.
  */
+
 /**
  * @typedef PromotedItem
  * @memberOf! youtube(v3)
@@ -4364,6 +4486,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {boolean} promotedByContentOwner If true, the content owner&#39;s name will be used when displaying the promotion. This field can only be set when the update is made on behalf of the content owner.
  * @property {youtube(v3).InvideoTiming} timing The temporal position within the video where the promoted item will be displayed. If present, it overrides the default timing.
  */
+
 /**
  * @typedef PromotedItemId
  * @memberOf! youtube(v3)
@@ -4373,6 +4496,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} videoId If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if type has the value video.
  * @property {string} websiteUrl If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if type has the value website.
  */
+
 /**
  * @typedef PropertyValue
  * @memberOf! youtube(v3)
@@ -4380,6 +4504,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} property A property.
  * @property {string} value The property&#39;s value.
  */
+
 /**
  * @typedef ResourceId
  * @memberOf! youtube(v3)
@@ -4389,6 +4514,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} playlistId The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the resourceId.kind value is youtube#playlist.
  * @property {string} videoId The ID that YouTube uses to uniquely identify the referred resource, if that resource is a video. This property is only present if the resourceId.kind value is youtube#video.
  */
+
 /**
  * @typedef SearchListResponse
  * @memberOf! youtube(v3)
@@ -4404,6 +4530,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef SearchResult
  * @memberOf! youtube(v3)
@@ -4413,6 +4540,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#searchResult&quot;.
  * @property {youtube(v3).SearchResultSnippet} snippet The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video&#39;s title and the description will be the video&#39;s description.
  */
+
 /**
  * @typedef SearchResultSnippet
  * @memberOf! youtube(v3)
@@ -4425,6 +4553,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the search result. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The title of the search result.
  */
+
 /**
  * @typedef Sponsor
  * @memberOf! youtube(v3)
@@ -4434,6 +4563,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#sponsor&quot;.
  * @property {youtube(v3).SponsorSnippet} snippet The snippet object contains basic details about the sponsor.
  */
+
 /**
  * @typedef SponsorListResponse
  * @memberOf! youtube(v3)
@@ -4447,6 +4577,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef SponsorSnippet
  * @memberOf! youtube(v3)
@@ -4455,6 +4586,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ChannelProfileDetails} sponsorDetails Details about the sponsor.
  * @property {string} sponsorSince The date and time when the user became a sponsor. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  */
+
 /**
  * @typedef Subscription
  * @memberOf! youtube(v3)
@@ -4466,6 +4598,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).SubscriptionSnippet} snippet The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to.
  * @property {youtube(v3).SubscriptionSubscriberSnippet} subscriberSnippet The subscriberSnippet object contains basic details about the sbuscriber.
  */
+
 /**
  * @typedef SubscriptionContentDetails
  * @memberOf! youtube(v3)
@@ -4474,6 +4607,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {integer} newItemCount The number of new items in the subscription since its content was last read.
  * @property {integer} totalItemCount The approximate number of items that the subscription points to.
  */
+
 /**
  * @typedef SubscriptionListResponse
  * @memberOf! youtube(v3)
@@ -4488,6 +4622,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef SubscriptionSnippet
  * @memberOf! youtube(v3)
@@ -4500,6 +4635,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The subscription&#39;s title.
  */
+
 /**
  * @typedef SubscriptionSubscriberSnippet
  * @memberOf! youtube(v3)
@@ -4509,6 +4645,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).ThumbnailDetails} thumbnails Thumbnails for this subscriber.
  * @property {string} title The title of the subscriber.
  */
+
 /**
  * @typedef SuperChatEvent
  * @memberOf! youtube(v3)
@@ -4518,6 +4655,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEvent&quot;.
  * @property {youtube(v3).SuperChatEventSnippet} snippet The snippet object contains basic details about the Super Chat event.
  */
+
 /**
  * @typedef SuperChatEventListResponse
  * @memberOf! youtube(v3)
@@ -4531,6 +4669,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef SuperChatEventSnippet
  * @memberOf! youtube(v3)
@@ -4544,6 +4683,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {integer} messageType The tier for the paid message, which is based on the amount of money spent to purchase the message.
  * @property {youtube(v3).ChannelProfileDetails} supporterDetails Details about the supporter.
  */
+
 /**
  * @typedef Thumbnail
  * @memberOf! youtube(v3)
@@ -4552,6 +4692,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} url The thumbnail image&#39;s URL.
  * @property {integer} width (Optional) Width of the thumbnail image.
  */
+
 /**
  * @typedef ThumbnailDetails
  * @memberOf! youtube(v3)
@@ -4562,6 +4703,7 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {youtube(v3).Thumbnail} medium The medium quality image for this resource.
  * @property {youtube(v3).Thumbnail} standard The standard quality image for this resource.
  */
+
 /**
  * @typedef ThumbnailSetResponse
  * @memberOf! youtube(v3)
@@ -4572,11 +4714,13 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#thumbnailSetResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef TokenPagination
  * @memberOf! youtube(v3)
  * @type object
  */
+
 /**
  * @typedef Video
  * @memberOf! youtube(v3)
@@ -4602,6 +4746,7 @@ The processingProgress object is designed to be polled so that the video uploade
 * @property {youtube(v3).VideoSuggestions} suggestions The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video. This data can only be retrieved by the video owner.
 * @property {youtube(v3).VideoTopicDetails} topicDetails The topicDetails object encapsulates information about Freebase topics associated with the video.
 */
+
 /**
  * @typedef VideoAbuseReport
  * @memberOf! youtube(v3)
@@ -4612,6 +4757,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} secondaryReasonId The specific, or secondary, reason that this content is abusive (if available). The value is an abuse report reason ID that is a valid secondary reason for the primary reason.
  * @property {string} videoId The ID that YouTube uses to uniquely identify the video.
  */
+
 /**
  * @typedef VideoAbuseReportReason
  * @memberOf! youtube(v3)
@@ -4621,6 +4767,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReason&quot;.
  * @property {youtube(v3).VideoAbuseReportReasonSnippet} snippet The snippet object contains basic details about the abuse report reason.
  */
+
 /**
  * @typedef VideoAbuseReportReasonListResponse
  * @memberOf! youtube(v3)
@@ -4631,6 +4778,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoAbuseReportReasonListResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef VideoAbuseReportReasonSnippet
  * @memberOf! youtube(v3)
@@ -4638,6 +4786,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} label The localized label belonging to this abuse report reason.
  * @property {youtube(v3).VideoAbuseReportSecondaryReason[]} secondaryReasons The secondary reasons associated with this reason, if any are available. (There might be 0 or more.)
  */
+
 /**
  * @typedef VideoAbuseReportSecondaryReason
  * @memberOf! youtube(v3)
@@ -4645,6 +4794,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} id The ID of this abuse report secondary reason.
  * @property {string} label The localized label for this abuse report secondary reason.
  */
+
 /**
  * @typedef VideoAgeGating
  * @memberOf! youtube(v3)
@@ -4653,6 +4803,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {boolean} restricted Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is true the content is restricted to viewers aged 18+. Otherwise The field won&#39;t be present.
  * @property {string} videoGameRating Video game rating, if any.
  */
+
 /**
  * @typedef VideoCategory
  * @memberOf! youtube(v3)
@@ -4662,6 +4813,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoCategory&quot;.
  * @property {youtube(v3).VideoCategorySnippet} snippet The snippet object contains basic details about the video category, including its title.
  */
+
 /**
  * @typedef VideoCategoryListResponse
  * @memberOf! youtube(v3)
@@ -4676,6 +4828,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef VideoCategorySnippet
  * @memberOf! youtube(v3)
@@ -4684,6 +4837,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} channelId The YouTube channel that created the video category.
  * @property {string} title The video category&#39;s title.
  */
+
 /**
  * @typedef VideoContentDetails
  * @memberOf! youtube(v3)
@@ -4699,6 +4853,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} projection Specifies the projection format of the video.
  * @property {youtube(v3).VideoContentDetailsRegionRestriction} regionRestriction The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property.
  */
+
 /**
  * @typedef VideoContentDetailsRegionRestriction
  * @memberOf! youtube(v3)
@@ -4706,6 +4861,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string[]} allowed A list of region codes that identify countries where the video is viewable. If this property is present and a country is not listed in its value, then the video is blocked from appearing in that country. If this property is present and contains an empty list, the video is blocked in all countries.
  * @property {string[]} blocked A list of region codes that identify countries where the video is blocked. If this property is present and a country is not listed in its value, then the video is viewable in that country. If this property is present and contains an empty list, the video is viewable in all countries.
  */
+
 /**
  * @typedef VideoFileDetails
  * @memberOf! youtube(v3)
@@ -4723,6 +4879,7 @@ The processingProgress object is designed to be polled so that the video uploade
 * @property {string} fileType The uploaded file&#39;s type as detected by YouTube&#39;s video processing engine. Currently, YouTube only processes video files, but this field is present whether a video file or another type of file was uploaded.
 * @property {youtube(v3).VideoFileDetailsVideoStream[]} videoStreams A list of video streams contained in the uploaded video file. Each item in the list contains detailed metadata about a video stream.
 */
+
 /**
  * @typedef VideoFileDetailsAudioStream
  * @memberOf! youtube(v3)
@@ -4732,6 +4889,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} codec The audio codec that the stream uses.
  * @property {string} vendor A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code.
  */
+
 /**
  * @typedef VideoFileDetailsVideoStream
  * @memberOf! youtube(v3)
@@ -4745,6 +4903,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} vendor A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code.
  * @property {integer} widthPixels The encoded video content&#39;s width in pixels. You can calculate the video&#39;s encoding aspect ratio as width_pixels / height_pixels.
  */
+
 /**
  * @typedef VideoGetRatingResponse
  * @memberOf! youtube(v3)
@@ -4755,6 +4914,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#videoGetRatingResponse&quot;.
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef VideoListResponse
  * @memberOf! youtube(v3)
@@ -4769,6 +4929,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {youtube(v3).TokenPagination} tokenPagination 
  * @property {string} visitorId The visitorId identifies the visitor.
  */
+
 /**
  * @typedef VideoLiveStreamingDetails
  * @memberOf! youtube(v3)
@@ -4780,6 +4941,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} scheduledEndTime The time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
  * @property {string} scheduledStartTime The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  */
+
 /**
  * @typedef VideoLocalization
  * @memberOf! youtube(v3)
@@ -4787,12 +4949,14 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} description Localized version of the video&#39;s description.
  * @property {string} title Localized version of the video&#39;s title.
  */
+
 /**
  * @typedef VideoMonetizationDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {youtube(v3).AccessPolicy} access The value of access indicates whether the video can be monetized or not.
  */
+
 /**
  * @typedef VideoPlayer
  * @memberOf! youtube(v3)
@@ -4801,6 +4965,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} embedHtml An &lt;iframe&gt; tag that embeds a player that will play the video.
  * @property {string} embedWidth The embed width
  */
+
 /**
  * @typedef VideoProcessingDetails
  * @memberOf! youtube(v3)
@@ -4814,6 +4979,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} tagSuggestionsAvailability This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video&#39;s metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request.
  * @property {string} thumbnailsAvailability This value indicates whether thumbnail images have been generated for the video.
  */
+
 /**
  * @typedef VideoProcessingDetailsProcessingProgress
  * @memberOf! youtube(v3)
@@ -4825,12 +4991,14 @@ Note that since the estimated number of parts could increase without a correspon
 * @property {string} partsTotal An estimate of the total number of parts that need to be processed for the video. The number may be updated with more precise estimates while YouTube processes the video.
 * @property {string} timeLeftMs An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video.
 */
+
 /**
  * @typedef VideoProjectDetails
  * @memberOf! youtube(v3)
  * @type object
  * @property {string[]} tags A list of project tags associated with the video during the upload.
  */
+
 /**
  * @typedef VideoRating
  * @memberOf! youtube(v3)
@@ -4838,6 +5006,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string} rating 
  * @property {string} videoId 
  */
+
 /**
  * @typedef VideoRecordingDetails
  * @memberOf! youtube(v3)
@@ -4846,6 +5015,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string} locationDescription The text description of the location where the video was recorded.
  * @property {string} recordingDate The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
  */
+
 /**
  * @typedef VideoSnippet
  * @memberOf! youtube(v3)
@@ -4863,6 +5033,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {youtube(v3).ThumbnailDetails} thumbnails A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
  * @property {string} title The video&#39;s title.
  */
+
 /**
  * @typedef VideoStatistics
  * @memberOf! youtube(v3)
@@ -4873,6 +5044,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string} likeCount The number of users who have indicated that they liked the video by giving it a positive rating.
  * @property {string} viewCount The number of times the video has been viewed.
  */
+
 /**
  * @typedef VideoStatus
  * @memberOf! youtube(v3)
@@ -4886,6 +5058,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string} rejectionReason This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
  * @property {string} uploadStatus The status of the uploaded video.
  */
+
 /**
  * @typedef VideoSuggestions
  * @memberOf! youtube(v3)
@@ -4896,6 +5069,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string[]} processingWarnings A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding. These warnings are generated before YouTube actually processes the uploaded video file. In addition, they identify issues that are unlikely to cause the video processing to fail but that might cause problems such as sync issues, video artifacts, or a missing audio track.
  * @property {youtube(v3).VideoSuggestionsTagSuggestion[]} tagSuggestions A list of keyword tags that could be added to the video&#39;s metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube.
  */
+
 /**
  * @typedef VideoSuggestionsTagSuggestion
  * @memberOf! youtube(v3)
@@ -4903,6 +5077,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string[]} categoryRestricts A set of video categories for which the tag is relevant. You can use this information to display appropriate tag suggestions based on the video category that the video uploader associates with the video. By default, tag suggestions are relevant for all categories if there are no restricts defined for the keyword.
  * @property {string} tag The keyword tag suggested for the video.
  */
+
 /**
  * @typedef VideoTopicDetails
  * @memberOf! youtube(v3)
@@ -4911,6 +5086,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @property {string[]} topicCategories A list of Wikipedia URLs that provide a high-level description of the video&#39;s content.
  * @property {string[]} topicIds A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the Freebase Topic API.
  */
+
 /**
  * @typedef WatchSettings
  * @memberOf! youtube(v3)

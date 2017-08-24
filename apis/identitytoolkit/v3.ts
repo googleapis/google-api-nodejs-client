@@ -683,12 +683,14 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} registered Whether the user is registered if the identifier is an email.
  * @property {string} sessionId Session ID which should be passed in the following verifyAssertion request.
  */
+
 /**
  * @typedef DeleteAccountResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} kind The fixed string &quot;identitytoolkit#DeleteAccountResponse&quot;.
  */
+
 /**
  * @typedef DownloadAccountResponse
  * @memberOf! identitytoolkit(v3)
@@ -697,6 +699,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} nextPageToken The next page token. To be used in a subsequent request to return the next page of results.
  * @property {identitytoolkit(v3).UserInfo[]} users The user accounts data.
  */
+
 /**
  * @typedef EmailTemplate
  * @memberOf! identitytoolkit(v3)
@@ -708,6 +711,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} replyTo Reply-to address.
  * @property {string} subject Subject of the email.
  */
+
 /**
  * @typedef GetAccountInfoResponse
  * @memberOf! identitytoolkit(v3)
@@ -715,6 +719,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#GetAccountInfoResponse&quot;.
  * @property {identitytoolkit(v3).UserInfo[]} users The info of the users.
  */
+
 /**
  * @typedef GetOobConfirmationCodeResponse
  * @memberOf! identitytoolkit(v3)
@@ -723,6 +728,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
  * @property {string} oobCode The code to be send to the user.
  */
+
 /**
  * @typedef GetRecaptchaParamResponse
  * @memberOf! identitytoolkit(v3)
@@ -731,6 +737,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} recaptchaSiteKey Site key registered at recaptcha.
  * @property {string} recaptchaStoken The stoken field for the recaptcha widget, used to request captcha challenge.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyCreateAuthUriRequest
  * @memberOf! identitytoolkit(v3)
@@ -750,6 +757,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} providerId The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
  * @property {string} sessionId The session_id passed by client.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyDeleteAccountRequest
  * @memberOf! identitytoolkit(v3)
@@ -758,6 +766,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} idToken The GITKit token or STS id token of the authenticated user.
  * @property {string} localId The local ID of the user.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyDownloadAccountRequest
  * @memberOf! identitytoolkit(v3)
@@ -767,6 +776,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the next page. This should be taken from the previous response.
  * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyGetAccountInfoRequest
  * @memberOf! identitytoolkit(v3)
@@ -775,7 +785,9 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string[]} email The list of emails of the users to inquiry.
  * @property {string} idToken The GITKit token of the authenticated user.
  * @property {string[]} localId The list of local ID&#39;s of the users to inquiry.
+ * @property {string[]} phoneNumber Privileged caller can query users by specified phone number.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyGetProjectConfigResponse
  * @memberOf! identitytoolkit(v3)
@@ -793,11 +805,13 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} useEmailSending Whether to use email sending provided by Firebear.
  * @property {identitytoolkit(v3).EmailTemplate} verifyEmailTemplate Verify email template.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyGetPublicKeysResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyResetPasswordRequest
  * @memberOf! identitytoolkit(v3)
@@ -807,6 +821,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} oldPassword The old password inputted by the user.
  * @property {string} oobCode The confirmation code.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySetAccountInfoRequest
  * @memberOf! identitytoolkit(v3)
@@ -827,12 +842,14 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} localId The local ID of the user.
  * @property {string} oobCode The out-of-band code of the change email request.
  * @property {string} password The new password of the user.
+ * @property {string} phoneNumber Privileged caller can update user with specified phone number.
  * @property {string} photoUrl The photo url of the user.
  * @property {string[]} provider The associated IDPs of the user.
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {boolean} upgradeToFederatedLogin Mark the user to upgrade to federated login.
  * @property {string} validSince Timestamp in seconds for valid login token.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySetProjectConfigRequest
  * @memberOf! identitytoolkit(v3)
@@ -849,12 +866,14 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} useEmailSending Whether to use email sending provided by Firebear.
  * @property {identitytoolkit(v3).EmailTemplate} verifyEmailTemplate Verify email template.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySetProjectConfigResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} projectId Project ID of the relying party.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySignOutUserRequest
  * @memberOf! identitytoolkit(v3)
@@ -862,12 +881,14 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} instanceId Instance id token of the app.
  * @property {string} localId The local ID of the user.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySignOutUserResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} localId The local ID of the user.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartySignupNewUserRequest
  * @memberOf! identitytoolkit(v3)
@@ -882,8 +903,10 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} instanceId Instance id token of the app.
  * @property {string} localId Privileged caller can create user with specified user id.
  * @property {string} password The new password of the user.
+ * @property {string} phoneNumber Privileged caller can create user with specified phone number.
  * @property {string} photoUrl The photo url of the user.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyUploadAccountRequest
  * @memberOf! identitytoolkit(v3)
@@ -899,6 +922,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  * @property {identitytoolkit(v3).UserInfo[]} users The account info to be stored.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyAssertionRequest
  * @memberOf! identitytoolkit(v3)
@@ -915,6 +939,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {string} sessionId Session ID, which should match the one in previous createAuthUri request.
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyCustomTokenRequest
  * @memberOf! identitytoolkit(v3)
@@ -924,6 +949,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {string} token The custom token to verify
  */
+
 /**
  * @typedef IdentitytoolkitRelyingpartyVerifyPasswordRequest
  * @memberOf! identitytoolkit(v3)
@@ -938,6 +964,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} pendingIdToken The GITKit token for the non-trusted IDP, which is to be confirmed by the user.
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  */
+
 /**
  * @typedef IdpConfig
  * @memberOf! identitytoolkit(v3)
@@ -949,6 +976,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} secret OAuth2 client secret.
  * @property {string[]} whitelistedAudiences Whitelisted client IDs for audience check.
  */
+
 /**
  * @typedef Relyingparty
  * @memberOf! identitytoolkit(v3)
@@ -969,6 +997,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} requestType The request type.
  * @property {string} userIp The IP address of the user.
  */
+
 /**
  * @typedef ResetPasswordResponse
  * @memberOf! identitytoolkit(v3)
@@ -978,6 +1007,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} newEmail If the out-of-band code is for email recovery, the user&#39;s new email.
  * @property {string} requestType The request type.
  */
+
 /**
  * @typedef SetAccountInfoResponse
  * @memberOf! identitytoolkit(v3)
@@ -995,6 +1025,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {object[]} providerUserInfo The user&#39;s profiles at the associated IdPs.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
+
 /**
  * @typedef SignupNewUserResponse
  * @memberOf! identitytoolkit(v3)
@@ -1007,6 +1038,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} localId The RP local ID of the user.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
+
 /**
  * @typedef UploadAccountResponse
  * @memberOf! identitytoolkit(v3)
@@ -1014,6 +1046,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {object[]} error The error encountered while processing the account info.
  * @property {string} kind The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
  */
+
 /**
  * @typedef UserInfo
  * @memberOf! identitytoolkit(v3)
@@ -1037,6 +1070,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} validSince Timestamp in seconds for valid login token.
  * @property {integer} version Version of the user&#39;s password.
  */
+
 /**
  * @typedef VerifyAssertionResponse
  * @memberOf! identitytoolkit(v3)
@@ -1081,6 +1115,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} timeZone The timezone of the user.
  * @property {string[]} verifiedProvider When action is &#39;map&#39;, contains the idps which can be used for confirmation.
  */
+
 /**
  * @typedef VerifyCustomTokenResponse
  * @memberOf! identitytoolkit(v3)
@@ -1090,6 +1125,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
+
 /**
  * @typedef VerifyPasswordResponse
  * @memberOf! identitytoolkit(v3)

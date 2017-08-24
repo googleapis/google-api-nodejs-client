@@ -151,7 +151,6 @@ function Tagmanager(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     containers: {
 
       /**
@@ -342,7 +341,6 @@ function Tagmanager(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       environments: {
 
         /**
@@ -611,7 +609,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       version_headers: {
 
         /**
@@ -690,7 +687,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       versions: {
 
         /**
@@ -956,7 +952,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       workspaces: {
 
         /**
@@ -1410,7 +1405,6 @@ function Tagmanager(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         },
-
         built_in_variables: {
 
           /**
@@ -1565,7 +1559,6 @@ function Tagmanager(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         },
-
         folders: {
 
           /**
@@ -1874,7 +1867,6 @@ function Tagmanager(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         },
-
         proposal: {
 
           /**
@@ -1952,7 +1944,6 @@ function Tagmanager(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         },
-
         tags: {
 
           /**
@@ -2182,7 +2173,6 @@ function Tagmanager(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         },
-
         triggers: {
 
           /**
@@ -2412,7 +2402,6 @@ function Tagmanager(options) { // eslint-disable-line
             return createAPIRequest(parameters, callback);
           }
         },
-
         variables: {
 
           /**
@@ -2644,7 +2633,6 @@ function Tagmanager(options) { // eslint-disable-line
         }
       }
     },
-
     user_permissions: {
 
       /**
@@ -2849,12 +2837,14 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} shareData Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service.
  * @property {string} tagManagerUrl Auto generated link to the tag manager UI
  */
+
 /**
  * @typedef AccountAccess
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {string} permission Whether the user has no access, user access, or admin access to an account.
  */
+
 /**
  * @typedef BuiltInVariable
  * @memberOf! tagmanager(v2)
@@ -2866,6 +2856,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} type Type of built-in variable.
  * @property {string} workspaceId GTM Workspace ID.
  */
+
 /**
  * @typedef Condition
  * @memberOf! tagmanager(v2)
@@ -2877,6 +2868,7 @@ function Tagmanager(options) { // eslint-disable-line
 - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
 * @property {string} type The type of operator for this condition.
 */
+
 /**
  * @typedef Container
  * @memberOf! tagmanager(v2)
@@ -2892,6 +2884,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} tagManagerUrl Auto generated link to the tag manager UI
  * @property {string[]} usageContext List of Usage Contexts for the Container. Valid values include: web, android, or ios.
  */
+
 /**
  * @typedef ContainerAccess
  * @memberOf! tagmanager(v2)
@@ -2899,6 +2892,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} containerId GTM Container ID.
  * @property {string} permission List of Container permissions.
  */
+
 /**
  * @typedef ContainerVersion
  * @memberOf! tagmanager(v2)
@@ -2919,6 +2913,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Trigger[]} trigger The triggers in the container that this version was taken from.
  * @property {tagmanager(v2).Variable[]} variable The variables in the container that this version was taken from.
  */
+
 /**
  * @typedef ContainerVersionHeader
  * @memberOf! tagmanager(v2)
@@ -2935,12 +2930,14 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} numVariables Number of variables in the container version.
  * @property {string} path GTM Container Versions&#39;s API relative path.
  */
+
 /**
  * @typedef CreateBuiltInVariableResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {tagmanager(v2).BuiltInVariable[]} builtInVariable List of created built-in variables.
  */
+
 /**
  * @typedef CreateContainerVersionRequestVersionOptions
  * @memberOf! tagmanager(v2)
@@ -2948,6 +2945,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} name The name of the container version to be created.
  * @property {string} notes The notes of the container version to be created.
  */
+
 /**
  * @typedef CreateContainerVersionResponse
  * @memberOf! tagmanager(v2)
@@ -2957,6 +2955,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} newWorkspacePath Auto generated workspace path created as a result of version creation. This field should only be populated if the created version was not a quick preview.
  * @property {tagmanager(v2).SyncStatus} syncStatus Whether version creation failed when syncing the workspace to the latest container version.
  */
+
 /**
  * @typedef CreateWorkspaceProposalRequest
  * @memberOf! tagmanager(v2)
@@ -2964,6 +2963,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).WorkspaceProposalHistoryComment} initialComment If present, an initial comment to associate with the workspace proposal.
  * @property {tagmanager(v2).WorkspaceProposalUser[]} reviewers List of users to review the workspace proposal.
  */
+
 /**
  * @typedef Entity
  * @memberOf! tagmanager(v2)
@@ -2974,6 +2974,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Trigger} trigger The trigger being represented by the entity.
  * @property {tagmanager(v2).Variable} variable The variable being represented by the entity.
  */
+
 /**
  * @typedef Environment
  * @memberOf! tagmanager(v2)
@@ -2994,6 +2995,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} url Default preview page url for the environment.
  * @property {string} workspaceId Represents a link to a quick preview of a workspace.
  */
+
 /**
  * @typedef Folder
  * @memberOf! tagmanager(v2)
@@ -3008,6 +3010,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} tagManagerUrl Auto generated link to the tag manager UI
  * @property {string} workspaceId GTM Workspace ID.
  */
+
 /**
  * @typedef FolderEntities
  * @memberOf! tagmanager(v2)
@@ -3017,6 +3020,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Trigger[]} trigger The list of triggers inside the folder.
  * @property {tagmanager(v2).Variable[]} variable The list of variables inside the folder.
  */
+
 /**
  * @typedef GetWorkspaceStatusResponse
  * @memberOf! tagmanager(v2)
@@ -3024,6 +3028,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).MergeConflict[]} mergeConflict The merge conflict after sync.
  * @property {tagmanager(v2).Entity[]} workspaceChange Entities that have been changed in the workspace.
  */
+
 /**
  * @typedef ListAccountsResponse
  * @memberOf! tagmanager(v2)
@@ -3031,6 +3036,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Account[]} account List of GTM Accounts that a user has access to.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListContainerVersionsResponse
  * @memberOf! tagmanager(v2)
@@ -3038,6 +3044,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).ContainerVersionHeader[]} containerVersionHeader All container version headers of a GTM Container.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListContainersResponse
  * @memberOf! tagmanager(v2)
@@ -3045,6 +3052,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Container[]} container All Containers of a GTM Account.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListEnabledBuiltInVariablesResponse
  * @memberOf! tagmanager(v2)
@@ -3052,6 +3060,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).BuiltInVariable[]} builtInVariable All GTM BuiltInVariables of a GTM container.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListEnvironmentsResponse
  * @memberOf! tagmanager(v2)
@@ -3059,6 +3068,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Environment[]} environment All Environments of a GTM Container.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListFoldersResponse
  * @memberOf! tagmanager(v2)
@@ -3066,6 +3076,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Folder[]} folder All GTM Folders of a GTM Container.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
+
 /**
  * @typedef ListTagsResponse
  * @memberOf! tagmanager(v2)
@@ -3073,6 +3084,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  * @property {tagmanager(v2).Tag[]} tag All GTM Tags of a GTM Container.
  */
+
 /**
  * @typedef ListTriggersResponse
  * @memberOf! tagmanager(v2)
@@ -3080,6 +3092,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  * @property {tagmanager(v2).Trigger[]} trigger All GTM Triggers of a GTM Container.
  */
+
 /**
  * @typedef ListUserPermissionsResponse
  * @memberOf! tagmanager(v2)
@@ -3087,6 +3100,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  * @property {tagmanager(v2).UserPermission[]} userPermission All GTM UserPermissions of a GTM Account.
  */
+
 /**
  * @typedef ListVariablesResponse
  * @memberOf! tagmanager(v2)
@@ -3094,6 +3108,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  * @property {tagmanager(v2).Variable[]} variable All GTM Variables of a GTM Container.
  */
+
 /**
  * @typedef ListWorkspacesResponse
  * @memberOf! tagmanager(v2)
@@ -3101,6 +3116,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  * @property {tagmanager(v2).Workspace[]} workspace All Workspaces of a GTM Container.
  */
+
 /**
  * @typedef MergeConflict
  * @memberOf! tagmanager(v2)
@@ -3108,6 +3124,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Entity} entityInBaseVersion The base version entity (since the latest sync operation) that has conflicting changes compared to the workspace. If this field is missing, it means the workspace entity is deleted from the base version.
  * @property {tagmanager(v2).Entity} entityInWorkspace The workspace entity that has conflicting changes compared to the base version. If an entity is deleted in a workspace, it will still appear with a deleted change status.
  */
+
 /**
  * @typedef Parameter
  * @memberOf! tagmanager(v2)
@@ -3123,6 +3140,7 @@ function Tagmanager(options) { // eslint-disable-line
 - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
 * @property {string} value A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
 */
+
 /**
  * @typedef PublishContainerVersionResponse
  * @memberOf! tagmanager(v2)
@@ -3130,6 +3148,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} compilerError Compiler errors or not.
  * @property {tagmanager(v2).ContainerVersion} containerVersion The container version created.
  */
+
 /**
  * @typedef QuickPreviewResponse
  * @memberOf! tagmanager(v2)
@@ -3138,36 +3157,42 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).ContainerVersion} containerVersion The quick previewed container version.
  * @property {tagmanager(v2).SyncStatus} syncStatus Whether quick previewing failed when syncing the workspace to the latest container version.
  */
+
 /**
  * @typedef RevertBuiltInVariableResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {boolean} enabled Whether the built-in variable is enabled after reversion.
  */
+
 /**
  * @typedef RevertFolderResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {tagmanager(v2).Folder} folder Folder as it appears in the latest container version since the last workspace synchronization operation. If no folder is present, that means the folder was deleted in the latest container version.
  */
+
 /**
  * @typedef RevertTagResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {tagmanager(v2).Tag} tag Tag as it appears in the latest container version since the last workspace synchronization operation. If no tag is present, that means the tag was deleted in the latest container version.
  */
+
 /**
  * @typedef RevertTriggerResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {tagmanager(v2).Trigger} trigger Trigger as it appears in the latest container version since the last workspace synchronization operation. If no trigger is present, that means the trigger was deleted in the latest container version.
  */
+
 /**
  * @typedef RevertVariableResponse
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {tagmanager(v2).Variable} variable Variable as it appears in the latest container version since the last workspace synchronization operation. If no variable is present, that means the variable was deleted in the latest container version.
  */
+
 /**
  * @typedef SetupTag
  * @memberOf! tagmanager(v2)
@@ -3175,6 +3200,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} stopOnSetupFailure If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
  * @property {string} tagName The name of the setup tag.
  */
+
 /**
  * @typedef SyncStatus
  * @memberOf! tagmanager(v2)
@@ -3182,6 +3208,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} mergeConflict Synchornization operation detected a merge conflict.
  * @property {boolean} syncError An error occurred during the synchronization operation.
  */
+
 /**
  * @typedef SyncWorkspaceResponse
  * @memberOf! tagmanager(v2)
@@ -3189,6 +3216,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).MergeConflict[]} mergeConflict The merge conflict after sync. If this field is not empty, the sync is still treated as successful. But a version cannot be created until all conflicts are resolved.
  * @property {tagmanager(v2).SyncStatus} syncStatus Indicates whether synchronization caused a merge conflict or sync error.
  */
+
 /**
  * @typedef Tag
  * @memberOf! tagmanager(v2)
@@ -3217,6 +3245,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} type GTM Tag Type.
  * @property {string} workspaceId GTM Workspace ID.
  */
+
 /**
  * @typedef TeardownTag
  * @memberOf! tagmanager(v2)
@@ -3224,6 +3253,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} stopTeardownOnFailure If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.
  * @property {string} tagName The name of the teardown tag.
  */
+
 /**
  * @typedef Timestamp
  * @memberOf! tagmanager(v2)
@@ -3231,6 +3261,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {integer} nanos Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
  * @property {string} seconds Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
  */
+
 /**
  * @typedef Trigger
  * @memberOf! tagmanager(v2)
@@ -3267,6 +3298,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Parameter} waitForTagsTimeout How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
  * @property {string} workspaceId GTM Workspace ID.
  */
+
 /**
  * @typedef UpdateWorkspaceProposalRequest
  * @memberOf! tagmanager(v2)
@@ -3276,6 +3308,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).WorkspaceProposalUser[]} reviewers If present, the list of reviewers of the workspace proposal is updated.
  * @property {string} status If present, the status of the workspace proposal is updated.
  */
+
 /**
  * @typedef UserPermission
  * @memberOf! tagmanager(v2)
@@ -3286,6 +3319,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} emailAddress User&#39;s email address.
  * @property {string} path GTM UserPermission&#39;s API relative path.
  */
+
 /**
  * @typedef Variable
  * @memberOf! tagmanager(v2)
@@ -3307,6 +3341,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} variableId The Variable ID uniquely identifies the GTM Variable.
  * @property {string} workspaceId GTM Workspace ID.
  */
+
 /**
  * @typedef Workspace
  * @memberOf! tagmanager(v2)
@@ -3320,6 +3355,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} tagManagerUrl Auto generated link to the tag manager UI
  * @property {string} workspaceId The Workspace ID uniquely identifies the GTM Workspace.
  */
+
 /**
  * @typedef WorkspaceProposal
  * @memberOf! tagmanager(v2)
@@ -3331,6 +3367,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).WorkspaceProposalUser[]} reviewers Lists of reviewers for the workspace proposal.
  * @property {string} status The status of the workspace proposal as it goes through review.
  */
+
 /**
  * @typedef WorkspaceProposalHistory
  * @memberOf! tagmanager(v2)
@@ -3341,12 +3378,14 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).WorkspaceProposalHistoryStatusChange} statusChange A change in the proposal&#39;s status.
  * @property {string} type The history type distinguishing between comments and status changes.
  */
+
 /**
  * @typedef WorkspaceProposalHistoryComment
  * @memberOf! tagmanager(v2)
  * @type object
  * @property {string} content The contents of the reviewer or author comment.
  */
+
 /**
  * @typedef WorkspaceProposalHistoryStatusChange
  * @memberOf! tagmanager(v2)
@@ -3354,6 +3393,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} newStatus The new proposal status after that status change.
  * @property {string} oldStatus The old proposal status before the status change.
  */
+
 /**
  * @typedef WorkspaceProposalUser
  * @memberOf! tagmanager(v2)

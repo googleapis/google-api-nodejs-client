@@ -3088,6 +3088,46 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.backendServices.setSecurityPolicy
+     *
+     * @desc Sets the security policy for the specified backend service.
+     *
+     * @alias compute.backendServices.setSecurityPolicy
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).SecurityPolicyReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSecurityPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendServices.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -9707,7 +9747,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and then the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(beta).DeprecationStatus} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15986,6 +16026,575 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.interconnectAttachments = {
+
+    /**
+     * compute.interconnectAttachments.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of interconnect attachments.
+     *
+     * @alias compute.interconnectAttachments.aggregatedList
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/aggregated/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.delete
+     *
+     * @desc Deletes the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.get
+     *
+     * @desc Returns the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.insert
+     *
+     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnectAttachments.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).InterconnectAttachment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.list
+     *
+     * @desc Retrieves the list of interconnect attachments contained within the specified region.
+     *
+     * @alias compute.interconnectAttachments.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.interconnectAttachments.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/interconnectAttachments/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnectLocations = {
+
+    /**
+     * compute.interconnectLocations.get
+     *
+     * @desc Returns the details for the specified interconnect location. Get a list of available interconnect locations by making a list() request.
+     *
+     * @alias compute.interconnectLocations.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectLocation Name of the interconnect location to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnectLocations/{interconnectLocation}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnectLocation'],
+        pathParams: ['interconnectLocation', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectLocations.list
+     *
+     * @desc Retrieves the list of interconnect locations available to the specified project.
+     *
+     * @alias compute.interconnectLocations.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnectLocations').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnects = {
+
+    /**
+     * compute.interconnects.delete
+     *
+     * @desc Deletes the specified interconnect.
+     *
+     * @alias compute.interconnects.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.get
+     *
+     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     *
+     * @alias compute.interconnects.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.insert
+     *
+     * @desc Creates a Interconnect in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnects.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.list
+     *
+     * @desc Retrieves the list of interconnect available to the specified project.
+     *
+     * @alias compute.interconnects.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.patch
+     *
+     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     *
+     * @alias compute.interconnects.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.interconnects.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/interconnects/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.licenses = {
 
     /**
@@ -16881,6 +17490,46 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.networks.patch
+     *
+     * @desc Patches the specified network with the data included in the request.
+     *
+     * @alias compute.networks.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).Network} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/networks/{network}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.networks.removePeering
      *
      * @desc Removes a peering from the specified network.
@@ -17175,7 +17824,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.disableXpnHost
      *
-     * @desc Disable this project as an XPN host project.
+     * @desc Disable this project as a shared VPC host project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17264,7 +17913,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.disableXpnResource
      *
-     * @desc Disable an XPN resource associated with this host project.
+     * @desc Disable a serivce resource (a.k.a service project) associated with this host project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17358,7 +18007,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.enableXpnHost
      *
-     * @desc Enable this project as an XPN host project.
+     * @desc Enable this project as a shared VPC host project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17447,7 +18096,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.enableXpnResource
      *
-     * @desc Enable XPN resource (a.k.a service project or service folder in the future) for a host project, so that subnetworks in the host project can be used by instances in the service project or folder.
+     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17629,7 +18278,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.getXpnHost
      *
-     * @desc Get the XPN host project that this project links to. May be empty if no link exists.
+     * @desc Get the shared VPC host project that this project links to. May be empty if no link exists.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17717,7 +18366,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.getXpnResources
      *
-     * @desc Get XPN resources associated with this host project.
+     * @desc Get service resources (a.k.a service project) associated with this host project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17822,7 +18471,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.listXpnHosts
      *
-     * @desc List all XPN host projects visible to the user in an organization.
+     * @desc List all shared VPC host projects visible to the user in an organization.
      *
      * @example
      * // BEFORE RUNNING:
@@ -18783,7 +19432,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and then the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(beta).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18984,7 +19633,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.autoscaler Name of the autoscaler to update.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and then the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(beta).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23337,7 +23986,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Patches the specified Router resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * @example
      * // BEFORE RUNNING:
@@ -24216,6 +24865,246 @@ function Compute(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/compute/beta/projects/{project}/global/routes/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.securityPolicies = {
+
+    /**
+     * compute.securityPolicies.delete
+     *
+     * @desc Deletes the specified policy.
+     *
+     * @alias compute.securityPolicies.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.securityPolicy Name of the security policy to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.get
+     *
+     * @desc List all of the ordered rules present in a single specified policy.
+     *
+     * @alias compute.securityPolicies.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.insert
+     *
+     * @desc Creates a new policy in the specified project using the data included in the request.
+     *
+     * @alias compute.securityPolicies.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.list
+     *
+     * @desc List all the policies that have been configured for the specified project.
+     *
+     * @alias compute.securityPolicies.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.patch
+     *
+     * @desc Patches the specified policy with the data included in the request.
+     *
+     * @alias compute.securityPolicies.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {compute(beta).SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies/{securityPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.securityPolicies.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/securityPolicies/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -33220,6 +34109,7 @@ function Compute(options) { // eslint-disable-line
  * @property {integer} acceleratorCount The number of the guest accelerator cards exposed to this instance.
  * @property {string} acceleratorType Full or partial URL of the accelerator type resource to expose to this instance.
  */
+
 /**
  * @typedef AcceleratorType
  * @memberOf! compute(beta)
@@ -33234,16 +34124,18 @@ function Compute(options) { // eslint-disable-line
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
  * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a.
  */
+
 /**
  * @typedef AcceleratorTypeAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped accelerator type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of AcceleratorTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeAggregatedList for aggregated lists of accelerator types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AcceleratorTypeList
  * @memberOf! compute(beta)
@@ -33251,9 +34143,10 @@ function Compute(options) { // eslint-disable-line
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).AcceleratorType[]} items A list of AcceleratorType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeList for lists of accelerator types.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AcceleratorTypesScopedList
  * @memberOf! compute(beta)
@@ -33261,6 +34154,7 @@ function Compute(options) { // eslint-disable-line
  * @property {compute(beta).AcceleratorType[]} acceleratorTypes [Output Only] List of accelerator types contained in this scope.
  * @property {object} warning [Output Only] An informational warning that appears when the accelerator types list is empty.
  */
+
 /**
  * @typedef AccessConfig
  * @memberOf! compute(beta)
@@ -33270,11 +34164,13 @@ function Compute(options) { // eslint-disable-line
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
+
 /**
  * @typedef Address
  * @memberOf! compute(beta)
  * @type object
 * @property {string} address The static external IP address represented by this resource.
+* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -33288,28 +34184,34 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
 * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string} subnetwork For external addresses, this field should not be used.
+
+The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
 * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
 */
+
 /**
  * @typedef AddressAggregatedList
  * @memberOf! compute(beta)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items [Output Only] A map of scoped address lists.
+ * @property {object} items A list of AddressesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#addressAggregatedList for aggregated lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AddressList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Address[]} items [Output Only] A list of addresses.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Address[]} items A list of Address resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#addressList for lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AddressesScopedList
  * @memberOf! compute(beta)
@@ -33317,6 +34219,7 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
  * @property {compute(beta).Address[]} addresses [Output Only] List of addresses contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef AliasIpRange
  * @memberOf! compute(beta)
@@ -33324,6 +34227,7 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
  * @property {string} ipCidrRange The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
  * @property {string} subnetworkRangeName Optional subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
  */
+
 /**
  * @typedef AttachedDisk
  * @memberOf! compute(beta)
@@ -33357,6 +34261,7 @@ If desired, you can also attach existing non-root persistent disks using this pr
 Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
 * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
 */
+
 /**
  * @typedef AttachedDiskInitializeParams
  * @memberOf! compute(beta)
@@ -33395,6 +34300,7 @@ If the source image is deleted later, this field will not be set.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
 */
+
 /**
  * @typedef AuditConfig
  * @memberOf! compute(beta)
@@ -33403,6 +34309,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @property {string[]} exemptedMembers 
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
+
 /**
  * @typedef AuditLogConfig
  * @memberOf! compute(beta)
@@ -33410,6 +34317,14 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
  * @property {string} logType The log type that this config enables.
  */
+
+/**
+ * @typedef AuthorizationLoggingOptions
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} permissionType The type of the permission that was checked.
+ */
+
 /**
  * @typedef Autoscaler
  * @memberOf! compute(beta)
@@ -33429,26 +34344,29 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
 * @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
+
 /**
  * @typedef AutoscalerAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped autoscaler lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of AutoscalersScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerAggregatedList for aggregated lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AutoscalerList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).Autoscaler[]} items A list of Autoscaler resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerList for lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AutoscalerStatusDetails
  * @memberOf! compute(beta)
@@ -33456,6 +34374,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {string} message The status message.
  * @property {string} type The type of error returned.
  */
+
 /**
  * @typedef AutoscalersScopedList
  * @memberOf! compute(beta)
@@ -33463,6 +34382,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {compute(beta).Autoscaler[]} autoscalers [Output Only] List of autoscalers contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of autoscalers when the list is empty.
  */
+
 /**
  * @typedef AutoscalingPolicy
  * @memberOf! compute(beta)
@@ -33476,6 +34396,7 @@ Virtual machine initialization times might vary because of numerous factors. We 
 * @property {integer} maxNumReplicas The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.
 * @property {integer} minNumReplicas The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. If not provided, autoscaler will choose a default value depending on maximum number of instances allowed.
 */
+
 /**
  * @typedef AutoscalingPolicyCpuUtilization
  * @memberOf! compute(beta)
@@ -33486,6 +34407,7 @@ If the CPU level is below the target utilization, the autoscaler scales down the
 
 If the average CPU is above the target utilization, the autoscaler scales up until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.
 */
+
 /**
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(beta)
@@ -33515,28 +34437,30 @@ A bad example would be a metric exporting an average or median latency, since th
 For example, a good metric to use as a utilization_target is compute.googleapis.com/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.
 * @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
 */
+
 /**
  * @typedef AutoscalingPolicyLoadBalancingUtilization
  * @memberOf! compute(beta)
  * @type object
  * @property {number} utilizationTarget Fraction of backend capacity utilization (set in HTTP(s) load balancing configuration) that autoscaler should maintain. Must be a positive float value. If not defined, the default is 0.8.
  */
+
 /**
  * @typedef Backend
  * @memberOf! compute(beta)
  * @type object
 * @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).
 
-This cannot be used for internal load balancing.
+For Internal Load Balancing, the default and only supported mode is CONNECTION.
 * @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
-* @property {string} group The fully-qualified URL of a zonal Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
+* @property {string} group The fully-qualified URL of a Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
 
 Note that you must specify an Instance Group resource using the fully-qualified URL, rather than a partial URL.
 
-When the BackendService has load balancing scheme INTERNAL, the instance group must be in a zone within the same region as the BackendService.
+When the BackendService has load balancing scheme INTERNAL, the instance group must be within the same region as the BackendService.
 * @property {integer} maxConnections The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
 
 This cannot be used for internal load balancing.
@@ -33553,6 +34477,7 @@ This cannot be used for internal load balancing.
 
 This cannot be used for internal load balancing.
 */
+
 /**
  * @typedef BackendBucket
  * @memberOf! compute(beta)
@@ -33566,6 +34491,7 @@ This cannot be used for internal load balancing.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef BackendBucketList
  * @memberOf! compute(beta)
@@ -33573,9 +34499,10 @@ This cannot be used for internal load balancing.
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).BackendBucket[]} items A list of BackendBucket resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendService
  * @memberOf! compute(beta)
@@ -33592,13 +34519,13 @@ When the load balancing scheme is INTERNAL, this field is not used.
 
 When the load balancing scheme is INTERNAL, this field is not used.
 * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
-* @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for GCE backend services. A health check must not be specified for GAE app backend and Cloud Function backend.
+* @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.
 
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
 * @property {compute(beta).BackendServiceIAP} iap 
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
-* @property {string} loadBalancingScheme 
+* @property {string} loadBalancingScheme Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other. Possible values are INTERNAL and EXTERNAL.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
 
@@ -33612,6 +34539,7 @@ Possible values are HTTP, HTTPS, TCP, and SSL. The default is HTTP.
 
 For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
 * @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services.
+* @property {string} securityPolicy [Output Only] The resource URL for the security policy associated with this backend service.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} sessionAffinity Type of session affinity to use. The default is NONE.
 
@@ -33622,22 +34550,25 @@ When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PR
 When the protocol is UDP, this field is not used.
 * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
 */
+
 /**
  * @typedef BackendServiceAggregatedList
  * @memberOf! compute(beta)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items A map of scoped BackendService lists.
+ * @property {object} items A list of BackendServicesScopedList resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendServiceCdnPolicy
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
  */
+
 /**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(beta)
@@ -33645,6 +34576,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(beta).HealthStatus[]} healthStatus 
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
  */
+
 /**
  * @typedef BackendServiceIAP
  * @memberOf! compute(beta)
@@ -33654,6 +34586,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} oauth2ClientSecret 
  * @property {string} oauth2ClientSecretSha256 [Output Only] SHA256 hash value for the field oauth2_client_secret above.
  */
+
 /**
  * @typedef BackendServiceList
  * @memberOf! compute(beta)
@@ -33664,6 +34597,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendServicesScopedList
  * @memberOf! compute(beta)
@@ -33671,6 +34605,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(beta).BackendService[]} backendServices List of BackendServices contained in this scope.
  * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
+
 /**
  * @typedef Binding
  * @memberOf! compute(beta)
@@ -33695,6 +34630,7 @@ When the protocol is UDP, this field is not used.
 * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
 * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 */
+
 /**
  * @typedef CacheInvalidationRule
  * @memberOf! compute(beta)
@@ -33702,6 +34638,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
  */
+
 /**
  * @typedef CacheKeyPolicy
  * @memberOf! compute(beta)
@@ -33712,6 +34649,7 @@ When the protocol is UDP, this field is not used.
  * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  */
+
 /**
  * @typedef Commitment
  * @memberOf! compute(beta)
@@ -33730,26 +34668,29 @@ When the protocol is UDP, this field is not used.
  * @property {string} status [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
  * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
  */
+
 /**
  * @typedef CommitmentAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items Commitments by scope.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of CommitmentsScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentAggregatedList for aggregated lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef CommitmentList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).Commitment[]} items A list of Commitment resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentList for lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef CommitmentsScopedList
  * @memberOf! compute(beta)
@@ -33757,6 +34698,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(beta).Commitment[]} commitments [Output Only] List of commitments contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of commitments when the list is empty.
  */
+
 /**
  * @typedef Condition
  * @memberOf! compute(beta)
@@ -33768,12 +34710,14 @@ When the protocol is UDP, this field is not used.
  * @property {string} value DEPRECATED. Use &#39;values&#39; instead.
  * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
  */
+
 /**
  * @typedef ConnectionDraining
  * @memberOf! compute(beta)
  * @type object
  * @property {integer} drainingTimeoutSec Time for which instance will be drained (not accept new connections, but still work to finish started).
  */
+
 /**
  * @typedef CustomerEncryptionKey
  * @memberOf! compute(beta)
@@ -33787,6 +34731,7 @@ The key must meet the following requirements before you can provide it to Comput
 https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
 * @property {string} sha256 [Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.
 */
+
 /**
  * @typedef CustomerEncryptionKeyProtectedDisk
  * @memberOf! compute(beta)
@@ -33794,6 +34739,7 @@ https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
  * @property {compute(beta).CustomerEncryptionKey} diskEncryptionKey Decrypts data associated with the disk with a customer-supplied encryption key.
  * @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks.
  */
+
 /**
  * @typedef DeprecationStatus
  * @memberOf! compute(beta)
@@ -33804,6 +34750,7 @@ https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
  * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
  * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
  */
+
 /**
  * @typedef Disk
  * @memberOf! compute(beta)
@@ -33831,7 +34778,7 @@ To see the latest fingerprint, make a get() request to retrieve a disk.
 * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
 * @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.
 
-If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot.
+If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.
 * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
@@ -33863,16 +34810,18 @@ global/images/family/my-private-family
 * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
 * @property {string} zone [Output Only] URL of the zone where the disk resides.
 */
+
 /**
  * @typedef DiskAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped disk lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of DisksScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskAggregatedList for aggregated lists of persistent disks.
- * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. Acceptable values are 0 to 500, inclusive. (Default: 500)
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskList
  * @memberOf! compute(beta)
@@ -33880,9 +34829,10 @@ global/images/family/my-private-family
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).Disk[]} items A list of Disk resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskList for lists of disks.
- * @property {string} nextPageToken This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskMoveRequest
  * @memberOf! compute(beta)
@@ -33896,6 +34846,7 @@ global/images/family/my-private-family
 - projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
 */
+
 /**
  * @typedef DiskType
  * @memberOf! compute(beta)
@@ -33911,26 +34862,29 @@ global/images/family/my-private-family
  * @property {string} validDiskSize [Output Only] An optional textual description of the valid disk size, such as &quot;10GB-10TB&quot;.
  * @property {string} zone [Output Only] URL of the zone where the disk type resides.
  */
+
 /**
  * @typedef DiskTypeAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped disk type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of DiskTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskTypeList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).DiskType[]} items [Output Only] A list of Disk Type resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).DiskType[]} items A list of DiskType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeList for disk types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskTypesScopedList
  * @memberOf! compute(beta)
@@ -33938,12 +34892,14 @@ global/images/family/my-private-family
  * @property {compute(beta).DiskType[]} diskTypes [Output Only] List of disk types contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of disk types when the list is empty.
  */
+
 /**
  * @typedef DisksResizeRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} sizeGb The new size of the persistent disk, which is specified in GB.
  */
+
 /**
  * @typedef DisksScopedList
  * @memberOf! compute(beta)
@@ -33951,6 +34907,7 @@ global/images/family/my-private-family
  * @property {compute(beta).Disk[]} disks [Output Only] List of disks contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of disks when the list is empty.
  */
+
 /**
  * @typedef Expr
  * @memberOf! compute(beta)
@@ -33962,6 +34919,7 @@ The application context of the containing message determines which well-known fe
 * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
 * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
 */
+
 /**
  * @typedef Firewall
  * @memberOf! compute(beta)
@@ -33985,20 +34943,31 @@ If you choose to specify this property, you can specify the network as a full or
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
 * @property {string[]} sourceServiceAccounts If source service accounts are specified, the firewall will apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both properties for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
-* @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} sourceTags If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
 * @property {string[]} targetServiceAccounts A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
 * @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 */
+
 /**
  * @typedef FirewallList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Firewall[]} items [Output Only] A list of Firewall resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Firewall[]} items A list of Firewall resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#firewallList for lists of firewalls.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
+/**
+ * @typedef FixedOrPercent
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {integer} calculated [Output Only] Absolute value calculated based on mode: mode = fixed -&gt; calculated = fixed = percent -&gt; calculated = ceiling(percent/100 * base_value)
+ * @property {integer} fixed fixed must be non-negative.
+ * @property {integer} percent percent must belong to [0, 100].
+ */
+
 /**
  * @typedef ForwardingRule
  * @memberOf! compute(beta)
@@ -34035,8 +35004,8 @@ Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to 
 Some types of forwarding target have constraints on the acceptable ports:  
 - TargetHttpProxy: 80, 8080 
 - TargetHttpsProxy: 443 
-- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995 
-- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995 
+- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 
+- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 
 - TargetVpnGateway: 500, 4500
 -
 * @property {string[]} ports This field is used along with the backend_service field for internal load balancing.
@@ -34063,26 +35032,29 @@ If the network specified is in auto subnet mode, this field is optional. However
 
 This field is not used for internal load balancing.
 */
+
 /**
  * @typedef ForwardingRuleAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped forwarding rule lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of ForwardingRulesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#forwardingRuleAggregatedList for lists of forwarding rules.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ForwardingRuleList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).ForwardingRule[]} items A list of ForwardingRule resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ForwardingRulesScopedList
  * @memberOf! compute(beta)
@@ -34090,6 +35062,7 @@ This field is not used for internal load balancing.
  * @property {compute(beta).ForwardingRule[]} forwardingRules List of forwarding rules contained in this scope.
  * @property {object} warning Informational warning which replaces the list of forwarding rules when the list is empty.
  */
+
 /**
  * @typedef GlobalSetLabelsRequest
  * @memberOf! compute(beta)
@@ -34097,12 +35070,14 @@ This field is not used for internal load balancing.
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a get() request to the resource to get the latest fingerprint.
  * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
  */
+
 /**
  * @typedef GuestOsFeature
  * @memberOf! compute(beta)
  * @type object
  * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
  */
+
 /**
  * @typedef HTTPHealthCheck
  * @memberOf! compute(beta)
@@ -34113,6 +35088,7 @@ This field is not used for internal load balancing.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
  */
+
 /**
  * @typedef HTTPSHealthCheck
  * @memberOf! compute(beta)
@@ -34123,6 +35099,7 @@ This field is not used for internal load balancing.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
  */
+
 /**
  * @typedef HealthCheck
  * @memberOf! compute(beta)
@@ -34144,22 +35121,25 @@ This field is not used for internal load balancing.
  * @property {compute(beta).UDPHealthCheck} udpHealthCheck 
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HealthCheckList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).HealthCheck[]} items A list of HealthCheck resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef HealthCheckReference
  * @memberOf! compute(beta)
  * @type object
  * @property {string} healthCheck 
  */
+
 /**
  * @typedef HealthStatus
  * @memberOf! compute(beta)
@@ -34169,6 +35149,7 @@ This field is not used for internal load balancing.
  * @property {string} ipAddress The IP address represented by this resource.
  * @property {integer} port The port on the instance.
  */
+
 /**
  * @typedef HostRule
  * @memberOf! compute(beta)
@@ -34177,6 +35158,7 @@ This field is not used for internal load balancing.
  * @property {string[]} hosts The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
  * @property {string} pathMatcher The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL&#39;s host portion.
  */
+
 /**
  * @typedef HttpHealthCheck
  * @memberOf! compute(beta)
@@ -34195,16 +35177,18 @@ This field is not used for internal load balancing.
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HttpHealthCheckList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).HttpHealthCheck[]} items A list of HttpHealthCheck resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef HttpsHealthCheck
  * @memberOf! compute(beta)
@@ -34223,6 +35207,7 @@ This field is not used for internal load balancing.
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have a greater value than checkIntervalSec.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HttpsHealthCheckList
  * @memberOf! compute(beta)
@@ -34233,6 +35218,7 @@ This field is not used for internal load balancing.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Image
  * @memberOf! compute(beta)
@@ -34278,16 +35264,18 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
 * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
 */
+
 /**
  * @typedef ImageList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Image[]} items [Output Only] A list of Image resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Image[]} items A list of Image resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Instance
  * @memberOf! compute(beta)
@@ -34318,28 +35306,30 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(beta).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
 * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-* @property {compute(beta).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
+* @property {compute(beta).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
 * @property {compute(beta).Scheduling} scheduling Sets the scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(beta).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
 
 Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
 * @property {boolean} startRestricted [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
-* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(beta).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
 * @property {string} zone [Output Only] URL of the zone where the instance resides.
 */
+
 /**
  * @typedef InstanceAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped instance lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstancesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceAggregatedList for aggregated lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroup
  * @memberOf! compute(beta)
@@ -34362,26 +35352,29 @@ Named ports apply to all instances in this instance group.
 * @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
 * @property {string} zone [Output Only] The URL of the zone where the instance group is located (for zonal resources).
 */
+
 /**
  * @typedef InstanceGroupAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this aggregated list of instance groups. The server generates this identifier.
- * @property {object} items A map of scoped instance group lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstanceGroupsScopedList resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupAggregatedList for aggregated lists of instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this list of instance groups. The server generates this identifier.
- * @property {compute(beta).InstanceGroup[]} items A list of instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceGroup[]} items A list of InstanceGroup resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupManager
  * @memberOf! compute(beta)
@@ -34399,13 +35392,17 @@ Named ports apply to all instances in this instance group.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
  * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
  * @property {compute(beta).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+ * @property {compute(beta).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
  * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
- * @property {string} serviceAccount Service account will be used as credentials for all operations performed by managed instance group on instances. The service accounts needs all permissions required to create and delete instances. When not specified, the service account {projectNumber}@cloudservices.gserviceaccount.com will be used.
+ * @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+ * @property {compute(beta).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
+ * @property {compute(beta).InstanceGroupManagerVersion[]} versions Versions supported by this IGM. User should set this field if they need fine-grained control over how many instances in each version are run by this IGM. Versions are keyed by instanceTemplate. Every instanceTemplate can appear at most once. This field overrides instanceTemplate field. If both instanceTemplate and versions are set, the user receives a warning. &quot;instanceTemplate: X&quot; is semantically equivalent to &quot;versions [ { instanceTemplate: X } ]&quot;. Exactly one version must have targetSize field left unset. Size of such a version will be calculated automatically.
  * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
  */
+
 /**
  * @typedef InstanceGroupManagerActionsSummary
  * @memberOf! compute(beta)
@@ -34420,17 +35417,20 @@ If you have disabled creation retries, this field will not be populated; instead
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
 * @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
 * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
+* @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified. More details regarding verification process are covered in the documentation of ManagedInstance.InstanceAction.VERIFYING enum field.
 */
+
 /**
  * @typedef InstanceGroupManagerAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this aggregated list of managed instance groups. The server generates this identifier.
- * @property {object} items [Output Only] A map of filtered managed instance group lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstanceGroupManagersScopedList resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerAggregatedList for an aggregated list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupManagerAutoHealingPolicy
  * @memberOf! compute(beta)
@@ -34438,28 +35438,62 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} healthCheck The URL for the health check that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
  */
+
 /**
  * @typedef InstanceGroupManagerList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
- * @property {compute(beta).InstanceGroupManager[]} items [Output Only] A list of managed instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceGroupManager[]} items A list of InstanceGroupManager resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
+/**
+ * @typedef InstanceGroupManagerPendingActionsSummary
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {integer} creating [Output Only] The number of instances in the managed instance group that are pending to be created.
+ * @property {integer} deleting [Output Only] The number of instances in the managed instance group that are pending to be deleted.
+ * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are pending to be recreated.
+ * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are pending to be restarted.
+ */
+
+/**
+ * @typedef InstanceGroupManagerUpdatePolicy
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {compute(beta).FixedOrPercent} maxSurge Maximum number of instances that can be created above the InstanceGroupManager.targetSize during the update process. By default, a fixed value of 1 is used. Using maxSurge &gt; 0 will cause instance names to change during the update process. At least one of { maxSurge, maxUnavailable } must be greater than 0.
+ * @property {compute(beta).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable during the update process. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a fixed value of 1 is used. At least one of { maxSurge, maxUnavailable } must be greater than 0.
+ * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
+ * @property {string} minimalAction Minimal action to be taken on an instance. The order of action types is: RESTART &lt; REPLACE.
+ * @property {string} type 
+ */
+
+/**
+ * @typedef InstanceGroupManagerVersion
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} instanceTemplate 
+ * @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
+ * @property {compute(beta).FixedOrPercent} targetSize Intended number of instances that are created from instanceTemplate. The final number of instances created from instanceTemplate will be equal to: * if expressed as fixed number: min(targetSize.fixed, instanceGroupManager.targetSize), * if expressed as percent: ceiling(targetSize.percent * InstanceGroupManager.targetSize). If unset, this version will handle all the remaining instances.
+ */
+
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersListManagedInstancesResponse
  * @memberOf! compute(beta)
@@ -34467,12 +35501,14 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(beta).ManagedInstance[]} managedInstances [Output Only] The list of instances in the managed instance group.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  */
+
 /**
  * @typedef InstanceGroupManagersRecreateInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersResizeAdvancedRequest
  * @memberOf! compute(beta)
@@ -34486,6 +35522,7 @@ This flag is applicable only to the current resize request. It does not influenc
 You can see which instances is being creating in which mode by calling the get or listManagedInstances API.
 * @property {integer} targetSize The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
 */
+
 /**
  * @typedef InstanceGroupManagersScopedList
  * @memberOf! compute(beta)
@@ -34493,18 +35530,21 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).InstanceGroupManager[]} instanceGroupManagers [Output Only] The list of managed instance groups that are contained in the specified project and zone.
  * @property {object} warning [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
  */
+
 /**
  * @typedef InstanceGroupManagersSetAutoHealingRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies 
  */
+
 /**
  * @typedef InstanceGroupManagersSetInstanceTemplateRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
  */
+
 /**
  * @typedef InstanceGroupManagersSetTargetPoolsRequest
  * @memberOf! compute(beta)
@@ -34512,34 +35552,39 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {string} fingerprint The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {string[]} targetPools The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
  */
+
 /**
  * @typedef InstanceGroupsAddInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).InstanceReference[]} instances The list of instances to add to the instance group.
  */
+
 /**
  * @typedef InstanceGroupsListInstances
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this list of instances in the specified instance group. The server generates this identifier.
- * @property {compute(beta).InstanceWithNamedPorts[]} items [Output Only] A list of instances and any named ports that are assigned to those instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceWithNamedPorts[]} items A list of InstanceWithNamedPorts resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupsListInstances for the list of instances in the specified instance group.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this list of instances in the specified instance groups. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupsListInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} instanceState A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
  */
+
 /**
  * @typedef InstanceGroupsRemoveInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).InstanceReference[]} instances The list of instances to remove from the instance group.
  */
+
 /**
  * @typedef InstanceGroupsScopedList
  * @memberOf! compute(beta)
@@ -34547,6 +35592,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).InstanceGroup[]} instanceGroups [Output Only] The list of instance groups that are contained in this scope.
  * @property {object} warning [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
  */
+
 /**
  * @typedef InstanceGroupsSetNamedPortsRequest
  * @memberOf! compute(beta)
@@ -34554,26 +35600,29 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {compute(beta).NamedPort[]} namedPorts The list of named ports to set for this instance group.
  */
+
 /**
  * @typedef InstanceList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Instance[]} items [Output Only] A list of instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Instance[]} items A list of Instance resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceList for lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceListReferrers
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Reference[]} items [Output Only] A list of referrers.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Reference[]} items A list of Reference resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceListReferrers for lists of Instance referrers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceMoveRequest
  * @memberOf! compute(beta)
@@ -34587,6 +35636,7 @@ You can see which instances is being creating in which mode by calling the get o
 - projects/project/zones/zone/instances/instance 
 - zones/zone/instances/instance
 */
+
 /**
  * @typedef InstanceProperties
  * @memberOf! compute(beta)
@@ -34604,12 +35654,14 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).ServiceAccount[]} serviceAccounts A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this template. Use metadata queries to obtain the access tokens for these instances.
  * @property {compute(beta).Tags} tags A list of tags to apply to the instances that are created from this template. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
  */
+
 /**
  * @typedef InstanceReference
  * @memberOf! compute(beta)
  * @type object
  * @property {string} instance The URL for a specific instance.
  */
+
 /**
  * @typedef InstanceTemplate
  * @memberOf! compute(beta)
@@ -34622,16 +35674,18 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).InstanceProperties} properties The instance properties for this instance template.
  * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
  */
+
 /**
  * @typedef InstanceTemplateList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
- * @property {compute(beta).InstanceTemplate[]} items [Output Only] list of InstanceTemplate resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceTemplate[]} items A list of InstanceTemplate resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplatesListResponse for instance template lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this instance template list. The server defines this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceWithNamedPorts
  * @memberOf! compute(beta)
@@ -34640,6 +35694,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).NamedPort[]} namedPorts [Output Only] The named ports that belong to this instance group.
  * @property {string} status [Output Only] The status of the instance.
  */
+
 /**
  * @typedef InstancesScopedList
  * @memberOf! compute(beta)
@@ -34647,6 +35702,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {compute(beta).Instance[]} instances [Output Only] List of instances contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of instances when the list is empty.
  */
+
 /**
  * @typedef InstancesSetLabelsRequest
  * @memberOf! compute(beta)
@@ -34654,24 +35710,28 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {string} labelFingerprint Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
  * @property {object} labels 
  */
+
 /**
  * @typedef InstancesSetMachineResourcesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
  */
+
 /**
  * @typedef InstancesSetMachineTypeRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} machineType Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
  */
+
 /**
  * @typedef InstancesSetMinCpuPlatformRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} minCpuPlatform Minimum cpu/platform this instance should be started at.
  */
+
 /**
  * @typedef InstancesSetServiceAccountRequest
  * @memberOf! compute(beta)
@@ -34679,6 +35739,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
  */
+
 /**
  * @typedef InstancesStartWithEncryptionKeyRequest
  * @memberOf! compute(beta)
@@ -34689,6 +35750,167 @@ In order to start the instance, the disk url and its corresponding key must be p
 
 If the disk is not protected with a customer-supplied encryption key it should not be specified.
 */
+
+/**
+ * @typedef Interconnect
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {compute(beta).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
+ * @property {string} connectionAuthorization [Output Only] URL to retrieve the Letter Of Authority and Customer Facility Assignment (LOA-CFA) documentation relating to this Interconnect. This documentation authorizes the facility provider to connect to the specified crossconnect ports.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {compute(beta).InterconnectOutageNotification[]} expectedOutages [Output Only] List of outages expected for this Interconnect.
+ * @property {string} googleIpAddress [Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.
+ * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+ * @property {string} interconnectType 
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
+ * @property {string} linkType 
+ * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this Interconnect is functional.
+ * @property {string} peerIpAddress [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
+ * @property {integer} provisionedLinkCount [Output Only] Number of links actually provisioned in this interconnect.
+ * @property {integer} requestedLinkCount Target number of physical links in the link bundle, as requested by the customer.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectAttachment
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
+ * @property {compute(beta).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
+ * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectAttachmentAggregatedList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InterconnectAttachmentsScopedList resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentAggregatedList for aggregated lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+
+/**
+ * @typedef InterconnectAttachmentList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InterconnectAttachment[]} items A list of InterconnectAttachment resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentList for lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+
+/**
+ * @typedef InterconnectAttachmentPrivateInfo
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {integer} tag8021q [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
+ */
+
+/**
+ * @typedef InterconnectAttachmentsScopedList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {compute(beta).InterconnectAttachment[]} interconnectAttachments List of interconnect attachments contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+
+/**
+ * @typedef InterconnectCircuitInfo
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} customerDemarcId Customer-side demarc ID for this circuit. This will only be set if it was provided by the Customer to Google during circuit turn-up.
+ * @property {string} googleCircuitId Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
+ * @property {string} googleDemarcId Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+ */
+
+/**
+ * @typedef InterconnectList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Interconnect[]} items A list of Interconnect resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectList for lists of interconnects.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+
+/**
+ * @typedef InterconnectLocation
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+ * @property {string} availabilityZone Availability zone for this location. Within a city, maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
+ * @property {string} city City designator used by the Interconnect UI to locate this InterconnectLocation within the Continent. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
+ * @property {string} continent Continent for this location. Used by the location picker in the Interconnect UI.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] An optional description of the resource.
+ * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+ * @property {string} facilityProviderFacilityId [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} peeringdbFacilityId [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+ * @property {compute(beta).InterconnectLocationRegionInfo[]} regionInfos [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectLocationList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InterconnectLocation[]} items A list of InterconnectLocation resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+
+/**
+ * @typedef InterconnectLocationRegionInfo
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} expectedRttMs Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+ * @property {string} locationPresence Identifies the network presence of this location.
+ * @property {string} region URL for the region of this location.
+ * @property {string} regionKey Scope key for the region of this location.
+ */
+
+/**
+ * @typedef InterconnectOutageNotification
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string[]} affectedCircuits Iff issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
+ * @property {string} description Short user-visible description of the purpose of the outage.
+ * @property {string} endTime 
+ * @property {string} issueType 
+ * @property {string} name Unique identifier for this outage notification.
+ * @property {string} source 
+ * @property {string} startTime Scheduled start and end times for the outage (milliseconds since Unix epoch).
+ * @property {string} state 
+ */
+
 /**
  * @typedef License
  * @memberOf! compute(beta)
@@ -34698,19 +35920,24 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} name [Output Only] Name of the resource. The name is 1-63 characters long and complies with RFC1035.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef LogConfig
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).LogConfigCloudAuditOptions} cloudAudit Cloud audit options.
  * @property {compute(beta).LogConfigCounterOptions} counter Counter options.
+ * @property {compute(beta).LogConfigDataAccessOptions} dataAccess Data access options.
  */
+
 /**
  * @typedef LogConfigCloudAuditOptions
  * @memberOf! compute(beta)
  * @type object
+ * @property {compute(beta).AuthorizationLoggingOptions} authorizationLoggingOptions Information used by the Cloud Audit Logging pipeline.
  * @property {string} logName The log_name to populate in the Cloud Audit Record.
  */
+
 /**
  * @typedef LogConfigCounterOptions
  * @memberOf! compute(beta)
@@ -34718,6 +35945,14 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} field The field value to attribute.
  * @property {string} metric The metric to update.
  */
+
+/**
+ * @typedef LogConfigDataAccessOptions
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} logMode Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.
+ */
+
 /**
  * @typedef MachineType
  * @memberOf! compute(beta)
@@ -34736,26 +35971,29 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} zone [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
  */
+
 /**
  * @typedef MachineTypeAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped machine type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of MachineTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeAggregatedList for aggregated lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef MachineTypeList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).MachineType[]} items [Output Only] A list of Machine Type resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).MachineType[]} items A list of MachineType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeList for lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef MachineTypesScopedList
  * @memberOf! compute(beta)
@@ -34763,6 +36001,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {compute(beta).MachineType[]} machineTypes [Output Only] List of machine types contained in this scope.
  * @property {object} warning [Output Only] An informational warning that appears when the machine types list is empty.
  */
+
 /**
  * @typedef ManagedInstance
  * @memberOf! compute(beta)
@@ -34782,12 +36021,14 @@ If the disk is not protected with a customer-supplied encryption key it should n
 * @property {compute(beta).ManagedInstanceLastAttempt} lastAttempt [Output Only] Information about the last attempt to create or delete the instance.
 * @property {compute(beta).ManagedInstanceVersion} version [Output Only] Intended version of this instance.
 */
+
 /**
  * @typedef ManagedInstanceLastAttempt
  * @memberOf! compute(beta)
  * @type object
  * @property {object} errors [Output Only] Encountered errors during the last attempt to create or delete the instance.
  */
+
 /**
  * @typedef ManagedInstanceVersion
  * @memberOf! compute(beta)
@@ -34795,6 +36036,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} instanceTemplate [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
  * @property {string} name [Output Only] Name of the version.
  */
+
 /**
  * @typedef Metadata
  * @memberOf! compute(beta)
@@ -34803,6 +36045,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {object[]} items Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
  * @property {string} kind [Output Only] Type of the resource. Always compute#metadata for metadata.
  */
+
 /**
  * @typedef NamedPort
  * @memberOf! compute(beta)
@@ -34810,6 +36053,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} name The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
  * @property {integer} port The port number, which can be a value between 1 and 65535.
  */
+
 /**
  * @typedef Network
  * @memberOf! compute(beta)
@@ -34825,9 +36069,11 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
 * @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(beta).NetworkPeering[]} peerings [Output Only] List of network peerings for the resource.
+* @property {compute(beta).NetworkRoutingConfig} routingConfig The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} subnetworks [Output Only] Server-defined fully-qualified URLs for all subnetworks in this network.
 */
+
 /**
  * @typedef NetworkInterface
  * @memberOf! compute(beta)
@@ -34849,16 +36095,18 @@ If you specify this property, you can specify the network as a full or partial U
 - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork 
 - regions/region/subnetworks/subnetwork
 */
+
 /**
  * @typedef NetworkList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Network[]} items [Output Only] A list of Network resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Network[]} items A list of Network resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef NetworkPeering
  * @memberOf! compute(beta)
@@ -34869,6 +36117,14 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
  */
+
+/**
+ * @typedef NetworkRoutingConfig
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} routingMode The network-wide routing mode to use. If set to REGIONAL, this network&#39;s cloud routers will only advertise routes with subnetworks of this network in the same region as the router. If set to GLOBAL, this network&#39;s cloud routers will advertise routes with all subnetworks of this network, across regions.
+ */
+
 /**
  * @typedef NetworksAddPeeringRequest
  * @memberOf! compute(beta)
@@ -34877,12 +36133,14 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} name Name of the peering, which should conform to RFC1035.
  * @property {string} peerNetwork URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  */
+
 /**
  * @typedef NetworksRemovePeeringRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} name Name of the peering, which should conform to RFC1035.
  */
+
 /**
  * @typedef Operation
  * @memberOf! compute(beta)
@@ -34911,6 +36169,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationAggregatedList
  * @memberOf! compute(beta)
@@ -34921,6 +36180,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! compute(beta)
@@ -34931,6 +36191,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef OperationsScopedList
  * @memberOf! compute(beta)
@@ -34938,6 +36199,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(beta).Operation[]} operations [Output Only] List of operations contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of operations when the list is empty.
  */
+
 /**
  * @typedef PathMatcher
  * @memberOf! compute(beta)
@@ -34950,6 +36212,7 @@ If you specify this property, you can specify the network as a full or partial U
 * @property {string} name The name to which this PathMatcher is referred by the HostRule.
 * @property {compute(beta).PathRule[]} pathRules The list of path rules.
 */
+
 /**
  * @typedef PathRule
  * @memberOf! compute(beta)
@@ -34957,6 +36220,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string[]} paths The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.
  * @property {string} service The URL of the BackendService resource if this rule is matched.
  */
+
 /**
  * @typedef Policy
  * @memberOf! compute(beta)
@@ -34970,6 +36234,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
 * @property {compute(beta).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 */
+
 /**
  * @typedef Project
  * @memberOf! compute(beta)
@@ -34985,34 +36250,39 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {compute(beta).Quota[]} quotas [Output Only] Quotas assigned to this project.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).UsageExportLocation} usageExportLocation The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
- * @property {string} xpnProjectStatus [Output Only] The role this project has in a Cross Project Network (XPN) configuration. Currently only HOST projects are differentiated.
+ * @property {string} xpnProjectStatus [Output Only] The role this project has in a shared VPC configuration. Currently only HOST projects are differentiated.
  */
+
 /**
  * @typedef ProjectsDisableXpnResourceRequest
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).XpnResourceId} xpnResource XPN resource ID.
+ * @property {compute(beta).XpnResourceId} xpnResource Service resource (a.k.a service project) ID.
  */
+
 /**
  * @typedef ProjectsEnableXpnResourceRequest
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).XpnResourceId} xpnResource XPN resource ID.
+ * @property {compute(beta).XpnResourceId} xpnResource Service resource (a.k.a service project) ID.
  */
+
 /**
  * @typedef ProjectsGetXpnResources
  * @memberOf! compute(beta)
  * @type object
- * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of XPN resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {compute(beta).XpnResourceId[]} resources XPN resources attached to this project as their XPN host.
+ * @property {compute(beta).XpnResourceId[]} resources Serive resources (a.k.a service projects) attached to this project as their shared VPC host.
  */
+
 /**
  * @typedef ProjectsListXpnHostsRequest
  * @memberOf! compute(beta)
  * @type object
- * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list XPN host projects. If not specified, the organization will be inferred from the project.
+ * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
  */
+
 /**
  * @typedef Quota
  * @memberOf! compute(beta)
@@ -35021,6 +36291,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} metric [Output Only] Name of the quota metric.
  * @property {number} usage [Output Only] Current usage of this metric.
  */
+
 /**
  * @typedef Reference
  * @memberOf! compute(beta)
@@ -35031,6 +36302,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
 * @property {string} referrer URL of the resource which refers to the target.
 * @property {string} target URL of the resource to which this reference points.
 */
+
 /**
  * @typedef Region
  * @memberOf! compute(beta)
@@ -35046,48 +36318,54 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} status [Output Only] Status of the region, either UP or DOWN.
  * @property {string[]} zones [Output Only] A list of zones available in this region, in the form of resource URLs.
  */
+
 /**
  * @typedef RegionAutoscalerList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Autoscaler[]} items A list of autoscalers.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Autoscaler[]} items A list of Autoscaler resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).InstanceGroup[]} items A list of InstanceGroup resources.
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupManagerList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).InstanceGroupManager[]} items A list of managed instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceGroupManager[]} items A list of InstanceGroupManager resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups that exist in th regional scope.
- * @property {string} nextPageToken [Output only] A token used to continue a truncated list request.
- * @property {string} selfLink [Output only] The URL for this resource type. The server generates this URL.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersListInstancesResponse
  * @memberOf! compute(beta)
@@ -35095,18 +36373,21 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {compute(beta).ManagedInstance[]} managedInstances List of managed instances.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersRecreateRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersSetAutoHealingRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies 
  */
+
 /**
  * @typedef RegionInstanceGroupManagersSetTargetPoolsRequest
  * @memberOf! compute(beta)
@@ -35114,22 +36395,25 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} fingerprint Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
  * @property {string[]} targetPools The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersSetTemplateRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} instanceTemplate URL of the InstanceTemplate resource from which all new instances will be created.
  */
+
 /**
  * @typedef RegionInstanceGroupsListInstances
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {compute(beta).InstanceWithNamedPorts[]} items A list of instances and any named ports that are assigned to those instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).InstanceWithNamedPorts[]} items A list of InstanceWithNamedPorts resources.
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupsListInstancesRequest
  * @memberOf! compute(beta)
@@ -35137,6 +36421,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} instanceState Instances in which state should be returned. Valid options are: &#39;ALL&#39;, &#39;RUNNING&#39;. By default, it lists all instances.
  * @property {string} portName Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
  */
+
 /**
  * @typedef RegionInstanceGroupsSetNamedPortsRequest
  * @memberOf! compute(beta)
@@ -35144,16 +36429,18 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {compute(beta).NamedPort[]} namedPorts The list of named ports to set for this instance group.
  */
+
 /**
  * @typedef RegionList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Region[]} items [Output Only] A list of Region resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Region[]} items A list of Region resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#regionList for lists of regions.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionSetLabelsRequest
  * @memberOf! compute(beta)
@@ -35161,6 +36448,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels. Make a get() request to the resource to get the latest fingerprint.
  * @property {object} labels The labels to set for this resource.
  */
+
 /**
  * @typedef ResourceCommitment
  * @memberOf! compute(beta)
@@ -35168,12 +36456,14 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} amount The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
  * @property {string} type Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
  */
+
 /**
  * @typedef ResourceGroupReference
  * @memberOf! compute(beta)
  * @type object
  * @property {string} group A URI referencing one of the instance groups listed in the backend service.
  */
+
 /**
  * @typedef Route
  * @memberOf! compute(beta)
@@ -35197,16 +36487,18 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
 * @property {string[]} tags A list of instance tags to which this route applies.
 * @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
 */
+
 /**
  * @typedef RouteList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {compute(beta).Route[]} items [Output Only] A list of Route resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Route[]} items A list of Route resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Router
  * @memberOf! compute(beta)
@@ -35223,22 +36515,25 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} region [Output Only] URI of the region where the router resides.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef RouterAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped router lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of Router resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RouterBgp
  * @memberOf! compute(beta)
  * @type object
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
+
 /**
  * @typedef RouterBgpPeer
  * @memberOf! compute(beta)
@@ -35250,24 +36545,28 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {integer} peerAsn Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.
  * @property {string} peerIpAddress IP address of the BGP interface outside Google cloud. Only IPv4 is supported.
  */
+
 /**
  * @typedef RouterInterface
  * @memberOf! compute(beta)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+ * @property {string} linkedInterconnectAttachment URI of the linked interconnect attachment. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
+
 /**
  * @typedef RouterList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).Router[]} items A list of Router resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RouterStatus
  * @memberOf! compute(beta)
@@ -35277,6 +36576,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(beta).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
  * @property {string} network URI of the network to which this router belongs.
  */
+
 /**
  * @typedef RouterStatusBgpPeerStatus
  * @memberOf! compute(beta)
@@ -35292,6 +36592,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} uptime Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
  * @property {string} uptimeSeconds Time this session has been up, in seconds. Format: 145
  */
+
 /**
  * @typedef RouterStatusResponse
  * @memberOf! compute(beta)
@@ -35299,12 +36600,14 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} kind Type of resource.
  * @property {compute(beta).RouterStatus} result 
  */
+
 /**
  * @typedef RoutersPreviewResponse
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).Router} resource Preview of given router.
  */
+
 /**
  * @typedef RoutersScopedList
  * @memberOf! compute(beta)
@@ -35312,6 +36615,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(beta).Router[]} routers List of routers contained in this scope.
  * @property {object} warning Informational warning which replaces the list of routers when the list is empty.
  */
+
 /**
  * @typedef Rule
  * @memberOf! compute(beta)
@@ -35324,6 +36628,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string[]} notIns If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
  * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
  */
+
 /**
  * @typedef SSLHealthCheck
  * @memberOf! compute(beta)
@@ -35334,6 +36639,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
  */
+
 /**
  * @typedef Scheduling
  * @memberOf! compute(beta)
@@ -35344,6 +36650,59 @@ By default, this is set to true so an instance is automatically restarted if it 
 * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
 * @property {boolean} preemptible Defines whether the instance is preemptible. This can only be set during instance creation, it cannot be set or changed after the instance has been created.
 */
+
+/**
+ * @typedef SecurityPoliciesList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).SecurityPolicy[]} items A list of SecurityPolicy resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#securityPoliciesList for listsof securityPolicies
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ */
+
+/**
+ * @typedef SecurityPolicy
+ * @memberOf! compute(beta)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} fingerprint Specifies a fingerprint for this resource, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
+
+To see the latest fingerprint, make get() request to the security policy.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output only] Type of the resource. Always compute#securityPolicyfor security policies
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {compute(beta).SecurityPolicyRule[]} rules List of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules are provided when creating a security policy, a default rule with action &quot;allow&quot; will be added.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+*/
+
+/**
+ * @typedef SecurityPolicyReference
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} securityPolicy 
+ */
+
+/**
+ * @typedef SecurityPolicyRule
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} action The Action to preform when the client connection triggers the rule. Can currently be either &quot;allow&quot; or &quot;deny()&quot; where valid values for status are 403, 404, and 502.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} kind [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
+ * @property {compute(beta).SecurityPolicyRuleMatcher} match A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced.
+ * @property {boolean} preview If set to true, the specified action is not enforced.
+ * @property {integer} priority An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated in the increasing order of priority.
+ */
+
+/**
+ * @typedef SecurityPolicyRuleMatcher
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
+ */
+
 /**
  * @typedef SerialPortOutput
  * @memberOf! compute(beta)
@@ -35354,6 +36713,7 @@ By default, this is set to true so an instance is automatically restarted if it 
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {string} start The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.
  */
+
 /**
  * @typedef ServiceAccount
  * @memberOf! compute(beta)
@@ -35361,6 +36721,7 @@ By default, this is set to true so an instance is automatically restarted if it 
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
  */
+
 /**
  * @typedef Snapshot
  * @memberOf! compute(beta)
@@ -35391,16 +36752,18 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 * @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
 * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
 */
+
 /**
  * @typedef SnapshotList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Snapshot[]} items [Output Only] A list of Snapshot resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Snapshot[]} items A list of Snapshot resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef SslCertificate
  * @memberOf! compute(beta)
@@ -35414,16 +36777,18 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef SslCertificateList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).SslCertificate[]} items A list of SslCertificate resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Subnetwork
  * @memberOf! compute(beta)
@@ -35441,26 +36806,29 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {compute(beta).SubnetworkSecondaryRange[]} secondaryIpRanges An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef SubnetworkAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output] A map of scoped Subnetwork lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of SubnetworksScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkAggregatedList for aggregated lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef SubnetworkList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Subnetwork[]} items The Subnetwork resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Subnetwork[]} items A list of Subnetwork resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef SubnetworkSecondaryRange
  * @memberOf! compute(beta)
@@ -35468,12 +36836,14 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} ipCidrRange The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported.
  * @property {string} rangeName The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
  */
+
 /**
  * @typedef SubnetworksExpandIpCidrRangeRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} ipCidrRange The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
  */
+
 /**
  * @typedef SubnetworksScopedList
  * @memberOf! compute(beta)
@@ -35481,12 +36851,14 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {compute(beta).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
  */
+
 /**
  * @typedef SubnetworksSetPrivateIpGoogleAccessRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {boolean} privateIpGoogleAccess 
  */
+
 /**
  * @typedef TCPHealthCheck
  * @memberOf! compute(beta)
@@ -35497,6 +36869,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} request The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
  */
+
 /**
  * @typedef Tags
  * @memberOf! compute(beta)
@@ -35506,6 +36879,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 To see the latest fingerprint, make get() request to the instance.
 * @property {string[]} items An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
 */
+
 /**
  * @typedef TargetHttpProxy
  * @memberOf! compute(beta)
@@ -35518,22 +36892,25 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} urlMap URL to the UrlMap resource that defines the mapping from URL to the BackendService.
  */
+
 /**
  * @typedef TargetHttpProxyList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetHttpProxy[]} items A list of TargetHttpProxy resources.
  * @property {string} kind Type of resource. Always compute#targetHttpProxyList for lists of target HTTP proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetHttpsProxiesSetSslCertificatesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} sslCertificates New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
  */
+
 /**
  * @typedef TargetHttpsProxy
  * @memberOf! compute(beta)
@@ -35550,16 +36927,18 @@ To see the latest fingerprint, make get() request to the instance.
 - projects/project/global/urlMaps/url-map 
 - global/urlMaps/url-map
 */
+
 /**
  * @typedef TargetHttpsProxyList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetHttpsProxy[]} items A list of TargetHttpsProxy resources.
  * @property {string} kind Type of resource. Always compute#targetHttpsProxyList for lists of target HTTPS proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstance
  * @memberOf! compute(beta)
@@ -35577,26 +36956,29 @@ To see the latest fingerprint, make get() request to the instance.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} zone [Output Only] URL of the zone where the target instance resides.
 */
+
 /**
  * @typedef TargetInstanceAggregatedList
  * @memberOf! compute(beta)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items A map of scoped target instance lists.
+ * @property {object} items A list of TargetInstance resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstanceList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetInstance[]} items A list of TargetInstance resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstancesScopedList
  * @memberOf! compute(beta)
@@ -35604,6 +36986,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {compute(beta).TargetInstance[]} targetInstances List of target instances contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TargetPool
  * @memberOf! compute(beta)
@@ -35632,16 +37015,18 @@ NONE: Connections from the same client IP may go to any instance in the pool.
 CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
 CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
 */
+
 /**
  * @typedef TargetPoolAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {object} items [Output Only] A map of scoped target pool lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of TargetPool resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolAggregatedList for aggregated lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetPoolInstanceHealth
  * @memberOf! compute(beta)
@@ -35649,22 +37034,25 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).HealthStatus[]} healthStatus 
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
  */
+
 /**
  * @typedef TargetPoolList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetPool[]} items A list of TargetPool resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolList for lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetPoolsAddHealthCheckRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).HealthCheckReference[]} healthChecks The HttpHealthCheck to add to the target pool.
  */
+
 /**
  * @typedef TargetPoolsAddInstanceRequest
  * @memberOf! compute(beta)
@@ -35674,6 +37062,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
 - projects/project-id/zones/zone/instances/instance-name 
 - zones/zone/instances/instance-name
 */
+
 /**
  * @typedef TargetPoolsRemoveHealthCheckRequest
  * @memberOf! compute(beta)
@@ -35683,12 +37072,14 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
 - projects/project/global/httpHealthChecks/health-check 
 - global/httpHealthChecks/health-check
 */
+
 /**
  * @typedef TargetPoolsRemoveInstanceRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).InstanceReference[]} instances URLs of the instances to be removed from target pool.
  */
+
 /**
  * @typedef TargetPoolsScopedList
  * @memberOf! compute(beta)
@@ -35696,30 +37087,35 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).TargetPool[]} targetPools List of target pools contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TargetReference
  * @memberOf! compute(beta)
  * @type object
  * @property {string} target 
  */
+
 /**
  * @typedef TargetSslProxiesSetBackendServiceRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} service The URL of the new BackendService resource for the targetSslProxy.
  */
+
 /**
  * @typedef TargetSslProxiesSetProxyHeaderRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
  */
+
 /**
  * @typedef TargetSslProxiesSetSslCertificatesRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} sslCertificates New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
  */
+
 /**
  * @typedef TargetSslProxy
  * @memberOf! compute(beta)
@@ -35734,28 +37130,32 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} service URL to the BackendService resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections to Backends. Currently exactly one SSL certificate must be specified.
  */
+
 /**
  * @typedef TargetSslProxyList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetSslProxy[]} items A list of TargetSslProxy resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetTcpProxiesSetBackendServiceRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} service The URL of the new BackendService resource for the targetTcpProxy.
  */
+
 /**
  * @typedef TargetTcpProxiesSetProxyHeaderRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
  */
+
 /**
  * @typedef TargetTcpProxy
  * @memberOf! compute(beta)
@@ -35769,16 +37169,18 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
  */
+
 /**
  * @typedef TargetTcpProxyList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).TargetTcpProxy[]} items A list of TargetTcpProxy resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGateway
  * @memberOf! compute(beta)
@@ -35795,26 +37197,29 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} status [Output Only] The status of the VPN gateway.
  * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
  */
+
 /**
  * @typedef TargetVpnGatewayAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped target vpn gateway lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGatewayList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).TargetVpnGateway[]} items [Output Only] A list of TargetVpnGateway resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).TargetVpnGateway[]} items A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGatewaysScopedList
  * @memberOf! compute(beta)
@@ -35822,6 +37227,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).TargetVpnGateway[]} targetVpnGateways [Output Only] List of target vpn gateways contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TestFailure
  * @memberOf! compute(beta)
@@ -35831,18 +37237,21 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} host 
  * @property {string} path 
  */
+
 /**
  * @typedef TestPermissionsRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} permissions The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
  */
+
 /**
  * @typedef TestPermissionsResponse
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
+
 /**
  * @typedef UDPHealthCheck
  * @memberOf! compute(beta)
@@ -35852,6 +37261,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} request Raw data of request to send in payload of UDP packet. It is an error if this is empty. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. It is an error if this is empty. The response data can only be ASCII.
  */
+
 /**
  * @typedef UrlMap
  * @memberOf! compute(beta)
@@ -35868,22 +37278,25 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).UrlMapTest[]} tests The list of expected URL mappings. Request to update this UrlMap will succeed only if all of the test cases pass.
  */
+
 /**
  * @typedef UrlMapList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(beta).UrlMap[]} items A list of UrlMap resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef UrlMapReference
  * @memberOf! compute(beta)
  * @type object
  * @property {string} urlMap 
  */
+
 /**
  * @typedef UrlMapTest
  * @memberOf! compute(beta)
@@ -35893,6 +37306,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} path Path portion of the URL.
  * @property {string} service Expected BackendService resource the given URL should be mapped to.
  */
+
 /**
  * @typedef UrlMapValidationResult
  * @memberOf! compute(beta)
@@ -35902,18 +37316,21 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).TestFailure[]} testFailures 
  * @property {boolean} testPassed If successfully loaded, this field indicates whether the test passed. If false, &#39;testFailures&#39;s indicate the reason of failure.
  */
+
 /**
  * @typedef UrlMapsValidateRequest
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).UrlMap} resource Content of the UrlMap to be validated.
  */
+
 /**
  * @typedef UrlMapsValidateResponse
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).UrlMapValidationResult} result 
  */
+
 /**
  * @typedef UsageExportLocation
  * @memberOf! compute(beta)
@@ -35921,6 +37338,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} bucketName The name of an existing bucket in Cloud Storage where the usage report object is stored. The Google Service Account is granted write access to this bucket. This can either be the bucket name by itself, such as example-bucket, or the bucket name with gs:// or https://storage.googleapis.com/ in front of it, such as gs://example-bucket.
  * @property {string} reportNamePrefix An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.
  */
+
 /**
  * @typedef VpnTunnel
  * @memberOf! compute(beta)
@@ -35943,26 +37361,29 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} status [Output Only] The status of the VPN tunnel.
  * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
  */
+
 /**
  * @typedef VpnTunnelAggregatedList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped vpn tunnel lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of VpnTunnelsScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef VpnTunnelList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).VpnTunnel[]} items [Output Only] A list of VpnTunnel resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).VpnTunnel[]} items A list of VpnTunnel resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef VpnTunnelsScopedList
  * @memberOf! compute(beta)
@@ -35970,23 +37391,26 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).VpnTunnel[]} vpnTunnels List of vpn tunnels contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef XpnHostList
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).Project[]} items [Output Only] A list of XPN host project URLs.
- * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of XPN hosts.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).Project[]} items [Output Only] A list of shared VPC host project URLs.
+ * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of shared VPC hosts.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef XpnResourceId
  * @memberOf! compute(beta)
  * @type object
- * @property {string} id The ID of the XPN resource. In the case of projects, this field matches the project&#39;s name, not the canonical ID.
- * @property {string} type The type of the XPN resource.
+ * @property {string} id The ID of the service resource. In the case of projects, this field matches the project ID (e.g., my-project), not the project number (e.g., 12345678).
+ * @property {string} type The type of the service resource.
  */
+
 /**
  * @typedef Zone
  * @memberOf! compute(beta)
@@ -36002,16 +37426,18 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] Status of the zone, either UP or DOWN.
  */
+
 /**
  * @typedef ZoneList
  * @memberOf! compute(beta)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {compute(beta).Zone[]} items [Output Only] A list of Zone resources.
+ * @property {compute(beta).Zone[]} items A list of Zone resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ZoneSetLabelsRequest
  * @memberOf! compute(beta)

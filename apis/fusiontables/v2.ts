@@ -1360,6 +1360,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {number} opacity Opacity of the color: 0.0 (transparent) to 1.0 (opaque).
  * @property {integer} weight Width of a line (in pixels).
  */
+
 /**
  * @typedef Column
  * @memberOf! fusiontables(v2)
@@ -1380,6 +1381,7 @@ See W3C Graph-based Data Model.
 * @property {string[]} validValues List of valid values used to validate data and supply a drop-down list of values in the web application.
 * @property {boolean} validateData If true, data entered via the web application is validated.
 */
+
 /**
  * @typedef ColumnList
  * @memberOf! fusiontables(v2)
@@ -1389,6 +1391,7 @@ See W3C Graph-based Data Model.
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  * @property {integer} totalItems Total number of columns for the table.
  */
+
 /**
  * @typedef Geometry
  * @memberOf! fusiontables(v2)
@@ -1397,6 +1400,7 @@ See W3C Graph-based Data Model.
  * @property {any} geometry 
  * @property {string} type Type: A collection of geometries.
  */
+
 /**
  * @typedef Import
  * @memberOf! fusiontables(v2)
@@ -1404,6 +1408,7 @@ See W3C Graph-based Data Model.
  * @property {string} kind The kind of item this is. For an import, this is always fusiontables#import.
  * @property {string} numRowsReceived The number of rows received from the import request.
  */
+
 /**
  * @typedef Line
  * @memberOf! fusiontables(v2)
@@ -1411,6 +1416,7 @@ See W3C Graph-based Data Model.
  * @property {array[]} coordinates The coordinates that define the line.
  * @property {string} type Type: A line geometry.
  */
+
 /**
  * @typedef LineStyle
  * @memberOf! fusiontables(v2)
@@ -1421,6 +1427,7 @@ See W3C Graph-based Data Model.
  * @property {integer} strokeWeight Width of the line in pixels.
  * @property {fusiontables(v2).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the line.
  */
+
 /**
  * @typedef Point
  * @memberOf! fusiontables(v2)
@@ -1428,6 +1435,7 @@ See W3C Graph-based Data Model.
  * @property {number[]} coordinates The coordinates that define the point.
  * @property {string} type Point: A point geometry.
  */
+
 /**
  * @typedef PointStyle
  * @memberOf! fusiontables(v2)
@@ -1435,6 +1443,7 @@ See W3C Graph-based Data Model.
  * @property {string} iconName Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
  * @property {fusiontables(v2).StyleFunction} iconStyler Column or a bucket value from which the icon name is to be determined.
  */
+
 /**
  * @typedef Polygon
  * @memberOf! fusiontables(v2)
@@ -1442,6 +1451,7 @@ See W3C Graph-based Data Model.
  * @property {array[]} coordinates The coordinates that define the polygon.
  * @property {string} type Type: A polygon geometry.
  */
+
 /**
  * @typedef PolygonStyle
  * @memberOf! fusiontables(v2)
@@ -1455,6 +1465,7 @@ See W3C Graph-based Data Model.
  * @property {integer} strokeWeight Width of the polyon border in pixels.
  * @property {fusiontables(v2).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the polygon border.
  */
+
 /**
  * @typedef Sqlresponse
  * @memberOf! fusiontables(v2)
@@ -1463,6 +1474,7 @@ See W3C Graph-based Data Model.
  * @property {string} kind The kind of item this is. For responses to SQL queries, this is always fusiontables#sqlresponse.
  * @property {array[]} rows The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
  */
+
 /**
  * @typedef StyleFunction
  * @memberOf! fusiontables(v2)
@@ -1472,6 +1484,7 @@ See W3C Graph-based Data Model.
  * @property {object} gradient Gradient function that interpolates a range of colors based on column value.
  * @property {string} kind Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; fusiontables#gradient if the styling of the row is to be based on applying the gradient function on the column value; or fusiontables#buckets if the styling is to based on the bucket into which the the column value falls.
  */
+
 /**
  * @typedef StyleSetting
  * @memberOf! fusiontables(v2)
@@ -1484,6 +1497,7 @@ See W3C Graph-based Data Model.
  * @property {integer} styleId Identifier for the style setting (unique only within tables).
  * @property {string} tableId Identifier for the table.
  */
+
 /**
  * @typedef StyleSettingList
  * @memberOf! fusiontables(v2)
@@ -1493,6 +1507,7 @@ See W3C Graph-based Data Model.
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more styles left.
  * @property {integer} totalItems Total number of styles for the table.
  */
+
 /**
  * @typedef Table
  * @memberOf! fusiontables(v2)
@@ -1511,6 +1526,7 @@ See W3C Graph-based Data Model.
  * @property {string} tablePropertiesJson JSON object containing custom table properties.
  * @property {string} tablePropertiesJsonSchema JSON schema for validating the JSON table properties.
  */
+
 /**
  * @typedef TableList
  * @memberOf! fusiontables(v2)
@@ -1519,6 +1535,7 @@ See W3C Graph-based Data Model.
  * @property {string} kind The kind of item this is. For table list, this is always fusiontables#tableList.
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  */
+
 /**
  * @typedef Task
  * @memberOf! fusiontables(v2)
@@ -1529,6 +1546,7 @@ See W3C Graph-based Data Model.
  * @property {string} taskId Identifier for the task.
  * @property {string} type Type of background task.
  */
+
 /**
  * @typedef TaskList
  * @memberOf! fusiontables(v2)
@@ -1538,6 +1556,7 @@ See W3C Graph-based Data Model.
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  * @property {integer} totalItems Total number of tasks for the table.
  */
+
 /**
  * @typedef Template
  * @memberOf! fusiontables(v2)
@@ -1549,6 +1568,7 @@ See W3C Graph-based Data Model.
  * @property {string} tableId Identifier for the table for which the template is defined.
  * @property {integer} templateId Identifier for the template, unique within the context of a particular table.
  */
+
 /**
  * @typedef TemplateList
  * @memberOf! fusiontables(v2)

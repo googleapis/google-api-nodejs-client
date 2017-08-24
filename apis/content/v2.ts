@@ -78,7 +78,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.claimwebsite
      *
-     * @desc Claims the website of a Merchant Center sub-account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Claims the website of a Merchant Center sub-account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accounts.claimwebsite
      * @memberOf! content(v2)
@@ -194,7 +194,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.get
      *
-     * @desc Retrieves a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Retrieves a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accounts.get
      * @memberOf! content(v2)
@@ -310,7 +310,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.patch
      *
-     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.accounts.patch
      * @memberOf! content(v2)
@@ -350,7 +350,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.update
      *
-     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accounts.update
      * @memberOf! content(v2)
@@ -431,7 +431,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountstatuses.get
      *
-     * @desc Retrieves the status of a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Retrieves the status of a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accountstatuses.get
      * @memberOf! content(v2)
@@ -550,7 +550,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.get
      *
-     * @desc Retrieves the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Retrieves the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accounttax.get
      * @memberOf! content(v2)
@@ -627,7 +627,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.patch
      *
-     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.accounttax.patch
      * @memberOf! content(v2)
@@ -667,7 +667,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.update
      *
-     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.accounttax.update
      * @memberOf! content(v2)
@@ -2134,7 +2134,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.get
      *
-     * @desc Retrieves the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Retrieves the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.shippingsettings.get
      * @memberOf! content(v2)
@@ -2248,7 +2248,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.patch
      *
-     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.shippingsettings.patch
      * @memberOf! content(v2)
@@ -2288,7 +2288,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.update
      *
-     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
      *
      * @alias content.shippingsettings.update
      * @memberOf! content(v2)
@@ -2342,6 +2342,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).AccountUser[]} users Users with access to the account. Every account (except for subaccounts) must have at least one admin user.
  * @property {string} websiteUrl The merchant&#39;s website.
  */
+
 /**
  * @typedef AccountAdwordsLink
  * @memberOf! content(v2)
@@ -2349,6 +2350,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} adwordsId Customer ID of the AdWords account.
  * @property {string} status Status of the link between this Merchant Center account and the AdWords account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google AdWords or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
  */
+
 /**
  * @typedef AccountIdentifier
  * @memberOf! content(v2)
@@ -2356,15 +2358,29 @@ function Content(options) { // eslint-disable-line
  * @property {string} aggregatorId The aggregator ID, set for aggregators and subaccounts (in that case, it represents the aggregator of the subaccount).
  * @property {string} merchantId The merchant account ID, set for individual accounts and subaccounts.
  */
+
 /**
  * @typedef AccountStatus
  * @memberOf! content(v2)
  * @type object
  * @property {string} accountId The ID of the account for which the status is reported.
+ * @property {content(v2).AccountStatusAccountLevelIssue[]} accountLevelIssues A list of account level issues.
  * @property {content(v2).AccountStatusDataQualityIssue[]} dataQualityIssues A list of data quality issues.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountStatus&quot;.
  * @property {boolean} websiteClaimed Whether the account&#39;s website is claimed or not.
  */
+
+/**
+ * @typedef AccountStatusAccountLevelIssue
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} country Country for which this issue is reported.
+ * @property {string} detail Additional details about the issue.
+ * @property {string} id Issue identifier.
+ * @property {string} severity Severity of the issue.
+ * @property {string} title Short description of the issue.
+ */
+
 /**
  * @typedef AccountStatusDataQualityIssue
  * @memberOf! content(v2)
@@ -2380,6 +2396,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} severity Severity of the problem.
  * @property {string} submittedValue Submitted value that causes the issue.
  */
+
 /**
  * @typedef AccountStatusExampleItem
  * @memberOf! content(v2)
@@ -2390,6 +2407,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} title Title of the item.
  * @property {string} valueOnLandingPage The actual value on the landing page.
  */
+
 /**
  * @typedef AccountTax
  * @memberOf! content(v2)
@@ -2398,6 +2416,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountTax&quot;.
  * @property {content(v2).AccountTaxTaxRule[]} rules Tax rules. Updating the tax rules will enable US taxes (not reversible). Defining no rules is equivalent to not charging tax at all.
  */
+
 /**
  * @typedef AccountTaxTaxRule
  * @memberOf! content(v2)
@@ -2408,6 +2427,7 @@ function Content(options) { // eslint-disable-line
  * @property {boolean} shippingTaxed If true, shipping charges are also taxed.
  * @property {boolean} useGlobalRate Whether the tax rate is taken from a global tax table or specified explicitly.
  */
+
 /**
  * @typedef AccountUser
  * @memberOf! content(v2)
@@ -2415,6 +2435,7 @@ function Content(options) { // eslint-disable-line
  * @property {boolean} admin Whether user is an admin.
  * @property {string} emailAddress User&#39;s email address.
  */
+
 /**
  * @typedef AccountsAuthInfoResponse
  * @memberOf! content(v2)
@@ -2425,18 +2446,21 @@ function Content(options) { // eslint-disable-line
 - For a subaccount of an MCA: both the merchant ID and the aggregator ID are defined.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
 */
+
 /**
  * @typedef AccountsClaimWebsiteResponse
  * @memberOf! content(v2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsClaimWebsiteResponse&quot;.
  */
+
 /**
  * @typedef AccountsCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).AccountsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef AccountsCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2448,6 +2472,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} method 
  * @property {boolean} overwrite Only applicable if the method is claimwebsite. Indicates whether or not to take the claim from another account in case there is a conflict.
  */
+
 /**
  * @typedef AccountsCustomBatchResponse
  * @memberOf! content(v2)
@@ -2455,6 +2480,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).AccountsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef AccountsCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2464,6 +2490,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponseEntry&quot;.
  */
+
 /**
  * @typedef AccountsListResponse
  * @memberOf! content(v2)
@@ -2472,12 +2499,14 @@ function Content(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the retrieval of the next page of accounts.
  * @property {content(v2).Account[]} resources 
  */
+
 /**
  * @typedef AccountstatusesCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).AccountstatusesCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef AccountstatusesCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2487,6 +2516,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method The method (get).
  */
+
 /**
  * @typedef AccountstatusesCustomBatchResponse
  * @memberOf! content(v2)
@@ -2494,6 +2524,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).AccountstatusesCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef AccountstatusesCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2502,6 +2533,7 @@ function Content(options) { // eslint-disable-line
  * @property {integer} batchId The ID of the request entry this entry responds to.
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  */
+
 /**
  * @typedef AccountstatusesListResponse
  * @memberOf! content(v2)
@@ -2510,12 +2542,14 @@ function Content(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the retrieval of the next page of account statuses.
  * @property {content(v2).AccountStatus[]} resources 
  */
+
 /**
  * @typedef AccounttaxCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).AccounttaxCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef AccounttaxCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2526,6 +2560,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  */
+
 /**
  * @typedef AccounttaxCustomBatchResponse
  * @memberOf! content(v2)
@@ -2533,6 +2568,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).AccounttaxCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef AccounttaxCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2542,6 +2578,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponseEntry&quot;.
  */
+
 /**
  * @typedef AccounttaxListResponse
  * @memberOf! content(v2)
@@ -2550,6 +2587,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the retrieval of the next page of account tax settings.
  * @property {content(v2).AccountTax[]} resources 
  */
+
 /**
  * @typedef CarrierRate
  * @memberOf! content(v2)
@@ -2561,6 +2599,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} originPostalCode Shipping origin for this carrier rate. Required.
  * @property {string} percentageAdjustment Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example &quot;5.4&quot; increases the rate by 5.4%, &quot;-3&quot; decreases the rate by 3%. Optional.
  */
+
 /**
  * @typedef CarriersCarrier
  * @memberOf! content(v2)
@@ -2569,6 +2608,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} name The name of the carrier (e.g., &quot;UPS&quot;). Always present.
  * @property {string[]} services A list of supported services (e.g., &quot;ground&quot;) for that carrier. Contains at least one service.
  */
+
 /**
  * @typedef Datafeed
  * @memberOf! content(v2)
@@ -2585,6 +2625,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} name A descriptive name of the data feed.
  * @property {string} targetCountry The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
  */
+
 /**
  * @typedef DatafeedFetchSchedule
  * @memberOf! content(v2)
@@ -2594,10 +2635,12 @@ function Content(options) { // eslint-disable-line
  * @property {integer} hour The hour of the day the feed file should be fetched (0-23).
  * @property {integer} minuteOfHour The minute of the hour the feed file should be fetched (0-59). Read-only.
  * @property {string} password An optional password for fetch_url.
+ * @property {boolean} paused Whether the scheduled fetch is paused or not.
  * @property {string} timeZone Time zone used for schedule. UTC by default. E.g., &quot;America/Los_Angeles&quot;.
  * @property {string} username An optional user name for fetch_url.
  * @property {string} weekday The day of the week the feed file should be fetched.
  */
+
 /**
  * @typedef DatafeedFormat
  * @memberOf! content(v2)
@@ -2606,6 +2649,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} fileEncoding Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.
  * @property {string} quotingMode Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.
  */
+
 /**
  * @typedef DatafeedStatus
  * @memberOf! content(v2)
@@ -2619,6 +2663,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} processingStatus The processing status of the feed.
  * @property {content(v2).DatafeedStatusError[]} warnings The list of errors occurring in the feed.
  */
+
 /**
  * @typedef DatafeedStatusError
  * @memberOf! content(v2)
@@ -2628,6 +2673,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).DatafeedStatusExample[]} examples A list of example occurrences of the error, grouped by product.
  * @property {string} message The error message, e.g., &quot;Invalid price&quot;.
  */
+
 /**
  * @typedef DatafeedStatusExample
  * @memberOf! content(v2)
@@ -2636,12 +2682,14 @@ function Content(options) { // eslint-disable-line
  * @property {string} lineNumber Line number in the data feed where the example is found.
  * @property {string} value The problematic value.
  */
+
 /**
  * @typedef DatafeedsCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).DatafeedsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef DatafeedsCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2652,6 +2700,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  */
+
 /**
  * @typedef DatafeedsCustomBatchResponse
  * @memberOf! content(v2)
@@ -2659,6 +2708,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).DatafeedsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef DatafeedsCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2667,6 +2717,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Datafeed} datafeed The requested data feed. Defined if and only if the request was successful.
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  */
+
 /**
  * @typedef DatafeedsListResponse
  * @memberOf! content(v2)
@@ -2675,12 +2726,14 @@ function Content(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the retrieval of the next page of datafeeds.
  * @property {content(v2).Datafeed[]} resources 
  */
+
 /**
  * @typedef DatafeedstatusesCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).DatafeedstatusesCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef DatafeedstatusesCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2690,6 +2743,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  */
+
 /**
  * @typedef DatafeedstatusesCustomBatchResponse
  * @memberOf! content(v2)
@@ -2697,6 +2751,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).DatafeedstatusesCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef DatafeedstatusesCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2705,6 +2760,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).DatafeedStatus} datafeedStatus The requested data feed status. Defined if and only if the request was successful.
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  */
+
 /**
  * @typedef DatafeedstatusesListResponse
  * @memberOf! content(v2)
@@ -2713,6 +2769,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} nextPageToken The token for the retrieval of the next page of datafeed statuses.
  * @property {content(v2).DatafeedStatus[]} resources 
  */
+
 /**
  * @typedef DeliveryTime
  * @memberOf! content(v2)
@@ -2720,6 +2777,7 @@ function Content(options) { // eslint-disable-line
  * @property {integer} maxTransitTimeInDays Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to minTransitTimeInDays. Required.
  * @property {integer} minTransitTimeInDays Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Required.
  */
+
 /**
  * @typedef Error
  * @memberOf! content(v2)
@@ -2728,6 +2786,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} message A description of the error.
  * @property {string} reason The error code.
  */
+
 /**
  * @typedef Errors
  * @memberOf! content(v2)
@@ -2736,6 +2795,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Error[]} errors A list of errors.
  * @property {string} message The message of the first error in errors.
  */
+
 /**
  * @typedef Headers
  * @memberOf! content(v2)
@@ -2746,6 +2806,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Price[]} prices be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
  * @property {content(v2).Weight[]} weights be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
  */
+
 /**
  * @typedef Installment
  * @memberOf! content(v2)
@@ -2753,6 +2814,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Price} amount The amount the buyer has to pay per month.
  * @property {string} months The number of installments the buyer has to pay.
  */
+
 /**
  * @typedef Inventory
  * @memberOf! content(v2)
@@ -2768,12 +2830,14 @@ function Content(options) { // eslint-disable-line
  * @property {string} salePriceEffectiveDate A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
  * @property {integer} sellOnGoogleQuantity The quantity of the product that is reserved for sell-on-google ads. Supported only for online products.
  */
+
 /**
  * @typedef InventoryCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).InventoryCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef InventoryCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -2784,6 +2848,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} productId The ID of the product for which to update price and availability.
  * @property {string} storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
  */
+
 /**
  * @typedef InventoryCustomBatchResponse
  * @memberOf! content(v2)
@@ -2791,6 +2856,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).InventoryCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventoryCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef InventoryCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -2799,6 +2865,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Errors} errors A list of errors defined if and only if the request failed.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventoryCustomBatchResponseEntry&quot;.
  */
+
 /**
  * @typedef InventoryPickup
  * @memberOf! content(v2)
@@ -2806,6 +2873,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} pickupMethod Whether store pickup is available for this offer and whether the pickup option should be shown as buy, reserve, or not supported. Only supported for local inventory. Unless the value is &quot;not supported&quot;, must be submitted together with pickupSla.
  * @property {string} pickupSla The expected date that an order will be ready for pickup, relative to when the order is placed. Only supported for local inventory. Must be submitted together with pickupMethod.
  */
+
 /**
  * @typedef InventorySetRequest
  * @memberOf! content(v2)
@@ -2820,18 +2888,21 @@ function Content(options) { // eslint-disable-line
  * @property {string} salePriceEffectiveDate A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
  * @property {integer} sellOnGoogleQuantity The quantity of the product that is reserved for sell-on-google ads. Supported only for online products.
  */
+
 /**
  * @typedef InventorySetResponse
  * @memberOf! content(v2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventorySetResponse&quot;.
  */
+
 /**
  * @typedef LocationIdSet
  * @memberOf! content(v2)
  * @type object
  * @property {string[]} locationIds A non-empty list of location IDs. They must all be of the same location type (e.g., state).
  */
+
 /**
  * @typedef LoyaltyPoints
  * @memberOf! content(v2)
@@ -2840,6 +2911,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} pointsValue The retailer&#39;s loyalty points in absolute value.
  * @property {number} ratio The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0.
  */
+
 /**
  * @typedef Order
  * @memberOf! content(v2)
@@ -2857,7 +2929,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).OrderPaymentMethod} paymentMethod The details of the payment method.
  * @property {string} paymentStatus The status of the payment.
  * @property {string} placedDate The date when the order was placed, in ISO 8601 format.
- * @property {content(v2).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are  here.
+ * @property {content(v2).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are here.
  * @property {content(v2).OrderRefund[]} refunds Refunds for the order.
  * @property {content(v2).OrderShipment[]} shipments Shipments of the order.
  * @property {content(v2).Price} shippingCost The total cost of shipping for all items.
@@ -2865,6 +2937,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} shippingOption The requested shipping option.
  * @property {string} status The status of the order.
  */
+
 /**
  * @typedef OrderAddress
  * @memberOf! content(v2)
@@ -2882,6 +2955,7 @@ United States
 * @property {string} region Top-level administrative subdivision of the country (e.g. &quot;CA&quot;).
 * @property {string[]} streetAddress Street-level part of the address.
 */
+
 /**
  * @typedef OrderCancellation
  * @memberOf! content(v2)
@@ -2892,6 +2966,7 @@ United States
  * @property {string} reason The reason for the cancellation. Orders that are cancelled with a noInventory reason will lead to the removal of the product from POG until you make an update to that product. This will not affect your Shopping ads.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrderCustomer
  * @memberOf! content(v2)
@@ -2900,6 +2975,7 @@ United States
  * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
  * @property {string} fullName Full name of the customer.
  */
+
 /**
  * @typedef OrderDeliveryDetails
  * @memberOf! content(v2)
@@ -2907,6 +2983,7 @@ United States
  * @property {content(v2).OrderAddress} address The delivery address
  * @property {string} phoneNumber The phone number of the person receiving the delivery.
  */
+
 /**
  * @typedef OrderLineItem
  * @memberOf! content(v2)
@@ -2926,6 +3003,7 @@ United States
  * @property {content(v2).OrderLineItemShippingDetails} shippingDetails Details of the requested shipping for the line item.
  * @property {content(v2).Price} tax Total tax amount for the line item. For example, if two items are purchased, and each have a cost tax of $2, the total tax amount will be $4.
  */
+
 /**
  * @typedef OrderLineItemProduct
  * @memberOf! content(v2)
@@ -2946,6 +3024,7 @@ United States
  * @property {string} title The title of the product.
  * @property {content(v2).OrderLineItemProductVariantAttribute[]} variantAttributes Variant attributes for the item. These are dimensions of the product, such as color, gender, material, pattern, and size. You can find a comprehensive list of variant attributes here.
  */
+
 /**
  * @typedef OrderLineItemProductVariantAttribute
  * @memberOf! content(v2)
@@ -2953,6 +3032,7 @@ United States
  * @property {string} dimension The dimension of the variant.
  * @property {string} value The value for the dimension.
  */
+
 /**
  * @typedef OrderLineItemReturnInfo
  * @memberOf! content(v2)
@@ -2961,6 +3041,7 @@ United States
  * @property {boolean} isReturnable Whether the item is returnable.
  * @property {string} policyUrl URL of the item return policy.
  */
+
 /**
  * @typedef OrderLineItemShippingDetails
  * @memberOf! content(v2)
@@ -2969,6 +3050,7 @@ United States
  * @property {content(v2).OrderLineItemShippingDetailsMethod} method Details of the shipping method.
  * @property {string} shipByDate The ship by date, in ISO 8601 format.
  */
+
 /**
  * @typedef OrderLineItemShippingDetailsMethod
  * @memberOf! content(v2)
@@ -2978,6 +3060,7 @@ United States
  * @property {string} methodName The name of the shipping method.
  * @property {integer} minDaysInTransit Minimum transit time.
  */
+
 /**
  * @typedef OrderPaymentMethod
  * @memberOf! content(v2)
@@ -2989,6 +3072,7 @@ United States
  * @property {string} phoneNumber The billing phone number.
  * @property {string} type The type of instrument (VISA, Mastercard, etc).
  */
+
 /**
  * @typedef OrderPromotion
  * @memberOf! content(v2)
@@ -3002,6 +3086,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
 * @property {string} productApplicability Whether the promotion is applicable to all products or only specific products.
 * @property {string} redemptionChannel Indicates that the promotion is valid online.
 */
+
 /**
  * @typedef OrderPromotionBenefit
  * @memberOf! content(v2)
@@ -3012,6 +3097,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {content(v2).Price} taxImpact The impact on tax when the promotion is applied.
  * @property {string} type Describes whether the promotion applies to products (e.g. 20% off) or to shipping (e.g. Free Shipping).
  */
+
 /**
  * @typedef OrderRefund
  * @memberOf! content(v2)
@@ -3022,6 +3108,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the refund.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrderReturn
  * @memberOf! content(v2)
@@ -3032,6 +3119,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrderShipment
  * @memberOf! content(v2)
@@ -3044,6 +3132,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} status The status of the shipment.
  * @property {string} trackingId The tracking id for the shipment.
  */
+
 /**
  * @typedef OrderShipmentLineItemShipment
  * @memberOf! content(v2)
@@ -3051,12 +3140,14 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} lineItemId The id of the line item that is shipped.
  * @property {integer} quantity The quantity that is shipped.
  */
+
 /**
  * @typedef OrdersAcknowledgeRequest
  * @memberOf! content(v2)
  * @type object
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  */
+
 /**
  * @typedef OrdersAcknowledgeResponse
  * @memberOf! content(v2)
@@ -3064,12 +3155,14 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAcknowledgeResponse&quot;.
  */
+
 /**
  * @typedef OrdersAdvanceTestOrderResponse
  * @memberOf! content(v2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAdvanceTestOrderResponse&quot;.
  */
+
 /**
  * @typedef OrdersCancelLineItemRequest
  * @memberOf! content(v2)
@@ -3081,6 +3174,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCancelLineItemResponse
  * @memberOf! content(v2)
@@ -3088,6 +3182,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelLineItemResponse&quot;.
  */
+
 /**
  * @typedef OrdersCancelRequest
  * @memberOf! content(v2)
@@ -3096,6 +3191,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCancelResponse
  * @memberOf! content(v2)
@@ -3103,6 +3199,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelResponse&quot;.
  */
+
 /**
  * @typedef OrdersCreateTestOrderRequest
  * @memberOf! content(v2)
@@ -3110,6 +3207,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} templateName The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.
  * @property {content(v2).TestOrder} testOrder The test order to create.
  */
+
 /**
  * @typedef OrdersCreateTestOrderResponse
  * @memberOf! content(v2)
@@ -3117,12 +3215,14 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestOrderResponse&quot;.
  * @property {string} orderId The ID of the newly created test order.
  */
+
 /**
  * @typedef OrdersCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).OrdersCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -3140,6 +3240,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {content(v2).OrdersCustomBatchRequestEntryShipLineItems} shipLineItems Required for shipLineItems method.
  * @property {content(v2).OrdersCustomBatchRequestEntryUpdateShipment} updateShipment Required for updateShipment method.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryCancel
  * @memberOf! content(v2)
@@ -3147,6 +3248,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryCancelLineItem
  * @memberOf! content(v2)
@@ -3157,6 +3259,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryRefund
  * @memberOf! content(v2)
@@ -3165,6 +3268,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the refund.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryReturnLineItem
  * @memberOf! content(v2)
@@ -3174,6 +3278,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryShipLineItems
  * @memberOf! content(v2)
@@ -3183,6 +3288,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} trackingId The tracking id for the shipment.
  */
+
 /**
  * @typedef OrdersCustomBatchRequestEntryUpdateShipment
  * @memberOf! content(v2)
@@ -3192,6 +3298,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} status New status for the shipment. Not updated if missing.
  * @property {string} trackingId The tracking id for the shipment. Not updated if missing.
  */
+
 /**
  * @typedef OrdersCustomBatchResponse
  * @memberOf! content(v2)
@@ -3199,6 +3306,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {content(v2).OrdersCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef OrdersCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -3209,6 +3317,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponseEntry&quot;.
  * @property {content(v2).Order} order The retrieved order. Only defined if the method is get and if the request was successful.
  */
+
 /**
  * @typedef OrdersGetByMerchantOrderIdResponse
  * @memberOf! content(v2)
@@ -3216,6 +3325,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
  * @property {content(v2).Order} order The requested order.
  */
+
 /**
  * @typedef OrdersGetTestOrderTemplateResponse
  * @memberOf! content(v2)
@@ -3223,6 +3333,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetTestOrderTemplateResponse&quot;.
  * @property {content(v2).TestOrder} template The requested test order template.
  */
+
 /**
  * @typedef OrdersListResponse
  * @memberOf! content(v2)
@@ -3231,6 +3342,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} nextPageToken The token for the retrieval of the next page of orders.
  * @property {content(v2).Order[]} resources 
  */
+
 /**
  * @typedef OrdersRefundRequest
  * @memberOf! content(v2)
@@ -3240,6 +3352,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the refund.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersRefundResponse
  * @memberOf! content(v2)
@@ -3247,6 +3360,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundResponse&quot;.
  */
+
 /**
  * @typedef OrdersReturnLineItemRequest
  * @memberOf! content(v2)
@@ -3257,6 +3371,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
  */
+
 /**
  * @typedef OrdersReturnLineItemResponse
  * @memberOf! content(v2)
@@ -3264,6 +3379,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
  */
+
 /**
  * @typedef OrdersShipLineItemsRequest
  * @memberOf! content(v2)
@@ -3274,6 +3390,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} trackingId The tracking id for the shipment.
  */
+
 /**
  * @typedef OrdersShipLineItemsResponse
  * @memberOf! content(v2)
@@ -3281,6 +3398,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
  */
+
 /**
  * @typedef OrdersUpdateMerchantOrderIdRequest
  * @memberOf! content(v2)
@@ -3288,6 +3406,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} merchantOrderId The merchant order id to be assigned to the order. Must be unique per merchant.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  */
+
 /**
  * @typedef OrdersUpdateMerchantOrderIdResponse
  * @memberOf! content(v2)
@@ -3295,6 +3414,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
  */
+
 /**
  * @typedef OrdersUpdateShipmentRequest
  * @memberOf! content(v2)
@@ -3305,6 +3425,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} status New status for the shipment. Not updated if missing.
  * @property {string} trackingId The tracking id for the shipment. Not updated if missing.
  */
+
 /**
  * @typedef OrdersUpdateShipmentResponse
  * @memberOf! content(v2)
@@ -3312,6 +3433,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} executionStatus The status of the execution.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
  */
+
 /**
  * @typedef PostalCodeGroup
  * @memberOf! content(v2)
@@ -3320,6 +3442,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} name The name of the postal code group, referred to in headers. Required.
  * @property {content(v2).PostalCodeRange[]} postalCodeRanges A range of postal codes. Required.
  */
+
 /**
  * @typedef PostalCodeRange
  * @memberOf! content(v2)
@@ -3327,6 +3450,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} postalCodeRangeBegin A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: &quot;94108&quot;, &quot;9410*&quot;, &quot;9*&quot;. Required.
  * @property {string} postalCodeRangeEnd A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
  */
+
 /**
  * @typedef Price
  * @memberOf! content(v2)
@@ -3334,6 +3458,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} currency The currency of the price.
  * @property {string} value The price represented as a number.
  */
+
 /**
  * @typedef Product
  * @memberOf! content(v2)
@@ -3413,6 +3538,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string[]} validatedDestinations The read-only list of intended destinations which passed validation.
  * @property {content(v2).Error[]} warnings Read-only warnings.
  */
+
 /**
  * @typedef ProductAspect
  * @memberOf! content(v2)
@@ -3421,6 +3547,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} destinationName The name of the destination. Leave out to apply to all destinations.
  * @property {string} intention Whether the aspect is required, excluded or should be validated.
  */
+
 /**
  * @typedef ProductCustomAttribute
  * @memberOf! content(v2)
@@ -3430,6 +3557,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} unit Free-form unit of the attribute. Unit can only be used for values of type INT or FLOAT.
  * @property {string} value The value of the attribute.
  */
+
 /**
  * @typedef ProductCustomGroup
  * @memberOf! content(v2)
@@ -3437,6 +3565,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {content(v2).ProductCustomAttribute[]} attributes The sub-attributes.
  * @property {string} name The name of the group. Underscores will be replaced by spaces upon insertion.
  */
+
 /**
  * @typedef ProductDestination
  * @memberOf! content(v2)
@@ -3444,6 +3573,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} destinationName The name of the destination.
  * @property {string} intention Whether the destination is required, excluded or should be validated.
  */
+
 /**
  * @typedef ProductShipping
  * @memberOf! content(v2)
@@ -3453,9 +3583,10 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} locationId The numeric id of a location that the shipping rate applies to as defined in the AdWords API.
  * @property {string} postalCode The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length.
  * @property {content(v2).Price} price Fixed shipping price, represented as a number.
- * @property {string} region The geographic region to which a shipping rate applies (e.g. zip code).
+ * @property {string} region The geographic region to which a shipping rate applies.
  * @property {string} service A free-form description of the service class or delivery speed.
  */
+
 /**
  * @typedef ProductShippingDimension
  * @memberOf! content(v2)
@@ -3467,6 +3598,7 @@ Acceptable values are:
 - &quot;in&quot;
 * @property {number} value The dimension of the product used to calculate the shipping cost of the item.
 */
+
 /**
  * @typedef ProductShippingWeight
  * @memberOf! content(v2)
@@ -3474,6 +3606,7 @@ Acceptable values are:
  * @property {string} unit The unit of value.
  * @property {number} value The weight of the product used to calculate the shipping cost of the item.
  */
+
 /**
  * @typedef ProductStatus
  * @memberOf! content(v2)
@@ -3485,9 +3618,11 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productStatus&quot;.
  * @property {string} lastUpdateDate Date on which the item has been last updated, in ISO 8601 format.
  * @property {string} link The link to the product.
+ * @property {content(v2).Product} product Product data after applying all the join inputs.
  * @property {string} productId The id of the product for which status is reported.
  * @property {string} title The title of the product.
  */
+
 /**
  * @typedef ProductStatusDataQualityIssue
  * @memberOf! content(v2)
@@ -3501,6 +3636,7 @@ Acceptable values are:
  * @property {string} valueOnLandingPage The value of that attribute that was found on the landing page
  * @property {string} valueProvided The value the attribute had at time of evaluation.
  */
+
 /**
  * @typedef ProductStatusDestinationStatus
  * @memberOf! content(v2)
@@ -3509,6 +3645,7 @@ Acceptable values are:
  * @property {string} destination The name of the destination
  * @property {string} intention Whether the destination is required, excluded, selected by default or should be validated.
  */
+
 /**
  * @typedef ProductTax
  * @memberOf! content(v2)
@@ -3520,6 +3657,7 @@ Acceptable values are:
  * @property {string} region The geographic region to which the tax rate applies.
  * @property {boolean} taxShip Set to true if tax is charged on shipping.
  */
+
 /**
  * @typedef ProductUnitPricingBaseMeasure
  * @memberOf! content(v2)
@@ -3527,6 +3665,7 @@ Acceptable values are:
  * @property {string} unit The unit of the denominator.
  * @property {string} value The denominator of the unit price.
  */
+
 /**
  * @typedef ProductUnitPricingMeasure
  * @memberOf! content(v2)
@@ -3534,12 +3673,14 @@ Acceptable values are:
  * @property {string} unit The unit of the measure.
  * @property {number} value The measure of an item.
  */
+
 /**
  * @typedef ProductsCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).ProductsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef ProductsCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -3550,6 +3691,7 @@ Acceptable values are:
  * @property {content(v2).Product} product The product to insert. Only required if the method is insert.
  * @property {string} productId The ID of the product to get or delete. Only defined if the method is get or delete.
  */
+
 /**
  * @typedef ProductsCustomBatchResponse
  * @memberOf! content(v2)
@@ -3557,6 +3699,7 @@ Acceptable values are:
  * @property {content(v2).ProductsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef ProductsCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -3566,6 +3709,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponseEntry&quot;.
  * @property {content(v2).Product} product The inserted product. Only defined if the method is insert and if the request was successful.
  */
+
 /**
  * @typedef ProductsListResponse
  * @memberOf! content(v2)
@@ -3574,21 +3718,25 @@ Acceptable values are:
  * @property {string} nextPageToken The token for the retrieval of the next page of products.
  * @property {content(v2).Product[]} resources 
  */
+
 /**
  * @typedef ProductstatusesCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).ProductstatusesCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef ProductstatusesCustomBatchRequestEntry
  * @memberOf! content(v2)
  * @type object
  * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {boolean} includeAttributes 
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  * @property {string} productId The ID of the product whose status to get.
  */
+
 /**
  * @typedef ProductstatusesCustomBatchResponse
  * @memberOf! content(v2)
@@ -3596,6 +3744,7 @@ Acceptable values are:
  * @property {content(v2).ProductstatusesCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef ProductstatusesCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -3605,6 +3754,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponseEntry&quot;.
  * @property {content(v2).ProductStatus} productStatus The requested product status. Only defined if the request was successful.
  */
+
 /**
  * @typedef ProductstatusesListResponse
  * @memberOf! content(v2)
@@ -3613,6 +3763,7 @@ Acceptable values are:
  * @property {string} nextPageToken The token for the retrieval of the next page of products statuses.
  * @property {content(v2).ProductStatus[]} resources 
  */
+
 /**
  * @typedef RateGroup
  * @memberOf! content(v2)
@@ -3623,12 +3774,14 @@ Acceptable values are:
  * @property {content(v2).Value} singleValue The value of the rate group (e.g. flat rate $10). Can only be set if mainTable and subtables are not set.
  * @property {content(v2).Table[]} subtables A list of subtables referred to by mainTable. Can only be set if mainTable is set.
  */
+
 /**
  * @typedef Row
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Value[]} cells The list of cells that constitute the row. Must have the same length as columnHeaders for two-dimensional tables, a length of 1 for one-dimensional tables. Required.
  */
+
 /**
  * @typedef Service
  * @memberOf! content(v2)
@@ -3640,6 +3793,7 @@ Acceptable values are:
  * @property {string} name Free-form name of the service. Must be unique within target account. Required.
  * @property {content(v2).RateGroup[]} rateGroups Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
  */
+
 /**
  * @typedef ShippingSettings
  * @memberOf! content(v2)
@@ -3648,12 +3802,14 @@ Acceptable values are:
  * @property {content(v2).PostalCodeGroup[]} postalCodeGroups A list of postal code groups that can be referred to in services. Optional.
  * @property {content(v2).Service[]} services The target account&#39;s list of services. Optional.
  */
+
 /**
  * @typedef ShippingsettingsCustomBatchRequest
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).ShippingsettingsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
  */
+
 /**
  * @typedef ShippingsettingsCustomBatchRequestEntry
  * @memberOf! content(v2)
@@ -3664,6 +3820,7 @@ Acceptable values are:
  * @property {string} method 
  * @property {content(v2).ShippingSettings} shippingSettings The account shipping settings to update. Only defined if the method is update.
  */
+
 /**
  * @typedef ShippingsettingsCustomBatchResponse
  * @memberOf! content(v2)
@@ -3671,6 +3828,7 @@ Acceptable values are:
  * @property {content(v2).ShippingsettingsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponse&quot;.
  */
+
 /**
  * @typedef ShippingsettingsCustomBatchResponseEntry
  * @memberOf! content(v2)
@@ -3680,6 +3838,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponseEntry&quot;.
  * @property {content(v2).ShippingSettings} shippingSettings The retrieved or updated account shipping settings.
  */
+
 /**
  * @typedef ShippingsettingsGetSupportedCarriersResponse
  * @memberOf! content(v2)
@@ -3687,6 +3846,7 @@ Acceptable values are:
  * @property {content(v2).CarriersCarrier[]} carriers A list of supported carriers. May be empty.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
  */
+
 /**
  * @typedef ShippingsettingsListResponse
  * @memberOf! content(v2)
@@ -3695,6 +3855,7 @@ Acceptable values are:
  * @property {string} nextPageToken The token for the retrieval of the next page of shipping settings.
  * @property {content(v2).ShippingSettings[]} resources 
  */
+
 /**
  * @typedef Table
  * @memberOf! content(v2)
@@ -3704,6 +3865,7 @@ Acceptable values are:
  * @property {content(v2).Headers} rowHeaders Headers of the table&#39;s rows. Required.
  * @property {content(v2).Row[]} rows The list of rows that constitute the table. Must have the same length as rowHeaders. Required.
  */
+
 /**
  * @typedef TestOrder
  * @memberOf! content(v2)
@@ -3713,11 +3875,12 @@ Acceptable values are:
  * @property {content(v2).TestOrderLineItem[]} lineItems Line items that are ordered. At least one line item must be provided.
  * @property {content(v2).TestOrderPaymentMethod} paymentMethod The details of the payment method.
  * @property {string} predefinedDeliveryAddress Identifier of one of the predefined delivery addresses for the delivery.
- * @property {content(v2).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are  here.
+ * @property {content(v2).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are here.
  * @property {content(v2).Price} shippingCost The total cost of shipping for all items.
  * @property {content(v2).Price} shippingCostTax The tax for the total shipping cost.
  * @property {string} shippingOption The requested shipping option.
  */
+
 /**
  * @typedef TestOrderCustomer
  * @memberOf! content(v2)
@@ -3726,6 +3889,7 @@ Acceptable values are:
  * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow. Optional.
  * @property {string} fullName Full name of the customer.
  */
+
 /**
  * @typedef TestOrderLineItem
  * @memberOf! content(v2)
@@ -3736,6 +3900,7 @@ Acceptable values are:
  * @property {content(v2).OrderLineItemShippingDetails} shippingDetails Details of the requested shipping for the line item.
  * @property {content(v2).Price} unitTax Unit tax for the line item.
  */
+
 /**
  * @typedef TestOrderLineItemProduct
  * @memberOf! content(v2)
@@ -3754,6 +3919,7 @@ Acceptable values are:
  * @property {string} title The title of the product.
  * @property {content(v2).OrderLineItemProductVariantAttribute[]} variantAttributes Variant attributes for the item. Optional.
  */
+
 /**
  * @typedef TestOrderPaymentMethod
  * @memberOf! content(v2)
@@ -3764,6 +3930,7 @@ Acceptable values are:
  * @property {string} predefinedBillingAddress The billing address.
  * @property {string} type The type of instrument. Note that real orders might have different values than the four values accepted by createTestOrder.
  */
+
 /**
  * @typedef Value
  * @memberOf! content(v2)
@@ -3774,6 +3941,7 @@ Acceptable values are:
  * @property {string} pricePercentage A percentage of the price represented as a number in decimal notation (e.g., &quot;5.4&quot;). Can only be set if all other fields are not set.
  * @property {string} subtableName The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
  */
+
 /**
  * @typedef Weight
  * @memberOf! content(v2)

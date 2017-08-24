@@ -1631,6 +1631,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} name An optional label to identify this entry.
  * @property {string} value The whitelisted value for the access control list.
  */
+
 /**
  * @typedef BackupConfiguration
  * @memberOf! sqladmin(v1beta4)
@@ -1640,6 +1641,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} kind This is always sql#backupConfiguration.
  * @property {string} startTime Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
  */
+
 /**
  * @typedef BackupRun
  * @memberOf! sqladmin(v1beta4)
@@ -1657,6 +1659,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} type The type of this run; can be either &quot;AUTOMATED&quot; or &quot;ON_DEMAND&quot;.
  * @property {string} windowStartTime The start time of the backup window during which this the backup was attempted in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
  */
+
 /**
  * @typedef BackupRunsListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -1665,6 +1668,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} kind This is always sql#backupRunsList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef BinLogCoordinates
  * @memberOf! sqladmin(v1beta4)
@@ -1673,6 +1677,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} binLogPosition Position (offset) within the binary log file.
  * @property {string} kind This is always sql#binLogCoordinates.
  */
+
 /**
  * @typedef CloneContext
  * @memberOf! sqladmin(v1beta4)
@@ -1681,6 +1686,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} destinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  * @property {string} kind This is always sql#cloneContext.
  */
+
 /**
  * @typedef Database
  * @memberOf! sqladmin(v1beta4)
@@ -1694,6 +1700,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} project The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable.
  * @property {string} selfLink The URI of this resource.
  */
+
 /**
  * @typedef DatabaseFlags
  * @memberOf! sqladmin(v1beta4)
@@ -1701,6 +1708,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} name The name of the flag. These flags are passed at instance startup, so include both MySQL server options and MySQL system variables. Flags should be specified with underscores, not hyphens. For more information, see Configuring MySQL Flags in the Google Cloud SQL documentation, as well as the official MySQL documentation for server options and system variables.
  * @property {string} value The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn&#39;t take a value.
  */
+
 /**
  * @typedef DatabaseInstance
  * @memberOf! sqladmin(v1beta4)
@@ -1710,9 +1718,10 @@ SECOND_GEN: A newer Cloud SQL backend that runs in a Compute Engine VM.
 EXTERNAL: A MySQL server that is not managed by Google.
 * @property {string} connectionName Connection name of the Cloud SQL instance used in connection strings.
 * @property {string} currentDiskSize The current disk usage of the instance in bytes. This property has been deprecated. Users should use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ for details.
-* @property {string} databaseVersion The database engine type and version. The databaseVersion can not be changed after instance creation. Can be MYSQL_5_5, MYSQL_5_6 or MYSQL_5_7. Defaults to MYSQL_5_6. MYSQL_5_7 is applicable only to Second Generation instances.
+* @property {string} databaseVersion The database engine type and version. The databaseVersion field can not be changed after instance creation. MySQL Second Generation instances: MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6 MySQL First Generation instances: MYSQL_5_6 (default) or MYSQL_5_5
 * @property {string} etag HTTP 1.1 Entity tag for the resource.
 * @property {object} failoverReplica The name and status of the failover replica. This property is applicable only to Second Generation instances.
+* @property {string} gceZone The GCE zone that the instance is serving from. In case when the instance is failed over to standby zone, this value may be different with what user specified in the settings.
 * @property {string} instanceType The instance type. This can be one of the following.
 CLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master.
 ON_PREMISES_INSTANCE: An instance running on the customer&#39;s premises.
@@ -1741,6 +1750,7 @@ FAILED: The instance creation failed.
 UNKNOWN_STATE: The state of the instance is unknown.
 * @property {string[]} suspensionReason If the instance state is SUSPENDED, the reason for the suspension.
 */
+
 /**
  * @typedef DatabasesListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -1748,6 +1758,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {sqladmin(v1beta4).Database[]} items List of database resources in the instance.
  * @property {string} kind This is always sql#databasesList.
  */
+
 /**
  * @typedef ExportContext
  * @memberOf! sqladmin(v1beta4)
@@ -1761,6 +1772,7 @@ CSV: The file contains CSV data.
 * @property {object} sqlExportOptions Options for exporting data as SQL statements.
 * @property {string} uri The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed.
 */
+
 /**
  * @typedef FailoverContext
  * @memberOf! sqladmin(v1beta4)
@@ -1768,6 +1780,7 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#failoverContext.
  * @property {string} settingsVersion The current settings version of this instance. Request will be rejected if this version doesn&#39;t match the current settings version.
  */
+
 /**
  * @typedef Flag
  * @memberOf! sqladmin(v1beta4)
@@ -1781,6 +1794,7 @@ CSV: The file contains CSV data.
  * @property {boolean} requiresRestart Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances.
  * @property {string} type The type of the flag. Flags are typed to being BOOLEAN, STRING, INTEGER or NONE. NONE is used for flags which do not take a value, such as skip_grant_tables.
  */
+
 /**
  * @typedef FlagsListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -1788,6 +1802,7 @@ CSV: The file contains CSV data.
  * @property {sqladmin(v1beta4).Flag[]} items List of flags.
  * @property {string} kind This is always sql#flagsList.
  */
+
 /**
  * @typedef ImportContext
  * @memberOf! sqladmin(v1beta4)
@@ -1797,34 +1812,39 @@ CSV: The file contains CSV data.
 * @property {string} fileType The file type for the specified uri.
 SQL: The file contains SQL statements.
 CSV: The file contains CSV data.
-* @property {string} importUser The PostgreSQL user to use for this import operation. Defaults to cloudsqlsuperuser. Does not apply to MySQL instances.
+* @property {string} importUser The PostgreSQL user for this import operation. Defaults to cloudsqlsuperuser. Used only for PostgreSQL instances.
 * @property {string} kind This is always sql#importContext.
 * @property {string} uri A path to the file in Google Cloud Storage from which the import is made. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are supported when fileType is SQL.
 */
+
 /**
  * @typedef InstancesCloneRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).CloneContext} cloneContext Contains details about the clone operation.
  */
+
 /**
  * @typedef InstancesExportRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).ExportContext} exportContext Contains details about the export operation.
  */
+
 /**
  * @typedef InstancesFailoverRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).FailoverContext} failoverContext Failover Context.
  */
+
 /**
  * @typedef InstancesImportRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).ImportContext} importContext Contains details about the import operation.
  */
+
 /**
  * @typedef InstancesListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -1833,26 +1853,30 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#instancesList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef InstancesRestoreBackupRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).RestoreBackupContext} restoreBackupContext Parameters required to perform the restore backup operation.
  */
+
 /**
  * @typedef InstancesTruncateLogRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).TruncateLogContext} truncateLogContext Contains details about the truncate log operation.
  */
+
 /**
  * @typedef IpConfiguration
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).AclEntry[]} authorizedNetworks The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as &#39;slash&#39; notation (e.g. 192.168.100.0/24).
  * @property {boolean} ipv4Enabled Whether the instance should be assigned an IP address or not.
- * @property {boolean} requireSsl Whether the mysqld should default to &#39;REQUIRE X509&#39; for users connecting over IP.
+ * @property {boolean} requireSsl Whether SSL connections over IP should be enforced or not.
  */
+
 /**
  * @typedef IpMapping
  * @memberOf! sqladmin(v1beta4)
@@ -1861,6 +1885,7 @@ CSV: The file contains CSV data.
  * @property {string} timeToRetire The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.
  * @property {string} type The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
  */
+
 /**
  * @typedef LocationPreference
  * @memberOf! sqladmin(v1beta4)
@@ -1869,6 +1894,7 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#locationPreference.
  * @property {string} zone The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b, etc.).
  */
+
 /**
  * @typedef MaintenanceWindow
  * @memberOf! sqladmin(v1beta4)
@@ -1878,6 +1904,7 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#maintenanceWindow.
  * @property {string} updateTrack 
  */
+
 /**
  * @typedef MySqlReplicaConfiguration
  * @memberOf! sqladmin(v1beta4)
@@ -1894,6 +1921,7 @@ CSV: The file contains CSV data.
  * @property {string} username The username for the replication connection.
  * @property {boolean} verifyServerCertificate Whether or not to check the master&#39;s Common Name value in the certificate that it sends during the SSL handshake.
  */
+
 /**
  * @typedef OnPremisesConfiguration
  * @memberOf! sqladmin(v1beta4)
@@ -1901,6 +1929,7 @@ CSV: The file contains CSV data.
  * @property {string} hostPort The host and port of the on-premises instance in host:port format
  * @property {string} kind This is always sql#onPremisesConfiguration.
  */
+
 /**
  * @typedef Operation
  * @memberOf! sqladmin(v1beta4)
@@ -1921,6 +1950,7 @@ CSV: The file contains CSV data.
  * @property {string} targetProject The project ID of the target instance related to this operation.
  * @property {string} user The email address of the user who initiated this operation.
  */
+
 /**
  * @typedef OperationError
  * @memberOf! sqladmin(v1beta4)
@@ -1929,6 +1959,7 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#operationError.
  * @property {string} message Additional information about the error encountered.
  */
+
 /**
  * @typedef OperationErrors
  * @memberOf! sqladmin(v1beta4)
@@ -1936,6 +1967,7 @@ CSV: The file contains CSV data.
  * @property {sqladmin(v1beta4).OperationError[]} errors The list of errors encountered while processing this operation.
  * @property {string} kind This is always sql#operationErrors.
  */
+
 /**
  * @typedef OperationsListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -1944,6 +1976,7 @@ CSV: The file contains CSV data.
  * @property {string} kind This is always sql#operationsList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef ReplicaConfiguration
  * @memberOf! sqladmin(v1beta4)
@@ -1953,6 +1986,7 @@ Only one replica can be specified as failover target, and the replica has to be 
 * @property {string} kind This is always sql#replicaConfiguration.
 * @property {sqladmin(v1beta4).MySqlReplicaConfiguration} mysqlReplicaConfiguration MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
 */
+
 /**
  * @typedef RestoreBackupContext
  * @memberOf! sqladmin(v1beta4)
@@ -1961,6 +1995,7 @@ Only one replica can be specified as failover target, and the replica has to be 
  * @property {string} instanceId The ID of the instance that the backup was taken from.
  * @property {string} kind This is always sql#restoreBackupContext.
  */
+
 /**
  * @typedef Settings
  * @memberOf! sqladmin(v1beta4)
@@ -1989,6 +2024,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
 * @property {string} tier The tier of service for this instance, for example D1, D2. For more information, see pricing.
 * @property {object} userLabels User-provided labels, represented as a dictionary where each label is a single key value pair.
 */
+
 /**
  * @typedef SslCert
  * @memberOf! sqladmin(v1beta4)
@@ -2003,6 +2039,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {string} selfLink The URI of this resource.
  * @property {string} sha1Fingerprint Sha1 Fingerprint.
  */
+
 /**
  * @typedef SslCertDetail
  * @memberOf! sqladmin(v1beta4)
@@ -2010,18 +2047,21 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {sqladmin(v1beta4).SslCert} certInfo The public information about the cert.
  * @property {string} certPrivateKey The private key for the client cert, in pem format. Keep private in order to protect your security.
  */
+
 /**
  * @typedef SslCertsCreateEphemeralRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {string} public_key PEM encoded public key to include in the signed certificate.
  */
+
 /**
  * @typedef SslCertsInsertRequest
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {string} commonName User supplied name. Must be a distinct name from the other certificates for this instance. New certificates will not be usable until the instance is restarted.
  */
+
 /**
  * @typedef SslCertsInsertResponse
  * @memberOf! sqladmin(v1beta4)
@@ -2031,6 +2071,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {sqladmin(v1beta4).Operation} operation The operation to track the ssl certs insert request.
  * @property {sqladmin(v1beta4).SslCert} serverCaCert The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
  */
+
 /**
  * @typedef SslCertsListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -2038,6 +2079,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {sqladmin(v1beta4).SslCert[]} items List of client certificates for the instance.
  * @property {string} kind This is always sql#sslCertsList.
  */
+
 /**
  * @typedef Tier
  * @memberOf! sqladmin(v1beta4)
@@ -2048,6 +2090,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {string[]} region The applicable regions for this tier.
  * @property {string} tier An identifier for the service tier, for example D1, D2 etc. For related information, see Pricing.
  */
+
 /**
  * @typedef TiersListResponse
  * @memberOf! sqladmin(v1beta4)
@@ -2055,6 +2098,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {sqladmin(v1beta4).Tier[]} items List of tiers.
  * @property {string} kind This is always sql#tiersList.
  */
+
 /**
  * @typedef TruncateLogContext
  * @memberOf! sqladmin(v1beta4)
@@ -2062,6 +2106,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {string} kind This is always sql#truncateLogContext.
  * @property {string} logType The type of log to truncate. Valid values are MYSQL_GENERAL_TABLE and MYSQL_SLOW_TABLE.
  */
+
 /**
  * @typedef User
  * @memberOf! sqladmin(v1beta4)
@@ -2074,6 +2119,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {string} password The password for the user.
  * @property {string} project The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for update since it is already specified on the URL.
  */
+
 /**
  * @typedef UsersListResponse
  * @memberOf! sqladmin(v1beta4)

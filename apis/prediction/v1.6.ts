@@ -818,12 +818,14 @@ function Prediction(options) { // eslint-disable-line
  * @property {object} modelDescription Description of the model.
  * @property {string} selfLink A URL to re-request this resource.
  */
+
 /**
  * @typedef Input
  * @memberOf! prediction(v1.6)
  * @type object
  * @property {object} input Input to the model for a prediction.
  */
+
 /**
  * @typedef Insert
  * @memberOf! prediction(v1.6)
@@ -837,6 +839,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {object[]} trainingInstances Instances to train model on.
  * @property {object[]} utility A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).
  */
+
 /**
  * @typedef Insert2
  * @memberOf! prediction(v1.6)
@@ -853,6 +856,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {string} trainingComplete Training completion time (as a RFC 3339 timestamp).
  * @property {string} trainingStatus The current status of the training job. This can be one of following: RUNNING; DONE; ERROR; ERROR: TRAINING JOB NOT FOUND
  */
+
 /**
  * @typedef List
  * @memberOf! prediction(v1.6)
@@ -862,6 +866,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} selfLink A URL to re-request this resource.
  */
+
 /**
  * @typedef Output
  * @memberOf! prediction(v1.6)
@@ -873,6 +878,7 @@ function Prediction(options) { // eslint-disable-line
  * @property {string} outputValue The estimated regression value (Regression models only).
  * @property {string} selfLink A URL to re-request this resource.
  */
+
 /**
  * @typedef Update
  * @memberOf! prediction(v1.6)

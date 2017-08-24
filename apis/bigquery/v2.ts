@@ -2152,6 +2152,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} qualifierString 
  * @property {string} type [Optional] The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. &#39;type&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;type&#39; is set at both levels.
  */
+
 /**
  * @typedef BigtableColumnFamily
  * @memberOf! bigquery(v2)
@@ -2162,6 +2163,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} onlyReadLatest [Optional] If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a different setting for that column.
  * @property {string} type [Optional] The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a type for it.
  */
+
 /**
  * @typedef BigtableOptions
  * @memberOf! bigquery(v2)
@@ -2170,6 +2172,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} ignoreUnspecifiedColumnFamilies [Optional] If field is true, then the column families that are not specified in columnFamilies list are not exposed in the table schema. Otherwise, they are read with BYTES type values. The default value is false.
  * @property {boolean} readRowkeyAsString [Optional] If field is true, then the rowkey column families will be read and converted to string. Otherwise they are read with BYTES type values and users need to manually cast them with CAST if necessary. The default value is false.
  */
+
 /**
  * @typedef CsvOptions
  * @memberOf! bigquery(v2)
@@ -2181,6 +2184,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} quote [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
  * @property {string} skipLeadingRows [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
  */
+
 /**
  * @typedef Dataset
  * @memberOf! bigquery(v2)
@@ -2199,6 +2203,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} location The geographic location where the dataset should reside. Possible values include EU and US. The default value is US.
  * @property {string} selfLink [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
  */
+
 /**
  * @typedef DatasetList
  * @memberOf! bigquery(v2)
@@ -2208,6 +2213,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind The list type. This property always returns the value &quot;bigquery#datasetList&quot;.
  * @property {string} nextPageToken A token that can be used to request the next results page. This property is omitted on the final results page.
  */
+
 /**
  * @typedef DatasetReference
  * @memberOf! bigquery(v2)
@@ -2215,6 +2221,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} datasetId [Required] A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
  * @property {string} projectId [Optional] The ID of the project containing this dataset.
  */
+
 /**
  * @typedef ErrorProto
  * @memberOf! bigquery(v2)
@@ -2224,25 +2231,37 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} message A human-readable description of the error.
  * @property {string} reason A short error code that summarizes the error.
  */
+
 /**
  * @typedef ExplainQueryStage
  * @memberOf! bigquery(v2)
  * @type object
+ * @property {string} computeMsAvg Milliseconds the average shard spent on CPU-bound tasks.
+ * @property {string} computeMsMax Milliseconds the slowest shard spent on CPU-bound tasks.
  * @property {number} computeRatioAvg Relative amount of time the average shard spent on CPU-bound tasks.
  * @property {number} computeRatioMax Relative amount of time the slowest shard spent on CPU-bound tasks.
  * @property {string} id Unique ID for stage within plan.
  * @property {string} name Human-readable name for stage.
+ * @property {string} readMsAvg Milliseconds the average shard spent reading input.
+ * @property {string} readMsMax Milliseconds the slowest shard spent reading input.
  * @property {number} readRatioAvg Relative amount of time the average shard spent reading input.
  * @property {number} readRatioMax Relative amount of time the slowest shard spent reading input.
  * @property {string} recordsRead Number of records read into the stage.
  * @property {string} recordsWritten Number of records written by the stage.
+ * @property {string} shuffleOutputBytes Total number of bytes written to shuffle.
+ * @property {string} shuffleOutputBytesSpilled Total number of bytes written to shuffle and spilled to disk.
  * @property {string} status Current status for the stage.
  * @property {bigquery(v2).ExplainQueryStep[]} steps List of operations within the stage in dependency order (approximately chronological).
+ * @property {string} waitMsAvg Milliseconds the average shard spent waiting to be scheduled.
+ * @property {string} waitMsMax Milliseconds the slowest shard spent waiting to be scheduled.
  * @property {number} waitRatioAvg Relative amount of time the average shard spent waiting to be scheduled.
  * @property {number} waitRatioMax Relative amount of time the slowest shard spent waiting to be scheduled.
+ * @property {string} writeMsAvg Milliseconds the average shard spent on writing output.
+ * @property {string} writeMsMax Milliseconds the slowest shard spent on writing output.
  * @property {number} writeRatioAvg Relative amount of time the average shard spent on writing output.
  * @property {number} writeRatioMax Relative amount of time the slowest shard spent on writing output.
  */
+
 /**
  * @typedef ExplainQueryStep
  * @memberOf! bigquery(v2)
@@ -2250,6 +2269,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind Machine-readable operation type.
  * @property {string[]} substeps Human-readable stage descriptions.
  */
+
 /**
  * @typedef ExternalDataConfiguration
  * @memberOf! bigquery(v2)
@@ -2263,8 +2283,9 @@ function Bigquery(options) { // eslint-disable-line
  * @property {integer} maxBadRecords [Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the data. Schema is required for CSV and JSON formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, and Avro formats.
  * @property {string} sourceFormat [Required] The data format. For CSV files, specify &quot;CSV&quot;. For Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro files, specify &quot;AVRO&quot;. For Google Cloud Datastore backups, specify &quot;DATASTORE_BACKUP&quot;. [Beta] For Google Cloud Bigtable, specify &quot;BIGTABLE&quot;.
- * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified, and it must end with &#39;.backup_info&#39;. Also, the &#39;*&#39; wildcard character is not allowed.
+ * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
  */
+
 /**
  * @typedef GetQueryResultsResponse
  * @memberOf! bigquery(v2)
@@ -2282,12 +2303,14 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalBytesProcessed The total number of bytes processed for this query.
  * @property {string} totalRows The total number of rows in the complete query result set, which can be more than the number of rows in this single page of results. Present only when the query completes successfully.
  */
+
 /**
  * @typedef GoogleSheetsOptions
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} skipLeadingRows [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
  */
+
 /**
  * @typedef Job
  * @memberOf! bigquery(v2)
@@ -2302,6 +2325,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).JobStatus} status [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
  * @property {string} user_email [Output-only] Email address of the user who ran the job.
  */
+
 /**
  * @typedef JobCancelResponse
  * @memberOf! bigquery(v2)
@@ -2309,6 +2333,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).Job} job The final state of the job.
  * @property {string} kind The resource type of the response.
  */
+
 /**
  * @typedef JobConfiguration
  * @memberOf! bigquery(v2)
@@ -2320,6 +2345,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).JobConfigurationLoad} load [Pick one] Configures a load job.
  * @property {bigquery(v2).JobConfigurationQuery} query [Pick one] Configures a query job.
  */
+
 /**
  * @typedef JobConfigurationExtract
  * @memberOf! bigquery(v2)
@@ -2332,6 +2358,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} printHeader [Optional] Whether to print out a header row in the results. Default is true.
  * @property {bigquery(v2).TableReference} sourceTable [Required] A reference to the table being exported.
  */
+
 /**
  * @typedef JobConfigurationLoad
  * @memberOf! bigquery(v2)
@@ -2351,12 +2378,14 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you&#39;re loading data from Google Cloud Datastore.
  * @property {string} schemaInline [Deprecated] The inline schema. For CSV schemas, specify as &quot;Field1:Type1[,Field2:Type2]*&quot;. For example, &quot;foo:STRING, bar:INTEGER, baz:FLOAT&quot;.
  * @property {string} schemaInlineFormat [Deprecated] The format of the schemaInline property.
- * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the desitination table to be updated as a side effect of the load job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
+ * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the desitination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {integer} skipLeadingRows [Optional] The number of rows at the top of a CSV file that BigQuery will skip when loading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
  * @property {string} sourceFormat [Optional] The format of the data files. For CSV files, specify &quot;CSV&quot;. For datastore backups, specify &quot;DATASTORE_BACKUP&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro, specify &quot;AVRO&quot;. The default value is CSV.
- * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud Storage. Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name.
+ * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
+ * @property {bigquery(v2).TimePartitioning} timePartitioning [Experimental] If specified, configures time-based partitioning for the destination table.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
+
 /**
  * @typedef JobConfigurationQuery
  * @memberOf! bigquery(v2)
@@ -2375,11 +2404,13 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).QueryParameter[]} queryParameters Query parameters for standard SQL queries.
  * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {object} tableDefinitions [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
- * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
+ * @property {bigquery(v2).TimePartitioning} timePartitioning [Experimental] If specified, configures time-based partitioning for the destination table.
+ * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified. The default value is true.
  * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
- * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+ * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
+
 /**
  * @typedef JobConfigurationTableCopy
  * @memberOf! bigquery(v2)
@@ -2390,6 +2421,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableReference[]} sourceTables [Pick one] Source tables to copy.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
+
 /**
  * @typedef JobList
  * @memberOf! bigquery(v2)
@@ -2399,6 +2431,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind The resource type of the response.
  * @property {string} nextPageToken A token to request the next page of results.
  */
+
 /**
  * @typedef JobReference
  * @memberOf! bigquery(v2)
@@ -2406,6 +2439,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} jobId [Required] The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
  * @property {string} projectId [Required] The ID of the project containing this job.
  */
+
 /**
  * @typedef JobStatistics
  * @memberOf! bigquery(v2)
@@ -2418,6 +2452,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} startTime [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
  * @property {string} totalBytesProcessed [Output-only] [Deprecated] Use the bytes processed in the query statistics instead.
  */
+
 /**
  * @typedef JobStatistics2
  * @memberOf! bigquery(v2)
@@ -2433,21 +2468,25 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
  * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
  */
+
 /**
  * @typedef JobStatistics3
  * @memberOf! bigquery(v2)
  * @type object
+ * @property {string} badRecords [Output-only] The number of bad records encountered. Note that if the job has failed because of more bad records encountered than the maximum allowed in the load job configuration, then this number can be less than the total number of bad records present in the input data.
  * @property {string} inputFileBytes [Output-only] Number of bytes of source data in a load job.
  * @property {string} inputFiles [Output-only] Number of source files in a load job.
  * @property {string} outputBytes [Output-only] Size of the loaded data in bytes. Note that while a load job is in the running state, this value may change.
  * @property {string} outputRows [Output-only] Number of rows imported in a load job. Note that while an import job is in the running state, this value may change.
  */
+
 /**
  * @typedef JobStatistics4
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string[]} destinationUriFileCounts [Output-only] Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the &#39;destinationUris&#39; field.
  */
+
 /**
  * @typedef JobStatus
  * @memberOf! bigquery(v2)
@@ -2456,16 +2495,19 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).ErrorProto[]} errors [Output-only] The first errors encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
  * @property {string} state [Output-only] Running state of the job.
  */
+
 /**
  * @typedef JsonObject
  * @memberOf! bigquery(v2)
  * @type object
  */
+
 /**
  * @typedef JsonValue
  * @memberOf! bigquery(v2)
  * @type any
  */
+
 /**
  * @typedef ProjectList
  * @memberOf! bigquery(v2)
@@ -2476,12 +2518,14 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} projects Projects to which you have at least READ access.
  * @property {integer} totalItems The total number of projects in the list.
  */
+
 /**
  * @typedef ProjectReference
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} projectId [Required] ID of the project. Can be either the numeric ID or the assigned ID of the project.
  */
+
 /**
  * @typedef QueryParameter
  * @memberOf! bigquery(v2)
@@ -2490,6 +2534,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).QueryParameterType} parameterType [Required] The type of this parameter.
  * @property {bigquery(v2).QueryParameterValue} parameterValue [Required] The value of this parameter.
  */
+
 /**
  * @typedef QueryParameterType
  * @memberOf! bigquery(v2)
@@ -2498,6 +2543,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} structTypes [Optional] The types of the fields of this struct, in order, if this is a struct.
  * @property {string} type [Required] The top level type of this field.
  */
+
 /**
  * @typedef QueryParameterValue
  * @memberOf! bigquery(v2)
@@ -2506,6 +2552,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object} structValues [Optional] The struct field values, in order of the struct type&#39;s declaration.
  * @property {string} value [Optional] The value of this value, if a simple scalar type.
  */
+
 /**
  * @typedef QueryRequest
  * @memberOf! bigquery(v2)
@@ -2519,9 +2566,10 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} query [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: &quot;SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]&quot;.
  * @property {bigquery(v2).QueryParameter[]} queryParameters Query parameters for Standard SQL queries.
  * @property {integer} timeoutMs [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
- * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
+ * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
  */
+
 /**
  * @typedef QueryResponse
  * @memberOf! bigquery(v2)
@@ -2538,6 +2586,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalBytesProcessed The total number of bytes processed for this query. If this query was a dry run, this is the number of bytes that would be processed if the query were run.
  * @property {string} totalRows The total number of rows in the complete query result set, which can be more than the number of rows in this single page of results.
  */
+
 /**
  * @typedef Streamingbuffer
  * @memberOf! bigquery(v2)
@@ -2546,6 +2595,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} estimatedRows [Output-only] A lower-bound estimate of the number of rows currently in the streaming buffer.
  * @property {string} oldestEntryTime [Output-only] Contains the timestamp of the oldest entry in the streaming buffer, in milliseconds since the epoch, if the streaming buffer is available.
  */
+
 /**
  * @typedef Table
  * @memberOf! bigquery(v2)
@@ -2572,12 +2622,14 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} type [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
  * @property {bigquery(v2).ViewDefinition} view [Optional] The view definition.
  */
+
 /**
  * @typedef TableCell
  * @memberOf! bigquery(v2)
  * @type object
  * @property {any} v 
  */
+
 /**
  * @typedef TableDataInsertAllRequest
  * @memberOf! bigquery(v2)
@@ -2588,6 +2640,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} skipInvalidRows [Optional] Insert all valid rows of a request, even if invalid rows exist. The default value is false, which causes the entire request to fail if any invalid rows exist.
  * @property {string} templateSuffix [Experimental] If specified, treats the destination table as a base template, and inserts the rows into an instance table named &quot;{destination}{templateSuffix}&quot;. BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
  */
+
 /**
  * @typedef TableDataInsertAllResponse
  * @memberOf! bigquery(v2)
@@ -2595,6 +2648,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} insertErrors An array of errors for rows that were not inserted.
  * @property {string} kind The resource type of the response.
  */
+
 /**
  * @typedef TableDataList
  * @memberOf! bigquery(v2)
@@ -2605,6 +2659,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableRow[]} rows Rows of results.
  * @property {string} totalRows The total number of rows in the complete table.
  */
+
 /**
  * @typedef TableFieldSchema
  * @memberOf! bigquery(v2)
@@ -2615,6 +2670,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} name [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
  * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
  */
+
 /**
  * @typedef TableList
  * @memberOf! bigquery(v2)
@@ -2625,6 +2681,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} tables Tables in the requested dataset.
  * @property {integer} totalItems The total number of tables in the dataset.
  */
+
 /**
  * @typedef TableReference
  * @memberOf! bigquery(v2)
@@ -2633,18 +2690,21 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} projectId [Required] The ID of the project containing this table.
  * @property {string} tableId [Required] The ID of the table. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
  */
+
 /**
  * @typedef TableRow
  * @memberOf! bigquery(v2)
  * @type object
  * @property {bigquery(v2).TableCell[]} f Represents a single row in the result set, consisting of one or more fields.
  */
+
 /**
  * @typedef TableSchema
  * @memberOf! bigquery(v2)
  * @type object
  * @property {bigquery(v2).TableFieldSchema[]} fields Describes the fields in a table.
  */
+
 /**
  * @typedef TimePartitioning
  * @memberOf! bigquery(v2)
@@ -2652,6 +2712,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} expirationMs [Optional] Number of milliseconds for which to keep the storage for a partition.
  * @property {string} type [Required] The only type supported is DAY, which will generate one partition per day based on data loading time.
  */
+
 /**
  * @typedef UserDefinedFunctionResource
  * @memberOf! bigquery(v2)
@@ -2659,6 +2720,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} inlineCode [Pick one] An inline resource that contains code for a user-defined function (UDF). Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
  * @property {string} resourceUri [Pick one] A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
  */
+
 /**
  * @typedef ViewDefinition
  * @memberOf! bigquery(v2)

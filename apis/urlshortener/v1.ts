@@ -166,6 +166,7 @@ function Urlshortener(options) { // eslint-disable-line
  * @property {urlshortener(v1).StringCount[]} referrers Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by (descending) click counts. Only present if this data is available.
  * @property {string} shortUrlClicks Number of clicks on this short URL.
  */
+
 /**
  * @typedef AnalyticsSummary
  * @memberOf! urlshortener(v1)
@@ -176,6 +177,7 @@ function Urlshortener(options) { // eslint-disable-line
  * @property {urlshortener(v1).AnalyticsSnapshot} twoHours Click analytics over the last two hours.
  * @property {urlshortener(v1).AnalyticsSnapshot} week Click analytics over the last week.
  */
+
 /**
  * @typedef StringCount
  * @memberOf! urlshortener(v1)
@@ -183,6 +185,7 @@ function Urlshortener(options) { // eslint-disable-line
  * @property {string} count Number of clicks for this top entry, e.g. for this particular country or browser.
  * @property {string} id Label assigned to this top entry, e.g. &quot;US&quot; or &quot;Chrome&quot;.
  */
+
 /**
  * @typedef Url
  * @memberOf! urlshortener(v1)
@@ -194,6 +197,7 @@ function Urlshortener(options) { // eslint-disable-line
  * @property {string} longUrl Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if the status is &quot;REMOVED&quot;.
  * @property {string} status Status of the target URL. Possible values: &quot;OK&quot;, &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
  */
+
 /**
  * @typedef UrlHistory
  * @memberOf! urlshortener(v1)

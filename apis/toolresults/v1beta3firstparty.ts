@@ -112,7 +112,6 @@ function Toolresults(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     histories: {
 
       /**
@@ -231,7 +230,6 @@ function Toolresults(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       executions: {
 
         /**
@@ -393,7 +391,47 @@ function Toolresults(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         },
+        clusters: {
 
+          /**
+           * toolresults.projects.histories.executions.clusters.list
+           *
+           * @desc Lists Screenshot Clusters  Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
+           *
+           * @alias toolresults.projects.histories.executions.clusters.list
+           * @memberOf! toolresults(v1beta3firstparty)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.executionId An Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'historyId', 'executionId'],
+              pathParams: ['executionId', 'historyId', 'projectId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
         steps: {
 
           /**
@@ -640,7 +678,6 @@ function Toolresults(options) { // eslint-disable-line
 
             return createAPIRequest(parameters, callback);
           },
-
           perfMetricsSummary: {
 
             /**
@@ -684,7 +721,6 @@ function Toolresults(options) { // eslint-disable-line
               return createAPIRequest(parameters, callback);
             }
           },
-
           perfSampleSeries: {
 
             /**
@@ -809,7 +845,6 @@ function Toolresults(options) { // eslint-disable-line
 
               return createAPIRequest(parameters, callback);
             },
-
             samples: {
 
               /**
@@ -898,7 +933,6 @@ function Toolresults(options) { // eslint-disable-line
               }
             }
           },
-
           thumbnails: {
 
             /**
@@ -950,6 +984,49 @@ function Toolresults(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef AndroidAppInfo
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {string} name The name of the app. Optional
+ * @property {string} packageName The package name of the app. Required.
+ * @property {string} versionCode The internal version code of the app. Optional.
+ * @property {string} versionName The version name of the app. Optional.
+ */
+
+/**
+ * @typedef AndroidInstrumentationTest
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+* @property {string} testPackageId The java package for the test to be executed. Required
+* @property {string} testRunnerClass The InstrumentationTestRunner class. Required
+* @property {string[]} testTargets Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot;
+
+If empty, all targets in the module will be run.
+* @property {boolean} useOrchestrator The flag indicates whether Android Test Orchestrator will be used to run test or not. Test orchestrator is used if either: - orchestrator_option field is USE_ORCHESTRATOR, and test runner is compatible with orchestrator. Or - orchestrator_option field is unspecified or ORCHESTRATOR_OPTION_UNSPECIFIED, and test runner is compatible with orchestrator.
+*/
+
+/**
+ * @typedef AndroidRoboTest
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {string} appInitialActivity The initial activity that should be used to start the app. Optional
+ * @property {string} bootstrapPackageId The java package for the bootstrap. Optional
+ * @property {string} bootstrapRunnerClass The runner class for the bootstrap. Optional
+ * @property {integer} maxDepth The max depth of the traversal stack Robo can explore. Optional
+ * @property {integer} maxSteps The max number of steps/actions Robo can execute. Default is no limit (0). Optional
+ */
+
+/**
+ * @typedef AndroidTest
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {toolresults(v1beta3firstparty).AndroidAppInfo} androidAppInfo Infomation about the application under test.
+ * @property {toolresults(v1beta3firstparty).AndroidInstrumentationTest} androidInstrumentationTest An Android instrumentation test.
+ * @property {toolresults(v1beta3firstparty).AndroidRoboTest} androidRoboTest An Android robo test.
+ * @property {toolresults(v1beta3firstparty).Duration} testTimeout Max time a test is allowed to run before it is automatically cancelled.
+ */
+
+/**
  * @typedef Any
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
@@ -962,6 +1039,7 @@ For URLs which use the scheme `http`, `https`, or no scheme, the following restr
 Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
 * @property {string} value Must be a valid serialized protocol buffer of the above specified type.
 */
+
 /**
  * @typedef AppStartTime
  * @memberOf! toolresults(v1beta3firstparty)
@@ -969,6 +1047,7 @@ Schemes other than `http`, `https` (or the empty scheme) might be used with impl
  * @property {toolresults(v1beta3firstparty).Duration} fullyDrawnTime Optional. The time from app start to reaching the developer-reported &quot;fully drawn&quot; time. This is only stored if the app includes a call to Activity.reportFullyDrawn(). See https://developer.android.com/topic/performance/launch-time.html#time-full
  * @property {toolresults(v1beta3firstparty).Duration} initialDisplayTime The time from app start to the first displayed activity being drawn, as reported in Logcat. See https://developer.android.com/topic/performance/launch-time.html#time-initial
  */
+
 /**
  * @typedef BasicPerfSampleSeries
  * @memberOf! toolresults(v1beta3firstparty)
@@ -977,18 +1056,21 @@ Schemes other than `http`, `https` (or the empty scheme) might be used with impl
  * @property {string} perfUnit 
  * @property {string} sampleSeriesLabel 
  */
+
 /**
  * @typedef BatchCreatePerfSamplesRequest
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
  * @property {toolresults(v1beta3firstparty).PerfSample[]} perfSamples The set of PerfSamples to create should not include existing timestamps
  */
+
 /**
  * @typedef BatchCreatePerfSamplesResponse
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
  * @property {toolresults(v1beta3firstparty).PerfSample[]} perfSamples 
  */
+
 /**
  * @typedef CPUInfo
  * @memberOf! toolresults(v1beta3firstparty)
@@ -997,6 +1079,7 @@ Schemes other than `http`, `https` (or the empty scheme) might be used with impl
  * @property {number} cpuSpeedInGhz the CPU clock speed in GHz
  * @property {integer} numberOfCores the number of CPU cores
  */
+
 /**
  * @typedef Duration
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1004,6 +1087,7 @@ Schemes other than `http`, `https` (or the empty scheme) might be used with impl
  * @property {integer} nanos Signed fractions of a second at nanosecond resolution of the span of time. Durations less than one second are represented with a 0 `seconds` field and a positive or negative `nanos` field. For durations of one second or more, a non-zero value for the `nanos` field must be of the same sign as the `seconds` field. Must be from -999,999,999 to +999,999,999 inclusive.
  * @property {string} seconds Signed seconds of the span of time. Must be from -315,576,000,000 to +315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
  */
+
 /**
  * @typedef Execution
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1026,6 +1110,9 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
 * @property {toolresults(v1beta3firstparty).Outcome} outcome Classify the result, for example into SUCCESS or FAILURE
 
 - In response: present if set by create/update request - In create/update request: optional
+* @property {toolresults(v1beta3firstparty).Specification} specification Lightweight information about execution request.
+
+- In response: present if set by create - In create: optional - In update: optional
 * @property {string} state The initial state is IN_PROGRESS.
 
 The only legal state transitions is from IN_PROGRESS to COMPLETE.
@@ -1037,10 +1124,11 @@ The state can only be set to COMPLETE once. A FAILED_PRECONDITION will be return
 If the state is set to COMPLETE, all the in-progress steps within the execution will be set as COMPLETE. If the outcome of the step is not set, the outcome will be set to INCONCLUSIVE.
 
 - In response always set - In create/update request: optional
-* @property {string} testExecutionMatrixId TestExecution Matrix ID that the Test Service uses.
+* @property {string} testExecutionMatrixId TestExecution Matrix ID that the TestExecutionService uses.
 
 - In response: present if set by create - In create: optional - In update: never set
 */
+
 /**
  * @typedef FailureDetail
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1051,6 +1139,7 @@ If the state is set to COMPLETE, all the in-progress steps within the execution 
  * @property {boolean} timedOut If the test overran some time limit, and that is why it failed.
  * @property {boolean} unableToCrawl If the robo was unable to crawl the app; perhaps because the app did not start.
  */
+
 /**
  * @typedef FileReference
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1063,6 +1152,7 @@ An INVALID_ARGUMENT error will be returned if the URI format is not supported.
 
 - In response: always set - In create/update request: always set
 */
+
 /**
  * @typedef History
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1079,6 +1169,7 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
 
 - In response always set - In create request: always set
 */
+
 /**
  * @typedef Image
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1094,6 +1185,7 @@ Always set.
 Always set.
 * @property {toolresults(v1beta3firstparty).Thumbnail} thumbnail The thumbnail.
 */
+
 /**
  * @typedef InconclusiveDetail
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1103,6 +1195,7 @@ Always set.
 
 For example, a mobile test requires provisioning a device where the test executes, and that provisioning can fail.
 */
+
 /**
  * @typedef ListExecutionsResponse
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1114,6 +1207,7 @@ Always set.
 
 Will only be set if there are more Executions to fetch.
 */
+
 /**
  * @typedef ListHistoriesResponse
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1125,12 +1219,14 @@ Will only be set if there are more histories to fetch.
 
 Tokens are valid for up to one hour from the time of the first list request. For instance, if you make a list request at 1PM and use the token from this first request 10 minutes later, the token from this second response will only be valid for 50 minutes.
 */
+
 /**
  * @typedef ListPerfSampleSeriesResponse
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
  * @property {toolresults(v1beta3firstparty).PerfSampleSeries[]} perfSampleSeries The resulting PerfSampleSeries sorted by id
  */
+
 /**
  * @typedef ListPerfSamplesResponse
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1138,6 +1234,14 @@ Tokens are valid for up to one hour from the time of the first list request. For
  * @property {string} nextPageToken Optional, returned if result size exceeds the page size specified in the request (or the default page size, 500, if unspecified). It indicates the last sample timestamp to be used as page_token in subsequent request
  * @property {toolresults(v1beta3firstparty).PerfSample[]} perfSamples 
  */
+
+/**
+ * @typedef ListScreenshotClustersResponse
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {toolresults(v1beta3firstparty).ScreenshotCluster[]} clusters The set of clustres associated with an execution Always set
+ */
+
 /**
  * @typedef ListStepThumbnailsResponse
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1149,6 +1253,7 @@ If set, indicates that there are more thumbnails to read, by calling list again 
 
 Images are returned in a deterministic order; they are ordered by these factors, in order of importance: * First, by their associated test case. Images without a test case are considered greater than images with one. * Second, by their creation time. Images without a creation time are greater than images with one. * Third, by the order in which they were added to the step (by calls to CreateStep or UpdateStep).
 */
+
 /**
  * @typedef ListStepsResponse
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1158,6 +1263,7 @@ Images are returned in a deterministic order; they are ordered by these factors,
 If set, indicates that there are more steps to read, by calling list again with this value in the page_token field.
 * @property {toolresults(v1beta3firstparty).Step[]} steps Steps.
 */
+
 /**
  * @typedef MemoryInfo
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1165,6 +1271,7 @@ If set, indicates that there are more steps to read, by calling list again with 
  * @property {string} memoryCapInKibibyte Maximum memory that can be allocated to the process in KiB
  * @property {string} memoryTotalInKibibyte Total memory available on the device in KiB
  */
+
 /**
  * @typedef Outcome
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1193,6 +1300,7 @@ Optional
 
 Required
 */
+
 /**
  * @typedef PerfEnvironment
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1200,6 +1308,7 @@ Required
  * @property {toolresults(v1beta3firstparty).CPUInfo} cpuInfo CPU related environment info
  * @property {toolresults(v1beta3firstparty).MemoryInfo} memoryInfo Memory related environment info
  */
+
 /**
  * @typedef PerfMetricsSummary
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1212,6 +1321,7 @@ Required
  * @property {string} projectId The cloud project
  * @property {string} stepId A tool results step ID.
  */
+
 /**
  * @typedef PerfSample
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1219,6 +1329,7 @@ Required
  * @property {toolresults(v1beta3firstparty).Timestamp} sampleTime Timestamp of collection
  * @property {number} value Value observed
  */
+
 /**
  * @typedef PerfSampleSeries
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1230,6 +1341,7 @@ Required
  * @property {string} sampleSeriesId A sample series id
  * @property {string} stepId A tool results step ID.
  */
+
 /**
  * @typedef ProjectSettings
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1245,6 +1357,7 @@ Always of the form: projects/{project-id}/settings
 
 In update request: never set In response: always set
 */
+
 /**
  * @typedef PublishXunitXmlFilesRequest
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1255,6 +1368,27 @@ The maximum size of the file this reference is pointing to is 50MB.
 
 Required.
 */
+
+/**
+ * @typedef Screen
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {string} fileReference File reference of the png file. Required.
+ * @property {string} locale Locale of the device that the screenshot was taken on. Required.
+ * @property {string} model Model of the device that the screenshot was taken on. Required.
+ * @property {string} version OS version of the device that the screenshot was taken on. Required.
+ */
+
+/**
+ * @typedef ScreenshotCluster
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {string} activity A string that describes the activity of every screen in the cluster.
+ * @property {string} clusterId A unique identifier for the cluster.
+ * @property {toolresults(v1beta3firstparty).Screen} keyScreen A singular screen that represents the cluster as a whole. This screen will act as the &quot;cover&quot; of the entire cluster. When users look at the clusters, only the key screen from each cluster will be shown. Which screen is the key screen is determined by the ClusteringAlgorithm
+ * @property {toolresults(v1beta3firstparty).Screen[]} screens Full list of screens.
+ */
+
 /**
  * @typedef SkippedDetail
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1263,14 +1397,25 @@ Required.
  * @property {boolean} incompatibleArchitecture If the App doesn&#39;t run on the specific architecture, for example, x86.
  * @property {boolean} incompatibleDevice If the requested OS version doesn&#39;t run on the specific device model.
  */
+
+/**
+ * @typedef Specification
+ * @memberOf! toolresults(v1beta3firstparty)
+ * @type object
+ * @property {toolresults(v1beta3firstparty).AndroidTest} androidTest An Android mobile test execution specification.
+ */
+
 /**
  * @typedef StackTrace
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
+* @property {string} clusterId Exception cluster ID
 * @property {string} exception The stack trace message.
 
 Required
+* @property {string} reportId Exception report ID
 */
+
 /**
  * @typedef Status
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1279,6 +1424,7 @@ Required
  * @property {toolresults(v1beta3firstparty).Any[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][] field, or localized by the client.
  */
+
 /**
  * @typedef Step
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1358,6 +1504,7 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
 * @property {toolresults(v1beta3firstparty).TestExecutionStep} testExecutionStep An execution of a test runner.
 * @property {toolresults(v1beta3firstparty).ToolExecutionStep} toolExecutionStep An execution of a tool (used for steps we don&#39;t explicitly support).
 */
+
 /**
  * @typedef StepDimensionValueEntry
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1365,6 +1512,7 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
  * @property {string} key 
  * @property {string} value 
  */
+
 /**
  * @typedef StepLabelsEntry
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1372,12 +1520,14 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
  * @property {string} key 
  * @property {string} value 
  */
+
 /**
  * @typedef SuccessDetail
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
  * @property {boolean} otherNativeCrash If a native process other than the app crashed.
  */
+
 /**
  * @typedef TestCaseReference
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1388,6 +1538,7 @@ Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.
 Required.
 * @property {string} testSuiteName The name of the test suite to which this test case belongs.
 */
+
 /**
  * @typedef TestExecutionStep
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1411,15 +1562,18 @@ The exit code of this tool will be used to determine if the test passed.
 
 - In response: always set - In create/update request: optional
 */
+
 /**
  * @typedef TestIssue
  * @memberOf! toolresults(v1beta3firstparty)
  * @type object
-* @property {string} errorMessage A brief human-readable message describing the abnormal event.
+ * @property {string} errorMessage A brief human-readable message describing the issue. Required.
+ * @property {string} severity Severity of issue. Required.
+ * @property {toolresults(v1beta3firstparty).StackTrace} stackTrace Deprecated in favor of stack trace fields inside specific warnings.
+ * @property {string} type Type of issue. Required.
+ * @property {toolresults(v1beta3firstparty).Any} warning Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings Required.
+ */
 
-Required.
-* @property {toolresults(v1beta3firstparty).StackTrace} stackTrace Optional.
-*/
 /**
  * @typedef TestSuiteOverview
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1447,6 +1601,7 @@ Returns INVALID_ARGUMENT if the uri format is not supported.
 
 - In create/response: optional - In update request: never
 */
+
 /**
  * @typedef TestTiming
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1455,6 +1610,7 @@ Returns INVALID_ARGUMENT if the uri format is not supported.
 
 - In response: present if previously set. - In create/update request: optional
 */
+
 /**
  * @typedef Thumbnail
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1474,6 +1630,7 @@ Always set.
 
 Always set.
 */
+
 /**
  * @typedef Timestamp
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1481,6 +1638,7 @@ Always set.
  * @property {integer} nanos Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
  * @property {string} seconds Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
  */
+
 /**
  * @typedef ToolExecution
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1504,6 +1662,7 @@ The maximum allowed number of tool outputs per step is 1000.
 
 - In response: present if set by create/update request - In create request: optional - In update request: optional, any value provided will be appended to the existing list
 */
+
 /**
  * @typedef ToolExecutionStep
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1512,6 +1671,7 @@ The maximum allowed number of tool outputs per step is 1000.
 
 - In response: present if set by create/update request - In create/update request: optional
 */
+
 /**
  * @typedef ToolExitCode
  * @memberOf! toolresults(v1beta3firstparty)
@@ -1520,6 +1680,7 @@ The maximum allowed number of tool outputs per step is 1000.
 
 - In response: always set - In create/update request: always set
 */
+
 /**
  * @typedef ToolOutputReference
  * @memberOf! toolresults(v1beta3firstparty)

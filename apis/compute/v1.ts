@@ -339,6 +339,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -531,6 +532,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Address} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -845,6 +847,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.autoscaler Name of the autoscaler to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1037,6 +1040,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1248,6 +1252,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1347,6 +1352,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.autoscaler Name of the autoscaler to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1445,6 +1451,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendBucket Name of the BackendBucket resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1629,6 +1636,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendBucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1832,6 +1840,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendBucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1930,6 +1939,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendBucket Name of the BackendBucket resource to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendBucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2132,6 +2142,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2412,6 +2423,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2615,6 +2627,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2713,6 +2726,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3237,6 +3251,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to snapshot.
      * @param {boolean=} params.guestFlush 
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Snapshot} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3334,6 +3349,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.disk Name of the persistent disk to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3526,6 +3542,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Disk} params.resource Request body data
@@ -3737,6 +3754,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.disk The name of the persistent disk.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).DisksResizeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3776,6 +3794,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).ZoneSetLabelsRequest} params.resource Request body data
@@ -3875,6 +3894,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4059,6 +4079,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Firewall} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4195,7 +4216,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.firewalls.patch
      *
-     * @desc Updates the specified firewall rule with the data included in the request. Using PUT method, can only update following fields of firewall rule: allowed, description, sourceRanges, sourceTags, targetTags. This method supports patch semantics.
+     * @desc Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4260,8 +4281,9 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.firewall Name of the firewall rule to update.
+     * @param {string} params.firewall Name of the firewall rule to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Firewall} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4360,6 +4382,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Firewall} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4566,6 +4589,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4758,6 +4782,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).ForwardingRule} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4968,6 +4993,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5065,6 +5091,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5249,6 +5276,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Address} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5451,6 +5479,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5635,6 +5664,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).ForwardingRule} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5837,6 +5867,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6329,6 +6360,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.healthCheck Name of the HealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6513,6 +6545,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6716,6 +6749,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.healthCheck Name of the HealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6814,6 +6848,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.healthCheck Name of the HealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6911,6 +6946,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7095,6 +7131,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7298,6 +7335,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7396,6 +7434,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7493,6 +7532,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7677,6 +7717,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7880,6 +7921,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7978,6 +8020,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8075,6 +8118,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Name of the image resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8171,6 +8215,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).DeprecationStatus} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8449,6 +8494,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.forceCreate Force image creation if true.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Image} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8697,6 +8743,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8899,6 +8946,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8999,6 +9047,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9192,6 +9241,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
      * @param {compute(v1).InstanceGroupManager} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9502,6 +9552,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9604,6 +9655,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {integer} params.size The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9705,6 +9757,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9806,6 +9859,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9911,6 +9965,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroup The name of the instance group where you are adding instances.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsAddInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10113,6 +10168,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroup The name of the instance group to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10305,6 +10361,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the instance group.
      * @param {compute(v1).InstanceGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10633,6 +10690,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroup The name of the instance group where the specified instances will be removed.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsRemoveInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10734,6 +10792,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceGroup The name of the instance group where the named ports are updated.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsSetNamedPortsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10832,6 +10891,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceTemplate The name of the instance template to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11016,6 +11076,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).InstanceTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11229,6 +11290,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.networkInterface The name of the network interface to add to this instance.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).AccessConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11435,6 +11497,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).AttachedDisk} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11532,6 +11595,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11636,6 +11700,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.networkInterface The name of the network interface.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11736,6 +11801,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.deviceName Disk device name to detach.
      * @param {string} params.instance Instance name.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12026,6 +12092,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12232,6 +12299,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12336,6 +12404,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.deviceName The device name of the disk to modify.
      * @param {string} params.instance The instance name.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12375,6 +12444,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesSetLabelsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12415,6 +12485,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesSetMachineResourcesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12516,6 +12587,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesSetMachineTypeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12617,6 +12689,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Metadata} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12718,6 +12791,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Instance name.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Scheduling} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12819,6 +12893,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesSetServiceAccountRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12920,6 +12995,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Tags} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13017,6 +13093,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13117,6 +13194,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13214,6 +13292,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance resource to stop.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13667,6 +13746,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network resource to add peering to.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).NetworksAddPeeringRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13760,6 +13840,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13944,6 +14025,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Network} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14088,6 +14170,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network resource to remove peering from.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).NetworksRemovePeeringRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14181,6 +14264,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to be updated.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14215,13 +14299,14 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.disableXpnHost
      *
-     * @desc Disable this project as an XPN host project.
+     * @desc Disable this project as a shared VPC host project.
      *
      * @alias compute.projects.disableXpnHost
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14252,13 +14337,14 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.disableXpnResource
      *
-     * @desc Disable an XPN resource associated with this host project.
+     * @desc Disable a serivce resource (a.k.a service project) associated with this host project.
      *
      * @alias compute.projects.disableXpnResource
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).ProjectsDisableXpnResourceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14290,13 +14376,14 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.enableXpnHost
      *
-     * @desc Enable this project as an XPN host project.
+     * @desc Enable this project as a shared VPC host project.
      *
      * @alias compute.projects.enableXpnHost
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14327,13 +14414,14 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.enableXpnResource
      *
-     * @desc Enable XPN resource (a.k.a service project or service folder in the future) for a host project, so that subnetworks in the host project can be used by instances in the service project or folder.
+     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
      *
      * @alias compute.projects.enableXpnResource
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).ProjectsEnableXpnResourceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14453,7 +14541,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.getXpnHost
      *
-     * @desc Get the XPN host project that this project links to. May be empty if no link exists.
+     * @desc Get the shared VPC host project that this project links to. May be empty if no link exists.
      *
      * @alias compute.projects.getXpnHost
      * @memberOf! compute(v1)
@@ -14490,7 +14578,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.getXpnResources
      *
-     * @desc Get XPN resources associated with this host project.
+     * @desc Get service resources (a.k.a service project) associated with this host project.
      *
      * @alias compute.projects.getXpnResources
      * @memberOf! compute(v1)
@@ -14531,7 +14619,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.projects.listXpnHosts
      *
-     * @desc List all XPN host projects visible to the user in an organization.
+     * @desc List all shared VPC host projects visible to the user in an organization.
      *
      * @alias compute.projects.listXpnHosts
      * @memberOf! compute(v1)
@@ -14635,6 +14723,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).DiskMoveRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14728,6 +14817,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).InstanceMoveRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14821,6 +14911,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Metadata} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14914,6 +15005,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).UsageExportLocation} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15015,6 +15107,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15207,6 +15300,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15418,6 +15512,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15517,6 +15612,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.autoscaler Name of the autoscaler to update.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15618,6 +15714,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15910,6 +16007,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16121,6 +16219,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16223,6 +16322,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16346,6 +16446,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Commitment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16493,6 +16594,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16590,6 +16692,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16690,6 +16793,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16883,6 +16987,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).InstanceGroupManager} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17193,6 +17298,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupManagersRecreateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17293,6 +17399,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {integer} params.size Number of instances that should exist in this instance group manager.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17394,6 +17501,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupManagersSetTemplateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17495,6 +17603,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17923,6 +18032,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the regional instance group where the named ports are updated.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).RegionInstanceGroupsSetNamedPortsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18631,6 +18741,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.router Name of the Router resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18920,6 +19031,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Router} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19060,7 +19172,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Patches the specified Router resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * @example
      * // BEFORE RUNNING:
@@ -19130,6 +19242,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.router Name of the Router resource to patch.
      * @param {compute(v1).Router} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19333,6 +19446,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.router Name of the Router resource to update.
      * @param {compute(v1).Router} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19430,6 +19544,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.route Name of the Route resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19615,6 +19730,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Route} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19816,6 +19932,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.snapshot Name of the Snapshot resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20148,6 +20265,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20333,6 +20451,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).SslCertificate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20643,6 +20762,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20743,6 +20863,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource to update.
      * @param {compute(v1).SubnetworksExpandIpCidrRangeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20937,6 +21058,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).Subnetwork} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21085,6 +21207,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource.
      * @param {compute(v1).SubnetworksSetPrivateIpGoogleAccessRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21182,6 +21305,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21367,6 +21491,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetHttpProxy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21568,6 +21693,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
      * @param {compute(v1).UrlMapReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21665,6 +21791,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21850,6 +21977,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetHttpsProxy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -22051,6 +22179,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
      * @param {compute(v1).TargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22148,6 +22277,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
      * @param {compute(v1).UrlMapReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22353,6 +22483,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetInstance Name of the TargetInstance resource to delete.
      * @param {string} params.zone Name of the zone scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22546,6 +22677,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone scoping this request.
      * @param {compute(v1).TargetInstance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22760,6 +22892,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the target pool to add a health check to.
      * @param {compute(v1).TargetPoolsAddHealthCheckRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22861,6 +22994,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
      * @param {compute(v1).TargetPoolsAddInstanceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23063,6 +23197,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23357,6 +23492,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetPool} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23566,6 +23702,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the target pool to remove health checks from.
      * @param {compute(v1).TargetPoolsRemoveHealthCheckRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23667,6 +23804,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
      * @param {compute(v1).TargetPoolsRemoveInstanceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23769,6 +23907,7 @@ function Compute(options) { // eslint-disable-line
      * @param {number=} params.failoverRatio New failoverRatio value for the target pool.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
      * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23866,6 +24005,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24051,6 +24191,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetSslProxy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24252,6 +24393,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
      * @param {compute(v1).TargetSslProxiesSetBackendServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24349,6 +24491,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose ProxyHeader is to be set.
      * @param {compute(v1).TargetSslProxiesSetProxyHeaderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24446,6 +24589,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      * @param {compute(v1).TargetSslProxiesSetSslCertificatesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24489,6 +24633,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24565,6 +24710,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetTcpProxy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24644,6 +24790,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource is to be set.
      * @param {compute(v1).TargetTcpProxiesSetBackendServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24683,6 +24830,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
      * @param {compute(v1).TargetTcpProxiesSetProxyHeaderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24889,6 +25037,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetVpnGateway Name of the target VPN gateway to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25082,6 +25231,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).TargetVpnGateway} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25287,6 +25437,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25472,6 +25623,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25568,6 +25720,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
      * @param {compute(v1).CacheInvalidationRule} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25771,6 +25924,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap resource to patch.
      * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25869,6 +26023,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap resource to update.
      * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26172,6 +26327,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.vpnTunnel Name of the VpnTunnel resource to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -26365,6 +26521,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {compute(v1).VpnTunnel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -27015,6 +27172,7 @@ function Compute(options) { // eslint-disable-line
  * @property {integer} acceleratorCount The number of the guest accelerator cards exposed to this instance.
  * @property {string} acceleratorType Full or partial URL of the accelerator type resource to expose to this instance.
  */
+
 /**
  * @typedef AcceleratorType
  * @memberOf! compute(v1)
@@ -27029,16 +27187,18 @@ function Compute(options) { // eslint-disable-line
  * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
  * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a.
  */
+
 /**
  * @typedef AcceleratorTypeAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped accelerator type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of AcceleratorTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeAggregatedList for aggregated lists of accelerator types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AcceleratorTypeList
  * @memberOf! compute(v1)
@@ -27046,9 +27206,10 @@ function Compute(options) { // eslint-disable-line
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).AcceleratorType[]} items A list of AcceleratorType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeList for lists of accelerator types.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AcceleratorTypesScopedList
  * @memberOf! compute(v1)
@@ -27056,6 +27217,7 @@ function Compute(options) { // eslint-disable-line
  * @property {compute(v1).AcceleratorType[]} acceleratorTypes [Output Only] List of accelerator types contained in this scope.
  * @property {object} warning [Output Only] An informational warning that appears when the accelerator types list is empty.
  */
+
 /**
  * @typedef AccessConfig
  * @memberOf! compute(v1)
@@ -27065,6 +27227,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
+
 /**
  * @typedef Address
  * @memberOf! compute(v1)
@@ -27081,26 +27244,29 @@ function Compute(options) { // eslint-disable-line
  * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
  * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
  */
+
 /**
  * @typedef AddressAggregatedList
  * @memberOf! compute(v1)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items [Output Only] A map of scoped address lists.
+ * @property {object} items A list of AddressesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#addressAggregatedList for aggregated lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AddressList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Address[]} items [Output Only] A list of addresses.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Address[]} items A list of Address resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#addressList for lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AddressesScopedList
  * @memberOf! compute(v1)
@@ -27108,6 +27274,15 @@ function Compute(options) { // eslint-disable-line
  * @property {compute(v1).Address[]} addresses [Output Only] List of addresses contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
  */
+
+/**
+ * @typedef AliasIpRange
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} ipCidrRange The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
+ * @property {string} subnetworkRangeName Optional subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
+ */
+
 /**
  * @typedef AttachedDisk
  * @memberOf! compute(v1)
@@ -27141,6 +27316,7 @@ If desired, you can also attach existing non-root persistent disks using this pr
 Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
 * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
 */
+
 /**
  * @typedef AttachedDiskInitializeParams
  * @memberOf! compute(v1)
@@ -27178,6 +27354,7 @@ If the source image is deleted later, this field will not be set.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
 */
+
 /**
  * @typedef Autoscaler
  * @memberOf! compute(v1)
@@ -27197,26 +27374,29 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
 * @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
+
 /**
  * @typedef AutoscalerAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped autoscaler lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of AutoscalersScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerAggregatedList for aggregated lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AutoscalerList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).Autoscaler[]} items A list of Autoscaler resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerList for lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef AutoscalerStatusDetails
  * @memberOf! compute(v1)
@@ -27224,6 +27404,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {string} message The status message.
  * @property {string} type The type of error returned.
  */
+
 /**
  * @typedef AutoscalersScopedList
  * @memberOf! compute(v1)
@@ -27231,6 +27412,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {compute(v1).Autoscaler[]} autoscalers [Output Only] List of autoscalers contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of autoscalers when the list is empty.
  */
+
 /**
  * @typedef AutoscalingPolicy
  * @memberOf! compute(v1)
@@ -27244,6 +27426,7 @@ Virtual machine initialization times might vary because of numerous factors. We 
 * @property {integer} maxNumReplicas The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.
 * @property {integer} minNumReplicas The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. If not provided, autoscaler will choose a default value depending on maximum number of instances allowed.
 */
+
 /**
  * @typedef AutoscalingPolicyCpuUtilization
  * @memberOf! compute(v1)
@@ -27254,6 +27437,7 @@ If the CPU level is below the target utilization, the autoscaler scales down the
 
 If the average CPU is above the target utilization, the autoscaler scales up until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.
 */
+
 /**
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(v1)
@@ -27266,28 +27450,30 @@ The metric must have a value type of INT64 or DOUBLE.
 For example, a good metric to use as a utilization_target is compute.googleapis.com/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.
 * @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
 */
+
 /**
  * @typedef AutoscalingPolicyLoadBalancingUtilization
  * @memberOf! compute(v1)
  * @type object
  * @property {number} utilizationTarget Fraction of backend capacity utilization (set in HTTP(s) load balancing configuration) that autoscaler should maintain. Must be a positive float value. If not defined, the default is 0.8.
  */
+
 /**
  * @typedef Backend
  * @memberOf! compute(v1)
  * @type object
 * @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).
 
-This cannot be used for internal load balancing.
+For Internal Load Balancing, the default and only supported mode is CONNECTION.
 * @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
-* @property {string} group The fully-qualified URL of a zonal Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
+* @property {string} group The fully-qualified URL of a Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
 
 Note that you must specify an Instance Group resource using the fully-qualified URL, rather than a partial URL.
 
-When the BackendService has load balancing scheme INTERNAL, the instance group must be in a zone within the same region as the BackendService.
+When the BackendService has load balancing scheme INTERNAL, the instance group must be within the same region as the BackendService.
 * @property {integer} maxConnections The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
 
 This cannot be used for internal load balancing.
@@ -27304,6 +27490,7 @@ This cannot be used for internal load balancing.
 
 This cannot be used for internal load balancing.
 */
+
 /**
  * @typedef BackendBucket
  * @memberOf! compute(v1)
@@ -27317,6 +27504,7 @@ This cannot be used for internal load balancing.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef BackendBucketList
  * @memberOf! compute(v1)
@@ -27324,9 +27512,10 @@ This cannot be used for internal load balancing.
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).BackendBucket[]} items A list of BackendBucket resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendService
  * @memberOf! compute(v1)
@@ -27343,13 +27532,13 @@ When the load balancing scheme is INTERNAL, this field is not used.
 
 When the load balancing scheme is INTERNAL, this field is not used.
 * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
-* @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for GCE backend services. A health check must not be specified for GAE app backend and Cloud Function backend.
+* @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.
 
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
 * @property {compute(v1).BackendServiceIAP} iap 
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
-* @property {string} loadBalancingScheme 
+* @property {string} loadBalancingScheme Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other. Possible values are INTERNAL and EXTERNAL.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
 
@@ -27373,22 +27562,25 @@ When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PR
 When the protocol is UDP, this field is not used.
 * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
 */
+
 /**
  * @typedef BackendServiceAggregatedList
  * @memberOf! compute(v1)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items A map of scoped BackendService lists.
+ * @property {object} items A list of BackendServicesScopedList resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendServiceCdnPolicy
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
  */
+
 /**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(v1)
@@ -27396,6 +27588,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(v1).HealthStatus[]} healthStatus 
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
  */
+
 /**
  * @typedef BackendServiceIAP
  * @memberOf! compute(v1)
@@ -27405,6 +27598,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} oauth2ClientSecret 
  * @property {string} oauth2ClientSecretSha256 [Output Only] SHA256 hash value for the field oauth2_client_secret above.
  */
+
 /**
  * @typedef BackendServiceList
  * @memberOf! compute(v1)
@@ -27415,6 +27609,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef BackendServicesScopedList
  * @memberOf! compute(v1)
@@ -27422,6 +27617,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(v1).BackendService[]} backendServices List of BackendServices contained in this scope.
  * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
+
 /**
  * @typedef CacheInvalidationRule
  * @memberOf! compute(v1)
@@ -27429,6 +27625,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
  */
+
 /**
  * @typedef CacheKeyPolicy
  * @memberOf! compute(v1)
@@ -27439,6 +27636,7 @@ When the protocol is UDP, this field is not used.
  * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  */
+
 /**
  * @typedef Commitment
  * @memberOf! compute(v1)
@@ -27457,26 +27655,29 @@ When the protocol is UDP, this field is not used.
  * @property {string} status [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
  * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
  */
+
 /**
  * @typedef CommitmentAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items Commitments by scope.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of CommitmentsScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentAggregatedList for aggregated lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef CommitmentList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).Commitment[]} items A list of Commitment resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentList for lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef CommitmentsScopedList
  * @memberOf! compute(v1)
@@ -27484,12 +27685,14 @@ When the protocol is UDP, this field is not used.
  * @property {compute(v1).Commitment[]} commitments [Output Only] List of commitments contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of commitments when the list is empty.
  */
+
 /**
  * @typedef ConnectionDraining
  * @memberOf! compute(v1)
  * @type object
  * @property {integer} drainingTimeoutSec Time for which instance will be drained (not accept new connections, but still work to finish started).
  */
+
 /**
  * @typedef CustomerEncryptionKey
  * @memberOf! compute(v1)
@@ -27497,6 +27700,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} rawKey Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
  * @property {string} sha256 [Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.
  */
+
 /**
  * @typedef CustomerEncryptionKeyProtectedDisk
  * @memberOf! compute(v1)
@@ -27504,6 +27708,7 @@ When the protocol is UDP, this field is not used.
  * @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Decrypts data associated with the disk with a customer-supplied encryption key.
  * @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks.
  */
+
 /**
  * @typedef DeprecationStatus
  * @memberOf! compute(v1)
@@ -27514,6 +27719,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
  * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
  */
+
 /**
  * @typedef Disk
  * @memberOf! compute(v1)
@@ -27541,7 +27747,7 @@ To see the latest fingerprint, make a get() request to retrieve a disk.
 * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
 * @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.
 
-If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot.
+If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot. Acceptable values are 1 to 65536, inclusive.
 * @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
@@ -27572,16 +27778,18 @@ global/images/family/my-private-family
 * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
 * @property {string} zone [Output Only] URL of the zone where the disk resides.
 */
+
 /**
  * @typedef DiskAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped disk lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of DisksScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskAggregatedList for aggregated lists of persistent disks.
- * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. Acceptable values are 0 to 500, inclusive. (Default: 500)
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskList
  * @memberOf! compute(v1)
@@ -27589,9 +27797,10 @@ global/images/family/my-private-family
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).Disk[]} items A list of Disk resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskList for lists of disks.
- * @property {string} nextPageToken This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskMoveRequest
  * @memberOf! compute(v1)
@@ -27605,6 +27814,7 @@ global/images/family/my-private-family
 - projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
 */
+
 /**
  * @typedef DiskType
  * @memberOf! compute(v1)
@@ -27620,26 +27830,29 @@ global/images/family/my-private-family
  * @property {string} validDiskSize [Output Only] An optional textual description of the valid disk size, such as &quot;10GB-10TB&quot;.
  * @property {string} zone [Output Only] URL of the zone where the disk type resides.
  */
+
 /**
  * @typedef DiskTypeAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped disk type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of DiskTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskTypeList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).DiskType[]} items [Output Only] A list of Disk Type resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).DiskType[]} items A list of DiskType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeList for disk types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef DiskTypesScopedList
  * @memberOf! compute(v1)
@@ -27647,12 +27860,14 @@ global/images/family/my-private-family
  * @property {compute(v1).DiskType[]} diskTypes [Output Only] List of disk types contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of disk types when the list is empty.
  */
+
 /**
  * @typedef DisksResizeRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} sizeGb The new size of the persistent disk, which is specified in GB.
  */
+
 /**
  * @typedef DisksScopedList
  * @memberOf! compute(v1)
@@ -27660,13 +27875,17 @@ global/images/family/my-private-family
  * @property {compute(v1).Disk[]} disks [Output Only] List of disks contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of disks when the list is empty.
  */
+
 /**
  * @typedef Firewall
  * @memberOf! compute(v1)
  * @type object
 * @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+* @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#firewall for firewall rules.
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -27676,21 +27895,24 @@ If you choose to specify this property, you can specify the network as a full or
 - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network 
 - projects/myproject/global/networks/my-network 
 - global/networks/default
+* @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
-* @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} sourceTags If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
 * @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 */
+
 /**
  * @typedef FirewallList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Firewall[]} items [Output Only] A list of Firewall resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Firewall[]} items A list of Firewall resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#firewallList for lists of firewalls.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ForwardingRule
  * @memberOf! compute(v1)
@@ -27723,8 +27945,8 @@ Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to 
 Some types of forwarding target have constraints on the acceptable ports:  
 - TargetHttpProxy: 80, 8080 
 - TargetHttpsProxy: 443 
-- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995 
-- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995 
+- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 
+- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 
 - TargetVpnGateway: 500, 4500
 -
 * @property {string[]} ports This field is used along with the backend_service field for internal load balancing.
@@ -27743,26 +27965,29 @@ If the network specified is in auto subnet mode, this field is optional. However
 
 This field is not used for internal load balancing.
 */
+
 /**
  * @typedef ForwardingRuleAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped forwarding rule lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of ForwardingRulesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#forwardingRuleAggregatedList for lists of forwarding rules.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ForwardingRuleList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).ForwardingRule[]} items A list of ForwardingRule resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ForwardingRulesScopedList
  * @memberOf! compute(v1)
@@ -27770,6 +27995,7 @@ This field is not used for internal load balancing.
  * @property {compute(v1).ForwardingRule[]} forwardingRules List of forwarding rules contained in this scope.
  * @property {object} warning Informational warning which replaces the list of forwarding rules when the list is empty.
  */
+
 /**
  * @typedef GlobalSetLabelsRequest
  * @memberOf! compute(v1)
@@ -27777,12 +28003,14 @@ This field is not used for internal load balancing.
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a get() request to the resource to get the latest fingerprint.
  * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
  */
+
 /**
  * @typedef GuestOsFeature
  * @memberOf! compute(v1)
  * @type object
  * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
  */
+
 /**
  * @typedef HTTPHealthCheck
  * @memberOf! compute(v1)
@@ -27793,6 +28021,7 @@ This field is not used for internal load balancing.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
  */
+
 /**
  * @typedef HTTPSHealthCheck
  * @memberOf! compute(v1)
@@ -27803,6 +28032,7 @@ This field is not used for internal load balancing.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
  */
+
 /**
  * @typedef HealthCheck
  * @memberOf! compute(v1)
@@ -27823,22 +28053,25 @@ This field is not used for internal load balancing.
  * @property {string} type Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HealthCheckList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).HealthCheck[]} items A list of HealthCheck resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef HealthCheckReference
  * @memberOf! compute(v1)
  * @type object
  * @property {string} healthCheck 
  */
+
 /**
  * @typedef HealthStatus
  * @memberOf! compute(v1)
@@ -27848,6 +28081,7 @@ This field is not used for internal load balancing.
  * @property {string} ipAddress The IP address represented by this resource.
  * @property {integer} port The port on the instance.
  */
+
 /**
  * @typedef HostRule
  * @memberOf! compute(v1)
@@ -27856,6 +28090,7 @@ This field is not used for internal load balancing.
  * @property {string[]} hosts The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
  * @property {string} pathMatcher The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL&#39;s host portion.
  */
+
 /**
  * @typedef HttpHealthCheck
  * @memberOf! compute(v1)
@@ -27874,16 +28109,18 @@ This field is not used for internal load balancing.
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HttpHealthCheckList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).HttpHealthCheck[]} items A list of HttpHealthCheck resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef HttpsHealthCheck
  * @memberOf! compute(v1)
@@ -27902,6 +28139,7 @@ This field is not used for internal load balancing.
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have a greater value than checkIntervalSec.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
+
 /**
  * @typedef HttpsHealthCheckList
  * @memberOf! compute(v1)
@@ -27912,6 +28150,7 @@ This field is not used for internal load balancing.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Image
  * @memberOf! compute(v1)
@@ -27951,16 +28190,18 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
 * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
 */
+
 /**
  * @typedef ImageList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Image[]} items [Output Only] A list of Image resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Image[]} items A list of Image resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Instance
  * @memberOf! compute(v1)
@@ -27990,28 +28231,30 @@ For example: zones/us-central1-f/machineTypes/custom-4-5120
 For a full list of restrictions, read the Specifications for custom machine types.
 * @property {compute(v1).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-* @property {compute(v1).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
+* @property {compute(v1).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
 * @property {compute(v1).Scheduling} scheduling Sets the scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
 
 Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
 * @property {boolean} startRestricted [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
-* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(v1).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
 * @property {string} zone [Output Only] URL of the zone where the instance resides.
 */
+
 /**
  * @typedef InstanceAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped instance lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstancesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceAggregatedList for aggregated lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroup
  * @memberOf! compute(v1)
@@ -28034,26 +28277,29 @@ Named ports apply to all instances in this instance group.
 * @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
 * @property {string} zone [Output Only] The URL of the zone where the instance group is located (for zonal resources).
 */
+
 /**
  * @typedef InstanceGroupAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this aggregated list of instance groups. The server generates this identifier.
- * @property {object} items A map of scoped instance group lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstanceGroupsScopedList resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupAggregatedList for aggregated lists of instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this list of instance groups. The server generates this identifier.
- * @property {compute(v1).InstanceGroup[]} items A list of instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceGroup[]} items A list of InstanceGroup resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupManager
  * @memberOf! compute(v1)
@@ -28075,6 +28321,7 @@ Named ports apply to all instances in this instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
  * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
  */
+
 /**
  * @typedef InstanceGroupManagerActionsSummary
  * @memberOf! compute(v1)
@@ -28090,50 +28337,57 @@ If you have disabled creation retries, this field will not be populated; instead
 * @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
 * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
 */
+
 /**
  * @typedef InstanceGroupManagerAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this aggregated list of managed instance groups. The server generates this identifier.
- * @property {object} items [Output Only] A map of filtered managed instance group lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InstanceGroupManagersScopedList resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerAggregatedList for an aggregated list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupManagerList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
- * @property {compute(v1).InstanceGroupManager[]} items [Output Only] A list of managed instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceGroupManager[]} items A list of InstanceGroupManager resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersListManagedInstancesResponse
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).ManagedInstance[]} managedInstances [Output Only] The list of instances in the managed instance group.
  */
+
 /**
  * @typedef InstanceGroupManagersRecreateInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef InstanceGroupManagersScopedList
  * @memberOf! compute(v1)
@@ -28141,12 +28395,14 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).InstanceGroupManager[]} instanceGroupManagers [Output Only] The list of managed instance groups that are contained in the specified project and zone.
  * @property {object} warning [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
  */
+
 /**
  * @typedef InstanceGroupManagersSetInstanceTemplateRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
  */
+
 /**
  * @typedef InstanceGroupManagersSetTargetPoolsRequest
  * @memberOf! compute(v1)
@@ -28154,34 +28410,39 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} fingerprint The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {string[]} targetPools The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
  */
+
 /**
  * @typedef InstanceGroupsAddInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).InstanceReference[]} instances The list of instances to add to the instance group.
  */
+
 /**
  * @typedef InstanceGroupsListInstances
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this list of instances in the specified instance group. The server generates this identifier.
- * @property {compute(v1).InstanceWithNamedPorts[]} items [Output Only] A list of instances and any named ports that are assigned to those instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceWithNamedPorts[]} items A list of InstanceWithNamedPorts resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupsListInstances for the list of instances in the specified instance group.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this list of instances in the specified instance groups. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceGroupsListInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} instanceState A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
  */
+
 /**
  * @typedef InstanceGroupsRemoveInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).InstanceReference[]} instances The list of instances to remove from the instance group.
  */
+
 /**
  * @typedef InstanceGroupsScopedList
  * @memberOf! compute(v1)
@@ -28189,6 +28450,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).InstanceGroup[]} instanceGroups [Output Only] The list of instance groups that are contained in this scope.
  * @property {object} warning [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
  */
+
 /**
  * @typedef InstanceGroupsSetNamedPortsRequest
  * @memberOf! compute(v1)
@@ -28196,16 +28458,18 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {compute(v1).NamedPort[]} namedPorts The list of named ports to set for this instance group.
  */
+
 /**
  * @typedef InstanceList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Instance[]} items [Output Only] A list of instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Instance[]} items A list of Instance resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceList for lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceMoveRequest
  * @memberOf! compute(v1)
@@ -28219,6 +28483,7 @@ If you have disabled creation retries, this field will not be populated; instead
 - projects/project/zones/zone/instances/instance 
 - zones/zone/instances/instance
 */
+
 /**
  * @typedef InstanceProperties
  * @memberOf! compute(v1)
@@ -28235,12 +28500,14 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this template. Use metadata queries to obtain the access tokens for these instances.
  * @property {compute(v1).Tags} tags A list of tags to apply to the instances that are created from this template. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
  */
+
 /**
  * @typedef InstanceReference
  * @memberOf! compute(v1)
  * @type object
  * @property {string} instance The URL for a specific instance.
  */
+
 /**
  * @typedef InstanceTemplate
  * @memberOf! compute(v1)
@@ -28253,16 +28520,18 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).InstanceProperties} properties The instance properties for this instance template.
  * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
  */
+
 /**
  * @typedef InstanceTemplateList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
- * @property {compute(v1).InstanceTemplate[]} items [Output Only] list of InstanceTemplate resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceTemplate[]} items A list of InstanceTemplate resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplatesListResponse for instance template lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this instance template list. The server defines this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef InstanceWithNamedPorts
  * @memberOf! compute(v1)
@@ -28271,6 +28540,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).NamedPort[]} namedPorts [Output Only] The named ports that belong to this instance group.
  * @property {string} status [Output Only] The status of the instance.
  */
+
 /**
  * @typedef InstancesScopedList
  * @memberOf! compute(v1)
@@ -28278,6 +28548,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(v1).Instance[]} instances [Output Only] List of instances contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of instances when the list is empty.
  */
+
 /**
  * @typedef InstancesSetLabelsRequest
  * @memberOf! compute(v1)
@@ -28285,18 +28556,21 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} labelFingerprint Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
  * @property {object} labels 
  */
+
 /**
  * @typedef InstancesSetMachineResourcesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
  */
+
 /**
  * @typedef InstancesSetMachineTypeRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} machineType Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
  */
+
 /**
  * @typedef InstancesSetServiceAccountRequest
  * @memberOf! compute(v1)
@@ -28304,6 +28578,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
  */
+
 /**
  * @typedef InstancesStartWithEncryptionKeyRequest
  * @memberOf! compute(v1)
@@ -28314,6 +28589,7 @@ In order to start the instance, the disk url and its corresponding key must be p
 
 If the disk is not protected with a customer-supplied encryption key it should not be specified.
 */
+
 /**
  * @typedef License
  * @memberOf! compute(v1)
@@ -28323,6 +28599,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} name [Output Only] Name of the resource. The name is 1-63 characters long and complies with RFC1035.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef MachineType
  * @memberOf! compute(v1)
@@ -28343,26 +28620,29 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} zone [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
  */
+
 /**
  * @typedef MachineTypeAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped machine type lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of MachineTypesScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeAggregatedList for aggregated lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef MachineTypeList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).MachineType[]} items [Output Only] A list of Machine Type resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).MachineType[]} items A list of MachineType resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeList for lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef MachineTypesScopedList
  * @memberOf! compute(v1)
@@ -28370,6 +28650,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {compute(v1).MachineType[]} machineTypes [Output Only] List of machine types contained in this scope.
  * @property {object} warning [Output Only] An informational warning that appears when the machine types list is empty.
  */
+
 /**
  * @typedef ManagedInstance
  * @memberOf! compute(v1)
@@ -28388,12 +28669,14 @@ If the disk is not protected with a customer-supplied encryption key it should n
 * @property {string} instanceStatus [Output Only] The status of the instance. This field is empty when the instance does not exist.
 * @property {compute(v1).ManagedInstanceLastAttempt} lastAttempt [Output Only] Information about the last attempt to create or delete the instance.
 */
+
 /**
  * @typedef ManagedInstanceLastAttempt
  * @memberOf! compute(v1)
  * @type object
  * @property {object} errors [Output Only] Encountered errors during the last attempt to create or delete the instance.
  */
+
 /**
  * @typedef Metadata
  * @memberOf! compute(v1)
@@ -28402,6 +28685,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {object[]} items Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
  * @property {string} kind [Output Only] Type of the resource. Always compute#metadata for metadata.
  */
+
 /**
  * @typedef NamedPort
  * @memberOf! compute(v1)
@@ -28409,6 +28693,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} name The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
  * @property {integer} port The port number, which can be a value between 1 and 65535.
  */
+
 /**
  * @typedef Network
  * @memberOf! compute(v1)
@@ -28427,11 +28712,13 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} subnetworks [Output Only] Server-defined fully-qualified URLs for all subnetworks in this network.
 */
+
 /**
  * @typedef NetworkInterface
  * @memberOf! compute(v1)
  * @type object
 * @property {compute(v1).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+* @property {compute(v1).AliasIpRange[]} aliasIpRanges An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
 * @property {string} kind [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
 * @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
 * @property {string} network URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.
@@ -28447,16 +28734,18 @@ If you specify this property, you can specify the network as a full or partial U
 - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork 
 - regions/region/subnetworks/subnetwork
 */
+
 /**
  * @typedef NetworkList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Network[]} items [Output Only] A list of Network resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Network[]} items A list of Network resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef NetworkPeering
  * @memberOf! compute(v1)
@@ -28467,6 +28756,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
  */
+
 /**
  * @typedef NetworksAddPeeringRequest
  * @memberOf! compute(v1)
@@ -28475,12 +28765,14 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} name Name of the peering, which should conform to RFC1035.
  * @property {string} peerNetwork URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  */
+
 /**
  * @typedef NetworksRemovePeeringRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} name Name of the peering, which should conform to RFC1035.
  */
+
 /**
  * @typedef Operation
  * @memberOf! compute(v1)
@@ -28509,6 +28801,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationAggregatedList
  * @memberOf! compute(v1)
@@ -28519,6 +28812,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! compute(v1)
@@ -28529,6 +28823,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef OperationsScopedList
  * @memberOf! compute(v1)
@@ -28536,6 +28831,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(v1).Operation[]} operations [Output Only] List of operations contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of operations when the list is empty.
  */
+
 /**
  * @typedef PathMatcher
  * @memberOf! compute(v1)
@@ -28548,6 +28844,7 @@ If you specify this property, you can specify the network as a full or partial U
 * @property {string} name The name to which this PathMatcher is referred by the HostRule.
 * @property {compute(v1).PathRule[]} pathRules The list of path rules.
 */
+
 /**
  * @typedef PathRule
  * @memberOf! compute(v1)
@@ -28555,6 +28852,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string[]} paths The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.
  * @property {string} service The URL of the BackendService resource if this rule is matched.
  */
+
 /**
  * @typedef Project
  * @memberOf! compute(v1)
@@ -28570,34 +28868,39 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(v1).Quota[]} quotas [Output Only] Quotas assigned to this project.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(v1).UsageExportLocation} usageExportLocation The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
- * @property {string} xpnProjectStatus [Output Only] The role this project has in a Cross Project Network (XPN) configuration. Currently only HOST projects are differentiated.
+ * @property {string} xpnProjectStatus [Output Only] The role this project has in a shared VPC configuration. Currently only HOST projects are differentiated.
  */
+
 /**
  * @typedef ProjectsDisableXpnResourceRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {compute(v1).XpnResourceId} xpnResource XPN resource ID.
+ * @property {compute(v1).XpnResourceId} xpnResource Service resource (a.k.a service project) ID.
  */
+
 /**
  * @typedef ProjectsEnableXpnResourceRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {compute(v1).XpnResourceId} xpnResource XPN resource ID.
+ * @property {compute(v1).XpnResourceId} xpnResource Service resource (a.k.a service project) ID.
  */
+
 /**
  * @typedef ProjectsGetXpnResources
  * @memberOf! compute(v1)
  * @type object
- * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of XPN resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {compute(v1).XpnResourceId[]} resources XPN resources attached to this project as their XPN host.
+ * @property {compute(v1).XpnResourceId[]} resources Serive resources (a.k.a service projects) attached to this project as their shared VPC host.
  */
+
 /**
  * @typedef ProjectsListXpnHostsRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list XPN host projects. If not specified, the organization will be inferred from the project.
+ * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
  */
+
 /**
  * @typedef Quota
  * @memberOf! compute(v1)
@@ -28606,6 +28909,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} metric [Output Only] Name of the quota metric.
  * @property {number} usage [Output Only] Current usage of this metric.
  */
+
 /**
  * @typedef Region
  * @memberOf! compute(v1)
@@ -28621,60 +28925,68 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] Status of the region, either UP or DOWN.
  * @property {string[]} zones [Output Only] A list of zones available in this region, in the form of resource URLs.
  */
+
 /**
  * @typedef RegionAutoscalerList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Autoscaler[]} items A list of autoscalers.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Autoscaler[]} items A list of Autoscaler resources.
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).InstanceGroup[]} items A list of InstanceGroup resources.
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupManagerList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).InstanceGroupManager[]} items A list of managed instance groups.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceGroupManager[]} items A list of InstanceGroupManager resources.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups that exist in th regional scope.
- * @property {string} nextPageToken [Output only] A token used to continue a truncated list request.
- * @property {string} selfLink [Output only] The URL for this resource type. The server generates this URL.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersListInstancesResponse
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).ManagedInstance[]} managedInstances List of managed instances.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersRecreateRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
+
 /**
  * @typedef RegionInstanceGroupManagersSetTargetPoolsRequest
  * @memberOf! compute(v1)
@@ -28682,22 +28994,25 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} fingerprint Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
  * @property {string[]} targetPools The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  */
+
 /**
  * @typedef RegionInstanceGroupManagersSetTemplateRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} instanceTemplate URL of the InstanceTemplate resource from which all new instances will be created.
  */
+
 /**
  * @typedef RegionInstanceGroupsListInstances
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {compute(v1).InstanceWithNamedPorts[]} items A list of instances and any named ports that are assigned to those instances.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InstanceWithNamedPorts[]} items A list of InstanceWithNamedPorts resources.
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RegionInstanceGroupsListInstancesRequest
  * @memberOf! compute(v1)
@@ -28705,6 +29020,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} instanceState Instances in which state should be returned. Valid options are: &#39;ALL&#39;, &#39;RUNNING&#39;. By default, it lists all instances.
  * @property {string} portName Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
  */
+
 /**
  * @typedef RegionInstanceGroupsSetNamedPortsRequest
  * @memberOf! compute(v1)
@@ -28712,16 +29028,18 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
  * @property {compute(v1).NamedPort[]} namedPorts The list of named ports to set for this instance group.
  */
+
 /**
  * @typedef RegionList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Region[]} items [Output Only] A list of Region resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Region[]} items A list of Region resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#regionList for lists of regions.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ResourceCommitment
  * @memberOf! compute(v1)
@@ -28729,12 +29047,14 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} amount The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
  * @property {string} type Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
  */
+
 /**
  * @typedef ResourceGroupReference
  * @memberOf! compute(v1)
  * @type object
  * @property {string} group A URI referencing one of the instance groups listed in the backend service.
  */
+
 /**
  * @typedef Route
  * @memberOf! compute(v1)
@@ -28758,16 +29078,18 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
 * @property {string[]} tags A list of instance tags to which this route applies.
 * @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
 */
+
 /**
  * @typedef RouteList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {compute(v1).Route[]} items [Output Only] A list of Route resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Route[]} items A list of Route resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Router
  * @memberOf! compute(v1)
@@ -28784,22 +29106,25 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} region [Output Only] URI of the region where the router resides.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef RouterAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped router lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of Router resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RouterBgp
  * @memberOf! compute(v1)
  * @type object
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
+
 /**
  * @typedef RouterBgpPeer
  * @memberOf! compute(v1)
@@ -28811,6 +29136,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {integer} peerAsn Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.
  * @property {string} peerIpAddress IP address of the BGP interface outside Google cloud. Only IPv4 is supported.
  */
+
 /**
  * @typedef RouterInterface
  * @memberOf! compute(v1)
@@ -28819,16 +29145,18 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
+
 /**
  * @typedef RouterList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).Router[]} items A list of Router resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef RouterStatus
  * @memberOf! compute(v1)
@@ -28838,6 +29166,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(v1).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
  * @property {string} network URI of the network to which this router belongs.
  */
+
 /**
  * @typedef RouterStatusBgpPeerStatus
  * @memberOf! compute(v1)
@@ -28853,6 +29182,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} uptime Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
  * @property {string} uptimeSeconds Time this session has been up, in seconds. Format: 145
  */
+
 /**
  * @typedef RouterStatusResponse
  * @memberOf! compute(v1)
@@ -28860,12 +29190,14 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} kind Type of resource.
  * @property {compute(v1).RouterStatus} result 
  */
+
 /**
  * @typedef RoutersPreviewResponse
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).Router} resource Preview of given router.
  */
+
 /**
  * @typedef RoutersScopedList
  * @memberOf! compute(v1)
@@ -28873,6 +29205,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(v1).Router[]} routers List of routers contained in this scope.
  * @property {object} warning Informational warning which replaces the list of routers when the list is empty.
  */
+
 /**
  * @typedef SSLHealthCheck
  * @memberOf! compute(v1)
@@ -28883,6 +29216,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
  */
+
 /**
  * @typedef Scheduling
  * @memberOf! compute(v1)
@@ -28893,6 +29227,7 @@ By default, this is set to true so an instance is automatically restarted if it 
 * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
 * @property {boolean} preemptible Defines whether the instance is preemptible. This can only be set during instance creation, it cannot be set or changed after the instance has been created.
 */
+
 /**
  * @typedef SerialPortOutput
  * @memberOf! compute(v1)
@@ -28903,6 +29238,7 @@ By default, this is set to true so an instance is automatically restarted if it 
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {string} start The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.
  */
+
 /**
  * @typedef ServiceAccount
  * @memberOf! compute(v1)
@@ -28910,6 +29246,7 @@ By default, this is set to true so an instance is automatically restarted if it 
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
  */
+
 /**
  * @typedef Snapshot
  * @memberOf! compute(v1)
@@ -28940,16 +29277,18 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 * @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
 * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
 */
+
 /**
  * @typedef SnapshotList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Snapshot[]} items [Output Only] A list of Snapshot resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Snapshot[]} items A list of Snapshot resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef SslCertificate
  * @memberOf! compute(v1)
@@ -28963,16 +29302,18 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef SslCertificateList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).SslCertificate[]} items A list of SslCertificate resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Subnetwork
  * @memberOf! compute(v1)
@@ -28987,34 +29328,47 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
  * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
  * @property {string} region URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
+ * @property {compute(v1).SubnetworkSecondaryRange[]} secondaryIpRanges An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
+
 /**
  * @typedef SubnetworkAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output] A map of scoped Subnetwork lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of SubnetworksScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkAggregatedList for aggregated lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef SubnetworkList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Subnetwork[]} items The Subnetwork resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Subnetwork[]} items A list of Subnetwork resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
+/**
+ * @typedef SubnetworkSecondaryRange
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} ipCidrRange The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported.
+ * @property {string} rangeName The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
+ */
+
 /**
  * @typedef SubnetworksExpandIpCidrRangeRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} ipCidrRange The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
  */
+
 /**
  * @typedef SubnetworksScopedList
  * @memberOf! compute(v1)
@@ -29022,12 +29376,14 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {compute(v1).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
  */
+
 /**
  * @typedef SubnetworksSetPrivateIpGoogleAccessRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {boolean} privateIpGoogleAccess 
  */
+
 /**
  * @typedef TCPHealthCheck
  * @memberOf! compute(v1)
@@ -29038,6 +29394,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} request The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
  * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
  */
+
 /**
  * @typedef Tags
  * @memberOf! compute(v1)
@@ -29047,6 +29404,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 To see the latest fingerprint, make get() request to the instance.
 * @property {string[]} items An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
 */
+
 /**
  * @typedef TargetHttpProxy
  * @memberOf! compute(v1)
@@ -29059,22 +29417,25 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} urlMap URL to the UrlMap resource that defines the mapping from URL to the BackendService.
  */
+
 /**
  * @typedef TargetHttpProxyList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetHttpProxy[]} items A list of TargetHttpProxy resources.
  * @property {string} kind Type of resource. Always compute#targetHttpProxyList for lists of target HTTP proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetHttpsProxiesSetSslCertificatesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} sslCertificates New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
  */
+
 /**
  * @typedef TargetHttpsProxy
  * @memberOf! compute(v1)
@@ -29091,16 +29452,18 @@ To see the latest fingerprint, make get() request to the instance.
 - projects/project/global/urlMaps/url-map 
 - global/urlMaps/url-map
 */
+
 /**
  * @typedef TargetHttpsProxyList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetHttpsProxy[]} items A list of TargetHttpsProxy resources.
  * @property {string} kind Type of resource. Always compute#targetHttpsProxyList for lists of target HTTPS proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstance
  * @memberOf! compute(v1)
@@ -29118,26 +29481,29 @@ To see the latest fingerprint, make get() request to the instance.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} zone [Output Only] URL of the zone where the target instance resides.
 */
+
 /**
  * @typedef TargetInstanceAggregatedList
  * @memberOf! compute(v1)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {object} items A map of scoped target instance lists.
+ * @property {object} items A list of TargetInstance resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstanceList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetInstance[]} items A list of TargetInstance resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetInstancesScopedList
  * @memberOf! compute(v1)
@@ -29145,6 +29511,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {compute(v1).TargetInstance[]} targetInstances List of target instances contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TargetPool
  * @memberOf! compute(v1)
@@ -29173,16 +29540,18 @@ NONE: Connections from the same client IP may go to any instance in the pool.
 CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
 CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
 */
+
 /**
  * @typedef TargetPoolAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
- * @property {object} items [Output Only] A map of scoped target pool lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of TargetPool resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolAggregatedList for aggregated lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetPoolInstanceHealth
  * @memberOf! compute(v1)
@@ -29190,22 +29559,25 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(v1).HealthStatus[]} healthStatus 
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
  */
+
 /**
  * @typedef TargetPoolList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetPool[]} items A list of TargetPool resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolList for lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetPoolsAddHealthCheckRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).HealthCheckReference[]} healthChecks The HttpHealthCheck to add to the target pool.
  */
+
 /**
  * @typedef TargetPoolsAddInstanceRequest
  * @memberOf! compute(v1)
@@ -29215,6 +29587,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
 - projects/project-id/zones/zone/instances/instance-name 
 - zones/zone/instances/instance-name
 */
+
 /**
  * @typedef TargetPoolsRemoveHealthCheckRequest
  * @memberOf! compute(v1)
@@ -29224,12 +29597,14 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
 - projects/project/global/httpHealthChecks/health-check 
 - global/httpHealthChecks/health-check
 */
+
 /**
  * @typedef TargetPoolsRemoveInstanceRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).InstanceReference[]} instances URLs of the instances to be removed from target pool.
  */
+
 /**
  * @typedef TargetPoolsScopedList
  * @memberOf! compute(v1)
@@ -29237,30 +29612,35 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(v1).TargetPool[]} targetPools List of target pools contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TargetReference
  * @memberOf! compute(v1)
  * @type object
  * @property {string} target 
  */
+
 /**
  * @typedef TargetSslProxiesSetBackendServiceRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} service The URL of the new BackendService resource for the targetSslProxy.
  */
+
 /**
  * @typedef TargetSslProxiesSetProxyHeaderRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
  */
+
 /**
  * @typedef TargetSslProxiesSetSslCertificatesRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} sslCertificates New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
  */
+
 /**
  * @typedef TargetSslProxy
  * @memberOf! compute(v1)
@@ -29275,28 +29655,32 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} service URL to the BackendService resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections to Backends. Currently exactly one SSL certificate must be specified.
  */
+
 /**
  * @typedef TargetSslProxyList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetSslProxy[]} items A list of TargetSslProxy resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetTcpProxiesSetBackendServiceRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} service The URL of the new BackendService resource for the targetTcpProxy.
  */
+
 /**
  * @typedef TargetTcpProxiesSetProxyHeaderRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
  */
+
 /**
  * @typedef TargetTcpProxy
  * @memberOf! compute(v1)
@@ -29310,16 +29694,18 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
  */
+
 /**
  * @typedef TargetTcpProxyList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).TargetTcpProxy[]} items A list of TargetTcpProxy resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGateway
  * @memberOf! compute(v1)
@@ -29336,26 +29722,29 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} status [Output Only] The status of the VPN gateway.
  * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
  */
+
 /**
  * @typedef TargetVpnGatewayAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items A map of scoped target vpn gateway lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGatewayList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).TargetVpnGateway[]} items [Output Only] A list of TargetVpnGateway resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).TargetVpnGateway[]} items A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef TargetVpnGatewaysScopedList
  * @memberOf! compute(v1)
@@ -29363,6 +29752,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(v1).TargetVpnGateway[]} targetVpnGateways [Output Only] List of target vpn gateways contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef TestFailure
  * @memberOf! compute(v1)
@@ -29372,6 +29762,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} host 
  * @property {string} path 
  */
+
 /**
  * @typedef UrlMap
  * @memberOf! compute(v1)
@@ -29388,22 +29779,25 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(v1).UrlMapTest[]} tests The list of expected URL mappings. Request to update this UrlMap will succeed only if all of the test cases pass.
  */
+
 /**
  * @typedef UrlMapList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {compute(v1).UrlMap[]} items A list of UrlMap resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef UrlMapReference
  * @memberOf! compute(v1)
  * @type object
  * @property {string} urlMap 
  */
+
 /**
  * @typedef UrlMapTest
  * @memberOf! compute(v1)
@@ -29413,6 +29807,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} path Path portion of the URL.
  * @property {string} service Expected BackendService resource the given URL should be mapped to.
  */
+
 /**
  * @typedef UrlMapValidationResult
  * @memberOf! compute(v1)
@@ -29422,18 +29817,21 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(v1).TestFailure[]} testFailures 
  * @property {boolean} testPassed If successfully loaded, this field indicates whether the test passed. If false, &#39;testFailures&#39;s indicate the reason of failure.
  */
+
 /**
  * @typedef UrlMapsValidateRequest
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).UrlMap} resource Content of the UrlMap to be validated.
  */
+
 /**
  * @typedef UrlMapsValidateResponse
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).UrlMapValidationResult} result 
  */
+
 /**
  * @typedef UsageExportLocation
  * @memberOf! compute(v1)
@@ -29441,6 +29839,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} bucketName The name of an existing bucket in Cloud Storage where the usage report object is stored. The Google Service Account is granted write access to this bucket. This can either be the bucket name by itself, such as example-bucket, or the bucket name with gs:// or https://storage.googleapis.com/ in front of it, such as gs://example-bucket.
  * @property {string} reportNamePrefix An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.
  */
+
 /**
  * @typedef VpnTunnel
  * @memberOf! compute(v1)
@@ -29463,26 +29862,29 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} status [Output Only] The status of the VPN tunnel.
  * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
  */
+
 /**
  * @typedef VpnTunnelAggregatedList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {object} items [Output Only] A map of scoped vpn tunnel lists.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of VpnTunnelsScopedList resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef VpnTunnelList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).VpnTunnel[]} items [Output Only] A list of VpnTunnel resources.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).VpnTunnel[]} items A list of VpnTunnel resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef VpnTunnelsScopedList
  * @memberOf! compute(v1)
@@ -29490,23 +29892,26 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(v1).VpnTunnel[]} vpnTunnels List of vpn tunnels contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
  */
+
 /**
  * @typedef XpnHostList
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(v1).Project[]} items [Output Only] A list of XPN host project URLs.
- * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of XPN hosts.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Project[]} items [Output Only] A list of shared VPC host project URLs.
+ * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of shared VPC hosts.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef XpnResourceId
  * @memberOf! compute(v1)
  * @type object
- * @property {string} id The ID of the XPN resource. In the case of projects, this field matches the project&#39;s name, not the canonical ID.
- * @property {string} type The type of the XPN resource.
+ * @property {string} id The ID of the service resource. In the case of projects, this field matches the project ID (e.g., my-project), not the project number (e.g., 12345678).
+ * @property {string} type The type of the service resource.
  */
+
 /**
  * @typedef Zone
  * @memberOf! compute(v1)
@@ -29521,16 +29926,18 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] Status of the zone, either UP or DOWN.
  */
+
 /**
  * @typedef ZoneList
  * @memberOf! compute(v1)
  * @type object
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {compute(v1).Zone[]} items [Output Only] A list of Zone resources.
+ * @property {compute(v1).Zone[]} items A list of Zone resources.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef ZoneSetLabelsRequest
  * @memberOf! compute(v1)

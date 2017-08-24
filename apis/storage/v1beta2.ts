@@ -1466,6 +1466,7 @@ function Storage(options) { // eslint-disable-line
  * @property {object} versioning The bucket&#39;s versioning configuration.
  * @property {object} website The bucket&#39;s website configuration.
  */
+
 /**
  * @typedef BucketAccessControl
  * @memberOf! storage(v1beta2)
@@ -1491,6 +1492,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity. Can be READER, WRITER, or OWNER.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef BucketAccessControls
  * @memberOf! storage(v1beta2)
@@ -1498,6 +1500,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1beta2).BucketAccessControl[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
  */
+
 /**
  * @typedef Buckets
  * @memberOf! storage(v1beta2)
@@ -1506,6 +1509,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} kind The kind of item this is. For lists of buckets, this is always storage#buckets.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef Channel
  * @memberOf! storage(v1beta2)
@@ -1521,6 +1525,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef ComposeRequest
  * @memberOf! storage(v1beta2)
@@ -1529,6 +1534,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} kind The kind of item this is.
  * @property {object[]} sourceObjects The list of source objects that will be concatenated into a single object.
  */
+
 /**
  * @typedef Object
  * @memberOf! storage(v1beta2)
@@ -1558,6 +1564,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} timeDeleted Deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
  * @property {string} updated Modification time of the object metadata in RFC 3339 format.
  */
+
 /**
  * @typedef ObjectAccessControl
  * @memberOf! storage(v1beta2)
@@ -1585,6 +1592,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity. Can be READER or OWNER.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef ObjectAccessControls
  * @memberOf! storage(v1beta2)
@@ -1592,6 +1600,7 @@ function Storage(options) { // eslint-disable-line
  * @property {any[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
  */
+
 /**
  * @typedef Objects
  * @memberOf! storage(v1beta2)

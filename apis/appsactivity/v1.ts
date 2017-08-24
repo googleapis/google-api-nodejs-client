@@ -92,6 +92,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).Event} combinedEvent The fields common to all of the singleEvents that make up the Activity.
  * @property {appsactivity(v1).Event[]} singleEvents A list of all the Events that make up the Activity.
  */
+
 /**
  * @typedef Event
  * @memberOf! appsactivity(v1)
@@ -106,6 +107,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).Target} target Information specific to the Target object modified by the event.
  * @property {appsactivity(v1).User} user Represents the user responsible for the event.
  */
+
 /**
  * @typedef ListActivitiesResponse
  * @memberOf! appsactivity(v1)
@@ -113,6 +115,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).Activity[]} activities List of activities.
  * @property {string} nextPageToken Token for the next page of results.
  */
+
 /**
  * @typedef Move
  * @memberOf! appsactivity(v1)
@@ -120,6 +123,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).Parent[]} addedParents The added parent(s).
  * @property {appsactivity(v1).Parent[]} removedParents The removed parent(s).
  */
+
 /**
  * @typedef Parent
  * @memberOf! appsactivity(v1)
@@ -128,6 +132,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {boolean} isRoot Whether this is the root folder.
  * @property {string} title The parent&#39;s title.
  */
+
 /**
  * @typedef Permission
  * @memberOf! appsactivity(v1)
@@ -139,6 +144,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).User} user The user&#39;s information if the type is USER.
  * @property {boolean} withLink Whether the permission requires a link to the file.
  */
+
 /**
  * @typedef PermissionChange
  * @memberOf! appsactivity(v1)
@@ -146,12 +152,14 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {appsactivity(v1).Permission[]} addedPermissions Lists all Permission objects added.
  * @property {appsactivity(v1).Permission[]} removedPermissions Lists all Permission objects removed.
  */
+
 /**
  * @typedef Photo
  * @memberOf! appsactivity(v1)
  * @type object
  * @property {string} url The URL of the photo.
  */
+
 /**
  * @typedef Rename
  * @memberOf! appsactivity(v1)
@@ -159,6 +167,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {string} newTitle The new title.
  * @property {string} oldTitle The old title.
  */
+
 /**
  * @typedef Target
  * @memberOf! appsactivity(v1)
@@ -167,6 +176,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @property {string} mimeType The MIME type of the target.
  * @property {string} name The name of the target. For example, in Google Drive, this is the title of the file.
  */
+
 /**
  * @typedef User
  * @memberOf! appsactivity(v1)

@@ -454,6 +454,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} natIp An external IP address associated with this instance.
  * @property {string} type Type of this access configuration file. Currently only ONE_TO_ONE_NAT is supported.
  */
+
 /**
  * @typedef Action
  * @memberOf! replicapool(v1beta1)
@@ -462,6 +463,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {replicapool(v1beta1).EnvVariable[]} envVariables A list of environment variables to use for the commands in this action.
  * @property {integer} timeoutMilliSeconds If an action&#39;s commands on a particular replica do not finish in the specified timeoutMilliSeconds, the replica is considered to be in a FAILING state. No efforts are made to stop any processes that were spawned or created as the result of running the action&#39;s commands. The default is the max allowed value, 1 hour (i.e. 3600000 milliseconds).
  */
+
 /**
  * @typedef DiskAttachment
  * @memberOf! replicapool(v1beta1)
@@ -469,6 +471,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} deviceName The device name of this disk.
  * @property {integer} index A zero-based index to assign to this disk, where 0 is reserved for the boot disk. If not specified, this is assigned by the server.
  */
+
 /**
  * @typedef EnvVariable
  * @memberOf! replicapool(v1beta1)
@@ -477,6 +480,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} name The name of the environment variable.
  * @property {string} value The value of the variable.
  */
+
 /**
  * @typedef ExistingDisk
  * @memberOf! replicapool(v1beta1)
@@ -484,6 +488,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {replicapool(v1beta1).DiskAttachment} attachment How the disk will be attached to the Replica.
  * @property {string} source The name of the Persistent Disk resource. The Persistent Disk resource must be in the same zone as the Pool.
  */
+
 /**
  * @typedef HealthCheck
  * @memberOf! replicapool(v1beta1)
@@ -498,6 +503,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {integer} timeoutSec How long (in seconds) to wait before a timeout failure for this healthcheck. The default value is 5 seconds.
  * @property {integer} unhealthyThreshold The number of consecutive health check requests that need to fail in order to consider the replica unhealthy. The default value is 2.
  */
+
 /**
  * @typedef Label
  * @memberOf! replicapool(v1beta1)
@@ -505,6 +511,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} key The key for this label.
  * @property {string} value The value of this label.
  */
+
 /**
  * @typedef Metadata
  * @memberOf! replicapool(v1beta1)
@@ -512,6 +519,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} fingerPrint The fingerprint of the metadata. Required for updating the metadata entries for this instance.
  * @property {replicapool(v1beta1).MetadataItem[]} items A list of metadata items.
  */
+
 /**
  * @typedef MetadataItem
  * @memberOf! replicapool(v1beta1)
@@ -519,6 +527,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} key A metadata key.
  * @property {string} value A metadata value.
  */
+
 /**
  * @typedef NetworkInterface
  * @memberOf! replicapool(v1beta1)
@@ -527,6 +536,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} network Name the Network resource to which this interface applies.
  * @property {string} networkIp An optional IPV4 internal network address to assign to the instance for this network interface.
  */
+
 /**
  * @typedef NewDisk
  * @memberOf! replicapool(v1beta1)
@@ -536,6 +546,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {boolean} boot If true, indicates that this is the root persistent disk.
  * @property {replicapool(v1beta1).NewDiskInitializeParams} initializeParams Create the new disk using these parameters. The name of the disk will be &lt;instance_name&gt;-&lt;four_random_charactersgt;.
  */
+
 /**
  * @typedef NewDiskInitializeParams
  * @memberOf! replicapool(v1beta1)
@@ -545,6 +556,7 @@ function Replicapool(options) { // eslint-disable-line
 * @property {string} sourceImage The name or fully-qualified URL of a source image to use to create this disk. If you provide a name of the source image, Replica Pool will look for an image with that name in your project. If you are specifying an image provided by Compute Engine, you will need to provide the full URL with the correct project, such as:
 http://www.googleapis.com/compute/v1/projects/debian-cloud/ global/images/debian-wheezy-7-vYYYYMMDD
 */
+
 /**
  * @typedef Pool
  * @memberOf! replicapool(v1beta1)
@@ -567,12 +579,14 @@ If this is not specified by the user, a random base instance name is generated b
 * @property {replicapool(v1beta1).Template} template The template to use when creating replicas in this pool. This template is used during initial instance creation of the pool, when growing the pool in size, or when a replica restarts.
 * @property {string} type Deprecated! Do not set.
 */
+
 /**
  * @typedef PoolsDeleteRequest
  * @memberOf! replicapool(v1beta1)
  * @type object
  * @property {string[]} abandonInstances If there are instances you would like to keep, you can specify them here. These instances won&#39;t be deleted, but the associated replica objects will be removed.
  */
+
 /**
  * @typedef PoolsListResponse
  * @memberOf! replicapool(v1beta1)
@@ -580,6 +594,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} nextPageToken 
  * @property {replicapool(v1beta1).Pool[]} resources 
  */
+
 /**
  * @typedef Replica
  * @memberOf! replicapool(v1beta1)
@@ -588,6 +603,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} selfLink [Output Only] The self-link of the Replica.
  * @property {replicapool(v1beta1).ReplicaStatus} status [Output Only] Last known status of the Replica.
  */
+
 /**
  * @typedef ReplicaStatus
  * @memberOf! replicapool(v1beta1)
@@ -598,12 +614,14 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} vmLink [Output Only] Link to the virtual machine that this Replica represents.
  * @property {string} vmStartTime [Output Only] The time that this Replica got to the RUNNING state, in RFC 3339 format. If the start time is unknown, UNKNOWN is returned.
  */
+
 /**
  * @typedef ReplicasDeleteRequest
  * @memberOf! replicapool(v1beta1)
  * @type object
  * @property {boolean} abandonInstance Whether the instance resource represented by this replica should be deleted or abandoned. If abandoned, the replica will be deleted but the virtual machine instance will remain. By default, this is set to false and the instance will be deleted along with the replica.
  */
+
 /**
  * @typedef ReplicasListResponse
  * @memberOf! replicapool(v1beta1)
@@ -611,6 +629,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} nextPageToken 
  * @property {replicapool(v1beta1).Replica[]} resources 
  */
+
 /**
  * @typedef ServiceAccount
  * @memberOf! replicapool(v1beta1)
@@ -618,6 +637,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} email The service account email address, for example: 123845678986@project.gserviceaccount.com
  * @property {string[]} scopes The list of OAuth2 scopes to obtain for the service account, for example: https://www.googleapis.com/auth/devstorage.full_control
  */
+
 /**
  * @typedef Tag
  * @memberOf! replicapool(v1beta1)
@@ -625,6 +645,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} fingerPrint The fingerprint of the tag. Required for updating the list of tags.
  * @property {string[]} items Items contained in this tag.
  */
+
 /**
  * @typedef Template
  * @memberOf! replicapool(v1beta1)
@@ -634,6 +655,7 @@ If this is not specified by the user, a random base instance name is generated b
  * @property {string} version A free-form string describing the version of this template. You can provide any versioning string you would like. For example, version1 or template-v1.
  * @property {replicapool(v1beta1).VmParams} vmParams The virtual machine parameters to use for creating replicas. You can define settings such as the machine type and the image of replicas in this pool. This is required if replica type is SMART_VM.
  */
+
 /**
  * @typedef VmParams
  * @memberOf! replicapool(v1beta1)

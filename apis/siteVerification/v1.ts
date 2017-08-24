@@ -310,6 +310,7 @@ function Siteverification(options) { // eslint-disable-line
  * @property {object} site The site for which a verification token will be generated.
  * @property {string} verificationMethod The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
  */
+
 /**
  * @typedef SiteVerificationWebResourceGettokenResponse
  * @memberOf! siteVerification(v1)
@@ -317,12 +318,14 @@ function Siteverification(options) { // eslint-disable-line
  * @property {string} method The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain.
  * @property {string} token The verification token. The token must be placed appropriately in order for verification to succeed.
  */
+
 /**
  * @typedef SiteVerificationWebResourceListResponse
  * @memberOf! siteVerification(v1)
  * @type object
  * @property {siteVerification(v1).SiteVerificationWebResourceResource[]} items The list of sites that are owned by the authenticated user.
  */
+
 /**
  * @typedef SiteVerificationWebResourceResource
  * @memberOf! siteVerification(v1)

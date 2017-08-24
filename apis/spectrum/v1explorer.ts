@@ -272,6 +272,7 @@ function Spectrum(options) { // eslint-disable-line
  * @property {string} heightType If the height is required, then the height type (AGL for above ground level or AMSL for above mean sea level) is also required. The default is AGL.
  * @property {number} heightUncertainty The height uncertainty in meters. Whether this is required depends on the regulatory domain.
  */
+
 /**
  * @typedef DatabaseSpec
  * @memberOf! spectrum(v1explorer)
@@ -279,18 +280,21 @@ function Spectrum(options) { // eslint-disable-line
  * @property {string} name The display name for a database.
  * @property {string} uri The corresponding URI of the database.
  */
+
 /**
  * @typedef DbUpdateSpec
  * @memberOf! spectrum(v1explorer)
  * @type object
  * @property {spectrum(v1explorer).DatabaseSpec[]} databases A required list of one or more databases. A device should update its preconfigured list of databases to replace (only) the database that provided the response with the specified entries.
  */
+
 /**
  * @typedef DeviceCapabilities
  * @memberOf! spectrum(v1explorer)
  * @type object
  * @property {spectrum(v1explorer).FrequencyRange[]} frequencyRanges An optional list of frequency ranges supported by the device. Each element must contain start and stop frequencies in which the device can operate. Channel identifiers are optional. When specified, the database should not return available spectrum that falls outside these ranges or channel IDs.
  */
+
 /**
  * @typedef DeviceDescriptor
  * @memberOf! spectrum(v1explorer)
@@ -308,6 +312,7 @@ function Spectrum(options) { // eslint-disable-line
 For information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.
 * @property {string} serialNumber The manufacturer&#39;s device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters.
 */
+
 /**
  * @typedef DeviceOwner
  * @memberOf! spectrum(v1explorer)
@@ -315,6 +320,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {spectrum(v1explorer).Vcard} operator The vCard contact information for the device operator is optional, but may be required by specific regulatory domains.
  * @property {spectrum(v1explorer).Vcard} owner The vCard contact information for the individual or business that owns the device is required.
  */
+
 /**
  * @typedef DeviceValidity
  * @memberOf! spectrum(v1explorer)
@@ -323,6 +329,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {boolean} isValid The validity status: true if the device is valid for operation, false otherwise. It will always be present.
  * @property {string} reason If the device identifier is not valid, the database may include a reason. The reason may be in any language. The length of the value should not exceed 128 characters.
  */
+
 /**
  * @typedef EventTime
  * @memberOf! spectrum(v1explorer)
@@ -330,6 +337,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {string} startTime The inclusive start of the event. It will be present.
  * @property {string} stopTime The exclusive end of the event. It will be present.
  */
+
 /**
  * @typedef FrequencyRange
  * @memberOf! spectrum(v1explorer)
@@ -339,6 +347,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {number} startHz The required inclusive start of the frequency range (in Hertz).
  * @property {number} stopHz The required exclusive end of the frequency range (in Hertz).
  */
+
 /**
  * @typedef GeoLocation
  * @memberOf! spectrum(v1explorer)
@@ -347,6 +356,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {spectrum(v1explorer).GeoLocationEllipse} point If present, indicates that the geolocation represents a point. Paradoxically, a point is parameterized using an ellipse, where the center represents the location of the point and the distances along the major and minor axes represent the uncertainty. The uncertainty values may be required, depending on the regulatory domain.
  * @property {spectrum(v1explorer).GeoLocationPolygon} region If present, indicates that the geolocation represents a region. Database support for regions is optional.
  */
+
 /**
  * @typedef GeoLocationEllipse
  * @memberOf! spectrum(v1explorer)
@@ -356,6 +366,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {number} semiMajorAxis A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.
  * @property {number} semiMinorAxis A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.
  */
+
 /**
  * @typedef GeoLocationPoint
  * @memberOf! spectrum(v1explorer)
@@ -363,6 +374,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {number} latitude A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency&#39;s Technical Report TR8350.2.
  * @property {number} longitude A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency&#39;s Technical Report TR8350.2.
  */
+
 /**
  * @typedef GeoLocationPolygon
  * @memberOf! spectrum(v1explorer)
@@ -374,6 +386,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
 - All vertices are assumed to be at the same altitude. 
 - Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).
 */
+
 /**
  * @typedef GeoSpectrumSchedule
  * @memberOf! spectrum(v1explorer)
@@ -381,6 +394,7 @@ For information about the valid requests, see section 9.2 of the PAWS specificat
  * @property {spectrum(v1explorer).GeoLocation} location The geolocation identifies the location at which the spectrum schedule applies. It will always be present.
  * @property {spectrum(v1explorer).SpectrumSchedule[]} spectrumSchedules A list of available spectrum profiles and associated times. It will always be present, and at least one schedule must be included (though it may be empty if there is no available spectrum). More than one schedule may be included to represent future changes to the available spectrum.
  */
+
 /**
  * @typedef PawsGetSpectrumBatchRequest
  * @memberOf! spectrum(v1explorer)
@@ -401,6 +415,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsGetSpectrumBatchResponse
  * @memberOf! spectrum(v1explorer)
@@ -421,6 +436,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsGetSpectrumRequest
  * @memberOf! spectrum(v1explorer)
@@ -439,6 +455,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsGetSpectrumResponse
  * @memberOf! spectrum(v1explorer)
@@ -459,6 +476,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsInitRequest
  * @memberOf! spectrum(v1explorer)
@@ -472,6 +490,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsInitResponse
  * @memberOf! spectrum(v1explorer)
@@ -486,6 +505,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsNotifySpectrumUseRequest
  * @memberOf! spectrum(v1explorer)
@@ -500,6 +520,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsNotifySpectrumUseResponse
  * @memberOf! spectrum(v1explorer)
@@ -512,6 +533,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsRegisterRequest
  * @memberOf! spectrum(v1explorer)
@@ -527,6 +549,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsRegisterResponse
  * @memberOf! spectrum(v1explorer)
@@ -540,6 +563,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsVerifyDeviceRequest
  * @memberOf! spectrum(v1explorer)
@@ -552,6 +576,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef PawsVerifyDeviceResponse
  * @memberOf! spectrum(v1explorer)
@@ -566,6 +591,7 @@ Required field.
 
 Required field.
 */
+
 /**
  * @typedef RulesetInfo
  * @memberOf! spectrum(v1explorer)
@@ -575,6 +601,7 @@ Required field.
  * @property {integer} maxPollingSecs The maximum duration, in seconds, between requests for available spectrum. It is required in the initialization response, but optional otherwise. The device must contact the database to get available spectrum no less frequently than this duration. If the new spectrum information indicates that the device is using spectrum that is no longer available, it must immediately cease use of those frequencies under rules for database-managed spectrum. If this value is provided within the context of an available-spectrum response, it takes precedence over the value within the initialization response.
  * @property {string[]} rulesetIds The identifiers of the rulesets supported for the device&#39;s location. The database should include at least one applicable ruleset in the initialization response. The device may use the ruleset identifiers to determine parameters to include in subsequent requests. Within the context of the available-spectrum responses, the database should include the identifier of the ruleset that it used to determine the available-spectrum response. If included, the device must use the specified ruleset to interpret the response. If the device does not support the indicated ruleset, it must not operate in the spectrum governed by the ruleset.
  */
+
 /**
  * @typedef SpectrumMessage
  * @memberOf! spectrum(v1explorer)
@@ -582,6 +609,7 @@ Required field.
  * @property {number} bandwidth The bandwidth (in Hertz) for which permissible power levels are specified. For example, FCC regulation would require only one spectrum specification at 6MHz bandwidth, but Ofcom regulation would require two specifications, at 0.1MHz and 8MHz. This parameter may be empty if there is no available spectrum. It will be present otherwise.
  * @property {spectrum(v1explorer).FrequencyRange[]} frequencyRanges The list of frequency ranges and permissible power levels. The list may be empty if there is no available spectrum, otherwise it will be present.
  */
+
 /**
  * @typedef SpectrumSchedule
  * @memberOf! spectrum(v1explorer)
@@ -589,6 +617,7 @@ Required field.
  * @property {spectrum(v1explorer).EventTime} eventTime The event time expresses when the spectrum profile is valid. It will always be present.
  * @property {spectrum(v1explorer).SpectrumMessage[]} spectra A list of spectrum messages representing the usable profile. It will always be present, but may be empty when there is no available spectrum.
  */
+
 /**
  * @typedef Vcard
  * @memberOf! spectrum(v1explorer)
@@ -599,6 +628,7 @@ Required field.
  * @property {spectrum(v1explorer).VcardTypedText} org The organization associated with the registering entity.
  * @property {spectrum(v1explorer).VcardTelephone} tel A telephone number that can be used to call the contact.
  */
+
 /**
  * @typedef VcardAddress
  * @memberOf! spectrum(v1explorer)
@@ -610,12 +640,14 @@ Required field.
  * @property {string} region The state or local equivalent portion of the address. For example: CA.
  * @property {string} street The street number and name. For example: 123 Any St.
  */
+
 /**
  * @typedef VcardTelephone
  * @memberOf! spectrum(v1explorer)
  * @type object
  * @property {string} uri A nested telephone URI of the form: tel:+1-123-456-7890.
  */
+
 /**
  * @typedef VcardTypedText
  * @memberOf! spectrum(v1explorer)

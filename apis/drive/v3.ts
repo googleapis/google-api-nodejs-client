@@ -1641,6 +1641,7 @@ function Drive(options) { // eslint-disable-line
  * @property {object[]} teamDriveThemes A list of themes that are supported for Team Drives.
  * @property {drive(v3).User} user The authenticated user.
  */
+
 /**
  * @typedef Change
  * @memberOf! drive(v3)
@@ -1654,6 +1655,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} time The time of this change (RFC 3339 date-time).
  * @property {string} type The type of the change. Possible values are file and teamDrive.
  */
+
 /**
  * @typedef ChangeList
  * @memberOf! drive(v3)
@@ -1663,6 +1665,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} newStartPageToken The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
  * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
+
 /**
  * @typedef Channel
  * @memberOf! drive(v3)
@@ -1678,6 +1681,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef Comment
  * @memberOf! drive(v3)
@@ -1695,6 +1699,7 @@ function Drive(options) { // eslint-disable-line
  * @property {drive(v3).Reply[]} replies The full list of replies to the comment in chronological order.
  * @property {boolean} resolved Whether the comment has been resolved by one of its replies.
  */
+
 /**
  * @typedef CommentList
  * @memberOf! drive(v3)
@@ -1703,6 +1708,7 @@ function Drive(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#commentList&quot;.
  * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
+
 /**
  * @typedef File
  * @memberOf! drive(v3)
@@ -1767,6 +1773,7 @@ Entries with null values are cleared in update and copy requests.
 * @property {string} webViewLink A link for opening the file in a relevant Google editor or viewer in a browser.
 * @property {boolean} writersCanShare Whether users with only writer permission can modify the file&#39;s permissions. Not populated for Team Drive files.
 */
+
 /**
  * @typedef FileList
  * @memberOf! drive(v3)
@@ -1776,6 +1783,7 @@ Entries with null values are cleared in update and copy requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#fileList&quot;.
  * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
+
 /**
  * @typedef GeneratedIds
  * @memberOf! drive(v3)
@@ -1784,6 +1792,7 @@ Entries with null values are cleared in update and copy requests.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#generatedIds&quot;.
  * @property {string} space The type of file that can be created with these IDs.
  */
+
 /**
  * @typedef Permission
  * @memberOf! drive(v3)
@@ -1813,6 +1822,7 @@ Entries with null values are cleared in update and copy requests.
 - domain 
 - anyone
 */
+
 /**
  * @typedef PermissionList
  * @memberOf! drive(v3)
@@ -1821,6 +1831,7 @@ Entries with null values are cleared in update and copy requests.
  * @property {string} nextPageToken The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {drive(v3).Permission[]} permissions The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
+
 /**
  * @typedef Reply
  * @memberOf! drive(v3)
@@ -1837,6 +1848,7 @@ Entries with null values are cleared in update and copy requests.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#reply&quot;.
 * @property {string} modifiedTime The last time the reply was modified (RFC 3339 date-time).
 */
+
 /**
  * @typedef ReplyList
  * @memberOf! drive(v3)
@@ -1845,6 +1857,7 @@ Entries with null values are cleared in update and copy requests.
  * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {drive(v3).Reply[]} replies The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
+
 /**
  * @typedef Revision
  * @memberOf! drive(v3)
@@ -1863,6 +1876,7 @@ This field is only applicable to files with binary content in Drive.
 * @property {boolean} publishedOutsideDomain Whether this revision is published outside the domain. This is only applicable to Google Docs.
 * @property {string} size The size of the revision&#39;s content in bytes. This is only applicable to files with binary content in Drive.
 */
+
 /**
  * @typedef RevisionList
  * @memberOf! drive(v3)
@@ -1871,6 +1885,7 @@ This field is only applicable to files with binary content in Drive.
  * @property {string} nextPageToken The page token for the next page of revisions. This will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {drive(v3).Revision[]} revisions The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
+
 /**
  * @typedef StartPageToken
  * @memberOf! drive(v3)
@@ -1878,6 +1893,7 @@ This field is only applicable to files with binary content in Drive.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
  * @property {string} startPageToken The starting page token for listing changes.
  */
+
 /**
  * @typedef TeamDrive
  * @memberOf! drive(v3)
@@ -1891,6 +1907,7 @@ This field is only applicable to files with binary content in Drive.
  * @property {string} name The name of this Team Drive.
  * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
  */
+
 /**
  * @typedef TeamDriveList
  * @memberOf! drive(v3)
@@ -1899,6 +1916,7 @@ This field is only applicable to files with binary content in Drive.
  * @property {string} nextPageToken The page token for the next page of Team Drives. This will be absent if the end of the Team Drives list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {drive(v3).TeamDrive[]} teamDrives The list of Team Drives. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
+
 /**
  * @typedef User
  * @memberOf! drive(v3)

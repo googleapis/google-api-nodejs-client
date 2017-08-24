@@ -333,12 +333,14 @@ function Licensing(options) { // eslint-disable-line
  * @property {string} skuName Display Name of the sku of the product.
  * @property {string} userId Email id of the user.
  */
+
 /**
  * @typedef LicenseAssignmentInsert
  * @memberOf! licensing(v1)
  * @type object
  * @property {string} userId Email id of the user
  */
+
 /**
  * @typedef LicenseAssignmentList
  * @memberOf! licensing(v1)

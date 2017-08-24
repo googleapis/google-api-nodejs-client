@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Google Cloud OS Login API
  *
- * A Google Cloud API for managing OS login configuration for Directory API users.
+ * Manages OS login configuration for Directory API users.
  *
  * @example
  * const google = require('googleapis');
@@ -38,44 +38,6 @@ function Oslogin(options) { // eslint-disable-line
   self._options = options || {};
 
   self.users = {
-
-    /**
-     * oslogin.users.importSshPublicKey
-     *
-     * @desc Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
-     *
-     * @alias oslogin.users.importSshPublicKey
-     * @memberOf! oslogin(v1alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The unique ID for the user in format `users/{user}`.
-     * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    importSshPublicKey: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * oslogin.users.getLoginProfile
@@ -114,6 +76,43 @@ function Oslogin(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
+    /**
+     * oslogin.users.importSshPublicKey
+     *
+     * @desc Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
+     *
+     * @alias oslogin.users.importSshPublicKey
+     * @memberOf! oslogin(v1alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The unique ID for the user in format `users/{user}`.
+     * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    importSshPublicKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
     sshPublicKeys: {
 
       /**
@@ -233,19 +232,43 @@ function Oslogin(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef Empty
+ * @memberOf! oslogin(v1alpha)
+ * @type object
+ */
+
+/**
+ * @typedef ImportSshPublicKeyResponse
+ * @memberOf! oslogin(v1alpha)
+ * @type object
+ * @property {oslogin(v1alpha).LoginProfile} loginProfile The login profile information for the user.
+ */
+
+/**
  * @typedef LoginProfile
  * @memberOf! oslogin(v1alpha)
  * @type object
  * @property {string} name A unique user ID for identifying the user.
  * @property {oslogin(v1alpha).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the Directory API user.
- * @property {boolean} suspended Indicates if the user is suspended.
  * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
+ * @property {boolean} suspended Indicates if the user is suspended.
  */
+
 /**
- * @typedef Empty
+ * @typedef PosixAccount
  * @memberOf! oslogin(v1alpha)
  * @type object
- */
+* @property {string} gecos The GECOS (user information) entry for this account.
+* @property {integer} gid The default group ID.
+* @property {string} homeDirectory The path to the home directory for this account.
+* @property {boolean} primary Only one POSIX account can be marked as primary.
+* @property {string} shell The path to the logic shell for this account.
+* @property {string} systemId System identifier for which account the username or uid applies to.
+By default, the empty value is used.
+* @property {integer} uid The user ID.
+* @property {string} username The username of the POSIX account.
+*/
+
 /**
  * @typedef SshPublicKey
  * @memberOf! oslogin(v1alpha)
@@ -255,25 +278,5 @@ function Oslogin(options) { // eslint-disable-line
 * @property {string} key Public key text in SSH format, defined by
 &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt;
 section 6.6.
-*/
-/**
- * @typedef ImportSshPublicKeyResponse
- * @memberOf! oslogin(v1alpha)
- * @type object
- * @property {oslogin(v1alpha).LoginProfile} loginProfile The login profile information for the user.
- */
-/**
- * @typedef PosixAccount
- * @memberOf! oslogin(v1alpha)
- * @type object
-* @property {string} homeDirectory The path to the home directory for this account.
-* @property {string} systemId System identifier for which account the username or uid applies to.
-By default, the empty value is used.
-* @property {string} gecos The GECOS (user information) entry for this account.
-* @property {boolean} primary Only one POSIX account can be marked as primary.
-* @property {integer} gid The default group ID.
-* @property {integer} uid The user ID.
-* @property {string} username The username of the POSIX account.
-* @property {string} shell The path to the logic shell for this account.
 */
 export = Oslogin;

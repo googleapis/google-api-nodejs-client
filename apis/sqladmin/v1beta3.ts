@@ -1000,6 +1000,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} kind This is always sql#backupConfiguration.
  * @property {string} startTime Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
  */
+
 /**
  * @typedef BackupRun
  * @memberOf! sqladmin(v1beta3)
@@ -1014,6 +1015,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} startTime The time the backup operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
  * @property {string} status The status of this run.
  */
+
 /**
  * @typedef BackupRunsListResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1022,6 +1024,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} kind This is always sql#backupRunsList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef BinLogCoordinates
  * @memberOf! sqladmin(v1beta3)
@@ -1030,6 +1033,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} binLogPosition Position (offset) within the binary log file.
  * @property {string} kind This is always sql#binLogCoordinates.
  */
+
 /**
  * @typedef CloneContext
  * @memberOf! sqladmin(v1beta3)
@@ -1039,6 +1043,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} kind This is always sql#cloneContext.
  * @property {string} sourceInstanceName Name of the Cloud SQL instance to be cloned.
  */
+
 /**
  * @typedef DatabaseFlags
  * @memberOf! sqladmin(v1beta3)
@@ -1046,6 +1051,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @property {string} name The name of the flag. These flags are passed at instance startup, so include both MySQL server options and MySQL system variables. Flags should be specified with underscores, not hyphens. For more information, see Configuring MySQL Flags in the Google Cloud SQL documentation, as well as the official MySQL documentation for server options and system variables.
  * @property {string} value The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn&#39;t take a value.
  */
+
 /**
  * @typedef DatabaseInstance
  * @memberOf! sqladmin(v1beta3)
@@ -1076,6 +1082,7 @@ PENDING_CREATE: The instance is being created.
 MAINTENANCE: The instance is down for maintenance.
 UNKNOWN_STATE: The state of the instance is unknown.
 */
+
 /**
  * @typedef ExportContext
  * @memberOf! sqladmin(v1beta3)
@@ -1085,6 +1092,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string[]} table Tables to export, or that were exported, from the specified database. If you specify tables, specify one and only one database.
  * @property {string} uri The path to the file in Google Cloud Storage where the export will be stored, or where it was already stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the operation fails. If the filename ends with .gz, the contents are compressed.
  */
+
 /**
  * @typedef Flag
  * @memberOf! sqladmin(v1beta3)
@@ -1097,6 +1105,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} name This is the name of the flag. Flag names always use underscores, not hyphens, e.g. max_allowed_packet
  * @property {string} type The type of the flag. Flags are typed to being BOOLEAN, STRING, INTEGER or NONE. NONE is used for flags which do not take a value, such as skip_grant_tables.
  */
+
 /**
  * @typedef FlagsListResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1104,6 +1113,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {sqladmin(v1beta3).Flag[]} items List of flags.
  * @property {string} kind This is always sql#flagsList.
  */
+
 /**
  * @typedef ImportContext
  * @memberOf! sqladmin(v1beta3)
@@ -1112,6 +1122,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#importContext.
  * @property {string[]} uri A path to the MySQL dump file in Google Cloud Storage from which the import is made. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported.
  */
+
 /**
  * @typedef InstanceOperation
  * @memberOf! sqladmin(v1beta3)
@@ -1129,18 +1140,21 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} state The state of an operation. Valid values are PENDING, RUNNING, DONE, UNKNOWN.
  * @property {string} userEmailAddress The email address of the user who initiated this operation.
  */
+
 /**
  * @typedef InstanceSetRootPasswordRequest
  * @memberOf! sqladmin(v1beta3)
  * @type object
  * @property {sqladmin(v1beta3).SetRootPasswordContext} setRootPasswordContext Set Root Password Context.
  */
+
 /**
  * @typedef InstancesCloneRequest
  * @memberOf! sqladmin(v1beta3)
  * @type object
  * @property {sqladmin(v1beta3).CloneContext} cloneContext Contains details about the clone operation.
  */
+
 /**
  * @typedef InstancesCloneResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1148,6 +1162,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesClone.
  * @property {string} operation An unique identifier for the operation associated with the cloned instance. You can use this identifier to retrieve the Operations resource, which has information about the operation.
  */
+
 /**
  * @typedef InstancesDeleteResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1155,12 +1170,14 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesDelete.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesExportRequest
  * @memberOf! sqladmin(v1beta3)
  * @type object
  * @property {sqladmin(v1beta3).ExportContext} exportContext Contains details about the export operation.
  */
+
 /**
  * @typedef InstancesExportResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1168,12 +1185,14 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesExport.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesImportRequest
  * @memberOf! sqladmin(v1beta3)
  * @type object
  * @property {sqladmin(v1beta3).ImportContext} importContext Contains details about the import operation.
  */
+
 /**
  * @typedef InstancesImportResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1181,6 +1200,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesImport.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesInsertResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1188,6 +1208,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesInsert.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesListResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1196,6 +1217,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef InstancesPromoteReplicaResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1203,6 +1225,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesPromoteReplica.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesResetSslConfigResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1210,6 +1233,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesResetSslConfig.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation. All ssl client certificates will be deleted and a new server certificate will be created. Does not take effect until the next instance restart.
  */
+
 /**
  * @typedef InstancesRestartResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1217,6 +1241,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesRestart.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesRestoreBackupResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1224,6 +1249,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesRestoreBackup.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesSetRootPasswordResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1231,6 +1257,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesSetRootPassword.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef InstancesUpdateResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1238,6 +1265,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#instancesUpdate.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve information about the operation.
  */
+
 /**
  * @typedef IpConfiguration
  * @memberOf! sqladmin(v1beta3)
@@ -1245,8 +1273,9 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string[]} authorizedNetworks The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as &#39;slash&#39; notation (e.g. 192.168.100.0/24).
  * @property {boolean} enabled Whether the instance should be assigned an IP address or not.
  * @property {string} kind This is always sql#ipConfiguration.
- * @property {boolean} requireSsl Whether the mysqld should default to &#39;REQUIRE X509&#39; for users connecting over IP.
+ * @property {boolean} requireSsl Whether SSL connections over IP should be enforced or not.
  */
+
 /**
  * @typedef IpMapping
  * @memberOf! sqladmin(v1beta3)
@@ -1254,6 +1283,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} ipAddress The IP address assigned.
  * @property {string} timeToRetire The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.
  */
+
 /**
  * @typedef LocationPreference
  * @memberOf! sqladmin(v1beta3)
@@ -1262,6 +1292,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#locationPreference.
  * @property {string} zone The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b, etc.).
  */
+
 /**
  * @typedef OperationError
  * @memberOf! sqladmin(v1beta3)
@@ -1269,6 +1300,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} code Identifies the specific error that occurred.
  * @property {string} kind This is always sql#operationError.
  */
+
 /**
  * @typedef OperationsListResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1277,6 +1309,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#operationsList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef SetRootPasswordContext
  * @memberOf! sqladmin(v1beta3)
@@ -1284,6 +1317,7 @@ UNKNOWN_STATE: The state of the instance is unknown.
  * @property {string} kind This is always sql#setRootUserContext.
  * @property {string} password The password for the root user.
  */
+
 /**
  * @typedef Settings
  * @memberOf! sqladmin(v1beta3)
@@ -1304,6 +1338,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
 * @property {string} settingsVersion The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.
 * @property {string} tier The tier of service for this instance, for example D1, D2. For more information, see pricing.
 */
+
 /**
  * @typedef SslCert
  * @memberOf! sqladmin(v1beta3)
@@ -1317,6 +1352,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {string} kind This is always sql#sslCert.
  * @property {string} sha1Fingerprint Sha1 Fingerprint.
  */
+
 /**
  * @typedef SslCertDetail
  * @memberOf! sqladmin(v1beta3)
@@ -1324,6 +1360,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {sqladmin(v1beta3).SslCert} certInfo The public information about the cert.
  * @property {string} certPrivateKey The private key for the client cert, in pem format. Keep private in order to protect your security.
  */
+
 /**
  * @typedef SslCertsDeleteResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1331,12 +1368,14 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {string} kind This is always sql#sslCertsDelete.
  * @property {string} operation An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
+
 /**
  * @typedef SslCertsInsertRequest
  * @memberOf! sqladmin(v1beta3)
  * @type object
  * @property {string} commonName User supplied name. Must be a distinct name from the other certificates for this instance. New certificates will not be usable until the instance is restarted.
  */
+
 /**
  * @typedef SslCertsInsertResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1345,6 +1384,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {string} kind This is always sql#sslCertsInsert.
  * @property {sqladmin(v1beta3).SslCert} serverCaCert The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource..
  */
+
 /**
  * @typedef SslCertsListResponse
  * @memberOf! sqladmin(v1beta3)
@@ -1352,6 +1392,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {sqladmin(v1beta3).SslCert[]} items List of client certificates for the instance.
  * @property {string} kind This is always sql#sslCertsList.
  */
+
 /**
  * @typedef Tier
  * @memberOf! sqladmin(v1beta3)
@@ -1362,6 +1403,7 @@ ON_DEMAND: The instance is activated upon receiving requests.
  * @property {string[]} region The applicable regions for this tier.
  * @property {string} tier An identifier for the service tier, for example D1, D2 etc. For related information, see Pricing.
  */
+
 /**
  * @typedef TiersListResponse
  * @memberOf! sqladmin(v1beta3)

@@ -876,6 +876,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} maximumTotalQps The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
  * @property {integer} numberActiveCreatives The number of creatives that this account inserted or bid with in the last 30 days.
  */
+
 /**
  * @typedef AccountsList
  * @memberOf! adexchangebuyer(v1.3)
@@ -883,6 +884,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.3).Account[]} items A list of accounts.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef BillingInfo
  * @memberOf! adexchangebuyer(v1.3)
@@ -892,6 +894,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} billingId A list of adgroup IDs associated with this particular account. These IDs may show up as part of a realtime bidding BidRequest, which indicates a bid request for this account.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef BillingInfoList
  * @memberOf! adexchangebuyer(v1.3)
@@ -899,6 +902,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.3).BillingInfo[]} items A list of billing info relevant for your account.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Budget
  * @memberOf! adexchangebuyer(v1.3)
@@ -910,6 +914,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} id The unique id that describes this item.
  * @property {string} kind The kind of the resource, i.e. &quot;adexchangebuyer#budget&quot;.
  */
+
 /**
  * @typedef Creative
  * @memberOf! adexchangebuyer(v1.3)
@@ -939,6 +944,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set.
  * @property {integer} width Ad width.
  */
+
 /**
  * @typedef CreativesList
  * @memberOf! adexchangebuyer(v1.3)
@@ -947,6 +953,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {string} nextPageToken Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef DirectDeal
  * @memberOf! adexchangebuyer(v1.3)
@@ -967,6 +974,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} sellerNetwork The name of the publisher offering this direct deal.
  * @property {string} startTime Start time for when this deal becomes active. If not set then this deal is active immediately upon creation. In seconds since the epoch.
  */
+
 /**
  * @typedef DirectDealsList
  * @memberOf! adexchangebuyer(v1.3)
@@ -974,6 +982,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.3).DirectDeal[]} directDeals A list of direct deals relevant for your account.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef PerformanceReport
  * @memberOf! adexchangebuyer(v1.3)
@@ -1001,6 +1010,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} timestamp The unix timestamp of the starting time of this performance data.
  * @property {number} unsuccessfulRequestRate The number of bid responses that were unsuccessful due to timeouts, incorrect formatting, etc.
  */
+
 /**
  * @typedef PerformanceReportList
  * @memberOf! adexchangebuyer(v1.3)
@@ -1008,6 +1018,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} kind Resource type.
  * @property {adexchangebuyer(v1.3).PerformanceReport[]} performanceReport A list of performance reports relevant for the account.
  */
+
 /**
  * @typedef PretargetingConfig
  * @memberOf! adexchangebuyer(v1.3)
@@ -1036,6 +1047,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} vendorTypes Requests that allow any of these vendor ids will match. Values are from vendors.txt in the downloadable files section.
  * @property {string[]} verticals Requests containing any of these vertical ids will match.
  */
+
 /**
  * @typedef PretargetingConfigList
  * @memberOf! adexchangebuyer(v1.3)

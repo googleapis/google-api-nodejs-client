@@ -1700,6 +1700,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} keys [Output Only] The list of authorized public keys in SSH format.
  * @property {boolean} sudoer [Output Only] Whether the user has the ability to elevate on the instance that requested the authorized keys.
  */
+
 /**
  * @typedef Group
  * @memberOf! clouduseraccounts(beta)
@@ -1712,6 +1713,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} name Name of the resource; provided by the client when the resource is created.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
+
 /**
  * @typedef GroupList
  * @memberOf! clouduseraccounts(beta)
@@ -1722,18 +1724,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
+
 /**
  * @typedef GroupsAddMemberRequest
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to add.
  */
+
 /**
  * @typedef GroupsRemoveMemberRequest
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to remove.
  */
+
 /**
  * @typedef LinuxAccountViews
  * @memberOf! clouduseraccounts(beta)
@@ -1742,18 +1747,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#linuxAccountViews for Linux resources.
  * @property {clouduseraccounts(beta).LinuxUserView[]} userViews [Output Only] A list of all users within a project.
  */
+
 /**
  * @typedef LinuxGetAuthorizedKeysViewResponse
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {clouduseraccounts(beta).AuthorizedKeysView} resource [Output Only] A list of authorized public keys for a user.
  */
+
 /**
  * @typedef LinuxGetLinuxAccountViewsResponse
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {clouduseraccounts(beta).LinuxAccountViews} resource [Output Only] A list of authorized user accounts and groups.
  */
+
 /**
  * @typedef LinuxGroupView
  * @memberOf! clouduseraccounts(beta)
@@ -1762,6 +1770,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} groupName [Output Only] Group name.
  * @property {string[]} members [Output Only] List of user accounts that belong to the group.
  */
+
 /**
  * @typedef LinuxUserView
  * @memberOf! clouduseraccounts(beta)
@@ -1773,6 +1782,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {integer} uid [Output Only] User ID.
  * @property {string} username [Output Only] The username of the account.
  */
+
 /**
  * @typedef Operation
  * @memberOf! clouduseraccounts(beta)
@@ -1801,6 +1811,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! clouduseraccounts(beta)
@@ -1811,6 +1822,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef PublicKey
  * @memberOf! clouduseraccounts(beta)
@@ -1821,6 +1833,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} fingerprint [Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key.
  * @property {string} key Public key text in SSH format, defined by RFC4253 section 6.6.
  */
+
 /**
  * @typedef User
  * @memberOf! clouduseraccounts(beta)
@@ -1835,6 +1848,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {clouduseraccounts(beta).PublicKey[]} publicKeys [Output Only] Public keys that this user may use to login.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
+
 /**
  * @typedef UserList
  * @memberOf! clouduseraccounts(beta)

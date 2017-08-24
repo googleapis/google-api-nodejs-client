@@ -320,6 +320,45 @@ function Admin(options) { // eslint-disable-line
     },
 
     /**
+     * directory.chromeosdevices.moveDevicesToOu
+     *
+     * @desc Move or insert multiple Chrome OS Devices to Organization Unit
+     *
+     * @alias directory.chromeosdevices.moveDevicesToOu
+     * @memberOf! admin(directory_v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.orgUnitPath Full path of the target organization unit or its Id
+     * @param {admin(directory_v1).ChromeOsMoveDevicesToOu} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    moveDevicesToOu: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['customerId', 'orgUnitPath'],
+        pathParams: ['customerId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * directory.chromeosdevices.patch
      *
      * @desc Update Chrome OS Device. This method supports patch semantics.
@@ -1058,7 +1097,6 @@ function Admin(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     aliases: {
 
       /**
@@ -2050,7 +2088,6 @@ function Admin(options) { // eslint-disable-line
   };
 
   self.resources = {
-
     calendars: {
 
       /**
@@ -3394,7 +3431,6 @@ function Admin(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     aliases: {
 
       /**
@@ -3550,7 +3586,6 @@ function Admin(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     photos: {
 
       /**
@@ -3831,6 +3866,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} primaryEmail Group&#39;s primary email (Read-only) User&#39;s primary email (Read-only)
  */
+
 /**
  * @typedef Aliases
  * @memberOf! admin(directory_v1)
@@ -3839,6 +3875,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
+
 /**
  * @typedef Asp
  * @memberOf! admin(directory_v1)
@@ -3851,6 +3888,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name The name of the application that the user, represented by their userId, entered when the ASP was created.
  * @property {string} userKey The unique ID of the user who issued the ASP.
  */
+
 /**
  * @typedef Asps
  * @memberOf! admin(directory_v1)
@@ -3859,6 +3897,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Asp[]} items A list of ASP resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#aspList.
  */
+
 /**
  * @typedef CalendarResource
  * @memberOf! admin(directory_v1)
@@ -3871,6 +3910,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} resourceName The name of the calendar resource. For example, Training Room 1A
  * @property {string} resourceType The type of the calendar resource. Used for grouping resources in the calendar user interface.
  */
+
 /**
  * @typedef CalendarResources
  * @memberOf! admin(directory_v1)
@@ -3880,6 +3920,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef Channel
  * @memberOf! admin(directory_v1)
@@ -3895,6 +3936,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef ChromeOsDevice
  * @memberOf! admin(directory_v1)
@@ -3925,6 +3967,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} supportEndDate Final date the device will be supported (Read-only)
  * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
  */
+
 /**
  * @typedef ChromeOsDeviceAction
  * @memberOf! admin(directory_v1)
@@ -3932,6 +3975,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} action Action to be taken on the ChromeOs Device
  * @property {string} deprovisionReason 
  */
+
 /**
  * @typedef ChromeOsDevices
  * @memberOf! admin(directory_v1)
@@ -3941,6 +3985,14 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
+
+/**
+ * @typedef ChromeOsMoveDevicesToOu
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string[]} deviceIds ChromeOs Devices to be moved to OU
+ */
+
 /**
  * @typedef Customer
  * @memberOf! admin(directory_v1)
@@ -3955,6 +4007,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} phoneNumber The customer&#39;s contact phone number in E.164 format.
  * @property {admin(directory_v1).CustomerPostalAddress} postalAddress The customer&#39;s postal address information.
  */
+
 /**
  * @typedef CustomerPostalAddress
  * @memberOf! admin(directory_v1)
@@ -3969,6 +4022,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} postalCode The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element.
  * @property {string} region Name of the region. An example of a region value is NY for the state of New York.
  */
+
 /**
  * @typedef DomainAlias
  * @memberOf! admin(directory_v1)
@@ -3980,6 +4034,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} parentDomainName The parent domain name that the domain alias is associated with. This can either be a primary or secondary domain name within a customer.
  * @property {boolean} verified Indicates the verification state of a domain alias. (Read-only)
  */
+
 /**
  * @typedef DomainAliases
  * @memberOf! admin(directory_v1)
@@ -3988,6 +4043,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
+
 /**
  * @typedef Domains
  * @memberOf! admin(directory_v1)
@@ -4000,6 +4056,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {boolean} verified Indicates the verification state of a domain. (Read-only).
  */
+
 /**
  * @typedef Domains2
  * @memberOf! admin(directory_v1)
@@ -4008,6 +4065,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {string} kind Kind of resource this is.
  */
+
 /**
  * @typedef Group
  * @memberOf! admin(directory_v1)
@@ -4023,6 +4081,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name Group name
  * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
  */
+
 /**
  * @typedef Groups
  * @memberOf! admin(directory_v1)
@@ -4032,6 +4091,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
+
 /**
  * @typedef Member
  * @memberOf! admin(directory_v1)
@@ -4044,6 +4104,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} status Status of member (Immutable)
  * @property {string} type Type of member (Immutable)
  */
+
 /**
  * @typedef Members
  * @memberOf! admin(directory_v1)
@@ -4053,6 +4114,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Member[]} members List of member objects.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
+
 /**
  * @typedef MobileDevice
  * @memberOf! admin(directory_v1)
@@ -4098,12 +4160,14 @@ function Admin(options) { // eslint-disable-line
  * @property {string} userAgent Mobile Device user agent
  * @property {string} wifiMacAddress Mobile Device WiFi MAC address (Read-only)
  */
+
 /**
  * @typedef MobileDeviceAction
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} action Action to be taken on the Mobile Device
  */
+
 /**
  * @typedef MobileDevices
  * @memberOf! admin(directory_v1)
@@ -4113,6 +4177,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).MobileDevice[]} mobiledevices List of Mobile Device objects.
  * @property {string} nextPageToken Token used to access next page of this result.
  */
+
 /**
  * @typedef Notification
  * @memberOf! admin(directory_v1)
@@ -4126,6 +4191,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} sendTime Time at which notification was sent (Read-only)
  * @property {string} subject Subject of the notification (Read-only)
  */
+
 /**
  * @typedef Notifications
  * @memberOf! admin(directory_v1)
@@ -4136,6 +4202,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} nextPageToken Token for fetching the next page of notifications.
  * @property {integer} unreadNotificationsCount Number of unread notification for the domain.
  */
+
 /**
  * @typedef OrgUnit
  * @memberOf! admin(directory_v1)
@@ -4150,6 +4217,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} parentOrgUnitId Id of parent OrgUnit
  * @property {string} parentOrgUnitPath Path of parent OrgUnit
  */
+
 /**
  * @typedef OrgUnits
  * @memberOf! admin(directory_v1)
@@ -4158,6 +4226,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {admin(directory_v1).OrgUnit[]} organizationUnits List of user objects.
  */
+
 /**
  * @typedef Privilege
  * @memberOf! admin(directory_v1)
@@ -4170,6 +4239,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} serviceId The obfuscated ID of the service this privilege is for.
  * @property {string} serviceName The name of the service this privilege is for.
  */
+
 /**
  * @typedef Privileges
  * @memberOf! admin(directory_v1)
@@ -4178,6 +4248,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Privilege[]} items A list of Privilege resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#privileges.
  */
+
 /**
  * @typedef Role
  * @memberOf! admin(directory_v1)
@@ -4191,6 +4262,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} roleName Name of the role.
  * @property {object[]} rolePrivileges The set of privileges that are granted to this role.
  */
+
 /**
  * @typedef RoleAssignment
  * @memberOf! admin(directory_v1)
@@ -4205,6 +4277,7 @@ function Admin(options) { // eslint-disable-line
 - CUSTOMER
 - ORG_UNIT
 */
+
 /**
  * @typedef RoleAssignments
  * @memberOf! admin(directory_v1)
@@ -4214,6 +4287,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind The type of the API resource. This is always admin#directory#roleAssignments.
  * @property {string} nextPageToken 
  */
+
 /**
  * @typedef Roles
  * @memberOf! admin(directory_v1)
@@ -4223,6 +4297,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind The type of the API resource. This is always admin#directory#roles.
  * @property {string} nextPageToken 
  */
+
 /**
  * @typedef Schema
  * @memberOf! admin(directory_v1)
@@ -4233,6 +4308,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} schemaId Unique identifier of Schema (Read-only)
  * @property {string} schemaName Schema name
  */
+
 /**
  * @typedef SchemaFieldSpec
  * @memberOf! admin(directory_v1)
@@ -4247,6 +4323,7 @@ function Admin(options) { // eslint-disable-line
  * @property {object} numericIndexingSpec Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.
  * @property {string} readAccessType Read ACLs on the field specifying who can view values of this field. Valid values are &quot;ALL_DOMAIN_USERS&quot; and &quot;ADMINS_AND_SELF&quot;.
  */
+
 /**
  * @typedef Schemas
  * @memberOf! admin(directory_v1)
@@ -4255,6 +4332,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {admin(directory_v1).Schema[]} schemas List of UserSchema objects.
  */
+
 /**
  * @typedef Token
  * @memberOf! admin(directory_v1)
@@ -4268,6 +4346,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string[]} scopes A list of authorization scopes the application is granted.
  * @property {string} userKey The unique ID of the user that issued the token.
  */
+
 /**
  * @typedef Tokens
  * @memberOf! admin(directory_v1)
@@ -4276,6 +4355,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(directory_v1).Token[]} items A list of Token resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#tokenList.
  */
+
 /**
  * @typedef User
  * @memberOf! admin(directory_v1)
@@ -4301,6 +4381,7 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} isEnforcedIn2Sv Is 2-step verification enforced (Read-only)
  * @property {boolean} isEnrolledIn2Sv Is enrolled in 2-step verification (Read-only)
  * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
+ * @property {any} keywords 
  * @property {string} kind Kind of resource this is.
  * @property {any} languages 
  * @property {string} lastLoginTime User&#39;s last login time. (Read-only)
@@ -4322,6 +4403,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} thumbnailPhotoUrl Photo Url of the user (Read-only)
  * @property {any} websites 
  */
+
 /**
  * @typedef UserAbout
  * @memberOf! admin(directory_v1)
@@ -4329,6 +4411,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} contentType About entry can have a type which indicates the content type. It can either be plain or html. By default, notes contents are assumed to contain plain text.
  * @property {string} value Actual value of notes.
  */
+
 /**
  * @typedef UserAddress
  * @memberOf! admin(directory_v1)
@@ -4347,11 +4430,13 @@ function Admin(options) { // eslint-disable-line
  * @property {string} streetAddress Street.
  * @property {string} type Each entry can have a type which indicates standard values of that entry. For example address could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
  */
+
 /**
  * @typedef UserCustomProperties
  * @memberOf! admin(directory_v1)
  * @type object
  */
+
 /**
  * @typedef UserEmail
  * @memberOf! admin(directory_v1)
@@ -4361,6 +4446,7 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} primary If this is user&#39;s primary email. Only one entry could be marked as primary.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.
  */
+
 /**
  * @typedef UserExternalId
  * @memberOf! admin(directory_v1)
@@ -4369,6 +4455,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type The type of the Id.
  * @property {string} value The value of the id.
  */
+
 /**
  * @typedef UserIm
  * @memberOf! admin(directory_v1)
@@ -4380,6 +4467,16 @@ function Admin(options) { // eslint-disable-line
  * @property {string} protocol Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and specify the custom name in customProtocol field.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
  */
+
+/**
+ * @typedef UserKeyword
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom Type.
+ * @property {string} type Each entry can have a type which indicates standard type of that entry. For example, keyword could be of type occupation or outlook. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+ * @property {string} value Keyword.
+ */
+
 /**
  * @typedef UserLanguage
  * @memberOf! admin(directory_v1)
@@ -4387,6 +4484,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} customLanguage Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can&#39;t be set
  * @property {string} languageCode Language Code. Should be used for storing Google III LanguageCode string representation for language. Illegal values cause SchemaException.
  */
+
 /**
  * @typedef UserLocation
  * @memberOf! admin(directory_v1)
@@ -4399,12 +4497,14 @@ function Admin(options) { // eslint-disable-line
  * @property {string} floorSection Floor section. More specific location within the floor. For example, if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
  */
+
 /**
  * @typedef UserMakeAdmin
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {boolean} status Boolean indicating new admin status of the user
  */
+
 /**
  * @typedef UserName
  * @memberOf! admin(directory_v1)
@@ -4413,6 +4513,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} fullName Full Name
  * @property {string} givenName First Name
  */
+
 /**
  * @typedef UserOrganization
  * @memberOf! admin(directory_v1)
@@ -4430,6 +4531,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} title Title (designation) of the user in the organization.
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example organization could be of school, work etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
  */
+
 /**
  * @typedef UserPhone
  * @memberOf! admin(directory_v1)
@@ -4439,6 +4541,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax, work, mobile etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
  * @property {string} value Phone number.
  */
+
 /**
  * @typedef UserPhoto
  * @memberOf! admin(directory_v1)
@@ -4452,6 +4555,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} primaryEmail Primary email of User (Read-only)
  * @property {integer} width Width in pixels of the photo
  */
+
 /**
  * @typedef UserPosixAccount
  * @memberOf! admin(directory_v1)
@@ -4465,6 +4569,7 @@ function Admin(options) { // eslint-disable-line
  * @property {integer} uid The POSIX compliant user ID.
  * @property {string} username The username of the account.
  */
+
 /**
  * @typedef UserRelation
  * @memberOf! admin(directory_v1)
@@ -4473,6 +4578,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
  * @property {string} value The name of the relation.
  */
+
 /**
  * @typedef UserSshPublicKey
  * @memberOf! admin(directory_v1)
@@ -4481,12 +4587,14 @@ function Admin(options) { // eslint-disable-line
  * @property {string} fingerprint A SHA-256 fingerprint of the SSH public key. (Read-only)
  * @property {string} key An SSH public key.
  */
+
 /**
  * @typedef UserUndelete
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} orgUnitPath OrgUnit of User
  */
+
 /**
  * @typedef UserWebsite
  * @memberOf! admin(directory_v1)
@@ -4496,6 +4604,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
  * @property {string} value Website.
  */
+
 /**
  * @typedef Users
  * @memberOf! admin(directory_v1)
@@ -4506,6 +4615,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} trigger_event Event that triggered this response (only used in case of Push Response)
  * @property {admin(directory_v1).User[]} users List of user objects.
  */
+
 /**
  * @typedef VerificationCode
  * @memberOf! admin(directory_v1)
@@ -4515,6 +4625,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} userId The obfuscated unique ID of the user.
  * @property {string} verificationCode A current verification code for the user. Invalidated or used verification codes are not returned as part of the result.
  */
+
 /**
  * @typedef VerificationCodes
  * @memberOf! admin(directory_v1)

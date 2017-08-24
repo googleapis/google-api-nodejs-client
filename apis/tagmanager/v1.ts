@@ -150,7 +150,6 @@ function Tagmanager(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     containers: {
 
       /**
@@ -343,7 +342,6 @@ function Tagmanager(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       environments: {
 
         /**
@@ -583,7 +581,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       folders: {
 
         /**
@@ -781,7 +778,6 @@ function Tagmanager(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         },
-
         entities: {
 
           /**
@@ -824,7 +820,6 @@ function Tagmanager(options) { // eslint-disable-line
           }
         }
       },
-
       move_folders: {
 
         /**
@@ -870,7 +865,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       reauthorize_environments: {
 
         /**
@@ -913,7 +907,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       tags: {
 
         /**
@@ -1112,7 +1105,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       triggers: {
 
         /**
@@ -1311,7 +1303,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       variables: {
 
         /**
@@ -1510,7 +1501,6 @@ function Tagmanager(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       versions: {
 
         /**
@@ -1830,7 +1820,6 @@ function Tagmanager(options) { // eslint-disable-line
         }
       }
     },
-
     permissions: {
 
       /**
@@ -2035,12 +2024,14 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} name Account display name.
  * @property {boolean} shareData Whether the account shares data anonymously with Google and others.
  */
+
 /**
  * @typedef AccountAccess
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {string[]} permission List of Account permissions. Valid account permissions are read and manage.
  */
+
 /**
  * @typedef Condition
  * @memberOf! tagmanager(v1)
@@ -2052,6 +2043,7 @@ function Tagmanager(options) { // eslint-disable-line
 - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
 * @property {string} type The type of operator for this condition.
 */
+
 /**
  * @typedef Container
  * @memberOf! tagmanager(v1)
@@ -2068,6 +2060,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} timeZoneId Container Time Zone ID.
  * @property {string[]} usageContext List of Usage Contexts for the Container. Valid values include: web, android, ios.
  */
+
 /**
  * @typedef ContainerAccess
  * @memberOf! tagmanager(v1)
@@ -2075,6 +2068,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} containerId GTM Container ID.
  * @property {string[]} permission List of Container permissions. Valid container permissions are: read, edit, delete, publish.
  */
+
 /**
  * @typedef ContainerVersion
  * @memberOf! tagmanager(v1)
@@ -2094,6 +2088,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).Trigger[]} trigger The triggers in the container that this version was taken from.
  * @property {tagmanager(v1).Variable[]} variable The variables in the container that this version was taken from.
  */
+
 /**
  * @typedef ContainerVersionHeader
  * @memberOf! tagmanager(v1)
@@ -2109,6 +2104,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} numTriggers Number of triggers in the container version.
  * @property {string} numVariables Number of variables in the container version.
  */
+
 /**
  * @typedef CreateContainerVersionRequestVersionOptions
  * @memberOf! tagmanager(v1)
@@ -2117,6 +2113,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} notes The notes of the container version to be created.
  * @property {boolean} quickPreview The creation of this version may be for quick preview and shouldn&#39;t be saved.
  */
+
 /**
  * @typedef CreateContainerVersionResponse
  * @memberOf! tagmanager(v1)
@@ -2124,6 +2121,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} compilerError Compiler errors or not.
  * @property {tagmanager(v1).ContainerVersion} containerVersion The container version created.
  */
+
 /**
  * @typedef Environment
  * @memberOf! tagmanager(v1)
@@ -2141,6 +2139,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} type The type of this environment.
  * @property {string} url Default preview page url for the environment.
  */
+
 /**
  * @typedef Folder
  * @memberOf! tagmanager(v1)
@@ -2151,6 +2150,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} folderId The Folder ID uniquely identifies the GTM Folder.
  * @property {string} name Folder display name.
  */
+
 /**
  * @typedef FolderEntities
  * @memberOf! tagmanager(v1)
@@ -2159,18 +2159,21 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).Trigger[]} trigger The list of triggers inside the folder.
  * @property {tagmanager(v1).Variable[]} variable The list of variables inside the folder.
  */
+
 /**
  * @typedef ListAccountUsersResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).UserAccess[]} userAccess All GTM AccountUsers of a GTM Account.
  */
+
 /**
  * @typedef ListAccountsResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Account[]} accounts List of GTM Accounts that a user has access to.
  */
+
 /**
  * @typedef ListContainerVersionsResponse
  * @memberOf! tagmanager(v1)
@@ -2178,42 +2181,49 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).ContainerVersion[]} containerVersion All versions of a GTM Container.
  * @property {tagmanager(v1).ContainerVersionHeader[]} containerVersionHeader All container version headers of a GTM Container.
  */
+
 /**
  * @typedef ListContainersResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Container[]} containers All Containers of a GTM Account.
  */
+
 /**
  * @typedef ListEnvironmentsResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Environment[]} environments All Environments of a GTM Container.
  */
+
 /**
  * @typedef ListFoldersResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Folder[]} folders All GTM Folders of a GTM Container.
  */
+
 /**
  * @typedef ListTagsResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Tag[]} tags All GTM Tags of a GTM Container.
  */
+
 /**
  * @typedef ListTriggersResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Trigger[]} triggers All GTM Triggers of a GTM Container.
  */
+
 /**
  * @typedef ListVariablesResponse
  * @memberOf! tagmanager(v1)
  * @type object
  * @property {tagmanager(v1).Variable[]} variables All GTM Variables of a GTM Container.
  */
+
 /**
  * @typedef Macro
  * @memberOf! tagmanager(v1)
@@ -2232,6 +2242,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} scheduleStartMs The start timestamp in milliseconds to schedule a macro.
  * @property {string} type GTM Macro Type.
  */
+
 /**
  * @typedef Parameter
  * @memberOf! tagmanager(v1)
@@ -2247,6 +2258,7 @@ function Tagmanager(options) { // eslint-disable-line
 - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
 * @property {string} value A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
 */
+
 /**
  * @typedef PublishContainerVersionResponse
  * @memberOf! tagmanager(v1)
@@ -2254,6 +2266,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} compilerError Compiler errors or not.
  * @property {tagmanager(v1).ContainerVersion} containerVersion The container version created.
  */
+
 /**
  * @typedef Rule
  * @memberOf! tagmanager(v1)
@@ -2266,6 +2279,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} notes User notes on how to apply this rule in the container.
  * @property {string} ruleId The Rule ID uniquely identifies the GTM Rule.
  */
+
 /**
  * @typedef SetupTag
  * @memberOf! tagmanager(v1)
@@ -2273,6 +2287,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} stopOnSetupFailure If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
  * @property {string} tagName The name of the setup tag.
  */
+
 /**
  * @typedef Tag
  * @memberOf! tagmanager(v1)
@@ -2298,6 +2313,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).TeardownTag[]} teardownTag The list of teardown tags. Currently we only allow one.
  * @property {string} type GTM Tag Type.
  */
+
 /**
  * @typedef TeardownTag
  * @memberOf! tagmanager(v1)
@@ -2305,6 +2321,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {boolean} stopTeardownOnFailure If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.
  * @property {string} tagName The name of the teardown tag.
  */
+
 /**
  * @typedef Trigger
  * @memberOf! tagmanager(v1)
@@ -2329,6 +2346,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).Parameter} waitForTags Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
  * @property {tagmanager(v1).Parameter} waitForTagsTimeout How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
  */
+
 /**
  * @typedef UserAccess
  * @memberOf! tagmanager(v1)
@@ -2339,6 +2357,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} emailAddress User&#39;s email address.
  * @property {string} permissionId Account Permission ID.
  */
+
 /**
  * @typedef Variable
  * @memberOf! tagmanager(v1)

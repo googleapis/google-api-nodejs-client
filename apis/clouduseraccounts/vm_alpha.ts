@@ -960,6 +960,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
  * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
  */
+
 /**
  * @typedef AuthorizedKeysView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -967,6 +968,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} keys [Output Only] The list of authorized public keys in SSH format.
  * @property {boolean} sudoer [Output Only] Whether the user has the ability to elevate on the instance that requested the authorized keys.
  */
+
 /**
  * @typedef Binding
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -986,6 +988,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
 * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
 * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 */
+
 /**
  * @typedef Condition
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -997,6 +1000,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} value The object of the condition. Exactly one of these must be set.
  * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
  */
+
 /**
  * @typedef Group
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1009,6 +1013,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} name Name of the resource; provided by the client when the resource is created.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
+
 /**
  * @typedef GroupList
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1019,18 +1024,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
+
 /**
  * @typedef GroupsAddMemberRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to add.
  */
+
 /**
  * @typedef GroupsRemoveMemberRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to remove.
  */
+
 /**
  * @typedef LinuxAccountViews
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1039,18 +1047,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#linuxAccountViews for Linux resources.
  * @property {clouduseraccounts(vm_alpha).LinuxUserView[]} userViews [Output Only] A list of all users within a project.
  */
+
 /**
  * @typedef LinuxGetAuthorizedKeysViewResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).AuthorizedKeysView} resource [Output Only] A list of authorized public keys for a user.
  */
+
 /**
  * @typedef LinuxGetLinuxAccountViewsResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).LinuxAccountViews} resource [Output Only] A list of authorized user accounts and groups.
  */
+
 /**
  * @typedef LinuxGroupView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1059,6 +1070,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} groupName [Output Only] Group name.
  * @property {string[]} members [Output Only] List of user accounts that belong to the group.
  */
+
 /**
  * @typedef LinuxUserView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1070,12 +1082,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {integer} uid [Output Only] User ID.
  * @property {string} username [Output Only] The username of the account.
  */
+
 /**
  * @typedef LogConfig
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).LogConfigCounterOptions} counter Counter options.
  */
+
 /**
  * @typedef LogConfigCounterOptions
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1083,6 +1097,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} field The field value to attribute.
  * @property {string} metric The metric to update.
  */
+
 /**
  * @typedef Operation
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1111,6 +1126,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1121,6 +1137,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
+
 /**
  * @typedef Policy
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1136,6 +1153,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
 * @property {clouduseraccounts(vm_alpha).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 */
+
 /**
  * @typedef PublicKey
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1146,6 +1164,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} fingerprint [Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key.
  * @property {string} key Public key text in SSH format, defined by RFC4253 section 6.6.
  */
+
 /**
  * @typedef Rule
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1158,18 +1177,21 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string[]} notIns The rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is not in this set of entries.
  * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
  */
+
 /**
  * @typedef TestPermissionsRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} permissions The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
  */
+
 /**
  * @typedef TestPermissionsResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
+
 /**
  * @typedef User
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1184,6 +1206,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {clouduseraccounts(vm_alpha).PublicKey[]} publicKeys [Output Only] Public keys that this user may use to login.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
+
 /**
  * @typedef UserList
  * @memberOf! clouduseraccounts(vm_alpha)

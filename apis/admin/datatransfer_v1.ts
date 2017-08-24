@@ -248,6 +248,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} name The application&#39;s name.
  * @property {admin(datatransfer_v1).ApplicationTransferParam[]} transferParams The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
  */
+
 /**
  * @typedef ApplicationDataTransfer
  * @memberOf! admin(datatransfer_v1)
@@ -256,6 +257,7 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(datatransfer_v1).ApplicationTransferParam[]} applicationTransferParams The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
  * @property {string} applicationTransferStatus Current status of transfer for this application. (Read-only)
  */
+
 /**
  * @typedef ApplicationTransferParam
  * @memberOf! admin(datatransfer_v1)
@@ -263,6 +265,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} key The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
  * @property {string[]} value The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
  */
+
 /**
  * @typedef ApplicationsListResponse
  * @memberOf! admin(datatransfer_v1)
@@ -272,6 +275,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Identifies the resource as a collection of Applications.
  * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
  */
+
 /**
  * @typedef DataTransfer
  * @memberOf! admin(datatransfer_v1)
@@ -285,6 +289,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} overallTransferStatusCode Overall transfer status (Read-only).
  * @property {string} requestTime The time at which the data transfer was requested (Read-only).
  */
+
 /**
  * @typedef DataTransfersListResponse
  * @memberOf! admin(datatransfer_v1)

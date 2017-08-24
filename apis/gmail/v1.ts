@@ -150,7 +150,6 @@ function Gmail(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     drafts: {
 
       /**
@@ -398,7 +397,6 @@ function Gmail(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     history: {
 
       /**
@@ -443,7 +441,6 @@ function Gmail(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     labels: {
 
       /**
@@ -675,7 +672,6 @@ function Gmail(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     messages: {
 
       /**
@@ -1120,7 +1116,6 @@ function Gmail(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       attachments: {
 
         /**
@@ -1163,7 +1158,6 @@ function Gmail(options) { // eslint-disable-line
         }
       }
     },
-
     settings: {
 
       /**
@@ -1465,7 +1459,6 @@ function Gmail(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       filters: {
 
         /**
@@ -1619,7 +1612,6 @@ function Gmail(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       forwardingAddresses: {
 
         /**
@@ -1773,7 +1765,6 @@ function Gmail(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       sendAs: {
 
         /**
@@ -2042,7 +2033,6 @@ function Gmail(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         },
-
         smimeInfo: {
 
           /**
@@ -2241,7 +2231,6 @@ function Gmail(options) { // eslint-disable-line
         }
       }
     },
-
     threads: {
 
       /**
@@ -2490,12 +2479,14 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} emailAddress Email address to which all incoming messages are forwarded. This email address must be a verified member of the forwarding addresses.
  * @property {boolean} enabled Whether all incoming mail is automatically forwarded to another address.
  */
+
 /**
  * @typedef BatchDeleteMessagesRequest
  * @memberOf! gmail(v1)
  * @type object
  * @property {string[]} ids The IDs of the messages to delete.
  */
+
 /**
  * @typedef BatchModifyMessagesRequest
  * @memberOf! gmail(v1)
@@ -2504,6 +2495,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string[]} ids The IDs of the messages to modify. There is a limit of 1000 ids per request.
  * @property {string[]} removeLabelIds A list of label IDs to remove from messages.
  */
+
 /**
  * @typedef Draft
  * @memberOf! gmail(v1)
@@ -2511,6 +2503,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} id The immutable ID of the draft.
  * @property {gmail(v1).Message} message The message content of the draft.
  */
+
 /**
  * @typedef Filter
  * @memberOf! gmail(v1)
@@ -2519,6 +2512,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {gmail(v1).FilterCriteria} criteria Matching criteria for the filter.
  * @property {string} id The server assigned ID of the filter.
  */
+
 /**
  * @typedef FilterAction
  * @memberOf! gmail(v1)
@@ -2527,6 +2521,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} forward Email address that the message should be forwarded to.
  * @property {string[]} removeLabelIds List of labels to remove from the message.
  */
+
 /**
  * @typedef FilterCriteria
  * @memberOf! gmail(v1)
@@ -2541,6 +2536,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} subject Case-insensitive phrase found in the message&#39;s subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed.
  * @property {string} to The recipient&#39;s display name or email address. Includes recipients in the &quot;to&quot;, &quot;cc&quot;, and &quot;bcc&quot; header fields. You can use simply the local part of the email address. For example, &quot;example&quot; and &quot;example@&quot; both match &quot;example@gmail.com&quot;. This field is case-insensitive.
  */
+
 /**
  * @typedef ForwardingAddress
  * @memberOf! gmail(v1)
@@ -2548,6 +2544,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} forwardingEmail An email address to which messages can be forwarded.
  * @property {string} verificationStatus Indicates whether this address has been verified and is usable for forwarding. Read-only.
  */
+
 /**
  * @typedef History
  * @memberOf! gmail(v1)
@@ -2559,6 +2556,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {gmail(v1).HistoryMessageAdded[]} messagesAdded Messages added to the mailbox in this history record.
  * @property {gmail(v1).HistoryMessageDeleted[]} messagesDeleted Messages deleted (not Trashed) from the mailbox in this history record.
  */
+
 /**
  * @typedef HistoryLabelAdded
  * @memberOf! gmail(v1)
@@ -2566,6 +2564,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string[]} labelIds Label IDs added to the message.
  * @property {gmail(v1).Message} message 
  */
+
 /**
  * @typedef HistoryLabelRemoved
  * @memberOf! gmail(v1)
@@ -2573,18 +2572,21 @@ function Gmail(options) { // eslint-disable-line
  * @property {string[]} labelIds Label IDs removed from the message.
  * @property {gmail(v1).Message} message 
  */
+
 /**
  * @typedef HistoryMessageAdded
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).Message} message 
  */
+
 /**
  * @typedef HistoryMessageDeleted
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).Message} message 
  */
+
 /**
  * @typedef ImapSettings
  * @memberOf! gmail(v1)
@@ -2594,6 +2596,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} expungeBehavior The action that will be executed on a message when it is marked as deleted and expunged from the last visible IMAP folder.
  * @property {integer} maxFolderSize An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit.
  */
+
 /**
  * @typedef Label
  * @memberOf! gmail(v1)
@@ -2608,6 +2611,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {integer} threadsUnread The number of unread threads with the label.
  * @property {string} type The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the INBOX and UNREAD labels from messages and threads, but cannot apply or remove the DRAFTS or SENT labels from messages or threads.
  */
+
 /**
  * @typedef ListDraftsResponse
  * @memberOf! gmail(v1)
@@ -2616,18 +2620,21 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} nextPageToken Token to retrieve the next page of results in the list.
  * @property {integer} resultSizeEstimate Estimated total number of results.
  */
+
 /**
  * @typedef ListFiltersResponse
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).Filter[]} filter List of a user&#39;s filters.
  */
+
 /**
  * @typedef ListForwardingAddressesResponse
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).ForwardingAddress[]} forwardingAddresses List of addresses that may be used for forwarding.
  */
+
 /**
  * @typedef ListHistoryResponse
  * @memberOf! gmail(v1)
@@ -2636,12 +2643,14 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} historyId The ID of the mailbox&#39;s current history record.
  * @property {string} nextPageToken Page token to retrieve the next page of results in the list.
  */
+
 /**
  * @typedef ListLabelsResponse
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).Label[]} labels List of labels.
  */
+
 /**
  * @typedef ListMessagesResponse
  * @memberOf! gmail(v1)
@@ -2650,18 +2659,21 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} nextPageToken Token to retrieve the next page of results in the list.
  * @property {integer} resultSizeEstimate Estimated total number of results.
  */
+
 /**
  * @typedef ListSendAsResponse
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).SendAs[]} sendAs List of send-as aliases.
  */
+
 /**
  * @typedef ListSmimeInfoResponse
  * @memberOf! gmail(v1)
  * @type object
  * @property {gmail(v1).SmimeInfo[]} smimeInfo List of SmimeInfo.
  */
+
 /**
  * @typedef ListThreadsResponse
  * @memberOf! gmail(v1)
@@ -2670,6 +2682,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {integer} resultSizeEstimate Estimated total number of results.
  * @property {gmail(v1).Thread[]} threads List of threads.
  */
+
 /**
  * @typedef Message
  * @memberOf! gmail(v1)
@@ -2687,6 +2700,7 @@ function Gmail(options) { // eslint-disable-line
 - The References and In-Reply-To headers must be set in compliance with the RFC 2822 standard. 
 - The Subject headers must match.
 */
+
 /**
  * @typedef MessagePart
  * @memberOf! gmail(v1)
@@ -2698,6 +2712,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} partId The immutable ID of the message part.
  * @property {gmail(v1).MessagePart[]} parts The child MIME message parts of this part. This only applies to container MIME message parts, for example multipart/*. For non- container MIME message part types, such as text/plain, this field is empty. For more information, see RFC 1521.
  */
+
 /**
  * @typedef MessagePartBody
  * @memberOf! gmail(v1)
@@ -2706,6 +2721,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} data The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
  * @property {integer} size Number of bytes for the message part data (encoding notwithstanding).
  */
+
 /**
  * @typedef MessagePartHeader
  * @memberOf! gmail(v1)
@@ -2713,6 +2729,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} name The name of the header before the : separator. For example, To.
  * @property {string} value The value of the header after the : separator. For example, someuser@example.com.
  */
+
 /**
  * @typedef ModifyMessageRequest
  * @memberOf! gmail(v1)
@@ -2720,6 +2737,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string[]} addLabelIds A list of IDs of labels to add to this message.
  * @property {string[]} removeLabelIds A list IDs of labels to remove from this message.
  */
+
 /**
  * @typedef ModifyThreadRequest
  * @memberOf! gmail(v1)
@@ -2727,6 +2745,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string[]} addLabelIds A list of IDs of labels to add to this thread.
  * @property {string[]} removeLabelIds A list of IDs of labels to remove from this thread.
  */
+
 /**
  * @typedef PopSettings
  * @memberOf! gmail(v1)
@@ -2734,6 +2753,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} accessWindow The range of messages which are accessible via POP.
  * @property {string} disposition The action that will be executed on a message after it has been fetched via POP.
  */
+
 /**
  * @typedef Profile
  * @memberOf! gmail(v1)
@@ -2743,6 +2763,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {integer} messagesTotal The total number of messages in the mailbox.
  * @property {integer} threadsTotal The total number of threads in the mailbox.
  */
+
 /**
  * @typedef SendAs
  * @memberOf! gmail(v1)
@@ -2757,6 +2778,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {boolean} treatAsAlias Whether Gmail should  treat this address as an alias for the user&#39;s primary email address. This setting only applies to custom &quot;from&quot; aliases.
  * @property {string} verificationStatus Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom &quot;from&quot; aliases.
  */
+
 /**
  * @typedef SmimeInfo
  * @memberOf! gmail(v1)
@@ -2769,6 +2791,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} pem PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key).
  * @property {string} pkcs12 PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately.
  */
+
 /**
  * @typedef SmtpMsa
  * @memberOf! gmail(v1)
@@ -2779,6 +2802,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} securityMode The protocol that will be used to secure communication with the SMTP service. Required.
  * @property {string} username The username that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses.
  */
+
 /**
  * @typedef Thread
  * @memberOf! gmail(v1)
@@ -2788,6 +2812,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {gmail(v1).Message[]} messages The list of messages in the thread.
  * @property {string} snippet A short part of the message text.
  */
+
 /**
  * @typedef VacationSettings
  * @memberOf! gmail(v1)
@@ -2801,6 +2826,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {boolean} restrictToDomain Flag that determines whether responses are sent to recipients who are outside of the user&#39;s domain. This feature is only available for G Suite users.
  * @property {string} startTime An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both startTime and endTime are specified, startTime must precede endTime.
  */
+
 /**
  * @typedef WatchRequest
  * @memberOf! gmail(v1)
@@ -2811,6 +2837,7 @@ function Gmail(options) { // eslint-disable-line
 
 Note that the &quot;my-project-identifier&quot; portion must exactly match your Google developer project id (the one executing this watch request).
 */
+
 /**
  * @typedef WatchResponse
  * @memberOf! gmail(v1)

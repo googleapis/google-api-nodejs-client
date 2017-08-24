@@ -364,7 +364,6 @@ function Blogger(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     blogs: {
 
       /**
@@ -423,6 +422,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this blog was last updated.
  * @property {string} url The URL where this blog is published.
  */
+
 /**
  * @typedef BlogList
  * @memberOf! blogger(v2)
@@ -430,6 +430,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v2).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
  * @property {string} kind The kind of this entity. Always blogger#blogList
  */
+
 /**
  * @typedef Comment
  * @memberOf! blogger(v2)
@@ -445,6 +446,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} selfLink The API REST URL to fetch this resource from.
  * @property {string} updated RFC 3339 date-time when this comment was last updated.
  */
+
 /**
  * @typedef CommentList
  * @memberOf! blogger(v2)
@@ -454,6 +456,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
  */
+
 /**
  * @typedef Page
  * @memberOf! blogger(v2)
@@ -469,6 +472,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Page was last updated.
  * @property {string} url The URL that this Page is displayed at.
  */
+
 /**
  * @typedef PageList
  * @memberOf! blogger(v2)
@@ -476,6 +480,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v2).Page[]} items The list of Pages for a Blog.
  * @property {string} kind The kind of this entity. Always blogger#pageList
  */
+
 /**
  * @typedef Post
  * @memberOf! blogger(v2)
@@ -493,6 +498,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Post was last updated.
  * @property {string} url The URL where this Post is displayed.
  */
+
 /**
  * @typedef PostList
  * @memberOf! blogger(v2)
@@ -502,6 +508,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
  */
+
 /**
  * @typedef User
  * @memberOf! blogger(v2)

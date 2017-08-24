@@ -462,6 +462,43 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.enterprises.getAndroidDevicePolicyConfig
+     *
+     * @desc Returns the Android Device Policy config resource.
+     *
+     * @alias androidenterprise.enterprises.getAndroidDevicePolicyConfig
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAndroidDevicePolicyConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.getServiceAccount
      *
      * @desc Returns a service account and credentials. The service account can be bound to the enterprise by calling setAccount. The service account is unique to this enterprise and EMM, and will be deleted if the enterprise is unbound. The credentials contain private key data and are not stored server-side.  This method can only be called after calling Enterprises.Enroll or Enterprises.CompleteSignup, and before Enterprises.SetAccount; at other times it will return an error.  Subsequent calls after the first will generate a new, unique set of credentials, and invalidate the previously generated credentials.  Once the service account is bound to the enterprise, it can be managed using the serviceAccountKeys resource.
@@ -712,6 +749,44 @@ function Androidenterprise(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/account').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * androidenterprise.enterprises.setAndroidDevicePolicyConfig
+     *
+     * @desc Sets the Android Device Policy config resource. EMM may use this method to enable or disable Android Device Policy support for the specified enterprise. To learn more about managing devices and apps with Android Device Policy, see the Android Management API.
+     *
+     * @alias androidenterprise.enterprises.setAndroidDevicePolicyConfig
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {androidenterprise(v1).AndroidDevicePolicyConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setAndroidDevicePolicyConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PUT'
         }, options),
         params: params,
@@ -3074,6 +3149,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @type object
  * @property {string} email The admin&#39;s email address.
  */
+
 /**
  * @typedef AdministratorWebToken
  * @memberOf! androidenterprise(v1)
@@ -3081,6 +3157,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebToken&quot;.
  * @property {string} token An opaque token to be passed to the Play front-end to generate an iframe.
  */
+
 /**
  * @typedef AdministratorWebTokenSpec
  * @memberOf! androidenterprise(v1)
@@ -3089,6 +3166,15 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} parent The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https.
  * @property {string[]} permission The list of permissions the admin is granted within the iframe. The admin will only be allowed to view an iframe if they have all of the permissions associated with it. The only valid value is &quot;approveApps&quot; that will allow the admin to access the iframe in &quot;approve&quot; mode.
  */
+
+/**
+ * @typedef AndroidDevicePolicyConfig
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#androidDevicePolicyConfig&quot;.
+ * @property {string} state The state of Android Device Policy. &quot;enabled&quot; indicates that Android Device Policy is enabled for the enterprise and the EMM is allowed to manage devices with Android Device Policy, while &quot;disabled&quot; means that it cannot.
+ */
+
 /**
  * @typedef AppRestrictionsSchema
  * @memberOf! androidenterprise(v1)
@@ -3096,12 +3182,14 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#appRestrictionsSchema&quot;.
  * @property {androidenterprise(v1).AppRestrictionsSchemaRestriction[]} restrictions The set of restrictions that make up this schema.
  */
+
 /**
  * @typedef AppRestrictionsSchemaChangeEvent
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the app restriction schema changed. This field will always be present.
  */
+
 /**
  * @typedef AppRestrictionsSchemaRestriction
  * @memberOf! androidenterprise(v1)
@@ -3115,6 +3203,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} restrictionType The type of the restriction.
  * @property {string} title The name of the restriction.
  */
+
 /**
  * @typedef AppRestrictionsSchemaRestrictionRestrictionValue
  * @memberOf! androidenterprise(v1)
@@ -3125,12 +3214,14 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string[]} valueMultiselect The list of string values - this will only be present if type is multiselect.
  * @property {string} valueString The string value - this will be present for types string, choice and hidden.
  */
+
 /**
  * @typedef AppUpdateEvent
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) that was updated. This field will always be present.
  */
+
 /**
  * @typedef AppVersion
  * @memberOf! androidenterprise(v1)
@@ -3138,6 +3229,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {integer} versionCode Unique increasing identifier for the app version.
  * @property {string} versionString The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be &quot;1.4&quot;).
  */
+
 /**
  * @typedef ApprovalUrlInfo
  * @memberOf! androidenterprise(v1)
@@ -3145,6 +3237,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} approvalUrl A URL that displays a product&#39;s permissions and that can also be used to approve the product with the Products.approve call.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#approvalUrlInfo&quot;.
  */
+
 /**
  * @typedef AuthenticationToken
  * @memberOf! androidenterprise(v1)
@@ -3152,6 +3245,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#authenticationToken&quot;.
  * @property {string} token The authentication token to be passed to the device policy client on the device where it can be used to provision the account for which this token was generated.
  */
+
 /**
  * @typedef Device
  * @memberOf! androidenterprise(v1)
@@ -3166,6 +3260,7 @@ Possible values include:
 - &quot;containerApp&quot;, no longer used (deprecated). 
 - &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
 */
+
 /**
  * @typedef DeviceState
  * @memberOf! androidenterprise(v1)
@@ -3173,6 +3268,7 @@ Possible values include:
  * @property {string} accountState The state of the Google account on the device. &quot;enabled&quot; indicates that the Google account on the device can be used to access Google services (including Google Play), while &quot;disabled&quot; means that it cannot. A new device is initially in the &quot;disabled&quot; state.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#deviceState&quot;.
  */
+
 /**
  * @typedef DevicesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3180,6 +3276,7 @@ Possible values include:
  * @property {androidenterprise(v1).Device[]} device A managed device.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#devicesListResponse&quot;.
  */
+
 /**
  * @typedef Enterprise
  * @memberOf! androidenterprise(v1)
@@ -3190,6 +3287,7 @@ Possible values include:
  * @property {string} name The name of the enterprise, for example, &quot;Example, Inc&quot;.
  * @property {string} primaryDomain The enterprise&#39;s primary domain, such as &quot;example.com&quot;.
  */
+
 /**
  * @typedef EnterpriseAccount
  * @memberOf! androidenterprise(v1)
@@ -3197,6 +3295,7 @@ Possible values include:
  * @property {string} accountEmail The email address of the service account.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterpriseAccount&quot;.
  */
+
 /**
  * @typedef EnterprisesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3204,6 +3303,7 @@ Possible values include:
  * @property {androidenterprise(v1).Enterprise[]} enterprise An enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterprisesListResponse&quot;.
  */
+
 /**
  * @typedef EnterprisesSendTestPushNotificationResponse
  * @memberOf! androidenterprise(v1)
@@ -3211,6 +3311,7 @@ Possible values include:
  * @property {string} messageId The message ID of the test push notification that was sent.
  * @property {string} topicName The name of the Cloud Pub/Sub topic to which notifications for this enterprise&#39;s enrolled account will be sent.
  */
+
 /**
  * @typedef Entitlement
  * @memberOf! androidenterprise(v1)
@@ -3219,6 +3320,7 @@ Possible values include:
  * @property {string} productId The ID of the product that the entitlement is for. For example, &quot;app:com.google.android.gm&quot;.
  * @property {string} reason The reason for the entitlement. For example, &quot;free&quot; for free apps. This property is temporary: it will be replaced by the acquisition kind field of group licenses.
  */
+
 /**
  * @typedef EntitlementsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3226,6 +3328,7 @@ Possible values include:
  * @property {androidenterprise(v1).Entitlement[]} entitlement An entitlement of a user to a product (e.g. an app). For example, a free app that they have installed, or a paid app that they have been allocated a license to.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#entitlementsListResponse&quot;.
  */
+
 /**
  * @typedef GroupLicense
  * @memberOf! androidenterprise(v1)
@@ -3241,6 +3344,7 @@ Possible values include:
 - &quot;allCurrentAndFutureApproved&quot;, the current permissions are approved and any future permission updates will be automatically approved without administrator review.
 * @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
 */
+
 /**
  * @typedef GroupLicenseUsersListResponse
  * @memberOf! androidenterprise(v1)
@@ -3248,6 +3352,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicenseUsersListResponse&quot;.
  * @property {androidenterprise(v1).User[]} user A user of an enterprise.
  */
+
 /**
  * @typedef GroupLicensesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3255,6 +3360,7 @@ Possible values include:
  * @property {androidenterprise(v1).GroupLicense[]} groupLicense A group license for a product approved for use in the enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicensesListResponse&quot;.
  */
+
 /**
  * @typedef Install
  * @memberOf! androidenterprise(v1)
@@ -3264,6 +3370,7 @@ Possible values include:
  * @property {string} productId The ID of the product that the install is for. For example, &quot;app:com.google.android.gm&quot;.
  * @property {integer} versionCode The version of the installed product. Guaranteed to be set only if the install state is &quot;installed&quot;.
  */
+
 /**
  * @typedef InstallFailureEvent
  * @memberOf! androidenterprise(v1)
@@ -3274,6 +3381,7 @@ Possible values include:
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the install failure event occured. This field will always be present.
  * @property {string} userId The ID of the user. This field will always be present.
  */
+
 /**
  * @typedef InstallsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3281,6 +3389,7 @@ Possible values include:
  * @property {androidenterprise(v1).Install[]} install An installation of an app for a user on a specific device. The existence of an install implies that the user must have an entitlement to the app.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#installsListResponse&quot;.
  */
+
 /**
  * @typedef LocalizedText
  * @memberOf! androidenterprise(v1)
@@ -3288,6 +3397,7 @@ Possible values include:
  * @property {string} locale The BCP47 tag for a locale. (e.g. &quot;en-US&quot;, &quot;de&quot;).
  * @property {string} text The text localized in the associated locale.
  */
+
 /**
  * @typedef ManagedConfiguration
  * @memberOf! androidenterprise(v1)
@@ -3296,6 +3406,7 @@ Possible values include:
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The set of managed properties for this configuration.
  * @property {string} productId The ID of the product that the managed configuration is for, e.g. &quot;app:com.google.android.gm&quot;.
  */
+
 /**
  * @typedef ManagedConfigurationsForDeviceListResponse
  * @memberOf! androidenterprise(v1)
@@ -3303,6 +3414,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsForDeviceListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfiguration[]} managedConfigurationForDevice A managed configuration for an app on a specific device.
  */
+
 /**
  * @typedef ManagedConfigurationsForUserListResponse
  * @memberOf! androidenterprise(v1)
@@ -3310,6 +3422,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsForUserListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfiguration[]} managedConfigurationForUser A managed configuration for an app for a specific user.
  */
+
 /**
  * @typedef ManagedProperty
  * @memberOf! androidenterprise(v1)
@@ -3322,12 +3435,14 @@ Possible values include:
  * @property {string} valueString The string value - this will only be present if type of the property is string, choice or hidden.
  * @property {string[]} valueStringArray The list of string values - this will only be present if type of the property is multiselect.
  */
+
 /**
  * @typedef ManagedPropertyBundle
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The list of managed properties.
  */
+
 /**
  * @typedef NewDeviceEvent
  * @memberOf! androidenterprise(v1)
@@ -3340,6 +3455,7 @@ Possible values include:
 - &quot;managedProfile&quot;, a device where the DPC is set as profile owner.
 * @property {string} userId The ID of the user. This field will always be present.
 */
+
 /**
  * @typedef NewPermissionsEvent
  * @memberOf! androidenterprise(v1)
@@ -3348,6 +3464,7 @@ Possible values include:
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which new permissions were added. This field will always be present.
  * @property {string[]} requestedPermissions The set of permissions that the app is currently requesting. Use Permissions.Get on the EMM API to retrieve details about these permissions.
  */
+
 /**
  * @typedef Notification
  * @memberOf! androidenterprise(v1)
@@ -3363,6 +3480,7 @@ Possible values include:
  * @property {androidenterprise(v1).ProductAvailabilityChangeEvent} productAvailabilityChangeEvent Notifications about product availability changes.
  * @property {string} timestampMillis The time when the notification was published in milliseconds since 1970-01-01T00:00:00Z. This will always be present.
  */
+
 /**
  * @typedef NotificationSet
  * @memberOf! androidenterprise(v1)
@@ -3371,6 +3489,7 @@ Possible values include:
  * @property {androidenterprise(v1).Notification[]} notification The notifications received, or empty if no notifications are present.
  * @property {string} notificationSetId The notification set ID, required to mark the notification as received with the Enterprises.AcknowledgeNotification API. This will be omitted if no notifications are present.
  */
+
 /**
  * @typedef PageInfo
  * @memberOf! androidenterprise(v1)
@@ -3379,6 +3498,7 @@ Possible values include:
  * @property {integer} startIndex 
  * @property {integer} totalResults 
  */
+
 /**
  * @typedef Permission
  * @memberOf! androidenterprise(v1)
@@ -3388,6 +3508,7 @@ Possible values include:
  * @property {string} name The name of the permission.
  * @property {string} permissionId An opaque string uniquely identifying the permission.
  */
+
 /**
  * @typedef Product
  * @memberOf! androidenterprise(v1)
@@ -3405,6 +3526,7 @@ Possible values include:
  * @property {string} title The name of the product.
  * @property {string} workDetailsUrl A link to the managed Google Play details page for the product, for use by an Enterprise admin.
  */
+
 /**
  * @typedef ProductApprovalEvent
  * @memberOf! androidenterprise(v1)
@@ -3412,6 +3534,7 @@ Possible values include:
  * @property {string} approved Whether the product was approved or unapproved. This field will always be present.
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the approval status has changed. This field will always be present.
  */
+
 /**
  * @typedef ProductAvailabilityChangeEvent
  * @memberOf! androidenterprise(v1)
@@ -3419,6 +3542,7 @@ Possible values include:
  * @property {string} availabilityStatus The new state of the product. This field will always be present.
  * @property {string} productId The id of the product (e.g. &quot;app:com.google.android.gm&quot;) for which the product availability changed. This field will always be present.
  */
+
 /**
  * @typedef ProductPermission
  * @memberOf! androidenterprise(v1)
@@ -3426,6 +3550,7 @@ Possible values include:
  * @property {string} permissionId An opaque string uniquely identifying the permission.
  * @property {string} state Whether the permission has been accepted or not.
  */
+
 /**
  * @typedef ProductPermissions
  * @memberOf! androidenterprise(v1)
@@ -3434,14 +3559,16 @@ Possible values include:
  * @property {androidenterprise(v1).ProductPermission[]} permission The permissions required by the app.
  * @property {string} productId The ID of the app that the permissions relate to, e.g. &quot;app:com.google.android.gm&quot;.
  */
+
 /**
  * @typedef ProductSet
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
- * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility.
+ * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility. Further &quot;allApproved&quot; or &quot;includeAll&quot; does not enable automatic visibility of &quot;alpha&quot; or &quot;beta&quot; tracks for Android app. Use ProductVisibility to enable &quot;alpha&quot; or &quot;beta&quot; tracks per user.
  */
+
 /**
  * @typedef ProductsApproveRequest
  * @memberOf! androidenterprise(v1)
@@ -3449,12 +3576,14 @@ Possible values include:
  * @property {androidenterprise(v1).ApprovalUrlInfo} approvalUrlInfo The approval URL that was shown to the user. Only the permissions shown to the user with that URL will be accepted, which may not be the product&#39;s entire set of permissions. For example, the URL may only display new permissions from an update after the product was approved, or not include new permissions if the product was updated since the URL was generated.
  * @property {string} approvedPermissions Sets how new permission requests for the product are handled. &quot;allPermissions&quot; automatically approves all current and future permissions for the product. &quot;currentPermissionsOnly&quot; approves the current set of permissions for the product, but any future permissions added through updates will require manual reapproval. If not specified, only the current set of permissions will be approved.
  */
+
 /**
  * @typedef ProductsGenerateApprovalUrlResponse
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} url A URL that can be rendered in an iframe to display the permissions (if any) of a product. This URL can be used to approve the product only once and only within 24 hours of being generated, using the Products.approve call. If the product is currently unapproved and has no permissions, this URL will point to an empty page. If the product is currently approved, a URL will only be generated if that product has added permissions since it was last approved, and the URL will only display those new permissions that have not yet been accepted.
  */
+
 /**
  * @typedef ProductsListResponse
  * @memberOf! androidenterprise(v1)
@@ -3464,6 +3593,7 @@ Possible values include:
  * @property {androidenterprise(v1).Product[]} product Information about a product (e.g. an app) in the Google Play store, for display to an enterprise admin.
  * @property {androidenterprise(v1).TokenPagination} tokenPagination Pagination information for token pagination.
  */
+
 /**
  * @typedef ServiceAccount
  * @memberOf! androidenterprise(v1)
@@ -3472,6 +3602,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#serviceAccount&quot;.
  * @property {string} name The account name of the service account, in the form of an email address. Assigned by the server.
  */
+
 /**
  * @typedef ServiceAccountKey
  * @memberOf! androidenterprise(v1)
@@ -3482,12 +3613,14 @@ Possible values include:
  * @property {string} publicData Public key data for the credentials file. This is an X.509 cert. If you are using the googleCredentials key type, this is identical to the cert that can be retrieved by using the X.509 cert url inside of the credentials file.
  * @property {string} type The file format of the generated key data.
  */
+
 /**
  * @typedef ServiceAccountKeysListResponse
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ServiceAccountKey[]} serviceAccountKey The service account credentials.
  */
+
 /**
  * @typedef SignupInfo
  * @memberOf! androidenterprise(v1)
@@ -3496,6 +3629,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#signupInfo&quot;.
  * @property {string} url A URL under which the Admin can sign up for an enterprise. The page pointed to cannot be rendered in an iframe.
  */
+
 /**
  * @typedef StoreCluster
  * @memberOf! androidenterprise(v1)
@@ -3508,6 +3642,7 @@ Possible values include:
 The value of this field is never visible to a user, it is used solely for the purpose of defining an ordering. Maximum length is 256 characters.
 * @property {string[]} productId List of products in the order they are displayed in the cluster. There should not be duplicates within a cluster.
 */
+
 /**
  * @typedef StoreLayout
  * @memberOf! androidenterprise(v1)
@@ -3518,6 +3653,7 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
 * @property {string} storeLayoutType The store layout type. By default, this value is set to &quot;basic&quot; if the homepageId field is not set, and to &quot;custom&quot; otherwise. If set to &quot;basic&quot;, the layout will consist of all approved apps that have been whitelisted for the user.
 */
+
 /**
  * @typedef StoreLayoutClustersListResponse
  * @memberOf! androidenterprise(v1)
@@ -3525,6 +3661,7 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
  * @property {androidenterprise(v1).StoreCluster[]} cluster A store cluster of an enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayoutClustersListResponse&quot;.
  */
+
 /**
  * @typedef StoreLayoutPagesListResponse
  * @memberOf! androidenterprise(v1)
@@ -3532,6 +3669,7 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayoutPagesListResponse&quot;.
  * @property {androidenterprise(v1).StorePage[]} page A store page of an enterprise.
  */
+
 /**
  * @typedef StorePage
  * @memberOf! androidenterprise(v1)
@@ -3543,6 +3681,7 @@ Not specifying a homepage is equivalent to setting the store layout type to &quo
 No attempt is made to verify that all pages are reachable from the homepage.
 * @property {androidenterprise(v1).LocalizedText[]} name Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
 */
+
 /**
  * @typedef TokenPagination
  * @memberOf! androidenterprise(v1)
@@ -3550,6 +3689,7 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} nextPageToken 
  * @property {string} previousPageToken 
  */
+
 /**
  * @typedef User
  * @memberOf! androidenterprise(v1)
@@ -3562,6 +3702,7 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} managementType The entity that manages the user. With googleManaged users, the source of truth is Google so EMMs have to make sure a Google Account exists for the user. With emmManaged users, the EMM is in charge.
  * @property {string} primaryEmail The user&#39;s primary email address, for example, &quot;jsmith@example.com&quot;. Will always be set for Google managed users and not set for EMM managed users.
  */
+
 /**
  * @typedef UserToken
  * @memberOf! androidenterprise(v1)
@@ -3570,6 +3711,7 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @property {string} token The token (activation code) to be entered by the user. This consists of a sequence of decimal digits. Note that the leading digit may be 0.
  * @property {string} userId The unique ID for the user.
  */
+
 /**
  * @typedef UsersListResponse
  * @memberOf! androidenterprise(v1)

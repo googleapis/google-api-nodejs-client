@@ -1420,6 +1420,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this blog was last updated.
  * @property {string} url The URL where this blog is published.
  */
+
 /**
  * @typedef BlogList
  * @memberOf! blogger(v3)
@@ -1428,6 +1429,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v3).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
  * @property {string} kind The kind of this entity. Always blogger#blogList
  */
+
 /**
  * @typedef BlogPerUserInfo
  * @memberOf! blogger(v3)
@@ -1439,6 +1441,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} role Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).
  * @property {string} userId ID of the User
  */
+
 /**
  * @typedef BlogUserInfo
  * @memberOf! blogger(v3)
@@ -1447,6 +1450,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v3).BlogPerUserInfo} blog_user_info Information about a User for the Blog.
  * @property {string} kind The kind of this entity. Always blogger#blogUserInfo
  */
+
 /**
  * @typedef Comment
  * @memberOf! blogger(v3)
@@ -1463,6 +1467,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} status The status of the comment (only populated for admin users)
  * @property {string} updated RFC 3339 date-time when this comment was last updated.
  */
+
 /**
  * @typedef CommentList
  * @memberOf! blogger(v3)
@@ -1473,6 +1478,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
  */
+
 /**
  * @typedef Page
  * @memberOf! blogger(v3)
@@ -1490,6 +1496,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Page was last updated.
  * @property {string} url The URL that this Page is displayed at.
  */
+
 /**
  * @typedef PageList
  * @memberOf! blogger(v3)
@@ -1499,6 +1506,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} kind The kind of this entity. Always blogger#pageList
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  */
+
 /**
  * @typedef Pageviews
  * @memberOf! blogger(v3)
@@ -1507,6 +1515,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {object[]} counts The container of posts in this blog.
  * @property {string} kind The kind of this entry. Always blogger#page_views
  */
+
 /**
  * @typedef Post
  * @memberOf! blogger(v3)
@@ -1531,6 +1540,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Post was last updated.
  * @property {string} url The URL where this Post is displayed.
  */
+
 /**
  * @typedef PostList
  * @memberOf! blogger(v3)
@@ -1540,6 +1550,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} kind The kind of this entity. Always blogger#postList
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  */
+
 /**
  * @typedef PostPerUserInfo
  * @memberOf! blogger(v3)
@@ -1550,6 +1561,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} postId ID of the Post resource.
  * @property {string} userId ID of the User.
  */
+
 /**
  * @typedef PostUserInfo
  * @memberOf! blogger(v3)
@@ -1558,6 +1570,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v3).Post} post The Post resource.
  * @property {blogger(v3).PostPerUserInfo} post_user_info Information about a User for the Post.
  */
+
 /**
  * @typedef PostUserInfosList
  * @memberOf! blogger(v3)
@@ -1566,6 +1579,7 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} kind The kind of this entity. Always blogger#postList
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  */
+
 /**
  * @typedef User
  * @memberOf! blogger(v3)

@@ -458,6 +458,7 @@ function Replicapoolupdater(options) { // eslint-disable-line
 - &quot;ROLLED_BACK&quot;: The instance update is finished, the instance has been reverted to the previous template. 
 - &quot;CANCELLED&quot;: The instance update is paused and no longer can be resumed, undefined in which template the instance is running.
 */
+
 /**
  * @typedef InstanceUpdateList
  * @memberOf! replicapoolupdater(v1beta1)
@@ -467,6 +468,7 @@ function Replicapoolupdater(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] The fully qualified URL for the resource.
  */
+
 /**
  * @typedef Operation
  * @memberOf! replicapoolupdater(v1beta1)
@@ -494,6 +496,7 @@ function Replicapoolupdater(options) { // eslint-disable-line
  * @property {object[]} warnings 
  * @property {string} zone [Output Only] URL of the zone where the operation resides.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! replicapoolupdater(v1beta1)
@@ -504,6 +507,7 @@ function Replicapoolupdater(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncate.
  * @property {string} selfLink [Output Only] The fully qualified URL for the resource.
  */
+
 /**
  * @typedef RollingUpdate
  * @memberOf! replicapoolupdater(v1beta1)
@@ -531,6 +535,7 @@ function Replicapoolupdater(options) { // eslint-disable-line
 * @property {string} statusMessage [Output Only] An optional textual description of the current status of the update.
 * @property {string} user [Output Only] User who requested the update, for example: user@example.com.
 */
+
 /**
  * @typedef RollingUpdateList
  * @memberOf! replicapoolupdater(v1beta1)

@@ -411,6 +411,7 @@ function Plus(options) { // eslint-disable-line
  * @property {plus(v1).PlusAclentryResource[]} items The list of access entries.
  * @property {string} kind Identifies this resource as a collection of access controls. Value: &quot;plus#acl&quot;.
  */
+
 /**
  * @typedef Activity
  * @memberOf! plus(v1)
@@ -438,6 +439,7 @@ function Plus(options) { // eslint-disable-line
 - &quot;post&quot; - Publish content to the stream. 
 - &quot;share&quot; - Reshare an activity.
 */
+
 /**
  * @typedef ActivityFeed
  * @memberOf! plus(v1)
@@ -452,6 +454,7 @@ function Plus(options) { // eslint-disable-line
  * @property {string} title The title of this collection of activities, which is a truncated portion of the content.
  * @property {string} updated The time at which this collection of activities was last updated. Formatted as an RFC 3339 timestamp.
  */
+
 /**
  * @typedef Comment
  * @memberOf! plus(v1)
@@ -469,6 +472,7 @@ function Plus(options) { // eslint-disable-line
 * @property {string} verb This comment&#39;s verb, indicating what action was performed. Possible values are:  
 - &quot;post&quot; - Publish content to the stream.
 */
+
 /**
  * @typedef CommentFeed
  * @memberOf! plus(v1)
@@ -482,6 +486,7 @@ function Plus(options) { // eslint-disable-line
  * @property {string} title The title of this collection of comments.
  * @property {string} updated The time at which this collection of comments was last updated. Formatted as an RFC 3339 timestamp.
  */
+
 /**
  * @typedef PeopleFeed
  * @memberOf! plus(v1)
@@ -494,6 +499,7 @@ function Plus(options) { // eslint-disable-line
  * @property {string} title The title of this collection of people.
  * @property {integer} totalItems The total number of people available in this list. The number of people in a response might be smaller due to paging. This might not be set for all collections.
  */
+
 /**
  * @typedef Person
  * @memberOf! plus(v1)
@@ -543,6 +549,7 @@ function Plus(options) { // eslint-disable-line
 * @property {object[]} urls A list of URLs for this person.
 * @property {boolean} verified Whether the person or Google+ Page has been verified.
 */
+
 /**
  * @typedef Place
  * @memberOf! plus(v1)
@@ -553,6 +560,7 @@ function Plus(options) { // eslint-disable-line
  * @property {string} kind Identifies this resource as a place. Value: &quot;plus#place&quot;.
  * @property {object} position The position of the place.
  */
+
 /**
  * @typedef PlusAclentryResource
  * @memberOf! plus(v1)

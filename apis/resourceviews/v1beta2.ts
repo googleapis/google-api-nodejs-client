@@ -494,6 +494,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} key Key of the label.
  * @property {string} value Value of the label.
  */
+
 /**
  * @typedef ListResourceResponseItem
  * @memberOf! resourceviews(v1beta2)
@@ -501,6 +502,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {object} endpoints The list of service end points on the resource.
  * @property {string} resource The full URL of the resource.
  */
+
 /**
  * @typedef Operation
  * @memberOf! resourceviews(v1beta2)
@@ -528,6 +530,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {object[]} warnings [Output Only] If there are issues with this operation, a warning is returned.
  * @property {string} zone [Output Only] URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! resourceviews(v1beta2)
@@ -538,6 +541,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used to continue a truncated list request (output only).
  * @property {string} selfLink Server defined URL for this resource (output only).
  */
+
 /**
  * @typedef ResourceView
  * @memberOf! resourceviews(v1beta2)
@@ -555,6 +559,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} selfLink [Output Only] A self-link to the resource view.
  * @property {integer} size The total number of resources in the resource view.
  */
+
 /**
  * @typedef ServiceEndpoint
  * @memberOf! resourceviews(v1beta2)
@@ -562,12 +567,14 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} name The name of the service endpoint.
  * @property {integer} port The port of the service endpoint.
  */
+
 /**
  * @typedef ZoneViewsAddResourcesRequest
  * @memberOf! resourceviews(v1beta2)
  * @type object
  * @property {string[]} resources The list of resources to be added.
  */
+
 /**
  * @typedef ZoneViewsGetServiceResponse
  * @memberOf! resourceviews(v1beta2)
@@ -575,6 +582,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {resourceviews(v1beta2).ServiceEndpoint[]} endpoints The service information.
  * @property {string} fingerprint The fingerprint of the service information.
  */
+
 /**
  * @typedef ZoneViewsList
  * @memberOf! resourceviews(v1beta2)
@@ -584,6 +592,7 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used for pagination.
  * @property {string} selfLink Server defined URL for this resource (output only).
  */
+
 /**
  * @typedef ZoneViewsListResourcesResponse
  * @memberOf! resourceviews(v1beta2)
@@ -592,12 +601,14 @@ function Resourceviews(options) { // eslint-disable-line
  * @property {string} network The URL of a Compute Engine network to which the resources in the view belong.
  * @property {string} nextPageToken A token used for pagination.
  */
+
 /**
  * @typedef ZoneViewsRemoveResourcesRequest
  * @memberOf! resourceviews(v1beta2)
  * @type object
  * @property {string[]} resources The list of resources to be removed.
  */
+
 /**
  * @typedef ZoneViewsSetServiceRequest
  * @memberOf! resourceviews(v1beta2)

@@ -13014,7 +13014,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.campaignId Generate placements belonging to this campaign. This is a required field.
      * @param {string=} params.placementIds Generate tags for these placements.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.tagFormats Tag formats to generate for these placements.
+     * @param {string=} params.tagFormats Tag formats to generate for these placements.  Note: PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15524,7 +15524,6 @@ function Dfareporting(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     compatibleFields: {
 
       /**
@@ -15615,7 +15614,6 @@ function Dfareporting(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     files: {
 
       /**
@@ -19012,6 +19010,7 @@ Acceptable values are:
 * @property {boolean} shareReportsWithTwitter Share Path to Conversion reports with Twitter.
 * @property {string} teaserSizeLimit File size limit in kilobytes of Rich Media teaser creatives. Acceptable values are 1 to 10240, inclusive.
 */
+
 /**
  * @typedef AccountActiveAdSummary
  * @memberOf! dfareporting(v2.7)
@@ -19022,6 +19021,7 @@ Acceptable values are:
  * @property {string} availableAds Ads that can be activated for the account.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountActiveAdSummary&quot;.
  */
+
 /**
  * @typedef AccountPermission
  * @memberOf! dfareporting(v2.7)
@@ -19037,6 +19037,7 @@ Possible values are:
 * @property {string} name Name of this account permission.
 * @property {string} permissionGroupId Permission group of this account permission.
 */
+
 /**
  * @typedef AccountPermissionGroup
  * @memberOf! dfareporting(v2.7)
@@ -19045,6 +19046,7 @@ Possible values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroup&quot;.
  * @property {string} name Name of this account permission group.
  */
+
 /**
  * @typedef AccountPermissionGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19052,6 +19054,7 @@ Possible values are:
  * @property {dfareporting(v2.7).AccountPermissionGroup[]} accountPermissionGroups Account permission group collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
  */
+
 /**
  * @typedef AccountPermissionsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19059,6 +19062,7 @@ Possible values are:
  * @property {dfareporting(v2.7).AccountPermission[]} accountPermissions Account permission collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionsListResponse&quot;.
  */
+
 /**
  * @typedef AccountUserProfile
  * @memberOf! dfareporting(v2.7)
@@ -19097,6 +19101,7 @@ Acceptable values are:
 * @property {dfareporting(v2.7).ObjectFilter} userRoleFilter Filter that describes which user roles are visible to the user profile.
 * @property {string} userRoleId User role ID of the user profile. This is a required field.
 */
+
 /**
  * @typedef AccountUserProfilesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19105,6 +19110,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfilesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef AccountsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19113,6 +19119,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef Activities
  * @memberOf! dfareporting(v2.7)
@@ -19121,6 +19128,7 @@ Acceptable values are:
  * @property {string} kind The kind of resource this is, in this case dfareporting#activities.
  * @property {string[]} metricNames List of names of floodlight activity metrics.
  */
+
 /**
  * @typedef Ad
  * @memberOf! dfareporting(v2.7)
@@ -19165,6 +19173,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).TechnologyTargeting} technologyTargeting Technology platform targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} type Type of ad. This is a required field on insertion. Note that default ads (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
  */
+
 /**
  * @typedef AdSlot
  * @memberOf! dfareporting(v2.7)
@@ -19178,6 +19187,7 @@ Acceptable values are:
  * @property {boolean} primary Primary ad slot of a roadblock inventory item.
  * @property {string} width Width of this ad slot.
  */
+
 /**
  * @typedef AdsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19186,6 +19196,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#adsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef Advertiser
  * @memberOf! dfareporting(v2.7)
@@ -19208,6 +19219,7 @@ Acceptable values are:
 * @property {string} subaccountId Subaccount ID of this advertiser.This is a read-only field that can be left blank.
 * @property {boolean} suspended Suspension status of this advertiser.
 */
+
 /**
  * @typedef AdvertiserGroup
  * @memberOf! dfareporting(v2.7)
@@ -19217,6 +19229,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroup&quot;.
  * @property {string} name Name of this advertiser group. This is a required field and must be less than 256 characters long and unique among advertiser groups of the same account.
  */
+
 /**
  * @typedef AdvertiserGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19225,6 +19238,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef AdvertisersListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19233,6 +19247,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertisersListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef AudienceSegment
  * @memberOf! dfareporting(v2.7)
@@ -19241,6 +19256,7 @@ Acceptable values are:
  * @property {string} id ID of this audience segment. This is a read-only, auto-generated field.
  * @property {string} name Name of this audience segment. This is a required field and must be less than 65 characters long.
  */
+
 /**
  * @typedef AudienceSegmentGroup
  * @memberOf! dfareporting(v2.7)
@@ -19249,6 +19265,7 @@ Acceptable values are:
  * @property {string} id ID of this audience segment group. This is a read-only, auto-generated field.
  * @property {string} name Name of this audience segment group. This is a required field and must be less than 65 characters long.
  */
+
 /**
  * @typedef Browser
  * @memberOf! dfareporting(v2.7)
@@ -19260,6 +19277,7 @@ Acceptable values are:
  * @property {string} minorVersion Minor version number (number after first dot on left) of this browser. For example, for Chrome 5.0.375.86 beta, this field should be set to 0. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
  * @property {string} name Name of this browser.
  */
+
 /**
  * @typedef BrowsersListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19267,6 +19285,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Browser[]} browsers Browser collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browsersListResponse&quot;.
  */
+
 /**
  * @typedef Campaign
  * @memberOf! dfareporting(v2.7)
@@ -19299,6 +19318,7 @@ Acceptable values are:
  * @property {string} subaccountId Subaccount ID of this campaign. This is a read-only field that can be left blank.
  * @property {string[]} traffickerEmails Campaign trafficker contact emails.
  */
+
 /**
  * @typedef CampaignCreativeAssociation
  * @memberOf! dfareporting(v2.7)
@@ -19306,6 +19326,7 @@ Acceptable values are:
  * @property {string} creativeId ID of the creative associated with the campaign. This is a required field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociation&quot;.
  */
+
 /**
  * @typedef CampaignCreativeAssociationsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19314,6 +19335,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CampaignsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19322,6 +19344,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef ChangeLog
  * @memberOf! dfareporting(v2.7)
@@ -19341,6 +19364,7 @@ Acceptable values are:
  * @property {string} userProfileId ID of the user who modified the object.
  * @property {string} userProfileName User profile name of the user who modified the object.
  */
+
 /**
  * @typedef ChangeLogsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19349,6 +19373,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLogsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CitiesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19356,6 +19381,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).City[]} cities City collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#citiesListResponse&quot;.
  */
+
 /**
  * @typedef City
  * @memberOf! dfareporting(v2.7)
@@ -19370,6 +19396,7 @@ Acceptable values are:
  * @property {string} regionCode Region code of the region to which this city belongs.
  * @property {string} regionDartId DART ID of the region to which this city belongs.
  */
+
 /**
  * @typedef ClickTag
  * @memberOf! dfareporting(v2.7)
@@ -19378,6 +19405,7 @@ Acceptable values are:
  * @property {string} name Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
  * @property {string} value Parameter value for the specified click tag. This field contains a click-through url.
  */
+
 /**
  * @typedef ClickThroughUrl
  * @memberOf! dfareporting(v2.7)
@@ -19390,6 +19418,7 @@ Acceptable values are:
 * @property {boolean} defaultLandingPage Whether the campaign default landing page is used.
 * @property {string} landingPageId ID of the landing page for the click-through URL. Applicable if the defaultLandingPage field is set to false.
 */
+
 /**
  * @typedef ClickThroughUrlSuffixProperties
  * @memberOf! dfareporting(v2.7)
@@ -19397,6 +19426,7 @@ Acceptable values are:
  * @property {string} clickThroughUrlSuffix Click-through URL suffix to apply to all ads in this entity&#39;s scope. Must be less than 128 characters long.
  * @property {boolean} overrideInheritedSuffix Whether this entity should override the inherited click-through URL suffix with its own defined value.
  */
+
 /**
  * @typedef CompanionClickThroughOverride
  * @memberOf! dfareporting(v2.7)
@@ -19404,6 +19434,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).ClickThroughUrl} clickThroughUrl Click-through URL of this companion click-through override.
  * @property {string} creativeId ID of the creative for this companion click-through override.
  */
+
 /**
  * @typedef CompanionSetting
  * @memberOf! dfareporting(v2.7)
@@ -19413,6 +19444,7 @@ Acceptable values are:
  * @property {boolean} imageOnly Whether to serve only static images as companions.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#companionSetting&quot;.
  */
+
 /**
  * @typedef CompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -19424,6 +19456,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).ReachReportCompatibleFields} reachReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;REACH&quot;.
  * @property {dfareporting(v2.7).ReportCompatibleFields} reportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;STANDARD&quot;.
  */
+
 /**
  * @typedef ConnectionType
  * @memberOf! dfareporting(v2.7)
@@ -19432,6 +19465,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionType&quot;.
  * @property {string} name Name of this connection type.
  */
+
 /**
  * @typedef ConnectionTypesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19439,6 +19473,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).ConnectionType[]} connectionTypes Collection of connection types such as broadband and mobile.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionTypesListResponse&quot;.
  */
+
 /**
  * @typedef ContentCategoriesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19447,6 +19482,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategoriesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef ContentCategory
  * @memberOf! dfareporting(v2.7)
@@ -19456,6 +19492,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategory&quot;.
  * @property {string} name Name of this content category. This is a required field and must be less than 256 characters long and unique among content categories of the same account.
  */
+
 /**
  * @typedef Conversion
  * @memberOf! dfareporting(v2.7)
@@ -19474,6 +19511,7 @@ Acceptable values are:
  * @property {string} timestampMicros The timestamp of conversion, in Unix epoch micros. This is a required field.
  * @property {number} value The value of the conversion.
  */
+
 /**
  * @typedef ConversionError
  * @memberOf! dfareporting(v2.7)
@@ -19482,6 +19520,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionError&quot;.
  * @property {string} message A description of the error.
  */
+
 /**
  * @typedef ConversionStatus
  * @memberOf! dfareporting(v2.7)
@@ -19490,6 +19529,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).ConversionError[]} errors A list of errors related to this conversion.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionStatus&quot;.
  */
+
 /**
  * @typedef ConversionsBatchInsertRequest
  * @memberOf! dfareporting(v2.7)
@@ -19498,6 +19538,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).EncryptionInfo} encryptionInfo Describes how encryptedUserId or encryptedUserIdCandidates[] is encrypted. This is a required field if encryptedUserId or encryptedUserIdCandidates[] is used.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertRequest&quot;.
  */
+
 /**
  * @typedef ConversionsBatchInsertResponse
  * @memberOf! dfareporting(v2.7)
@@ -19506,6 +19547,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
  * @property {dfareporting(v2.7).ConversionStatus[]} status The insert status of each conversion. Statuses are returned in the same order that conversions are inserted.
  */
+
 /**
  * @typedef CountriesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19513,6 +19555,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Country[]} countries Country collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#countriesListResponse&quot;.
  */
+
 /**
  * @typedef Country
  * @memberOf! dfareporting(v2.7)
@@ -19523,6 +19566,7 @@ Acceptable values are:
  * @property {string} name Name of this country.
  * @property {boolean} sslEnabled Whether ad serving supports secure servers in this country.
  */
+
 /**
  * @typedef Creative
  * @memberOf! dfareporting(v2.7)
@@ -19563,7 +19607,7 @@ Acceptable values are:
 * @property {boolean} dynamicAssetSelection Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.
 * @property {dfareporting(v2.7).CreativeCustomEvent[]} exitCustomEvents List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {dfareporting(v2.7).FsCommand} fsCommand OpenWindow FSCommand of this creative. This lets the SWF file communicate with either Flash Player or the program hosting Flash Player, such as a web browser. This is only triggered if allowScriptAccess field is true. Applicable to the following creative types: FLASH_INPAGE.
-* @property {string} htmlCode HTML code for the creative. This is a required field when applicable. This field is ignored if htmlCodeLocked is false. Applicable to the following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and all RICH_MEDIA.
+* @property {string} htmlCode HTML code for the creative. This is a required field when applicable. This field is ignored if htmlCodeLocked is true. Applicable to the following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and all RICH_MEDIA.
 * @property {boolean} htmlCodeLocked Whether HTML code is DCM-generated or manually entered. Set to true to ignore changes to htmlCode. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER.
 * @property {string} id ID of this creative. This is a read-only, auto-generated field. Applicable to all creative types.
 * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this creative. This is a read-only field. Applicable to all creative types.
@@ -19599,6 +19643,7 @@ Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives
 * @property {string} videoDescription Description of the video ad. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
 * @property {number} videoDuration Creative video duration in seconds. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO, all RICH_MEDIA, and all VPAID.
 */
+
 /**
  * @typedef CreativeAsset
  * @memberOf! dfareporting(v2.7)
@@ -19656,6 +19701,7 @@ For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_V
 * @property {string} zipFilename File name of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 * @property {string} zipFilesize Size of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 */
+
 /**
  * @typedef CreativeAssetId
  * @memberOf! dfareporting(v2.7)
@@ -19663,6 +19709,7 @@ For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_V
  * @property {string} name Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: &quot;.-_ &quot;. Spaces are allowed.
  * @property {string} type Type of asset to upload. This is a required field. FLASH and IMAGE are no longer supported for new uploads. All image assets should use HTML_IMAGE.
  */
+
 /**
  * @typedef CreativeAssetMetadata
  * @memberOf! dfareporting(v2.7)
@@ -19701,6 +19748,7 @@ Possible values are:
 - &quot;SVG_INVALID&quot;
 - &quot;ZIP_INVALID&quot;
 */
+
 /**
  * @typedef CreativeAssetSelection
  * @memberOf! dfareporting(v2.7)
@@ -19708,6 +19756,7 @@ Possible values are:
  * @property {string} defaultAssetId A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.
  * @property {dfareporting(v2.7).Rule[]} rules Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
  */
+
 /**
  * @typedef CreativeAssignment
  * @memberOf! dfareporting(v2.7)
@@ -19738,6 +19787,7 @@ Applicable when the creative type is any of the following:
 * @property {string} startTime Date and time that the assigned creative should start serving.
 * @property {integer} weight Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
 */
+
 /**
  * @typedef CreativeCustomEvent
  * @memberOf! dfareporting(v2.7)
@@ -19753,6 +19803,7 @@ Applicable when the creative type is any of the following:
  * @property {string} targetType Target type used by the event.
  * @property {string} videoReportingId Video reporting ID, used to differentiate multiple videos in a single creative. This is a read-only field.
  */
+
 /**
  * @typedef CreativeField
  * @memberOf! dfareporting(v2.7)
@@ -19765,6 +19816,7 @@ Applicable when the creative type is any of the following:
  * @property {string} name Name of this creative field. This is a required field and must be less than 256 characters long and unique among creative fields of the same advertiser.
  * @property {string} subaccountId Subaccount ID of this creative field. This is a read-only field that can be left blank.
  */
+
 /**
  * @typedef CreativeFieldAssignment
  * @memberOf! dfareporting(v2.7)
@@ -19772,6 +19824,7 @@ Applicable when the creative type is any of the following:
  * @property {string} creativeFieldId ID of the creative field.
  * @property {string} creativeFieldValueId ID of the creative field value.
  */
+
 /**
  * @typedef CreativeFieldValue
  * @memberOf! dfareporting(v2.7)
@@ -19780,6 +19833,7 @@ Applicable when the creative type is any of the following:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValue&quot;.
  * @property {string} value Value of this creative field value. It needs to be less than 256 characters in length and unique per creative field.
  */
+
 /**
  * @typedef CreativeFieldValuesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19788,6 +19842,7 @@ Applicable when the creative type is any of the following:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValuesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CreativeFieldsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19796,6 +19851,7 @@ Applicable when the creative type is any of the following:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CreativeGroup
  * @memberOf! dfareporting(v2.7)
@@ -19809,6 +19865,7 @@ Applicable when the creative type is any of the following:
  * @property {string} name Name of this creative group. This is a required field and must be less than 256 characters long and unique among creative groups of the same advertiser.
  * @property {string} subaccountId Subaccount ID of this creative group. This is a read-only field that can be left blank.
  */
+
 /**
  * @typedef CreativeGroupAssignment
  * @memberOf! dfareporting(v2.7)
@@ -19816,6 +19873,7 @@ Applicable when the creative type is any of the following:
  * @property {string} creativeGroupId ID of the creative group to be assigned.
  * @property {string} creativeGroupNumber Creative group number of the creative group assignment.
  */
+
 /**
  * @typedef CreativeGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19824,6 +19882,7 @@ Applicable when the creative type is any of the following:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CreativeOptimizationConfiguration
  * @memberOf! dfareporting(v2.7)
@@ -19833,6 +19892,7 @@ Applicable when the creative type is any of the following:
  * @property {dfareporting(v2.7).OptimizationActivity[]} optimizationActivitys List of optimization activities associated with this configuration.
  * @property {string} optimizationModel Optimization model for this configuration.
  */
+
 /**
  * @typedef CreativeRotation
  * @memberOf! dfareporting(v2.7)
@@ -19842,6 +19902,7 @@ Applicable when the creative type is any of the following:
  * @property {string} type Type of creative rotation. Can be used to specify whether to use sequential or random rotation.
  * @property {string} weightCalculationStrategy Strategy for calculating weights. Used with CREATIVE_ROTATION_TYPE_RANDOM.
  */
+
 /**
  * @typedef CreativeSettings
  * @memberOf! dfareporting(v2.7)
@@ -19849,6 +19910,7 @@ Applicable when the creative type is any of the following:
  * @property {string} iFrameFooter Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
  * @property {string} iFrameHeader Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
  */
+
 /**
  * @typedef CreativesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -19857,6 +19919,7 @@ Applicable when the creative type is any of the following:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef CrossDimensionReachReportCompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -19867,6 +19930,7 @@ Applicable when the creative type is any of the following:
  * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
  * @property {dfareporting(v2.7).Metric[]} overlapMetrics Metrics which are compatible to be selected in the &quot;overlapMetricNames&quot; section of the report.
  */
+
 /**
  * @typedef CustomFloodlightVariable
  * @memberOf! dfareporting(v2.7)
@@ -19875,6 +19939,7 @@ Applicable when the creative type is any of the following:
  * @property {string} type The type of custom floodlight variable to supply a value for. These map to the &quot;u[1-20]=&quot; in the tags.
  * @property {string} value The value of the custom floodlight variable. The length of string must not exceed 50 characters.
  */
+
 /**
  * @typedef CustomRichMediaEvents
  * @memberOf! dfareporting(v2.7)
@@ -19882,6 +19947,7 @@ Applicable when the creative type is any of the following:
  * @property {dfareporting(v2.7).DimensionValue[]} filteredEventIds List of custom rich media event IDs. Dimension values must be all of type dfa:richMediaEventTypeIdAndName.
  * @property {string} kind The kind of resource this is, in this case dfareporting#customRichMediaEvents.
  */
+
 /**
  * @typedef DateRange
  * @memberOf! dfareporting(v2.7)
@@ -19891,6 +19957,7 @@ Applicable when the creative type is any of the following:
  * @property {string} relativeDateRange The date range relative to the date of when the report is run.
  * @property {string} startDate The start date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
  */
+
 /**
  * @typedef DayPartTargeting
  * @memberOf! dfareporting(v2.7)
@@ -19908,6 +19975,7 @@ Acceptable values are:
 * @property {integer[]} hoursOfDay Hours of the day when the ad will serve, where 0 is midnight to 1 AM and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values are 0 to 23, inclusive.
 * @property {boolean} userLocalTime Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
 */
+
 /**
  * @typedef DefaultClickThroughEventTagProperties
  * @memberOf! dfareporting(v2.7)
@@ -19915,6 +19983,7 @@ Acceptable values are:
  * @property {string} defaultClickThroughEventTagId ID of the click-through event tag to apply to all ads in this entity&#39;s scope.
  * @property {boolean} overrideInheritedEventTag Whether this entity should override the inherited default click-through event tag with its own defined value.
  */
+
 /**
  * @typedef DeliverySchedule
  * @memberOf! dfareporting(v2.7)
@@ -19924,6 +19993,7 @@ Acceptable values are:
  * @property {string} impressionRatio Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
  * @property {string} priority Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
  */
+
 /**
  * @typedef DfpSettings
  * @memberOf! dfareporting(v2.7)
@@ -19934,6 +20004,7 @@ Acceptable values are:
  * @property {boolean} pubPaidPlacementAccepted Whether this directory site accepts publisher-paid tags.
  * @property {boolean} publisherPortalOnly Whether this directory site is available only via DoubleClick Publisher Portal.
  */
+
 /**
  * @typedef Dimension
  * @memberOf! dfareporting(v2.7)
@@ -19941,6 +20012,7 @@ Acceptable values are:
  * @property {string} kind The kind of resource this is, in this case dfareporting#dimension.
  * @property {string} name The dimension name, e.g. dfa:advertiser
  */
+
 /**
  * @typedef DimensionFilter
  * @memberOf! dfareporting(v2.7)
@@ -19949,6 +20021,7 @@ Acceptable values are:
  * @property {string} kind The kind of resource this is, in this case dfareporting#dimensionFilter.
  * @property {string} value The value of the dimension to filter.
  */
+
 /**
  * @typedef DimensionValue
  * @memberOf! dfareporting(v2.7)
@@ -19960,6 +20033,7 @@ Acceptable values are:
  * @property {string} matchType Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
  * @property {string} value The value of the dimension.
  */
+
 /**
  * @typedef DimensionValueList
  * @memberOf! dfareporting(v2.7)
@@ -19969,6 +20043,7 @@ Acceptable values are:
  * @property {string} kind The kind of list this is, in this case dfareporting#dimensionValueList.
  * @property {string} nextPageToken Continuation token used to page through dimension values. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
+
 /**
  * @typedef DimensionValueRequest
  * @memberOf! dfareporting(v2.7)
@@ -19979,6 +20054,7 @@ Acceptable values are:
  * @property {string} kind The kind of request this is, in this case dfareporting#dimensionValueRequest.
  * @property {string} startDate The start date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
  */
+
 /**
  * @typedef DirectorySite
  * @memberOf! dfareporting(v2.7)
@@ -20058,6 +20134,7 @@ Acceptable values are:
 * @property {dfareporting(v2.7).DirectorySiteSettings} settings Directory site settings.
 * @property {string} url URL of this directory site.
 */
+
 /**
  * @typedef DirectorySiteContact
  * @memberOf! dfareporting(v2.7)
@@ -20073,6 +20150,7 @@ Acceptable values are:
  * @property {string} title Title or designation of this directory site contact.
  * @property {string} type Directory site contact type.
  */
+
 /**
  * @typedef DirectorySiteContactAssignment
  * @memberOf! dfareporting(v2.7)
@@ -20080,6 +20158,7 @@ Acceptable values are:
  * @property {string} contactId ID of this directory site contact. This is a read-only, auto-generated field.
  * @property {string} visibility Visibility of this directory site contact assignment. When set to PUBLIC this contact assignment is visible to all account and agency users; when set to PRIVATE it is visible only to the site.
  */
+
 /**
  * @typedef DirectorySiteContactsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20088,6 +20167,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySiteContactsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef DirectorySiteSettings
  * @memberOf! dfareporting(v2.7)
@@ -20098,8 +20178,9 @@ Acceptable values are:
  * @property {boolean} interstitialPlacementAccepted Whether this site accepts interstitial ads.
  * @property {boolean} nielsenOcrOptOut Whether this directory site has disabled Nielsen OCR reach ratings.
  * @property {boolean} verificationTagOptOut Whether this directory site has disabled generation of Verification ins tags.
- * @property {boolean} videoActiveViewOptOut Whether this directory site has disabled active view for in-stream video creatives.
+ * @property {boolean} videoActiveViewOptOut Whether this directory site has disabled active view for in-stream video creatives. This is a read-only field.
  */
+
 /**
  * @typedef DirectorySitesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20108,6 +20189,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySitesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef DynamicTargetingKey
  * @memberOf! dfareporting(v2.7)
@@ -20117,6 +20199,7 @@ Acceptable values are:
  * @property {string} objectId ID of the object of this dynamic targeting key. This is a required field.
  * @property {string} objectType Type of the object of this dynamic targeting key. This is a required field.
  */
+
 /**
  * @typedef DynamicTargetingKeysListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20124,6 +20207,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).DynamicTargetingKey[]} dynamicTargetingKeys Dynamic targeting key collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
  */
+
 /**
  * @typedef EncryptionInfo
  * @memberOf! dfareporting(v2.7)
@@ -20133,6 +20217,7 @@ Acceptable values are:
  * @property {string} encryptionSource Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
  */
+
 /**
  * @typedef EventTag
  * @memberOf! dfareporting(v2.7)
@@ -20156,6 +20241,7 @@ Acceptable values are:
  * @property {string} url Payload URL for this event tag. The URL on a click-through event tag should have a landing page URL appended to the end of it. This field is required on insertion.
  * @property {integer} urlEscapeLevels Number of times the landing page URL should be URL-escaped before being appended to the click-through event tag URL. Only applies to click-through event tags as specified by the event tag type.
  */
+
 /**
  * @typedef EventTagOverride
  * @memberOf! dfareporting(v2.7)
@@ -20163,6 +20249,7 @@ Acceptable values are:
  * @property {boolean} enabled Whether this override is enabled.
  * @property {string} id ID of this event tag override. This is a read-only, auto-generated field.
  */
+
 /**
  * @typedef EventTagsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20170,6 +20257,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).EventTag[]} eventTags Event tag collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTagsListResponse&quot;.
  */
+
 /**
  * @typedef File
  * @memberOf! dfareporting(v2.7)
@@ -20185,6 +20273,7 @@ Acceptable values are:
  * @property {string} status The status of the report file.
  * @property {object} urls The URLs where the completed report file can be downloaded.
  */
+
 /**
  * @typedef FileList
  * @memberOf! dfareporting(v2.7)
@@ -20194,6 +20283,7 @@ Acceptable values are:
  * @property {string} kind The kind of list this is, in this case dfareporting#fileList.
  * @property {string} nextPageToken Continuation token used to page through files. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
+
 /**
  * @typedef Flight
  * @memberOf! dfareporting(v2.7)
@@ -20203,6 +20293,7 @@ Acceptable values are:
  * @property {string} startDate Inventory item flight start date.
  * @property {string} units Units of this flight.
  */
+
 /**
  * @typedef FloodlightActivitiesGenerateTagResponse
  * @memberOf! dfareporting(v2.7)
@@ -20210,6 +20301,7 @@ Acceptable values are:
  * @property {string} floodlightActivityTag Generated tag for this floodlight activity.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
  */
+
 /**
  * @typedef FloodlightActivitiesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20218,6 +20310,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef FloodlightActivity
  * @memberOf! dfareporting(v2.7)
@@ -20249,29 +20342,10 @@ Acceptable values are:
 * @property {string} subaccountId Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
 * @property {string} tagFormat Tag format type for the floodlight activity. If left blank, the tag format will default to HTML.
 * @property {string} tagString Value of the cat= paramter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
-* @property {string[]} userDefinedVariableTypes List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-20]=&quot; in the tags. Each of these can have a user defined type.
-Acceptable values are:
-- &quot;U1&quot;
-- &quot;U2&quot;
-- &quot;U3&quot;
-- &quot;U4&quot;
-- &quot;U5&quot;
-- &quot;U6&quot;
-- &quot;U7&quot;
-- &quot;U8&quot;
-- &quot;U9&quot;
-- &quot;U10&quot;
-- &quot;U11&quot;
-- &quot;U12&quot;
-- &quot;U13&quot;
-- &quot;U14&quot;
-- &quot;U15&quot;
-- &quot;U16&quot;
-- &quot;U17&quot;
-- &quot;U18&quot;
-- &quot;U19&quot;
-- &quot;U20&quot;
+* @property {string[]} userDefinedVariableTypes List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type.
+Acceptable values are U1 to U100, inclusive.
 */
+
 /**
  * @typedef FloodlightActivityDynamicTag
  * @memberOf! dfareporting(v2.7)
@@ -20280,6 +20354,7 @@ Acceptable values are:
  * @property {string} name Name of this tag.
  * @property {string} tag Tag code.
  */
+
 /**
  * @typedef FloodlightActivityGroup
  * @memberOf! dfareporting(v2.7)
@@ -20297,6 +20372,7 @@ Acceptable values are:
  * @property {string} tagString Value of the type= parameter in the floodlight tag, which the ad servers use to identify the activity group that the activity belongs to. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activity groups of the same floodlight configuration. This field is read-only after insertion.
  * @property {string} type Type of the floodlight activity group. This is a required field that is read-only after insertion.
  */
+
 /**
  * @typedef FloodlightActivityGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20305,6 +20381,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef FloodlightActivityPublisherDynamicTag
  * @memberOf! dfareporting(v2.7)
@@ -20316,6 +20393,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
  * @property {boolean} viewThrough Whether this tag is applicable only for view-throughs.
  */
+
 /**
  * @typedef FloodlightConfiguration
  * @memberOf! dfareporting(v2.7)
@@ -20343,6 +20421,7 @@ Acceptable values are:
 * @property {dfareporting(v2.7).ThirdPartyAuthenticationToken[]} thirdPartyAuthenticationTokens List of third-party authentication tokens enabled for this configuration.
 * @property {dfareporting(v2.7).UserDefinedVariableConfiguration[]} userDefinedVariableConfigurations List of user defined variables enabled for this configuration.
 */
+
 /**
  * @typedef FloodlightConfigurationsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20350,6 +20429,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).FloodlightConfiguration[]} floodlightConfigurations Floodlight configuration collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
  */
+
 /**
  * @typedef FloodlightReportCompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -20359,6 +20439,7 @@ Acceptable values are:
  * @property {string} kind The kind of resource this is, in this case dfareporting#floodlightReportCompatibleFields.
  * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
  */
+
 /**
  * @typedef FrequencyCap
  * @memberOf! dfareporting(v2.7)
@@ -20366,6 +20447,7 @@ Acceptable values are:
  * @property {string} duration Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
  * @property {string} impressions Number of times an individual user can be served the ad within the specified duration. Acceptable values are 1 to 15, inclusive.
  */
+
 /**
  * @typedef FsCommand
  * @memberOf! dfareporting(v2.7)
@@ -20376,6 +20458,7 @@ Acceptable values are:
  * @property {integer} windowHeight Height of the window.
  * @property {integer} windowWidth Width of the window.
  */
+
 /**
  * @typedef GeoTargeting
  * @memberOf! dfareporting(v2.7)
@@ -20387,6 +20470,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).PostalCode[]} postalCodes Postal codes to be targeted. For each postal code only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a postal code, do not target or exclude the country of the postal code.
  * @property {dfareporting(v2.7).Region[]} regions Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
  */
+
 /**
  * @typedef InventoryItem
  * @memberOf! dfareporting(v2.7)
@@ -20412,6 +20496,7 @@ Acceptable values are:
  * @property {string} subaccountId Subaccount ID of this inventory item.
  * @property {string} type Type of inventory item.
  */
+
 /**
  * @typedef InventoryItemsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20420,12 +20505,14 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItemsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
+
 /**
  * @typedef KeyValueTargetingExpression
  * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} expression Keyword expression being targeted by the ad.
  */
+
 /**
  * @typedef LandingPage
  * @memberOf! dfareporting(v2.7)
@@ -20436,6 +20523,7 @@ Acceptable values are:
  * @property {string} name Name of this landing page. This is a required field. It must be less than 256 characters long, and must be unique among landing pages of the same campaign.
  * @property {string} url URL of this landing page. This is a required field.
  */
+
 /**
  * @typedef LandingPagesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20443,6 +20531,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#landingPagesListResponse&quot;.
  * @property {dfareporting(v2.7).LandingPage[]} landingPages Landing page collection
  */
+
 /**
  * @typedef Language
  * @memberOf! dfareporting(v2.7)
@@ -20452,12 +20541,14 @@ Acceptable values are:
  * @property {string} languageCode Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
  * @property {string} name Name of this language.
  */
+
 /**
  * @typedef LanguageTargeting
  * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {dfareporting(v2.7).Language[]} languages Languages that this ad targets. For each language only languageId is required. The other fields are populated automatically when the ad is inserted or updated.
  */
+
 /**
  * @typedef LanguagesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20465,18 +20556,21 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#languagesListResponse&quot;.
  * @property {dfareporting(v2.7).Language[]} languages Language collection.
  */
+
 /**
  * @typedef LastModifiedInfo
  * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} time Timestamp of the last change in milliseconds since epoch.
  */
+
 /**
  * @typedef ListPopulationClause
  * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {dfareporting(v2.7).ListPopulationTerm[]} terms Terms of this list population clause. Each clause is made up of list population terms representing constraints and are joined by ORs.
  */
+
 /**
  * @typedef ListPopulationRule
  * @memberOf! dfareporting(v2.7)
@@ -20485,6 +20579,7 @@ Acceptable values are:
  * @property {string} floodlightActivityName Name of floodlight activity associated with this rule. This is a read-only, auto-generated field.
  * @property {dfareporting(v2.7).ListPopulationClause[]} listPopulationClauses Clauses that make up this list population rule. Clauses are joined by ANDs, and the clauses themselves are made up of list population terms which are joined by ORs.
  */
+
 /**
  * @typedef ListPopulationTerm
  * @memberOf! dfareporting(v2.7)
@@ -20498,12 +20593,14 @@ Acceptable values are:
  * @property {string} variableFriendlyName Friendly name of this term&#39;s variable. This is a read-only, auto-generated field. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM.
  * @property {string} variableName Name of the variable (U1, U2, etc.) being compared in this term. This field is only relevant when type is set to null, CUSTOM_VARIABLE_TERM or REFERRER_TERM.
  */
+
 /**
  * @typedef ListTargetingExpression
  * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} expression Expression describing which lists are being targeted by the ad.
  */
+
 /**
  * @typedef LookbackConfiguration
  * @memberOf! dfareporting(v2.7)
@@ -20511,6 +20608,7 @@ Acceptable values are:
  * @property {integer} clickDuration Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
  * @property {integer} postImpressionActivitiesDuration Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
  */
+
 /**
  * @typedef Metric
  * @memberOf! dfareporting(v2.7)
@@ -20518,6 +20616,7 @@ Acceptable values are:
  * @property {string} kind The kind of resource this is, in this case dfareporting#metric.
  * @property {string} name The metric name, e.g. dfa:impressions
  */
+
 /**
  * @typedef Metro
  * @memberOf! dfareporting(v2.7)
@@ -20530,6 +20629,7 @@ Acceptable values are:
  * @property {string} metroCode Metro code of this metro region. This is equivalent to dma_id.
  * @property {string} name Name of this metro region.
  */
+
 /**
  * @typedef MetrosListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20537,6 +20637,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metrosListResponse&quot;.
  * @property {dfareporting(v2.7).Metro[]} metros Metro collection.
  */
+
 /**
  * @typedef MobileCarrier
  * @memberOf! dfareporting(v2.7)
@@ -20547,6 +20648,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarrier&quot;.
  * @property {string} name Name of this mobile carrier.
  */
+
 /**
  * @typedef MobileCarriersListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20554,6 +20656,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarriersListResponse&quot;.
  * @property {dfareporting(v2.7).MobileCarrier[]} mobileCarriers Mobile carrier collection.
  */
+
 /**
  * @typedef ObjectFilter
  * @memberOf! dfareporting(v2.7)
@@ -20562,6 +20665,7 @@ Acceptable values are:
  * @property {string[]} objectIds Applicable when status is ASSIGNED. The user has access to objects with these object IDs.
  * @property {string} status Status of the filter. NONE means the user has access to none of the objects. ALL means the user has access to all objects. ASSIGNED means the user has access to the objects with IDs in the objectIds list.
  */
+
 /**
  * @typedef OffsetPosition
  * @memberOf! dfareporting(v2.7)
@@ -20569,6 +20673,7 @@ Acceptable values are:
  * @property {integer} left Offset distance from left side of an asset or a window.
  * @property {integer} top Offset distance from top side of an asset or a window.
  */
+
 /**
  * @typedef OmnitureSettings
  * @memberOf! dfareporting(v2.7)
@@ -20576,6 +20681,7 @@ Acceptable values are:
  * @property {boolean} omnitureCostDataEnabled Whether placement cost data will be sent to Omniture. This property can be enabled only if omnitureIntegrationEnabled is true.
  * @property {boolean} omnitureIntegrationEnabled Whether Omniture integration is enabled. This property can be enabled only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
  */
+
 /**
  * @typedef OperatingSystem
  * @memberOf! dfareporting(v2.7)
@@ -20586,6 +20692,7 @@ Acceptable values are:
  * @property {boolean} mobile Whether this operating system is for mobile.
  * @property {string} name Name of this operating system.
  */
+
 /**
  * @typedef OperatingSystemVersion
  * @memberOf! dfareporting(v2.7)
@@ -20597,6 +20704,7 @@ Acceptable values are:
  * @property {string} name Name of this operating system version.
  * @property {dfareporting(v2.7).OperatingSystem} operatingSystem Operating system of this operating system version.
  */
+
 /**
  * @typedef OperatingSystemVersionsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20604,6 +20712,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
  * @property {dfareporting(v2.7).OperatingSystemVersion[]} operatingSystemVersions Operating system version collection.
  */
+
 /**
  * @typedef OperatingSystemsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20611,6 +20720,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemsListResponse&quot;.
  * @property {dfareporting(v2.7).OperatingSystem[]} operatingSystems Operating system collection.
  */
+
 /**
  * @typedef OptimizationActivity
  * @memberOf! dfareporting(v2.7)
@@ -20619,6 +20729,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).DimensionValue} floodlightActivityIdDimensionValue Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
  * @property {integer} weight Weight associated with this optimization. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities. Value must be greater than or equal to 1.
  */
+
 /**
  * @typedef Order
  * @memberOf! dfareporting(v2.7)
@@ -20644,6 +20755,7 @@ Acceptable values are:
  * @property {string} subaccountId Subaccount ID of this order.
  * @property {string} termsAndConditions Terms and conditions of this order.
  */
+
 /**
  * @typedef OrderContact
  * @memberOf! dfareporting(v2.7)
@@ -20654,6 +20766,7 @@ Acceptable values are:
  * @property {string} contactType Type of this contact.
  * @property {string} signatureUserProfileId ID of the user profile containing the signature that will be embedded into order documents.
  */
+
 /**
  * @typedef OrderDocument
  * @memberOf! dfareporting(v2.7)
@@ -20676,6 +20789,7 @@ Acceptable values are:
  * @property {string} title Title of this order document.
  * @property {string} type Type of this order document
  */
+
 /**
  * @typedef OrderDocumentsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20684,6 +20798,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).OrderDocument[]} orderDocuments Order document collection
  */
+
 /**
  * @typedef OrdersListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20692,6 +20807,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).Order[]} orders Order collection.
  */
+
 /**
  * @typedef PathToConversionReportCompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -20702,6 +20818,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
  * @property {dfareporting(v2.7).Dimension[]} perInteractionDimensions Per-interaction dimensions which are compatible to be selected in the &quot;perInteractionDimensions&quot; section of the report.
  */
+
 /**
  * @typedef Placement
  * @memberOf! dfareporting(v2.7)
@@ -20761,7 +20878,10 @@ Acceptable values are:
 * @property {boolean} videoActiveViewOptOut Whether Verification and ActiveView are disabled for in-stream video creatives for this placement. The same setting videoActiveViewOptOut exists on the site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
 * @property {dfareporting(v2.7).VideoSettings} videoSettings A collection of settings which affect video creatives served through this placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
 * @property {string} vpaidAdapterChoice VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.
+
+Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
 */
+
 /**
  * @typedef PlacementAssignment
  * @memberOf! dfareporting(v2.7)
@@ -20771,6 +20891,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).DimensionValue} placementIdDimensionValue Dimension value for the ID of the placement. This is a read-only, auto-generated field.
  * @property {boolean} sslRequired Whether the placement to be assigned requires SSL. This is a read-only field that is auto-generated when the ad is inserted or updated.
  */
+
 /**
  * @typedef PlacementGroup
  * @memberOf! dfareporting(v2.7)
@@ -20802,6 +20923,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
  * @property {string} subaccountId Subaccount ID of this placement group. This is a read-only field that can be left blank.
  */
+
 /**
  * @typedef PlacementGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20810,6 +20932,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).PlacementGroup[]} placementGroups Placement group collection.
  */
+
 /**
  * @typedef PlacementStrategiesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20818,6 +20941,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).PlacementStrategy[]} placementStrategies Placement strategy collection.
  */
+
 /**
  * @typedef PlacementStrategy
  * @memberOf! dfareporting(v2.7)
@@ -20827,6 +20951,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategy&quot;.
  * @property {string} name Name of this placement strategy. This is a required field. It must be less than 256 characters long and unique among placement strategies of the same account.
  */
+
 /**
  * @typedef PlacementTag
  * @memberOf! dfareporting(v2.7)
@@ -20834,6 +20959,7 @@ Acceptable values are:
  * @property {string} placementId Placement ID
  * @property {dfareporting(v2.7).TagData[]} tagDatas Tags generated for this placement.
  */
+
 /**
  * @typedef PlacementsGenerateTagsResponse
  * @memberOf! dfareporting(v2.7)
@@ -20841,6 +20967,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsGenerateTagsResponse&quot;.
  * @property {dfareporting(v2.7).PlacementTag[]} placementTags Set of generated tags for the specified placements.
  */
+
 /**
  * @typedef PlacementsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20849,6 +20976,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).Placement[]} placements Placement collection.
  */
+
 /**
  * @typedef PlatformType
  * @memberOf! dfareporting(v2.7)
@@ -20857,6 +20985,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformType&quot;.
  * @property {string} name Name of this platform type.
  */
+
 /**
  * @typedef PlatformTypesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20864,6 +20993,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformTypesListResponse&quot;.
  * @property {dfareporting(v2.7).PlatformType[]} platformTypes Platform type collection.
  */
+
 /**
  * @typedef PopupWindowProperties
  * @memberOf! dfareporting(v2.7)
@@ -20878,6 +21008,7 @@ Acceptable values are:
  * @property {boolean} showToolBar Whether to display the browser tool bar.
  * @property {string} title Title of popup window.
  */
+
 /**
  * @typedef PostalCode
  * @memberOf! dfareporting(v2.7)
@@ -20888,6 +21019,7 @@ Acceptable values are:
  * @property {string} id ID of this postal code.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCode&quot;.
  */
+
 /**
  * @typedef PostalCodesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20895,6 +21027,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCodesListResponse&quot;.
  * @property {dfareporting(v2.7).PostalCode[]} postalCodes Postal code collection.
  */
+
 /**
  * @typedef Pricing
  * @memberOf! dfareporting(v2.7)
@@ -20906,6 +21039,7 @@ Acceptable values are:
  * @property {string} pricingType Pricing type of this inventory item.
  * @property {string} startDate Start date of this inventory item.
  */
+
 /**
  * @typedef PricingSchedule
  * @memberOf! dfareporting(v2.7)
@@ -20920,6 +21054,7 @@ Acceptable values are:
  * @property {string} startDate Placement start date. This date must be later than, or the same day as, the campaign start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This field is required on insertion.
  * @property {string} testingStartDate Testing start date of this placement. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
  */
+
 /**
  * @typedef PricingSchedulePricingPeriod
  * @memberOf! dfareporting(v2.7)
@@ -20930,6 +21065,7 @@ Acceptable values are:
  * @property {string} startDate Pricing period start date. This date must be later than, or the same day as, the placement start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
  * @property {string} units Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
  */
+
 /**
  * @typedef Project
  * @memberOf! dfareporting(v2.7)
@@ -20957,6 +21093,7 @@ Acceptable values are:
  * @property {string} targetCpmNanos CPM that the advertiser is targeting.
  * @property {string} targetImpressions Number of impressions that the advertiser is targeting.
  */
+
 /**
  * @typedef ProjectsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -20965,6 +21102,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).Project[]} projects Project collection.
  */
+
 /**
  * @typedef ReachReportCompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -20976,6 +21114,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
  * @property {dfareporting(v2.7).Metric[]} reachByFrequencyMetrics Metrics which are compatible to be selected in the &quot;reachByFrequencyMetricNames&quot; section of the report.
  */
+
 /**
  * @typedef Recipient
  * @memberOf! dfareporting(v2.7)
@@ -20984,6 +21123,7 @@ Acceptable values are:
  * @property {string} email The email address of the recipient.
  * @property {string} kind The kind of resource this is, in this case dfareporting#recipient.
  */
+
 /**
  * @typedef Region
  * @memberOf! dfareporting(v2.7)
@@ -20995,6 +21135,7 @@ Acceptable values are:
  * @property {string} name Name of this region.
  * @property {string} regionCode Region code.
  */
+
 /**
  * @typedef RegionsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21002,6 +21143,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#regionsListResponse&quot;.
  * @property {dfareporting(v2.7).Region[]} regions Region collection.
  */
+
 /**
  * @typedef RemarketingList
  * @memberOf! dfareporting(v2.7)
@@ -21020,6 +21162,7 @@ Acceptable values are:
  * @property {string} name Name of the remarketing list. This is a required field. Must be no greater than 128 characters long.
  * @property {string} subaccountId Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
  */
+
 /**
  * @typedef RemarketingListShare
  * @memberOf! dfareporting(v2.7)
@@ -21029,6 +21172,7 @@ Acceptable values are:
  * @property {string[]} sharedAccountIds Accounts that the remarketing list is shared with.
  * @property {string[]} sharedAdvertiserIds Advertisers that the remarketing list is shared with.
  */
+
 /**
  * @typedef RemarketingListsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21037,6 +21181,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).RemarketingList[]} remarketingLists Remarketing list collection.
  */
+
 /**
  * @typedef Report
  * @memberOf! dfareporting(v2.7)
@@ -21060,6 +21205,7 @@ Acceptable values are:
  * @property {string} subAccountId The subaccount ID to which this report belongs if applicable.
  * @property {string} type The type of the report.
  */
+
 /**
  * @typedef ReportCompatibleFields
  * @memberOf! dfareporting(v2.7)
@@ -21070,6 +21216,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
  * @property {dfareporting(v2.7).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
  */
+
 /**
  * @typedef ReportList
  * @memberOf! dfareporting(v2.7)
@@ -21079,6 +21226,7 @@ Acceptable values are:
  * @property {string} kind The kind of list this is, in this case dfareporting#reportList.
  * @property {string} nextPageToken Continuation token used to page through reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
+
 /**
  * @typedef ReportsConfiguration
  * @memberOf! dfareporting(v2.7)
@@ -21102,6 +21250,7 @@ Acceptable values are:
 - &quot;12&quot; for &quot;Pacific/Auckland&quot; 
 - &quot;13&quot; for &quot;America/Sao_Paulo&quot;
 */
+
 /**
  * @typedef RichMediaExitOverride
  * @memberOf! dfareporting(v2.7)
@@ -21110,6 +21259,7 @@ Acceptable values are:
  * @property {boolean} enabled Whether to use the clickThroughUrl. If false, the creative-level exit will be used.
  * @property {string} exitId ID for the override to refer to a specific exit in the creative.
  */
+
 /**
  * @typedef Rule
  * @memberOf! dfareporting(v2.7)
@@ -21118,6 +21268,7 @@ Acceptable values are:
  * @property {string} name A user-friendly name for this rule. This is a required field.
  * @property {string} targetingTemplateId A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
  */
+
 /**
  * @typedef Site
  * @memberOf! dfareporting(v2.7)
@@ -21135,6 +21286,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).SiteSettings} siteSettings Site-wide settings.
  * @property {string} subaccountId Subaccount ID of this site. This is a read-only field that can be left blank.
  */
+
 /**
  * @typedef SiteContact
  * @memberOf! dfareporting(v2.7)
@@ -21148,19 +21300,23 @@ Acceptable values are:
  * @property {string} phone Primary phone number of this site contact.
  * @property {string} title Title or designation of this site contact.
  */
+
 /**
  * @typedef SiteSettings
  * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {boolean} activeViewOptOut Whether active view creatives are disabled for this site.
- * @property {dfareporting(v2.7).CreativeSettings} creativeSettings Site-wide creative settings.
- * @property {boolean} disableBrandSafeAds Whether brand safe ads are disabled for this site.
- * @property {boolean} disableNewCookie Whether new cookies are disabled for this site.
- * @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for this site.
- * @property {dfareporting(v2.7).TagSetting} tagSetting Configuration settings for dynamic and image floodlight tags.
- * @property {boolean} videoActiveViewOptOutTemplate Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
- * @property {string} vpaidAdapterChoiceTemplate Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter, and Flash VPAID creatives use the Flash adapter).
- */
+* @property {boolean} activeViewOptOut Whether active view creatives are disabled for this site.
+* @property {dfareporting(v2.7).CreativeSettings} creativeSettings Site-wide creative settings.
+* @property {boolean} disableBrandSafeAds Whether brand safe ads are disabled for this site.
+* @property {boolean} disableNewCookie Whether new cookies are disabled for this site.
+* @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for this site.
+* @property {dfareporting(v2.7).TagSetting} tagSetting Configuration settings for dynamic and image floodlight tags.
+* @property {boolean} videoActiveViewOptOutTemplate Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
+* @property {string} vpaidAdapterChoiceTemplate Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).
+
+Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
+*/
+
 /**
  * @typedef SitesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21169,6 +21325,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).Site[]} sites Site collection.
  */
+
 /**
  * @typedef Size
  * @memberOf! dfareporting(v2.7)
@@ -21179,6 +21336,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#size&quot;.
  * @property {integer} width Width of this size. Acceptable values are 0 to 32767, inclusive.
  */
+
 /**
  * @typedef SizesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21186,6 +21344,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sizesListResponse&quot;.
  * @property {dfareporting(v2.7).Size[]} sizes Size collection.
  */
+
 /**
  * @typedef SkippableSetting
  * @memberOf! dfareporting(v2.7)
@@ -21195,6 +21354,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).VideoOffset} skipOffset Amount of time to play videos served to this placement before the skip button should appear. Applicable when skippable is true.
  * @property {boolean} skippable Whether the user can skip creatives served to this placement.
  */
+
 /**
  * @typedef SortedDimension
  * @memberOf! dfareporting(v2.7)
@@ -21203,6 +21363,7 @@ Acceptable values are:
  * @property {string} name The name of the dimension.
  * @property {string} sortOrder An optional sort order for the dimension column.
  */
+
 /**
  * @typedef Subaccount
  * @memberOf! dfareporting(v2.7)
@@ -21213,6 +21374,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccount&quot;.
  * @property {string} name Name of this subaccount. This is a required field. Must be less than 128 characters long and be unique among subaccounts of the same account.
  */
+
 /**
  * @typedef SubaccountsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21221,6 +21383,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).Subaccount[]} subaccounts Subaccount collection.
  */
+
 /**
  * @typedef TagData
  * @memberOf! dfareporting(v2.7)
@@ -21231,6 +21394,7 @@ Acceptable values are:
  * @property {string} format TagData tag format of this tag.
  * @property {string} impressionTag Tag string for serving an ad.
  */
+
 /**
  * @typedef TagSetting
  * @memberOf! dfareporting(v2.7)
@@ -21240,6 +21404,7 @@ Acceptable values are:
  * @property {boolean} includeClickTracking Whether click-tracking string should be included in the tags.
  * @property {string} keywordOption Option specifying how keywords are embedded in ad tags. This setting can be used to specify whether keyword placeholders are inserted in placement tags for this site. Publishers can then add keywords to those placeholders.
  */
+
 /**
  * @typedef TagSettings
  * @memberOf! dfareporting(v2.7)
@@ -21247,6 +21412,7 @@ Acceptable values are:
  * @property {boolean} dynamicTagEnabled Whether dynamic floodlight tags are enabled.
  * @property {boolean} imageTagEnabled Whether image tags are enabled.
  */
+
 /**
  * @typedef TargetWindow
  * @memberOf! dfareporting(v2.7)
@@ -21254,6 +21420,7 @@ Acceptable values are:
  * @property {string} customHtml User-entered value.
  * @property {string} targetWindowOption Type of browser window for which the backup image of the flash creative can be displayed.
  */
+
 /**
  * @typedef TargetableRemarketingList
  * @memberOf! dfareporting(v2.7)
@@ -21271,6 +21438,7 @@ Acceptable values are:
  * @property {string} name Name of the targetable remarketing list. Is no greater than 128 characters long.
  * @property {string} subaccountId Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
  */
+
 /**
  * @typedef TargetableRemarketingListsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21279,6 +21447,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).TargetableRemarketingList[]} targetableRemarketingLists Targetable remarketing list collection.
  */
+
 /**
  * @typedef TargetingTemplate
  * @memberOf! dfareporting(v2.7)
@@ -21297,6 +21466,7 @@ Acceptable values are:
  * @property {string} subaccountId Subaccount ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
  * @property {dfareporting(v2.7).TechnologyTargeting} technologyTargeting Technology platform targeting criteria.
  */
+
 /**
  * @typedef TargetingTemplatesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21305,6 +21475,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).TargetingTemplate[]} targetingTemplates Targeting template collection.
  */
+
 /**
  * @typedef TechnologyTargeting
  * @memberOf! dfareporting(v2.7)
@@ -21316,6 +21487,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).OperatingSystem[]} operatingSystems Operating systems that this ad targets. To target specific versions, use operatingSystemVersions. For each operating system only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system, do not set targeting for operating system versions for the same operating system.
  * @property {dfareporting(v2.7).PlatformType[]} platformTypes Platform types that this ad targets. For example, desktop, mobile, or tablet. For each platform type, only id is required, and the other fields are populated automatically when the ad is inserted or updated.
  */
+
 /**
  * @typedef ThirdPartyAuthenticationToken
  * @memberOf! dfareporting(v2.7)
@@ -21323,6 +21495,7 @@ Acceptable values are:
  * @property {string} name Name of the third-party authentication token.
  * @property {string} value Value of the third-party authentication token. This is a read-only, auto-generated field.
  */
+
 /**
  * @typedef ThirdPartyTrackingUrl
  * @memberOf! dfareporting(v2.7)
@@ -21330,6 +21503,7 @@ Acceptable values are:
  * @property {string} thirdPartyUrlType Third-party URL type for in-stream video creatives.
  * @property {string} url URL for the specified third-party URL type.
  */
+
 /**
  * @typedef TranscodeSetting
  * @memberOf! dfareporting(v2.7)
@@ -21337,6 +21511,7 @@ Acceptable values are:
  * @property {integer[]} enabledVideoFormats Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#transcodeSetting&quot;.
  */
+
 /**
  * @typedef UserDefinedVariableConfiguration
  * @memberOf! dfareporting(v2.7)
@@ -21345,6 +21520,7 @@ Acceptable values are:
  * @property {string} reportName User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: &quot;&quot;&lt;&gt;&quot;.
  * @property {string} variableType Variable name in the tag. This is a required field.
  */
+
 /**
  * @typedef UserProfile
  * @memberOf! dfareporting(v2.7)
@@ -21358,6 +21534,7 @@ Acceptable values are:
  * @property {string} subAccountName The sub account name this profile belongs to if applicable.
  * @property {string} userName The user name.
  */
+
 /**
  * @typedef UserProfileList
  * @memberOf! dfareporting(v2.7)
@@ -21366,6 +21543,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).UserProfile[]} items The user profiles returned in this response.
  * @property {string} kind The kind of list this is, in this case dfareporting#userProfileList.
  */
+
 /**
  * @typedef UserRole
  * @memberOf! dfareporting(v2.7)
@@ -21379,6 +21557,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).UserRolePermission[]} permissions List of permissions associated with this user role.
  * @property {string} subaccountId Subaccount ID of this user role. This is a read-only field that can be left blank.
  */
+
 /**
  * @typedef UserRolePermission
  * @memberOf! dfareporting(v2.7)
@@ -21389,6 +21568,7 @@ Acceptable values are:
  * @property {string} name Name of this user role permission.
  * @property {string} permissionGroupId ID of the permission group that this user role permission belongs to.
  */
+
 /**
  * @typedef UserRolePermissionGroup
  * @memberOf! dfareporting(v2.7)
@@ -21397,6 +21577,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroup&quot;.
  * @property {string} name Name of this user role permission group.
  */
+
 /**
  * @typedef UserRolePermissionGroupsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21404,6 +21585,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
  * @property {dfareporting(v2.7).UserRolePermissionGroup[]} userRolePermissionGroups User role permission group collection.
  */
+
 /**
  * @typedef UserRolePermissionsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21411,6 +21593,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionsListResponse&quot;.
  * @property {dfareporting(v2.7).UserRolePermission[]} userRolePermissions User role permission collection.
  */
+
 /**
  * @typedef UserRolesListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21419,6 +21602,7 @@ Acceptable values are:
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  * @property {dfareporting(v2.7).UserRole[]} userRoles User role collection.
  */
+
 /**
  * @typedef VideoFormat
  * @memberOf! dfareporting(v2.7)
@@ -21429,6 +21613,7 @@ Acceptable values are:
  * @property {dfareporting(v2.7).Size} resolution The resolution of this video format.
  * @property {integer} targetBitRate The target bit rate of this video format.
  */
+
 /**
  * @typedef VideoFormatsListResponse
  * @memberOf! dfareporting(v2.7)
@@ -21436,6 +21621,7 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormatsListResponse&quot;.
  * @property {dfareporting(v2.7).VideoFormat[]} videoFormats Video format collection.
  */
+
 /**
  * @typedef VideoOffset
  * @memberOf! dfareporting(v2.7)
@@ -21443,6 +21629,7 @@ Acceptable values are:
  * @property {integer} offsetPercentage Duration, as a percentage of video duration. Do not set when offsetSeconds is set. Acceptable values are 0 to 100, inclusive.
  * @property {integer} offsetSeconds Duration, in seconds. Do not set when offsetPercentage is set. Acceptable values are 0 to 86399, inclusive.
  */
+
 /**
  * @typedef VideoSettings
  * @memberOf! dfareporting(v2.7)

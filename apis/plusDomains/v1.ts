@@ -846,6 +846,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {plusDomains(v1).PlusDomainsAclentryResource[]} items The list of access entries.
  * @property {string} kind Identifies this resource as a collection of access controls. Value: &quot;plus#acl&quot;.
  */
+
 /**
  * @typedef Activity
  * @memberOf! plusDomains(v1)
@@ -873,6 +874,7 @@ function Plusdomains(options) { // eslint-disable-line
 - &quot;post&quot; - Publish content to the stream. 
 - &quot;share&quot; - Reshare an activity.
 */
+
 /**
  * @typedef ActivityFeed
  * @memberOf! plusDomains(v1)
@@ -887,6 +889,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} title The title of this collection of activities, which is a truncated portion of the content.
  * @property {string} updated The time at which this collection of activities was last updated. Formatted as an RFC 3339 timestamp.
  */
+
 /**
  * @typedef Audience
  * @memberOf! plusDomains(v1)
@@ -900,6 +903,7 @@ function Plusdomains(options) { // eslint-disable-line
 - &quot;limited&quot; - Members are visible to a limited audience. 
 - &quot;private&quot; - Members are visible to the owner only.
 */
+
 /**
  * @typedef AudiencesFeed
  * @memberOf! plusDomains(v1)
@@ -910,6 +914,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  * @property {integer} totalItems The total number of ACL entries. The number of entries in this response may be smaller due to paging.
  */
+
 /**
  * @typedef Circle
  * @memberOf! plusDomains(v1)
@@ -922,6 +927,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {object} people The people in this circle.
  * @property {string} selfLink Link to this circle resource
  */
+
 /**
  * @typedef CircleFeed
  * @memberOf! plusDomains(v1)
@@ -935,6 +941,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} title The title of this list of resources.
  * @property {integer} totalItems The total number of circles. The number of circles in this response may be smaller due to paging.
  */
+
 /**
  * @typedef Comment
  * @memberOf! plusDomains(v1)
@@ -952,6 +959,7 @@ function Plusdomains(options) { // eslint-disable-line
 * @property {string} verb This comment&#39;s verb, indicating what action was performed. Possible values are:  
 - &quot;post&quot; - Publish content to the stream.
 */
+
 /**
  * @typedef CommentFeed
  * @memberOf! plusDomains(v1)
@@ -965,6 +973,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} title The title of this collection of comments.
  * @property {string} updated The time at which this collection of comments was last updated. Formatted as an RFC 3339 timestamp.
  */
+
 /**
  * @typedef Media
  * @memberOf! plusDomains(v1)
@@ -993,6 +1002,7 @@ function Plusdomains(options) { // eslint-disable-line
 - &quot;FINAL&quot; - All video streams are playable.
 * @property {integer} width The width in pixels of the original image.
 */
+
 /**
  * @typedef PeopleFeed
  * @memberOf! plusDomains(v1)
@@ -1005,6 +1015,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} title The title of this collection of people.
  * @property {integer} totalItems The total number of people available in this list. The number of people in a response might be smaller due to paging. This might not be set for all collections.
  */
+
 /**
  * @typedef Person
  * @memberOf! plusDomains(v1)
@@ -1052,6 +1063,7 @@ function Plusdomains(options) { // eslint-disable-line
 * @property {object[]} urls A list of URLs for this person.
 * @property {boolean} verified Whether the person or Google+ Page has been verified.
 */
+
 /**
  * @typedef Place
  * @memberOf! plusDomains(v1)
@@ -1062,6 +1074,7 @@ function Plusdomains(options) { // eslint-disable-line
  * @property {string} kind Identifies this resource as a place. Value: &quot;plus#place&quot;.
  * @property {object} position The position of the place.
  */
+
 /**
  * @typedef PlusDomainsAclentryResource
  * @memberOf! plusDomains(v1)
@@ -1076,6 +1089,7 @@ function Plusdomains(options) { // eslint-disable-line
 - &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain. 
 - &quot;public&quot; - Access to anyone on the web.
 */
+
 /**
  * @typedef Videostream
  * @memberOf! plusDomains(v1)

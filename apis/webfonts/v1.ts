@@ -92,6 +92,7 @@ function Webfonts(options) { // eslint-disable-line
  * @property {string[]} variants The available variants for the font.
  * @property {string} version The font version.
  */
+
 /**
  * @typedef WebfontList
  * @memberOf! webfonts(v1)

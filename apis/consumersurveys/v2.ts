@@ -472,6 +472,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {consumersurveys(v2).FieldMask[]} fields 
  * @property {integer} id 
  */
+
 /**
  * @typedef MobileAppPanel
  * @memberOf! consumersurveys(v2)
@@ -483,6 +484,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} name 
  * @property {string[]} owners 
  */
+
 /**
  * @typedef MobileAppPanelsListResponse
  * @memberOf! consumersurveys(v2)
@@ -492,6 +494,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {consumersurveys(v2).MobileAppPanel[]} resources An individual predefined panel of Opinion Rewards mobile users.
  * @property {consumersurveys(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef PageInfo
  * @memberOf! consumersurveys(v2)
@@ -500,12 +503,14 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {integer} startIndex 
  * @property {integer} totalResults 
  */
+
 /**
  * @typedef ResultsGetRequest
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {consumersurveys(v2).ResultsMask} resultMask 
  */
+
 /**
  * @typedef ResultsMask
  * @memberOf! consumersurveys(v2)
@@ -513,6 +518,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {consumersurveys(v2).FieldMask[]} fields 
  * @property {string} projection 
  */
+
 /**
  * @typedef Survey
  * @memberOf! consumersurveys(v2)
@@ -529,6 +535,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} title 
  * @property {integer} wantedResponseCount 
  */
+
 /**
  * @typedef SurveyAudience
  * @memberOf! consumersurveys(v2)
@@ -541,6 +548,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} mobileAppPanelId 
  * @property {string} populationSource 
  */
+
 /**
  * @typedef SurveyCost
  * @memberOf! consumersurveys(v2)
@@ -550,6 +558,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} maxCostPerResponseNanos 
  * @property {string} nanos 
  */
+
 /**
  * @typedef SurveyQuestion
  * @memberOf! consumersurveys(v2)
@@ -573,6 +582,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} unitOfMeasurementLabel 
  * @property {string} videoId 
  */
+
 /**
  * @typedef SurveyQuestionImage
  * @memberOf! consumersurveys(v2)
@@ -581,6 +591,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} data 
  * @property {string} url 
  */
+
 /**
  * @typedef SurveyRejection
  * @memberOf! consumersurveys(v2)
@@ -588,6 +599,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} explanation 
  * @property {string} type 
  */
+
 /**
  * @typedef SurveyResults
  * @memberOf! consumersurveys(v2)
@@ -595,12 +607,14 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} status 
  * @property {string} surveyUrlId 
  */
+
 /**
  * @typedef SurveysDeleteResponse
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef SurveysListResponse
  * @memberOf! consumersurveys(v2)
@@ -610,24 +624,28 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {consumersurveys(v2).Survey[]} resources An individual survey resource.
  * @property {consumersurveys(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef SurveysStartRequest
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} maxCostPerResponseNanos Threshold to start a survey automically if the quoted prices is less than or equal to this value. See Survey.Cost for more details.
  */
+
 /**
  * @typedef SurveysStartResponse
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef SurveysStopResponse
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
+
 /**
  * @typedef TokenPagination
  * @memberOf! consumersurveys(v2)

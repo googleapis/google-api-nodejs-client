@@ -113,7 +113,6 @@ function Adexchangeseller(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     adclients: {
 
       /**
@@ -155,7 +154,6 @@ function Adexchangeseller(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     alerts: {
 
       /**
@@ -196,7 +194,6 @@ function Adexchangeseller(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     customchannels: {
 
       /**
@@ -278,9 +275,7 @@ function Adexchangeseller(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     metadata: {
-
       dimensions: {
 
         /**
@@ -320,7 +315,6 @@ function Adexchangeseller(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       },
-
       metrics: {
 
         /**
@@ -361,7 +355,6 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
       }
     },
-
     preferreddeals: {
 
       /**
@@ -439,7 +432,6 @@ function Adexchangeseller(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     reports: {
 
       /**
@@ -487,7 +479,6 @@ function Adexchangeseller(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       saved: {
 
         /**
@@ -571,7 +562,6 @@ function Adexchangeseller(options) { // eslint-disable-line
         }
       }
     },
-
     urlchannels: {
 
       /**
@@ -625,6 +615,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#account.
  * @property {string} name Name of this account.
  */
+
 /**
  * @typedef Accounts
  * @memberOf! adexchangeseller(v2.0)
@@ -634,6 +625,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#accounts.
  * @property {string} nextPageToken Continuation token used to page through accounts. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef AdClient
  * @memberOf! adexchangeseller(v2.0)
@@ -644,6 +636,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} productCode This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
  * @property {boolean} supportsReporting Whether this ad client supports being reported on.
  */
+
 /**
  * @typedef AdClients
  * @memberOf! adexchangeseller(v2.0)
@@ -653,6 +646,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#adClients.
  * @property {string} nextPageToken Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef Alert
  * @memberOf! adexchangeseller(v2.0)
@@ -663,6 +657,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} severity Severity of this alert. Possible values: INFO, WARNING, SEVERE.
  * @property {string} type Type of this alert. Possible values: SELF_HOLD, MIGRATED_TO_BILLING3, ADDRESS_PIN_VERIFICATION, PHONE_PIN_VERIFICATION, CORPORATE_ENTITY, GRAYLISTED_PUBLISHER, API_HOLD.
  */
+
 /**
  * @typedef Alerts
  * @memberOf! adexchangeseller(v2.0)
@@ -670,6 +665,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {adexchangeseller(v2.0).Alert[]} items The alerts returned in this list response.
  * @property {string} kind Kind of list this is, in this case adexchangeseller#alerts.
  */
+
 /**
  * @typedef CustomChannel
  * @memberOf! adexchangeseller(v2.0)
@@ -680,6 +676,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} name Name of this custom channel.
  * @property {object} targetingInfo The targeting information of this custom channel, if activated.
  */
+
 /**
  * @typedef CustomChannels
  * @memberOf! adexchangeseller(v2.0)
@@ -689,6 +686,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#customChannels.
  * @property {string} nextPageToken Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef Metadata
  * @memberOf! adexchangeseller(v2.0)
@@ -696,6 +694,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {adexchangeseller(v2.0).ReportingMetadataEntry[]} items 
  * @property {string} kind Kind of list this is, in this case adexchangeseller#metadata.
  */
+
 /**
  * @typedef PreferredDeal
  * @memberOf! adexchangeseller(v2.0)
@@ -709,6 +708,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#preferredDeal.
  * @property {string} startTime Time when this deal becomes active in seconds since the epoch (GMT). If not set then this deal is active immediately upon creation.
  */
+
 /**
  * @typedef PreferredDeals
  * @memberOf! adexchangeseller(v2.0)
@@ -716,6 +716,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {adexchangeseller(v2.0).PreferredDeal[]} items The preferred deals returned in this list response.
  * @property {string} kind Kind of list this is, in this case adexchangeseller#preferredDeals.
  */
+
 /**
  * @typedef Report
  * @memberOf! adexchangeseller(v2.0)
@@ -728,6 +729,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string[]} totals The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
  * @property {string[]} warnings Any warnings associated with generation of the report.
  */
+
 /**
  * @typedef ReportingMetadataEntry
  * @memberOf! adexchangeseller(v2.0)
@@ -740,6 +742,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string[]} requiredMetrics The names of the metrics which the dimension or metric this reporting metadata entry describes requires to also be present in order for the report to be valid. Omitting these will not cause an error or warning, but may result in data which cannot be correctly interpreted.
  * @property {string[]} supportedProducts The codes of the projects supported by the dimension or metric this reporting metadata entry describes.
  */
+
 /**
  * @typedef SavedReport
  * @memberOf! adexchangeseller(v2.0)
@@ -748,6 +751,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#savedReport.
  * @property {string} name This saved report&#39;s name.
  */
+
 /**
  * @typedef SavedReports
  * @memberOf! adexchangeseller(v2.0)
@@ -757,6 +761,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#savedReports.
  * @property {string} nextPageToken Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef UrlChannel
  * @memberOf! adexchangeseller(v2.0)
@@ -765,6 +770,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#urlChannel.
  * @property {string} urlPattern URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
  */
+
 /**
  * @typedef UrlChannels
  * @memberOf! adexchangeseller(v2.0)

@@ -126,6 +126,7 @@ function Discovery(options) { // eslint-disable-line
  * @property {object[]} items The individual directory entries. One entry per api/version pair.
  * @property {string} kind The kind for this response.
  */
+
 /**
  * @typedef JsonSchema
  * @memberOf! discovery(v1)
@@ -151,6 +152,7 @@ function Discovery(options) { // eslint-disable-line
  * @property {string} type The value type for this schema. A list of values can be found here: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1
  * @property {object} variant In a variant data type, the value of one property is used to determine how to interpret the entire entity. Its value must exist in a map of descriminant values to schema names.
  */
+
 /**
  * @typedef RestDescription
  * @memberOf! discovery(v1)
@@ -186,6 +188,7 @@ function Discovery(options) { // eslint-disable-line
  * @property {string} version The version of this API.
  * @property {boolean} version_module 
  */
+
 /**
  * @typedef RestMethod
  * @memberOf! discovery(v1)
@@ -206,6 +209,7 @@ function Discovery(options) { // eslint-disable-line
  * @property {boolean} supportsSubscription Whether this method supports subscriptions.
  * @property {boolean} useMediaDownloadService Indicates that downloads from this method should use the download service URL (i.e. &quot;/download&quot;). Only applies if the method supports media download.
  */
+
 /**
  * @typedef RestResource
  * @memberOf! discovery(v1)

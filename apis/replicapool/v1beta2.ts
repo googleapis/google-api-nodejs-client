@@ -544,6 +544,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string[]} targetPools The full URL of all target pools to which new instances in the group are added. Updating the target pool values does not affect existing instances.
  * @property {integer} targetSize [Output only] The number of instances that the manager is attempting to maintain. Deleting or abandoning instances affects this number, as does resizing the group.
  */
+
 /**
  * @typedef InstanceGroupManagerList
  * @memberOf! replicapool(v1beta2)
@@ -554,6 +555,7 @@ function Replicapool(options) { // eslint-disable-line
  * @property {string} nextPageToken A token used to continue a truncated list request (output only).
  * @property {string} selfLink Server defined URL for this resource (output only).
  */
+
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
  * @memberOf! replicapool(v1beta2)
@@ -561,6 +563,7 @@ function Replicapool(options) { // eslint-disable-line
 * @property {string[]} instances The names of one or more instances to abandon. For example:
 { &#39;instances&#39;: [ &#39;instance-c3po&#39;, &#39;instance-r2d2&#39; ] }
 */
+
 /**
  * @typedef InstanceGroupManagersDeleteInstancesRequest
  * @memberOf! replicapool(v1beta2)
@@ -569,6 +572,7 @@ function Replicapool(options) { // eslint-disable-line
 
 Example: &#39;instance-foo&#39;, &#39;instance-bar&#39;
 */
+
 /**
  * @typedef InstanceGroupManagersRecreateInstancesRequest
  * @memberOf! replicapool(v1beta2)
@@ -576,12 +580,14 @@ Example: &#39;instance-foo&#39;, &#39;instance-bar&#39;
 * @property {string[]} instances The names of one or more instances to recreate. For example:
 { &#39;instances&#39;: [ &#39;instance-c3po&#39;, &#39;instance-r2d2&#39; ] }
 */
+
 /**
  * @typedef InstanceGroupManagersSetInstanceTemplateRequest
  * @memberOf! replicapool(v1beta2)
  * @type object
  * @property {string} instanceTemplate The full URL to an Instance Template from which all new instances will be created.
  */
+
 /**
  * @typedef InstanceGroupManagersSetTargetPoolsRequest
  * @memberOf! replicapool(v1beta2)
@@ -589,6 +595,7 @@ Example: &#39;instance-foo&#39;, &#39;instance-bar&#39;
  * @property {string} fingerprint The current fingerprint of the Instance Group Manager resource. If this does not match the server-side fingerprint of the resource, then the request will be rejected.
  * @property {string[]} targetPools A list of fully-qualified URLs to existing Target Pool resources. New instances in the Instance Group Manager will be added to the specified target pools; existing instances are not affected.
  */
+
 /**
  * @typedef Operation
  * @memberOf! replicapool(v1beta2)
@@ -616,6 +623,7 @@ Example: &#39;instance-foo&#39;, &#39;instance-bar&#39;
  * @property {object[]} warnings [Output Only] If there are issues with this operation, a warning is returned.
  * @property {string} zone [Output Only] URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
+
 /**
  * @typedef OperationList
  * @memberOf! replicapool(v1beta2)
@@ -626,6 +634,7 @@ Example: &#39;instance-foo&#39;, &#39;instance-bar&#39;
  * @property {string} nextPageToken A token used to continue a truncated list request (output only).
  * @property {string} selfLink Server defined URL for this resource (output only).
  */
+
 /**
  * @typedef ReplicaPoolAutoHealingPolicy
  * @memberOf! replicapool(v1beta2)

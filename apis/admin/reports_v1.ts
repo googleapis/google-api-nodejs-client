@@ -276,6 +276,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of list response this is.
  * @property {string} nextPageToken Token for retrieving the next page
  */
+
 /**
  * @typedef Activity
  * @memberOf! admin(reports_v1)
@@ -288,6 +289,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} ownerDomain Domain of source customer.
  */
+
 /**
  * @typedef Channel
  * @memberOf! admin(reports_v1)
@@ -303,6 +305,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef UsageReport
  * @memberOf! admin(reports_v1)
@@ -313,6 +316,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind The kind of object.
  * @property {object[]} parameters Parameter value pairs for various applications.
  */
+
 /**
  * @typedef UsageReports
  * @memberOf! admin(reports_v1)

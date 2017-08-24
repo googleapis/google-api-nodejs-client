@@ -2102,7 +2102,7 @@ function Storage(options) { // eslint-disable-line
      * @memberOf! storage(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a GCS bucket.
+     * @param {string} params.bucket Name of a Google Cloud Storage bucket.
      * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2818,7 +2818,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
      * @param {string} params.destinationObject Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
@@ -2934,12 +2934,12 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's generation does not match the given value.
+     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
+     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
      * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
      * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
@@ -3038,8 +3038,8 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
@@ -3141,8 +3141,8 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
@@ -3289,8 +3289,8 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      * @param {string=} params.contentEncoding If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
@@ -3509,8 +3509,8 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
@@ -3626,12 +3626,12 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's generation does not match the given value.
+     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
+     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
      * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
      * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      * @param {string=} params.maxBytesRewrittenPerCall The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
@@ -3826,8 +3826,8 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
+     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
@@ -3965,13 +3965,12 @@ function Storage(options) { // eslint-disable-line
   };
 
   self.projects = {
-
     serviceAccount: {
 
       /**
        * storage.projects.serviceAccount.get
        *
-       * @desc Get the email address of this project's GCS service account.
+       * @desc Get the email address of this project's Google Cloud Storage service account.
        *
        * @alias storage.projects.serviceAccount.get
        * @memberOf! storage(v1)
@@ -4035,6 +4034,7 @@ function Storage(options) { // eslint-disable-line
  * @property {object} versioning The bucket&#39;s versioning configuration.
  * @property {object} website The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
  */
+
 /**
  * @typedef BucketAccessControl
  * @memberOf! storage(v1)
@@ -4062,6 +4062,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef BucketAccessControls
  * @memberOf! storage(v1)
@@ -4069,6 +4070,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).BucketAccessControl[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
  */
+
 /**
  * @typedef Buckets
  * @memberOf! storage(v1)
@@ -4077,6 +4079,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} kind The kind of item this is. For lists of buckets, this is always storage#buckets.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef Channel
  * @memberOf! storage(v1)
@@ -4092,6 +4095,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
+
 /**
  * @typedef ComposeRequest
  * @memberOf! storage(v1)
@@ -4100,6 +4104,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} kind The kind of item this is.
  * @property {object[]} sourceObjects The list of source objects that will be concatenated into a single object.
  */
+
 /**
  * @typedef Notification
  * @memberOf! storage(v1)
@@ -4114,6 +4119,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} selfLink The canonical URL of this notification.
  * @property {string} topic The Cloud PubSub topic to which this subscription publishes. Formatted as: &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
  */
+
 /**
  * @typedef Notifications
  * @memberOf! storage(v1)
@@ -4121,6 +4127,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).Notification[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of notifications, this is always storage#notifications.
  */
+
 /**
  * @typedef Object
  * @memberOf! storage(v1)
@@ -4132,7 +4139,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} contentDisposition Content-Disposition of the object data.
  * @property {string} contentEncoding Content-Encoding of the object data.
  * @property {string} contentLanguage Content-Language of the object data.
- * @property {string} contentType Content-Type of the object data. If contentType is not specified, object downloads will be served as application/octet-stream.
+ * @property {string} contentType Content-Type of the object data. If an object is stored without a Content-Type, it is served as application/octet-stream.
  * @property {string} crc32c CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
  * @property {object} customerEncryption Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
  * @property {string} etag HTTP 1.1 Entity tag for the object.
@@ -4154,6 +4161,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} timeStorageClassUpdated The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.
  * @property {string} updated The modification time of the object metadata in RFC 3339 format.
  */
+
 /**
  * @typedef ObjectAccessControl
  * @memberOf! storage(v1)
@@ -4183,6 +4191,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef ObjectAccessControls
  * @memberOf! storage(v1)
@@ -4190,6 +4199,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).ObjectAccessControl[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
  */
+
 /**
  * @typedef Objects
  * @memberOf! storage(v1)
@@ -4199,6 +4209,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  * @property {string[]} prefixes The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
  */
+
 /**
  * @typedef Policy
  * @memberOf! storage(v1)
@@ -4206,8 +4217,9 @@ function Storage(options) { // eslint-disable-line
  * @property {object[]} bindings An association between a role, which comes with a set of permissions, and members who may assume that role.
  * @property {string} etag HTTP 1.1  Entity tag for the policy.
  * @property {string} kind The kind of item this is. For policies, this is always storage#policy. This field is ignored on input.
- * @property {string} resourceId The ID of the resource to which this policy belongs. Will be of the form buckets/bucket for buckets, and buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
+ * @property {string} resourceId The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
  */
+
 /**
  * @typedef RewriteResponse
  * @memberOf! storage(v1)
@@ -4219,6 +4231,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} rewriteToken A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
  * @property {string} totalBytesRewritten The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
  */
+
 /**
  * @typedef ServiceAccount
  * @memberOf! storage(v1)
@@ -4226,6 +4239,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} email_address The ID of the notification.
  * @property {string} kind The kind of item this is. For notifications, this is always storage#notification.
  */
+
 /**
  * @typedef TestIamPermissionsResponse
  * @memberOf! storage(v1)

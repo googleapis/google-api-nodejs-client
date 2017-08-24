@@ -564,6 +564,7 @@ function Webmasters(options) { // eslint-disable-line
  * @property {string[]} keys 
  * @property {number} position 
  */
+
 /**
  * @typedef ApiDimensionFilter
  * @memberOf! webmasters(v3)
@@ -572,6 +573,7 @@ function Webmasters(options) { // eslint-disable-line
  * @property {string} expression 
  * @property {string} operator 
  */
+
 /**
  * @typedef ApiDimensionFilterGroup
  * @memberOf! webmasters(v3)
@@ -579,6 +581,7 @@ function Webmasters(options) { // eslint-disable-line
  * @property {webmasters(v3).ApiDimensionFilter[]} filters 
  * @property {string} groupType 
  */
+
 /**
  * @typedef SearchAnalyticsQueryRequest
  * @memberOf! webmasters(v3)
@@ -596,6 +599,7 @@ If you specify any value other than AUTO, the aggregation type in the result wil
 * @property {string} startDate [Required] Start date of the requested date range, in YYYY-MM-DD format, in PST time (UTC - 8:00). Must be less than or equal to the end date. This value is included in the range.
 * @property {integer} startRow [Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.
 */
+
 /**
  * @typedef SearchAnalyticsQueryResponse
  * @memberOf! webmasters(v3)
@@ -603,18 +607,21 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {string} responseAggregationType How the results were aggregated.
  * @property {webmasters(v3).ApiDataRow[]} rows A list of rows grouped by the key values in the order given in the query.
  */
+
 /**
  * @typedef SitemapsListResponse
  * @memberOf! webmasters(v3)
  * @type object
  * @property {webmasters(v3).WmxSitemap[]} sitemap Contains detailed information about a specific URL submitted as a sitemap.
  */
+
 /**
  * @typedef SitesListResponse
  * @memberOf! webmasters(v3)
  * @type object
  * @property {webmasters(v3).WmxSite[]} siteEntry Contains permission level information about a Search Console site. For more information, see Permissions in Search Console.
  */
+
 /**
  * @typedef UrlCrawlErrorCount
  * @memberOf! webmasters(v3)
@@ -622,6 +629,7 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {string} count The error count at the given timestamp.
  * @property {string} timestamp The date and time when the crawl attempt took place, in RFC 3339 format.
  */
+
 /**
  * @typedef UrlCrawlErrorCountsPerType
  * @memberOf! webmasters(v3)
@@ -630,12 +638,14 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {webmasters(v3).UrlCrawlErrorCount[]} entries The error count entries time series.
  * @property {string} platform The general type of Googlebot that made the request (see list of Googlebot user-agents for the user-agents used).
  */
+
 /**
  * @typedef UrlCrawlErrorsCountsQueryResponse
  * @memberOf! webmasters(v3)
  * @type object
  * @property {webmasters(v3).UrlCrawlErrorCountsPerType[]} countPerTypes The time series of the number of URL crawl errors per error category and platform.
  */
+
 /**
  * @typedef UrlCrawlErrorsSample
  * @memberOf! webmasters(v3)
@@ -646,12 +656,14 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {integer} responseCode The HTTP response code, if any.
  * @property {webmasters(v3).UrlSampleDetails} urlDetails Additional details about the URL, set only when calling get().
  */
+
 /**
  * @typedef UrlCrawlErrorsSamplesListResponse
  * @memberOf! webmasters(v3)
  * @type object
  * @property {webmasters(v3).UrlCrawlErrorsSample[]} urlCrawlErrorSample Information about the sample URL and its crawl error.
  */
+
 /**
  * @typedef UrlSampleDetails
  * @memberOf! webmasters(v3)
@@ -659,6 +671,7 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {string[]} containingSitemaps List of sitemaps pointing at this URL.
  * @property {string[]} linkedFromUrls A sample set of URLs linking to this URL.
  */
+
 /**
  * @typedef WmxSite
  * @memberOf! webmasters(v3)
@@ -666,6 +679,7 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {string} permissionLevel The user&#39;s permission level for the site.
  * @property {string} siteUrl The URL of the site.
  */
+
 /**
  * @typedef WmxSitemap
  * @memberOf! webmasters(v3)
@@ -680,6 +694,7 @@ If you specify any value other than AUTO, the aggregation type in the result wil
  * @property {string} type The type of the sitemap. For example: rssFeed.
  * @property {string} warnings Number of warnings for the sitemap. These are generally non-critical issues with URLs in the sitemaps.
  */
+
 /**
  * @typedef WmxSitemapContent
  * @memberOf! webmasters(v3)

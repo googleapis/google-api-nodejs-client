@@ -1569,6 +1569,7 @@ function Dns(options) { // eslint-disable-line
  * @property {string} startTime The time that this operation was started by the server (output only). This is in RFC3339 text format.
  * @property {string} status Status of the operation (output only).
  */
+
 /**
  * @typedef ChangesListResponse
  * @memberOf! dns(v2beta1)
@@ -1580,6 +1581,7 @@ function Dns(options) { // eslint-disable-line
 
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
 */
+
 /**
  * @typedef DnsKey
  * @memberOf! dns(v2beta1)
@@ -1596,6 +1598,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} publicKey Base64 encoded public half of this key. Output only.
  * @property {string} type One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.
  */
+
 /**
  * @typedef DnsKeyDigest
  * @memberOf! dns(v2beta1)
@@ -1603,6 +1606,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} digest The base-16 encoded bytes of this digest. Suitable for use in a DS resource record.
  * @property {string} type Specifies the algorithm used to calculate this digest.
  */
+
 /**
  * @typedef DnsKeySpec
  * @memberOf! dns(v2beta1)
@@ -1612,6 +1616,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} keyType One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#dnsKeySpec&quot;.
  */
+
 /**
  * @typedef DnsKeysListResponse
  * @memberOf! dns(v2beta1)
@@ -1623,6 +1628,7 @@ In this way you can retrieve the complete contents of even very large collection
 
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
 */
+
 /**
  * @typedef ManagedZone
  * @memberOf! dns(v2beta1)
@@ -1637,6 +1643,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} nameServerSet Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
  * @property {string[]} nameServers Delegate your managed_zone to these virtual name servers; defined by the server (output only)
  */
+
 /**
  * @typedef ManagedZoneDnsSecConfig
  * @memberOf! dns(v2beta1)
@@ -1646,6 +1653,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} nonExistence Specifies the mechanism used to provide authenticated denial-of-existence responses. Output only while state is not OFF.
  * @property {string} state Specifies whether DNSSEC is enabled, and what mode it is in.
  */
+
 /**
  * @typedef ManagedZoneOperationsListResponse
  * @memberOf! dns(v2beta1)
@@ -1657,12 +1665,14 @@ In this way you can retrieve the complete contents of even very large collection
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
 * @property {dns(v2beta1).Operation[]} operations The operation resources.
 */
+
 /**
  * @typedef ManagedZonesDeleteResponse
  * @memberOf! dns(v2beta1)
  * @type object
  * @property {dns(v2beta1).ResponseHeader} header 
  */
+
 /**
  * @typedef ManagedZonesListResponse
  * @memberOf! dns(v2beta1)
@@ -1674,6 +1684,7 @@ In this way you can retrieve the complete contents of even very large collection
 
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
 */
+
 /**
  * @typedef Operation
  * @memberOf! dns(v2beta1)
@@ -1687,6 +1698,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} user User who requested the operation, for example: user@example.com. cloud-dns-system for operations automatically done by the system. (output only)
  * @property {dns(v2beta1).OperationManagedZoneContext} zoneContext Only populated if the operation targeted a ManagedZone (output only).
  */
+
 /**
  * @typedef OperationDnsKeyContext
  * @memberOf! dns(v2beta1)
@@ -1694,6 +1706,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {dns(v2beta1).DnsKey} newValue The post-operation DnsKey resource.
  * @property {dns(v2beta1).DnsKey} oldValue The pre-operation DnsKey resource.
  */
+
 /**
  * @typedef OperationManagedZoneContext
  * @memberOf! dns(v2beta1)
@@ -1701,6 +1714,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {dns(v2beta1).ManagedZone} newValue The post-operation ManagedZone resource.
  * @property {dns(v2beta1).ManagedZone} oldValue The pre-operation ManagedZone resource.
  */
+
 /**
  * @typedef Project
  * @memberOf! dns(v2beta1)
@@ -1710,6 +1724,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {string} number Unique numeric identifier for the resource; defined by the server (output only).
  * @property {dns(v2beta1).Quota} quota Quotas assigned to this project (output only).
  */
+
 /**
  * @typedef Quota
  * @memberOf! dns(v2beta1)
@@ -1724,6 +1739,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {integer} totalRrdataSizePerChange Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
  * @property {dns(v2beta1).DnsKeySpec[]} whitelistedKeySpecs DNSSEC algorithm and key length types that can be used for DnsKeys.
  */
+
 /**
  * @typedef ResourceRecordSet
  * @memberOf! dns(v2beta1)
@@ -1735,6 +1751,7 @@ In this way you can retrieve the complete contents of even very large collection
  * @property {integer} ttl Number of seconds that this ResourceRecordSet can be cached by resolvers.
  * @property {string} type The identifier of a supported record type, for example, A, AAAA, MX, TXT, and so on.
  */
+
 /**
  * @typedef ResourceRecordSetsListResponse
  * @memberOf! dns(v2beta1)
@@ -1746,6 +1763,7 @@ In this way you can retrieve the complete contents of even very large collection
 In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
 * @property {dns(v2beta1).ResourceRecordSet[]} rrsets The resource record set resources.
 */
+
 /**
  * @typedef ResponseHeader
  * @memberOf! dns(v2beta1)

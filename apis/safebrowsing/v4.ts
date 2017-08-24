@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Google Safe Browsing API
  *
- * The Safe Browsing API is an experimental API that allows client applications to check URLs against Google&#39;s constantly-updated blacklists of suspected phishing and malware pages. Your client application can use the API to download an encrypted table for local, client-side lookups of URLs.
+ * Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources.
  *
  * @example
  * const google = require('googleapis');
@@ -37,23 +37,25 @@ function Safebrowsing(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
-  self.threatMatches = {
+  self.encodedFullHashes = {
 
     /**
-     * safebrowsing.threatMatches.find
+     * safebrowsing.encodedFullHashes.get
      *
-     * @desc Finds the threat entries that match the Safe Browsing lists.
+     * 
      *
-     * @alias safebrowsing.threatMatches.find
+     * @alias safebrowsing.encodedFullHashes.get
      * @memberOf! safebrowsing(v4)
      *
      * @param {object} params Parameters for request
-     * @param {safebrowsing(v4).FindThreatMatchesRequest} params.resource Request body data
+     * @param {string=} params.clientId A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
+     * @param {string=} params.clientVersion The version of the client implementation.
+     * @param {string} params.encodedRequest A serialized FindFullHashesRequest proto.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -64,12 +66,55 @@ function Safebrowsing(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v4/threatMatches:find').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
+          url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['encodedRequest'],
+        pathParams: ['encodedRequest'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.encodedUpdates = {
+
+    /**
+     * safebrowsing.encodedUpdates.get
+     *
+     * 
+     *
+     * @alias safebrowsing.encodedUpdates.get
+     * @memberOf! safebrowsing(v4)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientId A client ID that uniquely identifies the client implementation of the Safe Browsing API.
+     * @param {string=} params.clientVersion The version of the client implementation.
+     * @param {string} params.encodedRequest A serialized FetchThreatListUpdatesRequest proto.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['encodedRequest'],
+        pathParams: ['encodedRequest'],
         context: self
       };
 
@@ -119,49 +164,6 @@ function Safebrowsing(options) { // eslint-disable-line
 
   };
 
-  self.encodedUpdates = {
-
-    /**
-     * safebrowsing.encodedUpdates.get
-     *
-     * 
-     *
-     * @alias safebrowsing.encodedUpdates.get
-     * @memberOf! safebrowsing(v4)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.encodedRequest A serialized FetchThreatListUpdatesRequest proto.
-     * @param {string=} params.clientId A client ID that uniquely identifies the client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client implementation.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['encodedRequest'],
-        pathParams: ['encodedRequest'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.threatListUpdates = {
 
     /**
@@ -195,49 +197,6 @@ function Safebrowsing(options) { // eslint-disable-line
         params: params,
         requiredParams: [],
         pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.encodedFullHashes = {
-
-    /**
-     * safebrowsing.encodedFullHashes.get
-     *
-     * 
-     *
-     * @alias safebrowsing.encodedFullHashes.get
-     * @memberOf! safebrowsing(v4)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientId A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
-     * @param {string=} params.clientVersion The version of the client implementation.
-     * @param {string} params.encodedRequest A serialized FindFullHashesRequest proto.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['encodedRequest'],
-        pathParams: ['encodedRequest'],
         context: self
       };
 
@@ -285,20 +244,185 @@ function Safebrowsing(options) { // eslint-disable-line
     }
 
   };
+
+  self.threatMatches = {
+
+    /**
+     * safebrowsing.threatMatches.find
+     *
+     * @desc Finds the threat entries that match the Safe Browsing lists.
+     *
+     * @alias safebrowsing.threatMatches.find
+     * @memberOf! safebrowsing(v4)
+     *
+     * @param {object} params Parameters for request
+     * @param {safebrowsing(v4).FindThreatMatchesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    find: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v4/threatMatches:find').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**
- * @typedef ThreatEntryMetadata
+ * @typedef Checksum
  * @memberOf! safebrowsing(v4)
  * @type object
- * @property {safebrowsing(v4).MetadataEntry[]} entries The metadata entries.
- */
+* @property {string} sha256 The SHA256 hash of the client state; that is, of the sorted list of all
+hashes present in the database.
+*/
+
 /**
- * @typedef RawIndices
+ * @typedef ClientInfo
  * @memberOf! safebrowsing(v4)
  * @type object
- * @property {integer[]} indices The indices to remove from a lexicographically-sorted local list.
+* @property {string} clientId A client ID that (hopefully) uniquely identifies the client implementation
+of the Safe Browsing API.
+* @property {string} clientVersion The version of the client implementation.
+*/
+
+/**
+ * @typedef Constraints
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {integer} maxDatabaseEntries Sets the maximum number of entries that the client is willing to have
+in the local database. This should be a power of 2 between 2**10 and
+2**20. If zero, no database size limit is set.
+* @property {integer} maxUpdateEntries The maximum size in number of entries. The update will not contain more
+entries than this value.  This should be a power of 2 between 2**10 and
+2**20.  If zero, no update size limit is set.
+* @property {string} region Requests the list for a specific geographic location. If not set the
+server may pick that value based on the user&#39;s IP address. Expects ISO
+3166-1 alpha-2 format.
+* @property {string[]} supportedCompressions The compression types supported by the client.
+*/
+
+/**
+ * @typedef FetchThreatListUpdatesRequest
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {safebrowsing(v4).ClientInfo} client The client metadata.
+ * @property {safebrowsing(v4).ListUpdateRequest[]} listUpdateRequests The requested threat list updates.
  */
+
+/**
+ * @typedef FetchThreatListUpdatesResponse
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {safebrowsing(v4).ListUpdateResponse[]} listUpdateResponses The list updates requested by the clients.
+* @property {string} minimumWaitDuration The minimum duration the client must wait before issuing any update
+request. If this field is not set clients may update as soon as they want.
+*/
+
+/**
+ * @typedef FindFullHashesRequest
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {safebrowsing(v4).ClientInfo} apiClient Client metadata associated with callers of higher-level APIs built on top
+of the client&#39;s implementation.
+* @property {safebrowsing(v4).ClientInfo} client The client metadata.
+* @property {string[]} clientStates The current client states for each of the client&#39;s local threat lists.
+* @property {safebrowsing(v4).ThreatInfo} threatInfo The lists and hashes to be checked.
+*/
+
+/**
+ * @typedef FindFullHashesResponse
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {safebrowsing(v4).ThreatMatch[]} matches The full hashes that matched the requested prefixes.
+* @property {string} minimumWaitDuration The minimum duration the client must wait before issuing any find hashes
+request. If this field is not set, clients can issue a request as soon as
+they want.
+* @property {string} negativeCacheDuration For requested entities that did not match the threat list, how long to
+cache the response.
+*/
+
+/**
+ * @typedef FindThreatMatchesRequest
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {safebrowsing(v4).ClientInfo} client The client metadata.
+ * @property {safebrowsing(v4).ThreatInfo} threatInfo The lists and entries to be checked for matches.
+ */
+
+/**
+ * @typedef FindThreatMatchesResponse
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {safebrowsing(v4).ThreatMatch[]} matches The threat list matches.
+ */
+
+/**
+ * @typedef ListThreatListsResponse
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {safebrowsing(v4).ThreatListDescriptor[]} threatLists The lists available for download by the client.
+ */
+
+/**
+ * @typedef ListUpdateRequest
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {safebrowsing(v4).Constraints} constraints The constraints associated with this request.
+* @property {string} platformType The type of platform at risk by entries present in the list.
+* @property {string} state The current state of the client for the requested list (the encrypted
+client state that was received from the last successful list update).
+* @property {string} threatEntryType The types of entries present in the list.
+* @property {string} threatType The type of threat posed by entries present in the list.
+*/
+
+/**
+ * @typedef ListUpdateResponse
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {safebrowsing(v4).ThreatEntrySet[]} additions A set of entries to add to a local threat type&#39;s list. Repeated to allow
+for a combination of compressed and raw data to be sent in a single
+response.
+* @property {safebrowsing(v4).Checksum} checksum The expected SHA256 hash of the client state; that is, of the sorted list
+of all hashes present in the database after applying the provided update.
+If the client state doesn&#39;t match the expected state, the client must
+disregard this update and retry later.
+* @property {string} newClientState The new client state, in encrypted format. Opaque to clients.
+* @property {string} platformType The platform type for which data is returned.
+* @property {safebrowsing(v4).ThreatEntrySet[]} removals A set of entries to remove from a local threat type&#39;s list. In practice,
+this field is empty or contains exactly one ThreatEntrySet.
+* @property {string} responseType The type of response. This may indicate that an action is required by the
+client when the response is received.
+* @property {string} threatEntryType The format of the threats.
+* @property {string} threatType The threat type for which data is returned.
+*/
+
+/**
+ * @typedef MetadataEntry
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {string} key The metadata entry key. For JSON requests, the key is base64-encoded.
+ * @property {string} value The metadata entry value. For JSON requests, the value is base64-encoded.
+ */
+
 /**
  * @typedef RawHashes
  * @memberOf! safebrowsing(v4)
@@ -309,147 +433,28 @@ anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
 sorted in lexicographic order. For JSON API users, hashes are
 base64-encoded.
 */
+
 /**
- * @typedef FetchThreatListUpdatesResponse
+ * @typedef RawIndices
  * @memberOf! safebrowsing(v4)
  * @type object
-* @property {string} minimumWaitDuration The minimum duration the client must wait before issuing any update
-request. If this field is not set clients may update as soon as they want.
-* @property {safebrowsing(v4).ListUpdateResponse[]} listUpdateResponses The list updates requested by the clients.
-*/
-/**
- * @typedef FindFullHashesResponse
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} minimumWaitDuration The minimum duration the client must wait before issuing any find hashes
-request. If this field is not set, clients can issue a request as soon as
-they want.
-* @property {safebrowsing(v4).ThreatMatch[]} matches The full hashes that matched the requested prefixes.
-* @property {string} negativeCacheDuration For requested entities that did not match the threat list, how long to
-cache the response.
-*/
-/**
- * @typedef Checksum
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} sha256 The SHA256 hash of the client state; that is, of the sorted list of all
-hashes present in the database.
-*/
-/**
- * @typedef ThreatEntrySet
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {safebrowsing(v4).RiceDeltaEncoding} riceIndices The encoded local, lexicographically-sorted list indices, using a
-Golomb-Rice encoding. Used for sending compressed removal indices. The
-removal indices (uint32) are sorted in ascending order, then delta encoded
-and stored as encoded_data.
-* @property {string} compressionType The compression type for the entries in this set.
-* @property {safebrowsing(v4).RawIndices} rawIndices The raw removal indices for a local list.
-* @property {safebrowsing(v4).RawHashes} rawHashes The raw SHA256-formatted entries.
-* @property {safebrowsing(v4).RiceDeltaEncoding} riceHashes The encoded 4-byte prefixes of SHA256-formatted entries, using a
-Golomb-Rice encoding. The hashes are converted to uint32, sorted in
-ascending order, then delta encoded and stored as encoded_data.
-*/
-/**
- * @typedef FindFullHashesRequest
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string[]} clientStates The current client states for each of the client&#39;s local threat lists.
-* @property {safebrowsing(v4).ClientInfo} client The client metadata.
-* @property {safebrowsing(v4).ThreatInfo} threatInfo The lists and hashes to be checked.
-* @property {safebrowsing(v4).ClientInfo} apiClient Client metadata associated with callers of higher-level APIs built on top
-of the client&#39;s implementation.
-*/
-/**
- * @typedef ListUpdateRequest
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} state The current state of the client for the requested list (the encrypted
-client state that was received from the last successful list update).
-* @property {string} platformType The type of platform at risk by entries present in the list.
-* @property {safebrowsing(v4).Constraints} constraints The constraints associated with this request.
-* @property {string} threatType The type of threat posed by entries present in the list.
-* @property {string} threatEntryType The types of entries present in the list.
-*/
-/**
- * @typedef FetchThreatListUpdatesRequest
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {safebrowsing(v4).ListUpdateRequest[]} listUpdateRequests The requested threat list updates.
- * @property {safebrowsing(v4).ClientInfo} client The client metadata.
+ * @property {integer[]} indices The indices to remove from a lexicographically-sorted local list.
  */
-/**
- * @typedef ListUpdateResponse
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} threatEntryType The format of the threats.
-* @property {safebrowsing(v4).ThreatEntrySet[]} additions A set of entries to add to a local threat type&#39;s list. Repeated to allow
-for a combination of compressed and raw data to be sent in a single
-response.
-* @property {string} responseType The type of response. This may indicate that an action is required by the
-client when the response is received.
-* @property {safebrowsing(v4).Checksum} checksum The expected SHA256 hash of the client state; that is, of the sorted list
-of all hashes present in the database after applying the provided update.
-If the client state doesn&#39;t match the expected state, the client must
-disregard this update and retry later.
-* @property {string} threatType The threat type for which data is returned.
-* @property {safebrowsing(v4).ThreatEntrySet[]} removals A set of entries to remove from a local threat type&#39;s list. In practice,
-this field is empty or contains exactly one ThreatEntrySet.
-* @property {string} newClientState The new client state, in encrypted format. Opaque to clients.
-* @property {string} platformType The platform type for which data is returned.
-*/
-/**
- * @typedef Constraints
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string[]} supportedCompressions The compression types supported by the client.
-* @property {integer} maxUpdateEntries The maximum size in number of entries. The update will not contain more
-entries than this value.  This should be a power of 2 between 2**10 and
-2**20.  If zero, no update size limit is set.
-* @property {string} region Requests the list for a specific geographic location. If not set the
-server may pick that value based on the user&#39;s IP address. Expects ISO
-3166-1 alpha-2 format.
-* @property {integer} maxDatabaseEntries Sets the maximum number of entries that the client is willing to have
-in the local database. This should be a power of 2 between 2**10 and
-2**20. If zero, no database size limit is set.
-*/
-/**
- * @typedef ThreatMatch
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} cacheDuration The cache lifetime for the returned match. Clients must not cache this
-response for more than this duration to avoid false positives.
-* @property {safebrowsing(v4).ThreatEntryMetadata} threatEntryMetadata Optional metadata associated with this threat.
-* @property {string} threatType The threat type matching this threat.
-* @property {safebrowsing(v4).ThreatEntry} threat The threat matching this threat.
-* @property {string} platformType The platform type matching this threat.
-* @property {string} threatEntryType The threat entry type matching this threat.
-*/
+
 /**
  * @typedef RiceDeltaEncoding
  * @memberOf! safebrowsing(v4)
  * @type object
-* @property {integer} riceParameter The Golomb-Rice parameter, which is a number between 2 and 28. This field
-is missing (that is, zero) if `num_entries` is zero.
 * @property {string} encodedData The encoded deltas that are encoded using the Golomb-Rice coder.
 * @property {string} firstValue The offset of the first entry in the encoded data, or, if only a single
 integer was encoded, that single integer&#39;s value.
 * @property {integer} numEntries The number of entries that are delta encoded in the encoded data. If only a
 single integer was encoded, this will be zero and the single value will be
 stored in `first_value`.
+* @property {integer} riceParameter The Golomb-Rice parameter, which is a number between 2 and 28. This field
+is missing (that is, zero) if `num_entries` is zero.
 */
-/**
- * @typedef ListThreatListsResponse
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {safebrowsing(v4).ThreatListDescriptor[]} threatLists The lists available for download by the client.
- */
-/**
- * @typedef FindThreatMatchesResponse
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {safebrowsing(v4).ThreatMatch[]} matches The threat list matches.
- */
+
 /**
  * @typedef ThreatEntry
  * @memberOf! safebrowsing(v4)
@@ -461,43 +466,59 @@ hash. This field is in binary format. For JSON requests, hashes are
 base64-encoded.
 * @property {string} url A URL.
 */
+
 /**
- * @typedef ThreatListDescriptor
+ * @typedef ThreatEntryMetadata
  * @memberOf! safebrowsing(v4)
  * @type object
- * @property {string} threatEntryType The entry types contained in the list.
- * @property {string} platformType The platform type targeted by the list&#39;s entries.
- * @property {string} threatType The threat type posed by the list&#39;s entries.
+ * @property {safebrowsing(v4).MetadataEntry[]} entries The metadata entries.
  */
+
 /**
- * @typedef MetadataEntry
+ * @typedef ThreatEntrySet
  * @memberOf! safebrowsing(v4)
  * @type object
- * @property {string} key The metadata entry key. For JSON requests, the key is base64-encoded.
- * @property {string} value The metadata entry value. For JSON requests, the value is base64-encoded.
- */
-/**
- * @typedef ClientInfo
- * @memberOf! safebrowsing(v4)
- * @type object
-* @property {string} clientId A client ID that (hopefully) uniquely identifies the client implementation
-of the Safe Browsing API.
-* @property {string} clientVersion The version of the client implementation.
+* @property {string} compressionType The compression type for the entries in this set.
+* @property {safebrowsing(v4).RawHashes} rawHashes The raw SHA256-formatted entries.
+* @property {safebrowsing(v4).RawIndices} rawIndices The raw removal indices for a local list.
+* @property {safebrowsing(v4).RiceDeltaEncoding} riceHashes The encoded 4-byte prefixes of SHA256-formatted entries, using a
+Golomb-Rice encoding. The hashes are converted to uint32, sorted in
+ascending order, then delta encoded and stored as encoded_data.
+* @property {safebrowsing(v4).RiceDeltaEncoding} riceIndices The encoded local, lexicographically-sorted list indices, using a
+Golomb-Rice encoding. Used for sending compressed removal indices. The
+removal indices (uint32) are sorted in ascending order, then delta encoded
+and stored as encoded_data.
 */
-/**
- * @typedef FindThreatMatchesRequest
- * @memberOf! safebrowsing(v4)
- * @type object
- * @property {safebrowsing(v4).ClientInfo} client The client metadata.
- * @property {safebrowsing(v4).ThreatInfo} threatInfo The lists and entries to be checked for matches.
- */
+
 /**
  * @typedef ThreatInfo
  * @memberOf! safebrowsing(v4)
  * @type object
- * @property {string[]} threatEntryTypes The entry types to be checked.
- * @property {string[]} threatTypes The threat types to be checked.
  * @property {string[]} platformTypes The platform types to be checked.
  * @property {safebrowsing(v4).ThreatEntry[]} threatEntries The threat entries to be checked.
+ * @property {string[]} threatEntryTypes The entry types to be checked.
+ * @property {string[]} threatTypes The threat types to be checked.
  */
+
+/**
+ * @typedef ThreatListDescriptor
+ * @memberOf! safebrowsing(v4)
+ * @type object
+ * @property {string} platformType The platform type targeted by the list&#39;s entries.
+ * @property {string} threatEntryType The entry types contained in the list.
+ * @property {string} threatType The threat type posed by the list&#39;s entries.
+ */
+
+/**
+ * @typedef ThreatMatch
+ * @memberOf! safebrowsing(v4)
+ * @type object
+* @property {string} cacheDuration The cache lifetime for the returned match. Clients must not cache this
+response for more than this duration to avoid false positives.
+* @property {string} platformType The platform type matching this threat.
+* @property {safebrowsing(v4).ThreatEntry} threat The threat matching this threat.
+* @property {safebrowsing(v4).ThreatEntryMetadata} threatEntryMetadata Optional metadata associated with this threat.
+* @property {string} threatEntryType The threat entry type matching this threat.
+* @property {string} threatType The threat type matching this threat.
+*/
 export = Safebrowsing;

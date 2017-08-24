@@ -39,13 +39,12 @@ function Clouddebugger(options) { // eslint-disable-line
   self._options = options || {};
 
   self.controller = {
-
     debuggees: {
 
       /**
        * clouddebugger.controller.debuggees.register
        *
-       * @desc Registers the debuggee with the controller service.  All agents attached to the same application should call this method with the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method.  This allows the controller service to disable the agent or recover from any data loss. If the debuggee is disabled by the server, the response will have `is_disabled` set to `true`.
+       * @desc Registers the debuggee with the controller service.  All agents attached to the same application must call this method with exactly the same request content to get back the same stable `debuggee_id`. Agents should call this method again whenever `google.rpc.Code.NOT_FOUND` is returned from any controller method.  This protocol allows the controller service to disable debuggees, recover from data loss, or change the `debuggee_id` format. Agents must handle `debuggee_id` value changing upon re-registration.
        *
        * @example
        * // BEFORE RUNNING:
@@ -130,13 +129,12 @@ function Clouddebugger(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       breakpoints: {
 
         /**
          * clouddebugger.controller.debuggees.breakpoints.list
          *
-         * @desc Returns the list of all active breakpoints for the debuggee.  The breakpoint specification (location, condition, and expression fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics.  This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
+         * @desc Returns the list of all active breakpoints for the debuggee.  The breakpoint specification (`location`, `condition`, and `expressions` fields) is semantically immutable, although the field values may change. For example, an agent may update the location line number to reflect the actual line where the breakpoint was set, but this doesn't change the breakpoint semantics.  This means that an agent does not need to check if a breakpoint has changed when it encounters the same breakpoint on a successive call. Moreover, an agent should remember the breakpoints that are completed until the controller removes them from the active list to avoid setting those breakpoints again.
          *
          * @example
          * // BEFORE RUNNING:
@@ -194,8 +192,8 @@ function Clouddebugger(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.debuggeeId Identifies the debuggee.
-         * @param {boolean=} params.successOnTimeout If set to `true`, returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired (recommended).  If set to `false`, returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired (deprecated).
-         * @param {string=} params.waitToken A wait token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server selected timeout has expired.  The value should be set from the last returned response.
+         * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
+         * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -226,7 +224,7 @@ function Clouddebugger(options) { // eslint-disable-line
         /**
          * clouddebugger.controller.debuggees.breakpoints.update
          *
-         * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service.  Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expression` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
+         * @desc Updates the breakpoint state or mutable fields. The entire Breakpoint message must be sent back to the controller service.  Updates to active breakpoint fields are only allowed if the new value does not change the breakpoint specification. Updates to the `location`, `condition` and `expressions` fields should not alter the breakpoint semantics. These may only make changes such as canonicalizing a value or snapping the location to the correct line of code.
          *
          * @example
          * // BEFORE RUNNING:
@@ -325,13 +323,12 @@ function Clouddebugger(options) { // eslint-disable-line
   };
 
   self.debugger = {
-
     debuggees: {
 
       /**
        * clouddebugger.debugger.debuggees.list
        *
-       * @desc Lists all the debuggees that the user can set breakpoints to.
+       * @desc Lists all the debuggees that the user has access to.
        *
        * @example
        * // BEFORE RUNNING:
@@ -385,7 +382,7 @@ function Clouddebugger(options) { // eslint-disable-line
        * @memberOf! clouddebugger(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+       * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
        * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
        * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -414,8 +411,97 @@ function Clouddebugger(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
       breakpoints: {
+
+        /**
+         * clouddebugger.debugger.debuggees.breakpoints.delete
+         *
+         * @desc Deletes the breakpoint from the debuggee.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Stackdriver Debugger API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/clouddebugger
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var cloudDebugger = google.clouddebugger('v2');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // ID of the debuggee whose breakpoint to delete.
+         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *
+         *     // ID of the breakpoint to delete.
+         *     breakpointId: '',  // TODO: Update placeholder value.
+         *
+         *     auth: authClient
+         *   };
+         *
+         *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
+         *     if (err) {
+         *       console.log(err);
+         *       return;
+         *     }
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *     if (err) {
+         *       console.log('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
+         *
+         * @alias clouddebugger.debugger.debuggees.breakpoints.delete
+         * @memberOf! clouddebugger(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.breakpointId ID of the breakpoint to delete.
+         * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['debuggeeId', 'breakpointId'],
+            pathParams: ['breakpointId', 'debuggeeId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
 
         /**
          * clouddebugger.debugger.debuggees.breakpoints.get
@@ -480,8 +566,8 @@ function Clouddebugger(options) { // eslint-disable-line
          * @memberOf! clouddebugger(v2)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param {string} params.breakpointId ID of the breakpoint to get.
+         * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -570,13 +656,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @memberOf! clouddebugger(v2)
          *
          * @param {object} params Parameters for request
-         * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
-         * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
-         * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
+         * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
          * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
          * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
+         * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+         * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired.  The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -668,7 +754,7 @@ function Clouddebugger(options) { // eslint-disable-line
          * @memberOf! clouddebugger(v2)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
          * @param {clouddebugger(v2).Breakpoint} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -696,96 +782,6 @@ function Clouddebugger(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * clouddebugger.debugger.debuggees.breakpoints.delete
-         *
-         * @desc Deletes the breakpoint from the debuggee.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Debugger API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/clouddebugger
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //    https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var cloudDebugger = google.clouddebugger('v2');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // ID of the debuggee whose breakpoint to delete.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
-         *
-         *     // ID of the breakpoint to delete.
-         *     breakpointId: '',  // TODO: Update placeholder value.
-         *
-         *     auth: authClient
-         *   };
-         *
-         *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
-         *     if (err) {
-         *       console.log(err);
-         *       return;
-         *     }
-         *   });
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
-         *     if (err) {
-         *       console.log('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *       authClient = authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         *
-         * @alias clouddebugger.debugger.debuggees.breakpoints.delete
-         * @memberOf! clouddebugger(v2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
-         * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
-         * @param {string} params.breakpointId ID of the breakpoint to delete.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const rootUrl = options.rootUrl || 'https://clouddebugger.googleapis.com/';
-
-          const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            }, options),
-            params: params,
-            requiredParams: ['debuggeeId', 'breakpointId'],
-            pathParams: ['debuggeeId', 'breakpointId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
         }
       }
     }
@@ -793,64 +789,43 @@ function Clouddebugger(options) { // eslint-disable-line
 }
 
 /**
- * @typedef GerritSourceContext
+ * @typedef AliasContext
  * @memberOf! clouddebugger(v2)
  * @type object
-* @property {string} hostUri The URI of a running Gerrit instance.
-* @property {string} revisionId A revision (commit) ID.
-* @property {string} aliasName The name of an alias (branch, tag, etc.).
-* @property {string} gerritProject The full project name within the host. Projects may be nested, so
-&quot;project/subproject&quot; is a valid project name.
-The &quot;repo name&quot; is hostURI/project.
-* @property {clouddebugger(v2).AliasContext} aliasContext An alias, which may be a branch or tag.
-*/
-/**
- * @typedef UpdateActiveBreakpointResponse
- * @memberOf! clouddebugger(v2)
- * @type object
+ * @property {string} kind The alias kind.
+ * @property {string} name The alias name.
  */
-/**
- * @typedef CloudWorkspaceId
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} name The unique name of the workspace within the repo.  This is the name
-chosen by the client in the Source API&#39;s CreateWorkspace method.
-* @property {clouddebugger(v2).RepoId} repoId The ID of the repo containing the workspace.
-*/
-/**
- * @typedef ListBreakpointsResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} nextWaitToken A wait token that can be used in the next call to `list` (REST) or
-`ListBreakpoints` (RPC) to block until the list of breakpoints has changes.
-* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of breakpoints matching the request.
-The fields `id` and `location` are guaranteed to be set on each breakpoint.
-The fields: `stack_frames`, `evaluated_expressions` and `variable_table`
-are cleared on each breakpoint regardless of it&#39;s status.
-*/
+
 /**
  * @typedef Breakpoint
  * @memberOf! clouddebugger(v2)
  * @type object
-* @property {string} logLevel Indicates the severity of the log. Only relevant when action is `LOG`.
-* @property {string} id Breakpoint identifier, unique in the scope of the debuggee.
-* @property {clouddebugger(v2).SourceLocation} location Breakpoint source location.
+* @property {string} action Action that the agent should perform when the code at the
+breakpoint location is hit.
+* @property {string} condition Condition that triggers the breakpoint.
+The condition is a compound boolean expression composed using expressions
+in a programming language at the source location.
+* @property {string} createTime Time this breakpoint was created by the server in seconds resolution.
+* @property {clouddebugger(v2).Variable[]} evaluatedExpressions Values of evaluated expressions at breakpoint time.
+The evaluated expressions appear in exactly the same order they
+are listed in the `expressions` field.
+The `name` field holds the original expression text, the `value` or
+`members` field holds the result of the evaluated expression.
+If the expression cannot be evaluated, the `status` inside the `Variable`
+will indicate an error and contain the error text.
+* @property {string[]} expressions List of read-only expressions to evaluate at the breakpoint location.
+The expressions are composed using expressions in the programming language
+at the source location. If the breakpoint action is `LOG`, the evaluated
+expressions are included in log statements.
 * @property {string} finalTime Time this breakpoint was finalized as seen by the server in seconds
 resolution.
-* @property {clouddebugger(v2).Variable[]} variableTable The `variable_table` exists to aid with computation, memory and network
-traffic optimization.  It enables storing a variable once and reference
-it from multiple variables, including variables stored in the
-`variable_table` itself.
-For example, the same `this` object, which may appear at many levels of
-the stack, can have all of its data stored once in this table.  The
-stack frame variables then would hold only a reference to it.
-
-The variable `var_table_index` field is an index into this repeated field.
-The stored objects are nameless and get their name from the referencing
-variable. The effective variable is a merge of the referencing variable
-and the referenced variable.
+* @property {string} id Breakpoint identifier, unique in the scope of the debuggee.
+* @property {boolean} isFinalState When true, indicates that this is a final result and the
+breakpoint state will not change from here on.
 * @property {object} labels A set of custom breakpoint properties, populated by the agent, to be
 displayed to the user.
+* @property {clouddebugger(v2).SourceLocation} location Breakpoint source location.
+* @property {string} logLevel Indicates the severity of the log. Only relevant when action is `LOG`.
 * @property {string} logMessageFormat Only relevant when action is `LOG`. Defines the message to log when
 the breakpoint hits. The message may include parameter placeholders `$0`,
 `$1`, etc. These placeholders are replaced with the evaluated value
@@ -859,24 +834,7 @@ of the appropriate expression. Expressions not referenced in
 
 Example: `Message received, id = $0, count = $1` with
 `expressions` = `[ message.id, message.count ]`.
-* @property {string} createTime Time this breakpoint was created by the server in seconds resolution.
-* @property {string[]} expressions List of read-only expressions to evaluate at the breakpoint location.
-The expressions are composed using expressions in the programming language
-at the source location. If the breakpoint action is `LOG`, the evaluated
-expressions are included in log statements.
-* @property {clouddebugger(v2).Variable[]} evaluatedExpressions Values of evaluated expressions at breakpoint time.
-The evaluated expressions appear in exactly the same order they
-are listed in the `expressions` field.
-The `name` field holds the original expression text, the `value` or
-`members` field holds the result of the evaluated expression.
-If the expression cannot be evaluated, the `status` inside the `Variable`
-will indicate an error and contain the error text.
-* @property {boolean} isFinalState When true, indicates that this is a final result and the
-breakpoint state will not change from here on.
 * @property {clouddebugger(v2).StackFrame[]} stackFrames The stack at breakpoint time.
-* @property {string} condition Condition that triggers the breakpoint.
-The condition is a compound boolean expression composed using expressions
-in a programming language at the source location.
 * @property {clouddebugger(v2).StatusMessage} status Breakpoint status.
 
 The status includes an error flag and a human readable message.
@@ -893,56 +851,127 @@ Examples (final state):
 *   `Invalid line number` referring to location
 *   `Field f not found in class C` referring to condition
 * @property {string} userEmail E-mail address of the user that created this breakpoint
-* @property {string} action Action that the agent should perform when the code at the
-breakpoint location is hit.
+* @property {clouddebugger(v2).Variable[]} variableTable The `variable_table` exists to aid with computation, memory and network
+traffic optimization.  It enables storing a variable once and reference
+it from multiple variables, including variables stored in the
+`variable_table` itself.
+For example, the same `this` object, which may appear at many levels of
+the stack, can have all of its data stored once in this table.  The
+stack frame variables then would hold only a reference to it.
+
+The variable `var_table_index` field is an index into this repeated field.
+The stored objects are nameless and get their name from the referencing
+variable. The effective variable is a merge of the referencing variable
+and the referenced variable.
 */
-/**
- * @typedef SetBreakpointResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Breakpoint} breakpoint Breakpoint resource.
-The field `id` is guaranteed to be set (in addition to the echoed fileds).
-*/
-/**
- * @typedef UpdateActiveBreakpointRequest
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Breakpoint} breakpoint Updated breakpoint information.
-The field &#39;id&#39; must be set.
-*/
-/**
- * @typedef SourceContext
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {clouddebugger(v2).GerritSourceContext} gerrit A SourceContext referring to a Gerrit project.
- * @property {clouddebugger(v2).CloudRepoSourceContext} cloudRepo A SourceContext referring to a revision in a cloud repo.
- * @property {clouddebugger(v2).CloudWorkspaceSourceContext} cloudWorkspace A SourceContext referring to a snapshot in a cloud workspace.
- * @property {clouddebugger(v2).GitSourceContext} git A SourceContext referring to any third party Git repo (e.g. GitHub).
- */
+
 /**
  * @typedef CloudRepoSourceContext
  * @memberOf! clouddebugger(v2)
  * @type object
  * @property {clouddebugger(v2).AliasContext} aliasContext An alias, which may be a branch or tag.
- * @property {string} revisionId A revision ID.
  * @property {string} aliasName The name of an alias (branch, tag, etc.).
  * @property {clouddebugger(v2).RepoId} repoId The ID of the repo.
+ * @property {string} revisionId A revision ID.
  */
+
 /**
- * @typedef RegisterDebuggeeResponse
+ * @typedef CloudWorkspaceId
  * @memberOf! clouddebugger(v2)
  * @type object
-* @property {clouddebugger(v2).Debuggee} debuggee Debuggee resource.
-The field `id` is guranteed to be set (in addition to the echoed fields).
+* @property {string} name The unique name of the workspace within the repo.  This is the name
+chosen by the client in the Source API&#39;s CreateWorkspace method.
+* @property {clouddebugger(v2).RepoId} repoId The ID of the repo containing the workspace.
 */
+
 /**
- * @typedef RegisterDebuggeeRequest
+ * @typedef CloudWorkspaceSourceContext
  * @memberOf! clouddebugger(v2)
  * @type object
-* @property {clouddebugger(v2).Debuggee} debuggee Debuggee information to register.
-The fields `project`, `uniquifier`, `description` and `agent_version`
-of the debuggee must be set.
+* @property {string} snapshotId The ID of the snapshot.
+An empty snapshot_id refers to the most recent snapshot.
+* @property {clouddebugger(v2).CloudWorkspaceId} workspaceId The ID of the workspace.
 */
+
+/**
+ * @typedef Debuggee
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string} agentVersion Version ID of the agent.
+Schema: `domain/language-platform/vmajor.minor` (for example
+`google.com/java-gcp/v1.1`).
+* @property {string} description Human readable description of the debuggee.
+Including a human-readable project name, environment name and version
+information is recommended.
+* @property {clouddebugger(v2).ExtendedSourceContext[]} extSourceContexts References to the locations and revisions of the source code used in the
+deployed application.
+
+NOTE: this field is experimental and can be ignored.
+* @property {string} id Unique identifier for the debuggee generated by the controller service.
+* @property {boolean} isDisabled If set to `true`, indicates that the agent should disable itself and
+detach from the debuggee.
+* @property {boolean} isInactive If set to `true`, indicates that Controller service does not detect any
+activity from the debuggee agents and the application is possibly stopped.
+* @property {object} labels A set of custom debuggee properties, populated by the agent, to be
+displayed to the user.
+* @property {string} project Project the debuggee is associated with.
+Use project number or id when registering a Google Cloud Platform project.
+* @property {clouddebugger(v2).SourceContext[]} sourceContexts References to the locations and revisions of the source code used in the
+deployed application.
+* @property {clouddebugger(v2).StatusMessage} status Human readable message to be displayed to the user about this debuggee.
+Absence of this field indicates no status. The message can be either
+informational or an error status.
+* @property {string} uniquifier Uniquifier to further distiguish the application.
+It is possible that different applications might have identical values in
+the debuggee message, thus, incorrectly identified as a single application
+by the Controller service. This field adds salt to further distiguish the
+application. Agents should consider seeding this field with value that
+identifies the code, binary, configuration and environment.
+*/
+
+/**
+ * @typedef Empty
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ */
+
+/**
+ * @typedef ExtendedSourceContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).SourceContext} context Any source context.
+ * @property {object} labels Labels with user defined metadata.
+ */
+
+/**
+ * @typedef FormatMessage
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {string} format Format template for the message. The `format` uses placeholders `$0`,
+`$1`, etc. to reference parameters. `$$` can be used to denote the `$`
+character.
+
+Examples:
+
+*   `Failed to load &#39;$0&#39; which helps debug $1 the first time it
+    is loaded.  Again, $0 is very important.`
+*   `Please pay $$10 to use $0 instead of $1.`
+* @property {string[]} parameters Optional parameters to be embedded into the message.
+*/
+
+/**
+ * @typedef GerritSourceContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).AliasContext} aliasContext An alias, which may be a branch or tag.
+* @property {string} aliasName The name of an alias (branch, tag, etc.).
+* @property {string} gerritProject The full project name within the host. Projects may be nested, so
+&quot;project/subproject&quot; is a valid project name.
+The &quot;repo name&quot; is hostURI/project.
+* @property {string} hostUri The URI of a running Gerrit instance.
+* @property {string} revisionId A revision (commit) ID.
+*/
+
 /**
  * @typedef GetBreakpointResponse
  * @memberOf! clouddebugger(v2)
@@ -950,14 +979,7 @@ of the debuggee must be set.
 * @property {clouddebugger(v2).Breakpoint} breakpoint Complete breakpoint state.
 The fields `id` and `location` are guaranteed to be set.
 */
-/**
- * @typedef StatusMessage
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {boolean} isError Distinguishes errors from informational messages.
- * @property {clouddebugger(v2).FormatMessage} description Status message text.
- * @property {string} refersTo Reference to which the message applies.
- */
+
 /**
  * @typedef GitSourceContext
  * @memberOf! clouddebugger(v2)
@@ -966,11 +988,146 @@ The fields `id` and `location` are guaranteed to be set.
 required.
 * @property {string} url Git repository URL.
 */
+
+/**
+ * @typedef ListActiveBreakpointsResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of all active breakpoints.
+The fields `id` and `location` are guaranteed to be set on each breakpoint.
+* @property {string} nextWaitToken A token that can be used in the next method call to block until
+the list of breakpoints changes.
+* @property {boolean} waitExpired If set to `true`, indicates that there is no change to the
+list of active breakpoints and the server-selected timeout has expired.
+The `breakpoints` field would be empty and should be ignored.
+*/
+
+/**
+ * @typedef ListBreakpointsResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of breakpoints matching the request.
+The fields `id` and `location` are guaranteed to be set on each breakpoint.
+The fields: `stack_frames`, `evaluated_expressions` and `variable_table`
+are cleared on each breakpoint regardless of its status.
+* @property {string} nextWaitToken A wait token that can be used in the next call to `list` (REST) or
+`ListBreakpoints` (RPC) to block until the list of breakpoints has changes.
+*/
+
+/**
+ * @typedef ListDebuggeesResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Debuggee[]} debuggees List of debuggees accessible to the calling user.
+The fields `debuggee.id` and `description` are guaranteed to be set.
+The `description` field is a human readable field provided by agents and
+can be displayed to users.
+*/
+
+/**
+ * @typedef ProjectRepoId
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {string} projectId The ID of the project.
+ * @property {string} repoName The name of the repo. Leave empty for the default repo.
+ */
+
+/**
+ * @typedef RegisterDebuggeeRequest
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Debuggee} debuggee Debuggee information to register.
+The fields `project`, `uniquifier`, `description` and `agent_version`
+of the debuggee must be set.
+*/
+
+/**
+ * @typedef RegisterDebuggeeResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Debuggee} debuggee Debuggee resource.
+The field `id` is guranteed to be set (in addition to the echoed fields).
+If the field `is_disabled` is set to `true`, the agent should disable
+itself by removing all breakpoints and detaching from the application.
+It should however continue to poll `RegisterDebuggee` until reenabled.
+*/
+
+/**
+ * @typedef RepoId
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).ProjectRepoId} projectRepoId A combination of a project ID and a repo name.
+ * @property {string} uid A server-assigned, globally unique identifier.
+ */
+
+/**
+ * @typedef SetBreakpointResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Breakpoint} breakpoint Breakpoint resource.
+The field `id` is guaranteed to be set (in addition to the echoed fileds).
+*/
+
+/**
+ * @typedef SourceContext
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).CloudRepoSourceContext} cloudRepo A SourceContext referring to a revision in a cloud repo.
+ * @property {clouddebugger(v2).CloudWorkspaceSourceContext} cloudWorkspace A SourceContext referring to a snapshot in a cloud workspace.
+ * @property {clouddebugger(v2).GerritSourceContext} gerrit A SourceContext referring to a Gerrit project.
+ * @property {clouddebugger(v2).GitSourceContext} git A SourceContext referring to any third party Git repo (e.g. GitHub).
+ */
+
+/**
+ * @typedef SourceLocation
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {integer} line Line inside the file. The first line in the file has the value `1`.
+ * @property {string} path Path to the source file within the source context of the target binary.
+ */
+
+/**
+ * @typedef StackFrame
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Variable[]} arguments Set of arguments passed to this function.
+Note that this might not be populated for all stack frames.
+* @property {string} function Demangled function name at the call site.
+* @property {clouddebugger(v2).Variable[]} locals Set of local variables at the stack frame location.
+Note that this might not be populated for all stack frames.
+* @property {clouddebugger(v2).SourceLocation} location Source location of the call site.
+*/
+
+/**
+ * @typedef StatusMessage
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ * @property {clouddebugger(v2).FormatMessage} description Status message text.
+ * @property {boolean} isError Distinguishes errors from informational messages.
+ * @property {string} refersTo Reference to which the message applies.
+ */
+
+/**
+ * @typedef UpdateActiveBreakpointRequest
+ * @memberOf! clouddebugger(v2)
+ * @type object
+* @property {clouddebugger(v2).Breakpoint} breakpoint Updated breakpoint information.
+The field `id` must be set.
+The agent must echo all Breakpoint specification fields in the update.
+*/
+
+/**
+ * @typedef UpdateActiveBreakpointResponse
+ * @memberOf! clouddebugger(v2)
+ * @type object
+ */
+
 /**
  * @typedef Variable
  * @memberOf! clouddebugger(v2)
  * @type object
 * @property {clouddebugger(v2).Variable[]} members Members contained or pointed to by the variable.
+* @property {string} name Name of the variable, if any.
 * @property {clouddebugger(v2).StatusMessage} status Status associated with the variable. This field will usually stay
 unset. A status of a single variable only applies to that variable or
 expression. The rest of breakpoint data still remains valid. Variables
@@ -990,7 +1147,6 @@ Examples of error message applied to value:
 *   `Malformed string`,
 *   `Field f not found in class C`
 *   `Null pointer dereference`
-* @property {string} name Name of the variable, if any.
 * @property {string} type Variable type (e.g. `MyClass`). If the variable is split with
 `var_table_index`, `type` goes next to `value`. The interpretation of
 a type is agent specific. It is recommended to include the dynamic type
@@ -999,138 +1155,5 @@ rather than a static type of an object.
 * @property {integer} varTableIndex Reference to a variable in the shared variable table. More than
 one variable can reference the same variable in the table. The
 `var_table_index` field is an index into `variable_table` in Breakpoint.
-*/
-/**
- * @typedef StackFrame
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Variable[]} arguments Set of arguments passed to this function.
-Note that this might not be populated for all stack frames.
-* @property {clouddebugger(v2).Variable[]} locals Set of local variables at the stack frame location.
-Note that this might not be populated for all stack frames.
-* @property {clouddebugger(v2).SourceLocation} location Source location of the call site.
-* @property {string} function Demangled function name at the call site.
-*/
-/**
- * @typedef RepoId
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {clouddebugger(v2).ProjectRepoId} projectRepoId A combination of a project ID and a repo name.
- * @property {string} uid A server-assigned, globally unique identifier.
- */
-/**
- * @typedef FormatMessage
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string[]} parameters Optional parameters to be embedded into the message.
-* @property {string} format Format template for the message. The `format` uses placeholders `$0`,
-`$1`, etc. to reference parameters. `$$` can be used to denote the `$`
-character.
-
-Examples:
-
-*   `Failed to load &#39;$0&#39; which helps debug $1 the first time it
-    is loaded.  Again, $0 is very important.`
-*   `Please pay $$10 to use $0 instead of $1.`
-*/
-/**
- * @typedef ExtendedSourceContext
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {clouddebugger(v2).SourceContext} context Any source context.
- * @property {object} labels Labels with user defined metadata.
- */
-/**
- * @typedef AliasContext
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {string} kind The alias kind.
- * @property {string} name The alias name.
- */
-/**
- * @typedef ListDebuggeesResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {clouddebugger(v2).Debuggee[]} debuggees List of debuggees accessible to the calling user.
-Note that the `description` field is the only human readable field
-that should be displayed to the user.
-The fields `debuggee.id` and  `description` fields are guaranteed to be
-set on each debuggee.
-*/
-/**
- * @typedef Empty
- * @memberOf! clouddebugger(v2)
- * @type object
- */
-/**
- * @typedef SourceLocation
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {string} path Path to the source file within the source context of the target binary.
- * @property {integer} line Line inside the file. The first line in the file has the value `1`.
- */
-/**
- * @typedef Debuggee
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} project Project the debuggee is associated with.
-Use the project number when registering a Google Cloud Platform project.
-* @property {boolean} isDisabled If set to `true`, indicates that the agent should disable itself and
-detach from the debuggee.
-* @property {string} agentVersion Version ID of the agent release. The version ID is structured as
-following: `domain/type/vmajor.minor` (for example
-`google.com/gcp-java/v1.1`).
-* @property {string} id Unique identifier for the debuggee generated by the controller service.
-* @property {string} uniquifier Debuggee uniquifier within the project.
-Any string that identifies the application within the project can be used.
-Including environment and version or build IDs is recommended.
-* @property {string} description Human readable description of the debuggee.
-Including a human-readable project name, environment name and version
-information is recommended.
-* @property {clouddebugger(v2).SourceContext[]} sourceContexts References to the locations and revisions of the source code used in the
-deployed application.
-
-NOTE: This field is deprecated. Consumers should use
-`ext_source_contexts` if it is not empty. Debug agents should populate
-both this field and `ext_source_contexts`.
-* @property {clouddebugger(v2).ExtendedSourceContext[]} extSourceContexts References to the locations and revisions of the source code used in the
-deployed application.
-
-Contexts describing a remote repo related to the source code
-have a `category` label of `remote_repo`. Source snapshot source
-contexts have a `category` of `snapshot`.
-* @property {object} labels A set of custom debuggee properties, populated by the agent, to be
-displayed to the user.
-* @property {boolean} isInactive If set to `true`, indicates that the debuggee is considered as inactive by
-the Controller service.
-* @property {clouddebugger(v2).StatusMessage} status Human readable message to be displayed to the user about this debuggee.
-Absence of this field indicates no status. The message can be either
-informational or an error status.
-*/
-/**
- * @typedef ListActiveBreakpointsResponse
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} nextWaitToken A wait token that can be used in the next method call to block until
-the list of breakpoints changes.
-* @property {clouddebugger(v2).Breakpoint[]} breakpoints List of all active breakpoints.
-The fields `id` and `location` are guaranteed to be set on each breakpoint.
-* @property {boolean} waitExpired The `wait_expired` field is set to true by the server when the
-request times out and the field `success_on_timeout` is set to true.
-*/
-/**
- * @typedef ProjectRepoId
- * @memberOf! clouddebugger(v2)
- * @type object
- * @property {string} projectId The ID of the project.
- * @property {string} repoName The name of the repo. Leave empty for the default repo.
- */
-/**
- * @typedef CloudWorkspaceSourceContext
- * @memberOf! clouddebugger(v2)
- * @type object
-* @property {string} snapshotId The ID of the snapshot.
-An empty snapshot_id refers to the most recent snapshot.
-* @property {clouddebugger(v2).CloudWorkspaceId} workspaceId The ID of the workspace.
 */
 export = Clouddebugger;

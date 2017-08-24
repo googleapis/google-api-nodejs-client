@@ -39,89 +39,7 @@ function Cloudtrace(options) { // eslint-disable-line
   self._options = options || {};
 
   self.projects = {
-
     traces: {
-
-      /**
-       * cloudtrace.projects.traces.listSpans
-       *
-       * @desc Returns a list of spans within a trace.
-       *
-       * @alias cloudtrace.projects.traces.listSpans
-       * @memberOf! cloudtrace(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {string} params.parent Required: The resource name of the trace containing the spans to list. The format is `projects/PROJECT_ID/traces/TRACE_ID`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      listSpans: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2/{parent}:listSpans').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudtrace.projects.traces.list
-       *
-       * @desc Returns of a list of traces that match the specified filter conditions.
-       *
-       * @alias cloudtrace.projects.traces.list
-       * @memberOf! cloudtrace(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The project where the trace data is stored. The format is `projects/PROJECT_ID`.
-       * @param {string=} params.orderBy Optional. A single field used to sort the returned traces. Only the following field names can be used:  *   `trace_id`: the trace's ID field *   `name`:  the root span's resource name *   `duration`: the difference between the root span's start time and end time *   `start`:  the start time of the root span  Sorting is in ascending order unless `desc` is appended to the sort field name. Example: `"name desc"`).
-       * @param {string=} params.filter Opional. Return only traces that match this [trace filter](/trace/docs/trace-filters). Example:      "label:/http/url root:/_ah/background my_label:17"
-       * @param {string=} params.endTime Optional. Do not return traces whose start time is later than this time.
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `page_token` must be the value of `next_page_token` from the previous response.  The values of other method parameters should be identical to those in the previous call.
-       * @param {string=} params.startTime Optional. Do not return traces whose end time is earlier than this time.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available, even if fewer than the maximum number of results is returned by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2/{parent}/traces').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * cloudtrace.projects.traces.batchWrite
@@ -161,6 +79,86 @@ function Cloudtrace(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
+      /**
+       * cloudtrace.projects.traces.list
+       *
+       * @desc Returns of a list of traces that match the specified filter conditions.
+       *
+       * @alias cloudtrace.projects.traces.list
+       * @memberOf! cloudtrace(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.endTime Optional. Do not return traces whose start time is later than this time.
+       * @param {string=} params.filter Opional. Return only traces that match this [trace filter](/trace/docs/trace-filters). Example:      "label:/http/url root:/_ah/background my_label:17"
+       * @param {string=} params.orderBy Optional. A single field used to sort the returned traces. Only the following field names can be used:  *   `trace_id`: the trace's ID field *   `name`:  the root span's resource name *   `duration`: the difference between the root span's start time and end time *   `start`:  the start time of the root span  Sorting is in ascending order unless `desc` is appended to the sort field name. Example: `"name desc"`).
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available, even if fewer than the maximum number of results is returned by this request.
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `page_token` must be the value of `next_page_token` from the previous response.  The values of other method parameters should be identical to those in the previous call.
+       * @param {string} params.parent Required. The project where the trace data is stored. The format is `projects/PROJECT_ID`.
+       * @param {string=} params.startTime Optional. Do not return traces whose end time is earlier than this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2/{parent}/traces').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudtrace.projects.traces.listSpans
+       *
+       * @desc Returns a list of spans within a trace.
+       *
+       * @alias cloudtrace.projects.traces.listSpans
+       * @memberOf! cloudtrace(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
+       * @param {string} params.parent Required: The resource name of the trace containing the spans to list. The format is `projects/PROJECT_ID/traces/TRACE_ID`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      listSpans: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2/{parent}:listSpans').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
       spans: {
 
         /**
@@ -206,31 +204,84 @@ function Cloudtrace(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Module
+ * @typedef Annotation
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).TruncatableString} module For example: main binary, kernel modules, and dynamic libraries
-such as libc.so, sharedlib.so (up to 256 bytes).
-* @property {cloudtrace(v2).TruncatableString} buildId A unique identifier for the module, usually a hash of its
-contents (up to 128 bytes).
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the annotation. There is a limit of 4 attributes
+per Annotation.
+* @property {cloudtrace(v2).TruncatableString} description A user-supplied message describing the event. The maximum length for
+the description is 256 bytes.
 */
+
 /**
- * @typedef Status
+ * @typedef AttributeValue
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+ * @property {boolean} boolValue A Boolean value represented by `true` or `false`.
+ * @property {string} intValue A 64-bit signed integer.
+ * @property {cloudtrace(v2).TruncatableString} stringValue A string up to 256 bytes long.
+ */
+
+/**
+ * @typedef Attributes
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {object} attributeMap The set of attributes. Each attribute&#39;s key can be up to 128 bytes
+long. The value can be a string up to 256 bytes, an integer, or the
+Boolean values `true` and `false`. For example:
+
+    &quot;/instance_id&quot;: &quot;my-instance&quot;
+    &quot;/http/user_agent&quot;: &quot;&quot;
+    &quot;/http/request_bytes&quot;: 300
+    &quot;abc.com/myattribute&quot;: true
+* @property {integer} droppedAttributesCount The number of attributes that were discarded. Attributes can be discarded
+because their keys are too long or because there are too many attributes.
+If this value is 0 then all attributes are valid.
 */
+
 /**
  * @typedef BatchWriteSpansRequest
  * @memberOf! cloudtrace(v2)
  * @type object
  * @property {cloudtrace(v2).Span[]} spans A collection of spans.
  */
+
+/**
+ * @typedef Empty
+ * @memberOf! cloudtrace(v2)
+ * @type object
+ */
+
+/**
+ * @typedef Link
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the link. There is a limit of 32 attributes per
+link.
+* @property {string} spanId `SPAN_ID` identifies a span within a trace.
+* @property {string} traceId `TRACE_ID` identifies a trace within a project.
+* @property {string} type The relationship of the current span relative to the linked span.
+*/
+
+/**
+ * @typedef Links
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {integer} droppedLinksCount The number of dropped links after the maximum size was enforced. If
+this value is 0, then no links were dropped.
+* @property {cloudtrace(v2).Link[]} link A collection of links.
+*/
+
+/**
+ * @typedef ListSpansResponse
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {string} nextPageToken If defined, indicates that there might be more spans that match the
+request. Pass this as the value of `pageToken` in a subsequent request to
+retrieve additional spans.
+* @property {cloudtrace(v2).Span[]} spans The requested spans, if there are any in the specified trace.
+*/
+
 /**
  * @typedef ListTracesResponse
  * @memberOf! cloudtrace(v2)
@@ -240,19 +291,38 @@ common set of message types for APIs to use.
 method again using the value of `next_page_token` as `page_token`.
 * @property {cloudtrace(v2).Trace[]} traces List of trace records returned.
 */
+
+/**
+ * @typedef Module
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {cloudtrace(v2).TruncatableString} buildId A unique identifier for the module, usually a hash of its
+contents (up to 128 bytes).
+* @property {cloudtrace(v2).TruncatableString} module For example: main binary, kernel modules, and dynamic libraries
+such as libc.so, sharedlib.so (up to 256 bytes).
+*/
+
+/**
+ * @typedef NetworkEvent
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {string} messageId An identifier for the message, which must be unique in this span.
+* @property {string} messageSize The number of bytes sent or received.
+* @property {string} time For sent messages, this is the time at which the first bit was sent.
+For received messages, this is the time at which the last bit was
+received.
+* @property {string} type Type of NetworkEvent. Indicates whether the RPC message was sent or
+received.
+*/
+
 /**
  * @typedef Span
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).StackTrace} stackTrace Stack trace captured at the start of the span.
-* @property {string} parentSpanId The [SPAN_ID] of this span&#39;s parent span. If this is a root span,
-then this field must be empty.
-* @property {string} endTime The end time of the span. On the client side, this is the time kept by
-the local machine where the span execution ends. On the server side, this
-is the time when the server application handler stops running.
-* @property {string} startTime The start time of the span. On the client side, this is the time kept by
-the local machine where the span execution starts. On the server side, this
-is the time when the server&#39;s application handler starts running.
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the span. There is a limit of 32 attributes per
+span.
+* @property {integer} childSpanCount An optional number of child spans that were generated while this span
+was active. If set, allows implementation to detect missing child spans.
 * @property {cloudtrace(v2).TruncatableString} displayName A description of the span&#39;s operation (up to 128 bytes).
 Stackdriver Trace displays the description in the
 {% dynamic print site_values.console_name %}.
@@ -260,61 +330,116 @@ For example, the display name can be a qualified method name or a file name
 and a line number where the operation is called. A best practice is to use
 the same display name within an application and at the same call point.
 This makes it easier to correlate spans in different traces.
-* @property {cloudtrace(v2).TimeEvents} timeEvents The included time events. There can be up to 32 annotations and 128 network
-events per span.
+* @property {string} endTime The end time of the span. On the client side, this is the time kept by
+the local machine where the span execution ends. On the server side, this
+is the time when the server application handler stops running.
 * @property {cloudtrace(v2).Links} links A maximum of 128 links are allowed per Span.
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the span. There is a limit of 32 attributes per
-span.
-* @property {string} spanId The [SPAN_ID] portion of the span&#39;s resource name.
-* @property {integer} childSpanCount An optional number of child spans that were generated while this span
-was active. If set, allows implementation to detect missing child spans.
-* @property {boolean} sameProcessAsParentSpan A highly recommended but not required flag that identifies when a trace
-crosses a process boundary. True when the parent_span belongs to the
-same process as the current span.
-* @property {cloudtrace(v2).Status} status An optional final status for this span.
 * @property {string} name The resource name of the span in the following format:
 
     projects/[PROJECT_ID]traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project.
 [SPAN_ID] is a unique identifier for a span within a trace,
 assigned when the span is created.
+* @property {string} parentSpanId The [SPAN_ID] of this span&#39;s parent span. If this is a root span,
+then this field must be empty.
+* @property {boolean} sameProcessAsParentSpan A highly recommended but not required flag that identifies when a trace
+crosses a process boundary. True when the parent_span belongs to the
+same process as the current span.
+* @property {string} spanId The [SPAN_ID] portion of the span&#39;s resource name.
+* @property {cloudtrace(v2).StackTrace} stackTrace Stack trace captured at the start of the span.
+* @property {string} startTime The start time of the span. On the client side, this is the time kept by
+the local machine where the span execution starts. On the server side, this
+is the time when the server&#39;s application handler starts running.
+* @property {cloudtrace(v2).Status} status An optional final status for this span.
+* @property {cloudtrace(v2).TimeEvents} timeEvents The included time events. There can be up to 32 annotations and 128 network
+events per span.
 */
-/**
- * @typedef Empty
- * @memberOf! cloudtrace(v2)
- * @type object
- */
-/**
- * @typedef AttributeValue
- * @memberOf! cloudtrace(v2)
- * @type object
- * @property {boolean} boolValue A Boolean value represented by `true` or `false`.
- * @property {cloudtrace(v2).TruncatableString} stringValue A string up to 256 bytes long.
- * @property {string} intValue A 64-bit signed integer.
- */
-/**
- * @typedef Attributes
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {integer} droppedAttributesCount The number of attributes that were discarded. Attributes can be discarded
-because their keys are too long or because there are too many attributes.
-If this value is 0 then all attributes are valid.
-* @property {object} attributeMap The set of attributes. Each attribute&#39;s key can be up to 128 bytes
-long. The value can be a string up to 256 bytes, an integer, or the
-Boolean values `true` and `false`. For example:
 
-    &quot;/instance_id&quot;: &quot;my-instance&quot;
-    &quot;/http/user_agent&quot;: &quot;&quot;
-    &quot;/http/request_bytes&quot;: 300
-    &quot;abc.com/myattribute&quot;: true
-*/
 /**
- * @typedef Links
+ * @typedef StackFrame
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).Link[]} link A collection of links.
-* @property {integer} droppedLinksCount The number of dropped links after the maximum size was enforced. If
-this value is 0, then no links were dropped.
+* @property {string} columnNumber The column number where the function call appears, if available.
+This is important in JavaScript because of its anonymous functions.
+* @property {cloudtrace(v2).TruncatableString} fileName The name of the source file where the function call appears (up to 256
+bytes).
+* @property {cloudtrace(v2).TruncatableString} functionName The fully-qualified name that uniquely identifies the function or
+method that is active in this frame (up to 1024 bytes).
+* @property {string} lineNumber The line number in `file_name` where the function call appears.
+* @property {cloudtrace(v2).Module} loadModule The binary module from where the code was loaded.
+* @property {cloudtrace(v2).TruncatableString} originalFunctionName An un-mangled function name, if `function_name` is
+[mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
+be fully-qualified (up to 1024 bytes).
+* @property {cloudtrace(v2).TruncatableString} sourceVersion The version of the deployed source code (up to 128 bytes).
 */
+
+/**
+ * @typedef StackFrames
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {integer} droppedFramesCount The number of stack frames that were dropped because there
+were too many stack frames.
+If this value is 0, then no stack frames were dropped.
+* @property {cloudtrace(v2).StackFrame[]} frame Stack frames in this call stack.
+*/
+
+/**
+ * @typedef StackTrace
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {cloudtrace(v2).StackFrames} stackFrames Stack frames in this stack trace. A maximum of 128 frames are allowed.
+* @property {string} stackTraceHashId The hash ID is used to conserve network bandwidth for duplicate
+stack traces within a single trace.
+
+Often multiple spans will have identical stack traces.
+The first occurrence of a stack trace should contain both the
+`stackFrame` content and a value in `stackTraceHashId`.
+
+Subsequent spans within the same request can refer
+to that stack trace by only setting `stackTraceHashId`.
+*/
+
+/**
+ * @typedef Status
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There is a common set of
+message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+
+/**
+ * @typedef TimeEvent
+ * @memberOf! cloudtrace(v2)
+ * @type object
+ * @property {cloudtrace(v2).Annotation} annotation One or more key:value pairs.
+ * @property {cloudtrace(v2).NetworkEvent} networkEvent An event describing an RPC message sent/received on the network.
+ * @property {string} time The timestamp indicating the time the event occurred.
+ */
+
+/**
+ * @typedef TimeEvents
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {integer} droppedAnnotationsCount The number of dropped annotations in all the included time events.
+If the value is 0, then no annotations were dropped.
+* @property {integer} droppedNetworkEventsCount The number of dropped network events in all the included time events.
+If the value is 0, then no network events were dropped.
+* @property {cloudtrace(v2).TimeEvent[]} timeEvent A collection of `TimeEvent`s.
+*/
+
+/**
+ * @typedef Trace
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {string} name The resource name of the trace in the following format:
+
+    projects/[PROJECT_ID]/traces/TRACE_ID is a unique identifier for a trace within a project.
+The ID is assigned when the trace is created.
+*/
+
 /**
  * @typedef TruncatableString
  * @memberOf! cloudtrace(v2)
@@ -327,113 +452,5 @@ value contains the first 128 bytes of the 500-byte string. Note that
 truncation always happens on the character boundary, to ensure that
 truncated string is still valid UTF8. In case of multi-byte characters,
 size of truncated string can be less than truncation limit.
-*/
-/**
- * @typedef StackTrace
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} stackTraceHashId The hash ID is used to conserve network bandwidth for duplicate
-stack traces within a single trace.
-
-Often multiple spans will have identical stack traces.
-The first occurrence of a stack trace should contain both the
-`stackFrame` content and a value in `stackTraceHashId`.
-
-Subsequent spans within the same request can refer
-to that stack trace by only setting `stackTraceHashId`.
-* @property {cloudtrace(v2).StackFrames} stackFrames Stack frames in this stack trace. A maximum of 128 frames are allowed.
-*/
-/**
- * @typedef TimeEvent
- * @memberOf! cloudtrace(v2)
- * @type object
- * @property {cloudtrace(v2).NetworkEvent} networkEvent An event describing an RPC message sent/received on the network.
- * @property {cloudtrace(v2).Annotation} annotation One or more key:value pairs.
- * @property {string} time The timestamp indicating the time the event occurred.
- */
-/**
- * @typedef NetworkEvent
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} messageSize The number of bytes sent or received.
-* @property {string} time For sent messages, this is the time at which the first bit was sent.
-For received messages, this is the time at which the last bit was
-received.
-* @property {string} type Type of NetworkEvent. Indicates whether the RPC message was sent or
-received.
-* @property {string} messageId An identifier for the message, which must be unique in this span.
-*/
-/**
- * @typedef ListSpansResponse
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {cloudtrace(v2).Span[]} spans The requested spans, if there are any in the specified trace.
-* @property {string} nextPageToken If defined, indicates that there might be more spans that match the
-request. Pass this as the value of `pageToken` in a subsequent request to
-retrieve additional spans.
-*/
-/**
- * @typedef StackFrame
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {cloudtrace(v2).TruncatableString} functionName The fully-qualified name that uniquely identifies the function or
-method that is active in this frame (up to 1024 bytes).
-* @property {string} lineNumber The line number in `file_name` where the function call appears.
-* @property {cloudtrace(v2).Module} loadModule The binary module from where the code was loaded.
-* @property {string} columnNumber The column number where the function call appears, if available.
-This is important in JavaScript because of its anonymous functions.
-* @property {cloudtrace(v2).TruncatableString} fileName The name of the source file where the function call appears (up to 256
-bytes).
-* @property {cloudtrace(v2).TruncatableString} sourceVersion The version of the deployed source code (up to 128 bytes).
-* @property {cloudtrace(v2).TruncatableString} originalFunctionName An un-mangled function name, if `function_name` is
-[mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can
-be fully-qualified (up to 1024 bytes).
-*/
-/**
- * @typedef Link
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} type The relationship of the current span relative to the linked span.
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the link. There is a limit of 32 attributes per
-link.
-* @property {string} traceId `TRACE_ID` identifies a trace within a project.
-* @property {string} spanId `SPAN_ID` identifies a span within a trace.
-*/
-/**
- * @typedef Annotation
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {cloudtrace(v2).TruncatableString} description A user-supplied message describing the event. The maximum length for
-the description is 256 bytes.
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the annotation. There is a limit of 4 attributes
-per Annotation.
-*/
-/**
- * @typedef StackFrames
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {integer} droppedFramesCount The number of stack frames that were dropped because there
-were too many stack frames.
-If this value is 0, then no stack frames were dropped.
-* @property {cloudtrace(v2).StackFrame[]} frame Stack frames in this call stack.
-*/
-/**
- * @typedef Trace
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} name The resource name of the trace in the following format:
-
-    projects/[PROJECT_ID]/traces/TRACE_ID is a unique identifier for a trace within a project.
-The ID is assigned when the trace is created.
-*/
-/**
- * @typedef TimeEvents
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {integer} droppedAnnotationsCount The number of dropped annotations in all the included time events.
-If the value is 0, then no annotations were dropped.
-* @property {cloudtrace(v2).TimeEvent[]} timeEvent A collection of `TimeEvent`s.
-* @property {integer} droppedNetworkEventsCount The number of dropped network events in all the included time events.
-If the value is 0, then no network events were dropped.
 */
 export = Cloudtrace;

@@ -228,7 +228,6 @@ function Androidpublisher(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     apklistings: {
 
       /**
@@ -471,7 +470,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     apks: {
 
       /**
@@ -593,7 +591,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     deobfuscationfiles: {
 
       /**
@@ -640,7 +637,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     details: {
 
       /**
@@ -759,7 +755,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     expansionfiles: {
 
       /**
@@ -928,7 +923,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     images: {
 
       /**
@@ -1096,7 +1090,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     listings: {
 
       /**
@@ -1333,7 +1326,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     testers: {
 
       /**
@@ -1455,7 +1447,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     tracks: {
 
       /**
@@ -1939,7 +1930,6 @@ function Androidpublisher(options) { // eslint-disable-line
   };
 
   self.purchases = {
-
     products: {
 
       /**
@@ -1981,7 +1971,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     subscriptions: {
 
       /**
@@ -2180,7 +2169,6 @@ function Androidpublisher(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
-
     voidedpurchases: {
 
       /**
@@ -2192,11 +2180,11 @@ function Androidpublisher(options) { // eslint-disable-line
        * @memberOf! androidpublisher(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time.
+       * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
        * @param {integer=} params.maxResults 
        * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
        * @param {integer=} params.startIndex 
-       * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days.
+       * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
        * @param {string=} params.token 
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2358,12 +2346,15 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).ApkBinary} binary Information about the binary payload of this APK.
  * @property {integer} versionCode The version code of the APK, as specified in the APK&#39;s manifest file.
  */
+
 /**
  * @typedef ApkBinary
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {string} sha1 A sha1 hash of the APK payload, encoded as a hex string and matching the output of the sha1sum command.
+ * @property {string} sha256 A sha256 hash of the APK payload, encoded as a hex string and matching the output of the sha256sum command.
  */
+
 /**
  * @typedef ApkListing
  * @memberOf! androidpublisher(v2)
@@ -2371,6 +2362,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} language The language code, in BCP 47 format (eg &quot;en-US&quot;).
  * @property {string} recentChanges Describe what&#39;s new in your APK.
  */
+
 /**
  * @typedef ApkListingsListResponse
  * @memberOf! androidpublisher(v2)
@@ -2378,18 +2370,21 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apkListingsListResponse&quot;.
  * @property {androidpublisher(v2).ApkListing[]} listings 
  */
+
 /**
  * @typedef ApksAddExternallyHostedRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).ExternallyHostedApk} externallyHostedApk The definition of the externally-hosted APK and where it is located.
  */
+
 /**
  * @typedef ApksAddExternallyHostedResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).ExternallyHostedApk} externallyHostedApk The definition of the externally-hosted APK and where it is located.
  */
+
 /**
  * @typedef ApksListResponse
  * @memberOf! androidpublisher(v2)
@@ -2397,6 +2392,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Apk[]} apks 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apksListResponse&quot;.
  */
+
 /**
  * @typedef AppDetails
  * @memberOf! androidpublisher(v2)
@@ -2406,6 +2402,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} contactWebsite The user-visible website for this app.
  * @property {string} defaultLanguage Default language code, in BCP 47 format (eg &quot;en-US&quot;).
  */
+
 /**
  * @typedef AppEdit
  * @memberOf! androidpublisher(v2)
@@ -2413,6 +2410,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} expiryTimeSeconds The time at which the edit will expire and will be no longer valid for use in any subsequent API calls (encoded as seconds since the Epoch).
  * @property {string} id The ID of the edit that can be used in subsequent API calls.
  */
+
 /**
  * @typedef Comment
  * @memberOf! androidpublisher(v2)
@@ -2420,18 +2418,21 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).DeveloperComment} developerComment A comment from a developer.
  * @property {androidpublisher(v2).UserComment} userComment A comment from a user.
  */
+
 /**
  * @typedef DeobfuscationFile
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {string} symbolType The type of the deobfuscation file.
  */
+
 /**
  * @typedef DeobfuscationFilesUploadResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).DeobfuscationFile} deobfuscationFile 
  */
+
 /**
  * @typedef DeveloperComment
  * @memberOf! androidpublisher(v2)
@@ -2439,6 +2440,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Timestamp} lastModified The last time at which this comment was updated.
  * @property {string} text The content of the comment, i.e. reply body.
  */
+
 /**
  * @typedef DeviceMetadata
  * @memberOf! androidpublisher(v2)
@@ -2455,6 +2457,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} screenHeightPx Screen height in pixels
  * @property {integer} screenWidthPx Screen width in pixels
  */
+
 /**
  * @typedef Entitlement
  * @memberOf! androidpublisher(v2)
@@ -2466,6 +2469,7 @@ function Androidpublisher(options) { // eslint-disable-line
 - Subscription: &quot;subs&quot;
 * @property {string} token The token which can be verified using the subscriptions or products API.
 */
+
 /**
  * @typedef EntitlementsListResponse
  * @memberOf! androidpublisher(v2)
@@ -2474,6 +2478,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Entitlement[]} resources 
  * @property {androidpublisher(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef ExpansionFile
  * @memberOf! androidpublisher(v2)
@@ -2481,12 +2486,14 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} fileSize If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK&#39;s Expansion File. The field&#39;s value is the size of the uploaded Expansion File in bytes.
  * @property {integer} referencesVersion If set this APK&#39;s Expansion File references another APK&#39;s Expansion File. The file_size field will not be set.
  */
+
 /**
  * @typedef ExpansionFilesUploadResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).ExpansionFile} expansionFile 
  */
+
 /**
  * @typedef ExternallyHostedApk
  * @memberOf! androidpublisher(v2)
@@ -2507,6 +2514,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} versionCode The version code of this APK.
  * @property {string} versionName The version name of this APK.
  */
+
 /**
  * @typedef ExternallyHostedApkUsesPermission
  * @memberOf! androidpublisher(v2)
@@ -2514,6 +2522,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} maxSdkVersion Optionally, the maximum SDK version for which the permission is required.
  * @property {string} name The name of the permission requested.
  */
+
 /**
  * @typedef Image
  * @memberOf! androidpublisher(v2)
@@ -2522,24 +2531,28 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} sha1 A sha1 hash of the image that was uploaded.
  * @property {string} url A URL that will serve a preview of the image.
  */
+
 /**
  * @typedef ImagesDeleteAllResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).Image[]} deleted 
  */
+
 /**
  * @typedef ImagesListResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).Image[]} images 
  */
+
 /**
  * @typedef ImagesUploadResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).Image} image 
  */
+
 /**
  * @typedef InAppProduct
  * @memberOf! androidpublisher(v2)
@@ -2556,6 +2569,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} subscriptionPeriod Subscription period, specified in ISO 8601 format. Acceptable values are &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
  * @property {string} trialPeriod Trial period, specified in ISO 8601 format. Acceptable values are anything between &quot;P7D&quot; (seven days) and &quot;P999D&quot; (999 days). Seasonal subscriptions cannot have a trial period.
  */
+
 /**
  * @typedef InAppProductListing
  * @memberOf! androidpublisher(v2)
@@ -2563,12 +2577,14 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} description 
  * @property {string} title 
  */
+
 /**
  * @typedef InappproductsBatchRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).InappproductsBatchRequestEntry[]} entrys 
  */
+
 /**
  * @typedef InappproductsBatchRequestEntry
  * @memberOf! androidpublisher(v2)
@@ -2578,6 +2594,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).InappproductsUpdateRequest} inappproductsupdaterequest 
  * @property {string} methodName 
  */
+
 /**
  * @typedef InappproductsBatchResponse
  * @memberOf! androidpublisher(v2)
@@ -2585,6 +2602,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).InappproductsBatchResponseEntry[]} entrys 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsBatchResponse&quot;.
  */
+
 /**
  * @typedef InappproductsBatchResponseEntry
  * @memberOf! androidpublisher(v2)
@@ -2593,18 +2611,21 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).InappproductsInsertResponse} inappproductsinsertresponse 
  * @property {androidpublisher(v2).InappproductsUpdateResponse} inappproductsupdateresponse 
  */
+
 /**
  * @typedef InappproductsInsertRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).InAppProduct} inappproduct 
  */
+
 /**
  * @typedef InappproductsInsertResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).InAppProduct} inappproduct 
  */
+
 /**
  * @typedef InappproductsListResponse
  * @memberOf! androidpublisher(v2)
@@ -2614,18 +2635,21 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).PageInfo} pageInfo 
  * @property {androidpublisher(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef InappproductsUpdateRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).InAppProduct} inappproduct 
  */
+
 /**
  * @typedef InappproductsUpdateResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).InAppProduct} inappproduct 
  */
+
 /**
  * @typedef Listing
  * @memberOf! androidpublisher(v2)
@@ -2636,6 +2660,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} title App&#39;s localized title.
  * @property {string} video URL of a promotional YouTube video for the app.
  */
+
 /**
  * @typedef ListingsListResponse
  * @memberOf! androidpublisher(v2)
@@ -2643,6 +2668,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#listingsListResponse&quot;.
  * @property {androidpublisher(v2).Listing[]} listings 
  */
+
 /**
  * @typedef MonthDay
  * @memberOf! androidpublisher(v2)
@@ -2650,6 +2676,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} day Day of a month, value in [1, 31] range. Valid range depends on the specified month.
  * @property {integer} month Month of a year. e.g. 1 = JAN, 2 = FEB etc.
  */
+
 /**
  * @typedef PageInfo
  * @memberOf! androidpublisher(v2)
@@ -2658,6 +2685,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} startIndex 
  * @property {integer} totalResults 
  */
+
 /**
  * @typedef Price
  * @memberOf! androidpublisher(v2)
@@ -2665,6 +2693,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} currency 3 letter Currency code, as defined by ISO 4217.
  * @property {string} priceMicros The price in millionths of the currency base unit represented as a string.
  */
+
 /**
  * @typedef ProductPurchase
  * @memberOf! androidpublisher(v2)
@@ -2674,11 +2703,13 @@ function Androidpublisher(options) { // eslint-disable-line
 - Consumed
 * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
 * @property {string} kind This kind represents an inappPurchase object in the androidpublisher service.
+* @property {string} orderId The order id associated with the purchase of the inapp product.
 * @property {integer} purchaseState The purchase state of the order. Possible values are:  
 - Purchased 
 - Cancelled
 * @property {string} purchaseTimeMillis The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
 */
+
 /**
  * @typedef Prorate
  * @memberOf! androidpublisher(v2)
@@ -2686,6 +2717,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Price} defaultPrice Default price cannot be zero and must be less than the full subscription price. Default price is always in the developer&#39;s Checkout merchant currency. Targeted countries have their prices set automatically based on the default_price.
  * @property {androidpublisher(v2).MonthDay} start Defines the first day on which the price takes effect.
  */
+
 /**
  * @typedef Review
  * @memberOf! androidpublisher(v2)
@@ -2694,6 +2726,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Comment[]} comments A repeated field containing comments for the review.
  * @property {string} reviewId Unique identifier for this review.
  */
+
 /**
  * @typedef ReviewReplyResult
  * @memberOf! androidpublisher(v2)
@@ -2701,6 +2734,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Timestamp} lastEdited The time at which the reply took effect.
  * @property {string} replyText The reply text that was applied.
  */
+
 /**
  * @typedef ReviewsListResponse
  * @memberOf! androidpublisher(v2)
@@ -2709,18 +2743,21 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Review[]} reviews 
  * @property {androidpublisher(v2).TokenPagination} tokenPagination 
  */
+
 /**
  * @typedef ReviewsReplyRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {string} replyText The text to set as the reply. Replies of more than approximately 350 characters will be rejected. HTML tags will be stripped.
  */
+
 /**
  * @typedef ReviewsReplyResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).ReviewReplyResult} result 
  */
+
 /**
  * @typedef Season
  * @memberOf! androidpublisher(v2)
@@ -2729,6 +2766,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {androidpublisher(v2).Prorate[]} prorations Optionally present list of prorations for the season. Each proration is a one-off discounted entry into a subscription. Each proration contains the first date on which the discount is available and the new pricing information.
  * @property {androidpublisher(v2).MonthDay} start Inclusive start date of the recurrence period.
  */
+
 /**
  * @typedef SubscriptionDeferralInfo
  * @memberOf! androidpublisher(v2)
@@ -2736,6 +2774,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} desiredExpiryTimeMillis The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription.
  * @property {string} expectedExpiryTimeMillis The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
  */
+
 /**
  * @typedef SubscriptionPurchase
  * @memberOf! androidpublisher(v2)
@@ -2748,26 +2787,31 @@ function Androidpublisher(options) { // eslint-disable-line
 * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
 * @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.
 * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
+* @property {string} orderId The order id of the latest recurring order associated with the purchase of the subscription.
 * @property {integer} paymentState The payment state of the subscription. Possible values are:  
 - Payment pending 
-- Payment received
+- Payment received 
+- Free trial
 * @property {string} priceAmountMicros Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
 * @property {string} priceCurrencyCode ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
 * @property {string} startTimeMillis Time at which the subscription was granted, in milliseconds since the Epoch.
 * @property {string} userCancellationTimeMillis The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
 */
+
 /**
  * @typedef SubscriptionPurchasesDeferRequest
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {androidpublisher(v2).SubscriptionDeferralInfo} deferralInfo The information about the new desired expiry time for the subscription.
  */
+
 /**
  * @typedef SubscriptionPurchasesDeferResponse
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {string} newExpiryTimeMillis The new expiry time for the subscription in milliseconds since the Epoch.
  */
+
 /**
  * @typedef Testers
  * @memberOf! androidpublisher(v2)
@@ -2775,6 +2819,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string[]} googleGroups 
  * @property {string[]} googlePlusCommunities 
  */
+
 /**
  * @typedef Timestamp
  * @memberOf! androidpublisher(v2)
@@ -2782,6 +2827,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} nanos 
  * @property {string} seconds 
  */
+
 /**
  * @typedef TokenPagination
  * @memberOf! androidpublisher(v2)
@@ -2789,6 +2835,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} nextPageToken 
  * @property {string} previousPageToken 
  */
+
 /**
  * @typedef Track
  * @memberOf! androidpublisher(v2)
@@ -2797,6 +2844,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {number} userFraction 
  * @property {integer[]} versionCodes 
  */
+
 /**
  * @typedef TracksListResponse
  * @memberOf! androidpublisher(v2)
@@ -2804,6 +2852,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#tracksListResponse&quot;.
  * @property {androidpublisher(v2).Track[]} tracks 
  */
+
 /**
  * @typedef UserComment
  * @memberOf! androidpublisher(v2)
@@ -2821,6 +2870,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} thumbsDownCount Number of users who have given this review a thumbs down
  * @property {integer} thumbsUpCount Number of users who have given this review a thumbs up
  */
+
 /**
  * @typedef VoidedPurchase
  * @memberOf! androidpublisher(v2)
@@ -2830,6 +2880,7 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} purchaseToken The token that was generated when a purchase was made. This uniquely identifies a purchase.
  * @property {string} voidedTimeMillis The time at which the purchase was cancelled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
  */
+
 /**
  * @typedef VoidedPurchasesListResponse
  * @memberOf! androidpublisher(v2)

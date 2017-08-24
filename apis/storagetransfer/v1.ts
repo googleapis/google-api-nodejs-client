@@ -130,12 +130,12 @@ function Storagetransfer(options) { // eslint-disable-line
 
   };
 
-  self.transferOperations = {
+  self.transferJobs = {
 
     /**
-     * storagetransfer.transferOperations.resume
+     * storagetransfer.transferJobs.create
      *
-     * @desc Resumes a transfer operation that is paused.
+     * @desc Creates a transfer job that runs periodically.
      *
      * @example
      * // BEFORE RUNNING:
@@ -157,9 +157,6 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the transfer operation. Required.
-     *     name: '',  // TODO: Update placeholder value.
-     *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
@@ -167,11 +164,14 @@ function Storagetransfer(options) { // eslint-disable-line
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.resume(request, function(err) {
+     *   storagetransfer.transferJobs.create(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
      *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
      *
@@ -189,17 +189,16 @@ function Storagetransfer(options) { // eslint-disable-line
      *   });
      * }
      *
-     * @alias storagetransfer.transferOperations.resume
+     * @alias storagetransfer.transferJobs.create
      * @memberOf! storagetransfer(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the transfer operation. Required.
-     * @param {storagetransfer(v1).ResumeTransferOperationRequest} params.resource Request body data
+     * @param {storagetransfer(v1).TransferJob} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume: function (params, options, callback) {
+    create: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -210,17 +209,304 @@ function Storagetransfer(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1/{name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+          url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
       return createAPIRequest(parameters, callback);
     },
+
+    /**
+     * storagetransfer.transferJobs.get
+     *
+     * @desc Gets a transfer job.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The job to get. Required.
+     *     jobName: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferJobs.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias storagetransfer.transferJobs.get
+     * @memberOf! storagetransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobName The job to get. Required.
+     * @param {string=} params.projectId The ID of the Google Cloud Platform Console project that owns the job. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['jobName'],
+        pathParams: ['jobName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storagetransfer.transferJobs.list
+     *
+     * @desc Lists transfer jobs.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     auth: authClient
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     var transferJobsPage = response['transferJobs'];
+     *     if (!transferJobsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < transferJobsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `transferJobsPage`:
+     *       console.log(JSON.stringify(transferJobsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       storagetransfer.transferJobs.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   storagetransfer.transferJobs.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias storagetransfer.transferJobs.list
+     * @memberOf! storagetransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
+     * @param {string=} params.pageToken The list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storagetransfer.transferJobs.patch
+     *
+     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating the scheduling of a job is not allowed.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of job to update. Required.
+     *     jobName: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferJobs.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias storagetransfer.transferJobs.patch
+     * @memberOf! storagetransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobName The name of job to update. Required.
+     * @param {storagetransfer(v1).UpdateTransferJobRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['jobName'],
+        pathParams: ['jobName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.transferOperations = {
 
     /**
      * storagetransfer.transferOperations.cancel
@@ -308,6 +594,91 @@ function Storagetransfer(options) { // eslint-disable-line
     },
 
     /**
+     * storagetransfer.transferOperations.delete
+     *
+     * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the operation resource to be deleted.
+     *     name: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   storagetransfer.transferOperations.delete(request, function(err) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias storagetransfer.transferOperations.delete
+     * @memberOf! storagetransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * storagetransfer.transferOperations.get
      *
      * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
@@ -373,6 +744,110 @@ function Storagetransfer(options) { // eslint-disable-line
      * @return {object} Request object
      */
     get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storagetransfer.transferOperations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Storage Transfer API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storagetransfer
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storagetransfer = google.storagetransfer('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The value `transferOperations`.
+     *     name: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       storagetransfer.transferOperations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   storagetransfer.transferOperations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias storagetransfer.transferOperations.list
+     * @memberOf! storagetransfer(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\", \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...], \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `job_names`, `operation_names`, and `transfer_statuses` are optional.
+     * @param {string} params.name The value `transferOperations`.
+     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
+     * @param {string=} params.pageToken The list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -486,9 +961,9 @@ function Storagetransfer(options) { // eslint-disable-line
     },
 
     /**
-     * storagetransfer.transferOperations.delete
+     * storagetransfer.transferOperations.resume
      *
-     * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
+     * @desc Resumes a transfer operation that is paused.
      *
      * @example
      * // BEFORE RUNNING:
@@ -510,199 +985,9 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the operation resource to be deleted.
+     *     // The name of the transfer operation. Required.
      *     name: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
-     *   };
-     *
-     *   storagetransfer.transferOperations.delete(request, function(err) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias storagetransfer.transferOperations.delete
-     * @memberOf! storagetransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * storagetransfer.transferOperations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The value `transferOperations`.
-     *     name: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     var operationsPage = response['operations'];
-     *     if (!operationsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < operationsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `operationsPage`:
-     *       console.log(JSON.stringify(operationsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       storagetransfer.transferOperations.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   storagetransfer.transferOperations.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias storagetransfer.transferOperations.list
-     * @memberOf! storagetransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
-     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\", \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...], \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `job_names`, `operation_names`, and `transfer_statuses` are optional.
-     * @param {string=} params.pageToken The list page token.
-     * @param {string} params.name The value `transferOperations`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.transferJobs = {
-
-    /**
-     * storagetransfer.transferJobs.create
-     *
-     * @desc Creates a transfer job that runs periodically.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
@@ -710,14 +995,11 @@ function Storagetransfer(options) { // eslint-disable-line
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferJobs.create(request, function(err, response) {
+     *   storagetransfer.transferOperations.resume(request, function(err) {
      *     if (err) {
      *       console.log(err);
      *       return;
      *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
      *
@@ -735,16 +1017,17 @@ function Storagetransfer(options) { // eslint-disable-line
      *   });
      * }
      *
-     * @alias storagetransfer.transferJobs.create
+     * @alias storagetransfer.transferOperations.resume
      * @memberOf! storagetransfer(v1)
      *
      * @param {object} params Parameters for request
-     * @param {storagetransfer(v1).TransferJob} params.resource Request body data
+     * @param {string} params.name The name of the transfer operation. Required.
+     * @param {storagetransfer(v1).ResumeTransferOperationRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, options, callback) {
+    resume: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -755,295 +1038,12 @@ function Storagetransfer(options) { // eslint-disable-line
 
       const parameters = {
         options: Object.assign({
-          url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
+          url: (rootUrl + '/v1/{name}:resume').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * storagetransfer.transferJobs.list
-     *
-     * @desc Lists transfer jobs.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     var transferJobsPage = response['transferJobs'];
-     *     if (!transferJobsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < transferJobsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `transferJobsPage`:
-     *       console.log(JSON.stringify(transferJobsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       storagetransfer.transferJobs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   storagetransfer.transferJobs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias storagetransfer.transferJobs.list
-     * @memberOf! storagetransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken The list page token.
-     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
-     * @param {string=} params.filter A list of query parameters specified as JSON text in the form of {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * storagetransfer.transferJobs.get
-     *
-     * @desc Gets a transfer job.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The job to get. Required.
-     *     jobName: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   storagetransfer.transferJobs.get(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias storagetransfer.transferJobs.get
-     * @memberOf! storagetransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.projectId The ID of the Google Cloud Platform Console project that owns the job. Required.
-     * @param {string} params.jobName The job to get. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['jobName'],
-        pathParams: ['jobName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * storagetransfer.transferJobs.patch
-     *
-     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating the scheduling of a job is not allowed.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of job to update. Required.
-     *     jobName: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   storagetransfer.transferJobs.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias storagetransfer.transferJobs.patch
-     * @memberOf! storagetransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobName The name of job to update. Required.
-     * @param {storagetransfer(v1).UpdateTransferJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://storagetransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['jobName'],
-        pathParams: ['jobName'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: self
       };
 
@@ -1062,52 +1062,73 @@ Required.
 * @property {string} secretAccessKey AWS secret access key. This field is not returned in RPC responses.
 Required.
 */
+
+/**
+ * @typedef AwsS3Data
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {storagetransfer(v1).AwsAccessKey} awsAccessKey AWS access key used to sign the API requests to the AWS S3 bucket.
+Permissions on the bucket must be granted to the access ID of the
+AWS access key.
+Required.
+* @property {string} bucketName S3 Bucket name (see
+[Creating a bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
+Required.
+*/
+
+/**
+ * @typedef Date
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0
+if specifying a year/month where the day is not significant.
+* @property {integer} month Month of year. Must be from 1 to 12.
+* @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without
+a year.
+*/
+
 /**
  * @typedef Empty
  * @memberOf! storagetransfer(v1)
  * @type object
  */
+
 /**
- * @typedef PauseTransferOperationRequest
+ * @typedef ErrorLogEntry
  * @memberOf! storagetransfer(v1)
  * @type object
- */
-/**
- * @typedef TransferCounters
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {string} bytesFailedToDeleteFromSink Bytes that failed to be deleted from the data sink.
-* @property {string} bytesDeletedFromSink Bytes that are deleted from the data sink.
-* @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
-* @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
-* @property {string} objectsCopiedToSink Objects that are copied to the data sink.
-* @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
-* @property {string} objectsDeletedFromSource Objects that are deleted from the data source.
-* @property {string} bytesCopiedToSink Bytes that are copied to the data sink.
-* @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already
-exist in the data sink.
-* @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred,
-which will be copied, excluded based on conditions, or skipped due to
-failures.
-* @property {string} objectsFoundFromSource Objects found in the data source that are scheduled to be transferred,
-which will be copied, excluded based on conditions, or skipped due to
-failures.
-* @property {string} bytesDeletedFromSource Bytes that are deleted from the data source.
-* @property {string} objectsFailedToDeleteFromSink Objects that failed to be deleted from the data sink.
-* @property {string} objectsFoundOnlyFromSink Objects found only in the data sink that are scheduled to be deleted.
-* @property {string} objectsDeletedFromSink Objects that are deleted from the data sink.
-* @property {string} bytesFromSourceSkippedBySync Bytes in the data source that are not transferred because they already
-exist in the data sink.
+* @property {string[]} errorDetails A list of messages that carry the error details.
+* @property {string} url A URL that refers to the target (a data source, a data sink,
+or an object) with which the error is associated.
+Required.
 */
+
 /**
  * @typedef ErrorSummary
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {string} errorCode Required.
 * @property {string} errorCount Count of this type of error.
 Required.
 * @property {storagetransfer(v1).ErrorLogEntry[]} errorLogEntries Error samples.
-* @property {string} errorCode Required.
 */
+
+/**
+ * @typedef GcsData
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {string} bucketName Google Cloud Storage bucket name (see
+[Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+Required.
+*/
+
+/**
+ * @typedef GoogleServiceAccount
+ * @memberOf! storagetransfer(v1)
+ * @type object
+ * @property {string} accountEmail Required.
+ */
+
 /**
  * @typedef HttpData
  * @memberOf! storagetransfer(v1)
@@ -1117,14 +1138,15 @@ This file must allow public access.  Currently, only URLs with HTTP and
 HTTPS schemes are supported.
 Required.
 */
+
 /**
- * @typedef GcsData
+ * @typedef ListOperationsResponse
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {string} bucketName Google Cloud Storage bucket name (see
-[Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
-Required.
-*/
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {storagetransfer(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+
 /**
  * @typedef ListTransferJobsResponse
  * @memberOf! storagetransfer(v1)
@@ -1132,21 +1154,7 @@ Required.
  * @property {string} nextPageToken The list next page token.
  * @property {storagetransfer(v1).TransferJob[]} transferJobs A list of transfer jobs.
  */
-/**
- * @typedef UpdateTransferJobRequest
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {storagetransfer(v1).TransferJob} transferJob The job to update.
-Required.
-* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
-Required.
-* @property {string} updateTransferJobFieldMask The field mask of the fields in `transferJob` that are to be updated in
-this request.  Fields in `transferJob` that can be updated are:
-`description`, `transferSpec`, and `status`.  To update the `transferSpec`
-of the job, a complete transfer specification has to be provided. An
-incomplete specification which misses any required fields will be rejected
-with the error `INVALID_ARGUMENT`.
-*/
+
 /**
  * @typedef ObjectConditions
  * @memberOf! storagetransfer(v1)
@@ -1155,15 +1163,6 @@ with the error `INVALID_ARGUMENT`.
 `includePrefixes`.
 
 The max size of `excludePrefixes` is 1000.
-* @property {string} minTimeElapsedSinceLastModification If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
-and `maxTimeElapsedSinceLastModification` takes the maximum possible
-value of Duration. Objects that satisfy the object conditions
-must either have a `lastModificationTime` greater or equal to
-`NOW` - `maxTimeElapsedSinceLastModification` and less than
-`NOW` - `minTimeElapsedSinceLastModification`, or not have a
-`lastModificationTime`.
-* @property {string} maxTimeElapsedSinceLastModification `maxTimeElapsedSinceLastModification` is the complement to
-`minTimeElapsedSinceLastModification`.
 * @property {string[]} includePrefixes If `includePrefixes` is specified, objects that satisfy the object
 conditions must have names that start with one of the `includePrefixes`
 and that do not start with any of the `excludePrefixes`. If `includePrefixes`
@@ -1197,11 +1196,27 @@ Requirements:
     with the value of a path explicitly included by `includePrefixes`.
 
 The max size of `includePrefixes` is 1000.
+* @property {string} maxTimeElapsedSinceLastModification `maxTimeElapsedSinceLastModification` is the complement to
+`minTimeElapsedSinceLastModification`.
+* @property {string} minTimeElapsedSinceLastModification If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
+and `maxTimeElapsedSinceLastModification` takes the maximum possible
+value of Duration. Objects that satisfy the object conditions
+must either have a `lastModificationTime` greater or equal to
+`NOW` - `maxTimeElapsedSinceLastModification` and less than
+`NOW` - `minTimeElapsedSinceLastModification`, or not have a
+`lastModificationTime`.
 */
+
 /**
  * @typedef Operation
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+* @property {storagetransfer(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Represents the transfer operation object.
+* @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `transferOperations/some/unique/name`.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -1210,97 +1225,108 @@ methods, the response should have the type `XxxResponse`, where `Xxx`
 is the original method name.  For example, if the original method name
 is `TakeSnapshot()`, the inferred response type is
 `TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `transferOperations/some/unique/name`.
-* @property {storagetransfer(v1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Represents the transfer operation object.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 */
+
 /**
- * @typedef TransferOptions
+ * @typedef PauseTransferOperationRequest
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {boolean} deleteObjectsUniqueInSink Whether objects that exist only in the sink should be deleted.  Note that
-this option and `deleteObjectsFromSourceAfterTransfer` are mutually
-exclusive.
-* @property {boolean} overwriteObjectsAlreadyExistingInSink Whether overwriting objects that already exist in the sink is allowed.
-* @property {boolean} deleteObjectsFromSourceAfterTransfer Whether objects should be deleted from the source after they are
-transferred to the sink.  Note that this option and
-`deleteObjectsUniqueInSink` are mutually exclusive.
-*/
-/**
- * @typedef TransferSpec
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {storagetransfer(v1).HttpData} httpDataSource An HTTP URL data source.
-* @property {storagetransfer(v1).ObjectConditions} objectConditions Only objects that satisfy these object conditions are included in the set
-of data source and data sink objects.  Object conditions based on
-objects&#39; `lastModificationTime` do not exclude objects in a data sink.
-* @property {storagetransfer(v1).GcsData} gcsDataSink A Google Cloud Storage data sink.
-* @property {storagetransfer(v1).GcsData} gcsDataSource A Google Cloud Storage data source.
-* @property {storagetransfer(v1).TransferOptions} transferOptions If the option `deleteObjectsUniqueInSink` is `true`, object conditions
-based on objects&#39; `lastModificationTime` are ignored and do not exclude
-objects in a data source or a data sink.
-* @property {storagetransfer(v1).AwsS3Data} awsS3DataSource An AWS S3 data source.
-*/
-/**
- * @typedef Status
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There is a common set of
-message types for APIs to use.
-*/
+ */
+
 /**
  * @typedef ResumeTransferOperationRequest
  * @memberOf! storagetransfer(v1)
  * @type object
  */
+
 /**
- * @typedef ListOperationsResponse
+ * @typedef Schedule
  * @memberOf! storagetransfer(v1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {storagetransfer(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
+* @property {storagetransfer(v1).Date} scheduleEndDate The last day the recurring transfer will be run. If `scheduleEndDate`
+is the same as `scheduleStartDate`, the transfer will be executed only
+once.
+* @property {storagetransfer(v1).Date} scheduleStartDate The first day the recurring transfer is scheduled to run. If
+`scheduleStartDate` is in the past, the transfer will run for the first
+time on the following day.
+Required.
+* @property {storagetransfer(v1).TimeOfDay} startTimeOfDay The time in UTC at which the transfer will be scheduled to start in a day.
+Transfers may start later than this time. If not specified, recurring and
+one-time transfers that are scheduled to run today will run immediately;
+recurring transfers that are scheduled to run on a future date will start
+at approximately midnight UTC on that date. Note that when configuring a
+transfer with the Cloud Platform Console, the transfer&#39;s start time in a
+day is specified in your local timezone.
+*/
+
 /**
- * @typedef GoogleServiceAccount
+ * @typedef Status
  * @memberOf! storagetransfer(v1)
  * @type object
- * @property {string} accountEmail Required.
- */
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There is a common set of
+message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+
 /**
  * @typedef TimeOfDay
  * @memberOf! storagetransfer(v1)
  * @type object
 * @property {integer} hours Hours of day in 24 hour format. Should be from 0 to 23. An API may choose
 to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+* @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
 * @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
 * @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may
 allow the value 60 if it allows leap-seconds.
-* @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
 */
+
 /**
- * @typedef ErrorLogEntry
+ * @typedef TransferCounters
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {string[]} errorDetails A list of messages that carry the error details.
-* @property {string} url A URL that refers to the target (a data source, a data sink,
-or an object) with which the error is associated.
-Required.
+* @property {string} bytesCopiedToSink Bytes that are copied to the data sink.
+* @property {string} bytesDeletedFromSink Bytes that are deleted from the data sink.
+* @property {string} bytesDeletedFromSource Bytes that are deleted from the data source.
+* @property {string} bytesFailedToDeleteFromSink Bytes that failed to be deleted from the data sink.
+* @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred,
+which will be copied, excluded based on conditions, or skipped due to
+failures.
+* @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
+* @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
+* @property {string} bytesFromSourceSkippedBySync Bytes in the data source that are not transferred because they already
+exist in the data sink.
+* @property {string} objectsCopiedToSink Objects that are copied to the data sink.
+* @property {string} objectsDeletedFromSink Objects that are deleted from the data sink.
+* @property {string} objectsDeletedFromSource Objects that are deleted from the data source.
+* @property {string} objectsFailedToDeleteFromSink Objects that failed to be deleted from the data sink.
+* @property {string} objectsFoundFromSource Objects found in the data source that are scheduled to be transferred,
+which will be copied, excluded based on conditions, or skipped due to
+failures.
+* @property {string} objectsFoundOnlyFromSink Objects found only in the data sink that are scheduled to be deleted.
+* @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
+* @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already
+exist in the data sink.
 */
+
 /**
  * @typedef TransferJob
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {string} creationTime This field cannot be changed by user requests.
+* @property {string} deletionTime This field cannot be changed by user requests.
 * @property {string} description A description provided by the user for the job. Its max length is 1024
 bytes when Unicode-encoded.
-* @property {string} creationTime This field cannot be changed by user requests.
-* @property {storagetransfer(v1).TransferSpec} transferSpec Transfer specification.
+* @property {string} lastModificationTime This field cannot be changed by user requests.
+* @property {string} name A globally unique name assigned by Storage Transfer Service when the
+job is created. This field should be left empty in requests to create a new
+transfer job; otherwise, the requests result in an `INVALID_ARGUMENT`
+error.
+* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
+Required.
+* @property {storagetransfer(v1).Schedule} schedule Schedule specification.
 Required.
 * @property {string} status Status of the job. This value MUST be specified for
 `CreateTransferJobRequests`.
@@ -1309,72 +1335,72 @@ NOTE: The effect of the new job status takes place during a subsequent job
 run. For example, if you change the job status from `ENABLED` to
 `DISABLED`, and an operation spawned by the transfer is running, the status
 change would not affect the current operation.
-* @property {storagetransfer(v1).Schedule} schedule Schedule specification.
-Required.
-* @property {string} deletionTime This field cannot be changed by user requests.
-* @property {string} name A globally unique name assigned by Storage Transfer Service when the
-job is created. This field should be left empty in requests to create a new
-transfer job; otherwise, the requests result in an `INVALID_ARGUMENT`
-error.
-* @property {string} lastModificationTime This field cannot be changed by user requests.
-* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
+* @property {storagetransfer(v1).TransferSpec} transferSpec Transfer specification.
 Required.
 */
-/**
- * @typedef Schedule
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {storagetransfer(v1).Date} scheduleEndDate The last day the recurring transfer will be run. If `scheduleEndDate`
-is the same as `scheduleStartDate`, the transfer will be executed only
-once.
-* @property {storagetransfer(v1).TimeOfDay} startTimeOfDay The time in UTC at which the transfer will be scheduled to start in a day.
-Transfers may start later than this time. If not specified, recurring and
-one-time transfers that are scheduled to run today will run immediately;
-recurring transfers that are scheduled to run on a future date will start
-at approximately midnight UTC on that date. Note that when configuring a
-transfer with the Cloud Platform Console, the transfer&#39;s start time in a
-day is specified in your local timezone.
-* @property {storagetransfer(v1).Date} scheduleStartDate The first day the recurring transfer is scheduled to run. If
-`scheduleStartDate` is in the past, the transfer will run for the first
-time on the following day.
-Required.
-*/
-/**
- * @typedef Date
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-if specifying a year/month where the day is not significant.
-* @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without
-a year.
-* @property {integer} month Month of year. Must be from 1 to 12.
-*/
+
 /**
  * @typedef TransferOperation
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {string} endTime End time of this transfer execution.
-* @property {string} startTime Start time of this transfer execution.
-* @property {string} transferJobName The name of the transfer job that triggers this transfer operation.
-* @property {storagetransfer(v1).TransferSpec} transferSpec Transfer specification.
-Required.
-* @property {string} status Status of the transfer operation.
 * @property {storagetransfer(v1).TransferCounters} counters Information about the progress of the transfer operation.
+* @property {string} endTime End time of this transfer execution.
 * @property {storagetransfer(v1).ErrorSummary[]} errorBreakdowns Summarizes errors encountered with sample error log entries.
 * @property {string} name A globally unique ID assigned by the system.
 * @property {string} projectId The ID of the Google Cloud Platform Console project that owns the operation.
 Required.
+* @property {string} startTime Start time of this transfer execution.
+* @property {string} status Status of the transfer operation.
+* @property {string} transferJobName The name of the transfer job that triggers this transfer operation.
+* @property {storagetransfer(v1).TransferSpec} transferSpec Transfer specification.
+Required.
 */
+
 /**
- * @typedef AwsS3Data
+ * @typedef TransferOptions
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {string} bucketName S3 Bucket name (see
-[Creating a bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
+* @property {boolean} deleteObjectsFromSourceAfterTransfer Whether objects should be deleted from the source after they are
+transferred to the sink.  Note that this option and
+`deleteObjectsUniqueInSink` are mutually exclusive.
+* @property {boolean} deleteObjectsUniqueInSink Whether objects that exist only in the sink should be deleted.  Note that
+this option and `deleteObjectsFromSourceAfterTransfer` are mutually
+exclusive.
+* @property {boolean} overwriteObjectsAlreadyExistingInSink Whether overwriting objects that already exist in the sink is allowed.
+*/
+
+/**
+ * @typedef TransferSpec
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {storagetransfer(v1).AwsS3Data} awsS3DataSource An AWS S3 data source.
+* @property {storagetransfer(v1).GcsData} gcsDataSink A Google Cloud Storage data sink.
+* @property {storagetransfer(v1).GcsData} gcsDataSource A Google Cloud Storage data source.
+* @property {storagetransfer(v1).HttpData} httpDataSource An HTTP URL data source.
+* @property {storagetransfer(v1).ObjectConditions} objectConditions Only objects that satisfy these object conditions are included in the set
+of data source and data sink objects.  Object conditions based on
+objects&#39; `lastModificationTime` do not exclude objects in a data sink.
+* @property {storagetransfer(v1).TransferOptions} transferOptions If the option `deleteObjectsUniqueInSink` is `true`, object conditions
+based on objects&#39; `lastModificationTime` are ignored and do not exclude
+objects in a data source or a data sink.
+*/
+
+/**
+ * @typedef UpdateTransferJobRequest
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
 Required.
-* @property {storagetransfer(v1).AwsAccessKey} awsAccessKey AWS access key used to sign the API requests to the AWS S3 bucket.
-Permissions on the bucket must be granted to the access ID of the
-AWS access key.
+* @property {storagetransfer(v1).TransferJob} transferJob The job to update. `transferJob` is expected to specify only three fields:
+`description`, `transferSpec`, and `status`.  An UpdateTransferJobRequest
+that specifies other fields will be rejected with an error
+`INVALID_ARGUMENT`.
 Required.
+* @property {string} updateTransferJobFieldMask The field mask of the fields in `transferJob` that are to be updated in
+this request.  Fields in `transferJob` that can be updated are:
+`description`, `transferSpec`, and `status`.  To update the `transferSpec`
+of the job, a complete transfer specification has to be provided. An
+incomplete specification which misses any required fields will be rejected
+with the error `INVALID_ARGUMENT`.
 */
 export = Storagetransfer;

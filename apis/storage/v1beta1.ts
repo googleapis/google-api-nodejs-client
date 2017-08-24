@@ -1007,6 +1007,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} timeCreated Creation time of the bucket in RFC 3339 format.
  * @property {object} website The bucket&#39;s website configuration.
  */
+
 /**
  * @typedef BucketAccessControl
  * @memberOf! storage(v1beta1)
@@ -1031,6 +1032,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity. Can be READER, WRITER, or OWNER.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef BucketAccessControls
  * @memberOf! storage(v1beta1)
@@ -1038,6 +1040,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1beta1).BucketAccessControl[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
  */
+
 /**
  * @typedef Buckets
  * @memberOf! storage(v1beta1)
@@ -1046,6 +1049,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} kind The kind of item this is. For lists of buckets, this is always storage#buckets.
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
+
 /**
  * @typedef Object
  * @memberOf! storage(v1beta1)
@@ -1064,6 +1068,7 @@ function Storage(options) { // eslint-disable-line
  * @property {object} owner The owner of the object. This will always be the uploader of the object.
  * @property {string} selfLink The link to this object.
  */
+
 /**
  * @typedef ObjectAccessControl
  * @memberOf! storage(v1beta1)
@@ -1089,6 +1094,7 @@ function Storage(options) { // eslint-disable-line
 * @property {string} role The access permission for the entity. Can be READER or OWNER.
 * @property {string} selfLink The link to this access-control entry.
 */
+
 /**
  * @typedef ObjectAccessControls
  * @memberOf! storage(v1beta1)
@@ -1096,6 +1102,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1beta1).ObjectAccessControl[]} items The list of items.
  * @property {string} kind The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
  */
+
 /**
  * @typedef Objects
  * @memberOf! storage(v1beta1)

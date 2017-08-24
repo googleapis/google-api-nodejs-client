@@ -158,7 +158,6 @@ function Adexchangeseller(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     customchannels: {
 
       /**
@@ -281,7 +280,6 @@ function Adexchangeseller(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     adunits: {
 
       /**
@@ -373,7 +371,6 @@ function Adexchangeseller(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
-
     saved: {
 
       /**
@@ -510,6 +507,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} productCode This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
  * @property {boolean} supportsReporting Whether this ad client supports being reported on.
  */
+
 /**
  * @typedef AdClients
  * @memberOf! adexchangeseller(v1)
@@ -519,6 +517,7 @@ function Adexchangeseller(options) { // eslint-disable-line
  * @property {string} kind Kind of list this is, in this case adexchangeseller#adClients.
  * @property {string} nextPageToken Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef AdUnit
  * @memberOf! adexchangeseller(v1)
@@ -534,6 +533,7 @@ ACTIVE: Indicates that there has been activity on this ad unit in the last seven
 
 INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
 */
+
 /**
  * @typedef AdUnits
  * @memberOf! adexchangeseller(v1)
@@ -543,6 +543,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} kind Kind of list this is, in this case adexchangeseller#adUnits.
  * @property {string} nextPageToken Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef CustomChannel
  * @memberOf! adexchangeseller(v1)
@@ -553,6 +554,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} name Name of this custom channel.
  * @property {object} targetingInfo The targeting information of this custom channel, if activated.
  */
+
 /**
  * @typedef CustomChannels
  * @memberOf! adexchangeseller(v1)
@@ -562,6 +564,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} kind Kind of list this is, in this case adexchangeseller#customChannels.
  * @property {string} nextPageToken Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef Report
  * @memberOf! adexchangeseller(v1)
@@ -574,6 +577,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string[]} totals The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
  * @property {string[]} warnings Any warnings associated with generation of the report.
  */
+
 /**
  * @typedef SavedReport
  * @memberOf! adexchangeseller(v1)
@@ -582,6 +586,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#savedReport.
  * @property {string} name This saved report&#39;s name.
  */
+
 /**
  * @typedef SavedReports
  * @memberOf! adexchangeseller(v1)
@@ -591,6 +596,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} kind Kind of list this is, in this case adexchangeseller#savedReports.
  * @property {string} nextPageToken Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
+
 /**
  * @typedef UrlChannel
  * @memberOf! adexchangeseller(v1)
@@ -599,6 +605,7 @@ INACTIVE: Indicates that there has been no activity on this ad unit in the last 
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#urlChannel.
  * @property {string} urlPattern URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
  */
+
 /**
  * @typedef UrlChannels
  * @memberOf! adexchangeseller(v1)

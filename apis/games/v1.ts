@@ -2228,6 +2228,7 @@ Possible values are:
 * @property {integer} totalSteps The total steps for an incremental achievement.
 * @property {string} unlockedIconUrl The image URL for the unlocked achievement icon.
 */
+
 /**
  * @typedef AchievementDefinitionsListResponse
  * @memberOf! games(v1)
@@ -2236,6 +2237,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementDefinitionsListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef AchievementIncrementResponse
  * @memberOf! games(v1)
@@ -2244,6 +2246,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementIncrementResponse.
  * @property {boolean} newlyUnlocked Whether the current steps for the achievement has reached the number of steps required to unlock.
  */
+
 /**
  * @typedef AchievementRevealResponse
  * @memberOf! games(v1)
@@ -2254,6 +2257,7 @@ Possible values are:
 - &quot;UNLOCKED&quot; - Achievement is unlocked.
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementRevealResponse.
 */
+
 /**
  * @typedef AchievementSetStepsAtLeastResponse
  * @memberOf! games(v1)
@@ -2262,6 +2266,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementSetStepsAtLeastResponse.
  * @property {boolean} newlyUnlocked Whether the the current steps for the achievement has reached the number of steps required to unlock.
  */
+
 /**
  * @typedef AchievementUnlockResponse
  * @memberOf! games(v1)
@@ -2269,6 +2274,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUnlockResponse.
  * @property {boolean} newlyUnlocked Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).
  */
+
 /**
  * @typedef AchievementUpdateMultipleRequest
  * @memberOf! games(v1)
@@ -2276,6 +2282,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateMultipleRequest.
  * @property {games(v1).AchievementUpdateRequest[]} updates The individual achievement update requests.
  */
+
 /**
  * @typedef AchievementUpdateMultipleResponse
  * @memberOf! games(v1)
@@ -2283,6 +2290,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateListResponse.
  * @property {games(v1).AchievementUpdateResponse[]} updatedAchievements The updated state of the achievements.
  */
+
 /**
  * @typedef AchievementUpdateRequest
  * @memberOf! games(v1)
@@ -2298,6 +2306,7 @@ Possible values are:
 - &quot;INCREMENT&quot; - Achievement is incremented. 
 - &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is set to at least the passed value.
 */
+
 /**
  * @typedef AchievementUpdateResponse
  * @memberOf! games(v1)
@@ -2313,6 +2322,7 @@ Possible values are:
 * @property {boolean} newlyUnlocked Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).
 * @property {boolean} updateOccurred Whether the requested updates actually affected the achievement.
 */
+
 /**
  * @typedef AggregateStats
  * @memberOf! games(v1)
@@ -2323,6 +2333,7 @@ Possible values are:
  * @property {string} min The minimum amount.
  * @property {string} sum The total number of bytes sent for messages between a pair of peers.
  */
+
 /**
  * @typedef AnonymousPlayer
  * @memberOf! games(v1)
@@ -2331,6 +2342,7 @@ Possible values are:
  * @property {string} displayName The name to display for the anonymous player.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#anonymousPlayer.
  */
+
 /**
  * @typedef Application
  * @memberOf! games(v1)
@@ -2351,6 +2363,7 @@ Possible values are:
 * @property {string} name The name of the application.
 * @property {string} themeColor A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. &quot;E0E0E0&quot;).
 */
+
 /**
  * @typedef ApplicationCategory
  * @memberOf! games(v1)
@@ -2359,6 +2372,7 @@ Possible values are:
  * @property {string} primary The primary category.
  * @property {string} secondary The secondary category.
  */
+
 /**
  * @typedef ApplicationVerifyResponse
  * @memberOf! games(v1)
@@ -2367,6 +2381,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#applicationVerifyResponse.
  * @property {string} player_id The ID of the player that was issued the auth token used in this request.
  */
+
 /**
  * @typedef Category
  * @memberOf! games(v1)
@@ -2375,6 +2390,7 @@ Possible values are:
  * @property {string} experiencePoints Experience points earned in this category.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#category.
  */
+
 /**
  * @typedef CategoryListResponse
  * @memberOf! games(v1)
@@ -2383,6 +2399,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#categoryListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef EventBatchRecordFailure
  * @memberOf! games(v1)
@@ -2398,6 +2415,7 @@ Possible values are:
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventBatchRecordFailure.
 * @property {games(v1).EventPeriodRange} range The time range which was rejected; empty for a request-wide failure.
 */
+
 /**
  * @typedef EventChild
  * @memberOf! games(v1)
@@ -2405,6 +2423,7 @@ Possible values are:
  * @property {string} childId The ID of the child event.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventChild.
  */
+
 /**
  * @typedef EventDefinition
  * @memberOf! games(v1)
@@ -2421,6 +2440,7 @@ Possible values are:
 - &quot;REVEALED&quot;: This event should be visible to all users. 
 - &quot;HIDDEN&quot;: This event should only be shown to users that have recorded this event at least once.
 */
+
 /**
  * @typedef EventDefinitionListResponse
  * @memberOf! games(v1)
@@ -2429,6 +2449,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventDefinitionListResponse.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef EventPeriodRange
  * @memberOf! games(v1)
@@ -2437,6 +2458,7 @@ Possible values are:
  * @property {string} periodEndMillis The time when this update period ends, in millis, since 1970 UTC (Unix Epoch).
  * @property {string} periodStartMillis The time when this update period begins, in millis, since 1970 UTC (Unix Epoch).
  */
+
 /**
  * @typedef EventPeriodUpdate
  * @memberOf! games(v1)
@@ -2445,6 +2467,7 @@ Possible values are:
  * @property {games(v1).EventPeriodRange} timePeriod The time period being covered by this update.
  * @property {games(v1).EventUpdateRequest[]} updates The updates being made for this time period.
  */
+
 /**
  * @typedef EventRecordFailure
  * @memberOf! games(v1)
@@ -2456,6 +2479,7 @@ Possible values are:
 - &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to increment an event by a non-positive value.
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventRecordFailure.
 */
+
 /**
  * @typedef EventRecordRequest
  * @memberOf! games(v1)
@@ -2465,6 +2489,7 @@ Possible values are:
  * @property {string} requestId The request ID used to identify this attempt to record events.
  * @property {games(v1).EventPeriodUpdate[]} timePeriods A list of the time period updates being made in this request.
  */
+
 /**
  * @typedef EventUpdateRequest
  * @memberOf! games(v1)
@@ -2473,6 +2498,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventUpdateRequest.
  * @property {string} updateCount The number of times this event occurred in this time period.
  */
+
 /**
  * @typedef EventUpdateResponse
  * @memberOf! games(v1)
@@ -2482,6 +2508,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventUpdateResponse.
  * @property {games(v1).PlayerEvent[]} playerEvents The current status of any updated events
  */
+
 /**
  * @typedef GamesAchievementIncrement
  * @memberOf! games(v1)
@@ -2490,6 +2517,7 @@ Possible values are:
  * @property {string} requestId The requestId associated with an increment to an achievement.
  * @property {integer} steps The number of steps to be incremented.
  */
+
 /**
  * @typedef GamesAchievementSetStepsAtLeast
  * @memberOf! games(v1)
@@ -2497,6 +2525,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#GamesAchievementSetStepsAtLeast.
  * @property {integer} steps The minimum number of steps for the achievement to be set to.
  */
+
 /**
  * @typedef ImageAsset
  * @memberOf! games(v1)
@@ -2507,6 +2536,7 @@ Possible values are:
  * @property {string} url The URL of the asset.
  * @property {integer} width The width of the asset.
  */
+
 /**
  * @typedef Instance
  * @memberOf! games(v1)
@@ -2525,6 +2555,7 @@ Possible values are:
 * @property {boolean} turnBasedPlay Flag to show if this game instance supports turn based play.
 * @property {games(v1).InstanceWebDetails} webInstance Platform dependent details for Web.
 */
+
 /**
  * @typedef InstanceAndroidDetails
  * @memberOf! games(v1)
@@ -2534,6 +2565,7 @@ Possible values are:
  * @property {string} packageName Android package name which maps to Google Play URL.
  * @property {boolean} preferred Indicates that this instance is the default for new installations.
  */
+
 /**
  * @typedef InstanceIosDetails
  * @memberOf! games(v1)
@@ -2546,6 +2578,7 @@ Possible values are:
  * @property {boolean} supportIpad Flag to indicate if this instance supports iPad.
  * @property {boolean} supportIphone Flag to indicate if this instance supports iPhone.
  */
+
 /**
  * @typedef InstanceWebDetails
  * @memberOf! games(v1)
@@ -2554,6 +2587,7 @@ Possible values are:
  * @property {string} launchUrl Launch URL for the game.
  * @property {boolean} preferred Indicates that this instance is the default for new installations.
  */
+
 /**
  * @typedef Leaderboard
  * @memberOf! games(v1)
@@ -2568,6 +2602,7 @@ Possible values are:
 - &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are sorted in descending order. 
 - &quot;SMALLER_IS_BETTER&quot; - Smaller values are better; scores are sorted in ascending order.
 */
+
 /**
  * @typedef LeaderboardEntry
  * @memberOf! games(v1)
@@ -2586,6 +2621,7 @@ Possible values are:
 - &quot;DAILY&quot; - The score is a daily high score.
 * @property {string} writeTimestampMillis The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
 */
+
 /**
  * @typedef LeaderboardListResponse
  * @memberOf! games(v1)
@@ -2594,6 +2630,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef LeaderboardScoreRank
  * @memberOf! games(v1)
@@ -2604,6 +2641,7 @@ Possible values are:
  * @property {string} numScores The number of scores in the leaderboard.
  * @property {string} rank The rank in the leaderboard.
  */
+
 /**
  * @typedef LeaderboardScores
  * @memberOf! games(v1)
@@ -2615,6 +2653,7 @@ Possible values are:
  * @property {games(v1).LeaderboardEntry} playerScore The score of the requesting player on the leaderboard. The player&#39;s score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the scoreRank and formattedScoreRank values will not be present.
  * @property {string} prevPageToken The pagination token for the previous page of results.
  */
+
 /**
  * @typedef MetagameConfig
  * @memberOf! games(v1)
@@ -2623,6 +2662,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#metagameConfig.
  * @property {games(v1).PlayerLevel[]} playerLevels The list of player levels.
  */
+
 /**
  * @typedef NetworkDiagnostics
  * @memberOf! games(v1)
@@ -2635,6 +2675,7 @@ Possible values are:
  * @property {string} networkOperatorName The name of the carrier of the client&#39;s network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
  * @property {integer} registrationLatencyMillis The amount of time in milliseconds it took for the client to establish a connection with the XMPP server.
  */
+
 /**
  * @typedef ParticipantResult
  * @memberOf! games(v1)
@@ -2651,6 +2692,7 @@ Possible values are:
 - &quot;MATCH_RESULT_DISCONNECT&quot; - The participant disconnected / left during the match. 
 - &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different results for this participant.
 */
+
 /**
  * @typedef PeerChannelDiagnostics
  * @memberOf! games(v1)
@@ -2664,6 +2706,7 @@ Possible values are:
  * @property {integer} numSendFailures Number of send failures.
  * @property {games(v1).AggregateStats} roundtripLatencyMillis Roundtrip latency stats in milliseconds.
  */
+
 /**
  * @typedef PeerSessionDiagnostics
  * @memberOf! games(v1)
@@ -2674,6 +2717,7 @@ Possible values are:
  * @property {games(v1).PeerChannelDiagnostics} reliableChannel Reliable channel diagnostics.
  * @property {games(v1).PeerChannelDiagnostics} unreliableChannel Unreliable channel diagnostics.
  */
+
 /**
  * @typedef Played
  * @memberOf! games(v1)
@@ -2682,6 +2726,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#played.
  * @property {string} timeMillis The last time the player played the game in milliseconds since the epoch in UTC.
  */
+
 /**
  * @typedef Player
  * @memberOf! games(v1)
@@ -2699,6 +2744,7 @@ Possible values are:
  * @property {games(v1).ProfileSettings} profileSettings The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
  * @property {string} title The player&#39;s title rewarded for their game activities.
  */
+
 /**
  * @typedef PlayerAchievement
  * @memberOf! games(v1)
@@ -2715,6 +2761,7 @@ Possible values are:
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerAchievement.
 * @property {string} lastUpdatedTimestamp The timestamp of the last modification to this achievement&#39;s state.
 */
+
 /**
  * @typedef PlayerAchievementListResponse
  * @memberOf! games(v1)
@@ -2723,6 +2770,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerAchievementListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef PlayerEvent
  * @memberOf! games(v1)
@@ -2733,6 +2781,7 @@ Possible values are:
  * @property {string} numEvents The current number of times this event has occurred.
  * @property {string} playerId The ID of the player.
  */
+
 /**
  * @typedef PlayerEventListResponse
  * @memberOf! games(v1)
@@ -2741,6 +2790,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerEventListResponse.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef PlayerExperienceInfo
  * @memberOf! games(v1)
@@ -2751,6 +2801,7 @@ Possible values are:
  * @property {string} lastLevelUpTimestampMillis The timestamp when the player was leveled up, in millis since Unix epoch UTC.
  * @property {games(v1).PlayerLevel} nextLevel The next level of the player. If the current level is the maximum level, this should be same as the current level.
  */
+
 /**
  * @typedef PlayerLeaderboardScore
  * @memberOf! games(v1)
@@ -2769,6 +2820,7 @@ Possible values are:
 - &quot;DAILY&quot; - The score is a daily score.
 * @property {string} writeTimestamp The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
 */
+
 /**
  * @typedef PlayerLeaderboardScoreListResponse
  * @memberOf! games(v1)
@@ -2778,6 +2830,7 @@ Possible values are:
  * @property {string} nextPageToken The pagination token for the next page of results.
  * @property {games(v1).Player} player The Player resources for the owner of this score.
  */
+
 /**
  * @typedef PlayerLevel
  * @memberOf! games(v1)
@@ -2787,6 +2840,7 @@ Possible values are:
  * @property {string} maxExperiencePoints The maximum experience points for this level.
  * @property {string} minExperiencePoints The minimum experience points for this level.
  */
+
 /**
  * @typedef PlayerListResponse
  * @memberOf! games(v1)
@@ -2795,6 +2849,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef PlayerScore
  * @memberOf! games(v1)
@@ -2809,6 +2864,7 @@ Possible values are:
 - &quot;WEEKLY&quot; - The score is a weekly score. 
 - &quot;DAILY&quot; - The score is a daily score.
 */
+
 /**
  * @typedef PlayerScoreListResponse
  * @memberOf! games(v1)
@@ -2816,6 +2872,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreListResponse.
  * @property {games(v1).PlayerScoreResponse[]} submittedScores The score submissions statuses.
  */
+
 /**
  * @typedef PlayerScoreResponse
  * @memberOf! games(v1)
@@ -2831,6 +2888,7 @@ Possible values are:
 * @property {string} scoreTag Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
 * @property {games(v1).PlayerScore[]} unbeatenScores The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player&#39;s DAILY score, but not better than the player&#39;s scores for the WEEKLY or ALL_TIME time spans.
 */
+
 /**
  * @typedef PlayerScoreSubmissionList
  * @memberOf! games(v1)
@@ -2838,6 +2896,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreSubmissionList.
  * @property {games(v1).ScoreSubmission[]} scores The score submissions.
  */
+
 /**
  * @typedef ProfileSettings
  * @memberOf! games(v1)
@@ -2845,6 +2904,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#profileSettings.
  * @property {boolean} profileVisible The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
  */
+
 /**
  * @typedef PushToken
  * @memberOf! games(v1)
@@ -2855,6 +2915,7 @@ Possible values are:
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#pushToken.
 * @property {string} language The preferred language for notifications that are sent using this token.
 */
+
 /**
  * @typedef PushTokenId
  * @memberOf! games(v1)
@@ -2862,6 +2923,7 @@ Possible values are:
  * @property {object} ios A push token ID for iOS devices.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#pushTokenId.
  */
+
 /**
  * @typedef Quest
  * @memberOf! games(v1)
@@ -2891,6 +2953,7 @@ Possible values are:
 - &quot;EXPIRED&quot;: The quest has expired and was not accepted. 
 - &quot;DELETED&quot;: The quest should be deleted from the local database.
 */
+
 /**
  * @typedef QuestContribution
  * @memberOf! games(v1)
@@ -2899,6 +2962,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#questContribution.
  * @property {string} value The value of the contribution.
  */
+
 /**
  * @typedef QuestCriterion
  * @memberOf! games(v1)
@@ -2911,6 +2975,7 @@ There will be no currentContribution until the player has accepted the quest.
 There will be no initialPlayerProgress until the player has accepted the quest.
 * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#questCriterion.
 */
+
 /**
  * @typedef QuestListResponse
  * @memberOf! games(v1)
@@ -2919,6 +2984,7 @@ There will be no initialPlayerProgress until the player has accepted the quest.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#questListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results.
  */
+
 /**
  * @typedef QuestMilestone
  * @memberOf! games(v1)
@@ -2934,6 +3000,7 @@ Possible values are:
 - &quot;NOT_COMPLETED&quot; - The milestone has not yet been completed. 
 - &quot;NOT_STARTED&quot; - The milestone is for a quest that has not yet been accepted.
 */
+
 /**
  * @typedef RevisionCheckResponse
  * @memberOf! games(v1)
@@ -2946,6 +3013,7 @@ Possible values are:
 - &quot;DEPRECATED&quot; - There is currently a newer version available, but the revision being used still works. 
 - &quot;INVALID&quot; - The revision being used is not supported in any released version.
 */
+
 /**
  * @typedef Room
  * @memberOf! games(v1)
@@ -2970,6 +3038,7 @@ Possible values are:
 - &quot;ROOM_DELETED&quot; - The room should no longer be shown on the client. Returned in sync calls when a player joins a room (as a tombstone), or for rooms where all joined participants have left.
 * @property {integer} variant The variant / mode of the application being played; can be any integer value, or left blank.
 */
+
 /**
  * @typedef RoomAutoMatchStatus
  * @memberOf! games(v1)
@@ -2977,6 +3046,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomAutoMatchStatus.
  * @property {integer} waitEstimateSeconds An estimate for the amount of time (in seconds) that auto-matching is expected to take to complete.
  */
+
 /**
  * @typedef RoomAutoMatchingCriteria
  * @memberOf! games(v1)
@@ -2986,6 +3056,7 @@ Possible values are:
  * @property {integer} maxAutoMatchingPlayers The maximum number of players that should be added to the room by auto-matching.
  * @property {integer} minAutoMatchingPlayers The minimum number of players that should be added to the room by auto-matching.
  */
+
 /**
  * @typedef RoomClientAddress
  * @memberOf! games(v1)
@@ -2993,6 +3064,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomClientAddress.
  * @property {string} xmppAddress The XMPP address of the client on the Google Games XMPP network.
  */
+
 /**
  * @typedef RoomCreateRequest
  * @memberOf! games(v1)
@@ -3006,6 +3078,7 @@ Possible values are:
  * @property {string} requestId A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.
  * @property {integer} variant The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.
  */
+
 /**
  * @typedef RoomJoinRequest
  * @memberOf! games(v1)
@@ -3015,6 +3088,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomJoinRequest.
  * @property {games(v1).NetworkDiagnostics} networkDiagnostics Network diagnostics for the client joining the room.
  */
+
 /**
  * @typedef RoomLeaveDiagnostics
  * @memberOf! games(v1)
@@ -3028,6 +3102,7 @@ Possible values are:
  * @property {games(v1).PeerSessionDiagnostics[]} peerSession Diagnostics about all peer sessions.
  * @property {boolean} socketsUsed Whether or not sockets were used.
  */
+
 /**
  * @typedef RoomLeaveRequest
  * @memberOf! games(v1)
@@ -3050,6 +3125,7 @@ Possible values are:
 - &quot;REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION&quot; - Another client is trying to enter a room. 
 - &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is trying to enter a new room.
 */
+
 /**
  * @typedef RoomList
  * @memberOf! games(v1)
@@ -3058,6 +3134,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomList.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef RoomModification
  * @memberOf! games(v1)
@@ -3066,6 +3143,7 @@ Possible values are:
  * @property {string} modifiedTimestampMillis The timestamp at which they modified the room, in milliseconds since the epoch in UTC.
  * @property {string} participantId The ID of the participant that modified the room.
  */
+
 /**
  * @typedef RoomP2PStatus
  * @memberOf! games(v1)
@@ -3085,6 +3163,7 @@ Possible values are:
 - &quot;CONNECTION_FAILED&quot; - The client failed to establish directed presence with the peer.
 * @property {integer} unreliableRoundtripLatencyMillis The amount of time in milliseconds it took to send packets back and forth on the unreliable channel with this peer.
 */
+
 /**
  * @typedef RoomP2PStatuses
  * @memberOf! games(v1)
@@ -3092,6 +3171,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatuses.
  * @property {games(v1).RoomP2PStatus[]} updates The updates for the peers.
  */
+
 /**
  * @typedef RoomParticipant
  * @memberOf! games(v1)
@@ -3120,6 +3200,7 @@ Possible values are:
 - &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to join the room. 
 - &quot;PARTICIPANT_LEFT&quot; - The participant joined the room and then left it.
 */
+
 /**
  * @typedef RoomStatus
  * @memberOf! games(v1)
@@ -3137,6 +3218,7 @@ Possible values are:
 - &quot;ROOM_DELETED&quot; - All joined players have left.
 * @property {integer} statusVersion The version of the status for the room: an increasing counter, used by the client to ignore out-of-order updates to room status.
 */
+
 /**
  * @typedef ScoreSubmission
  * @memberOf! games(v1)
@@ -3147,6 +3229,7 @@ Possible values are:
  * @property {string} scoreTag Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
  * @property {string} signature Signature Values will contain URI-safe characters as defined by section 2.3 of RFC 3986.
  */
+
 /**
  * @typedef Snapshot
  * @memberOf! games(v1)
@@ -3165,6 +3248,7 @@ Possible values are:
 - &quot;SAVE_GAME&quot; - A snapshot representing a save game.
 * @property {string} uniqueName The unique name provided when the snapshot was created.
 */
+
 /**
  * @typedef SnapshotImage
  * @memberOf! games(v1)
@@ -3175,6 +3259,7 @@ Possible values are:
  * @property {string} url The URL of the image. This URL may be invalidated at any time and should not be cached.
  * @property {integer} width The width of the image.
  */
+
 /**
  * @typedef SnapshotListResponse
  * @memberOf! games(v1)
@@ -3183,6 +3268,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#snapshotListResponse.
  * @property {string} nextPageToken Token corresponding to the next page of results. If there are no more results, the token is omitted.
  */
+
 /**
  * @typedef TurnBasedAutoMatchingCriteria
  * @memberOf! games(v1)
@@ -3192,6 +3278,7 @@ Possible values are:
  * @property {integer} maxAutoMatchingPlayers The maximum number of players that should be added to the match by auto-matching.
  * @property {integer} minAutoMatchingPlayers The minimum number of players that should be added to the match by auto-matching.
  */
+
 /**
  * @typedef TurnBasedMatch
  * @memberOf! games(v1)
@@ -3229,6 +3316,7 @@ Possible values are:
 * @property {integer} variant The variant / mode of the application being played; can be any integer value, or left blank.
 * @property {string} withParticipantId The ID of another participant in the match that can be used when describing the participants the user is playing with.
 */
+
 /**
  * @typedef TurnBasedMatchCreateRequest
  * @memberOf! games(v1)
@@ -3239,6 +3327,7 @@ Possible values are:
  * @property {string} requestId A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.
  * @property {integer} variant The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.
  */
+
 /**
  * @typedef TurnBasedMatchData
  * @memberOf! games(v1)
@@ -3247,6 +3336,7 @@ Possible values are:
  * @property {boolean} dataAvailable True if this match has data available but it wasn&#39;t returned in a list response; fetching the match individually will retrieve this data.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchData.
  */
+
 /**
  * @typedef TurnBasedMatchDataRequest
  * @memberOf! games(v1)
@@ -3254,6 +3344,7 @@ Possible values are:
  * @property {string} data The byte representation of the data (limited to 128 kB), as a Base64-encoded string with the URL_SAFE encoding option.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchDataRequest.
  */
+
 /**
  * @typedef TurnBasedMatchList
  * @memberOf! games(v1)
@@ -3262,6 +3353,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchList.
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef TurnBasedMatchModification
  * @memberOf! games(v1)
@@ -3270,6 +3362,7 @@ Possible values are:
  * @property {string} modifiedTimestampMillis The timestamp at which they modified the match, in milliseconds since the epoch in UTC.
  * @property {string} participantId The ID of the participant that modified the match.
  */
+
 /**
  * @typedef TurnBasedMatchParticipant
  * @memberOf! games(v1)
@@ -3289,6 +3382,7 @@ Possible values are:
 - &quot;PARTICIPANT_FINISHED&quot; - The participant finished playing in the match. 
 - &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their turn in the allotted time.
 */
+
 /**
  * @typedef TurnBasedMatchRematch
  * @memberOf! games(v1)
@@ -3297,6 +3391,7 @@ Possible values are:
  * @property {games(v1).TurnBasedMatch} previousMatch The old match that the rematch was created from; will be updated such that the rematchId field will point at the new match.
  * @property {games(v1).TurnBasedMatch} rematch The newly created match; a rematch of the old match with the same participants.
  */
+
 /**
  * @typedef TurnBasedMatchResults
  * @memberOf! games(v1)
@@ -3306,6 +3401,7 @@ Possible values are:
  * @property {integer} matchVersion The version of the match being updated.
  * @property {games(v1).ParticipantResult[]} results The match results for the participants in the match.
  */
+
 /**
  * @typedef TurnBasedMatchSync
  * @memberOf! games(v1)
@@ -3315,6 +3411,7 @@ Possible values are:
  * @property {boolean} moreAvailable True if there were more matches available to fetch at the time the response was generated (which were not returned due to page size limits.)
  * @property {string} nextPageToken The pagination token for the next page of results.
  */
+
 /**
  * @typedef TurnBasedMatchTurn
  * @memberOf! games(v1)

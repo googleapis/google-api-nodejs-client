@@ -239,6 +239,7 @@ function Appstate(options) { // eslint-disable-line
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#getResponse.
  * @property {integer} stateKey The key for the data.
  */
+
 /**
  * @typedef ListResponse
  * @memberOf! appstate(v1)
@@ -247,6 +248,7 @@ function Appstate(options) { // eslint-disable-line
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#listResponse.
  * @property {integer} maximumKeyCount The maximum number of keys allowed for this user.
  */
+
 /**
  * @typedef UpdateRequest
  * @memberOf! appstate(v1)
@@ -254,6 +256,7 @@ function Appstate(options) { // eslint-disable-line
  * @property {string} data The new app state data that your application is trying to update with.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#updateRequest.
  */
+
 /**
  * @typedef WriteResult
  * @memberOf! appstate(v1)

@@ -322,6 +322,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} maximumTotalQps The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
  * @property {integer} numberActiveCreatives The number of creatives that this account inserted or bid with in the last 30 days.
  */
+
 /**
  * @typedef AccountsList
  * @memberOf! adexchangebuyer(v1.2)
@@ -329,6 +330,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.2).Account[]} items A list of accounts.
  * @property {string} kind Resource type.
  */
+
 /**
  * @typedef Creative
  * @memberOf! adexchangebuyer(v1.2)
@@ -357,6 +359,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} videoURL The url to fetch a video ad. If set, HTMLSnippet should not be set.
  * @property {integer} width Ad width.
  */
+
 /**
  * @typedef CreativesList
  * @memberOf! adexchangebuyer(v1.2)

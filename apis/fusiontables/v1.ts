@@ -1314,6 +1314,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {number} opacity Opacity of the color: 0.0 (transparent) to 1.0 (opaque).
  * @property {integer} weight Width of a line (in pixels).
  */
+
 /**
  * @typedef Column
  * @memberOf! fusiontables(v1)
@@ -1326,6 +1327,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} name Required name of the column.
  * @property {string} type Required type of the column.
  */
+
 /**
  * @typedef ColumnList
  * @memberOf! fusiontables(v1)
@@ -1335,6 +1337,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  * @property {integer} totalItems Total number of columns for the table.
  */
+
 /**
  * @typedef Geometry
  * @memberOf! fusiontables(v1)
@@ -1343,6 +1346,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {any} geometry 
  * @property {string} type Type: A collection of geometries.
  */
+
 /**
  * @typedef Import
  * @memberOf! fusiontables(v1)
@@ -1350,6 +1354,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} kind Type name: a template for an import request.
  * @property {string} numRowsReceived The number of rows received from the import request.
  */
+
 /**
  * @typedef Line
  * @memberOf! fusiontables(v1)
@@ -1357,6 +1362,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {array[]} coordinates The coordinates that define the line.
  * @property {string} type Type: A line geometry.
  */
+
 /**
  * @typedef LineStyle
  * @memberOf! fusiontables(v1)
@@ -1367,6 +1373,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {integer} strokeWeight Width of the line in pixels.
  * @property {fusiontables(v1).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the line.
  */
+
 /**
  * @typedef Point
  * @memberOf! fusiontables(v1)
@@ -1374,6 +1381,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {number[]} coordinates The coordinates that define the point.
  * @property {string} type Point: A point geometry.
  */
+
 /**
  * @typedef PointStyle
  * @memberOf! fusiontables(v1)
@@ -1381,6 +1389,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} iconName Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
  * @property {fusiontables(v1).StyleFunction} iconStyler Column or a bucket value from which the icon name is to be determined.
  */
+
 /**
  * @typedef Polygon
  * @memberOf! fusiontables(v1)
@@ -1388,6 +1397,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {array[]} coordinates The coordinates that define the polygon.
  * @property {string} type Type: A polygon geometry.
  */
+
 /**
  * @typedef PolygonStyle
  * @memberOf! fusiontables(v1)
@@ -1401,6 +1411,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {integer} strokeWeight Width of the polyon border in pixels.
  * @property {fusiontables(v1).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the polygon border.
  */
+
 /**
  * @typedef Sqlresponse
  * @memberOf! fusiontables(v1)
@@ -1409,6 +1420,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} kind Type name: a template for an individual table.
  * @property {array[]} rows The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
  */
+
 /**
  * @typedef StyleFunction
  * @memberOf! fusiontables(v1)
@@ -1418,6 +1430,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {object} gradient Gradient function that interpolates a range of colors based on column value.
  * @property {string} kind Stylers can be one of three kinds: &quot;fusiontables#fromColumn&quot; if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; &quot;fusiontables#gradient&quot; if the styling of the row is to be based on applying the gradient function on the column value; or &quot;fusiontables#buckets&quot; if the styling is to based on the bucket into which the the column value falls.
  */
+
 /**
  * @typedef StyleSetting
  * @memberOf! fusiontables(v1)
@@ -1430,6 +1443,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {integer} styleId Identifier for the style setting (unique only within tables).
  * @property {string} tableId Identifier for the table.
  */
+
 /**
  * @typedef StyleSettingList
  * @memberOf! fusiontables(v1)
@@ -1439,6 +1453,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  * @property {integer} totalItems Total number of styles for the table.
  */
+
 /**
  * @typedef Table
  * @memberOf! fusiontables(v1)
@@ -1454,6 +1469,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} sql Optional sql that encodes the table definition for derived tables.
  * @property {string} tableId Encrypted unique alphanumeric identifier for the table.
  */
+
 /**
  * @typedef TableList
  * @memberOf! fusiontables(v1)
@@ -1462,6 +1478,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} kind Type name: a list of all tables.
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  */
+
 /**
  * @typedef Task
  * @memberOf! fusiontables(v1)
@@ -1472,6 +1489,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} taskId Identifier for the task.
  * @property {string} type Type of background task. One of  DELETE_ROWS Deletes one or more rows from the table. ADD_ROWS &quot;Adds one or more rows to a table. Includes importing data into a new table and importing more rows into an existing table. ADD_COLUMN Adds a new column to the table. CHANGE_TYPE Changes the type of a column.
  */
+
 /**
  * @typedef TaskList
  * @memberOf! fusiontables(v1)
@@ -1481,6 +1499,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
  * @property {integer} totalItems Total number of tasks for the table.
  */
+
 /**
  * @typedef Template
  * @memberOf! fusiontables(v1)
@@ -1492,6 +1511,7 @@ function Fusiontables(options) { // eslint-disable-line
  * @property {string} tableId Identifier for the table for which the template is defined.
  * @property {integer} templateId Identifier for the template, unique within the context of a particular table.
  */
+
 /**
  * @typedef TemplateList
  * @memberOf! fusiontables(v1)
