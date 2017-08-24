@@ -1,3 +1,7 @@
+##### 20.2.0 - 24 August 2017
+
+- Light refactoring and doc improvements
+
 ##### 20.1.0 - 11 July 2017
 
 - Regenerated
