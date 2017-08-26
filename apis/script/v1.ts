@@ -136,7 +136,6 @@ they can only return primitive types such as a `string`, `number`, `array`,
  * @property {boolean} done This field is only used with asynchronous executions and indicates whether or not the script execution has completed. A completed execution has a populated response field containing the `ExecutionResponse` from function that was executed.
  * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
  * @property {object} metadata This field is not used.
- * @property {string} name This field is only used with asynchronous executions and contains a unique identifier that can be used to subsequently invoke a `get` `cancel` or `join` on the asynchronous script execution identified by this name.
  * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
  */
 

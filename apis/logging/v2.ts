@@ -1658,7 +1658,7 @@ Projects listed in the project_ids field are added to this list.
  * @typedef ListLogEntriesResponse
  * @memberOf! logging(v2)
  * @type object
- * @property {logging(v2).LogEntry[]} entries A list of log entries.
+ * @property {logging(v2).LogEntry[]} entries A list of log entries. If entries is empty, nextPageToken may still be returned, indicating that more entries may exist. See nextPageToken for more information.
  * @property {string} nextPageToken If there might be more results than those appearing in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.If a value for next_page_token appears and the entries field is empty, it means that the search found no log entries so far but it did not have time to search all the possible log entries. Retry the method with this value for page_token to continue the search. Alternatively, consider speeding up the search by changing your filter to specify a single log name or resource type, or to narrow the time range of the search.
  */
 
@@ -1757,7 +1757,7 @@ Projects listed in the project_ids field are added to this list.
 &quot;resource.type=gae_app AND severity&gt;=ERROR&quot;
 The maximum length of the filter is 20000 characters.
 * @property {string} name Required. The client-assigned metric identifier. Examples: &quot;error_count&quot;, &quot;nginx/requests&quot;.Metric identifiers are limited to 100 characters and can include only the following characters: A-Z, a-z, 0-9, and the special characters _-.,+!*&#39;,()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot be the first character of the name.The metric identifier in this field must not be URL-encoded (https://en.wikipedia.org/wiki/Percent-encoding). However, when the metric identifier appears as the [METRIC_ID] part of a metric_name API parameter, then the metric identifier must be URL-encoded. Example: &quot;projects/my-project/metrics/nginx%2Frequests&quot;.
-* @property {string} version Output only. The API version that created or updated this metric. This value is currently always set to V2.
+* @property {string} version Deprecated. The API version that created or updated this metric. The v2 format is used by default and cannot be changed.
 */
 
 /**

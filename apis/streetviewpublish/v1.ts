@@ -192,14 +192,14 @@ function Streetviewpublish(options) { // eslint-disable-line
     /**
      * streetviewpublish.photo.update
      *
-     * @desc Updates the metadata of a Photo, such as pose, place association, connections, etc. Changing the pixels of a photo is not supported.  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the requested photo does not exist.
+     * @desc Updates the metadata of a Photo, such as pose, place association, connections, etc. Changing the pixels of a photo is not supported.  Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields.  <aside class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.</aside>  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the requested photo does not exist.
      *
      * @alias streetviewpublish.photo.update
      * @memberOf! streetviewpublish(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Required. A base64 encoded identifier.
-     * @param {string=} params.updateMask Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata will be entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latlngpair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> Repeated fields in updateMask mean the entire set of repeated values will be replaced with the new contents. For example, if updateMask contains `connections` and google.streetview.publish.v1.UpdatePhotoRequest.photo.connections is empty, all connections will be removed.</aside>
+     * @param {string} params.id Required. A unique identifier for a photo.
+     * @param {string=} params.updateMask Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata will be entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list.  The following fields are valid:  * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places`   <aside class="note"><b>Note:</b> Repeated fields in updateMask mean the entire set of repeated values will be replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections will be removed.</aside>
      * @param {streetviewpublish(v1).Photo} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -310,7 +310,7 @@ function Streetviewpublish(options) { // eslint-disable-line
     /**
      * streetviewpublish.photos.batchUpdate
      *
-     * @desc Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported.  Note that if BatchUpdatePhotos fails, either critical fields are missing or there was an authentication error. Even if BatchUpdatePhotos succeeds, there may have been failures for single photos in the batch. These failures will be specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo.
+     * @desc Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported.  Note that if BatchUpdatePhotos fails, either critical fields are missing or there was an authentication error. Even if BatchUpdatePhotos succeeds, there may have been failures for single photos in the batch. These failures will be specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo.  Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields.  <aside class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.</aside>
      *
      * @alias streetviewpublish.photos.batchUpdate
      * @memberOf! streetviewpublish(v1)
@@ -506,7 +506,7 @@ bytes are uploaded to.
  * @typedef PhotoId
  * @memberOf! streetviewpublish(v1)
  * @type object
- * @property {string} id Required. A base64 encoded identifier.
+ * @property {string} id Required. A unique identifier for a photo.
  */
 
 /**
@@ -570,13 +570,7 @@ google.rpc.Status.details field, or localized by the client.
  * @memberOf! streetviewpublish(v1)
  * @type object
 * @property {streetviewpublish(v1).Photo} photo Required. Photo object containing the
-new metadata. Only the fields specified in
-updateMask
-field are used. If `updateMask` is not present, the update applies to all
-fields. &lt;aside class=&quot;note&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; To update
-Pose.altitude,
-Pose.latLngPair has to be
-filled as well. Otherwise, the request will fail.
+new metadata.
 * @property {string} updateMask Mask that identifies fields on the photo metadata to update.
 If not present, the old Photo metadata will be entirely replaced with the
 new Photo metadata in this request. The update fails if invalid fields are
@@ -585,7 +579,7 @@ specified. Multiple fields can be specified in a comma-delimited list.
 The following fields are valid:
 
 * `pose.heading`
-* `pose.latlngpair`
+* `pose.latLngPair`
 * `pose.pitch`
 * `pose.roll`
 * `pose.level`
@@ -599,9 +593,8 @@ updateMask
 mean the entire set of repeated values will be replaced with the new
 contents. For example, if
 updateMask
-contains `connections` and
-google.streetview.publish.v1.UpdatePhotoRequest.photo.connections is
-empty, all connections will be removed.&lt;/aside&gt;
+contains `connections` and `UpdatePhotoRequest.photo.connections` is empty,
+all connections will be removed.&lt;/aside&gt;
 */
 
 /**
