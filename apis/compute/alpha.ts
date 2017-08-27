@@ -18323,11 +18323,6 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
 
 When the load balancing scheme is INTERNAL, this field is not used.
-* @property {number} failoverRatio The value of the field must be in [0, 1]. If set, &#39;backends[].failover&#39; must be set. They together define the fallback behavior of the primary backend: if the ratio of the healthy VMs in the primary backend is at or below this number, traffic arriving at the load-balanced IP will be directed to the failover backend.
-
-In case where &#39;failoverRatio&#39; is not set or all the VMs in the backup backend are unhealthy, the traffic will be directed back to the primary backend in the &quot;force&quot; mode, where traffic will be spread to the healthy VMs with the best effort, or to all VMs when no VM is healthy.
-
-This field is only used with l4 load balancing.
 * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
 * @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.
 
@@ -20592,7 +20587,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @type object
  * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {compute(alpha).XpnResourceId[]} resources Serive resources (a.k.a service projects) attached to this project as their shared VPC host.
+ * @property {compute(alpha).XpnResourceId[]} resources Service resources (a.k.a service projects) attached to this project as their shared VPC host.
  */
 
 /**

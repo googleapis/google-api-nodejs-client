@@ -86,7 +86,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account whose website is claimed.
      * @param {string} params.merchantId The ID of the managing account.
-     * @param {boolean=} params.overwrite Flag to remove any existing claim on the requested website by another account and replace it with a claim from this account.
+     * @param {boolean=} params.overwrite Only available to selected merchants. When set to True, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -163,6 +163,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value of false will become active on September 28, 2017.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.

@@ -372,6 +372,43 @@ function Identitytoolkit(options) { // eslint-disable-line
     },
 
     /**
+     * identitytoolkit.relyingparty.sendVerificationCode
+     *
+     * @desc Send SMS verification code.
+     *
+     * @alias identitytoolkit.relyingparty.sendVerificationCode
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param {object} params Parameters for request
+     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    sendVerificationCode: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/sendVerificationCode').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * identitytoolkit.relyingparty.setAccountInfo
      *
      * @desc Set account info for a user.
@@ -665,6 +702,43 @@ function Identitytoolkit(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * identitytoolkit.relyingparty.verifyPhoneNumber
+     *
+     * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
+     *
+     * @alias identitytoolkit.relyingparty.verifyPhoneNumber
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param {object} params Parameters for request
+     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    verifyPhoneNumber: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -823,12 +897,30 @@ function Identitytoolkit(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef IdentitytoolkitRelyingpartySendVerificationCodeRequest
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} iosReceipt Receipt of successful app token validation with APNS.
+ * @property {string} iosSecret Secret delivered to iOS app via APNS.
+ * @property {string} phoneNumber The phone number to send the verification code to in E.164 format.
+ * @property {string} recaptchaToken Recaptcha solution.
+ */
+
+/**
+ * @typedef IdentitytoolkitRelyingpartySendVerificationCodeResponse
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} sessionInfo Encrypted session information
+ */
+
+/**
  * @typedef IdentitytoolkitRelyingpartySetAccountInfoRequest
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} captchaChallenge The captcha challenge.
  * @property {string} captchaResponse Response to the captcha.
  * @property {string} createdAt The timestamp when the account is created.
+ * @property {string} customAttributes The custom attributes to be set in the user&#39;s id token.
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
  * @property {string[]} deleteAttribute The attributes users request to delete.
  * @property {string[]} deleteProvider The IDPs the user request to delete.
@@ -966,6 +1058,35 @@ function Identitytoolkit(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} code 
+ * @property {string} idToken 
+ * @property {string} operation 
+ * @property {string} phoneNumber 
+ * @property {string} sessionInfo The session info previously returned by IdentityToolkit-SendVerificationCode.
+ * @property {string} temporaryProof 
+ * @property {string} verificationProof 
+ */
+
+/**
+ * @typedef IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} expiresIn 
+ * @property {string} idToken 
+ * @property {boolean} isNewUser 
+ * @property {string} localId 
+ * @property {string} phoneNumber 
+ * @property {string} refreshToken 
+ * @property {string} temporaryProof 
+ * @property {string} temporaryProofExpiresIn 
+ * @property {string} verificationProof 
+ * @property {string} verificationProofExpiresIn 
+ */
+
+/**
  * @typedef IdpConfig
  * @memberOf! identitytoolkit(v3)
  * @type object
@@ -1052,6 +1173,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} createdAt User creation timestamp.
+ * @property {string} customAttributes The custom attributes to be set in the user&#39;s id token.
  * @property {boolean} customAuth Whether the user is authenticated by the developer.
  * @property {boolean} disabled Whether the user is disabled.
  * @property {string} displayName The name of the user.
@@ -1122,6 +1244,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @type object
  * @property {string} expiresIn If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
  * @property {string} idToken The GITKit token for authenticated user.
+ * @property {boolean} isNewUser True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
  * @property {string} kind The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  */
