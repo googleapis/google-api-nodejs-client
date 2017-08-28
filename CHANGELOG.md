@@ -1,3 +1,16 @@
+##### 21.3.0 - 28 August 2017
+
+###### Backwards compatible changes
+- Updated `appengine:v1beta`
+- Updated `compute:alpha`
+- Updated `compute:beta`
+- Updated `compute:v1`
+- Updated `content:v2`
+- Updated `identitytoolkit:v3`
+- Updated `logging:v2`
+- Updated `script:v1`
+- Updated `streetviewpublish:v1`
+
 ##### 21.2.0 - 25 August 2017
 
 ###### Breaking changes
