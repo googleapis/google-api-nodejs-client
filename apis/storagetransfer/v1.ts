@@ -1212,7 +1212,7 @@ must either have a `lastModificationTime` greater or equal to
  * @memberOf! storagetransfer(v1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {storagetransfer(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Represents the transfer operation object.

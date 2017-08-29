@@ -326,6 +326,8 @@ The image is fetched once at insertion time and a copy is stored for
 display inside the presentation. Images must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
+
+The provided URL can be at maximum 2K bytes large.
 */
 
 /**
@@ -952,7 +954,7 @@ also be due to internal factors such as ID format changes.
  * @type object
 * @property {string} propertyState The background fill property state.
 
-Updating the the fill on a page will implicitly update this field to
+Updating the fill on a page will implicitly update this field to
 `RENDERED`, unless another value is specified in the same request. To
 have no fill on a page, set this field to `NOT_RENDERED`. In this case,
 any other fill fields set in the same request will be ignored.
@@ -980,6 +982,14 @@ represented as images.
 * @property {string} title The title of the page element. Combined with description to display alt
 text.
 * @property {slides(v1).AffineTransform} transform The transform of the page element.
+
+The visual appearance of the page element is determined by its absolute
+transform. To compute the absolute transform, preconcatenate a page
+element&#39;s transform with the transforms of all of its parent groups. If the
+page element is not in a group, its absolute transform is the same as the
+value in this field.
+
+The initial transform for the newly created Group is always the identity transform.
 * @property {slides(v1).Video} video A video page element.
 * @property {slides(v1).WordArt} wordArt A word art page element.
 */
@@ -1146,6 +1156,8 @@ The image is fetched once at insertion time and a copy is stored for
 display inside the presentation. Images must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
+
+The provided URL can be at maximum 2K bytes large.
 * @property {string[]} pageObjectIds If non-empty, limits the matches to page elements only on the given pages.
 
 Returns a 400 bad request error if given the page object ID of a
@@ -1419,6 +1431,8 @@ The picture is fetched once at insertion time and a copy is stored for
 display inside the presentation. Pictures must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
+
+The provided URL can be at maximum 2K bytes large.
 * @property {slides(v1).Size} size The original size of the picture fill. This field is read-only.
 */
 
