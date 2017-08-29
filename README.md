@@ -328,7 +328,7 @@ To learn more about API keys, please see the [documentation][usingkeys].
 
 #### Using JWT (Service Tokens)
 
-The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests.
+The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
 var key = require('/path/to/key.json');
