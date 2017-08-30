@@ -2761,7 +2761,7 @@ be paginated.
  * @memberOf! cloudresourcemanager(v1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {cloudresourcemanager(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically

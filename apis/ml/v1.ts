@@ -1417,29 +1417,6 @@ If not set, Google Cloud ML will choose a version.
 */
 
 /**
- * @typedef GoogleIamV1_LogConfig_CloudAuditOptions
- * @memberOf! ml(v1)
- * @type object
- * @property {string} logName The log_name to populate in the Cloud Audit Record.
- */
-
-/**
- * @typedef GoogleIamV1_LogConfig_CounterOptions
- * @memberOf! ml(v1)
- * @type object
- * @property {string} field The field value to attribute.
- * @property {string} metric The metric to update.
- */
-
-/**
- * @typedef GoogleIamV1_LogConfig_DataAccessOptions
- * @memberOf! ml(v1)
- * @type object
-* @property {string} logMode Whether Gin logging should happen in a fail-closed manner at the caller.
-This is relevant only in the LocalIAM implementation, for now.
-*/
-
-/**
  * @typedef GoogleIamV1__AuditConfig
  * @memberOf! ml(v1)
  * @type object
@@ -1500,28 +1477,6 @@ Required
 */
 
 /**
- * @typedef GoogleIamV1__Condition
- * @memberOf! ml(v1)
- * @type object
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-*/
-
-/**
- * @typedef GoogleIamV1__LogConfig
- * @memberOf! ml(v1)
- * @type object
- * @property {ml(v1).GoogleIamV1_LogConfig_CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {ml(v1).GoogleIamV1_LogConfig_CounterOptions} counter Counter options.
- * @property {ml(v1).GoogleIamV1_LogConfig_DataAccessOptions} dataAccess Data access options.
- */
-
-/**
  * @typedef GoogleIamV1__Policy
  * @memberOf! ml(v1)
  * @type object
@@ -1539,36 +1494,7 @@ ensure that their change will be applied to the same version of the policy.
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
 * @property {boolean} iamOwned 
-* @property {ml(v1).GoogleIamV1__Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
-*/
-
-/**
- * @typedef GoogleIamV1__Rule
- * @memberOf! ml(v1)
- * @type object
-* @property {string} action Required
-* @property {ml(v1).GoogleIamV1__Condition[]} conditions Additional restrictions that must be met
-* @property {string} description Human-readable description of the rule.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {ml(v1).GoogleIamV1__LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
 */
 
 /**
@@ -1617,7 +1543,7 @@ allowed.
  * @memberOf! ml(v1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {ml(v1).GoogleRpc__Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically
