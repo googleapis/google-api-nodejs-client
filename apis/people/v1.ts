@@ -983,6 +983,7 @@ with a max length of 27 characters, in the form of
 * @property {people(v1).Skill[]} skills The person&#39;s skills.
 * @property {people(v1).Tagline[]} taglines The person&#39;s read-only taglines.
 * @property {people(v1).Url[]} urls The person&#39;s associated URLs.
+* @property {people(v1).UserDefined[]} userDefined The person&#39;s user defined data.
 */
 
 /**
@@ -1220,4 +1221,13 @@ Possible values include, but are not limited to, the following:
 * `other`
 * @property {string} value The URL.
 */
+
+/**
+ * @typedef UserDefined
+ * @memberOf! people(v1)
+ * @type object
+ * @property {string} key The end user specified key of the user defined data.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the user defined data.
+ * @property {string} value The end user specified value of the user defined data.
+ */
 export = People;

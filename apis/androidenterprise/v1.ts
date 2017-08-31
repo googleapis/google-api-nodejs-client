@@ -688,7 +688,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.sendTestPushNotification
      *
-     * @desc Sends a test push notification to validate the EMM integration with the Google Cloud Pub/Sub service for this enterprise.
+     * @desc Sends a test notification to validate the EMM integration with the Google Cloud Pub/Sub service for this enterprise.
      *
      * @alias androidenterprise.enterprises.sendTestPushNotification
      * @memberOf! androidenterprise(v1)
@@ -3522,6 +3522,7 @@ Possible values include:
  * @property {string} productId A string of the form app:&lt;package name&gt;. For example, app:com.google.android.gm represents the Gmail app.
  * @property {string} productPricing Whether this product is free, free with in-app purchases, or paid. If the pricing is unknown, this means the product is not generally available anymore (even though it might still be available to people who own it).
  * @property {boolean} requiresContainerApp Deprecated.
+ * @property {androidenterprise(v1).ProductSigningCertificate} signingCertificate The certificate used to sign this product.
  * @property {string} smallIconUrl A link to a smaller image that can be used as an icon for the product. This image is suitable for use at up to 128px x 128px.
  * @property {string} title The name of the product.
  * @property {string} workDetailsUrl A link to the managed Google Play details page for the product, for use by an Enterprise admin.
@@ -3567,6 +3568,14 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
  * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility. Further &quot;allApproved&quot; or &quot;includeAll&quot; does not enable automatic visibility of &quot;alpha&quot; or &quot;beta&quot; tracks for Android app. Use ProductVisibility to enable &quot;alpha&quot; or &quot;beta&quot; tracks per user.
+ */
+
+/**
+ * @typedef ProductSigningCertificate
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} certificateHashSha1 The base64 urlsafe encoded SHA1 hash of the certificate. (This field is deprecated in favor of SHA2-256. It should not be used and may be removed at any time.)
+ * @property {string} certificateHashSha256 The base64 urlsafe encoded SHA2-256 hash of the certificate.
  */
 
 /**

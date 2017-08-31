@@ -394,6 +394,46 @@ function Toolresults(options) { // eslint-disable-line
         clusters: {
 
           /**
+           * toolresults.projects.histories.executions.clusters.get
+           *
+           * @desc Retrieves a single screenshot cluster by its ID
+           *
+           * @alias toolresults.projects.histories.executions.clusters.get
+           * @memberOf! toolresults(v1beta3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.clusterId A Cluster id  Required.
+           * @param {string} params.executionId An Execution id.  Required.
+           * @param {string} params.historyId A History id.  Required.
+           * @param {string} params.projectId A Project id.  Required.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
+              pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
            * toolresults.projects.histories.executions.clusters.list
            *
            * @desc Lists Screenshot Clusters  Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.

@@ -353,6 +353,163 @@ function Dlp(options) { // eslint-disable-line
     }
   };
 
+  self.riskAnalysis = {
+    operations: {
+
+      /**
+       * dlp.riskAnalysis.operations.cancel
+       *
+       * @desc Cancels an operation. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+       *
+       * @alias dlp.riskAnalysis.operations.cancel
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource to be cancelled.
+       * @param {dlp(v2beta1).GoogleLongrunningCancelOperationRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.riskAnalysis.operations.delete
+       *
+       * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
+       *
+       * @alias dlp.riskAnalysis.operations.delete
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource to be deleted.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.riskAnalysis.operations.get
+       *
+       * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+       *
+       * @alias dlp.riskAnalysis.operations.get
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.riskAnalysis.operations.list
+       *
+       * @desc Fetch the list of long running operations.
+       *
+       * @alias dlp.riskAnalysis.operations.list
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter This parameter supports filtering by done, ie done=true or done=false.
+       * @param {string} params.name The name of the operation's parent resource.
+       * @param {integer=} params.pageSize The list page size. The max allowed value is 256 and default is 100.
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
   self.rootCategories = {
 
     /**
@@ -453,7 +610,7 @@ function Dlp(options) { // eslint-disable-line
  * @memberOf! dlp(v2beta1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {dlp(v2beta1).GoogleRpcStatus} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata This field will contain an InspectOperationMetadata object. This will always be returned with the Operation.
