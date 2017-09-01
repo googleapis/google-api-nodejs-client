@@ -306,13 +306,14 @@ such as libc.so, sharedlib.so (up to 256 bytes).
  * @typedef NetworkEvent
  * @memberOf! cloudtrace(v2)
  * @type object
+* @property {string} compressedMessageSize The number of compressed bytes sent or received.
 * @property {string} messageId An identifier for the message, which must be unique in this span.
-* @property {string} messageSize The number of bytes sent or received.
 * @property {string} time For sent messages, this is the time at which the first bit was sent.
 For received messages, this is the time at which the last bit was
 received.
 * @property {string} type Type of NetworkEvent. Indicates whether the RPC message was sent or
 received.
+* @property {string} uncompressedMessageSize The number of uncompressed bytes sent or received.
 */
 
 /**

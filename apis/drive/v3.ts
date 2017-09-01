@@ -741,7 +741,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'user'; all other values must be used in isolation. Prefer 'user' or 'teamDrive' to 'allTeamDrives' for efficiency.
      * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
      * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {string=} params.q A query for filtering the file results. See the "Search for Files" guide for supported syntax.
@@ -1748,6 +1748,7 @@ Note that setting modifiedTime will also update modifiedByMeTime for the user.
 * @property {drive(v3).User[]} owners The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for Team Drive files.
 * @property {string[]} parents The IDs of the parent folders which contain the file.
 If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.
+* @property {string[]} permissionIds List of permission IDs for users with access to this file.
 * @property {drive(v3).Permission[]} permissions The full list of permissions for the file. This is only available if the requesting user can share the file. Not populated for Team Drive files.
 * @property {object} properties A collection of arbitrary key-value pairs which are visible to all apps.
 Entries with null values are cleared in update and copy requests.

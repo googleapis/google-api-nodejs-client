@@ -2469,6 +2469,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Account} account The account to create or update. Only defined if the method is insert or update.
  * @property {string} accountId The ID of the targeted account. Only defined if the method is get, delete or claimwebsite.
  * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {boolean} force Whether the account should be deleted if the account has offers. Only applicable if the method is delete.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  * @property {boolean} overwrite Only applicable if the method is claimwebsite. Indicates whether or not to take the claim from another account in case there is a conflict.
@@ -3791,6 +3792,7 @@ Acceptable values are:
  * @property {string} currency The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
  * @property {string} deliveryCountry The CLDR territory code of the country to which the service applies. Required.
  * @property {content(v2).DeliveryTime} deliveryTime Time spent in various aspects from order to the delivery of the product. Required.
+ * @property {content(v2).Price} minimumOrderValue Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency.
  * @property {string} name Free-form name of the service. Must be unique within target account. Required.
  * @property {content(v2).RateGroup[]} rateGroups Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
  */

@@ -319,8 +319,8 @@ function Dlp(options) { // eslint-disable-line
          * @memberOf! dlp(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.filter Restricts findings to items that match. Supports info_type and likelihood. <p>Examples:<br/> <li>info_type=EMAIL_ADDRESS <li>info_type=PHONE_NUMBER,EMAIL_ADDRESS <li>likelihood=VERY_LIKELY <li>likelihood=VERY_LIKELY,LIKELY <li>info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
-         * @param {string} params.name Identifier of the results set returned as metadata of the longrunning operation created by a call to CreateInspectOperation. Should be in the format of `inspect/results/{id}`.
+         * @param {string=} params.filter Restricts findings to items that match. Supports info_type and likelihood. Examples: - info_type=EMAIL_ADDRESS - info_type=PHONE_NUMBER,EMAIL_ADDRESS - likelihood=VERY_LIKELY - likelihood=VERY_LIKELY,LIKELY - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
+         * @param {string} params.name Identifier of the results set returned as metadata of the longrunning operation created by a call to InspectDataSource. Should be in the format of `inspect/results/{id}`.
          * @param {integer=} params.pageSize Maximum number of results to return. If 0, the implementation selects a reasonable value.
          * @param {string=} params.pageToken The value returned by the last `ListInspectFindingsResponse`; indicates that this is a continuation of a prior `ListInspectFindings` call, and that the system should return the next page of data.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -697,19 +697,36 @@ JPEG images.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OutputStorageConfig} outputConfig Optional location to store findings. The bucket must already exist and
 the Google APIs service account for DLP must have write permission to
 write to the given bucket.
-&lt;p&gt;Results are split over multiple csv files with each file name matching
+Results are split over multiple csv files with each file name matching
 the pattern &quot;[operation_id]_[count].csv&quot;, for example
 `3094877188788974909_1.csv`. The `operation_id` matches the
 identifier for the Operation, and the `count` is a counter used for
-tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
-following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-&lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
-&lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
-&lt;li&gt;start_offset&lt;br/&gt;
-&lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-&lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
-&lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
-&lt;li&gt;dataset_id &lt;li&gt;table_id
+tracking the number of files written.
+The CSV file(s) contain the
+following columns regardless of storage type scanned:
+- id
+- info_type
+- likelihood
+- byte size of finding
+- quote
+- timestamp
+
+For Cloud Storage the next columns are:
+- file_path
+- start_offset
+
+For Cloud Datastore the next columns are:
+- project_id
+- namespace_id
+- path
+- column_name
+- offset
+
+For BigQuery the next columns are:
+- row_number
+- project_id
+- dataset_id
+- table_id
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} storageConfig Specification of the data set to process.
 */
 

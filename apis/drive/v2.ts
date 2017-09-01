@@ -1076,7 +1076,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
      * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
-     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {string=} params.pageToken Page token for files.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
@@ -3027,6 +3027,7 @@ function Drive(options) { // eslint-disable-line
 * @property {drive(v2).User[]} owners The owner(s) of this file. Not populated for Team Drive files.
 * @property {drive(v2).ParentReference[]} parents Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
+* @property {string[]} permissionIds List of permission IDs for users with access to this file.
 * @property {drive(v2).Permission[]} permissions The list of permissions for users with access to this file. Not populated for Team Drive files.
 * @property {drive(v2).Property[]} properties The list of properties.
 * @property {string} quotaBytesUsed The number of quota bytes used by this file.

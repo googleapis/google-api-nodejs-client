@@ -1383,9 +1383,14 @@ context of the other fields.
 Required.
 * @property {string} origin One of the standard Origins defined above.
 * @property {string} originNamespace A string containing a more specific namespace of the counter&#39;s origin.
+* @property {string} originalShuffleStepName The GroupByKey step name from the original graph.
 * @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
 optimization.
 * @property {string} portion Portion of this counter, either key or value.
+* @property {dataflow(v1b3).SideInputId} sideInput ID of a side input being read from/written to. Side inputs are identified
+by a pair of (reader, input_index). The reader is usually equal to the
+original name, but it may be different, if a ParDo emits it&#39;s Iterator /
+Map side input object.
 * @property {string} workerId ID of a particular worker.
 */
 
@@ -2277,6 +2282,14 @@ Unique across the workflow.
  */
 
 /**
+ * @typedef SideInputId
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} declaringStepName The step that receives and usually consumes this side input.
+ * @property {integer} inputIndex The index of the side input, from the list of non_parallel_inputs.
+ */
+
+/**
  * @typedef SideInputInfo
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -2813,6 +2826,7 @@ not be used here.
 * @property {dataflow(v1b3).WorkerHealthReport} workerHealthReport The health of a worker.
 * @property {dataflow(v1b3).WorkerMessageCode} workerMessageCode A worker message code.
 * @property {dataflow(v1b3).ResourceUtilizationReport} workerMetrics Resource metrics reported by workers.
+* @property {dataflow(v1b3).WorkerShutdownNotice} workerShutdownNotice Shutdown notice by workers.
 */
 
 /**
@@ -2857,6 +2871,7 @@ Conventions:
  * @type object
  * @property {dataflow(v1b3).WorkerHealthReportResponse} workerHealthReportResponse The service&#39;s response to a worker&#39;s health report.
  * @property {dataflow(v1b3).ResourceUtilizationReportResponse} workerMetricsResponse Service&#39;s response to reporting worker metrics (currently empty).
+ * @property {dataflow(v1b3).WorkerShutdownNoticeResponse} workerShutdownNoticeResponse Service&#39;s response to shutdown notice (currently empty).
  */
 
 /**
@@ -2947,6 +2962,21 @@ Google Cloud Storage:
   bucket.storage.googleapis.com/{object}
 * @property {string} workerId The ID of the worker running this pipeline.
 */
+
+/**
+ * @typedef WorkerShutdownNotice
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} reason Optional reason to be attached for the shutdown notice.
+For example: &quot;PREEMPTION&quot; would indicate the VM is being shut down because
+of preemption. Other possible reasons may be added in the future.
+*/
+
+/**
+ * @typedef WorkerShutdownNoticeResponse
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ */
 
 /**
  * @typedef WriteInstruction
