@@ -1316,6 +1316,15 @@ function Monitoring(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef CollectdPayloadError
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).Status} error Records the error status for the payload. If this field is present, the partial errors for nested values won&#39;t be populated.
+ * @property {integer} index The zero-based index in CreateCollectdTimeSeriesRequest.collectd_payloads.
+ * @property {monitoring(v3).CollectdValueError[]} valueErrors Records the error status for values that were not written due to an error.Failed payloads for which nothing is written will not include partial value errors.
+ */
+
+/**
  * @typedef CollectdValue
  * @memberOf! monitoring(v3)
  * @type object
@@ -1325,12 +1334,27 @@ function Monitoring(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef CollectdValueError
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).Status} error Records the error status for the value.
+ * @property {integer} index The zero-based index in CollectdPayload.values within the parent CreateCollectdTimeSeriesRequest.collectd_payloads.
+ */
+
+/**
  * @typedef CreateCollectdTimeSeriesRequest
  * @memberOf! monitoring(v3)
  * @type object
  * @property {monitoring(v3).CollectdPayload[]} collectdPayloads The collectd payloads representing the time series data. You must not include more than a single point for each time series, so no two payloads can have the same values for all of the fields plugin, plugin_instance, type, and type_instance.
  * @property {string} collectdVersion The version of collectd that collected the data. Example: &quot;5.3.0-192.el6&quot;.
  * @property {monitoring(v3).MonitoredResource} resource The monitored resource associated with the time series.
+ */
+
+/**
+ * @typedef CreateCollectdTimeSeriesResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).CollectdPayloadError[]} payloadErrors Records the error status for points that were not written due to an error.Failed requests for which nothing is written will return an error response instead.
  */
 
 /**
@@ -1576,6 +1600,15 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  * @memberOf! monitoring(v3)
  * @type object
  * @property {string} fileName The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
+ */
+
+/**
+ * @typedef Status
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+ * @property {object[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
+ * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
 
 /**

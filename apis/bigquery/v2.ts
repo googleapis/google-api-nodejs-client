@@ -2710,7 +2710,8 @@ function Bigquery(options) { // eslint-disable-line
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} expirationMs [Optional] Number of milliseconds for which to keep the storage for a partition.
- * @property {string} type [Required] The only type supported is DAY, which will generate one partition per day based on data loading time.
+ * @property {string} field [Experimental] [Optional] If not set, the table is partitioned by pseudo column &#39;_PARTITIONTIME&#39;; if set, the table is partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
+ * @property {string} type [Required] The only type supported is DAY, which will generate one partition per day.
  */
 
 /**

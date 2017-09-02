@@ -358,9 +358,14 @@ activities.
  * @type object
 * @property {string} authoritySelector The authority selector specified by the requestor, if any.
 It is not guaranteed that the principal was allowed to use this authority.
-* @property {string} principalEmail The email address of the authenticated user making the request.
-For privacy reasons, the principal email address is redacted for all
-read-only operations that fail with a &quot;permission denied&quot; error.
+* @property {string} principalEmail The email address of the authenticated user (or service account on behalf
+of third party principal) making the request. For privacy reasons, the
+principal email address is redacted for all read-only operations that fail
+with a &quot;permission denied&quot; error.
+* @property {object} thirdPartyPrincipal The third party identification (if any) of the authenticated user making
+the request.
+When the JSON object represented here has a proto equivalent, the proto
+name will be indicated in the `@type` property.
 */
 
 /**
