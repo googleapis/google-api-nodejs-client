@@ -3513,7 +3513,7 @@ Possible values include:
  * @typedef Product
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {androidenterprise(v1).AppVersion[]} appVersion App versions currently available for this product. The returned list contains only public versions. Alpha and beta versions are not included.
+ * @property {androidenterprise(v1).AppVersion[]} appVersion App versions currently available for this product.
  * @property {string} authorName The name of the author of the product (for example, the app developer).
  * @property {string} detailsUrl A link to the (consumer) Google Play details page for the product.
  * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.

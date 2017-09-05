@@ -1025,38 +1025,11 @@ Required
 */
 
 /**
- * @typedef CloudAuditOptions
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} logName The log_name to populate in the Cloud Audit Record.
- */
-
-/**
- * @typedef Condition
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-*/
-
-/**
- * @typedef CounterOptions
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {string} field The field value to attribute.
- * @property {string} metric The metric to update.
- */
-
-/**
  * @typedef CryptoKey
  * @memberOf! cloudkms(v1)
  * @type object
 * @property {string} createTime Output only. The time at which this CryptoKey was created.
+* @property {object} labels Labels with user defined metadata.
 * @property {string} name Output only. The resource name for this CryptoKey in the format
 `projects/x/locations/x/keyRings/x/cryptoKeys/x.
 * @property {string} nextRotationTime At next_rotation_time, the Key Management Service will automatically:
@@ -1096,14 +1069,6 @@ DESTROY_SCHEDULED.
 * @property {string} name Output only. The resource name for this CryptoKeyVersion in the format
 `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
 * @property {string} state The current state of the CryptoKeyVersion.
-*/
-
-/**
- * @typedef DataAccessOptions
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} logMode Whether Gin logging should happen in a fail-closed manner at the caller.
-This is relevant only in the LocalIAM implementation, for now.
 */
 
 /**
@@ -1229,15 +1194,6 @@ For example: `&quot;projects/example-project/locations/us-east1&quot;`
 */
 
 /**
- * @typedef LogConfig
- * @memberOf! cloudkms(v1)
- * @type object
- * @property {cloudkms(v1).CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {cloudkms(v1).CounterOptions} counter Counter options.
- * @property {cloudkms(v1).DataAccessOptions} dataAccess Data access options.
- */
-
-/**
  * @typedef Policy
  * @memberOf! cloudkms(v1)
  * @type object
@@ -1255,15 +1211,6 @@ ensure that their change will be applied to the same version of the policy.
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
 * @property {boolean} iamOwned 
-* @property {cloudkms(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 */
 
@@ -1272,26 +1219,6 @@ manner:
  * @memberOf! cloudkms(v1)
  * @type object
  */
-
-/**
- * @typedef Rule
- * @memberOf! cloudkms(v1)
- * @type object
-* @property {string} action Required
-* @property {cloudkms(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {string} description Human-readable description of the rule.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {cloudkms(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-*/
 
 /**
  * @typedef SetIamPolicyRequest

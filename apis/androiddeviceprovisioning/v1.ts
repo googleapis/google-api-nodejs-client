@@ -82,15 +82,53 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
     customers: {
 
       /**
+       * androiddeviceprovisioning.partners.customers.create
+       *
+       * @desc A customer for Zero Touch Provisioning will be created. After a Customer is created, their admins and owners will be able to manage devices on partner.android.com/zerotouch or via their API.
+       *
+       * @alias androiddeviceprovisioning.partners.customers.create
+       * @memberOf! androiddeviceprovisioning(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The parent resource in format `partners/[PARTNER_ID]'.
+       * @param {androiddeviceprovisioning(v1).CreateCustomerRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{parent}/customers').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * androiddeviceprovisioning.partners.customers.list
        *
-       * @desc List all the customers that has delegates some role to this customer.
+       * @desc List the customers that are enrolled to the reseller identified by the `partnerId` argument. This list includes customers that the reseller created and customers that enrolled themselves using the portal.
        *
        * @alias androiddeviceprovisioning.partners.customers.list
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId the id of the partner.
+       * @param {string} params.partnerId The ID of the partner.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -129,7 +167,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId Id of the partner.
+       * @param {string} params.partnerId ID of the partner.
        * @param {androiddeviceprovisioning(v1).ClaimDeviceRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -161,13 +199,13 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.devices.claimAsync
        *
-       * @desc Claim devices asynchronously
+       * @desc Claim devices asynchronously.
        *
        * @alias androiddeviceprovisioning.partners.devices.claimAsync
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId partner id.
+       * @param {string} params.partnerId Partner ID.
        * @param {androiddeviceprovisioning(v1).ClaimDevicesRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -205,7 +243,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId id of the partner.
+       * @param {string} params.partnerId ID of the partner.
        * @param {androiddeviceprovisioning(v1).FindDevicesByDeviceIdentifierRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -243,7 +281,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId id of the partner.
+       * @param {string} params.partnerId ID of the partner.
        * @param {androiddeviceprovisioning(v1).FindDevicesByOwnerRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -275,13 +313,13 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.devices.get
        *
-       * @desc Get a device
+       * @desc Get a device.
        *
        * @alias androiddeviceprovisioning.partners.devices.get
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name resource name in 'partners/[PARTNER_ID]/devices/[DEVICE_ID]'.
+       * @param {string} params.name Resource name in `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -312,14 +350,14 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.devices.metadata
        *
-       * @desc Update the metadata
+       * @desc Update the metadata.
        *
        * @alias androiddeviceprovisioning.partners.devices.metadata
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.deviceId id of the partner.
-       * @param {string} params.metadataOwnerId The owner of the newly set metadata. Should be partner id itself.
+       * @param {string} params.deviceId ID of the partner.
+       * @param {string} params.metadataOwnerId The owner of the newly set metadata. Set this to the partner ID.
        * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -351,13 +389,13 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.devices.unclaim
        *
-       * @desc Unclaim the device identified by device_id or identifier.
+       * @desc Unclaim the device identified by the `device_id` or the `deviceIdentifier`.
        *
        * @alias androiddeviceprovisioning.partners.devices.unclaim
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId Id of the partner.
+       * @param {string} params.partnerId ID of the partner.
        * @param {androiddeviceprovisioning(v1).UnclaimDeviceRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -389,13 +427,13 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.devices.unclaimAsync
        *
-       * @desc Unclaim devices asynchronously
+       * @desc Unclaim devices asynchronously.
        *
        * @alias androiddeviceprovisioning.partners.devices.unclaimAsync
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId partner id.
+       * @param {string} params.partnerId Partner ID.
        * @param {androiddeviceprovisioning(v1).UnclaimDevicesRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -433,7 +471,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.partnerId partner id.
+       * @param {string} params.partnerId Partner ID.
        * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataInBatchRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -471,71 +509,79 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
  * @type object
  * @property {string} customerId The customer to claim for.
  * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The device identifier of the device to claim.
- * @property {string} sectionType Section to claim
+ * @property {string} sectionType The section to claim.
  */
 
 /**
  * @typedef ClaimDeviceResponse
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {string} deviceId the device id of the claimed device.
-* @property {string} deviceName the resource name of the device in
-&#39;partners/[PARTNER_ID]/devices/[DEVICE_ID]&#39;.
+* @property {string} deviceId The device ID of the claimed device.
+* @property {string} deviceName The resource name of the device in the format
+`partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
 */
 
 /**
  * @typedef ClaimDevicesRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).PartnerClaim[]} claims list of claims.
+ * @property {androiddeviceprovisioning(v1).PartnerClaim[]} claims List of claims.
  */
 
 /**
  * @typedef Company
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {string[]} adminEmails Admin email.
-Admins will be able to operate on the portal.
-This field is a WRITE-only field at creation time.
-* @property {string} companyId company id
-* @property {string} companyName company name
-* @property {string} name REST Resource name.
-* @property {string[]} ownerEmails Owner email.
-Owner is able to operate on the portal, and modify admins and other owners.
-This field is a WRITE-only field at creation time.
+* @property {string[]} adminEmails Admin emails.
+Admins are able to operate on the portal.
+This field is a write-only field at creation time.
+* @property {string} companyId Company ID.
+* @property {string} companyName Company name.
+* @property {string} name The API resource name of the company in the format
+`partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`.
+* @property {string[]} ownerEmails Owner emails.
+Owners are able to operate on the portal, and modify admins or other
+owners. This field is a write-only field at creation time.
 */
+
+/**
+ * @typedef CreateCustomerRequest
+ * @memberOf! androiddeviceprovisioning(v1)
+ * @type object
+ * @property {androiddeviceprovisioning(v1).Company} customer The customer to create.
+ */
 
 /**
  * @typedef Device
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims claims
+* @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims Claims.
 * @property {string} configuration The resource name of the configuration.
 Only set for customers.
-* @property {string} deviceId Device id
-* @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier
-* @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata Device metadata
-* @property {string} name Resource name in &#39;partners/[PARTNER_ID]/devices/[DEVICE_ID]&#39;.
+* @property {string} deviceId Device ID.
+* @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier.
+* @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata Device metadata.
+* @property {string} name Resource name in `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
 */
 
 /**
  * @typedef DeviceClaim
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} ownerCompanyId owner id
- * @property {string} sectionType section type.
+ * @property {string} ownerCompanyId Owner ID.
+ * @property {string} sectionType Section type of the device claim.
  */
 
 /**
  * @typedef DeviceIdentifier
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {string} imei IMEI
+* @property {string} imei IMEI number.
 * @property {string} manufacturer Manufacturer name to match `android.os.Build.MANUFACTURER` (required).
 Allowed values listed in
 [manufacturer names](/zero-touch/resources/manufacturer-names).
-* @property {string} meid MEID
-* @property {string} serialNumber Serial number (optional)
+* @property {string} meid MEID number.
+* @property {string} serialNumber Serial number (optional).
 */
 
 /**
@@ -558,8 +604,8 @@ Allowed values listed in
  * @typedef DevicesLongRunningOperationResponse
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {androiddeviceprovisioning(v1).OperationPerDevice[]} perDeviceStatus processing status for each device.
-One PerDeviceStatus per device. The order is the same as in your requests.
+* @property {androiddeviceprovisioning(v1).OperationPerDevice[]} perDeviceStatus Processing status for each device.
+One `PerDeviceStatus` per device. The order is the same as in your requests.
 * @property {integer} successCount Number of succeesfully processed ones.
 */
 
@@ -573,9 +619,9 @@ One PerDeviceStatus per device. The order is the same as in your requests.
  * @typedef FindDevicesByDeviceIdentifierRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The device identifier to search
+ * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The device identifier to search.
  * @property {string} limit Number of devices to show.
- * @property {string} pageToken Page token
+ * @property {string} pageToken Page token.
  */
 
 /**
@@ -583,16 +629,16 @@ One PerDeviceStatus per device. The order is the same as in your requests.
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
  * @property {androiddeviceprovisioning(v1).Device[]} devices Found devices.
- * @property {string} nextPageToken Page token of next page
+ * @property {string} nextPageToken Page token of the next page.
  */
 
 /**
  * @typedef FindDevicesByOwnerRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string[]} customerId List of customer ids to search for.
+ * @property {string[]} customerId List of customer IDs to search for.
  * @property {string} limit The number of devices to show in the result.
- * @property {string} pageToken Page token
+ * @property {string} pageToken Page token.
  * @property {string} sectionType The section type.
  */
 
@@ -601,7 +647,7 @@ One PerDeviceStatus per device. The order is the same as in your requests.
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
  * @property {androiddeviceprovisioning(v1).Device[]} devices Devices found.
- * @property {string} nextPageToken Page token of next page
+ * @property {string} nextPageToken Page token of the next page.
  */
 
 /**
@@ -640,28 +686,28 @@ originally returns it. If you use the default HTTP mapping, the
  * @typedef PartnerClaim
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} customerId customer id to claim for.
+ * @property {string} customerId Customer ID to claim for.
  * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier of the device.
- * @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata metadata to set at claim.
- * @property {string} sectionType section type to claim.
+ * @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata Metadata to set at claim.
+ * @property {string} sectionType Section type to claim.
  */
 
 /**
  * @typedef PartnerUnclaim
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} deviceId device id of the device.
- * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier device identifier of the device.
- * @property {string} sectionType section type to unclaim.
+ * @property {string} deviceId Device ID of the device.
+ * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier of the device.
+ * @property {string} sectionType Section type to unclaim.
  */
 
 /**
  * @typedef PerDeviceStatusInBatch
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} deviceId device id of the device if process succeeds.
+ * @property {string} deviceId Device ID of the device if process succeeds.
  * @property {string} errorIdentifier Error identifier.
- * @property {string} errorMessage Error message
+ * @property {string} errorMessage Error message.
  * @property {string} status Process result.
  */
 
@@ -681,8 +727,8 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef UnclaimDeviceRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} deviceId The device id returned by ClaimDevice.
- * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The device identifier you use when you claimed this device.
+ * @property {string} deviceId The device ID returned by `ClaimDevice`.
+ * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The device identifier you used when you claimed this device.
  * @property {string} sectionType The section type to unclaim for.
  */
 
@@ -690,14 +736,14 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef UnclaimDevicesRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).PartnerUnclaim[]} unclaims list of unclaims.
+ * @property {androiddeviceprovisioning(v1).PartnerUnclaim[]} unclaims List of devices to unclaim.
  */
 
 /**
  * @typedef UpdateDeviceMetadataInBatchRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).UpdateMetadataArguments[]} updates list of metadata updates.
+ * @property {androiddeviceprovisioning(v1).UpdateMetadataArguments[]} updates List of metadata updates.
  */
 
 /**
@@ -711,8 +757,8 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef UpdateMetadataArguments
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} deviceId device id of the device.
- * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier device identifier.
+ * @property {string} deviceId Device ID of the device.
+ * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier.
  * @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata The metadata to update.
  */
 export = Androiddeviceprovisioning;

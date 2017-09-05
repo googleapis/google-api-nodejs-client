@@ -366,8 +366,9 @@ Refer to selector for syntax details.
  * @memberOf! serviceuser(v1)
  * @type object
 * @property {string} address The address of the API backend.
-* @property {number} deadline The number of seconds to wait for a response from a request.  The
-default depends on the deployment context.
+* @property {number} deadline The number of seconds to wait for a response from a request.  The default
+deadline for gRPC and HTTP requests is 5 seconds. For Stubby requests,
+the default is no deadline.
 * @property {number} minDeadline Minimum deadline in seconds needed for this method. Calls having deadline
 value lower than this will be rejected.
 * @property {string} selector Selects the methods to which this rule applies.
@@ -957,7 +958,7 @@ Example:
  * @memberOf! serviceuser(v1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {serviceuser(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically
