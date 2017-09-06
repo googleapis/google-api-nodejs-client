@@ -821,7 +821,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
            * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
            * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
            * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
-           * @param {string=} params.statuses When specified, only transfer runs with requested statuses are returned.
+           * @param {string=} params.states When specified, only transfer runs with requested states are returned.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -1214,7 +1214,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
          * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
          * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
          * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
-         * @param {string=} params.statuses When specified, only transfer runs with requested statuses are returned.
+         * @param {string=} params.states When specified, only transfer runs with requested states are returned.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1325,14 +1325,13 @@ Examples of valid schedules include:
 * @property {string} helpUrl Url for the help document for this data source.
 * @property {boolean} manualRunsDisabled Disables backfilling and manual run scheduling
 for the data source.
+* @property {string} minimumScheduleInterval The minimum interval between two consecutive scheduled runs.
 * @property {string} name Data source resource name.
 * @property {bigquerydatatransfer(v1).DataSourceParameter[]} parameters Data source parameters.
 * @property {string[]} scopes Api auth scopes for which refresh token needs to be obtained. Only valid
 when `client_id` is specified. Ignored otherwise. These are scopes needed
 by a data source to prepare data and ingest them into BigQuery,
 e.g., https://www.googleapis.com/auth/bigquery
-* @property {integer} statusUpdateDeadlineSeconds The number of seconds to wait for a status update from the data source
-before BigQuery marks the transfer as failed.
 * @property {boolean} supportsCustomSchedule Specifies whether the data source supports a user defined schedule, or
 operates on the default schedule.
 When set to `true`, user can override default schedule.
@@ -1341,6 +1340,8 @@ to different BigQuery targets.
 * @property {string} transferType Transfer type. Currently supports only batch transfers,
 which are transfers that use the BigQuery batch APIs (load or
 query) to ingest the data.
+* @property {integer} updateDeadlineSeconds The number of seconds to wait for an update from the data source
+before BigQuery marks the transfer as failed.
 */
 
 /**
@@ -1413,9 +1414,9 @@ to request the next page of list results.
 this token can be used as the
 `ListTransferConfigsRequest.page_token`
 to request the next page of list results.
-@OutputOnly
+Output only.
 * @property {bigquerydatatransfer(v1).TransferConfig[]} transferConfigs The stored pipeline transfer configurations.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1426,9 +1427,9 @@ to request the next page of list results.
 this token can be used as the
 `GetTransferRunLogRequest.page_token`
 to request the next page of list results.
-@OutputOnly
+Output only.
 * @property {bigquerydatatransfer(v1).TransferMessage[]} transferMessages The stored pipeline transfer messages.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1439,9 +1440,9 @@ to request the next page of list results.
 this token can be used as the
 `ListTransferRunsRequest.page_token`
 to request the next page of list results.
-@OutputOnly
+Output only.
 * @property {bigquerydatatransfer(v1).TransferRun[]} transferRuns The stored pipeline transfer runs.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1493,7 +1494,7 @@ to use the default value.
 * @property {string} dataSourceId Data source id. Cannot be changed once data transfer is created.
 * @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
 &quot;US&quot; and &quot;EU&quot;.
-@OutputOnly
+Output only.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {boolean} disabled Is this config disabled. When set to true, no runs are scheduled
 for a given transfer.
@@ -1503,9 +1504,8 @@ Transfer run names have the form
 `projects/{project_id}/transferConfigs/{config_id}`.
 Where `config_id` is usually a uuid, even though it is not
 guaranteed or required. The name is ignored when creating a transfer run.
-* @property {string} nextRunTime Next time when data transfer will run. Output only. Applicable
-only for batch data transfers.
-@OutputOnly
+* @property {string} nextRunTime Next time when data transfer will run.
+Output only.
 * @property {object} params Data transfer specific parameters.
 * @property {string} schedule Data transfer schedule.
 If the data source does not support a custom schedule, this should be
@@ -1519,14 +1519,14 @@ Examples of valid format:
 See more explanation about the format here:
 https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
 NOTE: the granularity should be at least 8 hours, or less frequent.
-* @property {string} status Status of the most recently updated transfer run.
-@OutputOnly
+* @property {string} state State of the most recently updated transfer run.
+Output only.
 * @property {string} updateTime Data transfer modification time. Ignored by server on input.
-@OutputOnly
+Output only.
 * @property {string} userId GaiaID of the user on whose behalf transfer is done. Applicable only
 to data sources that do not support service accounts. When set to 0,
 the data source service account credentials are used.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1543,14 +1543,14 @@ the data source service account credentials are used.
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
 * @property {string} dataSourceId Data source id.
-@OutputOnly
+Output only.
 * @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
 &quot;US&quot; and &quot;EU&quot;.
-@OutputOnly
+Output only.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {string} endTime Time when transfer run ended. Parameter ignored by server for input
 requests.
-@OutputOnly
+Output only.
 * @property {string} name The resource name of the transfer run.
 Transfer run names have the form
 `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
@@ -1563,16 +1563,16 @@ a regular schedule. For batch transfer runs that are directly created,
 this is empty.
 NOTE: the system might choose to delay the schedule depending on the
 current load, so `schedule_time` doesn&#39;t always matches this.
-@OutputOnly
+Output only.
 * @property {string} scheduleTime Minimum time after which a transfer run can be started.
 * @property {string} startTime Time when transfer run was started. Parameter ignored by server for input
 requests.
-@OutputOnly
-* @property {string} status Data transfer run status. Ignored for input requests.
-@OutputOnly
-* @property {string} updateTime Last time the data transfer run status was updated.
-@OutputOnly
+Output only.
+* @property {string} state Data transfer run state. Ignored for input requests.
+Output only.
+* @property {string} updateTime Last time the data transfer run state was updated.
+Output only.
 * @property {string} userId The user id for this transfer run.
-@OutputOnly
+Output only.
 */
 export = Bigquerydatatransfer;

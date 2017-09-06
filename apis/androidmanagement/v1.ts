@@ -1201,6 +1201,8 @@ function Androidmanagement(options) { // eslint-disable-line
  * @property {androidmanagement(v1).SystemUpdate} systemUpdate The system update policy, which controls how OS updates are applied. If the update type is WINDOWED and the device has a device account, the update window will automatically apply to Play app updates as well.
  * @property {boolean} unmuteMicrophoneDisabled Whether the microphone is muted and adjusting microphone volume is disabled.
  * @property {string} version The version of the policy. This is a read-only field. The version is incremented each time the policy is updated.
+ * @property {boolean} wifiConfigDisabled Whether configuring WiFi access points is disabled.
+ * @property {boolean} wifiConfigsLockdownEnabled Whether WiFi networks defined in Open Network Configuration are locked so they cannot be edited by the user.
  */
 
 /**
