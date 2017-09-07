@@ -70,12 +70,12 @@ function Clouddebugger(options) { // eslint-disable-line
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   cloudDebugger.controller.debuggees.register(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -85,9 +85,9 @@ function Clouddebugger(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -157,14 +157,14 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // Identifies the debuggee.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.controller.debuggees.breakpoints.list(request, function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -174,9 +174,9 @@ function Clouddebugger(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -247,22 +247,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // Identifies the debuggee being debugged.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
          *     // Breakpoint identifier, unique in the scope of the debuggee.
-         *     id: '',  // TODO: Update placeholder value.
+         *     id: 'my-id',  // TODO: Update placeholder value.
          *
          *     resource: {
          *       // TODO: Add desired properties to the request body. All existing properties
          *       // will be replaced.
          *     },
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.controller.debuggees.breakpoints.update(request, function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -272,9 +272,9 @@ function Clouddebugger(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -350,12 +350,12 @@ function Clouddebugger(options) { // eslint-disable-line
        *
        * authorize(function(authClient) {
        *   var request = {
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   cloudDebugger.debugger.debuggees.list(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -365,9 +365,9 @@ function Clouddebugger(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -439,26 +439,26 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // ID of the debuggee whose breakpoint to delete.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
          *     // ID of the breakpoint to delete.
-         *     breakpointId: '',  // TODO: Update placeholder value.
+         *     breakpointId: 'my-breakpoint-id',  // TODO: Update placeholder value.
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.debugger.debuggees.breakpoints.delete(request, function(err) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *   });
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -529,17 +529,17 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // ID of the debuggee whose breakpoint to get.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
          *     // ID of the breakpoint to get.
-         *     breakpointId: '',  // TODO: Update placeholder value.
+         *     breakpointId: 'my-breakpoint-id',  // TODO: Update placeholder value.
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.debugger.debuggees.breakpoints.get(request, function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -549,9 +549,9 @@ function Clouddebugger(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -622,14 +622,14 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // ID of the debuggee whose breakpoints to list.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.debugger.debuggees.breakpoints.list(request, function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -639,9 +639,9 @@ function Clouddebugger(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -716,18 +716,18 @@ function Clouddebugger(options) { // eslint-disable-line
          * authorize(function(authClient) {
          *   var request = {
          *     // ID of the debuggee where the breakpoint is to be set.
-         *     debuggeeId: '',  // TODO: Update placeholder value.
+         *     debuggeeId: 'my-debuggee-id',  // TODO: Update placeholder value.
          *
          *     resource: {
          *       // TODO: Add desired properties to the request body.
          *     },
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   cloudDebugger.debugger.debuggees.breakpoints.set(request, function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -737,9 +737,9 @@ function Clouddebugger(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

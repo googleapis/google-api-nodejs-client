@@ -65,26 +65,26 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the dataset being deleted
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of dataset being deleted
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.datasets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -155,17 +155,17 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the requested dataset
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the requested dataset
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.datasets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -175,9 +175,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -247,18 +247,18 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the new dataset
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.datasets.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -268,9 +268,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -340,14 +340,14 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the datasets to be listed
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -370,9 +370,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -445,22 +445,22 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the dataset being updated
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the dataset being updated
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.datasets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -470,9 +470,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -543,22 +543,22 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the dataset being updated
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the dataset being updated
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.datasets.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -568,9 +568,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -645,17 +645,17 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // [Required] Project ID of the job to cancel
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // [Required] Job ID of the job to cancel
-     *     jobId: '',  // TODO: Update placeholder value.
+     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.jobs.cancel(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -665,9 +665,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -737,17 +737,17 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // [Required] Project ID of the requested job
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // [Required] Job ID of the requested job
-     *     jobId: '',  // TODO: Update placeholder value.
+     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.jobs.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -757,9 +757,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -829,17 +829,17 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // [Required] Project ID of the query job
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // [Required] Job ID of the query job
-     *     jobId: '',  // TODO: Update placeholder value.
+     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -862,9 +862,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -938,7 +938,7 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the project that will be billed for the job
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -948,15 +948,15 @@ function Bigquery(options) { // eslint-disable-line
      *       // TODO: Add desired media content for upload. See
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
      *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: {}
+     *       body: '',
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.jobs.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -966,9 +966,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1042,14 +1042,14 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the jobs to list
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1072,9 +1072,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1148,18 +1148,18 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the project billed for the query
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.jobs.query(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1169,9 +1169,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1244,12 +1244,12 @@ function Bigquery(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1272,9 +1272,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1348,24 +1348,24 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the destination table.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the destination table.
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the destination table.
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tabledata.insertAll(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1375,9 +1375,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1449,20 +1449,20 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the table to read
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the table to read
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the table to read
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1485,9 +1485,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1566,29 +1566,29 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the table to delete
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the table to delete
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the table to delete
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tables.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1659,20 +1659,20 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the requested table
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the requested table
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the requested table
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tables.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1682,9 +1682,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1756,21 +1756,21 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the new table
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the new table
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tables.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1780,9 +1780,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1853,17 +1853,17 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the tables to list
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the tables to list
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1886,9 +1886,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1960,25 +1960,25 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the table to update
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the table to update
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the table to update
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tables.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1988,9 +1988,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2062,25 +2062,25 @@ function Bigquery(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID of the table to update
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     // Dataset ID of the table to update
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     // Table ID of the table to update
-     *     tableId: '',  // TODO: Update placeholder value.
+     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   bigquery.tables.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2090,9 +2090,9 @@ function Bigquery(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

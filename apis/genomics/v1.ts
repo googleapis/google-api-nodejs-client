@@ -68,12 +68,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotations.batchCreate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -83,9 +83,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -157,12 +157,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotations.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -172,9 +172,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -243,23 +243,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation to be deleted.
-     *     annotationId: '',  // TODO: Update placeholder value.
+     *     annotationId: 'my-annotation-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -328,14 +328,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation to be retrieved.
-     *     annotationId: '',  // TODO: Update placeholder value.
+     *     annotationId: 'my-annotation-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -345,9 +345,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -419,12 +419,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -438,7 +438,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.annotations.search(request, handlePage);
      *     }
      *   };
@@ -447,9 +447,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -518,19 +518,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation to be updated.
-     *     annotationId: '',  // TODO: Update placeholder value.
+     *     annotationId: 'my-annotation-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotations.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -540,9 +540,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -620,12 +620,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotationsets.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -635,9 +635,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -706,23 +706,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation set to be deleted.
-     *     annotationSetId: '',  // TODO: Update placeholder value.
+     *     annotationSetId: 'my-annotation-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotationsets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -791,14 +791,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation set to be retrieved.
-     *     annotationSetId: '',  // TODO: Update placeholder value.
+     *     annotationSetId: 'my-annotation-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotationsets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -808,9 +808,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -882,12 +882,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -901,7 +901,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.annotationsets.search(request, handlePage);
      *     }
      *   };
@@ -910,9 +910,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -981,19 +981,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the annotation set to be updated.
-     *     annotationSetId: '',  // TODO: Update placeholder value.
+     *     annotationSetId: 'my-annotation-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.annotationsets.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1003,9 +1003,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1083,12 +1083,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.callsets.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1098,9 +1098,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1169,23 +1169,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the call set to be deleted.
-     *     callSetId: '',  // TODO: Update placeholder value.
+     *     callSetId: 'my-call-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.callsets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1254,14 +1254,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the call set.
-     *     callSetId: '',  // TODO: Update placeholder value.
+     *     callSetId: 'my-call-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.callsets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1271,9 +1271,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1342,19 +1342,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the call set to be updated.
-     *     callSetId: '',  // TODO: Update placeholder value.
+     *     callSetId: 'my-call-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.callsets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1364,9 +1364,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1440,12 +1440,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1459,7 +1459,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.callsets.search(request, handlePage);
      *     }
      *   };
@@ -1468,9 +1468,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1546,12 +1546,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1561,9 +1561,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1632,23 +1632,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the dataset to be deleted.
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1717,14 +1717,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the dataset.
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1734,9 +1734,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1806,18 +1806,18 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // REQUIRED: The resource for which policy is being specified. Format is
      *     // `datasets/<dataset ID>`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'datasets/my-dataset',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1827,9 +1827,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1898,12 +1898,12 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1926,9 +1926,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1999,19 +1999,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the dataset to be updated.
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2021,9 +2021,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2095,18 +2095,18 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // REQUIRED: The resource for which policy is being specified. Format is
      *     // `datasets/<dataset ID>`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'datasets/my-dataset',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2116,9 +2116,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2189,18 +2189,18 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // REQUIRED: The resource for which policy is being specified. Format is
      *     // `datasets/<dataset ID>`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'datasets/my-dataset',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2210,9 +2210,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2282,18 +2282,18 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the dataset to be undeleted.
-     *     datasetId: '',  // TODO: Update placeholder value.
+     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.datasets.undelete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2303,9 +2303,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2379,27 +2379,27 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource to be cancelled.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.operations.cancel(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2469,14 +2469,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.operations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2486,9 +2486,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2556,15 +2556,15 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the operation collection.
-     *     name: '',  // TODO: Update placeholder value.
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2587,9 +2587,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2666,23 +2666,23 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // The ID of the read group set to be deleted. The caller must have WRITE
      *     // permissions to the dataset associated with this read group set.
-     *     readGroupSetId: '',  // TODO: Update placeholder value.
+     *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.readgroupsets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2752,18 +2752,18 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // Required. The ID of the read group set to export. The caller must have
      *     // READ access to this read group set.
-     *     readGroupSetId: '',  // TODO: Update placeholder value.
+     *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.readgroupsets.export(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2773,9 +2773,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2845,14 +2845,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the read group set.
-     *     readGroupSetId: '',  // TODO: Update placeholder value.
+     *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.readgroupsets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2862,9 +2862,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2936,12 +2936,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.readgroupsets.import(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2951,9 +2951,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3023,19 +3023,19 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // The ID of the read group set to be updated. The caller must have WRITE
      *     // permissions to the dataset associated with this read group set.
-     *     readGroupSetId: '',  // TODO: Update placeholder value.
+     *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.readgroupsets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3045,9 +3045,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3121,12 +3121,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3140,7 +3140,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.readgroupsets.search(request, handlePage);
      *     }
      *   };
@@ -3149,9 +3149,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3221,14 +3221,14 @@ function Genomics(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // Required. The ID of the read group set over which coverage is requested.
-       *     readGroupSetId: '',  // TODO: Update placeholder value.
+       *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -3251,9 +3251,9 @@ function Genomics(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3335,12 +3335,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3354,7 +3354,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.reads.search(request, handlePage);
      *     }
      *   };
@@ -3363,9 +3363,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3438,14 +3438,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the reference.
-     *     referenceId: '',  // TODO: Update placeholder value.
+     *     referenceId: 'my-reference-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.references.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3455,9 +3455,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3529,12 +3529,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3548,7 +3548,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.references.search(request, handlePage);
      *     }
      *   };
@@ -3557,9 +3557,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3629,14 +3629,14 @@ function Genomics(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // The ID of the reference.
-       *     referenceId: '',  // TODO: Update placeholder value.
+       *     referenceId: 'my-reference-id',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -3657,9 +3657,9 @@ function Genomics(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3736,14 +3736,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the reference set.
-     *     referenceSetId: '',  // TODO: Update placeholder value.
+     *     referenceSetId: 'my-reference-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.referencesets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3753,9 +3753,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3827,12 +3827,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3846,7 +3846,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.referencesets.search(request, handlePage);
      *     }
      *   };
@@ -3855,9 +3855,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3933,12 +3933,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3948,9 +3948,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4019,23 +4019,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the variant to be deleted.
-     *     variantId: '',  // TODO: Update placeholder value.
+     *     variantId: 'my-variant-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4104,14 +4104,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the variant.
-     *     variantId: '',  // TODO: Update placeholder value.
+     *     variantId: 'my-variant-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4121,9 +4121,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4195,12 +4195,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.import(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4210,9 +4210,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4284,21 +4284,21 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.merge(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4367,19 +4367,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the variant to be updated.
-     *     variantId: '',  // TODO: Update placeholder value.
+     *     variantId: 'my-variant-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variants.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4389,9 +4389,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4465,12 +4465,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4484,7 +4484,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.variants.search(request, handlePage);
      *     }
      *   };
@@ -4493,9 +4493,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4571,12 +4571,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variantsets.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4586,9 +4586,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4657,23 +4657,23 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the variant set to be deleted.
-     *     variantSetId: '',  // TODO: Update placeholder value.
+     *     variantSetId: 'my-variant-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variantsets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4743,18 +4743,18 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // Required. The ID of the variant set that contains variant data which
      *     // should be exported. The caller must have READ access to this variant set.
-     *     variantSetId: '',  // TODO: Update placeholder value.
+     *     variantSetId: 'my-variant-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variantsets.export(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4764,9 +4764,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4836,14 +4836,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Required. The ID of the variant set.
-     *     variantSetId: '',  // TODO: Update placeholder value.
+     *     variantSetId: 'my-variant-set-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variantsets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4853,9 +4853,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4924,19 +4924,19 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The ID of the variant to be updated (must already exist).
-     *     variantSetId: '',  // TODO: Update placeholder value.
+     *     variantSetId: 'my-variant-set-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.variantsets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4946,9 +4946,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5022,12 +5022,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5041,7 +5041,7 @@ function Genomics(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       genomics.variantsets.search(request, handlePage);
      *     }
      *   };
@@ -5050,9 +5050,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

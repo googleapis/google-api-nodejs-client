@@ -68,12 +68,12 @@ function Vision(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   vision.images.annotate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -83,9 +83,9 @@ function Vision(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

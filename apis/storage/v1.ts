@@ -65,27 +65,27 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -156,18 +156,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -177,9 +177,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -250,18 +250,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -271,9 +271,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -344,14 +344,14 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -361,9 +361,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -433,23 +433,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -459,9 +459,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -533,23 +533,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.bucketAccessControls.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -559,9 +559,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -637,23 +637,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.buckets.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -725,14 +725,14 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.buckets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -742,9 +742,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -795,6 +795,57 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.getIamPolicy
      *
      * @desc Returns an IAM policy for the specified bucket.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of a bucket.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.buckets.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.buckets.getIamPolicy
      * @memberOf! storage(v1)
@@ -861,12 +912,12 @@ function Storage(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.buckets.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -876,9 +927,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -953,12 +1004,12 @@ function Storage(options) { // eslint-disable-line
      *     // A valid API project identifier.
      *     project: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -981,9 +1032,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1056,19 +1107,19 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.buckets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1078,9 +1129,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1135,6 +1186,62 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Updates an IAM policy for the specified bucket.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of a bucket.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.buckets.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias storage.buckets.setIamPolicy
      * @memberOf! storage(v1)
      *
@@ -1173,6 +1280,60 @@ function Storage(options) { // eslint-disable-line
      * storage.buckets.testIamPermissions
      *
      * @desc Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of a bucket.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // Permissions to test.
+     *     permissions: [],  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.buckets.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.buckets.testIamPermissions
      * @memberOf! storage(v1)
@@ -1234,19 +1395,19 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.buckets.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1256,9 +1417,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1341,21 +1502,21 @@ function Storage(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.channels.stop(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1428,27 +1589,27 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1519,18 +1680,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1540,9 +1701,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1613,18 +1774,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1634,9 +1795,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1707,14 +1868,14 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1724,9 +1885,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1798,23 +1959,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1824,9 +1985,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1898,23 +2059,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.defaultObjectAccessControls.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1924,9 +2085,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1981,6 +2142,57 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Permanently deletes a notification subscription.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The parent bucket of the notification.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // ID of the notification to delete.
+     *     notification: 'my-notification',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.notifications.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias storage.notifications.delete
      * @memberOf! storage(v1)
      *
@@ -2019,6 +2231,60 @@ function Storage(options) { // eslint-disable-line
      * storage.notifications.get
      *
      * @desc View a notification configuration.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The parent bucket of the notification.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // Notification ID
+     *     notification: 'my-notification',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.notifications.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.notifications.get
      * @memberOf! storage(v1)
@@ -2059,6 +2325,61 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Creates a notification subscription for a given bucket.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The parent bucket of the notification.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.notifications.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias storage.notifications.insert
      * @memberOf! storage(v1)
      *
@@ -2097,6 +2418,57 @@ function Storage(options) { // eslint-disable-line
      * storage.notifications.list
      *
      * @desc Retrieves a list of notification subscriptions for a given bucket.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of a Google Cloud Storage bucket.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.notifications.list(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.notifications.list
      * @memberOf! storage(v1)
@@ -2161,31 +2533,31 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2258,22 +2630,22 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2283,9 +2655,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2358,22 +2730,22 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2383,9 +2755,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2458,18 +2830,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2479,9 +2851,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2553,27 +2925,27 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2583,9 +2955,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2659,27 +3031,27 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of a bucket.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId,
      *     // group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: '',  // TODO: Update placeholder value.
+     *     entity: 'my-entity',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objectAccessControls.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2689,9 +3061,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2769,11 +3141,11 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to store the new object.
-     *     destinationBucket: '',  // TODO: Update placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the new object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     destinationObject: '',  // TODO: Update placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2783,12 +3155,12 @@ function Storage(options) { // eslint-disable-line
      *     //
      *     // alt: 'media',
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.compose(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2798,9 +3170,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2876,20 +3248,20 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: '',  // TODO: Update placeholder value.
+     *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the source object. For information about how to URL encode object names to be path safe,
      *     // see Encoding URI Path Parts.
-     *     sourceObject: '',  // TODO: Update placeholder value.
+     *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
      *
      *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
      *     // bucket value, if any.For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     destinationBucket: '',  // TODO: Update placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
      *     // object metadata's name value, if any.
-     *     destinationObject: '',  // TODO: Update placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -2899,12 +3271,12 @@ function Storage(options) { // eslint-disable-line
      *     //
      *     // alt: 'media',
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.copy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2914,9 +3286,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3001,27 +3373,27 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which the object resides.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3097,22 +3469,22 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which the object resides.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     // TODO: To download media content, use:
      *     //
      *     // alt: 'media',
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3122,9 +3494,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3179,6 +3551,61 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.getIamPolicy
      *
      * @desc Returns an IAM policy for the specified object.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
+     *     // Encoding URI Path Parts.
+     *     object: 'my-object',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.objects.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.objects.getIamPolicy
      * @memberOf! storage(v1)
@@ -3242,7 +3669,7 @@ function Storage(options) { // eslint-disable-line
      *   var request = {
      *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
      *     // bucket value, if any.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
@@ -3252,15 +3679,15 @@ function Storage(options) { // eslint-disable-line
      *       // TODO: Add desired media content for upload. See
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
      *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: {}
+     *       body: '',
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3270,9 +3697,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3356,14 +3783,14 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to look for objects.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3386,9 +3813,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3464,23 +3891,23 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which the object resides.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3490,9 +3917,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3571,31 +3998,31 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: '',  // TODO: Update placeholder value.
+     *     sourceBucket: 'my-source-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the source object. For information about how to URL encode object names to be path safe,
      *     // see Encoding URI Path Parts.
-     *     sourceObject: '',  // TODO: Update placeholder value.
+     *     sourceObject: 'my-source-object',  // TODO: Update placeholder value.
      *
      *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's
      *     // bucket value, if any.
-     *     destinationBucket: '',  // TODO: Update placeholder value.
+     *     destinationBucket: 'my-destination-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the
      *     // object metadata's name value, if any. For information about how to URL encode object names to be
      *     // path safe, see Encoding URI Path Parts.
-     *     destinationObject: '',  // TODO: Update placeholder value.
+     *     destinationObject: 'my-destination-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.rewrite(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3605,9 +4032,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3674,6 +4101,66 @@ function Storage(options) { // eslint-disable-line
      *
      * @desc Updates an IAM policy for the specified object.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
+     *     // Encoding URI Path Parts.
+     *     object: 'my-object',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.objects.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias storage.objects.setIamPolicy
      * @memberOf! storage(v1)
      *
@@ -3714,6 +4201,64 @@ function Storage(options) { // eslint-disable-line
      * storage.objects.testIamPermissions
      *
      * @desc Tests a set of permissions on the given object to see which, if any, are held by the caller.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Storage JSON API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/storage
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var storage = google.storage('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the bucket in which the object resides.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
+     *
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see
+     *     // Encoding URI Path Parts.
+     *     object: 'my-object',  // TODO: Update placeholder value.
+     *
+     *     // Permissions to test.
+     *     permissions: [],  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   storage.objects.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storage.objects.testIamPermissions
      * @memberOf! storage(v1)
@@ -3777,11 +4322,11 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which the object resides.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     // Name of the object. For information about how to URL encode object names to be path safe, see
      *     // Encoding URI Path Parts.
-     *     object: '',  // TODO: Update placeholder value.
+     *     object: 'my-object',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
@@ -3792,12 +4337,12 @@ function Storage(options) { // eslint-disable-line
      *     //
      *     // alt: 'media',
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3807,9 +4352,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3888,18 +4433,18 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the bucket in which to look for objects.
-     *     bucket: '',  // TODO: Update placeholder value.
+     *     bucket: 'my-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storage.objects.watchAll(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3909,9 +4454,9 @@ function Storage(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3971,6 +4516,57 @@ function Storage(options) { // eslint-disable-line
        * storage.projects.serviceAccount.get
        *
        * @desc Get the email address of this project's Google Cloud Storage service account.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud Storage JSON API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/storage
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var storage = google.storage('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   storage.projects.serviceAccount.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias storage.projects.serviceAccount.get
        * @memberOf! storage(v1)

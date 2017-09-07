@@ -65,14 +65,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -95,9 +95,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -170,20 +170,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the accelerator type to return.
-     *     acceleratorType: '',  // TODO: Update placeholder value.
+     *     acceleratorType: 'my-accelerator-type',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.acceleratorTypes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -193,9 +193,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -266,17 +266,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -299,9 +299,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -379,14 +379,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -409,9 +409,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -484,20 +484,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the address resource to delete.
-     *     address: '',  // TODO: Update placeholder value.
+     *     address: 'my-address',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.addresses.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -507,9 +507,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -581,20 +581,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the address resource to return.
-     *     address: '',  // TODO: Update placeholder value.
+     *     address: 'my-address',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.addresses.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -604,9 +604,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -677,21 +677,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.addresses.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -701,9 +701,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -775,17 +775,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -808,9 +808,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -862,6 +862,67 @@ function Compute(options) { // eslint-disable-line
      * compute.addresses.setLabels
      *
      * @desc Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.addresses.setLabels(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.addresses.setLabels
      * @memberOf! compute(beta)
@@ -925,24 +986,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.addresses.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -952,9 +1013,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1030,14 +1091,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1060,9 +1121,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1135,20 +1196,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the autoscaler to delete.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     autoscaler: 'my-autoscaler',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1158,9 +1219,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1232,20 +1293,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the autoscaler to return.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     autoscaler: 'my-autoscaler',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1255,9 +1316,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1328,21 +1389,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1352,9 +1413,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1426,17 +1487,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1459,9 +1520,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1535,25 +1596,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
-     *
-     *     // Name of the autoscaler to update.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1563,9 +1621,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1638,24 +1696,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1665,9 +1723,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1739,22 +1797,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.autoscalers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1764,9 +1822,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1843,17 +1901,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendBucket resource to delete.
-     *     backendBucket: '',  // TODO: Update placeholder value.
+     *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendBuckets.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1863,9 +1921,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1936,17 +1994,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendBucket resource to return.
-     *     backendBucket: '',  // TODO: Update placeholder value.
+     *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendBuckets.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1956,9 +2014,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2028,18 +2086,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendBuckets.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2049,9 +2107,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2122,14 +2180,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2152,9 +2210,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2227,22 +2285,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the BackendBucket resource to update.
-     *     backendBucket: '',  // TODO: Update placeholder value.
+     *     // Name of the BackendBucket resource to patch.
+     *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendBuckets.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2252,9 +2310,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2326,22 +2384,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendBucket resource to update.
-     *     backendBucket: '',  // TODO: Update placeholder value.
+     *     backendBucket: 'my-backend-bucket',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendBuckets.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2351,9 +2409,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2429,14 +2487,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Name of the project scoping this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2459,9 +2517,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2534,17 +2592,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to delete.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2554,9 +2612,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2627,17 +2685,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to return.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2647,9 +2705,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2718,21 +2776,21 @@ function Compute(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to which the queried instance belongs.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.getHealth(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2742,9 +2800,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2815,18 +2873,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2836,9 +2894,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2909,14 +2967,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2939,9 +2997,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3014,22 +3072,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the BackendService resource to update.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     // Name of the BackendService resource to patch.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3039,9 +3097,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3091,6 +3149,65 @@ function Compute(options) { // eslint-disable-line
      * compute.backendServices.setSecurityPolicy
      *
      * @desc Sets the security policy for the specified backend service.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the BackendService resource to which the security policy should be set. The name should
+     *     // conform to RFC1035.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.backendServices.setSecurityPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.backendServices.setSecurityPolicy
      * @memberOf! compute(beta)
@@ -3153,21 +3270,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3177,9 +3294,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3250,22 +3367,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to update.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.backendServices.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3275,9 +3392,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3353,14 +3470,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3383,9 +3500,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3458,20 +3575,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the disk type to return.
-     *     diskType: '',  // TODO: Update placeholder value.
+     *     diskType: 'my-disk-type',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.diskTypes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3481,9 +3598,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3554,17 +3671,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3587,9 +3704,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3667,14 +3784,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3697,9 +3814,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3772,24 +3889,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the persistent disk to snapshot.
-     *     disk: '',  // TODO: Update placeholder value.
+     *     disk: 'my-disk',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.createSnapshot(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3799,9 +3916,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3875,20 +3992,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the persistent disk to delete.
-     *     disk: '',  // TODO: Update placeholder value.
+     *     disk: 'my-disk',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3898,9 +4015,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -3972,20 +4089,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the persistent disk to return.
-     *     disk: '',  // TODO: Update placeholder value.
+     *     disk: 'my-disk',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3995,9 +4112,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4068,21 +4185,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4092,9 +4209,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4167,17 +4284,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4200,9 +4317,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4276,24 +4393,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the persistent disk.
-     *     disk: '',  // TODO: Update placeholder value.
+     *     disk: 'my-disk',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.resize(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4303,9 +4420,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4378,24 +4495,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.setLabels(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4405,9 +4522,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4480,24 +4597,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.disks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4507,9 +4624,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4585,17 +4702,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the firewall rule to delete.
-     *     firewall: '',  // TODO: Update placeholder value.
+     *     firewall: 'my-firewall',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4605,9 +4722,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4678,17 +4795,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the firewall rule to return.
-     *     firewall: '',  // TODO: Update placeholder value.
+     *     firewall: 'my-firewall',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4698,9 +4815,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4770,18 +4887,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4791,9 +4908,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4864,14 +4981,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4894,9 +5011,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -4969,22 +5086,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the firewall rule to update.
-     *     firewall: '',  // TODO: Update placeholder value.
+     *     // Name of the firewall rule to patch.
+     *     firewall: 'my-firewall',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4994,9 +5111,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5068,21 +5185,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5092,9 +5209,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5165,22 +5282,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the firewall rule to update.
-     *     firewall: '',  // TODO: Update placeholder value.
+     *     firewall: 'my-firewall',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.firewalls.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5190,9 +5307,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5268,14 +5385,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5298,9 +5415,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5373,20 +5490,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource to delete.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.forwardingRules.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5396,9 +5513,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5470,20 +5587,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource to return.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.forwardingRules.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5493,9 +5610,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5566,21 +5683,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.forwardingRules.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5590,9 +5707,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5664,17 +5781,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5697,9 +5814,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5751,6 +5868,67 @@ function Compute(options) { // eslint-disable-line
      * compute.forwardingRules.setLabels
      *
      * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.forwardingRules.setLabels(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.forwardingRules.setLabels
      * @memberOf! compute(beta)
@@ -5814,24 +5992,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource in which target is to be set.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.forwardingRules.setTarget(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5841,9 +6019,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -5916,24 +6094,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.forwardingRules.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5943,9 +6121,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6021,17 +6199,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the address resource to delete.
-     *     address: '',  // TODO: Update placeholder value.
+     *     address: 'my-address',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalAddresses.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6041,9 +6219,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6114,17 +6292,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the address resource to return.
-     *     address: '',  // TODO: Update placeholder value.
+     *     address: 'my-address',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalAddresses.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6134,9 +6312,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6206,18 +6384,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalAddresses.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6227,9 +6405,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6300,14 +6478,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6330,9 +6508,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6383,6 +6561,64 @@ function Compute(options) { // eslint-disable-line
      * compute.globalAddresses.setLabels
      *
      * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.globalAddresses.setLabels(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.globalAddresses.setLabels
      * @memberOf! compute(beta)
@@ -6444,21 +6680,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalAddresses.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6468,9 +6704,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6545,17 +6781,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource to delete.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalForwardingRules.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6565,9 +6801,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6638,17 +6874,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource to return.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalForwardingRules.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6658,9 +6894,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6730,18 +6966,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalForwardingRules.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6751,9 +6987,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6824,14 +7060,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6854,9 +7090,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -6907,6 +7143,64 @@ function Compute(options) { // eslint-disable-line
      * compute.globalForwardingRules.setLabels
      *
      * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.globalForwardingRules.setLabels(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.globalForwardingRules.setLabels
      * @memberOf! compute(beta)
@@ -6968,21 +7262,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the ForwardingRule resource in which target is to be set.
-     *     forwardingRule: '',  // TODO: Update placeholder value.
+     *     forwardingRule: 'my-forwarding-rule',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalForwardingRules.setTarget(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6992,9 +7286,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7066,21 +7360,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalForwardingRules.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7090,9 +7384,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7167,14 +7461,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7197,9 +7491,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7272,26 +7566,26 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to delete.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalOperations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7361,17 +7655,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to return.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.globalOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7381,9 +7675,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7453,14 +7747,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7483,9 +7777,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7562,17 +7856,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HealthCheck resource to delete.
-     *     healthCheck: '',  // TODO: Update placeholder value.
+     *     healthCheck: 'my-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7582,9 +7876,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7655,17 +7949,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HealthCheck resource to return.
-     *     healthCheck: '',  // TODO: Update placeholder value.
+     *     healthCheck: 'my-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7675,9 +7969,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7747,18 +8041,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7768,9 +8062,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7841,14 +8135,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7871,9 +8165,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -7946,22 +8240,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the HealthCheck resource to update.
-     *     healthCheck: '',  // TODO: Update placeholder value.
+     *     // Name of the HealthCheck resource to patch.
+     *     healthCheck: 'my-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7971,9 +8265,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8045,21 +8339,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8069,9 +8363,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8142,22 +8436,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HealthCheck resource to update.
-     *     healthCheck: '',  // TODO: Update placeholder value.
+     *     healthCheck: 'my-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.healthChecks.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8167,9 +8461,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8245,17 +8539,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpHealthCheck resource to delete.
-     *     httpHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpHealthCheck: 'my-http-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8265,9 +8559,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8338,17 +8632,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpHealthCheck resource to return.
-     *     httpHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpHealthCheck: 'my-http-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8358,9 +8652,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8430,18 +8724,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8451,9 +8745,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8524,14 +8818,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8554,9 +8848,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8629,22 +8923,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the HttpHealthCheck resource to update.
-     *     httpHealthCheck: '',  // TODO: Update placeholder value.
+     *     // Name of the HttpHealthCheck resource to patch.
+     *     httpHealthCheck: 'my-http-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8654,9 +8948,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8728,21 +9022,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8752,9 +9046,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8825,22 +9119,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpHealthCheck resource to update.
-     *     httpHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpHealthCheck: 'my-http-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpHealthChecks.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8850,9 +9144,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -8928,17 +9222,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpsHealthCheck resource to delete.
-     *     httpsHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpsHealthCheck: 'my-https-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8948,9 +9242,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9021,17 +9315,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpsHealthCheck resource to return.
-     *     httpsHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpsHealthCheck: 'my-https-health-check',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9041,9 +9335,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9113,18 +9407,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9134,9 +9428,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9207,14 +9501,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9237,9 +9531,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9312,22 +9606,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the HttpsHealthCheck resource to update.
-     *     httpsHealthCheck: '',  // TODO: Update placeholder value.
+     *     // Name of the HttpsHealthCheck resource to patch.
+     *     httpsHealthCheck: 'my-https-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9337,9 +9631,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9411,21 +9705,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9435,9 +9729,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9508,22 +9802,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the HttpsHealthCheck resource to update.
-     *     httpsHealthCheck: '',  // TODO: Update placeholder value.
+     *     httpsHealthCheck: 'my-https-health-check',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.httpsHealthChecks.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9533,9 +9827,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9611,17 +9905,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the image resource to delete.
-     *     image: '',  // TODO: Update placeholder value.
+     *     image: 'my-image',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9631,9 +9925,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9704,21 +9998,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Image name.
-     *     image: '',  // TODO: Update placeholder value.
+     *     image: 'my-image',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.deprecate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9728,9 +10022,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9802,17 +10096,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the image resource to return.
-     *     image: '',  // TODO: Update placeholder value.
+     *     image: 'my-image',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9822,9 +10116,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9894,17 +10188,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the image family to search for.
-     *     family: '',  // TODO: Update placeholder value.
+     *     family: 'my-family',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.getFromFamily(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9914,9 +10208,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -9986,18 +10280,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10007,9 +10301,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10081,14 +10375,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10111,9 +10405,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10186,21 +10480,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.setLabels(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10210,9 +10504,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10283,21 +10577,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.images.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10307,9 +10601,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10384,24 +10678,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.abandonInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10411,9 +10705,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10486,14 +10780,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10516,9 +10810,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10591,20 +10885,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group to delete.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10614,9 +10908,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10688,24 +10982,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.deleteInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10715,9 +11009,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10790,20 +11084,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10813,9 +11107,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10886,21 +11180,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where you want to create the managed instance group.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10910,9 +11204,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -10984,17 +11278,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11017,9 +11311,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11093,32 +11387,45 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
-     *   compute.instanceGroupManagers.listManagedInstances(request, function(err, response) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
+     *     var managedInstancesPage = response['managedInstances'];
+     *     if (!managedInstancesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < managedInstancesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `managedInstancesPage`:
+     *       console.log(JSON.stringify(managedInstancesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.instanceGroupManagers.listManagedInstances(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.instanceGroupManagers.listManagedInstances(request, handlePage);
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11193,25 +11500,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where you want to create the managed instance group.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group manager.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11221,9 +11528,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11296,24 +11603,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.recreateInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11323,9 +11630,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11398,25 +11705,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     // The number of running instances that the managed instance group should maintain at any given time.
      *     // The group automatically adds or removes instances to maintain the number of instances specified by
      *     // this parameter.
      *     size: 0,  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.resize(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11426,9 +11733,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11501,24 +11808,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.resizeAdvanced(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11528,9 +11835,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11603,24 +11910,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group manager.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.setAutoHealingPolicies(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11630,9 +11937,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11705,24 +12012,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.setInstanceTemplate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11732,9 +12039,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11807,24 +12114,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the managed instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.setTargetPools(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11834,9 +12141,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -11909,24 +12216,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11936,9 +12243,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12010,25 +12317,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where you want to create the managed instance group.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group manager.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroupManagers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12038,9 +12345,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12117,24 +12424,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group where you are adding instances.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.addInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12144,9 +12451,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12219,14 +12526,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12249,9 +12556,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12324,20 +12631,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group to delete.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12347,9 +12654,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12421,20 +12728,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12444,9 +12751,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12517,21 +12824,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where you want to create the instance group.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12541,9 +12848,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12615,17 +12922,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12648,9 +12955,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12724,24 +13031,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group from which you want to generate a list of included instances.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12764,9 +13071,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12842,24 +13149,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group where the specified instances will be removed.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.removeInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12869,9 +13176,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -12944,24 +13251,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone where the instance group is located.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group where the named ports are updated.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.setNamedPorts(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12971,9 +13278,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13046,24 +13353,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceGroups.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13073,9 +13380,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13151,17 +13458,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the instance template to delete.
-     *     instanceTemplate: '',  // TODO: Update placeholder value.
+     *     instanceTemplate: 'my-instance-template',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceTemplates.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13171,9 +13478,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13244,17 +13551,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the instance template.
-     *     instanceTemplate: '',  // TODO: Update placeholder value.
+     *     instanceTemplate: 'my-instance-template',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceTemplates.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13264,9 +13571,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13336,18 +13643,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceTemplates.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13357,9 +13664,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13430,14 +13737,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13460,9 +13767,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13535,21 +13842,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instanceTemplates.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13559,9 +13866,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13636,13 +13943,13 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The instance name for this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     // The name of the network interface to add to this instance.
      *     networkInterface: '',  // TODO: Update placeholder value.
@@ -13651,12 +13958,12 @@ function Compute(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.addAccessConfig(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13666,9 +13973,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13742,14 +14049,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13772,9 +14079,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13847,24 +14154,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The instance name for this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.attachDisk(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13874,9 +14181,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -13949,20 +14256,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to delete.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13972,9 +14279,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14046,13 +14353,13 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The instance name for this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     // The name of the access config to delete.
      *     accessConfig: '',  // TODO: Update placeholder value.
@@ -14060,12 +14367,12 @@ function Compute(options) { // eslint-disable-line
      *     // The name of the network interface.
      *     networkInterface: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.deleteAccessConfig(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14075,9 +14382,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14151,23 +14458,23 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Instance name.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     // Disk device name to detach.
      *     deviceName: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.detachDisk(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14177,9 +14484,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14252,20 +14559,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to return.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14275,9 +14582,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14348,20 +14655,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.getSerialPortOutput(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14371,9 +14678,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14446,21 +14753,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14470,9 +14777,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14544,17 +14851,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14577,9 +14884,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14631,6 +14938,77 @@ function Compute(options) { // eslint-disable-line
      * compute.instances.listReferrers
      *
      * @desc Retrieves the list of referrers to instances contained within the specified zone.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // Name of the target instance scoping this request, or '-' if the request should span over all
+     *     // instances in the container.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.instances.listReferrers(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.instances.listReferrers(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.instances.listReferrers
      * @memberOf! compute(beta)
@@ -14696,20 +15074,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.reset(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14719,9 +15097,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14793,13 +15171,13 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The instance name.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     // Whether to auto-delete the disk when the instance is deleted.
      *     autoDelete: false,  // TODO: Update placeholder value.
@@ -14807,12 +15185,12 @@ function Compute(options) { // eslint-disable-line
      *     // The device name of the disk to modify.
      *     deviceName: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setDiskAutoDelete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14822,9 +15200,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -14898,24 +15276,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setLabels(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14925,9 +15303,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15000,24 +15378,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setMachineResources(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15027,9 +15405,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15102,24 +15480,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setMachineType(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15129,9 +15507,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15204,24 +15582,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setMetadata(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15231,9 +15609,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15284,6 +15662,67 @@ function Compute(options) { // eslint-disable-line
      * compute.instances.setMinCpuPlatform
      *
      * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // Name of the instance scoping this request.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.instances.setMinCpuPlatform(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.instances.setMinCpuPlatform
      * @memberOf! compute(beta)
@@ -15347,24 +15786,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Instance name.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setScheduling(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15374,9 +15813,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15449,24 +15888,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to start.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setServiceAccount(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15476,9 +15915,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15551,24 +15990,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance scoping this request.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.setTags(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15578,9 +16017,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15653,20 +16092,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to start.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.start(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15676,9 +16115,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15750,24 +16189,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to start.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.startWithEncryptionKey(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15777,9 +16216,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15852,20 +16291,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the instance resource to stop.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.stop(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15875,9 +16314,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -15949,24 +16388,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.instances.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15976,9 +16415,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -16033,6 +16472,70 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Retrieves an aggregated list of interconnect attachments.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     Object.keys(itemsPage).forEach(function(name) {
+     *       // TODO: Change code below to process each `name` property:
+     *       console.log(name + ': ' + JSON.stringify(itemsPage[name], null, 2));
+     *     });
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.interconnectAttachments.aggregatedList(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.interconnectAttachments.aggregatedList(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnectAttachments.aggregatedList
      * @memberOf! compute(beta)
      *
@@ -16074,6 +16577,63 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Deletes the specified interconnect attachment.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect attachment to delete.
+     *     interconnectAttachment: 'my-interconnect-attachment',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnectAttachments.delete(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnectAttachments.delete
      * @memberOf! compute(beta)
      *
@@ -16114,6 +16674,63 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Returns the specified interconnect attachment.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect attachment to return.
+     *     interconnectAttachment: 'my-interconnect-attachment',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnectAttachments.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnectAttachments.get
      * @memberOf! compute(beta)
      *
@@ -16152,6 +16769,64 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnectAttachments.insert
      *
      * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnectAttachments.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnectAttachments.insert
      * @memberOf! compute(beta)
@@ -16192,6 +16867,73 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnectAttachments.list
      *
      * @desc Retrieves the list of interconnect attachments contained within the specified region.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.interconnectAttachments.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.interconnectAttachments.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnectAttachments.list
      * @memberOf! compute(beta)
@@ -16234,6 +16976,67 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnectAttachments.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the region for this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnectAttachments.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnectAttachments.testIamPermissions
      * @memberOf! compute(beta)
@@ -16279,6 +17082,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Returns the details for the specified interconnect location. Get a list of available interconnect locations by making a list() request.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect location to return.
+     *     interconnectLocation: 'my-interconnect-location',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnectLocations.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnectLocations.get
      * @memberOf! compute(beta)
      *
@@ -16316,6 +17173,70 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnectLocations.list
      *
      * @desc Retrieves the list of interconnect locations available to the specified project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.interconnectLocations.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.interconnectLocations.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnectLocations.list
      * @memberOf! compute(beta)
@@ -16362,6 +17283,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Deletes the specified interconnect.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect to delete.
+     *     interconnect: 'my-interconnect',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnects.delete(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnects.delete
      * @memberOf! compute(beta)
      *
@@ -16401,6 +17376,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect to return.
+     *     interconnect: 'my-interconnect',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnects.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnects.get
      * @memberOf! compute(beta)
      *
@@ -16438,6 +17467,61 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnects.insert
      *
      * @desc Creates a Interconnect in the specified project using the data included in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnects.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnects.insert
      * @memberOf! compute(beta)
@@ -16477,6 +17561,70 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnects.list
      *
      * @desc Retrieves the list of interconnect available to the specified project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.interconnects.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.interconnects.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnects.list
      * @memberOf! compute(beta)
@@ -16519,6 +17667,65 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the interconnect to update.
+     *     interconnect: 'my-interconnect',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnects.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.interconnects.patch
      * @memberOf! compute(beta)
      *
@@ -16558,6 +17765,64 @@ function Compute(options) { // eslint-disable-line
      * compute.interconnects.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.interconnects.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.interconnects.testIamPermissions
      * @memberOf! compute(beta)
@@ -16623,17 +17888,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the License resource to return.
-     *     license: '',  // TODO: Update placeholder value.
+     *     license: 'my-license',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.licenses.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16643,9 +17908,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -16719,14 +17984,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16749,9 +18014,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -16824,20 +18089,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the machine type to return.
-     *     machineType: '',  // TODO: Update placeholder value.
+     *     machineType: 'my-machine-type',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.machineTypes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16847,9 +18112,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -16920,17 +18185,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16953,9 +18218,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17033,21 +18298,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the network resource to add peering to.
-     *     network: '',  // TODO: Update placeholder value.
+     *     network: 'my-network',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.addPeering(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17057,9 +18322,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17131,17 +18396,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the network to delete.
-     *     network: '',  // TODO: Update placeholder value.
+     *     network: 'my-network',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17151,9 +18416,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17224,17 +18489,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the network to return.
-     *     network: '',  // TODO: Update placeholder value.
+     *     network: 'my-network',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17244,9 +18509,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17316,18 +18581,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17337,9 +18602,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17410,14 +18675,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17440,9 +18705,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17493,6 +18758,65 @@ function Compute(options) { // eslint-disable-line
      * compute.networks.patch
      *
      * @desc Patches the specified network with the data included in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the network to update.
+     *     network: 'my-network',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.networks.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.networks.patch
      * @memberOf! compute(beta)
@@ -17555,21 +18879,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the network resource to remove peering from.
-     *     network: '',  // TODO: Update placeholder value.
+     *     network: 'my-network',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.removePeering(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17579,9 +18903,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17653,17 +18977,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the network to be updated.
-     *     network: '',  // TODO: Update placeholder value.
+     *     network: 'my-network',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.switchToCustomMode(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17673,9 +18997,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17746,21 +19070,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.networks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17770,9 +19094,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17847,14 +19171,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.disableXpnHost(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17864,9 +19188,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -17936,18 +19260,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.disableXpnResource(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17957,9 +19281,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18030,14 +19354,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.enableXpnHost(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18047,9 +19371,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18119,18 +19443,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.enableXpnResource(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18140,9 +19464,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18213,14 +19537,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18230,9 +19554,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18301,14 +19625,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.getXpnHost(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18318,9 +19642,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18389,14 +19713,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18419,9 +19743,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18494,18 +19818,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18528,9 +19852,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18604,18 +19928,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.moveDisk(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18625,9 +19949,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18698,18 +20022,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.moveInstance(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18719,9 +20043,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18792,18 +20116,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.setCommonInstanceMetadata(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18813,9 +20137,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18886,18 +20210,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.projects.setUsageExportBucket(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18907,9 +20231,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -18984,20 +20308,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the autoscaler to delete.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     autoscaler: 'my-autoscaler',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19007,9 +20331,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19081,20 +20405,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the autoscaler to return.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     autoscaler: 'my-autoscaler',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19104,9 +20428,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19177,21 +20501,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19201,9 +20525,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19275,17 +20599,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19308,9 +20632,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19384,25 +20708,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
-     *
-     *     // Name of the autoscaler to update.
-     *     autoscaler: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19412,9 +20733,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19487,24 +20808,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19514,9 +20835,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19588,22 +20909,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionAutoscalers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19613,9 +20934,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19692,20 +21013,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to delete.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19715,9 +21036,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19789,20 +21110,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to return.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19812,9 +21133,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19884,24 +21205,24 @@ function Compute(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to which the queried instance belongs.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.getHealth(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -19911,9 +21232,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -19985,21 +21306,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20009,9 +21330,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20083,17 +21404,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20116,9 +21437,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20192,25 +21513,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     // Name of the BackendService resource to update.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     // Name of the BackendService resource to patch.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20220,9 +21541,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20295,24 +21616,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20322,9 +21643,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20396,25 +21717,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the BackendService resource to update.
-     *     backendService: '',  // TODO: Update placeholder value.
+     *     backendService: 'my-backend-service',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionBackendServices.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20424,9 +21745,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20481,6 +21802,70 @@ function Compute(options) { // eslint-disable-line
      * compute.regionCommitments.aggregatedList
      *
      * @desc Retrieves an aggregated list of commitments.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     Object.keys(itemsPage).forEach(function(name) {
+     *       // TODO: Change code below to process each `name` property:
+     *       console.log(name + ': ' + JSON.stringify(itemsPage[name], null, 2));
+     *     });
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.regionCommitments.aggregatedList(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.regionCommitments.aggregatedList(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.regionCommitments.aggregatedList
      * @memberOf! compute(beta)
@@ -20544,20 +21929,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the commitment to return.
-     *     commitment: '',  // TODO: Update placeholder value.
+     *     commitment: 'my-commitment',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionCommitments.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20567,9 +21952,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20640,21 +22025,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionCommitments.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20664,9 +22049,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20738,17 +22123,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20771,9 +22156,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20851,24 +22236,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.abandonInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20878,9 +22263,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -20953,20 +22338,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group to delete.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -20976,9 +22361,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21050,24 +22435,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.deleteInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21077,9 +22462,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21152,20 +22537,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group to return.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21175,9 +22560,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21248,21 +22633,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21272,9 +22657,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21346,17 +22731,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21379,9 +22764,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21455,32 +22840,45 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
-     *   compute.regionInstanceGroupManagers.listManagedInstances(request, function(err, response) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
+     *     var managedInstancesPage = response['managedInstances'];
+     *     if (!managedInstancesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < managedInstancesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `managedInstancesPage`:
+     *       console.log(JSON.stringify(managedInstancesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.regionInstanceGroupManagers.listManagedInstances(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.regionInstanceGroupManagers.listManagedInstances(request, handlePage);
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21555,25 +22953,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group manager.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21583,9 +22981,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21658,24 +23056,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.recreateInstances(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21685,9 +23083,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21760,23 +23158,23 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     // Number of instances that should exist in this instance group manager.
      *     size: 0,  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.resize(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21786,9 +23184,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21861,24 +23259,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.setAutoHealingPolicies(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21888,9 +23286,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -21963,24 +23361,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // The name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.setInstanceTemplate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -21990,9 +23388,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22065,24 +23463,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the managed instance group.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.setTargetPools(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22092,9 +23490,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22167,24 +23565,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22194,9 +23592,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22268,25 +23666,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // The name of the instance group manager.
-     *     instanceGroupManager: '',  // TODO: Update placeholder value.
+     *     instanceGroupManager: 'my-instance-group-manager',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroupManagers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22296,9 +23694,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22375,20 +23773,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the instance group resource to return.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22398,9 +23796,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22471,17 +23869,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22504,9 +23902,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22580,24 +23978,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the regional instance group for which we want to list the instances.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22620,9 +24018,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22698,24 +24096,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // The name of the regional instance group where the named ports are updated.
-     *     instanceGroup: '',  // TODO: Update placeholder value.
+     *     instanceGroup: 'my-instance-group',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroups.setNamedPorts(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22725,9 +24123,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22800,24 +24198,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionInstanceGroups.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -22827,9 +24225,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22905,29 +24303,29 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to delete.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionOperations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -22998,20 +24396,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to return.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regionOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23021,9 +24419,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23094,17 +24492,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23127,9 +24525,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23207,17 +24605,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region resource to return.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.regions.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23227,9 +24625,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23299,14 +24697,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23329,9 +24727,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23408,14 +24806,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23438,9 +24836,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23513,20 +24911,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Router resource to delete.
-     *     router: '',  // TODO: Update placeholder value.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23536,9 +24934,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23610,20 +25008,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Router resource to return.
-     *     router: '',  // TODO: Update placeholder value.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23633,9 +25031,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23706,20 +25104,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Router resource to query.
-     *     router: '',  // TODO: Update placeholder value.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.getRouterStatus(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23729,9 +25127,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23802,21 +25200,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23826,9 +25224,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -23900,17 +25298,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -23933,9 +25331,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24009,25 +25407,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     // Name of the Router resource to update.
-     *     router: '',  // TODO: Update placeholder value.
+     *     // Name of the Router resource to patch.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24037,9 +25435,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24112,24 +25510,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Router resource to query.
-     *     router: '',  // TODO: Update placeholder value.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.preview(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24139,9 +25537,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24213,24 +25611,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24240,9 +25638,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24314,25 +25712,25 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Router resource to update.
-     *     router: '',  // TODO: Update placeholder value.
+     *     router: 'my-router',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24342,9 +25740,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24421,17 +25819,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Route resource to delete.
-     *     route: '',  // TODO: Update placeholder value.
+     *     route: 'my-route',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routes.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24441,9 +25839,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24514,17 +25912,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Route resource to return.
-     *     route: '',  // TODO: Update placeholder value.
+     *     route: 'my-route',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24534,9 +25932,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24606,18 +26004,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routes.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24627,9 +26025,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24700,14 +26098,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24730,9 +26128,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24805,21 +26203,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.routes.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -24829,9 +26227,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -24885,6 +26283,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Deletes the specified policy.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the security policy to delete.
+     *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.securityPolicies.delete(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.securityPolicies.delete
      * @memberOf! compute(beta)
      *
@@ -24924,6 +26376,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc List all of the ordered rules present in a single specified policy.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the security policy to get.
+     *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.securityPolicies.get(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.securityPolicies.get
      * @memberOf! compute(beta)
      *
@@ -24961,6 +26467,61 @@ function Compute(options) { // eslint-disable-line
      * compute.securityPolicies.insert
      *
      * @desc Creates a new policy in the specified project using the data included in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.securityPolicies.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.securityPolicies.insert
      * @memberOf! compute(beta)
@@ -25000,6 +26561,70 @@ function Compute(options) { // eslint-disable-line
      * compute.securityPolicies.list
      *
      * @desc List all the policies that have been configured for the specified project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.securityPolicies.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.securityPolicies.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.securityPolicies.list
      * @memberOf! compute(beta)
@@ -25042,6 +26667,65 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Patches the specified policy with the data included in the request.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the security policy to update.
+     *     securityPolicy: 'my-security-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.securityPolicies.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.securityPolicies.patch
      * @memberOf! compute(beta)
      *
@@ -25081,6 +26765,64 @@ function Compute(options) { // eslint-disable-line
      * compute.securityPolicies.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.securityPolicies.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.securityPolicies.testIamPermissions
      * @memberOf! compute(beta)
@@ -25146,17 +26888,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Snapshot resource to delete.
-     *     snapshot: '',  // TODO: Update placeholder value.
+     *     snapshot: 'my-snapshot',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.snapshots.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25166,9 +26908,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25239,17 +26981,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Snapshot resource to return.
-     *     snapshot: '',  // TODO: Update placeholder value.
+     *     snapshot: 'my-snapshot',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.snapshots.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25259,9 +27001,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25331,14 +27073,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25361,9 +27103,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25436,21 +27178,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.snapshots.setLabels(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25460,9 +27202,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25533,21 +27275,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.snapshots.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25557,9 +27299,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25634,17 +27376,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the SslCertificate resource to delete.
-     *     sslCertificate: '',  // TODO: Update placeholder value.
+     *     sslCertificate: 'my-ssl-certificate',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.sslCertificates.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25654,9 +27396,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25727,17 +27469,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the SslCertificate resource to return.
-     *     sslCertificate: '',  // TODO: Update placeholder value.
+     *     sslCertificate: 'my-ssl-certificate',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.sslCertificates.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25747,9 +27489,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25819,18 +27561,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.sslCertificates.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25840,9 +27582,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -25913,14 +27655,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -25943,9 +27685,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26018,21 +27760,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.sslCertificates.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26042,9 +27784,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26119,14 +27861,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26149,9 +27891,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26224,20 +27966,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Subnetwork resource to delete.
-     *     subnetwork: '',  // TODO: Update placeholder value.
+     *     subnetwork: 'my-subnetwork',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26247,9 +27989,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26321,24 +28063,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Subnetwork resource to update.
-     *     subnetwork: '',  // TODO: Update placeholder value.
+     *     subnetwork: 'my-subnetwork',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.expandIpCidrRange(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26348,9 +28090,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26423,20 +28165,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the Subnetwork resource to return.
-     *     subnetwork: '',  // TODO: Update placeholder value.
+     *     subnetwork: 'my-subnetwork',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26446,9 +28188,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26519,20 +28261,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26542,9 +28284,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26615,21 +28357,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26639,9 +28381,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26713,17 +28455,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26746,9 +28488,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26822,24 +28564,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26849,9 +28591,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -26901,6 +28643,67 @@ function Compute(options) { // eslint-disable-line
      * compute.subnetworks.setPrivateIpGoogleAccess
      *
      * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region scoping this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the Subnetwork resource.
+     *     subnetwork: 'my-subnetwork',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.subnetworks.setPrivateIpGoogleAccess(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.subnetworks.setPrivateIpGoogleAccess
      * @memberOf! compute(beta)
@@ -26964,24 +28767,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.subnetworks.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -26991,9 +28794,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27069,17 +28872,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpProxy resource to delete.
-     *     targetHttpProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpProxy: 'my-target-http-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpProxies.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27089,9 +28892,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27162,17 +28965,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpProxy resource to return.
-     *     targetHttpProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpProxy: 'my-target-http-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpProxies.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27182,9 +28985,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27254,18 +29057,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpProxies.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27275,9 +29078,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27348,14 +29151,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27378,9 +29181,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27453,21 +29256,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpProxy to set a URL map for.
-     *     targetHttpProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpProxy: 'my-target-http-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpProxies.setUrlMap(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27477,9 +29280,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27551,21 +29354,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpProxies.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27575,9 +29378,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27652,17 +29455,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpsProxy resource to delete.
-     *     targetHttpsProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpsProxy: 'my-target-https-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27672,9 +29475,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27745,17 +29548,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpsProxy resource to return.
-     *     targetHttpsProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpsProxy: 'my-target-https-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27765,9 +29568,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27837,18 +29640,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27858,9 +29661,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -27931,14 +29734,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -27961,9 +29764,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28036,21 +29839,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
-     *     targetHttpsProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpsProxy: 'my-target-https-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.setSslCertificates(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28060,9 +29863,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28134,21 +29937,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetHttpsProxy resource whose URL map is to be set.
-     *     targetHttpsProxy: '',  // TODO: Update placeholder value.
+     *     targetHttpsProxy: 'my-target-https-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.setUrlMap(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28158,9 +29961,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28232,21 +30035,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetHttpsProxies.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28256,9 +30059,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28333,14 +30136,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28363,9 +30166,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28438,20 +30241,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone scoping this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetInstance resource to delete.
-     *     targetInstance: '',  // TODO: Update placeholder value.
+     *     targetInstance: 'my-target-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetInstances.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28461,9 +30264,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28535,20 +30338,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone scoping this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetInstance resource to return.
-     *     targetInstance: '',  // TODO: Update placeholder value.
+     *     targetInstance: 'my-target-instance',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetInstances.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28558,9 +30361,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28631,21 +30434,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone scoping this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetInstances.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28655,9 +30458,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28729,17 +30532,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone scoping this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28762,9 +30565,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28838,24 +30641,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetInstances.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28865,9 +30668,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -28943,24 +30746,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the target pool to add a health check to.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.addHealthCheck(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -28970,9 +30773,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29045,24 +30848,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to add instances to.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.addInstance(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29072,9 +30875,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29147,14 +30950,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29177,9 +30980,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29252,20 +31055,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to delete.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29275,9 +31078,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29349,20 +31152,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to return.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29372,9 +31175,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29445,24 +31248,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to which the queried instance belongs.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.getHealth(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29472,9 +31275,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29546,21 +31349,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29570,9 +31373,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29644,17 +31447,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29677,9 +31480,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29753,24 +31556,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the target pool to remove health checks from.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.removeHealthCheck(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29780,9 +31583,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29855,24 +31658,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to remove instances from.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.removeInstance(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29882,9 +31685,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -29957,24 +31760,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region scoping this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetPool resource to set a backup pool for.
-     *     targetPool: '',  // TODO: Update placeholder value.
+     *     targetPool: 'my-target-pool',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.setBackup(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -29984,9 +31787,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30060,24 +31863,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetPools.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30087,9 +31890,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30165,17 +31968,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetSslProxy resource to delete.
-     *     targetSslProxy: '',  // TODO: Update placeholder value.
+     *     targetSslProxy: 'my-target-ssl-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30185,9 +31988,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30258,17 +32061,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetSslProxy resource to return.
-     *     targetSslProxy: '',  // TODO: Update placeholder value.
+     *     targetSslProxy: 'my-target-ssl-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30278,9 +32081,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30350,18 +32153,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30371,9 +32174,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30444,14 +32247,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30474,9 +32277,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30549,21 +32352,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetSslProxy resource whose BackendService resource is to be set.
-     *     targetSslProxy: '',  // TODO: Update placeholder value.
+     *     targetSslProxy: 'my-target-ssl-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.setBackendService(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30573,9 +32376,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30647,21 +32450,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetSslProxy resource whose ProxyHeader is to be set.
-     *     targetSslProxy: '',  // TODO: Update placeholder value.
+     *     targetSslProxy: 'my-target-ssl-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.setProxyHeader(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30671,9 +32474,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30745,21 +32548,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
-     *     targetSslProxy: '',  // TODO: Update placeholder value.
+     *     targetSslProxy: 'my-target-ssl-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.setSslCertificates(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30769,9 +32572,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30843,21 +32646,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetSslProxies.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30867,9 +32670,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -30944,17 +32747,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetTcpProxy resource to delete.
-     *     targetTcpProxy: '',  // TODO: Update placeholder value.
+     *     targetTcpProxy: 'my-target-tcp-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetTcpProxies.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -30964,9 +32767,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31037,17 +32840,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetTcpProxy resource to return.
-     *     targetTcpProxy: '',  // TODO: Update placeholder value.
+     *     targetTcpProxy: 'my-target-tcp-proxy',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetTcpProxies.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31057,9 +32860,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31129,18 +32932,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetTcpProxies.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31150,9 +32953,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31223,14 +33026,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31253,9 +33056,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31328,21 +33131,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetTcpProxy resource whose BackendService resource is to be set.
-     *     targetTcpProxy: '',  // TODO: Update placeholder value.
+     *     targetTcpProxy: 'my-target-tcp-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetTcpProxies.setBackendService(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31352,9 +33155,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31426,21 +33229,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
-     *     targetTcpProxy: '',  // TODO: Update placeholder value.
+     *     targetTcpProxy: 'my-target-tcp-proxy',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetTcpProxies.setProxyHeader(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31450,9 +33253,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31528,14 +33331,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31558,9 +33361,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31633,20 +33436,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the target VPN gateway to delete.
-     *     targetVpnGateway: '',  // TODO: Update placeholder value.
+     *     targetVpnGateway: 'my-target-vpn-gateway',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetVpnGateways.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31656,9 +33459,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31730,20 +33533,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the target VPN gateway to return.
-     *     targetVpnGateway: '',  // TODO: Update placeholder value.
+     *     targetVpnGateway: 'my-target-vpn-gateway',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetVpnGateways.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31753,9 +33556,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31826,21 +33629,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetVpnGateways.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31850,9 +33653,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -31924,17 +33727,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -31957,9 +33760,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32033,24 +33836,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.targetVpnGateways.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32060,9 +33863,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32138,17 +33941,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the UrlMap resource to delete.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32158,9 +33961,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32231,17 +34034,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the UrlMap resource to return.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32251,9 +34054,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32323,18 +34126,18 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32344,9 +34147,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32417,21 +34220,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the UrlMap scoping this request.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.invalidateCache(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32441,9 +34244,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32515,14 +34318,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32545,9 +34348,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32620,22 +34423,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     // Name of the UrlMap resource to update.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     // Name of the UrlMap resource to patch.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32645,9 +34448,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32719,21 +34522,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32743,9 +34546,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32816,22 +34619,22 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the UrlMap resource to update.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32841,9 +34644,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -32915,21 +34718,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the UrlMap resource to be validated as.
-     *     urlMap: '',  // TODO: Update placeholder value.
+     *     urlMap: 'my-url-map',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.urlMaps.validate(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -32939,9 +34742,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33016,14 +34819,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33046,9 +34849,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33121,20 +34924,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the VpnTunnel resource to delete.
-     *     vpnTunnel: '',  // TODO: Update placeholder value.
+     *     vpnTunnel: 'my-vpn-tunnel',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.vpnTunnels.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33144,9 +34947,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33218,20 +35021,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the VpnTunnel resource to return.
-     *     vpnTunnel: '',  // TODO: Update placeholder value.
+     *     vpnTunnel: 'my-vpn-tunnel',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.vpnTunnels.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33241,9 +35044,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33314,21 +35117,21 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.vpnTunnels.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33338,9 +35141,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33412,17 +35215,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33445,9 +35248,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33521,24 +35324,24 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the region for this request.
-     *     region: '',  // TODO: Update placeholder value.
+     *     region: 'my-region',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.vpnTunnels.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33548,9 +35351,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33626,29 +35429,29 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to delete.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.zoneOperations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33719,20 +35522,20 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to return.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.zoneOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33742,9 +35545,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33815,17 +35618,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33848,9 +35651,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -33928,17 +35731,17 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone resource to return.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   compute.zones.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -33948,9 +35751,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -34020,14 +35823,14 @@ function Compute(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -34050,9 +35853,9 @@ function Compute(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

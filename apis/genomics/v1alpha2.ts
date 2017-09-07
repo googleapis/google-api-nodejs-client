@@ -65,27 +65,27 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource to be cancelled.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.operations.cancel(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -155,14 +155,14 @@ function Genomics(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.operations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -172,9 +172,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -242,15 +242,15 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the operation collection.
-     *     name: '',  // TODO: Update placeholder value.
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -273,9 +273,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -354,12 +354,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -369,9 +369,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -441,23 +441,23 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // Caller must have WRITE access to the project in which this pipeline
      *     // is defined.
-     *     pipelineId: '',  // TODO: Update placeholder value.
+     *     pipelineId: 'my-pipeline-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -527,14 +527,14 @@ function Genomics(options) { // eslint-disable-line
      *   var request = {
      *     // Caller must have READ access to the project in which this pipeline
      *     // is defined.
-     *     pipelineId: '',  // TODO: Update placeholder value.
+     *     pipelineId: 'my-pipeline-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -544,9 +544,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -614,12 +614,12 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.getControllerConfig(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -629,9 +629,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -700,12 +700,12 @@ function Genomics(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -728,9 +728,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -805,12 +805,12 @@ function Genomics(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.run(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -820,9 +820,9 @@ function Genomics(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -895,21 +895,21 @@ function Genomics(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   genomics.pipelines.setOperationStatus(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

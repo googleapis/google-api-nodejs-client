@@ -44,6 +44,58 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Clears a `Policy` from a resource.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource for the `Policy` to clear.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.folders.clearOrgPolicy(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.folders.clearOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -81,6 +133,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.folders.getEffectiveOrgPolicy
      *
      * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.folders.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.folders.getEffectiveOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -120,6 +227,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource the `Policy` is set on.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.folders.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.folders.getOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -157,6 +319,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.folders.listAvailableOrgPolicyConstraints
      *
      * @desc Lists `Constraints` that could be applied on the specified resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list `Constraints` for.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var constraintsPage = response['constraints'];
+     *     if (!constraintsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < constraintsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.folders.listAvailableOrgPolicyConstraints(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.folders.listAvailableOrgPolicyConstraints
      * @memberOf! cloudresourcemanager(v1)
@@ -196,6 +426,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Lists all the `Policies` set for a particular resource.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list Policies for.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var policiesPage = response['policies'];
+     *     if (!policiesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < policiesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.folders.listOrgPolicies(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.folders.listOrgPolicies(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.folders.listOrgPolicies
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -233,6 +531,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.folders.setOrgPolicy
      *
      * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the resource to attach the `Policy`.
+     *     resource_: 'folders/my-folder',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.folders.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.folders.setOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -276,6 +629,58 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Create a Lien which applies to the resource denoted by the `parent` field.  Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`.  NOTE: Some resources may limit the number of Liens which may be applied.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.liens.create(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.liens.create
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -313,6 +718,54 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Delete a Lien by `name`.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name/identifier of the Lien to delete.
+     *     name: 'liens/my-lien',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.liens.delete(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.liens.delete
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -349,6 +802,67 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.liens.list
      *
      * @desc List all Liens applied to the `parent` resource.  Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var liensPage = response['liens'];
+     *     if (!liensPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < liensPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `liensPage`:
+     *       console.log(JSON.stringify(liensPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudResourceManager.liens.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.liens.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.liens.list
      * @memberOf! cloudresourcemanager(v1)
@@ -414,14 +928,14 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'operations/my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.operations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -431,9 +945,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -484,6 +998,58 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.organizations.clearOrgPolicy
      *
      * @desc Clears a `Policy` from a resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource for the `Policy` to clear.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.organizations.clearOrgPolicy(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.organizations.clearOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -544,14 +1110,14 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The resource name of the Organization to fetch, e.g. "organizations/1234".
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -561,9 +1127,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -610,6 +1176,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.organizations.getEffectiveOrgPolicy
      *
      * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.organizations.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.organizations.getEffectiveOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -670,20 +1291,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -693,9 +1313,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -744,6 +1364,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource the `Policy` is set on.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.organizations.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.organizations.getOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -782,6 +1457,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Lists `Constraints` that could be applied on the specified resource.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list `Constraints` for.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var constraintsPage = response['constraints'];
+     *     if (!constraintsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < constraintsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.organizations.listAvailableOrgPolicyConstraints(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -819,6 +1562,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.organizations.listOrgPolicies
      *
      * @desc Lists all the `Policies` set for a particular resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list Policies for.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var policiesPage = response['policies'];
+     *     if (!policiesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < policiesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.organizations.listOrgPolicies(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.organizations.listOrgPolicies(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.organizations.listOrgPolicies
      * @memberOf! cloudresourcemanager(v1)
@@ -882,12 +1693,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -901,7 +1712,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       cloudResourceManager.organizations.search(request, handlePage);
      *     }
      *   };
@@ -910,9 +1721,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -981,20 +1792,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1004,9 +1814,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1054,6 +1864,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.organizations.setOrgPolicy
      *
      * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the resource to attach the `Policy`.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.organizations.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.organizations.setOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -1114,20 +1979,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1137,9 +2001,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1191,6 +2055,58 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.projects.clearOrgPolicy
      *
      * @desc Clears a `Policy` from a resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource for the `Policy` to clear.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.projects.clearOrgPolicy(request, function(err) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.projects.clearOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -1254,12 +2170,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1269,9 +2185,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1341,23 +2257,23 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `foo-bar-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1427,14 +2343,14 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1444,9 +2360,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1516,18 +2432,18 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.getAncestry(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1537,9 +2453,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1587,6 +2503,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.projects.getEffectiveOrgPolicy
      *
      * @desc Gets the effective `Policy` on a resource. This is the result of merging `Policies` in the resource hierarchy. The returned `Policy` will not have an `etag`set because it is a computed `Policy` across multiple resources.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The name of the resource to start computing the effective `Policy`.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.projects.getEffectiveOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.projects.getEffectiveOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -1647,20 +2618,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1670,9 +2640,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1720,6 +2690,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.projects.getOrgPolicy
      *
      * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the resource, a `Policy` is returned with default values including `POLICY_TYPE_NOT_SET` for the `policy_type oneof`. The `etag` value can be used with `SetOrgPolicy()` to create or update a `Policy` during read-modify-write.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource the `Policy` is set on.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.projects.getOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.projects.getOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -1779,12 +2804,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1807,9 +2832,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1859,6 +2884,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * @desc Lists `Constraints` that could be applied on the specified resource.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list `Constraints` for.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var constraintsPage = response['constraints'];
+     *     if (!constraintsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < constraintsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `constraintsPage`:
+     *       console.log(JSON.stringify(constraintsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.projects.listAvailableOrgPolicyConstraints(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudresourcemanager.projects.listAvailableOrgPolicyConstraints
      * @memberOf! cloudresourcemanager(v1)
      *
@@ -1896,6 +2989,74 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.projects.listOrgPolicies
      *
      * @desc Lists all the `Policies` set for a particular resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Name of the resource to list Policies for.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var policiesPage = response['policies'];
+     *     if (!policiesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < policiesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `policiesPage`:
+     *       console.log(JSON.stringify(policiesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.resource.pageToken = response.nextPageToken;
+     *       cloudResourceManager.projects.listOrgPolicies(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.projects.listOrgPolicies(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.projects.listOrgPolicies
      * @memberOf! cloudresourcemanager(v1)
@@ -1956,20 +3117,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1979,9 +3139,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2029,6 +3189,61 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * cloudresourcemanager.projects.setOrgPolicy
      *
      * @desc Updates the specified `Policy` on the resource. Creates a new `Policy` for that `Constraint` on the resource if one does not exist.  Not supplying an `etag` on the request `Policy` results in an unconditional write of the `Policy`.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Resource name of the resource to attach the `Policy`.
+     *     resource_: 'projects/my-project',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   cloudResourceManager.projects.setOrgPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudresourcemanager.projects.setOrgPolicy
      * @memberOf! cloudresourcemanager(v1)
@@ -2089,20 +3304,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2112,9 +3326,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2185,27 +3399,27 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The project ID (for example, `foo-bar-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.undelete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2276,19 +3490,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2298,9 +3512,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

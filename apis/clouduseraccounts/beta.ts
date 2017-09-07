@@ -65,26 +65,26 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to delete.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.globalAccountsOperations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -154,17 +154,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Operations resource to return.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.globalAccountsOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -174,9 +174,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -246,14 +246,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -276,9 +276,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -355,21 +355,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the group for this request.
-     *     groupName: '',  // TODO: Update placeholder value.
+     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.groups.addMember(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -379,9 +379,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -452,17 +452,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Group resource to delete.
-     *     groupName: '',  // TODO: Update placeholder value.
+     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.groups.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -472,9 +472,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -544,17 +544,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the Group resource to return.
-     *     groupName: '',  // TODO: Update placeholder value.
+     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.groups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -564,9 +564,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -636,18 +636,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.groups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -657,9 +657,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -729,14 +729,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -759,9 +759,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -834,21 +834,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the group for this request.
-     *     groupName: '',  // TODO: Update placeholder value.
+     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.groups.removeMember(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -858,9 +858,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -935,23 +935,23 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The user account for which you want to get a list of authorized public keys.
-     *     user: '',  // TODO: Update placeholder value.
+     *     user: 'my-user',  // TODO: Update placeholder value.
      *
      *     // The fully-qualified URL of the virtual machine requesting the view.
      *     instance: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.linux.getAuthorizedKeysView(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -961,9 +961,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1036,20 +1036,20 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the zone for this request.
-     *     zone: '',  // TODO: Update placeholder value.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
      *     // The fully-qualified URL of the virtual machine requesting the views.
      *     instance: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.linux.getLinuxAccountViews(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1059,9 +1059,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1140,21 +1140,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the user for this request.
-     *     user: '',  // TODO: Update placeholder value.
+     *     user: 'my-user',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.users.addPublicKey(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1164,9 +1164,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1237,17 +1237,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the user resource to delete.
-     *     user: '',  // TODO: Update placeholder value.
+     *     user: 'my-user',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.users.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1257,9 +1257,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1329,17 +1329,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the user resource to return.
-     *     user: '',  // TODO: Update placeholder value.
+     *     user: 'my-user',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.users.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1349,9 +1349,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1421,18 +1421,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.users.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1442,9 +1442,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1514,14 +1514,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1544,9 +1544,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1619,21 +1619,21 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the user for this request.
-     *     user: '',  // TODO: Update placeholder value.
+     *     user: 'my-user',  // TODO: Update placeholder value.
      *
      *     // The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which
      *     // is defined by RFC4716 to be the MD5 digest of the public key.
      *     fingerprint: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudUserAccounts.users.removePublicKey(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1643,9 +1643,9 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

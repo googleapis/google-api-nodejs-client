@@ -1453,35 +1453,6 @@ function Spanner(options) { // eslint-disable-line
 }
 
 /**
- * @typedef AuditConfig
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-* @property {string[]} exemptedMembers 
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
-`allServices` is a special value that covers all services.
-*/
-
-/**
- * @typedef AuditLogConfig
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
-permission.
-Follows the same format of Binding.members.
-* @property {string} logType The log type that this config enables.
-*/
-
-/**
- * @typedef AuthorizationLoggingOptions
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} permissionType The type of the permission that was checked.
- */
-
-/**
  * @typedef BeginTransactionRequest
  * @memberOf! spanner(v1)
  * @type object
@@ -1492,11 +1463,6 @@ Follows the same format of Binding.members.
  * @typedef Binding
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).Expr} condition The condition that is associated with this binding.
-NOTE: an unsatisfied condition will not allow user access via current
-binding. Different bindings, including their conditions, are examined
-independently.
-This field is GOOGLE_INTERNAL.
 * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
 `members` can have the following values:
 
@@ -1546,14 +1512,6 @@ columns.
 */
 
 /**
- * @typedef CloudAuditOptions
- * @memberOf! spanner(v1)
- * @type object
- * @property {spanner(v1).AuthorizationLoggingOptions} authorizationLoggingOptions Information used by the Cloud Audit Logging pipeline.
- * @property {string} logName The log_name to populate in the Cloud Audit Record.
- */
-
-/**
  * @typedef CommitRequest
  * @memberOf! spanner(v1)
  * @type object
@@ -1577,27 +1535,6 @@ Commit instead.
  * @memberOf! spanner(v1)
  * @type object
  * @property {string} commitTimestamp The Cloud Spanner timestamp at which the transaction committed.
- */
-
-/**
- * @typedef Condition
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-*/
-
-/**
- * @typedef CounterOptions
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} field The field value to attribute.
- * @property {string} metric The metric to update.
  */
 
 /**
@@ -1646,12 +1583,6 @@ specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
 form `a-z*[a-z0-9]` and must be between 6 and 30 characters in
 length.
 */
-
-/**
- * @typedef DataAccessOptions
- * @memberOf! spanner(v1)
- * @type object
- */
 
 /**
  * @typedef Database
@@ -1716,24 +1647,6 @@ request that yielded this token.
 * @property {string} sql Required. The SQL query string.
 * @property {spanner(v1).TransactionSelector} transaction The transaction to use. If none is provided, the default is a
 temporary read-only transaction with strong concurrency.
-*/
-
-/**
- * @typedef Expr
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} description An optional description of the expression. This is a longer text which
-describes the expression, e.g. when hovered over it in a UI.
-* @property {string} expression Textual representation of an expression in
-Common Expression Language syntax.
-
-The application context of the containing message determines which
-well-known feature set of CEL is supported.
-* @property {string} location An optional string indicating the location of the expression for error
-reporting, e.g. a file name and a position in the file.
-* @property {string} title An optional title for the expression, i.e. a short string describing
-its purpose. This can be used e.g. in UIs which allow to enter the
-expression.
 */
 
 /**
@@ -1897,15 +1810,6 @@ of the matching instances.
  * @type object
  * @property {string} nextPageToken The standard List next-page token.
  * @property {spanner(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-
-/**
- * @typedef LogConfig
- * @memberOf! spanner(v1)
- * @type object
- * @property {spanner(v1).CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {spanner(v1).CounterOptions} counter Counter options.
- * @property {spanner(v1).DataAccessOptions} dataAccess Data access options.
  */
 
 /**
@@ -2076,7 +1980,6 @@ information in its metadata:
  * @typedef Policy
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
 * @property {spanner(v1).Binding[]} bindings Associates a list of `members` to a `role`.
 `bindings` with no members will result in an error.
 * @property {string} etag `etag` is used for optimistic concurrency control as a way to help
@@ -2089,16 +1992,6 @@ ensure that their change will be applied to the same version of the policy.
 
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
-* @property {boolean} iamOwned 
-* @property {spanner(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 */
 
@@ -2255,26 +2148,6 @@ follows:
  */
 
 /**
- * @typedef Rule
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} action Required
-* @property {spanner(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {string} description Human-readable description of the rule.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {spanner(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-*/
-
-/**
  * @typedef Session
  * @memberOf! spanner(v1)
  * @type object
@@ -2289,11 +2162,6 @@ and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all v
 the policy is limited to a few 10s of KB. An empty policy is a
 valid policy but certain Cloud Platform services (such as Projects)
 might reject them.
-* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
-the fields in the mask will be modified. If no mask is provided, the
-following default mask is used:
-paths: &quot;bindings, etag&quot;
-This field is only used by Cloud IAM.
 */
 
 /**

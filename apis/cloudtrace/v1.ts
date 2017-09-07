@@ -48,7 +48,7 @@ function Cloudtrace(options) { // eslint-disable-line
      * @example
      * // BEFORE RUNNING:
      * // ---------------
-     * // 1. If not already done, enable the Google Cloud Trace API
+     * // 1. If not already done, enable the Stackdriver Trace API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudtrace
      * // 2. This sample uses Application Default Credentials for authentication.
@@ -66,28 +66,28 @@ function Cloudtrace(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // ID of the Cloud project where the trace data is stored.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudTrace.projects.patchTraces(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -140,7 +140,7 @@ function Cloudtrace(options) { // eslint-disable-line
        * @example
        * // BEFORE RUNNING:
        * // ---------------
-       * // 1. If not already done, enable the Google Cloud Trace API
+       * // 1. If not already done, enable the Stackdriver Trace API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/cloudtrace
        * // 2. This sample uses Application Default Credentials for authentication.
@@ -158,17 +158,17 @@ function Cloudtrace(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // ID of the Cloud project where the trace data is stored.
-       *     projectId: '',  // TODO: Update placeholder value.
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
        *
        *     // ID of the trace to return.
-       *     traceId: '',  // TODO: Update placeholder value.
+       *     traceId: 'my-trace-id',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   cloudTrace.projects.traces.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -178,9 +178,9 @@ function Cloudtrace(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -232,7 +232,7 @@ function Cloudtrace(options) { // eslint-disable-line
        * @example
        * // BEFORE RUNNING:
        * // ---------------
-       * // 1. If not already done, enable the Google Cloud Trace API
+       * // 1. If not already done, enable the Stackdriver Trace API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/cloudtrace
        * // 2. This sample uses Application Default Credentials for authentication.
@@ -250,14 +250,14 @@ function Cloudtrace(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // ID of the Cloud project where the trace data is stored.
-       *     projectId: '',  // TODO: Update placeholder value.
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -280,9 +280,9 @@ function Cloudtrace(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

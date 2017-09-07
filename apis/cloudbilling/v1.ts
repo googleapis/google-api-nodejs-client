@@ -67,15 +67,14 @@ function Cloudbilling(options) { // eslint-disable-line
      *   var request = {
      *     // The resource name of the billing account to retrieve. For example,
      *     // `billingAccounts/012345-567890-ABCDEF`.
-     *     name: '',  // TODO: Update placeholder value.
-     *     // ex: 'billingAccounts/my-billingAccount'
+     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudbilling.billingAccounts.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -85,9 +84,9 @@ function Cloudbilling(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -155,12 +154,12 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -183,9 +182,9 @@ function Cloudbilling(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -255,17 +254,16 @@ function Cloudbilling(options) { // eslint-disable-line
        *
        * authorize(function(authClient) {
        *   var request = {
-       *     // The resource name of the billing account associated with the projects that you want to list. For
-       *     // example, `billingAccounts/012345-567890-ABCDEF`.
-       *     name: '',  // TODO: Update placeholder value.
-       *     // ex: 'billingAccounts/my-billingAccount'
+       *     // The resource name of the billing account associated with the projects that
+       *     // you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+       *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -288,9 +286,9 @@ function Cloudbilling(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -364,17 +362,16 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The resource name of the project for which billing information is retrieved. For example,
-     *     // `projects/tokyo-rain-123`.
-     *     name: '',  // TODO: Update placeholder value.
-     *     // ex: 'projects/my-project'
+     *     // The resource name of the project for which billing information is
+     *     // retrieved. For example, `projects/tokyo-rain-123`.
+     *     name: 'projects/my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudbilling.projects.getBillingInfo(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -384,9 +381,9 @@ function Cloudbilling(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -454,22 +451,21 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The resource name of the project associated with the billing information that you want to update.
-     *     // For example, `projects/tokyo-rain-123`.
-     *     name: '',  // TODO: Update placeholder value.
-     *     // ex: 'projects/my-project'
+     *     // The resource name of the project associated with the billing information
+     *     // that you want to update. For example, `projects/tokyo-rain-123`.
+     *     name: 'projects/my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudbilling.projects.updateBillingInfo(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -479,9 +475,9 @@ function Cloudbilling(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -534,6 +530,67 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * @desc Lists all public cloud services.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Billing API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudbilling
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudbilling = google.cloudbilling('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     auth: authClient,
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     var servicesPage = response['services'];
+     *     if (!servicesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < servicesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `servicesPage`:
+     *       console.log(JSON.stringify(servicesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudbilling.services.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudbilling.services.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias cloudbilling.services.list
      * @memberOf! cloudbilling(v1)
      *
@@ -572,6 +629,71 @@ function Cloudbilling(options) { // eslint-disable-line
        * cloudbilling.services.skus.list
        *
        * @desc Lists all publicly available SKUs for a given cloud service.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Billing API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudbilling
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudbilling = google.cloudbilling('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The name of the service.
+       *     // Example: "services/DA34-426B-A397"
+       *     parent: 'services/my-service',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var skusPage = response['skus'];
+       *     if (!skusPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < skusPage.length; i++) {
+       *       // TODO: Change code below to process each resource in `skusPage`:
+       *       console.log(JSON.stringify(skusPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudbilling.services.skus.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   cloudbilling.services.skus.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudbilling.services.skus.list
        * @memberOf! cloudbilling(v1)

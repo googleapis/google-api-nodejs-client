@@ -64,16 +64,17 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The ID of the Google Developers Console project that the Google service account is associated with.
+     *     // The ID of the Google Cloud Platform Console project that the Google service
+     *     // account is associated with.
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.googleServiceAccounts.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -83,9 +84,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -161,12 +162,12 @@ function Storagetransfer(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferJobs.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -176,9 +177,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -246,15 +247,16 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The job to get. Required.
-     *     jobName: '',  // TODO: Update placeholder value.
+     *     // The job to get.
+     *     // Required.
+     *     jobName: 'transferJobs/my-transfer-job',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferJobs.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -264,9 +266,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -335,12 +337,12 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -363,9 +365,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -435,20 +437,21 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of job to update. Required.
-     *     jobName: '',  // TODO: Update placeholder value.
+     *     // The name of job to update.
+     *     // Required.
+     *     jobName: 'transferJobs/my-transfer-job',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferJobs.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -458,9 +461,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -534,23 +537,23 @@ function Storagetransfer(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource to be cancelled.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferOperations.cancel(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -619,23 +622,23 @@ function Storagetransfer(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource to be deleted.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferOperations.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -704,14 +707,14 @@ function Storagetransfer(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The name of the operation resource.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -721,9 +724,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -792,14 +795,14 @@ function Storagetransfer(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The value `transferOperations`.
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'transferOperations',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -822,9 +825,9 @@ function Storagetransfer(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -895,28 +898,29 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the transfer operation. Required.
-     *     name: '',  // TODO: Update placeholder value.
+     *     // The name of the transfer operation.
+     *     // Required.
+     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferOperations.pause(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -985,28 +989,29 @@ function Storagetransfer(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The name of the transfer operation. Required.
-     *     name: '',  // TODO: Update placeholder value.
+     *     // The name of the transfer operation.
+     *     // Required.
+     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   storagetransfer.transferOperations.resume(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

@@ -68,26 +68,28 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name of the log to delete:
        *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
        *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+       *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
        *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog",
        *     // "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more
        *     // information about log names, see LogEntry.
-       *     logName: '',  // TODO: Update placeholder value.
+       *     logName: 'billingAccounts/my-billing-account/logs/my-log',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.billingAccounts.logs.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -158,14 +160,16 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name that owns the logs:
        *     // "projects/[PROJECT_ID]"
        *     // "organizations/[ORGANIZATION_ID]"
-       *     parent: '',  // TODO: Update placeholder value.
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+       *     // "folders/[FOLDER_ID]"
+       *     parent: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -188,9 +192,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -268,12 +272,12 @@ function Logging(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -287,7 +291,7 @@ function Logging(options) { // eslint-disable-line
      *     }
      *
      *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
+     *       request.resource.pageToken = response.nextPageToken;
      *       logging.entries.list(request, handlePage);
      *     }
      *   };
@@ -296,9 +300,9 @@ function Logging(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -370,12 +374,12 @@ function Logging(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   logging.entries.write(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -385,9 +389,9 @@ function Logging(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -459,12 +463,12 @@ function Logging(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -487,9 +491,9 @@ function Logging(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -566,26 +570,28 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name of the log to delete:
        *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
        *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+       *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
        *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog",
        *     // "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more
        *     // information about log names, see LogEntry.
-       *     logName: '',  // TODO: Update placeholder value.
+       *     logName: 'organizations/my-organization/logs/my-log',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.organizations.logs.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -656,14 +662,16 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name that owns the logs:
        *     // "projects/[PROJECT_ID]"
        *     // "organizations/[ORGANIZATION_ID]"
-       *     parent: '',  // TODO: Update placeholder value.
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+       *     // "folders/[FOLDER_ID]"
+       *     parent: 'organizations/my-organization',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -686,9 +694,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -766,26 +774,28 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name of the log to delete:
        *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
        *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+       *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
        *     // [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog",
        *     // "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more
        *     // information about log names, see LogEntry.
-       *     logName: '',  // TODO: Update placeholder value.
+       *     logName: 'projects/my-project/logs/my-log',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.logs.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -856,14 +866,16 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource name that owns the logs:
        *     // "projects/[PROJECT_ID]"
        *     // "organizations/[ORGANIZATION_ID]"
-       *     parent: '',  // TODO: Update placeholder value.
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+       *     // "folders/[FOLDER_ID]"
+       *     parent: 'projects/my-project',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -886,9 +898,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -963,18 +975,18 @@ function Logging(options) { // eslint-disable-line
        *     // The resource name of the project in which to create the metric:
        *     // "projects/[PROJECT_ID]"
        *     // The new metric must be provided in the request.
-       *     parent: '',  // TODO: Update placeholder value.
+       *     parent: 'projects/my-project',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.metrics.create(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -984,9 +996,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1057,23 +1069,23 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // The resource name of the metric to delete:
        *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-       *     metricName: '',  // TODO: Update placeholder value.
+       *     metricName: 'projects/my-project/metrics/my-metric',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.metrics.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1143,14 +1155,14 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // The resource name of the desired metric:
        *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-       *     metricName: '',  // TODO: Update placeholder value.
+       *     metricName: 'projects/my-project/metrics/my-metric',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.metrics.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1160,9 +1172,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1232,14 +1244,14 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // Required. The name of the project containing the metrics:
        *     // "projects/[PROJECT_ID]"
-       *     parent: '',  // TODO: Update placeholder value.
+       *     parent: 'projects/my-project',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1262,9 +1274,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1338,19 +1350,19 @@ function Logging(options) { // eslint-disable-line
        *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
        *     // The updated metric must be provided in the request and it's name field must be the same as
        *     // [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
-       *     metricName: '',  // TODO: Update placeholder value.
+       *     metricName: 'projects/my-project/metrics/my-metric',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body. All existing properties
        *       // will be replaced.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.metrics.update(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1360,9 +1372,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1436,19 +1448,21 @@ function Logging(options) { // eslint-disable-line
        *     // Required. The resource in which to create the sink:
        *     // "projects/[PROJECT_ID]"
        *     // "organizations/[ORGANIZATION_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+       *     // "folders/[FOLDER_ID]"
        *     // Examples: "projects/my-logging-project", "organizations/123456789".
-       *     parent: '',  // TODO: Update placeholder value.
+       *     parent: 'projects/my-project',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.sinks.create(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1458,9 +1472,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1534,25 +1548,26 @@ function Logging(options) { // eslint-disable-line
        *     // identifier:
        *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
        *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-       *     // It is an error if the sink does not exist. Example: "projects/my-project-id/sinks/my-sink-id". It
-       *     // is an error if the sink does not exist.
-       *     sinkName: '',  // TODO: Update placeholder value.
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+       *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+       *     // Example: "projects/my-project-id/sinks/my-sink-id".
+       *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.sinks.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1620,18 +1635,20 @@ function Logging(options) { // eslint-disable-line
        *
        * authorize(function(authClient) {
        *   var request = {
-       *     // Required. The parent resource name of the sink:
+       *     // Required. The resource name of the sink:
        *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
        *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+       *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
        *     // Example: "projects/my-project-id/sinks/my-sink-id".
-       *     sinkName: '',  // TODO: Update placeholder value.
+       *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.sinks.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1641,9 +1658,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1711,16 +1728,19 @@ function Logging(options) { // eslint-disable-line
        *
        * authorize(function(authClient) {
        *   var request = {
-       *     // Required. The parent resource whose sinks are to be listed. Examples:
-       *     // "projects/my-logging-project", "organizations/123456789".
-       *     parent: '',  // TODO: Update placeholder value.
+       *     // Required. The parent resource whose sinks are to be listed:
+       *     // "projects/[PROJECT_ID]"
+       *     // "organizations/[ORGANIZATION_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+       *     // "folders/[FOLDER_ID]"
+       *     parent: 'projects/my-project',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1743,9 +1763,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1819,20 +1839,22 @@ function Logging(options) { // eslint-disable-line
        *     // identifier:
        *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
        *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+       *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+       *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
        *     // Example: "projects/my-project-id/sinks/my-sink-id".
-       *     sinkName: '',  // TODO: Update placeholder value.
+       *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body. All existing properties
        *       // will be replaced.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   logging.projects.sinks.update(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1842,9 +1864,9 @@ function Logging(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

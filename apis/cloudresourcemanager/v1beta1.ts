@@ -65,14 +65,14 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The resource name of the Organization to fetch, e.g. "organizations/1234".
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -82,9 +82,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -154,20 +154,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -177,9 +176,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -248,12 +247,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -276,9 +275,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -349,20 +348,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -372,9 +370,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -444,20 +442,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -467,9 +464,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -541,19 +538,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *     // Output Only. The resource name of the organization. This is the
      *     // organization's relative path in the API. Its format is
      *     // "organizations/[organization_id]". For example, "organizations/1234".
-     *     name: '',  // TODO: Update placeholder value.
+     *     name: 'organizations/my-organization',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.organizations.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -563,9 +560,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -642,12 +639,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -657,9 +654,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -730,23 +727,23 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `foo-bar-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -816,14 +813,14 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -833,9 +830,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -905,18 +902,18 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The Project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.getAncestry(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -926,9 +923,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -998,20 +995,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1021,9 +1017,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1092,12 +1088,12 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1120,9 +1116,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1193,20 +1189,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy is being specified.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1216,9 +1211,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1288,20 +1283,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     // See the operation documentation for the appropriate value for this field.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1311,9 +1305,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1384,27 +1378,27 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The project ID (for example, `foo-bar-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.undelete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1475,19 +1469,19 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      *   var request = {
      *     // The project ID (for example, `my-project-123`).
      *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
+     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   cloudResourceManager.projects.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1497,9 +1491,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

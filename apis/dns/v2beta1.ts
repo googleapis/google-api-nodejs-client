@@ -65,21 +65,21 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.changes.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -89,9 +89,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -163,20 +163,20 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     // The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-     *     changeId: '',  // TODO: Update placeholder value.
+     *     changeId: 'my-change-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.changes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -186,9 +186,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -260,17 +260,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -293,9 +293,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -373,20 +373,20 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     // The identifier of the requested DnsKey.
-     *     dnsKeyId: '',  // TODO: Update placeholder value.
+     *     dnsKeyId: 'my-dns-key-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.dnsKeys.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -396,9 +396,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -471,17 +471,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -504,9 +504,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -583,20 +583,20 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     // Identifies the operation addressed by this request.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZoneOperations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -606,9 +606,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -680,17 +680,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -713,9 +713,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -792,18 +792,18 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZones.create(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -813,9 +813,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -886,17 +886,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZones.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -906,9 +906,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -979,17 +979,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZones.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -999,9 +999,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1072,14 +1072,14 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1102,9 +1102,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1176,22 +1176,22 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZones.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1201,9 +1201,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1275,22 +1275,22 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.managedZones.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1300,9 +1300,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1378,14 +1378,14 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dns.projects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1395,9 +1395,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1471,17 +1471,17 @@ function Dns(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Identifies the project addressed by this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: '',  // TODO: Update placeholder value.
+     *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1504,9 +1504,9 @@ function Dns(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

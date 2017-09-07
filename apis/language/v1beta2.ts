@@ -222,6 +222,43 @@ function Language(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * language.documents.classifyText
+     *
+     * @desc Classifies a document into categories.
+     *
+     * @alias language.documents.classifyText
+     * @memberOf! language(v1beta2)
+     *
+     * @param {object} params Parameters for request
+     * @param {language(v1beta2).ClassifyTextRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    classifyText: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1beta2/documents:classifyText').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -315,6 +352,7 @@ See Document.language field for more details.
  * @typedef AnnotateTextResponse
  * @memberOf! language(v1beta2)
  * @type object
+* @property {language(v1beta2).ClassificationCategory[]} categories Categories identified in the input document.
 * @property {language(v1beta2).Sentiment} documentSentiment The overall sentiment for the document. Populated if the user enables
 AnnotateTextRequest.Features.extract_document_sentiment.
 * @property {language(v1beta2).Entity[]} entities Entities, along with their semantic information, in the input document.
@@ -329,6 +367,29 @@ AnnotateTextRequest.Features.extract_syntax.
 Populated if the user enables
 AnnotateTextRequest.Features.extract_syntax.
 */
+
+/**
+ * @typedef ClassificationCategory
+ * @memberOf! language(v1beta2)
+ * @type object
+* @property {number} confidence The classifier&#39;s confidence of the category. Number represents how certain
+the classifier is that this category represents the given text.
+* @property {string} name The name of the category representing the document.
+*/
+
+/**
+ * @typedef ClassifyTextRequest
+ * @memberOf! language(v1beta2)
+ * @type object
+ * @property {language(v1beta2).Document} document Input document.
+ */
+
+/**
+ * @typedef ClassifyTextResponse
+ * @memberOf! language(v1beta2)
+ * @type object
+ * @property {language(v1beta2).ClassificationCategory[]} categories Categories representing the input document.
+ */
 
 /**
  * @typedef DependencyEdge
@@ -403,6 +464,7 @@ the entity in the provided document.
  * @typedef Features
  * @memberOf! language(v1beta2)
  * @type object
+ * @property {boolean} classifyText Classify the full document into categories.
  * @property {boolean} extractDocumentSentiment Extract document-level sentiment.
  * @property {boolean} extractEntities Extract entities.
  * @property {boolean} extractEntitySentiment Extract entities and their associated sentiment.

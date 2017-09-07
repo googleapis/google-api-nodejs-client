@@ -65,21 +65,21 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.cancelPreview(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -89,9 +89,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -162,17 +162,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.delete(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -182,9 +182,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -255,17 +255,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -275,9 +275,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -347,17 +347,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.getIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -367,9 +367,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -439,18 +439,18 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -460,9 +460,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -533,14 +533,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -563,9 +563,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -638,22 +638,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -663,9 +663,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -739,21 +739,21 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.setIamPolicy(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -763,9 +763,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -836,21 +836,21 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.stop(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -860,9 +860,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -933,21 +933,21 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // Project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // Name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.testIamPermissions(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -957,9 +957,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1030,22 +1030,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.deployments.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1055,9 +1055,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1135,20 +1135,20 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     // The name of the manifest for this request.
-     *     manifest: '',  // TODO: Update placeholder value.
+     *     manifest: 'my-manifest',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.manifests.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1158,9 +1158,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1231,17 +1231,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1264,9 +1264,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1344,17 +1344,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the operation for this request.
-     *     operation: '',  // TODO: Update placeholder value.
+     *     operation: 'my-operation',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.operations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1364,9 +1364,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1436,14 +1436,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1466,9 +1466,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1545,20 +1545,20 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
      *     // The name of the resource for this request.
-     *     resource_: '',  // TODO: Update placeholder value.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   deploymentManager.resources.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1568,9 +1568,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1641,17 +1641,17 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of the deployment for this request.
-     *     deployment: '',  // TODO: Update placeholder value.
+     *     deployment: 'my-deployment',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1674,9 +1674,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1754,14 +1754,14 @@ function Deploymentmanager(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project ID for this request.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1784,9 +1784,9 @@ function Deploymentmanager(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

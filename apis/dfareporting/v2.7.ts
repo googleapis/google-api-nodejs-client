@@ -64,12 +64,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Account ID.
      *     summaryAccountId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountActiveAdSummaries.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -155,12 +155,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Account permission group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountPermissionGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -239,12 +239,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountPermissionGroups.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -329,12 +329,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Account permission ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountPermissions.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -413,12 +413,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountPermissions.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -503,12 +503,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountUserProfiles.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -591,12 +591,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountUserProfiles.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -675,12 +675,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -788,12 +788,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountUserProfiles.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -878,12 +878,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accountUserProfiles.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -969,12 +969,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Account ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accounts.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1053,12 +1053,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1164,12 +1164,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accounts.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1254,12 +1254,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.accounts.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1345,12 +1345,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Ad ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.ads.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1433,12 +1433,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.ads.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1517,12 +1517,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1644,12 +1644,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.ads.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1734,12 +1734,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.ads.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1825,12 +1825,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Advertiser group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertiserGroups.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -1909,12 +1909,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Advertiser group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertiserGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -1997,12 +1997,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertiserGroups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2081,12 +2081,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2191,12 +2191,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertiserGroups.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2281,12 +2281,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertiserGroups.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2372,12 +2372,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Advertiser ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertisers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2460,12 +2460,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertisers.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2544,12 +2544,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2660,12 +2660,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertisers.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2750,12 +2750,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.advertisers.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2838,12 +2838,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.browsers.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -2932,12 +2932,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.campaignCreativeAssociations.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3020,12 +3020,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Campaign ID in this association.
      *     campaignId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3127,12 +3127,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Campaign ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.campaigns.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3221,12 +3221,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.campaigns.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3307,12 +3307,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3424,12 +3424,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.campaigns.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3514,12 +3514,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.campaigns.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3605,12 +3605,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Change log ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.changeLogs.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3689,12 +3689,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3799,12 +3799,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.cities.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3893,12 +3893,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Connection type ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.connectionTypes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -3977,12 +3977,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.connectionTypes.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4067,12 +4067,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Content category ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.contentCategories.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -4151,12 +4151,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Content category ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.contentCategories.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4239,12 +4239,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.contentCategories.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4323,12 +4323,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4433,12 +4433,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.contentCategories.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4523,12 +4523,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.contentCategories.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4615,12 +4615,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.conversions.batchinsert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4706,12 +4706,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Country DART ID.
      *     dartId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.countries.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4790,12 +4790,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.countries.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4888,15 +4888,15 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired media content for upload. See
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
      *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: {}
+     *       body: '',
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeAssets.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -4990,12 +4990,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative Field Value ID
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFieldValues.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -5078,12 +5078,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative Field Value ID
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFieldValues.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5170,12 +5170,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFieldValues.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5258,12 +5258,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative field ID for this creative field value.
      *     creativeFieldId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5372,12 +5372,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFieldValues.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5466,12 +5466,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFieldValues.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5558,12 +5558,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative Field ID
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFields.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -5642,12 +5642,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative Field ID
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFields.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5730,12 +5730,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFields.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5814,12 +5814,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -5925,12 +5925,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFields.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6015,12 +6015,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeFields.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6106,12 +6106,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6194,12 +6194,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeGroups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6278,12 +6278,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6390,12 +6390,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeGroups.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6480,12 +6480,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creativeGroups.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6571,12 +6571,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Creative ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creatives.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6659,12 +6659,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creatives.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6743,12 +6743,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6863,12 +6863,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creatives.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -6953,12 +6953,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.creatives.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7045,12 +7045,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7151,12 +7151,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Directory site contact ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.directorySiteContacts.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7235,12 +7235,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7345,12 +7345,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Directory site ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.directorySites.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7433,12 +7433,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.directorySites.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7517,12 +7517,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7640,12 +7640,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Type of the object of this dynamic targeting key. This is a required field.
      *     objectType: '',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.dynamicTargetingKeys.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -7727,12 +7727,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.dynamicTargetingKeys.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7811,12 +7811,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.dynamicTargetingKeys.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -7905,12 +7905,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Event tag ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -7989,12 +7989,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Event tag ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8077,12 +8077,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8161,12 +8161,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8262,12 +8262,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8352,12 +8352,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.eventTags.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8447,12 +8447,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     //
      *     // alt: 'media',
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.files.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8531,12 +8531,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The DFA profile ID.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8639,12 +8639,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Floodlight activity ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -8720,12 +8720,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.generatetag(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8807,12 +8807,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Floodlight activity ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8895,12 +8895,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -8979,12 +8979,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9096,12 +9096,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9186,12 +9186,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivities.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9277,12 +9277,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Floodlight activity Group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivityGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9365,12 +9365,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivityGroups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9449,12 +9449,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9562,12 +9562,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivityGroups.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9652,12 +9652,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightActivityGroups.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9743,12 +9743,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Floodlight configuration ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightConfigurations.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9827,12 +9827,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightConfigurations.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -9919,12 +9919,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightConfigurations.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10009,12 +10009,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.floodlightConfigurations.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10103,12 +10103,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Inventory item ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.inventoryItems.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10191,12 +10191,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Project ID for order documents.
      *     projectId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10307,12 +10307,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Landing page ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -10395,12 +10395,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Landing page ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10487,12 +10487,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10575,12 +10575,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Landing page campaign ID.
      *     campaignId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10670,12 +10670,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10764,12 +10764,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.landingPages.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10853,12 +10853,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.languages.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -10940,12 +10940,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.metros.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11030,12 +11030,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Mobile carrier ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.mobileCarriers.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11114,12 +11114,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.mobileCarriers.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11204,12 +11204,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Operating system version ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.operatingSystemVersions.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11288,12 +11288,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.operatingSystemVersions.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11378,12 +11378,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Operating system DART ID.
      *     dartId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.operatingSystems.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11462,12 +11462,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.operatingSystems.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11555,12 +11555,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Order document ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.orderDocuments.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11643,12 +11643,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Project ID for order documents.
      *     projectId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11759,12 +11759,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Order ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.orders.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11847,12 +11847,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Project ID for orders.
      *     projectId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -11958,12 +11958,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Placement group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12046,12 +12046,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementGroups.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12130,12 +12130,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12253,12 +12253,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementGroups.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12343,12 +12343,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementGroups.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12434,12 +12434,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Placement strategy ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementStrategies.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -12518,12 +12518,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Placement strategy ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementStrategies.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12606,12 +12606,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementStrategies.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12690,12 +12690,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12800,12 +12800,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementStrategies.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12890,12 +12890,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placementStrategies.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -12978,12 +12978,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placements.generatetags(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13067,12 +13067,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Placement ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placements.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13155,12 +13155,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placements.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13239,12 +13239,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13365,12 +13365,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placements.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13455,12 +13455,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.placements.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13546,12 +13546,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Platform type ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.platformTypes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13630,12 +13630,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.platformTypes.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13718,14 +13718,14 @@ function Dfareporting(options) { // eslint-disable-line
      *     profileId: '0',  // TODO: Update placeholder value.
      *
      *     // Postal code ID.
-     *     code: '',  // TODO: Update placeholder value.
+     *     code: 'my-code',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.postalCodes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13804,12 +13804,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.postalCodes.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13894,12 +13894,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Project ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.projects.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -13978,12 +13978,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14085,12 +14085,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.regions.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14175,12 +14175,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Remarketing list ID.
      *     remarketingListId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingListShares.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14267,12 +14267,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingListShares.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14357,12 +14357,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingListShares.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14448,12 +14448,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Remarketing list ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingLists.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14536,12 +14536,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingLists.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14623,12 +14623,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Select only remarketing lists owned by this advertiser.
      *     advertiserId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14735,12 +14735,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingLists.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14825,12 +14825,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.remarketingLists.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -14916,12 +14916,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The ID of the report.
      *     reportId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -15000,12 +15000,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The ID of the report.
      *     reportId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15088,12 +15088,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15172,12 +15172,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The DFA user profile ID.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15281,12 +15281,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15369,12 +15369,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The ID of the report.
      *     reportId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.run(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15462,12 +15462,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.reports.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15552,12 +15552,12 @@ function Dfareporting(options) { // eslint-disable-line
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   dfareporting.reports.compatibleFields.query(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -15648,12 +15648,12 @@ function Dfareporting(options) { // eslint-disable-line
        *     //
        *     // alt: 'media',
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   dfareporting.reports.files.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -15736,12 +15736,12 @@ function Dfareporting(options) { // eslint-disable-line
        *     // The ID of the parent report.
        *     reportId: '0',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -15844,12 +15844,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Site ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sites.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -15932,12 +15932,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sites.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16016,12 +16016,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16135,12 +16135,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sites.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16225,12 +16225,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sites.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16316,12 +16316,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Size ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sizes.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16404,12 +16404,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sizes.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16488,12 +16488,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.sizes.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16582,12 +16582,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Subaccount ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.subaccounts.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16670,12 +16670,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.subaccounts.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16754,12 +16754,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16864,12 +16864,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.subaccounts.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -16954,12 +16954,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.subaccounts.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17045,12 +17045,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Remarketing list ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.targetableRemarketingLists.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17132,12 +17132,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Select only targetable remarketing lists targetable by these advertisers.
      *     advertiserId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17242,12 +17242,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Targeting template ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.targetingTemplates.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17330,12 +17330,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.targetingTemplates.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17414,12 +17414,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17525,12 +17525,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.targetingTemplates.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17615,12 +17615,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.targetingTemplates.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17703,12 +17703,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // The user profile ID.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userProfiles.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17784,12 +17784,12 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userProfiles.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17874,12 +17874,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User role permission group ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRolePermissionGroups.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -17958,12 +17958,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRolePermissionGroups.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18048,12 +18048,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User role permission ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRolePermissions.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18132,12 +18132,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRolePermissions.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18223,12 +18223,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User role ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRoles.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
@@ -18307,12 +18307,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User role ID.
      *     id: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRoles.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18395,12 +18395,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRoles.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18479,12 +18479,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18591,12 +18591,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be changed.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRoles.patch(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18681,12 +18681,12 @@ function Dfareporting(options) { // eslint-disable-line
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.userRoles.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18772,12 +18772,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // Video format ID.
      *     id: 0,  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.videoFormats.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -18856,12 +18856,12 @@ function Dfareporting(options) { // eslint-disable-line
      *     // User profile ID associated with this request.
      *     profileId: '0',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   dfareporting.videoFormats.list(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *

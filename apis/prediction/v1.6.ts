@@ -65,21 +65,21 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The name of a hosted model.
-     *     hostedModelName: '',  // TODO: Update placeholder value.
+     *     hostedModelName: 'my-hosted-model-name',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.hostedmodels.predict(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -89,9 +89,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -166,17 +166,17 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The unique name for the predictive model.
-     *     id: '',  // TODO: Update placeholder value.
+     *     id: 'my-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.analyze(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -186,9 +186,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -258,26 +258,26 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The unique name for the predictive model.
-     *     id: '',  // TODO: Update placeholder value.
+     *     id: 'my-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.delete(request, function(err) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *   });
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -347,17 +347,17 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The unique name for the predictive model.
-     *     id: '',  // TODO: Update placeholder value.
+     *     id: 'my-id',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.get(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -367,9 +367,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -439,18 +439,18 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.insert(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -460,9 +460,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -532,14 +532,14 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   var handlePage = function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -562,9 +562,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -635,21 +635,21 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The unique name for the predictive model.
-     *     id: '',  // TODO: Update placeholder value.
+     *     id: 'my-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.predict(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -659,9 +659,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -732,22 +732,22 @@ function Prediction(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     // The project associated with the model.
-     *     project: '',  // TODO: Update placeholder value.
+     *     project: 'my-project',  // TODO: Update placeholder value.
      *
      *     // The unique name for the predictive model.
-     *     id: '',  // TODO: Update placeholder value.
+     *     id: 'my-id',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
-     *     auth: authClient
+     *     auth: authClient,
      *   };
      *
      *   prediction.trainedmodels.update(request, function(err, response) {
      *     if (err) {
-     *       console.log(err);
+     *       console.error(err);
      *       return;
      *     }
      *
@@ -757,9 +757,9 @@ function Prediction(options) { // eslint-disable-line
      * });
      *
      * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
      *     if (err) {
-     *       console.log('authentication failed: ', err);
+     *       console.error('authentication failed: ', err);
      *       return;
      *     }
      *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {

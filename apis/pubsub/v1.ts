@@ -67,16 +67,15 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.snapshots.getIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -86,9 +85,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -157,20 +156,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being specified.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.snapshots.setIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -180,9 +178,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -252,20 +250,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy detail is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/snapshots/my-snapshot',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.snapshots.testIamPermissions(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -275,9 +272,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -350,27 +347,27 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The subscription whose message is being acknowledged.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.acknowledge(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -445,19 +442,19 @@ function Pubsub(options) { // eslint-disable-line
        *     // (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
        *     // plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
        *     // in length, and it must not start with `"goog"`.
-       *     name: '',  // TODO: Update placeholder value.
+       *     name: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body. All existing properties
        *       // will be replaced.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.create(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -467,9 +464,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -540,23 +537,23 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The subscription to delete.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -626,14 +623,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the subscription to get.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -643,9 +640,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -714,16 +711,15 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.getIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -733,9 +729,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -805,14 +801,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the cloud project that subscriptions belong to.
        *     // Format is `projects/{project}`.
-       *     project: '',  // TODO: Update placeholder value.
+       *     project: 'projects/my-project',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -835,9 +831,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -909,27 +905,27 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the subscription.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1000,27 +996,27 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the subscription.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.modifyPushConfig(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1091,18 +1087,18 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The subscription from which messages should be pulled.
        *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
+       *     subscription: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.pull(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1112,9 +1108,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1184,20 +1180,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being specified.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.setIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1207,9 +1202,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1279,20 +1274,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy detail is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/subscriptions/my-subscription',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.subscriptions.testIamPermissions(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1302,9 +1296,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1381,19 +1375,19 @@ function Pubsub(options) { // eslint-disable-line
        *     // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
        *     // signs (`%`). It must be between 3 and 255 characters in length, and it
        *     // must not start with `"goog"`.
-       *     name: '',  // TODO: Update placeholder value.
+       *     name: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body. All existing properties
        *       // will be replaced.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.create(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1403,9 +1397,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1476,23 +1470,23 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // Name of the topic to delete.
        *     // Format is `projects/{project}/topics/{topic}`.
-       *     topic: '',  // TODO: Update placeholder value.
+       *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.delete(request, function(err) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *   });
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1562,14 +1556,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the topic to get.
        *     // Format is `projects/{project}/topics/{topic}`.
-       *     topic: '',  // TODO: Update placeholder value.
+       *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.get(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1579,9 +1573,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1650,16 +1644,15 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.getIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1669,9 +1662,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1741,14 +1734,14 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The name of the cloud project that topics belong to.
        *     // Format is `projects/{project}`.
-       *     project: '',  // TODO: Update placeholder value.
+       *     project: 'projects/my-project',  // TODO: Update placeholder value.
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   var handlePage = function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1771,9 +1764,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1845,18 +1838,18 @@ function Pubsub(options) { // eslint-disable-line
        *   var request = {
        *     // The messages in the request will be published on this topic.
        *     // Format is `projects/{project}/topics/{topic}`.
-       *     topic: '',  // TODO: Update placeholder value.
+       *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.publish(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1866,9 +1859,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -1938,20 +1931,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy is being specified.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.setIamPolicy(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -1961,9 +1953,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2033,20 +2025,19 @@ function Pubsub(options) { // eslint-disable-line
        * authorize(function(authClient) {
        *   var request = {
        *     // REQUIRED: The resource for which the policy detail is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
+       *     // See the operation documentation for the appropriate value for this field.
+       *     resource_: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties to the request body.
        *     },
        *
-       *     auth: authClient
+       *     auth: authClient,
        *   };
        *
        *   pubsub.projects.topics.testIamPermissions(request, function(err, response) {
        *     if (err) {
-       *       console.log(err);
+       *       console.error(err);
        *       return;
        *     }
        *
@@ -2056,9 +2047,9 @@ function Pubsub(options) { // eslint-disable-line
        * });
        *
        * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
        *     if (err) {
-       *       console.log('authentication failed: ', err);
+       *       console.error('authentication failed: ', err);
        *       return;
        *     }
        *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -2130,14 +2121,14 @@ function Pubsub(options) { // eslint-disable-line
          *   var request = {
          *     // The name of the topic that subscriptions are attached to.
          *     // Format is `projects/{project}/topics/{topic}`.
-         *     topic: '',  // TODO: Update placeholder value.
+         *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update placeholder value.
          *
-         *     auth: authClient
+         *     auth: authClient,
          *   };
          *
          *   var handlePage = function(err, response) {
          *     if (err) {
-         *       console.log(err);
+         *       console.error(err);
          *       return;
          *     }
          *
@@ -2160,9 +2151,9 @@ function Pubsub(options) { // eslint-disable-line
          * });
          *
          * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient)) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
          *     if (err) {
-         *       console.log('authentication failed: ', err);
+         *       console.error('authentication failed: ', err);
          *       return;
          *     }
          *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
