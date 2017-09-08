@@ -723,7 +723,7 @@ function Toolresults(options) { // eslint-disable-line
             /**
              * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
              *
-             * @desc Creates a PerfMetricsSummary resource.  May return any of the following error code(s): - ALREADY_EXISTS - A PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
+             * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created.  May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
              *
              * @alias toolresults.projects.histories.executions.steps.perfMetricsSummary.create
              * @memberOf! toolresults(v1beta3firstparty)

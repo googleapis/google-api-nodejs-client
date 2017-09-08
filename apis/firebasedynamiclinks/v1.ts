@@ -116,6 +116,43 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * firebasedynamiclinks.installAttribution
+     *
+     * @desc Get iOS strong/weak-match info for post-install attribution.
+     *
+     * @alias firebasedynamiclinks.installAttribution
+     * @memberOf! firebasedynamiclinks(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {firebasedynamiclinks(v1).GetIosPostInstallAttributionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    installAttribution: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://firebasedynamiclinks-ipv6.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/installAttribution').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -160,6 +197,17 @@ For example,
  * @property {string} previewLink Preivew link to show the link flow chart.
  * @property {string} shortLink Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz
  * @property {firebasedynamiclinks(v1).DynamicLinkWarning[]} warning Information about potential warnings on link creation.
+ */
+
+/**
+ * @typedef DeviceInfo
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+ * @property {string} deviceModelName Device model name.
+ * @property {string} languageCode Device language code setting.
+ * @property {string} screenResolutionHeight Device display resolution height.
+ * @property {string} screenResolutionWidth Device display resolution width.
+ * @property {string} timezone Device timezone setting.
  */
 
 /**
@@ -212,6 +260,65 @@ Used to set meta tag data for link previews on social sites.
  * @property {string} warningDocumentLink The document describing the warning, and helps resolve.
  * @property {string} warningMessage The warning message to help developers improve their requests.
  */
+
+/**
+ * @typedef GetIosPostInstallAttributionRequest
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} appInstallationTime App installation epoch time (https://en.wikipedia.org/wiki/Unix_time).
+This is a client signal for a more accurate weak match.
+* @property {string} bundleId APP bundle ID.
+* @property {firebasedynamiclinks(v1).DeviceInfo} device Device information.
+* @property {string} iosVersion iOS version, ie: 9.3.5.
+Consider adding &quot;build&quot;.
+* @property {string} retrievalMethod App post install attribution retrieval information. Disambiguates
+mechanism (iSDK or developer invoked) to retrieve payload from
+clicked link.
+* @property {string} sdkVersion Google SDK version.
+* @property {string} uniqueMatchLinkToCheck Possible unique matched link that server need to check before performing
+fingerprint match. If passed link is short server need to expand the link.
+If link is long server need to vslidate the link.
+* @property {string} visualStyle Strong match page information. Disambiguates between default UI and
+custom page to present when strong match succeeds/fails to find cookie.
+*/
+
+/**
+ * @typedef GetIosPostInstallAttributionResponse
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} appMinimumVersion The minimum version for app, specified by dev through ?imv= parameter.
+Return to iSDK to allow app to evaluate if current version meets this.
+* @property {string} attributionConfidence The confidence of the returned attribution.
+* @property {string} deepLink The deep-link attributed post-install via one of several techniques
+(fingerprint, copy unique).
+* @property {string} externalBrowserDestinationLink User-agent specific custom-scheme URIs for iSDK to open. This will be set
+according to the user-agent tha the click was originally made in. There is
+no Safari-equivalent custom-scheme open URLs.
+ie: googlechrome://www.example.com
+ie: firefox://open-url?url=http://www.example.com
+ie: opera-http://example.com
+* @property {string} fallbackLink The link to navigate to update the app if min version is not met.
+This is either (in order): 1) fallback link (from ?ifl= parameter, if
+specified by developer) or 2) AppStore URL (from ?isi= parameter, if
+specified), or 3) the payload link (from required link= parameter).
+* @property {string} invitationId Invitation ID attributed post-install via one of several techniques
+(fingerprint, copy unique).
+* @property {boolean} isStrongMatchExecutable Instruction for iSDK to attemmpt to perform strong match. For instance,
+if browser does not support/allow cookie or outside of support browsers,
+this will be false.
+* @property {string} matchMessage Describes why match failed, ie: &quot;discarded due to low confidence&quot;.
+This message will be publicly visible.
+* @property {string} requestedLink Entire FDL (short or long) attributed post-install via one of several
+techniques (fingerprint, copy unique).
+* @property {string} resolvedLink The entire FDL, expanded from a short link. It is the same as the
+requested_link, if it is long. Parameters from this should not be
+used directly (ie: server can default utm_[campaign|medium|source]
+to a value when requested_link lack them, server determine the best
+fallback_link when requested_link specifies &gt;1 fallback links).
+* @property {string} utmCampaign Scion campaign value to be propagated by iSDK to Scion at post-install.
+* @property {string} utmMedium Scion medium value to be propagated by iSDK to Scion at post-install.
+* @property {string} utmSource Scion source value to be propagated by iSDK to Scion at post-install.
+*/
 
 /**
  * @typedef GooglePlayAnalytics

@@ -3450,7 +3450,7 @@ In case of conflict in label keys, the applied set may differ depending on
 the Kubernetes version -- it&#39;s best to assume the behavior is undefined
 and conflicts should be avoided.
 For more information, including usage and the valid values, see:
-http://kubernetes.io/v1.1/docs/user-guide/labels.html
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 * @property {integer} localSsdCount The number of local SSD disks to be attached to the node.
 
 The limit for this value is dependant upon the maximum number of

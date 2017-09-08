@@ -1004,9 +1004,13 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {boolean} allowOverwrite Whether allow overwrite existing account when user local_id exists.
+ * @property {integer} blockSize 
+ * @property {integer} cpuMemCost The following 4 fields are for standard scrypt algorithm.
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
+ * @property {integer} dkLen 
  * @property {string} hashAlgorithm The password hash algorithm.
  * @property {integer} memoryCost Memory cost for hash calculation. Used by scrypt similar algorithms.
+ * @property {integer} parallelization 
  * @property {integer} rounds Rounds for hash calculation. Used by scrypt and similar algorithms.
  * @property {string} saltSeparator The salt separator.
  * @property {boolean} sanityCheck If true, backend will do sanity check(including duplicate email and federated id) when uploading account.

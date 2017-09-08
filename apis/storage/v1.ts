@@ -3868,7 +3868,7 @@ function Storage(options) { // eslint-disable-line
     /**
      * storage.objects.patch
      *
-     * @desc Updates an object's metadata. This method supports patch semantics.
+     * @desc Patches an object's metadata.
      *
      * @example
      * // BEFORE RUNNING:

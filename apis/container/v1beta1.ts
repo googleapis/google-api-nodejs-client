@@ -2165,7 +2165,7 @@ In case of conflict in label keys, the applied set may differ depending on
 the Kubernetes version -- it&#39;s best to assume the behavior is undefined
 and conflicts should be avoided.
 For more information, including usage and the valid values, see:
-http://kubernetes.io/v1.1/docs/user-guide/labels.html
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 * @property {integer} localSsdCount The number of local SSD disks to be attached to the node.
 
 The limit for this value is dependant upon the maximum number of
@@ -2264,6 +2264,8 @@ max_node_count.
  * @memberOf! container(v1beta1)
  * @type object
 * @property {string} detail Detailed operation progress, if available.
+* @property {string} endTime [Output only] The time the operation completed, in
+[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
 * @property {string} location [Output only] The name of the Google Compute Engine
 [zone](/compute/docs/regions-zones/regions-zones#available) or
 [region](/compute/docs/regions-zones/regions-zones#available) in which
@@ -2271,6 +2273,8 @@ the cluster resides.
 * @property {string} name The server-assigned ID for the operation.
 * @property {string} operationType The operation type.
 * @property {string} selfLink Server-defined URL for the resource.
+* @property {string} startTime [Output only] The time the operation started, in
+[RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
 * @property {string} status The current status of the operation.
 * @property {string} statusMessage If an error has occurred, a textual description of the error.
 * @property {string} targetLink Server-defined URL for the target of the operation.
