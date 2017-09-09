@@ -289,11 +289,122 @@ When set to true, might improve detection accuracy for moving objects.
  */
 
 /**
+ * @typedef GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress[]} annotationProgress Progress metadata for all videos specified in `AnnotateVideoRequest`.
+ */
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_AnnotateVideoResponse
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[]} annotationResults Annotation results for all videos specified in `AnnotateVideoRequest`.
+ */
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_Entity
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
+* @property {string} entityId Opaque entity ID. Some IDs may be available in
+[Google Knowledge Graph Search
+API](https://developers.google.com/knowledge-graph/).
+* @property {string} languageCode Language code for `description` in BCP-47 format.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
+ */
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {string} pornographyLikelihood Likelihood of the pornography content..
+* @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the
+video frame for this location.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_LabelAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_Entity[]} categoryEntities Common categories for the detected entity.
+E.g. when the label is `Terrier` the category is likely `dog`. And in some
+cases there might be more than one categories e.g. `Terrier` could also be
+a `pet`.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_Entity} entity Detected entity.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelFrame[]} frames All video frames where a label was detected.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelSegment[]} segments All video segments where a label was detected.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_LabelFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+* @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the
+video frame for this location.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_LabelSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoSegment} segment Video segment where a label was detected.
+ */
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {string} inputUri Video file location in
+[Google Cloud Storage](https://cloud.google.com/storage/).
+* @property {integer} progressPercent Approximate percentage processed thus far.
+Guaranteed to be 100 when fully processed.
+* @property {string} startTime Time when the request was received.
+* @property {string} updateTime Time of the most recent update.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+some videos may succeed and some may fail.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level.
+There is exactly one element for each unique label.
+* @property {string} inputUri Video file location in
+[Google Cloud Storage](https://cloud.google.com/storage/).
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level.
+There is exactly one element for each unique label.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1beta2_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level.
+There is exactly one element for each unique label.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1beta2_VideoSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {string} endTimeOffset Time-offset, relative to the beginning of the video,
+corresponding to the end of the segment (inclusive).
+* @property {string} startTimeOffset Time-offset, relative to the beginning of the video,
+corresponding to the start of the segment (inclusive).
+*/
+
+/**
  * @typedef GoogleLongrunning_Operation
  * @memberOf! videointelligence(v1beta1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {videointelligence(v1beta1).GoogleRpc_Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically

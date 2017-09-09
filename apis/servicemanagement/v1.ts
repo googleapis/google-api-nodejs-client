@@ -1149,8 +1149,7 @@ firebaserules.googleapis.com.
  * @type object
 * @property {string} address The address of the API backend.
 * @property {number} deadline The number of seconds to wait for a response from a request.  The default
-deadline for gRPC and HTTP requests is 5 seconds. For Stubby requests,
-the default is no deadline.
+deadline for gRPC and HTTP requests is 5 seconds.
 * @property {number} minDeadline Minimum deadline in seconds needed for this method. Calls having deadline
 value lower than this will be rejected.
 * @property {string} selector Selects the methods to which this rule applies.

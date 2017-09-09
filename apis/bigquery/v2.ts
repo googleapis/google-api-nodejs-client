@@ -1220,6 +1220,43 @@ function Bigquery(options) { // eslint-disable-line
   self.projects = {
 
     /**
+     * bigquery.projects.getServiceAccount
+     *
+     * @desc Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
+     *
+     * @alias bigquery.projects.getServiceAccount
+     * @memberOf! bigquery(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID for which the service account is requested.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getServiceAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * bigquery.projects.list
      *
      * @desc Lists all projects to which you have been granted any project role.
@@ -2223,6 +2260,13 @@ function Bigquery(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef EncryptionConfiguration
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {string} kmsKeyName [Optional] Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key.
+ */
+
+/**
  * @typedef ErrorProto
  * @memberOf! bigquery(v2)
  * @type object
@@ -2305,6 +2349,14 @@ function Bigquery(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef GetServiceAccountResponse
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {string} email The service account email address.
+ * @property {string} kind The resource type of the response.
+ */
+
+/**
  * @typedef GoogleSheetsOptions
  * @memberOf! bigquery(v2)
  * @type object
@@ -2367,6 +2419,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} allowQuotedNewlines Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file. The default value is false.
  * @property {boolean} autodetect Indicates if we should automatically infer the options and schema for CSV and JSON sources.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Required] The destination table to load the data into.
  * @property {string} encoding [Optional] The character encoding of the data. The supported values are UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
  * @property {string} fieldDelimiter [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
@@ -2393,6 +2446,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} allowLargeResults [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed. However, you must still set destinationTable when result size exceeds the allowed maximum response size.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
  * @property {bigquery(v2).DatasetReference} defaultDataset [Optional] Specifies the default dataset to use for unqualified table names in the query.
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results. This property must be set for large results that exceed the maximum response size.
  * @property {boolean} flattenResults [Optional] If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
  * @property {integer} maximumBillingTier [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
@@ -2416,6 +2470,7 @@ function Bigquery(options) { // eslint-disable-line
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+ * @property {bigquery(v2).EncryptionConfiguration} destinationEncryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {bigquery(v2).TableReference} destinationTable [Required] The destination table
  * @property {bigquery(v2).TableReference} sourceTable [Pick one] Source table to copy.
  * @property {bigquery(v2).TableReference[]} sourceTables [Pick one] Source tables to copy.
@@ -2602,6 +2657,7 @@ function Bigquery(options) { // eslint-disable-line
  * @type object
  * @property {string} creationTime [Output-only] The time when this table was created, in milliseconds since the epoch.
  * @property {string} description [Optional] A user-friendly description of this table.
+ * @property {bigquery(v2).EncryptionConfiguration} encryptionConfiguration [Experimental] Custom encryption configuration (e.g., Cloud KMS keys).
  * @property {string} etag [Output-only] A hash of this resource.
  * @property {string} expirationTime [Optional] The time when this table expires, in milliseconds since the epoch. If not present, the table will persist indefinitely. Expired tables will be deleted and their storage reclaimed.
  * @property {bigquery(v2).ExternalDataConfiguration} externalDataConfiguration [Optional] Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.

@@ -2601,6 +2601,7 @@ function Gmail(options) { // eslint-disable-line
  * @typedef Label
  * @memberOf! gmail(v1)
  * @type object
+ * @property {gmail(v1).LabelColor} color Color to assign to the label. This field is hidden behind an API server mendel experiment and only available for user-defined labels. Will be unset if the label doesn&#39;t have a color configured.
  * @property {string} id The immutable ID of the label.
  * @property {string} labelListVisibility The visibility of the label in the label list in the Gmail web interface.
  * @property {string} messageListVisibility The visibility of the label in the message list in the Gmail web interface.
@@ -2610,6 +2611,14 @@ function Gmail(options) { // eslint-disable-line
  * @property {integer} threadsTotal The total number of threads with the label.
  * @property {integer} threadsUnread The number of unread threads with the label.
  * @property {string} type The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the INBOX and UNREAD labels from messages and threads, but cannot apply or remove the DRAFTS or SENT labels from messages or threads.
+ */
+
+/**
+ * @typedef LabelColor
+ * @memberOf! gmail(v1)
+ * @type object
+ * @property {string} backgroundColor Background color represented as hex string #RRGGBB (ex #000000). Only a restricted predefined set of color values are allowed. See (go/gmail-api-label-colors).
+ * @property {string} textColor Text color represented as hex string #RRGGBB (ex #000000). Only a restricted predefined set of color values are allowed. See (go/gmail-api-label-colors).
  */
 
 /**
