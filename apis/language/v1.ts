@@ -77,6 +77,43 @@ function Language(options) { // eslint-disable-line
     },
 
     /**
+     * language.documents.analyzeEntitySentiment
+     *
+     * @desc Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
+     *
+     * @alias language.documents.analyzeEntitySentiment
+     * @memberOf! language(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {language(v1).AnalyzeEntitySentimentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    analyzeEntitySentiment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/documents:analyzeEntitySentiment').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * language.documents.analyzeSentiment
      *
      * @desc Analyzes the sentiment of the provided text.
@@ -209,6 +246,24 @@ See Document.language field for more details.
 */
 
 /**
+ * @typedef AnalyzeEntitySentimentRequest
+ * @memberOf! language(v1)
+ * @type object
+ * @property {language(v1).Document} document Input document.
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
+ */
+
+/**
+ * @typedef AnalyzeEntitySentimentResponse
+ * @memberOf! language(v1)
+ * @type object
+* @property {language(v1).Entity[]} entities The recognized entities in the input document with associated sentiments.
+* @property {string} language The language of the text, which will be the same as the language specified
+in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
+*/
+
+/**
  * @typedef AnalyzeSentimentRequest
  * @memberOf! language(v1)
  * @type object
@@ -324,6 +379,10 @@ The salience score for an entity provides information about the
 importance or centrality of that entity to the entire document text.
 Scores closer to 0 are less salient, while scores closer to 1.0 are highly
 salient.
+* @property {language(v1).Sentiment} sentiment For calls to AnalyzeEntitySentiment or if
+AnnotateTextRequest.Features.extract_entity_sentiment is set to
+true, this field will contain the aggregate sentiment expressed for this
+entity in the provided document.
 * @property {string} type The entity type.
 */
 
@@ -331,9 +390,13 @@ salient.
  * @typedef EntityMention
  * @memberOf! language(v1)
  * @type object
- * @property {language(v1).TextSpan} text The mention text.
- * @property {string} type The type of the entity mention.
- */
+* @property {language(v1).Sentiment} sentiment For calls to AnalyzeEntitySentiment or if
+AnnotateTextRequest.Features.extract_entity_sentiment is set to
+true, this field will contain the sentiment expressed for this mention of
+the entity in the provided document.
+* @property {language(v1).TextSpan} text The mention text.
+* @property {string} type The type of the entity mention.
+*/
 
 /**
  * @typedef Features
@@ -341,6 +404,7 @@ salient.
  * @type object
  * @property {boolean} extractDocumentSentiment Extract document-level sentiment.
  * @property {boolean} extractEntities Extract entities.
+ * @property {boolean} extractEntitySentiment Extract entities and their associated sentiment.
  * @property {boolean} extractSyntax Extract syntax information.
  */
 

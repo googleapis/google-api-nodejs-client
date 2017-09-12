@@ -1057,6 +1057,8 @@ Possible values include, but are not limited to, the following:
  * @typedef Photo
  * @memberOf! people(v1)
  * @type object
+* @property {boolean} default True if the photo is a default photo;
+false if the photo is a user-provided photo.
 * @property {people(v1).FieldMetadata} metadata Metadata about the photo.
 * @property {string} url The URL of the photo. You can change the desired size by appending a query
 parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url. Example:

@@ -1175,6 +1175,7 @@ function Androidmanagement(options) { // eslint-disable-line
  * @property {boolean} addUserDisabled Whether adding new users and profiles is disabled.
  * @property {boolean} adjustVolumeDisabled Whether adjusting the master volume is disabled.
  * @property {androidmanagement(v1).ApplicationPolicy[]} applications Policy applied to apps.
+ * @property {boolean} autoTimeRequired Whether auto time is required, which prevents the user from manually setting the date and time.
  * @property {boolean} blockApplicationsEnabled Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
  * @property {boolean} cameraDisabled Whether all cameras on the device are disabled.
  * @property {androidmanagement(v1).ComplianceRule[]} complianceRules Rules declaring which mitigating actions to take when a device is not compliant with its policy. When the conditions for multiple rules are satisfied, all of the mitigating actions for the rules are taken. There is a maximum limit of 100 rules.
