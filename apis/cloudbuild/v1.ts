@@ -784,10 +784,9 @@ build&#39;s secrets.
  * @typedef Source
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
-* @property {cloudbuild(v1).StorageSource} storageSource If provided, get the source from this location in in Google Cloud
-Storage.
-*/
+ * @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
+ * @property {cloudbuild(v1).StorageSource} storageSource If provided, get the source from this location in Google Cloud Storage.
+ */
 
 /**
  * @typedef SourceProvenance

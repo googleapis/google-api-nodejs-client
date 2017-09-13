@@ -1459,7 +1459,9 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @typedef Credential
  * @memberOf! deploymentmanager(v2beta)
  * @type object
- * @property {deploymentmanager(v2beta).BasicAuth} basicAuth Basic Auth Credentials for this Type.
+ * @property {deploymentmanager(v2beta).BasicAuth} basicAuth Basic Auth Credential, only used by TypeProvider.
+ * @property {deploymentmanager(v2beta).ServiceAccount} serviceAccount Service Account Credential, only used by Deployment.
+ * @property {boolean} useProjectDefault Specify to use the project default credential, only supported by Deployment.
  */
 
 /**
@@ -1734,6 +1736,13 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {deploymentmanager(v2beta).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
  * @property {string[]} notIns If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
  * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+ */
+
+/**
+ * @typedef ServiceAccount
+ * @memberOf! deploymentmanager(v2beta)
+ * @type object
+ * @property {string} email The IAM service account email address like test@myproject.iam.gserviceaccount.com
  */
 
 /**

@@ -1527,8 +1527,6 @@ will be displayed as a tooltip.
  * @memberOf! dataflow(v1b3)
  * @type object
 * @property {dataflow(v1b3).SplitInt64} count The count of the number of elements present in the distribution.
-* @property {dataflow(v1b3).LogBucket[]} logBuckets (Optional) Logarithmic histogram of values.
-Each log may be in no more than one bucket. Order does not matter.
 * @property {dataflow(v1b3).SplitInt64} max The maximum value present in the distribution.
 * @property {dataflow(v1b3).SplitInt64} min The minimum value present in the distribution.
 * @property {dataflow(v1b3).SplitInt64} sum Use an int64 since we&#39;d prefer the added precision. If overflow is a common
@@ -1916,21 +1914,6 @@ virtual machine running the worker.
  * @property {dataflow(v1b3).Job[]} jobs A subset of the requested job information.
  * @property {string} nextPageToken Set if there may be more results than fit in this response.
  */
-
-/**
- * @typedef LogBucket
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} count Number of values in this bucket.
-* @property {integer} log floor(log2(value)); defined to be zero for nonpositive values.
-  log(-1) = 0
-  log(0) = 0
-  log(1) = 0
-  log(2) = 1
-  log(3) = 1
-  log(4) = 2
-  log(5) = 2
-*/
 
 /**
  * @typedef MapTask
@@ -2778,6 +2761,7 @@ source S splits using dynamic_source_split into {P, R}
 progress and proposed_stop_position should be interpreted relative
 to P, and in a potential subsequent dynamic_source_split into {P&#39;, R&#39;},
 P&#39; and R&#39; must be together equivalent to P, etc.
+* @property {number} totalThrottlerWaitTimeSeconds Total time the worker spent being throttled by external systems.
 * @property {string} workItemId Identifies the WorkItem.
 */
 
