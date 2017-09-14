@@ -28943,7 +28943,7 @@ If you encrypt a disk using a customer-supplied key, you must provide the same k
 If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
-* @property {integer} index Assigns a zero-based index to this disk, where 0 is reserved for the boot disk. For example, if you have many disks attached to an instance, each disk would have a unique index number. If not specified, the server will choose an appropriate value.
+* @property {integer} index [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
 * @property {compute(v1).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
 
 This property is mutually exclusive with the source property; you can only define one or the other, but not both.

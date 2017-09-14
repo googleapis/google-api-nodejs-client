@@ -19,7 +19,7 @@
 import createAPIRequest from '../../lib/apirequest';
 
 /**
- * BigQuery Data Transfer Service API
+ * BigQuery Data Transfer API
  *
  * Transfers data from partner SaaS applications to Google BigQuery on a scheduled, managed basis.
  *
@@ -38,88 +38,12 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
   self._options = options || {};
 
   self.projects = {
-
-    /**
-     * bigquerydatatransfer.projects.isEnabled
-     *
-     * @desc Returns true if data transfer is enabled for a project.
-     *
-     * @alias bigquerydatatransfer.projects.isEnabled
-     * @memberOf! bigquerydatatransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
-     * @param {bigquerydatatransfer(v1).IsEnabledRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    isEnabled: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}:isEnabled').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquerydatatransfer.projects.setEnabled
-     *
-     * @desc Enables or disables data transfer for a project. This method requires the additional scope of 'https://www.googleapis.com/auth/cloudplatformprojects' to manage the cloud project permissions.
-     *
-     * @alias bigquerydatatransfer.projects.setEnabled
-     * @memberOf! bigquerydatatransfer(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
-     * @param {bigquerydatatransfer(v1).SetEnabledRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setEnabled: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1/{name}:setEnabled').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
     dataSources: {
 
       /**
        * bigquerydatatransfer.projects.dataSources.checkValidCreds
        *
-       * @desc Returns true if valid credentials exist for the given data source and requesting user.
+       * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
        *
        * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
        * @memberOf! bigquerydatatransfer(v1)
@@ -270,44 +194,6 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
       },
 
       /**
-       * bigquerydatatransfer.projects.locations.isEnabled
-       *
-       * @desc Returns true if data transfer is enabled for a project.
-       *
-       * @alias bigquerydatatransfer.projects.locations.isEnabled
-       * @memberOf! bigquerydatatransfer(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
-       * @param {bigquerydatatransfer(v1).IsEnabledRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      isEnabled: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}:isEnabled').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * bigquerydatatransfer.projects.locations.list
        *
        * @desc Lists information about the supported locations for this service.
@@ -346,50 +232,12 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
-      /**
-       * bigquerydatatransfer.projects.locations.setEnabled
-       *
-       * @desc Enables or disables data transfer for a project. This method requires the additional scope of 'https://www.googleapis.com/auth/cloudplatformprojects' to manage the cloud project permissions.
-       *
-       * @alias bigquerydatatransfer.projects.locations.setEnabled
-       * @memberOf! bigquerydatatransfer(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the project resource in the form: `projects/{project_id}`
-       * @param {bigquerydatatransfer(v1).SetEnabledRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setEnabled: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v1/{name}:setEnabled').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
       dataSources: {
 
         /**
          * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
          *
-         * @desc Returns true if valid credentials exist for the given data source and requesting user.
+         * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
          *
          * @alias bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
          * @memberOf! bigquerydatatransfer(v1)
@@ -665,7 +513,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the gaia id of the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-         * @param {string} params.name The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer run.
+         * @param {string} params.name The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
          * @param {string=} params.updateMask Required list of fields to be updated in this request.
          * @param {bigquerydatatransfer(v1).TransferConfig} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1058,7 +906,7 @@ function Bigquerydatatransfer(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the gaia id of the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-       * @param {string} params.name The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer run.
+       * @param {string} params.name The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
        * @param {string=} params.updateMask Required list of fields to be updated in this request.
        * @param {bigquerydatatransfer(v1).TransferConfig} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1374,19 +1222,6 @@ not fulfill the regex pattern or min/max values.
  */
 
 /**
- * @typedef IsEnabledRequest
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- */
-
-/**
- * @typedef IsEnabledResponse
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- * @property {boolean} enabled Indicates whether the project is enabled.
- */
-
-/**
  * @typedef ListDataSourcesResponse
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
@@ -1395,7 +1230,7 @@ not fulfill the regex pattern or min/max values.
 this token can be used as the
 `ListDataSourcesRequest.page_token`
 to request the next page of list results.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1463,22 +1298,15 @@ For example: `&quot;projects/example-project/locations/us-east1&quot;`
  * @typedef ScheduleTransferRunsRequest
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
- * @property {string} rangeEndTime End time of the range of transfer runs.
- * @property {string} rangeStartTime Start time of the range of transfer runs.
+ * @property {string} endTime End time of the range of transfer runs.
+ * @property {string} startTime Start time of the range of transfer runs.
  */
 
 /**
  * @typedef ScheduleTransferRunsResponse
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
- * @property {bigquerydatatransfer(v1).TransferRun[]} createdRuns The transfer runs that were created.
- */
-
-/**
- * @typedef SetEnabledRequest
- * @memberOf! bigquerydatatransfer(v1)
- * @type object
- * @property {boolean} enabled Whether data transfer should be enabled or disabled for the project.
+ * @property {bigquerydatatransfer(v1).TransferRun[]} runs The transfer runs that were scheduled.
  */
 
 /**
@@ -1499,11 +1327,12 @@ Output only.
 * @property {boolean} disabled Is this config disabled. When set to true, no runs are scheduled
 for a given transfer.
 * @property {string} displayName User specified display name for the data transfer.
-* @property {string} name The resource name of the transfer run.
-Transfer run names have the form
+* @property {string} name The resource name of the transfer config.
+Transfer config names have the form
 `projects/{project_id}/transferConfigs/{config_id}`.
 Where `config_id` is usually a uuid, even though it is not
-guaranteed or required. The name is ignored when creating a transfer run.
+guaranteed or required. The name is ignored when creating a transfer
+config.
 * @property {string} nextRunTime Next time when data transfer will run.
 Output only.
 * @property {object} params Data transfer specific parameters.
@@ -1523,7 +1352,7 @@ NOTE: the granularity should be at least 8 hours, or less frequent.
 Output only.
 * @property {string} updateTime Data transfer modification time. Ignored by server on input.
 Output only.
-* @property {string} userId GaiaID of the user on whose behalf transfer is done. Applicable only
+* @property {string} userId Unique ID of the user on whose behalf transfer is done. Applicable only
 to data sources that do not support service accounts. When set to 0,
 the data source service account credentials are used.
 Output only.
@@ -1572,7 +1401,9 @@ Output only.
 Output only.
 * @property {string} updateTime Last time the data transfer run state was updated.
 Output only.
-* @property {string} userId The user id for this transfer run.
+* @property {string} userId Unique ID of the user on whose behalf transfer is done. Applicable only
+to data sources that do not support service accounts. When set to 0,
+the data source service account credentials are used.
 Output only.
 */
 export = Bigquerydatatransfer;

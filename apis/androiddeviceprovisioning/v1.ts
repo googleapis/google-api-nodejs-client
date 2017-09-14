@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Android Device Provisioning Partner API
  *
- * Automates reseller integration into Zero Touch Provisioning by assigning devices to customers and creating device reports.
+ * Automates reseller integration into zero-touch enrollment by assigning devices to customers and creating device reports.
  *
  * @example
  * const google = require('googleapis');
@@ -84,7 +84,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.customers.create
        *
-       * @desc A customer for Zero Touch Provisioning will be created. After a Customer is created, their admins and owners will be able to manage devices on partner.android.com/zerotouch or via their API.
+       * @desc A customer for zero-touch enrollment will be created. After a Customer is created, their admins and owners will be able to manage devices on partner.android.com/zerotouch or via their API.
        *
        * @alias androiddeviceprovisioning.partners.customers.create
        * @memberOf! androiddeviceprovisioning(v1)

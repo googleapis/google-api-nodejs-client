@@ -2782,7 +2782,8 @@ function Androidpublisher(options) { // eslint-disable-line
 * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
 * @property {integer} cancelReason The reason why a subscription was cancelled or is not auto-renewing. Possible values are:  
 - User cancelled the subscription 
-- Subscription was cancelled by the system, for example because of a billing problem
+- Subscription was cancelled by the system, for example because of a billing problem 
+- Subscription was replaced with a new subscription
 * @property {string} countryCode ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
 * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
 * @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.

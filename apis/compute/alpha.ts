@@ -7421,6 +7421,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setDeletionProtection
+     *
+     * @desc Sets deletion protection on the instance.
+     *
+     * @alias compute.instances.setDeletionProtection
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.deletionProtection Whether the resource should be protected against deletion.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setDeletionProtection: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setDiskAutoDelete
      *
      * @desc Sets the auto-delete flag for a disk attached to an instance.
@@ -10564,6 +10605,45 @@ function Compute(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/setCommonInstanceMetadata').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.projects.setDefaultNetworkTier
+     *
+     * @desc Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
+     *
+     * @alias compute.projects.setDefaultNetworkTier
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(alpha).ProjectsSetDefaultNetworkTierRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setDefaultNetworkTier: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/setDefaultNetworkTier').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -14411,6 +14491,287 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.sslPolicies = {
+
+    /**
+     * compute.sslPolicies.delete
+     *
+     * @desc Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
+     *
+     * @alias compute.sslPolicies.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies/{sslPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.get
+     *
+     * @desc List all of the ordered rules present in a single specified policy.
+     *
+     * @alias compute.sslPolicies.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies/{sslPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.insert
+     *
+     * @desc Returns the specified SSL policy resource. Get a list of available SSL policies by making a list() request.
+     *
+     * @alias compute.sslPolicies.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(alpha).SslPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.list
+     *
+     * @desc List all the SSL policies that have been configured for the specified project.
+     *
+     * @alias compute.sslPolicies.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.listAvailableFeatures
+     *
+     * @desc Lists all features that can be specified in the SSL policy when using custom profile.
+     *
+     * @alias compute.sslPolicies.listAvailableFeatures
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listAvailableFeatures: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies/listAvailableFeatures').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.patch
+     *
+     * @desc Patches the specified SSL policy with the data included in the request.
+     *
+     * @alias compute.sslPolicies.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {compute(alpha).SslPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies/{sslPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'sslPolicy'],
+        pathParams: ['project', 'sslPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.sslPolicies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.sslPolicies.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/sslPolicies/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.subnetworks = {
 
     /**
@@ -14689,6 +15050,47 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.listUsable
+     *
+     * @desc Retrieves an aggregated list of usable subnetworks.
+     *
+     * @alias compute.subnetworks.listUsable
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listUsable: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/aggregated/subnetworks/listUsable').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
         context: self
       };
 
@@ -15327,6 +15729,46 @@ function Compute(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetHttpsProxy'],
+        pathParams: ['project', 'targetHttpsProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetHttpsProxies.setSslPolicy
+     *
+     * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     *
+     * @alias compute.targetHttpsProxies.setSslPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {compute(alpha).SslPolicyReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}/setSslPolicy').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -16425,6 +16867,46 @@ function Compute(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setSslPolicy
+     *
+     * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     *
+     * @alias compute.targetSslProxies.setSslPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {compute(alpha).SslPolicyReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslPolicy').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -18018,7 +18500,7 @@ If you do not provide an encryption key, then the disk will be encrypted using a
 
 Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
 * @property {string} diskSizeGb The size of the disk in base-2 GB. This supersedes disk_size_gb in InitializeParams.
-* @property {integer} index Assigns a zero-based index to this disk, where 0 is reserved for the boot disk. For example, if you have many disks attached to an instance, each disk would have a unique index number. If not specified, the server will choose an appropriate value.
+* @property {integer} index [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
 * @property {compute(alpha).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
 
 This property is mutually exclusive with the source property; you can only define one or the other, but not both.
@@ -18258,10 +18740,16 @@ When the BackendService has load balancing scheme INTERNAL, the instance group m
 * @property {integer} maxConnections The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
 
 This cannot be used for internal load balancing.
+* @property {integer} maxConnectionsPerEndpoint The max number of simultaneous connections that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must be set.
+
+This cannot be used for internal load balancing.
 * @property {integer} maxConnectionsPerInstance The max number of simultaneous connections that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
 
 This cannot be used for internal load balancing.
 * @property {integer} maxRate The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
+
+This cannot be used for internal load balancing.
+* @property {number} maxRatePerEndpoint The max requests per second (RPS) that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerEndpoint must be set.
 
 This cannot be used for internal load balancing.
 * @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
@@ -18323,6 +18811,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
 
 When the load balancing scheme is INTERNAL, this field is not used.
+* @property {compute(alpha).BackendServiceFailoverPolicy} failoverPolicy 
 * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
 * @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.
 
@@ -18376,6 +18865,25 @@ When the protocol is UDP, this field is not used.
  * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend service.
  */
+
+/**
+ * @typedef BackendServiceFailoverPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+* @property {boolean} disableConnectionDrainOnFailover On failover or failback, this field indicates whether connection drain will be honored. Setting this to true has the following effect: connections to the old active pool are not drained. Connections to the new active pool use the timeout of 10 min (currently fixed). Setting to false has the following effect: both old and new connections will have a drain timeout of 10 min.
+
+This can be set to true only if the protocol is TCP.
+
+The default is false.
+* @property {boolean} dropTrafficIfUnhealthy This option is used only when no healthy VMs are detected in the primary and backup instance groups. When set to true, traffic is dropped. When set to false, new connections are sent across all VMs in the primary group.
+
+The default is false.
+* @property {number} failoverRatio The value of the field must be in [0, 1]. If the ratio of the healthy VMs in the primary backend is at or below this number, traffic arriving at the load-balanced IP will be directed to the failover backend.
+
+In case where &#39;failoverRatio&#39; is not set or all the VMs in the backup backend are unhealthy, the traffic will be directed back to the primary backend in the &quot;force&quot; mode, where traffic will be spread to the healthy VMs with the best effort, or to all VMs when no VM is healthy.
+
+This field is only used with l4 load balancing.
+*/
 
 /**
  * @typedef BackendServiceGroupHealth
@@ -18828,6 +19336,9 @@ When the load balancing scheme is INTERNAL, only TCP and UDP are valid.
 For internal load balancing, this field identifies the BackendService resource to receive the matched traffic.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request.
+
+To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} ipVersion The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6. This can only be specified for a global forwarding rule.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
@@ -18949,37 +19460,82 @@ This field is not used for internal load balancing.
  * @typedef HTTP2HealthCheck
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} host The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
- * @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
- * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
- */
+* @property {string} host The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+* @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
+* @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+* @property {string} portSpecification Specifies how port is selected for health checking, can be one of following values:
+USE_FIXED_PORT: The port number in
+port
+is used for health checking.
+USE_NAMED_PORT: The
+portName
+is used for health checking.
+USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+
+
+If not specified, HTTP2 health check follows behavior specified in
+port
+and
+portName
+fields.
+* @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+* @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
+* @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+*/
 
 /**
  * @typedef HTTPHealthCheck
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
- * @property {integer} port The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
- * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
- */
+* @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+* @property {integer} port The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
+* @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+* @property {string} portSpecification Specifies how port is selected for health checking, can be one of following values:
+USE_FIXED_PORT: The port number in
+port
+is used for health checking.
+USE_NAMED_PORT: The
+portName
+is used for health checking.
+USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+
+
+If not specified, HTTP health check follows behavior specified in
+port
+and
+portName
+fields.
+* @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+* @property {string} requestPath The request path of the HTTP health check request. The default value is /.
+* @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+*/
 
 /**
  * @typedef HTTPSHealthCheck
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
- * @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
- * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
- */
+* @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+* @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
+* @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+* @property {string} portSpecification Specifies how port is selected for health checking, can be one of following values:
+USE_FIXED_PORT: The port number in
+port
+is used for health checking.
+USE_NAMED_PORT: The
+portName
+is used for health checking.
+USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+
+
+If not specified, HTTPS health check follows behavior specified in
+port
+and
+portName
+fields.
+* @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+* @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
+* @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+*/
 
 /**
  * @typedef HealthCheck
@@ -19285,6 +19841,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {boolean} canIpForward Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.
 * @property {string} cpuPlatform [Output Only] The CPU platform used by this instance.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {boolean} deletionProtection Whether the resource should be protected against deletion.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(alpha).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
 * @property {compute(alpha).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
@@ -20555,6 +21112,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @type object
  * @property {compute(alpha).Metadata} commonInstanceMetadata Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} defaultNetworkTier This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
  * @property {string} defaultServiceAccount [Output Only] Default service account used by VMs running in this project.
  * @property {string} description An optional textual description of the resource.
  * @property {string[]} enabledFeatures Restricted features enabled for use on this project.
@@ -20595,6 +21153,13 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+ */
+
+/**
+ * @typedef ProjectsSetDefaultNetworkTierRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} networkTier Default network tier to be set.
  */
 
 /**
@@ -21062,12 +21627,27 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @typedef SSLHealthCheck
  * @memberOf! compute(alpha)
  * @type object
- * @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
- * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
- */
+* @property {integer} port The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
+* @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+* @property {string} portSpecification Specifies how port is selected for health checking, can be one of following values:
+USE_FIXED_PORT: The port number in
+port
+is used for health checking.
+USE_NAMED_PORT: The
+portName
+is used for health checking.
+USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+
+
+If not specified, SSL health check follows behavior specified in
+port
+and
+portName
+fields.
+* @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+* @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
+* @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
+*/
 
 /**
  * @typedef Scheduling
@@ -21079,17 +21659,6 @@ By default, this is set to true so an instance is automatically restarted if it 
 * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
 * @property {boolean} preemptible Defines whether the instance is preemptible. This can only be set during instance creation, it cannot be set or changed after the instance has been created.
 */
-
-/**
- * @typedef SecurityPoliciesList
- * @memberOf! compute(alpha)
- * @type object
- * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
- * @property {compute(alpha).SecurityPolicy[]} items A list of SecurityPolicy resources.
- * @property {string} kind [Output Only] Type of resource. Always compute#securityPoliciesList for listsof securityPolicies
- * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {object} warning [Output Only] Informational warning message.
- */
 
 /**
  * @typedef SecurityPolicy
@@ -21106,6 +21675,17 @@ To see the latest fingerprint, make get() request to the security policy.
 * @property {compute(alpha).SecurityPolicyRule[]} rules List of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules are provided when creating a security policy, a default rule with action &quot;allow&quot; will be added.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 */
+
+/**
+ * @typedef SecurityPolicyList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(alpha).SecurityPolicy[]} items A list of SecurityPolicy resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#securityPolicyList for listsof securityPolicies
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
 
 /**
  * @typedef SecurityPolicyReference
@@ -21241,6 +21821,51 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  */
 
 /**
+ * @typedef SslPoliciesList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(alpha).SslPolicy[]} items A list of SslPolicy resources.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#sslPoliciesList for lists of sslPolicies.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef SslPoliciesListAvailableFeaturesResponse
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} features 
+ */
+
+/**
+ * @typedef SslPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string[]} customFeatures List of features enabled when the selected profile is CUSTOM. The
+- method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string[]} enabledFeatures [Output Only] The list of features enabled in the SSL policy.
+* @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
+* @property {string} minTlsVersion The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2, TLS_1_3.
+* @property {string} name Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} profile Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this SSL policy, this field will be populated with warning messages.
+*/
+
+/**
+ * @typedef SslPolicyReference
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} sslPolicy URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with the target proxy resource.
+ */
+
+/**
  * @typedef Subnetwork
  * @memberOf! compute(alpha)
  * @type object
@@ -21324,12 +21949,27 @@ This field cannot be set to true at resource creation time.
  * @typedef TCPHealthCheck
  * @memberOf! compute(alpha)
  * @type object
- * @property {integer} port The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} request The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
- * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
- */
+* @property {integer} port The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
+* @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+* @property {string} portSpecification Specifies how port is selected for health checking, can be one of following values:
+USE_FIXED_PORT: The port number in
+port
+is used for health checking.
+USE_NAMED_PORT: The
+portName
+is used for health checking.
+USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+
+
+If not specified, TCP health check follows behavior specified in
+port
+and
+portName
+fields.
+* @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+* @property {string} request The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
+* @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
+*/
 
 /**
  * @typedef Tags
@@ -21393,6 +22033,7 @@ To see the latest fingerprint, make get() request to the instance.
 * @property {string} quicOverride Specifies the QUIC override policy for this TargetHttpsProxy resource. This determines whether the load balancer will attempt to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. Specify ENABLE to always enable QUIC, Enables QUIC when set to ENABLE, and disables QUIC when set to DISABLE. If NONE is specified, uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying NONE.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. Currently, exactly one SSL certificate must be specified.
+* @property {string} sslPolicy URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource will not have any SSL policy configured.
 * @property {string} urlMap A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:  
 - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map 
 - projects/project/global/urlMaps/url-map 
@@ -21606,6 +22247,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} service URL to the BackendService resource.
  * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections to Backends. Currently exactly one SSL certificate must be specified.
+ * @property {string} sslPolicy URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
  */
 
 /**
@@ -21664,18 +22306,22 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @typedef TargetVpnGateway
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string[]} forwardingRules [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated to a VPN gateway.
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
- * @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} status [Output Only] The status of the VPN gateway.
- * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
- */
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string[]} forwardingRules [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated to a VPN gateway.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
+* @property {string} labelFingerprint A fingerprint for the labels being applied to this TargetVpnGateway, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
+
+To see the latest fingerprint, make a get() request to retrieve an TargetVpnGateway.
+* @property {object} labels Labels to apply to this TargetVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
+* @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} status [Output Only] The status of the VPN gateway.
+* @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
+*/
 
 /**
  * @typedef TargetVpnGatewayAggregatedList
@@ -21811,6 +22457,25 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).UrlMapValidationResult} result 
+ */
+
+/**
+ * @typedef UsableSubnetwork
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} subnetwork Subnetwork URL.
+ */
+
+/**
+ * @typedef UsableSubnetworksAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).UsableSubnetwork[]} items [Output] A list of usable subnetwork URLs.
+ * @property {string} kind [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**

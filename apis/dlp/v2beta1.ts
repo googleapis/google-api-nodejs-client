@@ -40,6 +40,43 @@ function Dlp(options) { // eslint-disable-line
   self.content = {
 
     /**
+     * dlp.content.deidentify
+     *
+     * @desc De-identifies potentially sensitive info from a list of strings. This method has limits on input size and output size.
+     *
+     * @alias dlp.content.deidentify
+     * @memberOf! dlp(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {dlp(v2beta1).GooglePrivacyDlpV2beta1DeidentifyContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deidentify: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v2beta1/content:deidentify').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * dlp.content.inspect
      *
      * @desc Finds potentially sensitive info in a list of strings. This method has limits on input size, processing time, and output size.
@@ -102,6 +139,47 @@ function Dlp(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/v2beta1/content:redact').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.dataSource = {
+
+    /**
+     * dlp.dataSource.analyze
+     *
+     * @desc Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform repository.
+     *
+     * @alias dlp.dataSource.analyze
+     * @memberOf! dlp(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {dlp(v2beta1).GooglePrivacyDlpV2beta1AnalyzeDataSourceRiskRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    analyze: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v2beta1/dataSource:analyze').replace(/([^:]\/)\/+/g, '$1'),
           method: 'POST'
         }, options),
         params: params,
@@ -319,7 +397,7 @@ function Dlp(options) { // eslint-disable-line
          * @memberOf! dlp(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.filter Restricts findings to items that match. Supports info_type and likelihood. Examples: - info_type=EMAIL_ADDRESS - info_type=PHONE_NUMBER,EMAIL_ADDRESS - likelihood=VERY_LIKELY - likelihood=VERY_LIKELY,LIKELY - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
+         * @param {string=} params.filter Restricts findings to items that match. Supports info_type and likelihood.  Examples:  - info_type=EMAIL_ADDRESS - info_type=PHONE_NUMBER,EMAIL_ADDRESS - likelihood=VERY_LIKELY - likelihood=VERY_LIKELY,LIKELY - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
          * @param {string} params.name Identifier of the results set returned as metadata of the longrunning operation created by a call to InspectDataSource. Should be in the format of `inspect/results/{id}`.
          * @param {integer=} params.pageSize Maximum number of results to return. If 0, the implementation selects a reasonable value.
          * @param {string=} params.pageToken The value returned by the last `ListInspectFindingsResponse`; indicates that this is a continuation of a prior `ListInspectFindings` call, and that the system should return the next page of data.
@@ -619,6 +697,14 @@ available.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1AnalyzeDataSourceRiskRequest
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrivacyMetric} privacyMetric Privacy metric to compute.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1BigQueryTable} sourceTable Input dataset to compute metrics over.
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1BigQueryOptions
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -638,11 +724,85 @@ If omitted, project ID is inferred from the API call.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1Bucket
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} max Upper bound of the range, exclusive; type must match min.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} min Lower bound of the range, inclusive. Type should be the same as max if
+used.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} replacementValue Replacement value for this bucket. If not provided
+the default behavior will be to hyphenate the min-max range.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1BucketingConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Bucket[]} buckets 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CategoricalStatsConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Field to compute categorical stats on. All column types are
+supported except for arrays and structs. However, it may be more
+informative to use NumericalStats when the field type is supported,
+depending on the data.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CategoricalStatsHistogramBucket
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} bucketSize Total number of records in this bucket.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ValueFrequency[]} bucketValues Sample of value frequencies in this bucket. The total number of
+values returned per bucket is capped at 20.
+* @property {string} valueFrequencyLowerBound Lower bound on the value frequency of the values in this bucket.
+* @property {string} valueFrequencyUpperBound Upper bound on the value frequency of the values in this bucket.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CategoricalStatsResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CategoricalStatsHistogramBucket[]} valueFrequencyHistogramBuckets Histogram of value frequencies in the column.
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1CategoryDescription
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {string} displayName Human readable form of the category name.
  * @property {string} name Internal name of the category.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CharacterMaskConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CharsToIgnore[]} charactersToIgnore When masking a string, items in this list will be skipped when replacing.
+For example, if your string is 555-555-5555 and you ask us to skip `-` and
+mask 5 chars with * we would produce ***-*55-5555.
+* @property {string} maskingCharacter Character to mask the sensitive values&amp;mdash;for example, &quot;*&quot; for an
+alphabetic string such as name, or &quot;0&quot; for a numeric string such as ZIP
+code or credit card number. String must have length 1. If not supplied, we
+will default to &quot;*&quot; for strings, 0 for digits.
+* @property {integer} numberToMask Number of characters to mask. If not set, all matching chars will be
+masked. Skipped characters do not count towards this tally.
+* @property {boolean} reverseOrder Mask characters in reverse order. For example, if `masking_character` is
+&#39;0&#39;, number_to_mask is 14, and `reverse_order` is false, then
+1234-5678-9012-3456 -&gt; 00000000000000-3456
+If `masking_character` is &#39;*&#39;, `number_to_mask` is 3, and `reverse_order`
+is true, then 12345 -&gt; 12***
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CharsToIgnore
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} charactersToSkip 
+ * @property {string} commonCharactersToIgnore 
  */
 
 /**
@@ -677,6 +837,22 @@ If omitted, project ID is inferred from the API call.
  */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1Condition
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Field within the record this condition is evaluated against. [required]
+ * @property {string} operator Operator used to compare the field or info type to the value. [required]
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} value Value to compare against. [Required, except for `EXISTS` tests.]
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1Conditions
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Condition[]} conditions 
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1ContentItem
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -702,8 +878,9 @@ the pattern &quot;[operation_id]_[count].csv&quot;, for example
 `3094877188788974909_1.csv`. The `operation_id` matches the
 identifier for the Operation, and the `count` is a counter used for
 tracking the number of files written.
-The CSV file(s) contain the
-following columns regardless of storage type scanned:
+
+The CSV file(s) contain the following columns regardless of storage type
+scanned:
 - id
 - info_type
 - likelihood
@@ -712,10 +889,12 @@ following columns regardless of storage type scanned:
 - timestamp
 
 For Cloud Storage the next columns are:
+
 - file_path
 - start_offset
 
 For Cloud Datastore the next columns are:
+
 - project_id
 - namespace_id
 - path
@@ -723,11 +902,64 @@ For Cloud Datastore the next columns are:
 - offset
 
 For BigQuery the next columns are:
+
 - row_number
 - project_id
 - dataset_id
 - table_id
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} storageConfig Specification of the data set to process.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CryptoHashConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the hash function.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CryptoKey
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KmsWrappedCryptoKey} kmsWrapped 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TransientCryptoKey} transient 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1UnwrappedCryptoKey} unwrapped 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CryptoReplaceFfxFpeConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} commonAlphabet 
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} context The &#39;tweak&#39;, a context may be used for higher security since the same
+identifier in two different contexts won&#39;t be given the same surrogate. If
+the context is not set, a default tweak will be used.
+
+If the context is set but:
+
+1. there is no record present when transforming a given value or
+1. the field is not present when transforming a given value,
+
+a default tweak will be used.
+
+Note that case (1) is expected when an `InfoTypeTransformation` is
+applied to both structured and non-structured `ContentItem`s.
+Currently, the referenced field may be of value type integer or string.
+
+The tweak is constructed as a sequence of bytes in big endian byte order
+such that:
+
+- a 64 bit integer is encoded followed by a single byte of value 1
+- a string is encoded in UTF-8 format followed by a single byte of value 2
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the encryption algorithm. [required]
+* @property {string} customAlphabet This is supported by mapping these to the alphanumeric characters
+that the FFX mode natively supports. This happens before/after
+encryption/decryption.
+Each character listed must appear only once.
+Number of characters must be in the range [2, 62].
+This must be encoded as ASCII.
+The order of characters does not matter.
+* @property {integer} radix The native way to select the alphabet. Must be in the range [2, 62].
 */
 
 /**
@@ -749,11 +981,83 @@ by default.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1DeidentificationSummary
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TransformationSummary[]} transformationSummaries Transformations applied to the dataset.
+ * @property {string} transformedBytes Total size in bytes that were transformed in some way.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1DeidentifyConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoTypeTransformations} infoTypeTransformations Treat the dataset as free-form text and apply the same free text
+transformation everywhere.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordTransformations} recordTransformations Treat the dataset as structured. Transformations can be applied to
+specific locations within structured datasets, such as transforming
+a column within a table.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1DeidentifyContentRequest
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DeidentifyConfig} deidentifyConfig Configuration for the de-identification of the list of content items.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items The list of items to inspect. Up to 100 are allowed per request.
+All items will be treated as text/*.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1DeidentifyContentResponse
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DeidentificationSummary[]} summaries A review of the transformations that took place for each item.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1EntityId
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Composite key indicating which field contains the entity identifier.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1Expressions
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Conditions} conditions 
+* @property {string} logicalOperator The operator to apply to the result of conditions. Default and currently
+only supported value is `AND`.
+*/
+
+/**
  * @typedef GooglePrivacyDlpV2beta1FieldId
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {string} columnName Name describing the field.
  */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1FieldTransformation
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordCondition} condition Only apply the transformation if the condition evaluates to true for the
+given `RecordCondition`. The conditions are allowed to reference fields
+that are not used in the actual transformation. [optional]
+
+Example Use Cases:
+
+- Apply a different bucket transformation to an age column if the zip code
+column for the same record is within a specific range.
+- Redact a field if the date of birth field is greater than 85.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId[]} fields Input field(s) to apply the transformation to. [required]
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoTypeTransformations} infoTypeTransformations Treat the contents of the field as free text, and selectively
+transform content that matches an `InfoType`.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrimitiveTransformation} primitiveTransformation Apply the transformation to the entire field.
+*/
 
 /**
  * @typedef GooglePrivacyDlpV2beta1FileSet
@@ -773,6 +1077,23 @@ path is allowed.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Location} location Location of the info found.
  * @property {string} quote The specific string that may be potentially sensitive info.
  */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1FixedSizeBucketingConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {number} bucketSize Size of each bucket (except for minimum and maximum buckets). So if
+`lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the
+following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60,
+60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} lowerBound Lower bound value of buckets. All values less than `lower_bound` are
+grouped together into a single bucket; for example if `lower_bound` = 10,
+then all values less than 10 are replaced with the value “-10”. [Required].
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} upperBound Upper bound value of buckets. All values greater than upper_bound are
+grouped together into a single bucket; for example if `upper_bound` = 89,
+then all values greater than 89 are replaced with the value “89+”.
+[Required].
+*/
 
 /**
  * @typedef GooglePrivacyDlpV2beta1ImageLocation
@@ -832,6 +1153,23 @@ found but not specified in another InfoTypeLimit.
  * @property {string} count Number of findings for this info type.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType The type of finding this stat is for.
  */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1InfoTypeTransformation
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType[]} infoTypes Info types to apply the transformation to. Empty list will match all
+available info types for this transformation.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrimitiveTransformation} primitiveTransformation Primitive transformation to apply to the info type. [required]
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1InfoTypeTransformations
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoTypeTransformation[]} transformations Transformation for each info type. Cannot specify more than one
+for a given info type. [required]
+*/
 
 /**
  * @typedef GooglePrivacyDlpV2beta1InspectConfig
@@ -902,6 +1240,48 @@ smaller batches.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1KAnonymityConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1EntityId} entityId Optional message indicating that each distinct `EntityId` should not
+contribute to the k-anonymity count more than once per equivalence class.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId[]} quasiIds Set of fields to compute k-anonymity over. When multiple fields are
+specified, they are considered a single composite key. Structs and
+repeated data types are not supported; however, nested fields are
+supported so long as they are not structs themselves or nested within
+a repeated field.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1KAnonymityEquivalenceClass
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} equivalenceClassSize Size of the equivalence class, for example number of rows with the
+above set of values.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value[]} quasiIdsValues Set of values defining the equivalence class. One value per
+quasi-identifier column in the original KAnonymity metric message.
+The order is always the same as the original request.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1KAnonymityHistogramBucket
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} bucketSize Total number of records in this bucket.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KAnonymityEquivalenceClass[]} bucketValues Sample of equivalence classes in this bucket. The total number of
+classes returned per bucket is capped at 20.
+* @property {string} equivalenceClassSizeLowerBound Lower bound on the size of the equivalence classes in this bucket.
+* @property {string} equivalenceClassSizeUpperBound Upper bound on the size of the equivalence classes in this bucket.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1KAnonymityResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KAnonymityHistogramBucket[]} equivalenceClassHistogramBuckets Histogram of k-anonymity equivalence classes.
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1Key
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -924,6 +1304,55 @@ A path can never be empty, and a path can have at most 100 elements.
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {string} name The name of the kind.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1KmsWrappedCryptoKey
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} cryptoKeyName The resource name of the KMS CryptoKey to use for unwrapping. [required]
+ * @property {string} wrappedKey The wrapped data crypto key. [required]
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1LDiversityConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId[]} quasiIds Set of quasi-identifiers indicating how equivalence classes are
+defined for the l-diversity computation. When multiple fields are
+specified, they are considered a single composite key.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} sensitiveAttribute Sensitive field for computing the l-value.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1LDiversityEquivalenceClass
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} equivalenceClassSize Size of the k-anonymity equivalence class.
+* @property {string} numDistinctSensitiveValues Number of distinct sensitive values in this equivalence class.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value[]} quasiIdsValues Quasi-identifier values defining the k-anonymity equivalence
+class. The order is always the same as the original request.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ValueFrequency[]} topSensitiveValues Estimated frequencies of top sensitive values.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1LDiversityHistogramBucket
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} bucketSize Total number of records in this bucket.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1LDiversityEquivalenceClass[]} bucketValues Sample of equivalence classes in this bucket. The total number of
+classes returned per bucket is capped at 20.
+* @property {string} sensitiveValueFrequencyLowerBound Lower bound on the sensitive value frequencies of the equivalence
+classes in this bucket.
+* @property {string} sensitiveValueFrequencyUpperBound Upper bound on the sensitive value frequencies of the equivalence
+classes in this bucket.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1LDiversityResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1LDiversityHistogramBucket[]} sensitiveValueFrequencyHistogramBuckets Histogram of l-diversity equivalence class sensitive value frequencies.
  */
 
 /**
@@ -960,6 +1389,24 @@ is a text. Default charset assumed to be UTF-8.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ImageLocation[]} imageBoxes Location within an image&#39;s pixels.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordKey} recordKey Key of the finding.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TableLocation} tableLocation Location within a `ContentItem.Table`.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1NumericalStatsConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Field to compute numerical stats on. Supported types are
+integer, float, date, datetime, timestamp, time.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1NumericalStatsResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} maxValue Maximum value appearing in the column.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} minValue Minimum value appearing in the column.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value[]} quantileValues List of 99 values that partition the set of field values into 100 equal
+sized buckets.
 */
 
 /**
@@ -1003,6 +1450,31 @@ Cannot be `&quot;&quot;`.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1PrimitiveTransformation
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1BucketingConfig} bucketingConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CharacterMaskConfig} characterMaskConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoHashConfig} cryptoHashConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoReplaceFfxFpeConfig} cryptoReplaceFfxFpeConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FixedSizeBucketingConfig} fixedSizeBucketingConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RedactConfig} redactConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ReplaceValueConfig} replaceConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ReplaceWithInfoTypeConfig} replaceWithInfoTypeConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1TimePartConfig} timePartConfig 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1PrivacyMetric
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CategoricalStatsConfig} categoricalStatsConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KAnonymityConfig} kAnonymityConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1LDiversityConfig} lDiversityConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1NumericalStatsConfig} numericalStatsConfig 
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1Projection
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -1026,11 +1498,40 @@ If name includes &quot;.&quot;s, it may be interpreted as a property name path.
  */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1RecordCondition
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Expressions} expressions 
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1RecordKey
  * @memberOf! dlp(v2beta1)
  * @type object
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStorageKey} cloudStorageKey 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DatastoreKey} datastoreKey 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1RecordSuppression
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordCondition} condition 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1RecordTransformations
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldTransformation[]} fieldTransformations Transform the record by applying various field transformations.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordSuppression[]} recordSuppressions Configuration defining which records get suppressed entirely. Records that
+match any suppression rule are omitted from the output [optional].
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1RedactConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
  */
 
 /**
@@ -1063,6 +1564,38 @@ another ReplaceConfig.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1ReplaceValueConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} newValue Value to replace it with.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1ReplaceWithInfoTypeConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1RiskAnalysisOperationMetadata
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} createTime The time which this request was started.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrivacyMetric} requestedPrivacyMetric Privacy metric to compute.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1BigQueryTable} requestedSourceTable Input dataset to compute metrics over.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1RiskAnalysisOperationResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CategoricalStatsResult} categoricalStatsResult 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1KAnonymityResult} kAnonymityResult 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1LDiversityResult} lDiversityResult 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1NumericalStatsResult} numericalStatsResult 
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1Row
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -1077,6 +1610,16 @@ another ReplaceConfig.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStorageOptions} cloudStorageOptions Google Cloud Storage options specification.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DatastoreOptions} datastoreOptions Google Cloud Datastore options specification.
  */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1SummaryResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} code 
+* @property {string} count 
+* @property {string} details A place for warnings or errors to show up if a transformation didn&#39;t
+work as expected.
+*/
 
 /**
  * @typedef GooglePrivacyDlpV2beta1Table
@@ -1094,6 +1637,45 @@ another ReplaceConfig.
  */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1TimePartConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} partToExtract 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1TransformationSummary
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} field Set if the transformation was limited to a specific FieldId.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldTransformation[]} fieldTransformations The field transformation that was applied. This list will contain
+multiple only in the case of errors.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Set if the transformation was limited to a specific info_type.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RecordSuppression} recordSuppress The specific suppression option these stats apply to.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1SummaryResult[]} results 
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1PrimitiveTransformation} transformation The specific transformation these stats apply to.
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1TransientCryptoKey
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} name Name of the key. [required]
+This is an arbitrary string used to differentiate different keys.
+A unique key is generated per name: two separate `TransientCryptoKey`
+protos share the same generated key if their names are the same.
+When the data crypto key is generated, this name is not used in any way
+(repeating the api call will result in a different key being generated).
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1UnwrappedCryptoKey
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} key The AES 128/192/256 bit key. [required]
+ */
+
+/**
  * @typedef GooglePrivacyDlpV2beta1Value
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -1104,6 +1686,14 @@ another ReplaceConfig.
  * @property {string} stringValue 
  * @property {dlp(v2beta1).GoogleTypeTimeOfDay} timeValue 
  * @property {string} timestampValue 
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1ValueFrequency
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} count How many times the value is contained in the field.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} value A value contained in the field in question.
  */
 
 /**
