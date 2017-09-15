@@ -402,8 +402,8 @@ is always set except for eventually consistent reads.
  * @type object
 * @property {string} endTime The time the operation ended, either successfully or otherwise.
 * @property {object} labels The client-assigned labels which were provided when the operation was
-created.  May also include additional labels.
-* @property {string} operationType The type of the operation.  Can be used as a filter in
+created. May also include additional labels.
+* @property {string} operationType The type of the operation. Can be used as a filter in
 ListOperationsRequest.
 * @property {string} startTime The time that work began on the operation.
 * @property {string} state The current state of the Operation.
@@ -414,10 +414,10 @@ ListOperationsRequest.
  * @memberOf! datastore(v1beta3)
  * @type object
 * @property {string[]} kinds If empty, then this represents all kinds.
-* @property {string[]} namespaceIds An empty list represents all namespaces.  This is the preferred
+* @property {string[]} namespaceIds An empty list represents all namespaces. This is the preferred
 usage for projects that don&#39;t use namespaces.
 
-An empty string element represents the default namespace.  This should be
+An empty string element represents the default namespace. This should be
 used if the project has data in non-default namespaces, but doesn&#39;t want to
 include them.
 Each namespace in this list must be unique.
@@ -465,8 +465,9 @@ field.
  * @typedef GoogleDatastoreAdminV1beta1Progress
  * @memberOf! datastore(v1beta3)
  * @type object
-* @property {string} workCompleted Note that this may be greater than work_estimated.
-* @property {string} workEstimated An estimate of how much work needs to be performed.  May be zero if the
+* @property {string} workCompleted The amount of work that has been completed. Note that this may be greater
+than work_estimated.
+* @property {string} workEstimated An estimate of how much work needs to be performed. May be zero if the
 work estimate is unavailable.
 */
 

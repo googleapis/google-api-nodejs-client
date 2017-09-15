@@ -43,7 +43,7 @@ function Datastore(options) { // eslint-disable-line
     /**
      * datastore.projects.export
      *
-     * @desc Exports a copy of all or a subset of entities from Google Cloud Datastore to another storage system, such as Google Cloud Storage. Recent updates to entities may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created.  The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
+     * @desc Exports a copy of all or a subset of entities from Google Cloud Datastore to another storage system, such as Google Cloud Storage. Recent updates to entities may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
      *
      * @alias datastore.projects.export
      * @memberOf! datastore(v1beta1)
@@ -81,7 +81,7 @@ function Datastore(options) { // eslint-disable-line
     /**
      * datastore.projects.import
      *
-     * @desc Imports entities into Google Cloud Datastore. Existing entities with the same key are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created.  If an ImportEntities operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Datastore.
+     * @desc Imports entities into Google Cloud Datastore. Existing entities with the same key are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportEntities operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Datastore.
      *
      * @alias datastore.projects.import
      * @memberOf! datastore(v1beta1)
@@ -125,8 +125,8 @@ function Datastore(options) { // eslint-disable-line
  * @type object
 * @property {string} endTime The time the operation ended, either successfully or otherwise.
 * @property {object} labels The client-assigned labels which were provided when the operation was
-created.  May also include additional labels.
-* @property {string} operationType The type of the operation.  Can be used as a filter in
+created. May also include additional labels.
+* @property {string} operationType The type of the operation. Can be used as a filter in
 ListOperationsRequest.
 * @property {string} startTime The time that work began on the operation.
 * @property {string} state The current state of the Operation.
@@ -137,10 +137,10 @@ ListOperationsRequest.
  * @memberOf! datastore(v1beta1)
  * @type object
 * @property {string[]} kinds If empty, then this represents all kinds.
-* @property {string[]} namespaceIds An empty list represents all namespaces.  This is the preferred
+* @property {string[]} namespaceIds An empty list represents all namespaces. This is the preferred
 usage for projects that don&#39;t use namespaces.
 
-An empty string element represents the default namespace.  This should be
+An empty string element represents the default namespace. This should be
 used if the project has data in non-default namespaces, but doesn&#39;t want to
 include them.
 Each namespace in this list must be unique.
@@ -218,7 +218,7 @@ field.
 the list must be a subset of the EntityFilter used in creating the export,
 otherwise a FAILED_PRECONDITION error will be returned. If no filter is
 specified then all entities from the export are imported.
-* @property {string} inputUrl The full resource URL of the external storage location.  Currently, only
+* @property {string} inputUrl The full resource URL of the external storage location. Currently, only
 Google Cloud Storage is supported. So input_url should be of the form:
 `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
 `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
@@ -238,8 +238,9 @@ google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
  * @typedef GoogleDatastoreAdminV1beta1Progress
  * @memberOf! datastore(v1beta1)
  * @type object
-* @property {string} workCompleted Note that this may be greater than work_estimated.
-* @property {string} workEstimated An estimate of how much work needs to be performed.  May be zero if the
+* @property {string} workCompleted The amount of work that has been completed. Note that this may be greater
+than work_estimated.
+* @property {string} workEstimated An estimate of how much work needs to be performed. May be zero if the
 work estimate is unavailable.
 */
 
@@ -248,7 +249,7 @@ work estimate is unavailable.
  * @memberOf! datastore(v1beta1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {datastore(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically

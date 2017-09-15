@@ -350,6 +350,7 @@ function Youtube(options) { // eslint-disable-line
      * @memberOf! youtube(v3)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.channelId The channelId parameter identifies the YouTube channel to which the banner is uploaded. The channelId parameter was introduced as a required parameter in May 2017. As this was a backward-incompatible change, channelBanners.insert requests that do not specify this parameter will not return an error until six months have passed from the time that the parameter was introduced. Please see the API Terms of Service for the official policy regarding backward incompatible changes and the API revision history for the exact date that the parameter was introduced.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
@@ -3658,10 +3659,12 @@ function Youtube(options) { // eslint-disable-line
  * @property {string} mdaRating The video&#39;s rating from Singapore&#39;s Media Development Authority (MDA) and, specifically, it&#39;s Board of Film Censors (BFC).
  * @property {string} medietilsynetRating The video&#39;s rating from Medietilsynet, the Norwegian Media Authority.
  * @property {string} mekuRating The video&#39;s rating from Finland&#39;s Kansallinen Audiovisuaalinen Instituutti (National Audiovisual Institute).
+ * @property {string} menaMpaaRating The rating system for MENA countries, a clone of MPAA. It is needed to
  * @property {string} mibacRating The video&#39;s rating from the Ministero dei Beni e delle Attività Culturali e del Turismo (Italy).
  * @property {string} mocRating The video&#39;s Ministerio de Cultura (Colombia) rating.
  * @property {string} moctwRating The video&#39;s rating from Taiwan&#39;s Ministry of Culture (文化部).
  * @property {string} mpaaRating The video&#39;s Motion Picture Association of America (MPAA) rating.
+ * @property {string} mpaatRating The rating system for trailer, DVD, and Ad in the US. See http://movielabs.com/md/ratings/v2.3/html/US_MPAAT_Ratings.html.
  * @property {string} mtrcbRating The video&#39;s rating from the Movie and Television Review and Classification Board (Philippines).
  * @property {string} nbcRating The video&#39;s rating from the Maldives National Bureau of Classification.
  * @property {string} nbcplRating The video&#39;s rating in Poland.
@@ -3916,7 +3919,6 @@ STREAM_URL/STREAM_NAME
  * @property {youtube(v3).LiveBroadcastSnippet} snippet The snippet object contains basic details about the event, including its title, description, start time, and end time.
  * @property {youtube(v3).LiveBroadcastStatistics} statistics The statistics object contains info about the event&#39;s current stats. These include concurrent viewers and total chat count. Statistics can change (in either direction) during the lifetime of an event. Statistics are only returned while the event is live.
  * @property {youtube(v3).LiveBroadcastStatus} status The status object contains information about the event&#39;s status.
- * @property {youtube(v3).LiveBroadcastTopicDetails} topicDetails 
  */
 
 /**
@@ -3935,6 +3937,7 @@ STREAM_URL/STREAM_NAME
 Important: You must set the value to true and also set the enableArchive property&#39;s value to true if you want to make playback available immediately after the broadcast ends.
 * @property {boolean} enableEmbed This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video.
 * @property {boolean} enableLowLatency Indicates whether this broadcast has low latency enabled.
+* @property {string} mesh 
 * @property {youtube(v3).MonitorStreamInfo} monitorStream The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
 * @property {string} projection The projection format of this broadcast. This defaults to rectangular.
 * @property {boolean} recordFromStart Automatically start recording after the event goes live. The default value for this property is true.
@@ -3993,30 +3996,6 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {string} liveBroadcastPriority Priority of the live broadcast event (internal state).
  * @property {string} privacyStatus The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.
  * @property {string} recordingStatus The broadcast&#39;s recording status.
- */
-
-/**
- * @typedef LiveBroadcastTopic
- * @memberOf! youtube(v3)
- * @type object
- * @property {youtube(v3).LiveBroadcastTopicSnippet} snippet Information about the topic matched.
- * @property {string} type The type of the topic.
- * @property {boolean} unmatched If this flag is set it means that we have not been able to match the topic title and type provided to a known entity.
- */
-
-/**
- * @typedef LiveBroadcastTopicDetails
- * @memberOf! youtube(v3)
- * @type object
- * @property {youtube(v3).LiveBroadcastTopic[]} topics 
- */
-
-/**
- * @typedef LiveBroadcastTopicSnippet
- * @memberOf! youtube(v3)
- * @type object
- * @property {string} name The name of the topic.
- * @property {string} releaseDate The date at which the topic was released. Filled for types: videoGame
  */
 
 /**

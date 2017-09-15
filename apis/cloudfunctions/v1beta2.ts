@@ -425,6 +425,7 @@ For Node.js this is name of a function exported by the module specified
 in `source_location`.
 * @property {cloudfunctions(v1beta2).EventTrigger} eventTrigger A source that fires events in response to a condition in another service.
 * @property {cloudfunctions(v1beta2).HTTPSTrigger} httpsTrigger An HTTPS endpoint type of source that can be triggered via URL.
+* @property {object} labels Labels associated with this Cloud Function.
 * @property {string} latestOperation Output only. Name of the most recent operation modifying the function. If
 the function status is `DEPLOYING` or `DELETING`, then it points to the
 active operation.
@@ -452,6 +453,9 @@ You may omit `paths/x if you want to use the main directory.
 can be terminated if the function is not completed at the end of the
 timeout period. Defaults to 60 seconds.
 * @property {string} updateTime Output only. The last update timestamp of a Cloud Function.
+* @property {string} versionId Output only.
+The version identifier of the Cloud Function. Each deployment attempt
+results in a new version of a function being created.
 */
 
 /**
@@ -474,6 +478,11 @@ this would be a Pub/Sub topic at `projects/x/topics/x. For Google Cloud
 Storage this would be a bucket at `projects/x/buckets/x. For any source
 that only supports one instance per-project, this should be the name of the
 project (`projects/x)
+* @property {string} service The hostname of the service that should be observed.
+
+If no string is provided, the default service implementing the API will
+be used. For example, `storage.googleapis.com` is the default for all
+event types in the &#39;google.storage` namespace.
 */
 
 /**
@@ -564,6 +573,8 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} target Target of the operation - for example
 projects/project-1/locations/region-1/functions/function-1
 * @property {string} type Type of operation.
+* @property {string} versionId Version id of the function created or updated by an API call.
+This field is only pupulated for Create and Update operations.
 */
 
 /**

@@ -2191,6 +2191,12 @@ the image running in the instance. The only restriction placed on them is
 that each value&#39;s size must be less than or equal to 32 KB.
 
 The total size of all keys and values must be less than 512 KB.
+* @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. The instance may be
+scheduled on the specified or newer cpu/platform. Applicable values are the
+friendly names of CPU platforms, such as
+&lt;code&gt;minCpuPlatform: &quot;Intel Haswell&quot;&lt;/code&gt; or
+&lt;code&gt;minCpuPlatform: &quot;Intel Sandy Bridge&quot;&lt;/code&gt;. For more
+information, read &lt;a href=&quot;/compute/docs/instances/specify-min-cpu-platform&quot;&gt;Specifying a Minimum CPU Platform&lt;/a&gt;.
 * @property {string[]} oauthScopes The set of Google API scopes to be made available on all of the
 node VMs under the &quot;default&quot; service account.
 
@@ -2214,6 +2220,10 @@ no Service Account is specified, the &quot;default&quot; service account is used
 valid sources or targets for network firewalls and are specified by
 the client during cluster or node pool creation. Each tag within the list
 must comply with RFC1035.
+* @property {container(v1beta1).NodeTaint[]} taints List of kubernetes taints to be applied to each node.
+
+For more information, including usage and the valid values, see:
+https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 */
 
 /**
@@ -2258,6 +2268,15 @@ has to enough quota to scale up the cluster.
 * @property {integer} minNodeCount Minimum number of nodes in the NodePool. Must be &gt;= 1 and &lt;=
 max_node_count.
 */
+
+/**
+ * @typedef NodeTaint
+ * @memberOf! container(v1beta1)
+ * @type object
+ * @property {string} effect Effect for taint.
+ * @property {string} key Key for taint.
+ * @property {string} value Value for taint.
+ */
 
 /**
  * @typedef Operation

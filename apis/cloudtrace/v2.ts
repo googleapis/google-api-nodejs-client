@@ -78,87 +78,6 @@ function Cloudtrace(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
-
-      /**
-       * cloudtrace.projects.traces.list
-       *
-       * @desc Returns of a list of traces that match the specified filter conditions.
-       *
-       * @alias cloudtrace.projects.traces.list
-       * @memberOf! cloudtrace(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.endTime Optional. Do not return traces whose start time is later than this time.
-       * @param {string=} params.filter Opional. Return only traces that match this [trace filter](/trace/docs/trace-filters). Example:      "label:/http/url root:/_ah/background my_label:17"
-       * @param {string=} params.orderBy Optional. A single field used to sort the returned traces. Only the following field names can be used:  *   `trace_id`: the trace's ID field *   `name`:  the root span's resource name *   `duration`: the difference between the root span's start time and end time *   `start`:  the start time of the root span  Sorting is in ascending order unless `desc` is appended to the sort field name. Example: `"name desc"`).
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available, even if fewer than the maximum number of results is returned by this request.
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `page_token` must be the value of `next_page_token` from the previous response.  The values of other method parameters should be identical to those in the previous call.
-       * @param {string} params.parent Required. The project where the trace data is stored. The format is `projects/PROJECT_ID`.
-       * @param {string=} params.startTime Optional. Do not return traces whose end time is earlier than this time.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2/{parent}/traces').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudtrace.projects.traces.listSpans
-       *
-       * @desc Returns a list of spans within a trace.
-       *
-       * @alias cloudtrace.projects.traces.listSpans
-       * @memberOf! cloudtrace(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {string} params.parent Required: The resource name of the trace containing the spans to list. The format is `projects/PROJECT_ID/traces/TRACE_ID`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      listSpans: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/v2/{parent}:listSpans').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
       spans: {
 
         /**
@@ -270,26 +189,6 @@ link.
 * @property {integer} droppedLinksCount The number of dropped links after the maximum size was enforced. If
 this value is 0, then no links were dropped.
 * @property {cloudtrace(v2).Link[]} link A collection of links.
-*/
-
-/**
- * @typedef ListSpansResponse
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} nextPageToken If defined, indicates that there might be more spans that match the
-request. Pass this as the value of `pageToken` in a subsequent request to
-retrieve additional spans.
-* @property {cloudtrace(v2).Span[]} spans The requested spans, if there are any in the specified trace.
-*/
-
-/**
- * @typedef ListTracesResponse
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} nextPageToken If there might be more results than those appearing in this response, then
-`next_page_token` is included.  To get the next set of results, call this
-method again using the value of `next_page_token` as `page_token`.
-* @property {cloudtrace(v2).Trace[]} traces List of trace records returned.
 */
 
 /**
@@ -429,16 +328,6 @@ If the value is 0, then no annotations were dropped.
 * @property {integer} droppedNetworkEventsCount The number of dropped network events in all the included time events.
 If the value is 0, then no network events were dropped.
 * @property {cloudtrace(v2).TimeEvent[]} timeEvent A collection of `TimeEvent`s.
-*/
-
-/**
- * @typedef Trace
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} name The resource name of the trace in the following format:
-
-    projects/[PROJECT_ID]/traces/TRACE_ID is a unique identifier for a trace within a project.
-The ID is assigned when the trace is created.
 */
 
 /**

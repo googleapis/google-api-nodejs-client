@@ -227,6 +227,8 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} target Target of the operation - for example
 projects/project-1/locations/region-1/functions/function-1
 * @property {string} type Type of operation.
+* @property {string} versionId Version id of the function created or updated by an API call.
+This field is only pupulated for Create and Update operations.
 */
 
 /**

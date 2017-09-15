@@ -3476,6 +3476,12 @@ the image running in the instance. The only restriction placed on them is
 that each value&#39;s size must be less than or equal to 32 KB.
 
 The total size of all keys and values must be less than 512 KB.
+* @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. The instance may be
+scheduled on the specified or newer cpu/platform. Applicable values are the
+friendly names of CPU platforms, such as
+&lt;code&gt;minCpuPlatform: &quot;Intel Haswell&quot;&lt;/code&gt; or
+&lt;code&gt;minCpuPlatform: &quot;Intel Sandy Bridge&quot;&lt;/code&gt;. For more
+information, read &lt;a href=&quot;/compute/docs/instances/specify-min-cpu-platform&quot;&gt;Specifying a Minimum CPU Platform&lt;/a&gt;.
 * @property {string[]} oauthScopes The set of Google API scopes to be made available on all of the
 node VMs under the &quot;default&quot; service account.
 
