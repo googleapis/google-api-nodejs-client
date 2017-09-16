@@ -333,6 +333,11 @@ Follows the same format of Binding.members.
  * @typedef Binding
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {sourcerepo(v1).Expr} condition The condition that is associated with this binding.
+NOTE: an unsatisfied condition will not allow user access via current
+binding. Different bindings, including their conditions, are examined
+independently.
+This field is GOOGLE_INTERNAL.
 * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
 `members` can have the following values:
 
@@ -363,44 +368,28 @@ Required
 */
 
 /**
- * @typedef CloudAuditOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {string} logName The log_name to populate in the Cloud Audit Record.
- */
-
-/**
- * @typedef Condition
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-*/
-
-/**
- * @typedef CounterOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {string} field The field value to attribute.
- * @property {string} metric The metric to update.
- */
-
-/**
- * @typedef DataAccessOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- */
-
-/**
  * @typedef Empty
  * @memberOf! sourcerepo(v1)
  * @type object
  */
+
+/**
+ * @typedef Expr
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string} description An optional description of the expression. This is a longer text which
+describes the expression, e.g. when hovered over it in a UI.
+* @property {string} expression Textual representation of an expression in
+Common Expression Language syntax.
+
+The application context of the containing message determines which
+well-known feature set of CEL is supported.
+* @property {string} location An optional string indicating the location of the expression for error
+reporting, e.g. a file name and a position in the file.
+* @property {string} title An optional title for the expression, i.e. a short string describing
+its purpose. This can be used e.g. in UIs which allow to enter the
+expression.
+*/
 
 /**
  * @typedef ListReposResponse
@@ -411,15 +400,6 @@ can be retrieved by including this value in the next ListReposRequest&#39;s
 page_token field.
 * @property {sourcerepo(v1).Repo[]} repos The listed repos.
 */
-
-/**
- * @typedef LogConfig
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {sourcerepo(v1).CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {sourcerepo(v1).CounterOptions} counter Counter options.
- * @property {sourcerepo(v1).DataAccessOptions} dataAccess Data access options.
- */
 
 /**
  * @typedef MirrorConfig
@@ -441,7 +421,6 @@ and thereby disabling mirroring.
  * @type object
 * @property {sourcerepo(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
 * @property {sourcerepo(v1).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
 `bindings` with no members will result in an error.
 * @property {string} etag `etag` is used for optimistic concurrency control as a way to help
 prevent simultaneous updates of a policy from overwriting each other.
@@ -454,15 +433,6 @@ ensure that their change will be applied to the same version of the policy.
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
 * @property {boolean} iamOwned 
-* @property {sourcerepo(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 */
 
@@ -477,26 +447,6 @@ eg, `projects/myproject/repos/name/with/slash`
 * @property {string} size The disk usage of the repo, in bytes.
 Only returned by GetRepo.
 * @property {string} url URL to clone the repository from Google Cloud Source Repositories.
-*/
-
-/**
- * @typedef Rule
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string} action Required
-* @property {sourcerepo(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {string} description Human-readable description of the rule.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {sourcerepo(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
 */
 
 /**

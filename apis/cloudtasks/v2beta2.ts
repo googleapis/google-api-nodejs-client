@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Cloud Tasks API
  *
- * Cloud Tasks enables developers to manage the execution of large numbers of distributed requests. Cloud Tasks is in Alpha.
+ * Manages the execution of large numbers of distributed requests. Cloud Tasks is in Alpha.
  *
  * @example
  * const google = require('googleapis');
@@ -39,6 +39,83 @@ function Cloudtasks(options) { // eslint-disable-line
 
   self.projects = {
     locations: {
+
+      /**
+       * cloudtasks.projects.locations.get
+       *
+       * @desc Get information about a location.
+       *
+       * @alias cloudtasks.projects.locations.get
+       * @memberOf! cloudtasks(v2beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Resource name for the location.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudtasks.projects.locations.list
+       *
+       * @desc Lists information about the supported locations for this service.
+       *
+       * @alias cloudtasks.projects.locations.list
+       * @memberOf! cloudtasks(v2beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter The standard list filter.
+       * @param {string} params.name The resource that owns the locations collection, if applicable.
+       * @param {integer=} params.pageSize The standard list page size.
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v2beta2/{name}/locations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
       queues: {
 
         /**
@@ -1632,7 +1709,7 @@ function Cloudtasks(options) { // eslint-disable-line
            * @memberOf! cloudtasks(v2beta2)
            *
            * @param {object} params Parameters for request
-           * @param {string=} params.orderBy  Sort order used for the query. The fields supported for sorting are Task.schedule_time and PullTaskTarget.tag. All results will be returned in ascending order. The default ordering is by Task.schedule_time.
+           * @param {string=} params.orderBy  Sort order used for the query. The fields supported for sorting are Task.schedule_time and PullMessage.tag. All results will be returned in ascending order. The default ordering is by Task.schedule_time.
            * @param {integer=} params.pageSize Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use ListTasksResponse.next_page_token to determine if more tasks exist.
            * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of ListTasksResponse.next_page_token returned from the previous call to CloudTasks.ListTasks method.  The page token is valid for only 2 hours.
            * @param {string} params.parent Required.  The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -2158,70 +2235,12 @@ AppEngineRouting.instance are the empty string.
  * @typedef AppEngineTaskTarget
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {cloudtasks(v2beta2).AppEngineRouting} appEngineRouting Task-level setting for App Engine routing.
-
-If set, AppEngineQueueConfig.app_engine_routing_override is used for
-all tasks in the queue, no matter what the setting is for the
-task-level app_engine_routing.
-* @property {object} headers HTTP request headers.
-
-This map contains the header field names and values.
-Headers can be set when the
-[task is created](google.cloud.tasks.v2beta2.CloudTasks.CreateTask).
-Repeated headers are not supported but a header value can contain commas.
-
-Cloud Tasks sets some headers to default values:
-
-* `User-Agent`: By default, this header is
-  `&quot;AppEngine-Google; (+http://code.google.com/appengine)&quot;`.
-  This header can be modified, but Cloud Tasks will append
-  `&quot;AppEngine-Google; (+http://code.google.com/appengine)&quot;` to the
-  modified `User-Agent`.
-
-If the task has an AppEngineTaskTarget.payload, Cloud Tasks sets the
-following headers:
-
-* `Content-Type`: By default, the `Content-Type` header is set to
-  `&quot;application/octet-stream&quot;`. The default can be overridden by explictly
-  setting `Content-Type` to a particular media type when the
-  [task is created](google.cloud.tasks.v2beta2.CloudTasks.CreateTask).
-  For example, `Content-Type` can be set to `&quot;application/json&quot;`.
-* `Content-Length`: This is computed by Cloud Tasks. This value is
-  output only. It cannot be changed.
-
-The headers below cannot be set or overridden:
-
-* `Host`
-* `X-Google-*`
-* `X-AppEngine-*`
-
-In addition, some App Engine headers, which contain
-task-specific information, are also be sent to the task handler; see
-[request headers](/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
-* @property {string} httpMethod The HTTP method to use for the request. The default is POST.
-
-The app&#39;s request handler for the task&#39;s target URL must be able to handle
-HTTP requests with this http_method, otherwise the task attempt will fail
-with error code 405 &quot;Method Not Allowed&quot; because &quot;the method specified in
-the Request-Line is not allowed for the resource identified by the
-Request-URI&quot;. See
-[Writing a push task request handler](/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
-and the documentation for the request handlers in the language your app is
-written in e.g.
-[python RequestHandler](/appengine/docs/python/tools/webapp/requesthandlerclass).
-* @property {string} payload Payload.
-
-The payload will be sent as the HTTP message body. A message
-body, and thus a payload, is allowed only if the HTTP method is
-POST or PUT. It is an error to set a data payload on a task with
-an incompatible HttpMethod.
-* @property {string} relativeUrl The relative URL.
-
-The relative URL must begin with &quot;/&quot; and must be a valid HTTP relative URL.
-It can contain a path, query string arguments, and `#` fragments.
-If the relative URL is empty, then the root path &quot;/&quot; will be used.
-No spaces are allowed, and the maximum length allowed is 2083 characters.
-*/
+ * @property {cloudtasks(v2beta2).AppEngineRouting} appEngineRouting Deprecated. Use AppEngineHttpRequest.app_engine_routing.
+ * @property {object} headers Deprecated. Use AppEngineHttpRequest.headers.
+ * @property {string} httpMethod Deprecated. Use AppEngineHttpRequest.http_method.
+ * @property {string} payload Deprecated. Use AppEngineHttpRequest.payload.
+ * @property {string} relativeUrl Deprecated. Use AppEngineHttpRequest.relative_url.
+ */
 
 /**
  * @typedef AttemptStatus
@@ -2366,6 +2385,14 @@ Tasks will set it to the current time.
  */
 
 /**
+ * @typedef ListLocationsResponse
+ * @memberOf! cloudtasks(v2beta2)
+ * @type object
+ * @property {cloudtasks(v2beta2).Location[]} locations A list of locations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+
+/**
  * @typedef ListQueuesResponse
  * @memberOf! cloudtasks(v2beta2)
  * @type object
@@ -2393,6 +2420,20 @@ ListTasksRequest.page_token.
 
 If the next_page_token is empty, there are no more results.
 * @property {cloudtasks(v2beta2).Task[]} tasks The list of tasks.
+*/
+
+/**
+ * @typedef Location
+ * @memberOf! cloudtasks(v2beta2)
+ * @type object
+* @property {object} labels Cross-service attributes for the location. For example
+
+    {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+* @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
+* @property {object} metadata Service-specific metadata. For example the available capacity at the given
+location.
+* @property {string} name Resource name for the location, which may vary between implementations.
+For example: `&quot;projects/example-project/locations/us-east1&quot;`
 */
 
 /**
@@ -2449,14 +2490,9 @@ The tag must be less than 500 bytes.
  * @typedef PullTaskTarget
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {string} payload A data payload consumed by the task worker to execute the task.
-* @property {string} tag A meta-data tag for this task.
-
-This value is used by CloudTasks.PullTasks calls when
-PullTasksRequest.filter is `tag=&lt;tag&gt;`.
-
-The tag must be less than 500 bytes.
-*/
+ * @property {string} payload Deprecated. Use PullMessage.payload.
+ * @property {string} tag Deprecated. Use PullMessage.tag.
+ */
 
 /**
  * @typedef PullTasksRequest
@@ -2466,7 +2502,7 @@ The tag must be less than 500 bytes.
 
 When `filter` is set to `tag=&lt;my-tag&gt;` then the
 PullTasksResponse will contain only tasks whose
-PullTaskTarget.tag is equal to `&lt;my-tag&gt;`. `&lt;my-tag&gt;` can be
+PullMessage.tag is equal to `&lt;my-tag&gt;`. `&lt;my-tag&gt;` can be
 a bytes encoded as a string and must be less than 500 bytes.
 If `&lt;my-tag&gt;` includes whitespace or special characters (characters which
 aren&#39;t letters, numbers, or underscores), then it must be double-quoted.
@@ -2829,7 +2865,7 @@ allowed.
  * @typedef ThrottleConfig
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {number} maxBurstSize Output only.
+* @property {integer} maxBurstSize Output only.
 
 The max burst size limits how fast the queue is processed when
 many tasks are in the queue and the rate is high. This field

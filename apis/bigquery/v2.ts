@@ -2521,6 +2521,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
+ * @property {string} totalSlotMs [Output-only] Slot-milliseconds for the job.
  * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
  */
 

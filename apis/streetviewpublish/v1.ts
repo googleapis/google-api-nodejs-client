@@ -192,7 +192,7 @@ function Streetviewpublish(options) { // eslint-disable-line
     /**
      * streetviewpublish.photo.update
      *
-     * @desc Updates the metadata of a Photo, such as pose, place association, connections, etc. Changing the pixels of a photo is not supported.  Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields.  <aside class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.</aside>  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the requested photo does not exist.
+     * @desc Updates the metadata of a Photo, such as pose, place association, connections, etc. Changing the pixels of a photo is not supported.  Only the fields specified in the updateMask field are used. If `updateMask` is not present, the update applies to all fields.  <aside class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.</aside>  This method returns the following error codes:  * google.rpc.Code.PERMISSION_DENIED if the requesting user did not create the requested photo. * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the requested photo does not exist.
      *
      * @alias streetviewpublish.photo.update
      * @memberOf! streetviewpublish(v1)
@@ -490,14 +490,14 @@ when
 GetPhotoRequest.view
 is set to
 PhotoView.INCLUDE_DOWNLOAD_URL.
-* @property {streetviewpublish(v1).PhotoId} photoId Required when updating photo. Output only when creating photo.
+* @property {streetviewpublish(v1).PhotoId} photoId Required when updating a photo. Output only when creating a photo.
 Identifier for the photo, which is unique among all photos in
 Google.
 * @property {streetviewpublish(v1).Place[]} places Places where this photo belongs.
 * @property {streetviewpublish(v1).Pose} pose Pose of the photo.
 * @property {string} shareLink Output only. The share link for the photo.
 * @property {string} thumbnailUrl Output only. The thumbnail URL for showing a preview of the given photo.
-* @property {streetviewpublish(v1).UploadRef} uploadReference Required when creating photo. Input only. The resource URL where the photo
+* @property {streetviewpublish(v1).UploadRef} uploadReference Required when creating a photo. Input only. The resource URL where the photo
 bytes are uploaded to.
 * @property {string} viewCount Output only. View count of the photo.
 */
@@ -572,9 +572,11 @@ google.rpc.Status.details field, or localized by the client.
 * @property {streetviewpublish(v1).Photo} photo Required. Photo object containing the
 new metadata.
 * @property {string} updateMask Mask that identifies fields on the photo metadata to update.
-If not present, the old Photo metadata will be entirely replaced with the
-new Photo metadata in this request. The update fails if invalid fields are
-specified. Multiple fields can be specified in a comma-delimited list.
+If not present, the old Photo
+metadata will be entirely replaced with the
+new Photo metadata in this request.
+The update fails if invalid fields are specified. Multiple fields can be
+specified in a comma-delimited list.
 
 The following fields are valid:
 

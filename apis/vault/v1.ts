@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Google Vault API
  *
- * 
+ * Archiving and eDiscovery for G Suite.
  *
  * @example
  * const google = require('googleapis');
@@ -118,7 +118,7 @@ function Vault(options) { // eslint-disable-line
     /**
      * vault.matters.create
      *
-     * @desc Creates a new matter. Returns created matter with default view.
+     * @desc Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
      *
      * @alias vault.matters.create
      * @memberOf! vault(v1)
@@ -238,6 +238,7 @@ function Vault(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
      * @param {string=} params.pageToken The pagination token as returned in the response.
+     * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
      * @param {string=} params.view Specifies which parts of the matter to return in response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.

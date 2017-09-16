@@ -688,8 +688,7 @@ This can be in one of the following formats:
     - “projects/&lt;project-id or project-number&gt;”
     - “folders/&lt;folder-id&gt;”
     - “organizations/&lt;organization-id&gt;”
-* @property {string[]} resourceContainers DO NOT USE.
-This field is not ready for use yet.
+* @property {servicecontrol(v1).ResourceInfo[]} resources 
 * @property {string} startTime Required. Start time of the operation.
 * @property {object} userLabels User defined labels for the resource that this operation is associated
 with.
@@ -921,6 +920,18 @@ For example:
 +   `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`:
     The request was made from the `my-project` App Engine app.
 NOLINT
+*/
+
+/**
+ * @typedef ResourceInfo
+ * @memberOf! servicecontrol(v1)
+ * @type object
+* @property {string} resourceContainer The identifier of the parent of this resource instance.
+Must be in one of the following formats:
+    - “projects/&lt;project-id or project-number&gt;”
+    - “folders/&lt;folder-id&gt;”
+    - “organizations/&lt;organization-id&gt;”
+* @property {string} resourceName Name of the resource. This is used for auditing purposes.
 */
 
 /**
