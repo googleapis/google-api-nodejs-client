@@ -331,12 +331,15 @@ To learn more about API keys, please see the [documentation][usingkeys].
 The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
+var google = require('googleapis');
+var drive = google.drive('v2');
+
 var key = require('/path/to/key.json');
 var jwtClient = new google.auth.JWT(
   key.client_email,
   null,
   key.private_key,
-  ['https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/calendar'], // an array of auth scopes
+  ['https://www.googleapis.com/auth/drive'], // an array of auth scopes
   null
 );
 
