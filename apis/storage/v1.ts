@@ -948,6 +948,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1054,6 +1055,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.prefix Filter results to buckets whose names begin with this prefix.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3868,7 +3870,7 @@ function Storage(options) { // eslint-disable-line
     /**
      * storage.objects.patch
      *
-     * @desc Patches an object's metadata.
+     * @desc Updates an object's metadata. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4573,6 +4575,7 @@ function Storage(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.projectId Project ID
+       * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object

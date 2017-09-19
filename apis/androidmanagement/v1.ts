@@ -1119,7 +1119,7 @@ function Androidmanagement(options) { // eslint-disable-line
  * @memberOf! androidmanagement(v1)
  * @type object
  * @property {string} nonComplianceReason The reason the device is not in compliance with the setting. If not set, then this condition matches any reason.
- * @property {string} packageName The package name indicating which application is out of compliance. If not set, then this condition matches any package name. If this field is set, then setting_name must be unset or set to applications; otherwise, the condition would never be satisfied.
+ * @property {string} packageName The package name indicating which application is out of compliance. If not set, then this condition matches any package name.
  * @property {string} settingName The name of the policy setting. This is the JSON field name of a top-level Policy field. If not set, then this condition matches any setting name.
  */
 
@@ -1189,7 +1189,7 @@ function Androidmanagement(options) { // eslint-disable-line
  * @property {string} maximumTimeToLock Maximum time in milliseconds for user activity until the device will lock. A value of 0 means there is no restriction.
  * @property {boolean} modifyAccountsDisabled Whether adding or removing accounts is disabled.
  * @property {string} name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}
- * @property {boolean} networkEscapeHatchEnabled Flag to specify if network escape hatch is enabled. If this flag has been enabled then upon device boot if device has no network connection, then an activity will be shown that allows the user to temporarily connect to a network to fetch the latest policy. The launched activity will time out if no network has been connected for a given while and will return to the previous activity that was shown.
+ * @property {boolean} networkEscapeHatchEnabled Whether the network escape hatch is enabled. If a network connection can&#39;t be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.
  * @property {object} openNetworkConfiguration Network configuration for the device. See configure networks for more information.
  * @property {androidmanagement(v1).PasswordRequirements} passwordRequirements Password requirements.
  * @property {androidmanagement(v1).PersistentPreferredActivity[]} persistentPreferredActivities Default intent handler activities.

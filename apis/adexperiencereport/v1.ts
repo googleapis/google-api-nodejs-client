@@ -123,7 +123,6 @@ function Adexperiencereport(options) { // eslint-disable-line
  * @typedef PlatformSummary
  * @memberOf! adexperiencereport(v1)
  * @type object
- * @property {string} abusiveStatus The status of the site reviewed for abusive ads.
  * @property {string} betterAdsStatus The status of the site reviewed for the Better Ads Standards.
  * @property {string} enforcementTime The date on which ad filtering begins.
  * @property {string} filterStatus The ad filtering status of the site.

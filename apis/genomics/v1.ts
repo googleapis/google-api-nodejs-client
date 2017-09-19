@@ -5531,7 +5531,7 @@ available.
 * @property {genomics(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata An OperationMetadata object. This will always be returned with the Operation.
 * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. For example&amp;#58; `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
-* @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an empty response is returned.
+* @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For pipelines and exports, an Empty response is returned.
 */
 
 /**

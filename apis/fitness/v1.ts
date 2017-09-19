@@ -269,6 +269,48 @@ function Fitness(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       },
+      dataPointChanges: {
+
+        /**
+         * fitness.users.dataSources.dataPointChanges.list
+         *
+         * @desc results ordered by descending end_time
+         *
+         * @alias fitness.users.dataSources.dataPointChanges.list
+         * @memberOf! fitness(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+         * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response. The default is 500 data point changes.
+         * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+         * @param {string} params.userId List data points for the person identified. Use "me" to indicate the authenticated user. Only "me" is supported at this time.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['userId', 'dataSourceId'],
+            pathParams: ['dataSourceId', 'userId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      },
       datasets: {
 
         /**
@@ -724,6 +766,16 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @property {string} type A constant representing the type of the device.
  * @property {string} uid The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.
  * @property {string} version Version string for the device hardware/software.
+ */
+
+/**
+ * @typedef ListDataPointChangesResponse
+ * @memberOf! fitness(v1)
+ * @type object
+ * @property {string} dataSourceId The data stream ID of the data source with data point changes.
+ * @property {fitness(v1).DataPoint[]} deletedDataPoint Data points that have been removed and will not be included in any other request for dataset contents.
+ * @property {fitness(v1).DataPoint[]} insertedDataPoint Data points listed.
+ * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
 
 /**

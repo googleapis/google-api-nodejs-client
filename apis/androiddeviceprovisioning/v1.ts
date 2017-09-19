@@ -84,13 +84,13 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.customers.create
        *
-       * @desc A customer for zero-touch enrollment will be created. After a Customer is created, their admins and owners will be able to manage devices on partner.android.com/zerotouch or via their API.
+       * @desc Creates a customer for zero-touch enrollment. After the method returns successfully, admin and owner roles can manage devices and EMM configs by calling API methods or using their zero-touch enrollment portal. The API doesn't notify the customer that they have access.
        *
        * @alias androiddeviceprovisioning.partners.customers.create
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent The parent resource in format `partners/[PARTNER_ID]'.
+       * @param {string} params.parent Required. The parent resource ID in format `partners/[PARTNER_ID]` that identifies the reseller.
        * @param {androiddeviceprovisioning(v1).CreateCustomerRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -122,7 +122,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
       /**
        * androiddeviceprovisioning.partners.customers.list
        *
-       * @desc List the customers that are enrolled to the reseller identified by the `partnerId` argument. This list includes customers that the reseller created and customers that enrolled themselves using the portal.
+       * @desc Lists the customers that are enrolled to the reseller identified by the `partnerId` argument. This list includes customers that the reseller created and customers that enrolled themselves using the portal.
        *
        * @alias androiddeviceprovisioning.partners.customers.list
        * @memberOf! androiddeviceprovisioning(v1)
@@ -532,24 +532,28 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
  * @typedef Company
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {string[]} adminEmails Admin emails.
-Admins are able to operate on the portal.
-This field is a write-only field at creation time.
-* @property {string} companyId Company ID.
-* @property {string} companyName Company name.
-* @property {string} name The API resource name of the company in the format
-`partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`.
-* @property {string[]} ownerEmails Owner emails.
-Owners are able to operate on the portal, and modify admins or other
-owners. This field is a write-only field at creation time.
+* @property {string[]} adminEmails Input only. Optional. Email address of customer&#39;s users in the admin role.
+Each email address must be associated with a Google Account.
+* @property {string} companyId Output only. The ID of the company. Assigned by the server.
+* @property {string} companyName Required. The name of the company. For example _XYZ Corp_. Characters
+allowed are: Latin letters, numerals, hyphens, and spaces. Displayed to the
+customer&#39;s employees in the zero-touch enrollment portal.
+* @property {string} name Output only. The API resource name of the company in the format
+`partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`. Assigned by the server.
+* @property {string[]} ownerEmails Input only. Email address of customer&#39;s users in the owner role. At least
+one `owner_email` is required. Each email address must be associated with a
+Google Account. Owners share the same access as admins but can also add,
+delete, and edit your organization&#39;s portal users.
 */
 
 /**
  * @typedef CreateCustomerRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).Company} customer The customer to create.
- */
+* @property {androiddeviceprovisioning(v1).Company} customer Required. The company data to populate the new customer. Must contain a
+value for `companyName` and at least one `owner_email` that&#39;s associated
+with a Google Account. The values for `companyId` and `name` must be empty.
+*/
 
 /**
  * @typedef Device
