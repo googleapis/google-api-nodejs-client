@@ -1298,9 +1298,11 @@ For example: `&quot;projects/example-project/locations/us-east1&quot;`
  * @typedef ScheduleTransferRunsRequest
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
- * @property {string} endTime End time of the range of transfer runs.
- * @property {string} startTime Start time of the range of transfer runs.
- */
+* @property {string} endTime End time of the range of transfer runs. For example,
+`&quot;2017-05-30T00:00:00+00:00&quot;`.
+* @property {string} startTime Start time of the range of transfer runs. For example,
+`&quot;2017-05-25T00:00:00+00:00&quot;`.
+*/
 
 /**
  * @typedef ScheduleTransferRunsResponse

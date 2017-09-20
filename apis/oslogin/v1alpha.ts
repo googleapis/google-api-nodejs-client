@@ -259,13 +259,13 @@ function Oslogin(options) { // eslint-disable-line
  * @memberOf! oslogin(v1alpha)
  * @type object
 * @property {string} gecos The GECOS (user information) entry for this account.
-* @property {integer} gid The default group ID.
+* @property {string} gid The default group ID.
 * @property {string} homeDirectory The path to the home directory for this account.
 * @property {boolean} primary Only one POSIX account can be marked as primary.
 * @property {string} shell The path to the logic shell for this account.
 * @property {string} systemId System identifier for which account the username or uid applies to.
 By default, the empty value is used.
-* @property {integer} uid The user ID.
+* @property {string} uid The user ID.
 * @property {string} username The username of the POSIX account.
 */
 
@@ -274,7 +274,8 @@ By default, the empty value is used.
  * @memberOf! oslogin(v1alpha)
  * @type object
 * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
-* @property {string} fingerprint [Output Only] The SHA-256 fingerprint of the SSH public key.
+* @property {string} fingerprint The SHA-256 fingerprint of the SSH public key.
+Output only.
 * @property {string} key Public key text in SSH format, defined by
 &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt;
 section 6.6.

@@ -315,6 +315,122 @@ function Sheets(options) { // eslint-disable-line
 
       return createAPIRequest(parameters, callback);
     },
+
+    /**
+     * sheets.spreadsheets.getByDataFilter
+     *
+     * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified.  Specifying one or more data filters will return the portions of the spreadsheet that intersect ranges matched by any of the filters.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.
+     *
+     * @alias sheets.spreadsheets.getByDataFilter
+     * @memberOf! sheets(v4)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.spreadsheetId The spreadsheet to request.
+     * @param {sheets(v4).GetSpreadsheetByDataFilterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getByDataFilter: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}:getByDataFilter').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['spreadsheetId'],
+        pathParams: ['spreadsheetId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+    developerMetadata: {
+
+      /**
+       * sheets.spreadsheets.developerMetadata.get
+       *
+       * @desc Returns the developer metadata with the specified id. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
+       *
+       * @alias sheets.spreadsheets.developerMetadata.get
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer} params.metadataId The ID of the developer metadata to retrieve.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/developerMetadata/{metadataId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId', 'metadataId'],
+          pathParams: ['metadataId', 'spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.developerMetadata.search
+       *
+       * @desc Returns all developer metadata matching the specified DataFilter. If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
+       *
+       * @alias sheets.spreadsheets.developerMetadata.search
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
+       * @param {sheets(v4).SearchDeveloperMetadataRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      search: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/developerMetadata:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId'],
+          pathParams: ['spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
     sheets: {
 
       /**
@@ -616,6 +732,44 @@ function Sheets(options) { // eslint-disable-line
       },
 
       /**
+       * sheets.spreadsheets.values.batchClearByDataFilter
+       *
+       * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared.  Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+       *
+       * @alias sheets.spreadsheets.values.batchClearByDataFilter
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {sheets(v4).BatchClearValuesByDataFilterRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchClearByDataFilter: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchClearByDataFilter').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId'],
+          pathParams: ['spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * sheets.spreadsheets.values.batchGet
        *
        * @desc Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.
@@ -720,6 +874,44 @@ function Sheets(options) { // eslint-disable-line
       },
 
       /**
+       * sheets.spreadsheets.values.batchGetByDataFilter
+       *
+       * @desc Returns one or more ranges of values from a spreadsheet that match the specified data filters.  The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
+       *
+       * @alias sheets.spreadsheets.values.batchGetByDataFilter
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
+       * @param {sheets(v4).BatchGetValuesByDataFilterRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchGetByDataFilter: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchGetByDataFilter').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId'],
+          pathParams: ['spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * sheets.spreadsheets.values.batchUpdate
        *
        * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
@@ -804,6 +996,44 @@ function Sheets(options) { // eslint-disable-line
         const parameters = {
           options: Object.assign({
             url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchUpdate').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId'],
+          pathParams: ['spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.values.batchUpdateByDataFilter
+       *
+       * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
+       *
+       * @alias sheets.spreadsheets.values.batchUpdateByDataFilter
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {sheets(v4).BatchUpdateValuesByDataFilterRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchUpdateByDataFilter: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchUpdateByDataFilter').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
@@ -1392,6 +1622,24 @@ are equal in the earlier specifications.
 */
 
 /**
+ * @typedef BatchClearValuesByDataFilterRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DataFilter[]} dataFilters The DataFilters used to determine which ranges to clear.
+ */
+
+/**
+ * @typedef BatchClearValuesByDataFilterResponse
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {string[]} clearedRanges The ranges that were cleared, in A1 notation.
+(If the requests were for an unbounded range or a ranger larger
+ than the bounds of the sheet, this will be the actual ranges
+ that were cleared, bounded to the sheet&#39;s limits.)
+* @property {string} spreadsheetId The spreadsheet the updates were applied to.
+*/
+
+/**
  * @typedef BatchClearValuesRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -1408,6 +1656,36 @@ are equal in the earlier specifications.
  that were cleared, bounded to the sheet&#39;s limits.)
 * @property {string} spreadsheetId The spreadsheet the updates were applied to.
 */
+
+/**
+ * @typedef BatchGetValuesByDataFilterRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter[]} dataFilters The data filters used to match the ranges of values to retrieve.  Ranges
+that match any of the specified data filters will be included in the
+response.
+* @property {string} dateTimeRenderOption How dates, times, and durations should be represented in the output.
+This is ignored if value_render_option is
+FORMATTED_VALUE.
+The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+* @property {string} majorDimension The major dimension that results should use.
+
+For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`,
+then a request that selects that range and sets `majorDimension=ROWS` will
+return `[[1,2],[3,4]]`,
+whereas a request that sets `majorDimension=COLUMNS` will return
+`[[1,3],[2,4]]`.
+* @property {string} valueRenderOption How values should be represented in the output.
+The default render option is ValueRenderOption.FORMATTED_VALUE.
+*/
+
+/**
+ * @typedef BatchGetValuesByDataFilterResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {string} spreadsheetId The ID of the spreadsheet the data was retrieved from.
+ * @property {sheets(v4).MatchedValueRange[]} valueRanges The requested values with the list of data filters that matched them.
+ */
 
 /**
  * @typedef BatchGetValuesResponse
@@ -1443,6 +1721,44 @@ replies to some requests may be empty.
 * @property {string} spreadsheetId The spreadsheet the updates were applied to.
 * @property {sheets(v4).Spreadsheet} updatedSpreadsheet The spreadsheet after updates were applied. This is only set if
 [BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is `true`.
+*/
+
+/**
+ * @typedef BatchUpdateValuesByDataFilterRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilterValueRange[]} data The new values to apply to the spreadsheet.  If more than one range is
+matched by the specified DataFilter the specified values will be
+applied to all of of those ranges.
+* @property {boolean} includeValuesInResponse Determines if the update response should include the values
+of the cells that were updated. By default, responses
+do not include the updated values. The `updatedData` field within
+each of the BatchUpdateValuesResponse.responses will contain
+the updated values. If the range to write was larger than than the range
+actually written, the response will include all values in the requested
+range (excluding trailing empty rows and columns).
+* @property {string} responseDateTimeRenderOption Determines how dates, times, and durations in the response should be
+rendered. This is ignored if response_value_render_option is
+FORMATTED_VALUE.
+The default dateTime render option is
+DateTimeRenderOption.SERIAL_NUMBER.
+* @property {string} responseValueRenderOption Determines how values in the response should be rendered.
+The default render option is ValueRenderOption.FORMATTED_VALUE.
+* @property {string} valueInputOption How the input data should be interpreted.
+*/
+
+/**
+ * @typedef BatchUpdateValuesByDataFilterResponse
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).UpdateValuesByDataFilterResponse[]} responses The response for each range updated.
+* @property {string} spreadsheetId The spreadsheet the updates were applied to.
+* @property {integer} totalUpdatedCells The total number of cells updated.
+* @property {integer} totalUpdatedColumns The total number of columns where at least one cell in the column was
+updated.
+* @property {integer} totalUpdatedRows The total number of rows where at least one cell in the row was updated.
+* @property {integer} totalUpdatedSheets The total number of sheets where at least one cell in the sheet was
+updated.
 */
 
 /**
@@ -1815,6 +2131,20 @@ source data will still be copied (beyond the end of the destination range).
  */
 
 /**
+ * @typedef CreateDeveloperMetadataRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DeveloperMetadata} developerMetadata The developer metadata to create.
+ */
+
+/**
+ * @typedef CreateDeveloperMetadataResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DeveloperMetadata} developerMetadata The developer metadata that was created.
+ */
+
+/**
  * @typedef CutPasteRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -1822,6 +2152,28 @@ source data will still be copied (beyond the end of the destination range).
 * @property {string} pasteType What kind of data to paste.  All the source data will be cut, regardless
 of what is pasted.
 * @property {sheets(v4).GridRange} source The source data to cut.
+*/
+
+/**
+ * @typedef DataFilter
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {string} a1Range Selects data that matches the specified A1 range.
+* @property {sheets(v4).DeveloperMetadataLookup} developerMetadataLookup Selects data associated with the developer metadata matching the criteria
+described by this DeveloperMetadataLookup.
+* @property {sheets(v4).GridRange} gridRange Selects data that matches the range described by the GridRange.
+*/
+
+/**
+ * @typedef DataFilterValueRange
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter} dataFilter The data filter describing the location of the values in the spreadsheet.
+* @property {string} majorDimension The major dimension of the values.
+* @property {array[]} values The data to be written.  If the provided values exceed any of the ranges
+matched by the data filter then the request will fail.  If the provided
+values are less than the matched ranges only the specified values will be
+written, existing values in the matched ranges will remain unaffected.
 */
 
 /**
@@ -1855,6 +2207,21 @@ If true, &quot;List&quot; conditions will show a dropdown.
  * @memberOf! sheets(v4)
  * @type object
  * @property {sheets(v4).ConditionalFormatRule} rule The rule that was deleted.
+ */
+
+/**
+ * @typedef DeleteDeveloperMetadataRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter} dataFilter The data filter describing the criteria used to select which developer
+metadata entry to delete.
+*/
+
+/**
+ * @typedef DeleteDeveloperMetadataResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DeveloperMetadata[]} deletedDeveloperMetadata The metadata that was deleted.
  */
 
 /**
@@ -1911,9 +2278,77 @@ will be shifted left to replace the deleted cells.
  */
 
 /**
+ * @typedef DeveloperMetadata
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DeveloperMetadataLocation} location The location where the metadata is associated.
+* @property {integer} metadataId The spreadsheet-scoped unique ID that identifies the metadata. IDs may be
+specified when metadata is created, otherwise one will be randomly
+generated and assigned. Must be positive.
+* @property {string} metadataKey The metadata key. There may be multiple metadata in a spreadsheet with the
+same key.  Developer metadata must always have a key specified.
+* @property {string} metadataValue Data associated with the metadata&#39;s key.
+* @property {string} visibility The metadata visibility.  Developer metadata must always have a visibility
+specified.
+*/
+
+/**
+ * @typedef DeveloperMetadataLocation
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DimensionRange} dimensionRange Represents the row or column when metadata is associated with
+a dimension. The specified DimensionRange must represent a single row
+or column; it cannot be unbounded or span multiple rows or columns.
+* @property {string} locationType The type of location this object represents.  This field is read-only.
+* @property {integer} sheetId The ID of the sheet when metadata is associated with an entire sheet.
+* @property {boolean} spreadsheet True when metadata is associated with an entire spreadsheet.
+*/
+
+/**
+ * @typedef DeveloperMetadataLookup
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {string} locationMatchingStrategy Determines how this lookup matches the location.  If this field is
+specified as EXACT, only developer metadata associated on the exact
+location specified will be matched.  If this field is specified to INTERSECTING,
+developer metadata associated on intersecting locations will also be
+matched.  If left unspecified, this field will assume a default value of
+INTERSECTING.
+If this field is specified, a metadataLocation
+must also be specified.
+* @property {string} locationType Limits the selected developer metadata to those entries which are
+associated with locations of the specified type.  For example, specifying
+this as ROW will only consider
+developer metadata associated on rows.  If left unspecified, all location
+types will be considered.  This field cannot be specified as
+SPREADSHEET when the
+locationMatchingStrategy is
+specified as INTERSECTING or when the
+metadataLocation is specified as a
+non-spreadsheet location: spreadsheet metadata cannot intersect any other
+developer metadata location.  This field also must be left unspecified when the
+locationMatchingStrategy is
+specified as EXACT.
+* @property {integer} metadataId Limits the selected developer metadata to that which has a matching
+DeveloperMetadata.metadata_id.
+* @property {string} metadataKey Limits the selected developer metadata to that which has a matching
+DeveloperMetadata.metadata_key.
+* @property {sheets(v4).DeveloperMetadataLocation} metadataLocation Limits the selected developer metadata to those entries associated with
+the specified location.  This field either matches exact locations or all
+intersecting locations according the specified
+locationMatchingStrategy.
+* @property {string} metadataValue Limits the selected developer metadata to that which has a matching
+DeveloperMetadata.metadata_value.
+* @property {string} visibility Limits the selected developer metadata to that which has a matching
+DeveloperMetadata.visibility.  If left unspecified, all developer
+metadata visibile to the requesting project will be considered.
+*/
+
+/**
  * @typedef DimensionProperties
  * @memberOf! sheets(v4)
  * @type object
+* @property {sheets(v4).DeveloperMetadata[]} developerMetadata The developer metadata associated with a single row or column.
 * @property {boolean} hiddenByFilter True if this dimension is being filtered.
 This field is read-only.
 * @property {boolean} hiddenByUser True if this dimension is explicitly hidden.
@@ -2088,6 +2523,16 @@ be `&quot;3&quot;` because `&quot;Google Sheets&quot;` -&gt; `&quot;Googlo Shoot
 */
 
 /**
+ * @typedef GetSpreadsheetByDataFilterRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter[]} dataFilters The DataFilters used to select which ranges to retrieve from
+the spreadsheet.
+* @property {boolean} includeGridData True if grid data should be returned.
+This parameter is ignored if a field mask was set in the request.
+*/
+
+/**
  * @typedef GradientRule
  * @memberOf! sheets(v4)
  * @type object
@@ -2223,6 +2668,23 @@ MAX.
 less than this threshold value, the calculation rounds stop.
 * @property {integer} maxIterations When iterative calculation is enabled, the maximum number of calculation
 rounds to perform.
+*/
+
+/**
+ * @typedef MatchedDeveloperMetadata
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DataFilter[]} dataFilters All filters matching the returned developer metadata.
+ * @property {sheets(v4).DeveloperMetadata} developerMetadata The developer metadata matching the specified filters.
+ */
+
+/**
+ * @typedef MatchedValueRange
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter[]} dataFilters The DataFilters from the request that matched the range of
+values.
+* @property {sheets(v4).ValueRange} valueRange The values matched by the DataFilter.
 */
 
 /**
@@ -2500,9 +2962,11 @@ A single `&quot;*&quot;` can be used as short-hand for listing every field.
 of the cells in that dimension.
 * @property {sheets(v4).ClearBasicFilterRequest} clearBasicFilter Clears the basic filter on a sheet.
 * @property {sheets(v4).CopyPasteRequest} copyPaste Copies data from one area and pastes it to another.
+* @property {sheets(v4).CreateDeveloperMetadataRequest} createDeveloperMetadata Creates new developer metadata
 * @property {sheets(v4).CutPasteRequest} cutPaste Cuts data from one area and pastes it to another.
 * @property {sheets(v4).DeleteBandingRequest} deleteBanding Removes a banded range
 * @property {sheets(v4).DeleteConditionalFormatRuleRequest} deleteConditionalFormatRule Deletes an existing conditional format rule.
+* @property {sheets(v4).DeleteDeveloperMetadataRequest} deleteDeveloperMetadata Deletes developer metadata
 * @property {sheets(v4).DeleteDimensionRequest} deleteDimension Deletes rows or columns in a sheet.
 * @property {sheets(v4).DeleteEmbeddedObjectRequest} deleteEmbeddedObject Deletes an embedded object (e.g, chart, image) in a sheet.
 * @property {sheets(v4).DeleteFilterViewRequest} deleteFilterView Deletes a filter view from a sheet.
@@ -2530,6 +2994,7 @@ of the cells in that dimension.
 * @property {sheets(v4).UpdateCellsRequest} updateCells Updates many cells at once.
 * @property {sheets(v4).UpdateChartSpecRequest} updateChartSpec Updates a chart&#39;s specifications.
 * @property {sheets(v4).UpdateConditionalFormatRuleRequest} updateConditionalFormatRule Updates an existing conditional format rule.
+* @property {sheets(v4).UpdateDeveloperMetadataRequest} updateDeveloperMetadata Updates an existing developer metadata entry
 * @property {sheets(v4).UpdateDimensionPropertiesRequest} updateDimensionProperties Updates dimensions&#39; properties.
 * @property {sheets(v4).UpdateEmbeddedObjectPositionRequest} updateEmbeddedObjectPosition Updates an embedded object&#39;s (e.g. chart, image) position.
 * @property {sheets(v4).UpdateFilterViewRequest} updateFilterView Updates the properties of a filter view.
@@ -2549,11 +3014,14 @@ of the cells in that dimension.
  * @property {sheets(v4).AddNamedRangeResponse} addNamedRange A reply from adding a named range.
  * @property {sheets(v4).AddProtectedRangeResponse} addProtectedRange A reply from adding a protected range.
  * @property {sheets(v4).AddSheetResponse} addSheet A reply from adding a sheet.
+ * @property {sheets(v4).CreateDeveloperMetadataResponse} createDeveloperMetadata A reply from creating a developer metadata entry.
  * @property {sheets(v4).DeleteConditionalFormatRuleResponse} deleteConditionalFormatRule A reply from deleting a conditional format rule.
+ * @property {sheets(v4).DeleteDeveloperMetadataResponse} deleteDeveloperMetadata A reply from deleting a developer metadata entry.
  * @property {sheets(v4).DuplicateFilterViewResponse} duplicateFilterView A reply from duplicating a filter view.
  * @property {sheets(v4).DuplicateSheetResponse} duplicateSheet A reply from duplicating a sheet.
  * @property {sheets(v4).FindReplaceResponse} findReplace A reply from doing a find/replace.
  * @property {sheets(v4).UpdateConditionalFormatRuleResponse} updateConditionalFormatRule A reply from updating a conditional format rule.
+ * @property {sheets(v4).UpdateDeveloperMetadataResponse} updateDeveloperMetadata A reply from updating a developer metadata entry.
  * @property {sheets(v4).UpdateEmbeddedObjectPositionResponse} updateEmbeddedObjectPosition A reply from updating an embedded object&#39;s position.
  */
 
@@ -2562,6 +3030,22 @@ of the cells in that dimension.
  * @memberOf! sheets(v4)
  * @type object
  * @property {sheets(v4).CellData[]} values The values in the row, one per column.
+ */
+
+/**
+ * @typedef SearchDeveloperMetadataRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter[]} dataFilters The data filters describing the criteria used to determine which
+DeveloperMetadata entries to return.  DeveloperMetadata matching any of the
+specified filters will be included in the response.
+*/
+
+/**
+ * @typedef SearchDeveloperMetadataResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).MatchedDeveloperMetadata[]} matchedDeveloperMetadata The metadata matching the criteria of the search request.
  */
 
 /**
@@ -2596,6 +3080,7 @@ ranges requested on this sheet. For example, if this is representing
 startRow/startColumn of `0`,
 while the second one will have `startRow 14` (zero-based row 15),
 and `startColumn 3` (zero-based column D).
+* @property {sheets(v4).DeveloperMetadata[]} developerMetadata The developer metadata associated with a sheet.
 * @property {sheets(v4).FilterView[]} filterViews The filter views in this sheet.
 * @property {sheets(v4).GridRange[]} merges The ranges that are merged together.
 * @property {sheets(v4).SheetProperties} properties The properties of the sheet.
@@ -2663,6 +3148,7 @@ or first column of the source.
  * @typedef Spreadsheet
  * @memberOf! sheets(v4)
  * @type object
+* @property {sheets(v4).DeveloperMetadata[]} developerMetadata The developer metadata associated with a spreadsheet.
 * @property {sheets(v4).NamedRange[]} namedRanges The named ranges defined in a spreadsheet.
 * @property {sheets(v4).SpreadsheetProperties} properties Overall properties of a spreadsheet.
 * @property {sheets(v4).Sheet[]} sheets The sheets that are part of a spreadsheet.
@@ -2837,6 +3323,24 @@ or the rule that was moved (if moved)
 */
 
 /**
+ * @typedef UpdateDeveloperMetadataRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter[]} dataFilters The filters matching the developer metadata entries to update.
+* @property {sheets(v4).DeveloperMetadata} developerMetadata The value that all metadata matched by the data filters will be updated to.
+* @property {string} fields The fields that should be updated.  At least one field must be specified.
+The root `developerMetadata` is implied and should not be specified.
+A single `&quot;*&quot;` can be used as short-hand for listing every field.
+*/
+
+/**
+ * @typedef UpdateDeveloperMetadataResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).DeveloperMetadata[]} developerMetadata The updated developer metadata.
+ */
+
+/**
  * @typedef UpdateDimensionPropertiesRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -2921,6 +3425,20 @@ A single `&quot;*&quot;` can be used as short-hand for listing every field.
 The root &#39;properties&#39; is implied and should not be specified.
 A single `&quot;*&quot;` can be used as short-hand for listing every field.
 * @property {sheets(v4).SpreadsheetProperties} properties The properties to update.
+*/
+
+/**
+ * @typedef UpdateValuesByDataFilterResponse
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).DataFilter} dataFilter The data filter that selected the range that was updated.
+* @property {integer} updatedCells The number of cells updated.
+* @property {integer} updatedColumns The number of columns where at least one cell in the column was updated.
+* @property {sheets(v4).ValueRange} updatedData The values of the cells in the range matched by the dataFilter after all
+updates were applied. This is only included if the request&#39;s
+`includeValuesInResponse` field was `true`.
+* @property {string} updatedRange The range (in A1 notation) that updates were applied to.
+* @property {integer} updatedRows The number of rows where at least one cell in the row was updated.
 */
 
 /**
