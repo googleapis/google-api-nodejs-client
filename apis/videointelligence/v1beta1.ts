@@ -19,9 +19,9 @@
 import createAPIRequest from '../../lib/apirequest';
 
 /**
- * Cloud Video Intelligence API
+ * Google Cloud Video Intelligence API
  *
- * Cloud Video Intelligence API.
+ * Google Cloud Video Intelligence API.
  *
  * @example
  * const google = require('googleapis');

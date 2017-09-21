@@ -1003,6 +1003,7 @@ function Spanner(options) { // eslint-disable-line
            *
            * @param {object} params Parameters for request
            * @param {string} params.database Required. The database in which the new session is created.
+           * @param {spanner(v1).CreateSessionRequest} params.resource Request body data
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -1174,6 +1175,46 @@ function Spanner(options) { // eslint-disable-line
               params: params,
               requiredParams: ['name'],
               pathParams: ['name'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * spanner.projects.instances.databases.sessions.list
+           *
+           * @desc Lists all sessions in a given database.
+           *
+           * @alias spanner.projects.instances.databases.sessions.list
+           * @memberOf! spanner(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.database Required. The database in which to list sessions.
+           * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * labels.key where key is the name of a label  Some examples of using filters are:    * labels.env:* --> The session has the label "env".   * labels.env:dev --> The session has the label "env" and the value of                        the label contains the string "dev".
+           * @param {integer=} params.pageSize Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+           * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v1/{database}/sessions').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['database'],
+              pathParams: ['database'],
               context: self
             };
 
@@ -1585,6 +1626,13 @@ length.
 */
 
 /**
+ * @typedef CreateSessionRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {spanner(v1).Session} session The session to create.
+ */
+
+/**
  * @typedef Database
  * @memberOf! spanner(v1)
  * @type object
@@ -1813,6 +1861,16 @@ of the matching instances.
  */
 
 /**
+ * @typedef ListSessionsResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
+ListSessions call to fetch more of the matching
+sessions.
+* @property {spanner(v1).Session[]} sessions The list of requested sessions.
+*/
+
+/**
  * @typedef Mutation
  * @memberOf! spanner(v1)
  * @type object
@@ -1836,7 +1894,7 @@ already exist, the transaction fails with error `NOT_FOUND`.
  * @memberOf! spanner(v1)
  * @type object
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
+If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {spanner(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically
@@ -2075,6 +2133,7 @@ It is not an error for the `key_set` to name rows that do not
 exist in the database. Read yields nothing for nonexistent rows.
 * @property {string} limit If greater than zero, only the first `limit` rows are yielded. If `limit`
 is zero, the default is no limit.
+A limit cannot be specified if partition_token is set.
 * @property {string} resumeToken If this request is resuming a previously interrupted read,
 `resume_token` should be copied from the last
 PartialResultSet yielded before the interruption. Doing this
@@ -2151,8 +2210,18 @@ follows:
  * @typedef Session
  * @memberOf! spanner(v1)
  * @type object
- * @property {string} name Required. The name of the session.
- */
+* @property {string} approximateLastUseTime Output only. The approximate timestamp when the session is last used. It is
+typically earlier than the actual last use time.
+* @property {string} createTime Output only. The timestamp when the session is created.
+* @property {object} labels The labels for the session.
+
+ * Label keys must be between 1 and 63 characters long and must conform to
+   the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+ * Label values must be between 0 and 63 characters long and must conform
+   to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+ * No more than 20 labels can be associated with a given session.
+* @property {string} name The name of the session.
+*/
 
 /**
  * @typedef SetIamPolicyRequest

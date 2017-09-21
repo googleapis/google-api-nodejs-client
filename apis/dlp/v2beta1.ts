@@ -199,7 +199,7 @@ function Dlp(options) { // eslint-disable-line
       /**
        * dlp.inspect.operations.cancel
        *
-       * @desc Cancels an operation. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+       * @desc Cancels an operation. Use the `inspect.operations.get` to check whether the cancellation succeeded or the operation completed despite cancellation.
        *
        * @alias dlp.inspect.operations.cancel
        * @memberOf! dlp(v2beta1)
@@ -348,15 +348,15 @@ function Dlp(options) { // eslint-disable-line
       /**
        * dlp.inspect.operations.list
        *
-       * @desc Fetch the list of long running operations.
+       * @desc Fetches the list of long running operations.
        *
        * @alias dlp.inspect.operations.list
        * @memberOf! dlp(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.filter This parameter supports filtering by done, ie done=true or done=false.
+       * @param {string=} params.filter Filters by `done`. That is, `done=true` or `done=false`.
        * @param {string} params.name The name of the operation's parent resource.
-       * @param {integer=} params.pageSize The list page size. The max allowed value is 256 and default is 100.
+       * @param {integer=} params.pageSize The list page size. The maximum allowed value is 256 and the default is 100.
        * @param {string=} params.pageToken The standard list page token.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -437,7 +437,7 @@ function Dlp(options) { // eslint-disable-line
       /**
        * dlp.riskAnalysis.operations.cancel
        *
-       * @desc Cancels an operation. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+       * @desc Cancels an operation. Use the `inspect.operations.get` to check whether the cancellation succeeded or the operation completed despite cancellation.
        *
        * @alias dlp.riskAnalysis.operations.cancel
        * @memberOf! dlp(v2beta1)
@@ -549,15 +549,15 @@ function Dlp(options) { // eslint-disable-line
       /**
        * dlp.riskAnalysis.operations.list
        *
-       * @desc Fetch the list of long running operations.
+       * @desc Fetches the list of long running operations.
        *
        * @alias dlp.riskAnalysis.operations.list
        * @memberOf! dlp(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.filter This parameter supports filtering by done, ie done=true or done=false.
+       * @param {string=} params.filter Filters by `done`. That is, `done=true` or `done=false`.
        * @param {string} params.name The name of the operation's parent resource.
-       * @param {integer=} params.pageSize The list page size. The max allowed value is 256 and default is 100.
+       * @param {integer=} params.pageSize The list page size. The maximum allowed value is 256 and the default is 100.
        * @param {string=} params.pageToken The standard list page token.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -691,9 +691,9 @@ function Dlp(options) { // eslint-disable-line
 If `true`, the operation is completed, and either `error` or `response` is
 available.
 * @property {dlp(v2beta1).GoogleRpcStatus} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata This field will contain an InspectOperationMetadata object. This will always be returned with the Operation.
-* @property {string} name The server-assigned name, The `name` should have the format of `inspect/operations/&lt;identifier&gt;`.
-* @property {object} response This field will contain an InspectOperationResult object.
+* @property {object} metadata This field will contain an InspectOperationMetadata object for `inspect.operations.create` or a RiskAnalysisOperationMetadata object for `dataSource.analyze`.  This will always be returned with the Operation.
+* @property {string} name The server-assigned name. The `name` should have the format of `inspect/operations/&lt;identifier&gt;`.
+* @property {object} response This field will contain an InspectOperationResult object for `inspect.operations.create` or a RiskAnalysisOperationResult object for `dataSource.analyze`.
 */
 
 /**
@@ -931,10 +931,14 @@ For BigQuery the next columns are:
  * @memberOf! dlp(v2beta1)
  * @type object
 * @property {string} commonAlphabet 
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} context The &#39;tweak&#39;, a context may be used for higher security since the same
-identifier in two different contexts won&#39;t be given the same surrogate. If
-the context is not set, a default tweak will be used.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} context A context may be used for higher security since the same
+identifier in two different contexts likely will be given a distinct
+surrogate. The principle is that the likeliness is inversely related
+to the ratio of the number of distinct identifiers per context over the
+number of possible surrogates: As long as this ratio is small, the
+likehood is large.
 
+If the context is not set, a default tweak will be used.
 If the context is set but:
 
 1. there is no record present when transforming a given value or
@@ -951,6 +955,8 @@ such that:
 
 - a 64 bit integer is encoded followed by a single byte of value 1
 - a string is encoded in UTF-8 format followed by a single byte of value 2
+
+This is also known as the &#39;tweak&#39;, as in tweakable encryption.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the encryption algorithm. [required]
 * @property {string} customAlphabet This is supported by mapping these to the alphanumeric characters
 that the FFX mode natively supports. This happens before/after
@@ -1130,9 +1136,9 @@ the default is black.
  * @typedef GooglePrivacyDlpV2beta1InfoTypeDescription
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CategoryDescription[]} categories List of categories this info type belongs to.
- * @property {string} displayName Human readable form of the info type name.
- * @property {string} name Internal name of the info type.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CategoryDescription[]} categories List of categories this infoType belongs to.
+ * @property {string} displayName Human readable form of the infoType name.
+ * @property {string} name Internal name of the infoType.
  */
 
 /**

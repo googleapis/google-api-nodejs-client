@@ -1330,9 +1330,7 @@ job is created. This field should be left empty in requests to create a new
 transfer job; otherwise, the requests result in an `INVALID_ARGUMENT`
 error.
 * @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
-Required.
 * @property {storagetransfer(v1).Schedule} schedule Schedule specification.
-Required.
 * @property {string} status Status of the job. This value MUST be specified for
 `CreateTransferJobRequests`.
 
@@ -1341,7 +1339,6 @@ run. For example, if you change the job status from `ENABLED` to
 `DISABLED`, and an operation spawned by the transfer is running, the status
 change would not affect the current operation.
 * @property {storagetransfer(v1).TransferSpec} transferSpec Transfer specification.
-Required.
 */
 
 /**

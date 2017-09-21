@@ -2912,6 +2912,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} tagManagerUrl Auto generated link to the tag manager UI
  * @property {tagmanager(v2).Trigger[]} trigger The triggers in the container that this version was taken from.
  * @property {tagmanager(v2).Variable[]} variable The variables in the container that this version was taken from.
+ * @property {tagmanager(v2).Zone[]} zone The zones in the container that this version was taken from.
  */
 
 /**
@@ -2928,6 +2929,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} numTags Number of tags in the container version.
  * @property {string} numTriggers Number of triggers in the container version.
  * @property {string} numVariables Number of variables in the container version.
+ * @property {string} numZones Number of zones in the container version.
  * @property {string} path GTM Container Versions&#39;s API relative path.
  */
 
@@ -3282,6 +3284,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Parameter} maxTimerLengthSeconds Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
  * @property {string} name Trigger display name.
  * @property {string} notes User notes on how to apply this trigger in the container.
+ * @property {tagmanager(v2).Parameter[]} parameter Additional parameters.
  * @property {string} parentFolderId Parent folder id.
  * @property {string} path GTM Trigger&#39;s API relative path.
  * @property {tagmanager(v2).Parameter} selector A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
@@ -3400,5 +3403,47 @@ function Tagmanager(options) { // eslint-disable-line
  * @type object
  * @property {string} gaiaId Gaia id associated with a user, absent for the Google Tag Manager system.
  * @property {string} type User type distinguishes between a user and the Google Tag Manager system.
+ */
+
+/**
+ * @typedef Zone
+ * @memberOf! tagmanager(v2)
+ * @type object
+ * @property {string} accountId GTM Account ID.
+ * @property {tagmanager(v2).ZoneBoundary} boundary This Zone&#39;s boundary.
+ * @property {tagmanager(v2).ZoneChildContainer[]} childContainer Containers that are children of this Zone.
+ * @property {string} containerId GTM Container ID.
+ * @property {string} fingerprint The fingerprint of the GTM Zone as computed at storage time. This value is recomputed whenever the zone is modified.
+ * @property {string} name Zone display name.
+ * @property {string} notes User notes on how to apply this zone in the container.
+ * @property {string} path GTM Zone&#39;s API relative path.
+ * @property {string} tagManagerUrl Auto generated link to the tag manager UI
+ * @property {tagmanager(v2).ZoneTypeRestriction} typeRestriction This Zone&#39;s type restrictions.
+ * @property {string} workspaceId GTM Workspace ID.
+ * @property {string} zoneId The Zone ID uniquely identifies the GTM Zone.
+ */
+
+/**
+ * @typedef ZoneBoundary
+ * @memberOf! tagmanager(v2)
+ * @type object
+ * @property {tagmanager(v2).Condition[]} condition The conditions that, when conjoined, make up the boundary.
+ * @property {string[]} customEvaluationTriggerId Custom evaluation trigger IDs. A zone will evaluate its boundary conditions when any of the listed triggers are true.
+ */
+
+/**
+ * @typedef ZoneChildContainer
+ * @memberOf! tagmanager(v2)
+ * @type object
+ * @property {string} nickname The zone&#39;s nickname for the child container.
+ * @property {string} publicId The child container&#39;s public id.
+ */
+
+/**
+ * @typedef ZoneTypeRestriction
+ * @memberOf! tagmanager(v2)
+ * @type object
+ * @property {boolean} enable True if type restrictions have been enabled for this Zone.
+ * @property {string[]} whitelistedTypeId List of type public ids that have been whitelisted for use in this Zone.
  */
 export = Tagmanager;
