@@ -199,6 +199,43 @@ function Dataproc(options) { // eslint-disable-line
         },
 
         /**
+         * dataproc.projects.regions.clusters.getIamPolicy
+         *
+         * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+         *
+         * @alias dataproc.projects.regions.clusters.getIamPolicy
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getIamPolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{resource}:getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * dataproc.projects.regions.clusters.list
          *
          * @desc Lists all regions/{region}/clusters in a project.
@@ -275,6 +312,82 @@ function Dataproc(options) { // eslint-disable-line
             params: params,
             requiredParams: ['projectId', 'region', 'clusterName'],
             pathParams: ['clusterName', 'projectId', 'region'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.clusters.setIamPolicy
+         *
+         * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+         *
+         * @alias dataproc.projects.regions.clusters.setIamPolicy
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+         * @param {dataproc(v1beta2).SetIamPolicyRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        setIamPolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{resource}:setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.clusters.testIamPermissions
+         *
+         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         *
+         * @alias dataproc.projects.regions.clusters.testIamPermissions
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {dataproc(v1beta2).TestIamPermissionsRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        testIamPermissions: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{resource}:testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
             context: self
           };
 
@@ -690,6 +803,20 @@ function Dataproc(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef Binding
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. members can have the following values:
+allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account.
+allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account.
+user:{emailid}: An email address that represents a specific Google  account. For example, alice@gmail.com or joe@example.com.
+serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com.
+group:{emailid}: An email address that represents a Google group.  For example, admins@example.com.
+domain:{domain}: A Google Apps domain name that represents all the  users of that domain. For example, google.com or example.com.
+* @property {string} role Role that is assigned to members. For example, roles/viewer, roles/editor, or roles/owner. Required
+*/
+
+/**
  * @typedef CancelJobRequest
  * @memberOf! dataproc(v1beta2)
  * @type object
@@ -1009,6 +1136,15 @@ n1-standard-2
  */
 
 /**
+ * @typedef Policy
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {dataproc(v1beta2).Binding[]} bindings Associates a list of members to a role. bindings with no members will result in an error.
+ * @property {string} etag etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten blindly.
+ * @property {integer} version Version of the Policy. The default version is 0.
+ */
+
+/**
  * @typedef PySparkJob
  * @memberOf! dataproc(v1beta2)
  * @type object
@@ -1038,6 +1174,13 @@ n1-standard-2
 }
 
 */
+
+/**
+ * @typedef SetIamPolicyRequest
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {dataproc(v1beta2).Policy} policy REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+ */
 
 /**
  * @typedef SoftwareConfig
@@ -1096,6 +1239,20 @@ yarn: yarn-site.xmlFor more information, see Cluster properties.
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {dataproc(v1beta2).Job} job Required. The job resource.
+ */
+
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string[]} permissions The set of permissions to check for the resource. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
+ */
+
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string[]} permissions A subset of TestPermissionsRequest.permissions that the caller is allowed.
  */
 
 /**

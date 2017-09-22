@@ -3903,6 +3903,7 @@ function Admin(options) { // eslint-disable-line
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} etags ETag of the resource.
+ * @property {string} generatedResourceName The auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, NYC-2-Training Room 1A (16)
  * @property {string} kind The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.
  * @property {string} resourceDescription The brief description of the calendar resource.
  * @property {string} resourceEmail The read-only email ID for the calendar resource. Generated as part of creating a new calendar resource.
@@ -4371,6 +4372,7 @@ function Admin(options) { // eslint-disable-line
  * @property {any} emails 
  * @property {string} etag ETag of the resource.
  * @property {any} externalIds 
+ * @property {any} gender 
  * @property {string} hashFunction Hash function name for password. Supported are MD5, SHA-1 and crypt
  * @property {string} id Unique identifier of User (Read-only)
  * @property {any} ims 
@@ -4454,6 +4456,15 @@ function Admin(options) { // eslint-disable-line
  * @property {string} customType Custom type.
  * @property {string} type The type of the Id.
  * @property {string} value The value of the id.
+ */
+
+/**
+ * @typedef UserGender
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} addressMeAs AddressMeAs. A human-readable string containing the proper way to refer to the profile owner by humans, for example &quot;he/him/his&quot; or &quot;they/them/their&quot;.
+ * @property {string} customGender Custom gender.
+ * @property {string} type Gender.
  */
 
 /**
@@ -4561,12 +4572,12 @@ function Admin(options) { // eslint-disable-line
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} gecos The GECOS (user information) for this account.
- * @property {integer} gid The default group ID.
+ * @property {string} gid The default group ID.
  * @property {string} homeDirectory The path to the home directory for this account.
  * @property {boolean} primary If this is user&#39;s primary account within the SystemId.
  * @property {string} shell The path to the login shell for this account.
  * @property {string} systemId System identifier for which account Username or Uid apply to.
- * @property {integer} uid The POSIX compliant user ID.
+ * @property {string} uid The POSIX compliant user ID.
  * @property {string} username The username of the account.
  */
 

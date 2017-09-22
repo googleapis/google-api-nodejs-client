@@ -314,7 +314,7 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef TimeEvent
  * @memberOf! cloudtrace(v2)
  * @type object
- * @property {cloudtrace(v2).Annotation} annotation One or more key:value pairs.
+ * @property {cloudtrace(v2).Annotation} annotation Text annotation with a set of attributes.
  * @property {cloudtrace(v2).NetworkEvent} networkEvent An event describing an RPC message sent/received on the network.
  * @property {string} time The timestamp indicating the time the event occurred.
  */

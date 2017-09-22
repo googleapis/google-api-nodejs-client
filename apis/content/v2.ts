@@ -1032,7 +1032,9 @@ function Content(options) { // eslint-disable-line
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      * @param {string} params.datafeedId 
+     * @param {string=} params.language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      * @param {string} params.merchantId 
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2342,6 +2344,7 @@ function Content(options) { // eslint-disable-line
  * @property {string} sellerId Client-specific, locally-unique, internal ID for the child account.
  * @property {content(v2).AccountUser[]} users Users with access to the account. Every account (except for subaccounts) must have at least one admin user.
  * @property {string} websiteUrl The merchant&#39;s website.
+ * @property {content(v2).AccountYouTubeChannelLink[]} youtubeChannelLinks List of linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.
  */
 
 /**
@@ -2435,6 +2438,14 @@ function Content(options) { // eslint-disable-line
  * @type object
  * @property {boolean} admin Whether user is an admin.
  * @property {string} emailAddress User&#39;s email address.
+ */
+
+/**
+ * @typedef AccountYouTubeChannelLink
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} channelId Channel ID.
+ * @property {string} status Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in YT Creator Studio or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
  */
 
 /**
@@ -2616,16 +2627,17 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {string} attributeLanguage The two-letter ISO 639-1 language in which the attributes are defined in the data feed.
- * @property {string} contentLanguage The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
+ * @property {string} contentLanguage [DEPRECATED] Please use target.language instead. The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
  * @property {string} contentType The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
  * @property {content(v2).DatafeedFetchSchedule} fetchSchedule Fetch schedule for the feed file.
  * @property {string} fileName The filename of the feed. All feeds must have a unique file name.
  * @property {content(v2).DatafeedFormat} format Format of the feed file.
  * @property {string} id The ID of the data feed.
- * @property {string[]} intendedDestinations The list of intended destinations (corresponds to checked check boxes in Merchant Center).
+ * @property {string[]} intendedDestinations [DEPRECATED] Please use target.includedDestination instead. The list of intended destinations (corresponds to checked check boxes in Merchant Center).
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeed&quot;.
  * @property {string} name A descriptive name of the data feed.
- * @property {string} targetCountry The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
+ * @property {string} targetCountry [DEPRECATED] Please use target.country instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
+ * @property {content(v2).DatafeedTarget[]} targets The targets this feed should apply to (country, language, destinations).
  */
 
 /**
@@ -2656,11 +2668,13 @@ function Content(options) { // eslint-disable-line
  * @typedef DatafeedStatus
  * @memberOf! content(v2)
  * @type object
+ * @property {string} country The country for which the status is reported, represented as a  CLDR territory code.
  * @property {string} datafeedId The ID of the feed for which the status is reported.
  * @property {content(v2).DatafeedStatusError[]} errors The list of errors occurring in the feed.
  * @property {string} itemsTotal The number of items in the feed that were processed.
  * @property {string} itemsValid The number of items in the feed that were valid.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedStatus&quot;.
+ * @property {string} language The two-letter ISO 639-1 language for which the status is reported.
  * @property {string} lastUploadDate The last date at which the feed was uploaded.
  * @property {string} processingStatus The processing status of the feed.
  * @property {content(v2).DatafeedStatusError[]} warnings The list of errors occurring in the feed.
@@ -2683,6 +2697,16 @@ function Content(options) { // eslint-disable-line
  * @property {string} itemId The ID of the example item.
  * @property {string} lineNumber Line number in the data feed where the example is found.
  * @property {string} value The problematic value.
+ */
+
+/**
+ * @typedef DatafeedTarget
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} country The country where the items in the feed will be included in the search index, represented as a  CLDR territory code.
+ * @property {string[]} excludedDestinations The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
+ * @property {string[]} includedDestinations The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in the excluded_destination field.
+ * @property {string} language The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountryLanguage.country.
  */
 
 /**
@@ -2741,7 +2765,9 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {integer} batchId An entry ID, unique within the batch request.
- * @property {string} datafeedId The ID of the data feed to get or delete.
+ * @property {string} country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.
+ * @property {string} datafeedId The ID of the data feed to get.
+ * @property {string} language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.
  * @property {string} merchantId The ID of the managing account.
  * @property {string} method 
  */
@@ -3067,13 +3093,22 @@ United States
  * @typedef OrderPaymentMethod
  * @memberOf! content(v2)
  * @type object
- * @property {content(v2).OrderAddress} billingAddress The billing address.
- * @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
- * @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
- * @property {string} lastFourDigits The last four digits of the card number.
- * @property {string} phoneNumber The billing phone number.
- * @property {string} type The type of instrument (VISA, Mastercard, etc).
- */
+* @property {content(v2).OrderAddress} billingAddress The billing address.
+* @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
+* @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
+* @property {string} lastFourDigits The last four digits of the card number.
+* @property {string} phoneNumber The billing phone number.
+* @property {string} type The type of instrument.
+
+Acceptable values are:  
+- &quot;AMEX&quot; 
+- &quot;DISCOVER&quot; 
+- &quot;JCB&quot; 
+- &quot;MASTERCARD&quot; 
+- &quot;UNIONPAY&quot; 
+- &quot;VISA&quot; 
+- &quot;&quot;
+*/
 
 /**
  * @typedef OrderPromotion

@@ -314,6 +314,44 @@ function Container(options) { // eslint-disable-line
         },
 
         /**
+         * container.projects.locations.clusters.setMaintenancePolicy
+         *
+         * @desc Sets the maintenance policy for a cluster.
+         *
+         * @alias container.projects.locations.clusters.setMaintenancePolicy
+         * @memberOf! container(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format 'projects/x/locations/x/clusters/x'.
+         * @param {container(v1beta1).SetMaintenancePolicyRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        setMaintenancePolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta1/{name}:setMaintenancePolicy').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * container.projects.locations.clusters.setMasterAuth
          *
          * @desc Used to set master auth materials. Currently supports :- Changing the admin password of a specific cluster. This can be either via password generation or explicitly set. Modify basic_auth.csv and reset the K8S API server.
@@ -1182,6 +1220,46 @@ function Container(options) { // eslint-disable-line
         },
 
         /**
+         * container.projects.zones.clusters.setMaintenancePolicy
+         *
+         * @desc Sets the maintenance policy for a cluster.
+         *
+         * @alias container.projects.zones.clusters.setMaintenancePolicy
+         * @memberOf! container(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.clusterId The name of the cluster to update.
+         * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+         * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+         * @param {container(v1beta1).SetMaintenancePolicyRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        setMaintenancePolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMaintenancePolicy').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'zone', 'clusterId'],
+            pathParams: ['clusterId', 'projectId', 'zone'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * container.projects.zones.clusters.setMasterAuth
          *
          * @desc Used to set master auth materials. Currently supports :- Changing the admin password of a specific cluster. This can be either via password generation or explicitly set. Modify basic_auth.csv and reset the K8S API server.
@@ -1835,6 +1913,7 @@ Currently available options:
 * `logging.googleapis.com` - the Google Cloud Logging service.
 * `none` - no logs will be exported from the cluster.
 * if left as an empty string,`logging.googleapis.com` will be used.
+* @property {container(v1beta1).MaintenancePolicy} maintenancePolicy Configure the maintenance policy for this cluster.
 * @property {container(v1beta1).MasterAuth} masterAuth The authentication information for accessing the master endpoint.
 * @property {container(v1beta1).MasterAuthorizedNetworksConfig} masterAuthorizedNetworksConfig The configuration options for master authorized networks feature.
 * @property {string} monitoringService The monitoring service the cluster should use to write metrics.
@@ -1977,6 +2056,16 @@ This field is deprecated, use parent instead.
 */
 
 /**
+ * @typedef DailyMaintenanceWindow
+ * @memberOf! container(v1beta1)
+ * @type object
+* @property {string} duration [Output only] Duration of the time window, automatically chosen to be
+smallest possible in the given scenario.
+* @property {string} startTime Time within the maintenance window to start the maintenance operations.
+It must be in format &quot;HH:MM”, where HH : [00-23] and MM : [00-59] GMT.
+*/
+
+/**
  * @typedef Empty
  * @memberOf! container(v1beta1)
  * @type object
@@ -2106,6 +2195,20 @@ may be missing those zones.
 may be missing the operations from those zones.
 * @property {container(v1beta1).Operation[]} operations A list of operations in the project in the specified zone.
 */
+
+/**
+ * @typedef MaintenancePolicy
+ * @memberOf! container(v1beta1)
+ * @type object
+ * @property {container(v1beta1).MaintenanceWindow} window Specifies the maintenance window in which maintenance may be performed.
+ */
+
+/**
+ * @typedef MaintenanceWindow
+ * @memberOf! container(v1beta1)
+ * @type object
+ * @property {container(v1beta1).DailyMaintenanceWindow} dailyMaintenanceWindow DailyMaintenanceWindow specifies a daily maintenance operation window.
+ */
 
 /**
  * @typedef MasterAuth
@@ -2374,6 +2477,23 @@ This field is deprecated, use name instead.
 [zone](/compute/docs/zones#available) in which the cluster
 resides.
 This field is deprecated, use name instead.
+*/
+
+/**
+ * @typedef SetMaintenancePolicyRequest
+ * @memberOf! container(v1beta1)
+ * @type object
+* @property {string} clusterId The name of the cluster to update.
+* @property {container(v1beta1).MaintenancePolicy} maintenancePolicy The maintenance policy to be set for the cluster. An empty field
+clears the existing maintenance policy.
+* @property {string} name The name (project, location, cluster id) of the cluster to set maintenance
+policy.
+Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
+* @property {string} projectId The Google Developers Console [project ID or project
+number](https://support.google.com/cloud/answer/6158840).
+* @property {string} zone The name of the Google Compute Engine
+[zone](/compute/docs/zones#available) in which the cluster
+resides.
 */
 
 /**

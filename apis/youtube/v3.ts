@@ -3937,6 +3937,7 @@ STREAM_URL/STREAM_NAME
 Important: You must set the value to true and also set the enableArchive property&#39;s value to true if you want to make playback available immediately after the broadcast ends.
 * @property {boolean} enableEmbed This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video.
 * @property {boolean} enableLowLatency Indicates whether this broadcast has low latency enabled.
+* @property {string} latencyPreference If both this and enable_low_latency are set, they must match. LATENCY_NORMAL should match enable_low_latency=false LATENCY_LOW should match enable_low_latency=true LATENCY_ULTRA_LOW should have enable_low_latency omitted.
 * @property {string} mesh 
 * @property {youtube(v3).MonitorStreamInfo} monitorStream The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
 * @property {string} projection The projection format of this broadcast. This defaults to rectangular.

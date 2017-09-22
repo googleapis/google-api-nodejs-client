@@ -796,13 +796,22 @@ United States
  * @typedef OrderPaymentMethod
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {content(v2sandbox).OrderAddress} billingAddress The billing address.
- * @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
- * @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
- * @property {string} lastFourDigits The last four digits of the card number.
- * @property {string} phoneNumber The billing phone number.
- * @property {string} type The type of instrument (VISA, Mastercard, etc).
- */
+* @property {content(v2sandbox).OrderAddress} billingAddress The billing address.
+* @property {integer} expirationMonth The card expiration month (January = 1, February = 2 etc.).
+* @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
+* @property {string} lastFourDigits The last four digits of the card number.
+* @property {string} phoneNumber The billing phone number.
+* @property {string} type The type of instrument.
+
+Acceptable values are:  
+- &quot;AMEX&quot; 
+- &quot;DISCOVER&quot; 
+- &quot;JCB&quot; 
+- &quot;MASTERCARD&quot; 
+- &quot;UNIONPAY&quot; 
+- &quot;VISA&quot; 
+- &quot;&quot;
+*/
 
 /**
  * @typedef OrderPromotion

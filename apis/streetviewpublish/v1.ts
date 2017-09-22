@@ -497,8 +497,8 @@ Google.
 * @property {streetviewpublish(v1).Pose} pose Pose of the photo.
 * @property {string} shareLink Output only. The share link for the photo.
 * @property {string} thumbnailUrl Output only. The thumbnail URL for showing a preview of the given photo.
-* @property {streetviewpublish(v1).UploadRef} uploadReference Required when creating a photo. Input only. The resource URL where the photo
-bytes are uploaded to.
+* @property {streetviewpublish(v1).UploadRef} uploadReference Required when creating a photo. Input only. The resource URL where the
+photo bytes are uploaded to.
 * @property {string} viewCount Output only. View count of the photo.
 */
 
@@ -523,7 +523,7 @@ request.
  * @typedef Place
  * @memberOf! streetviewpublish(v1)
  * @type object
-* @property {string} placeId Required. Place identifier, as described in
+* @property {string} placeId Place identifier, as described in
 https://developers.google.com/places/place-id.
 */
 
