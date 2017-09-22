@@ -42,7 +42,7 @@ function Servicecontrol(options) { // eslint-disable-line
     /**
      * servicecontrol.services.allocateQuota
      *
-     * @desc Attempts to allocate quota for the specified consumer. It should be called before the operation is executed.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).  **NOTE:** the client code **must** fail-open if the server returns one of the following quota errors: -   `PROJECT_STATUS_UNAVAILABLE` -   `SERVICE_STATUS_UNAVAILABLE` -   `BILLING_STATUS_UNAVAILABLE` -   `QUOTA_SYSTEM_UNAVAILABLE`  The server may inject above errors to prohibit any hard dependency on the quota system.
+     * @desc Attempts to allocate quota for the specified consumer. It should be called before the operation is executed.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).  **NOTE:** The client **must** fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system reliability, the server may inject these errors to prohibit any hard dependency on the quota functionality.
      *
      * @alias servicecontrol.services.allocateQuota
      * @memberOf! servicecontrol(v1)
@@ -156,7 +156,7 @@ function Servicecontrol(options) { // eslint-disable-line
     /**
      * servicecontrol.services.releaseQuota
      *
-     * @desc Releases previously allocated quota done through AllocateQuota method.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).  **NOTE:** the client code **must** fail-open if the server returns one of the following quota errors: -   `PROJECT_STATUS_UNAVAILABLE` -   `SERVICE_STATUS_UNAVAILABLE` -   `BILLING_STATUS_UNAVAILABLE` -   `QUOTA_SYSTEM_UNAVAILABLE`  The server may inject above errors to prohibit any hard dependency on the quota system.
+     * @desc Releases previously allocated quota done through AllocateQuota method.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Cloud IAM](https://cloud.google.com/iam).   **NOTE:** The client **must** fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system reliability, the server may inject these errors to prohibit any hard dependency on the quota functionality.
      *
      * @alias servicecontrol.services.releaseQuota
      * @memberOf! servicecontrol(v1)
@@ -271,12 +271,20 @@ function Servicecontrol(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef AllocateInfo
+ * @memberOf! servicecontrol(v1)
+ * @type object
+* @property {string[]} unusedArguments A list of label keys that were unused by the server in processing the
+request. Thus, for similar requests repeated in a certain future time
+window, the caller can choose to ignore these labels in the requests
+to achieve better client-side cache hits and quota aggregation.
+*/
+
+/**
  * @typedef AllocateQuotaRequest
  * @memberOf! servicecontrol(v1)
  * @type object
 * @property {servicecontrol(v1).QuotaOperation} allocateOperation Operation that describes the quota allocation.
-* @property {string} allocationMode Allocation mode for this operation.
-Deprecated: use QuotaMode inside the QuotaOperation.
 * @property {string} serviceConfigId Specifies which version of service configuration should be used to process
 the request. If unspecified or no matching version can be found, the latest
 one will be used.
@@ -287,6 +295,7 @@ one will be used.
  * @memberOf! servicecontrol(v1)
  * @type object
 * @property {servicecontrol(v1).QuotaError[]} allocateErrors Indicates the decision of the allocate.
+* @property {servicecontrol(v1).AllocateInfo} allocateInfo WARNING: DO NOT use this field until this warning message is removed.
 * @property {string} operationId The same operation_id value used in the AllocateQuotaRequest. Used for
 logging and diagnostics purposes.
 * @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Quota metrics to indicate the result of allocation. Depending on the
@@ -318,6 +327,8 @@ the metrics will be specified using the following gauge metric:
 * @property {servicecontrol(v1).AuthorizationInfo[]} authorizationInfo Authorization information. If there are multiple
 resources or permissions involved, then there is
 one AuthorizationInfo element for each {resource, permission} tuple.
+* @property {object[]} metadata Other service-specific data about the request, response, and other
+information associated with the current audited event.
 * @property {string} methodName The name of the service method or operation.
 For API calls, this should be the name of the API method.
 For example,
@@ -345,7 +356,8 @@ elsewhere in the log record.
 It should never include user-generated data, such as file contents.
 When the JSON object represented here has a proto equivalent, the proto
 name will be indicated in the `@type` property.
-* @property {object} serviceData Other service-specific data about the request, response, and other
+* @property {object} serviceData Deprecated, use `metadata` field instead.
+Other service-specific data about the request, response, and other
 activities.
 * @property {string} serviceName The name of the API service performing the operation. For example,
 `&quot;datastore.googleapis.com&quot;`.
@@ -688,10 +700,11 @@ This can be in one of the following formats:
     - “projects/&lt;project-id or project-number&gt;”
     - “folders/&lt;folder-id&gt;”
     - “organizations/&lt;organization-id&gt;”
-* @property {servicecontrol(v1).ResourceInfo[]} resources 
+* @property {servicecontrol(v1).ResourceInfo[]} resources The resources that are involved in the operation.
 * @property {string} startTime Required. Start time of the operation.
 * @property {object} userLabels User defined labels for the resource that this operation is associated
-with.
+with. Only a combination of 1000 user labels per consumer project are
+allowed.
 */
 
 /**
