@@ -1,3 +1,72 @@
+##### 22.0.0 - 22 September 2017
+
+###### Breaking changes
+- Deleted `toolresults`
+
+###### Backwards compatible changes
+- Added `cloudtasks`
+- Added `datastore`
+- Added `firebaseremoteconfig`
+- Added `oslogin`
+- Added `testing`
+- Updated `adexperiencereport`
+- Updated `androiddeviceprovisioning`
+- Updated `androidenterprise`
+- Updated `androidmanagement`
+- Updated `androidpublisher`
+- Updated `appengine`
+- Updated `bigquery`
+- Updated `bigquerydatatransfer`
+- Updated `cloudbilling`
+- Updated `cloudbuild`
+- Updated `clouddebugger`
+- Updated `cloudfunctions`
+- Updated `cloudkms`
+- Updated `cloudresourcemanager`
+- Updated `cloudtrace`
+- Updated `clouduseraccounts`
+- Updated `compute`
+- Updated `container`
+- Updated `content`
+- Updated `dataflow`
+- Updated `dataproc`
+- Updated `datastore`
+- Updated `deploymentmanager`
+- Updated `dfareporting`
+- Updated `dlp`
+- Updated `dns`
+- Updated `drive`
+- Updated `firebasedynamiclinks`
+- Updated `fitness`
+- Updated `genomics`
+- Updated `identitytoolkit`
+- Updated `language`
+- Updated `logging`
+- Updated `ml`
+- Updated `monitoring`
+- Updated `oslogin`
+- Updated `people`
+- Updated `prediction`
+- Updated `pubsub`
+- Updated `runtimeconfig`
+- Updated `servicecontrol`
+- Updated `servicemanagement`
+- Updated `serviceuser`
+- Updated `sheets`
+- Updated `slides`
+- Updated `sourcerepo`
+- Updated `spanner`
+- Updated `speech`
+- Updated `storage`
+- Updated `storagetransfer`
+- Updated `streetviewpublish`
+- Updated `tagmanager`
+- Updated `toolresults`
+- Updated `vault`
+- Updated `videointelligence`
+- Updated `vision`
+- Updated `youtube`
+
 ##### 21.3.0 - 28 August 2017
 
 ###### Backwards compatible changes
