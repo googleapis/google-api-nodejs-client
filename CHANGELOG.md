@@ -1,3 +1,16 @@
+##### 22.1.0 - 22 September 2017
+
+###### Backwards compatible changes
+- Updated `admin`
+- Updated `cloudtrace`
+- Updated `container`
+- Updated `content`
+- Updated `dataproc`
+- Updated `deploymentmanager`
+- Updated `streetviewpublish`
+- Updated `videointelligence`
+- Updated `youtube`
+
 ##### 22.0.0 - 22 September 2017
 
 ###### Breaking changes
