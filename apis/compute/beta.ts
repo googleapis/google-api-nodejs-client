@@ -16461,6 +16461,90 @@ function Compute(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.updateAccessConfig
+     *
+     * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     *
+     * @alias compute.instances.updateAccessConfig
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface where the access config is attached.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(beta).AccessConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.updateNetworkInterface
+     *
+     * @desc Updates an instance's network interface. This method follows PATCH semantics.
+     *
+     * @alias compute.instances.updateNetworkInterface
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(beta).NetworkInterface} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateNetworkInterface: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateNetworkInterface').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -28539,6 +28623,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.subnetworks.patch
+     *
+     * @desc Patches the specified subnetwork with the data included in the request. Only the following fields within the subnetwork resource can be specified in the request: secondary_ip_range and allow_subnet_cidr_routes_overlap. It is also mandatory to specify the current fingeprint of the subnetwork resource being patched.
+     *
+     * @alias compute.subnetworks.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.subnetwork Name of the Subnetwork resource to patch.
+     * @param {compute(beta).Subnetwork} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.subnetworks.setIamPolicy
      *
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
@@ -35967,6 +36092,8 @@ function Compute(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
  * @property {string} name The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+ * @property {string} publicPtrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.
+ * @property {boolean} setPublicPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
 
@@ -35974,7 +36101,7 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(beta)
  * @type object
-* @property {string} address The static external IP address represented by this resource.
+* @property {string} address The static IP address represented by this resource.
 * @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -36910,7 +37037,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(beta)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+ * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
  */
 
 /**
@@ -37069,7 +37196,7 @@ This field is not used for internal load balancing.
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
 * @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.
 
-For new Windows images, the server might also populate this field with the value WINDOWS, to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(beta).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -37935,6 +38062,7 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
  * @type object
 * @property {compute(beta).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
 * @property {compute(beta).AliasIpRange[]} aliasIpRanges An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+* @property {string} fingerprint Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface.
 * @property {string} kind [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
 * @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
 * @property {string} network URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.
@@ -38616,7 +38744,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 * @property {compute(beta).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
 * @property {string} status [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
-* @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
+* @property {string} storageBytes [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
 * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
 */
 
@@ -38662,19 +38790,27 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @typedef Subnetwork
  * @memberOf! compute(beta)
  * @type object
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
- * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork. This field can be set only at resource creation time.
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.
- * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
- * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
- * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
- * @property {string} region URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
- * @property {compute(beta).SubnetworkSecondaryRange[]} secondaryIpRanges An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- */
+* @property {boolean} allowSubnetCidrRoutesOverlap Whether this subnetwork can conflict with static routes. Setting this to true allows this subnetwork&#39;s primary and secondary ranges to conflict with routes that have already been configured on the corresponding network. Static routes will take precedence over the subnetwork route if the route prefix length is at least as large as the subnetwork prefix length.
+
+Also, packets destined to IPs within subnetwork may contain private/sensitive data and are prevented from leaving the virtual network. Setting this field to true will disable this feature.
+
+The default value is false and applies to all existing subnetworks and automatically created subnetworks.
+
+This field cannot be set to true at resource creation time.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
+* @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork.
+* @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork. This field can be set only at resource creation time.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field can be set only at resource creation time.
+* @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
+* @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
+* @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
+* @property {string} region URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
+* @property {compute(beta).SubnetworkSecondaryRange[]} secondaryIpRanges An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+*/
 
 /**
  * @typedef SubnetworkAggregatedList

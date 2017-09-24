@@ -28874,7 +28874,7 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(v1)
  * @type object
- * @property {string} address The static external IP address represented by this resource.
+ * @property {string} address The static IP address represented by this resource.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -29650,7 +29650,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(v1)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+ * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
  */
 
 /**
@@ -29805,7 +29805,7 @@ This field is not used for internal load balancing.
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
 * @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.
 
-For new Windows images, the server might also populate this field with the value WINDOWS, to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(v1).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -29829,6 +29829,12 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 - zones/zone/disks/disk
 * @property {compute(v1).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.
+* @property {string} sourceImage URL of the source image used to create this image. This can be a full or valid partial URL. You must provide exactly one of:  
+- this property, or  
+- the rawDisk.source property, or  
+- the sourceDisk property   in order to create an image.
+* @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
+* @property {string} sourceImageId [Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.
 * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
 * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
 */
@@ -30916,7 +30922,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 * @property {compute(v1).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
 * @property {string} status [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
-* @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
+* @property {string} storageBytes [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
 * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
 */
 

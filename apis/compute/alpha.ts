@@ -9001,6 +9001,122 @@ function Compute(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenseCodes.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.licenseCodes.getIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/licenseCodes/{resource}/getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenseCodes.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias compute.licenseCodes.setIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/licenseCodes/{resource}/setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenseCodes.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.licenseCodes.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/licenseCodes/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -18417,7 +18533,7 @@ If an AccessConfig with a valid external IP address is specified, it must match 
  * @typedef Address
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} address The static external IP address represented by this resource.
+* @property {string} address The static IP address represented by this resource.
 * @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -18802,8 +18918,10 @@ This cannot be used for internal load balancing.
 * @property {integer} affinityCookieTtlSec Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day.
 
 When the load balancing scheme is INTERNAL, this field is not used.
+* @property {compute(alpha).BackendServiceAppEngineBackend} appEngineBackend Directs request to an App Engine app. cloudFunctionBackend and backends[] must be empty if this is set.
 * @property {compute(alpha).Backend[]} backends The list of backends that serve this BackendService.
 * @property {compute(alpha).BackendServiceCdnPolicy} cdnPolicy Cloud CDN configuration for this BackendService.
+* @property {compute(alpha).BackendServiceCloudFunctionBackend} cloudFunctionBackend Directs request to a cloud function. appEngineBackend and backends[] must be empty if this is set.
 * @property {compute(alpha).ConnectionDraining} connectionDraining 
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string[]} customRequestHeaders Headers that the HTTP/S load balancer should add to proxied requests.
@@ -18858,12 +18976,29 @@ When the protocol is UDP, this field is not used.
  */
 
 /**
+ * @typedef BackendServiceAppEngineBackend
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} appEngineService Optional. App Engine app service name.
+ * @property {string} targetProject Required. Project ID of the project hosting the app. This is the project ID of this project. Reference to another project is not allowed.
+ * @property {string} version Optional. Version of App Engine app service. When empty, App Engine will do its normal traffic split.
+ */
+
+/**
  * @typedef BackendServiceCdnPolicy
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
  * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend service.
+ */
+
+/**
+ * @typedef BackendServiceCloudFunctionBackend
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} functionName Required. A cloud function name. Special value ?*? represents all cloud functions in the project.
+ * @property {string} targetProject Required. Project ID of the project hosting the cloud function.
  */
 
 /**
@@ -19453,7 +19588,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+ * @property {string} type The type of supported feature. Currently only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
  */
 
 /**
@@ -19787,7 +19922,7 @@ To see the latest fingerprint, make get() request to the host.
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
 * @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.
 
-For new Windows images, the server might also populate this field with the value WINDOWS, to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
+For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(alpha).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -21778,7 +21913,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
 * @property {compute(alpha).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
 * @property {string} status [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
-* @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
+* @property {string} storageBytes [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
 * @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
 */
 
