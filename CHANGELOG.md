@@ -1,3 +1,9 @@
+##### 22.2.0 - 25 September 2017
+
+###### Backwards compatible changes
+- Updated `compute`
+- Updated `servicecontrol`
+
 ##### 22.1.0 - 22 September 2017
 
 ###### Backwards compatible changes
