@@ -1108,7 +1108,7 @@ function Androidmanagement(options) { // eslint-disable-line
  * @type object
  * @property {any} currentValue If the policy setting could not be applied, the current value of the setting on the device.
  * @property {string} fieldPath For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a  subfield name. 2) For array-typed fields, the field name is followed by the array index  enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
- * @property {string} installationFailureReason If package_name is set and the non-compliance reason is APP_NOT_INSTALLED, the detailed reason the app cannot be installed.
+ * @property {string} installationFailureReason If package_name is set and the non-compliance reason is APP_NOT_INSTALLED or APP_NOT_UPDATED, the detailed reason the app cannot be installed or updated.
  * @property {string} nonComplianceReason The reason the device is not in compliance with the setting.
  * @property {string} packageName The package name indicating which application is out of compliance, if applicable.
  * @property {string} settingName The name of the policy setting. This is the JSON field name of a top-level Policy  field.

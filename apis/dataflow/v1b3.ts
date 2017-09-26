@@ -1527,6 +1527,7 @@ will be displayed as a tooltip.
  * @memberOf! dataflow(v1b3)
  * @type object
 * @property {dataflow(v1b3).SplitInt64} count The count of the number of elements present in the distribution.
+* @property {dataflow(v1b3).Histogram} histogram (Optional) Histogram of value counts for the distribution.
 * @property {dataflow(v1b3).SplitInt64} max The maximum value present in the distribution.
 * @property {dataflow(v1b3).SplitInt64} min The minimum value present in the distribution.
 * @property {dataflow(v1b3).SplitInt64} sum Use an int64 since we&#39;d prefer the added precision. If overflow is a common
@@ -1663,6 +1664,19 @@ requested.
 parameters, etc.
 * @property {dataflow(v1b3).Status} status The status of the get template request. Any problems with the
 request will be indicated in the error_details.
+*/
+
+/**
+ * @typedef Histogram
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string[]} bucketCounts Counts of values in each bucket. For efficiency, prefix and trailing
+buckets with count = 0 are elided. Buckets can store the full range of
+values of an unsigned long, with ULLONG_MAX falling into the 59th bucket
+with range [1e19, 2e19).
+* @property {integer} firstBucketOffset Starting index of first stored bucket. The non-inclusive upper-bound of
+the ith bucket is given by:
+  pow(10,(i-first_bucket_offset)/3) * (1,2,5)[(i-first_bucket_offset)%3]
 */
 
 /**
@@ -2951,9 +2965,13 @@ Google Cloud Storage:
  * @typedef WorkerShutdownNotice
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} reason Optional reason to be attached for the shutdown notice.
-For example: &quot;PREEMPTION&quot; would indicate the VM is being shut down because
-of preemption. Other possible reasons may be added in the future.
+* @property {string} reason The reason for the worker shutdown.
+Current possible values are:
+  &quot;UNKNOWN&quot;: shutdown reason is unknown.
+  &quot;PREEMPTION&quot;: shutdown reason is preemption.
+Other possible reasons may be added in the future.
+Note that this must match the names of the enum specified in
+google3/cloud/dataflow/router/protos/cloud_worker_messages_service.proto.
 */
 
 /**
