@@ -81,7 +81,7 @@
   "description": "Google APIs Client Library for Node.js",
   "main": "./lib/googleapis.js",
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4.0"
   },
   "devDependencies": {
     "jsdoc": "3.4.3",
