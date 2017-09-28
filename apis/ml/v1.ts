@@ -1054,11 +1054,12 @@ and no charges will be incurred until traffic to the model resumes.
  * @typedef GoogleCloudMlV1__HyperparameterOutput
  * @memberOf! ml(v1)
  * @type object
- * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[]} allMetrics All recorded object metrics for this trial.
- * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric} finalMetric The final objective metric seen for this trial.
- * @property {object} hyperparameters The hyperparameters given to this trial.
- * @property {string} trialId The trial id for these results.
- */
+* @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[]} allMetrics All recorded object metrics for this trial. This field is not currently
+populated.
+* @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric} finalMetric The final objective metric seen for this trial.
+* @property {object} hyperparameters The hyperparameters given to this trial.
+* @property {string} trialId The trial id for these results.
+*/
 
 /**
  * @typedef GoogleCloudMlV1__HyperparameterSpec

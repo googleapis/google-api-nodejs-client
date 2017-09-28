@@ -622,6 +622,242 @@ function Appengine(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
+    firewall: {
+      ingressRules: {
+
+        /**
+         * appengine.apps.firewall.ingressRules.batchUpdate
+         *
+         * @desc Replaces the entire firewall ruleset in one bulk operation. This overrides and replaces the rules of an existing firewall with the new rules.If the final rule does not match traffic with the '*' wildcard IP range, then an "allow all" rule is explicitly added to the end of the list.
+         *
+         * @alias appengine.apps.firewall.ingressRules.batchUpdate
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
+         * @param {appengine(v1).BatchUpdateIngressRulesRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        batchUpdate: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules:batchUpdate').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['appsId'],
+            pathParams: ['appsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.firewall.ingressRules.create
+         *
+         * @desc Creates a firewall rule for the application.
+         *
+         * @alias appengine.apps.firewall.ingressRules.create
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
+         * @param {appengine(v1).FirewallRule} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['appsId'],
+            pathParams: ['appsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.firewall.ingressRules.delete
+         *
+         * @desc Deletes the specified firewall rule.
+         *
+         * @alias appengine.apps.firewall.ingressRules.delete
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
+         * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['appsId', 'ingressRulesId'],
+            pathParams: ['appsId', 'ingressRulesId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.firewall.ingressRules.get
+         *
+         * @desc Gets the specified firewall rule.
+         *
+         * @alias appengine.apps.firewall.ingressRules.get
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
+         * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['appsId', 'ingressRulesId'],
+            pathParams: ['appsId', 'ingressRulesId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.firewall.ingressRules.list
+         *
+         * @desc Lists the firewall rules of an application.
+         *
+         * @alias appengine.apps.firewall.ingressRules.list
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
+         * @param {string=} params.matchingAddress A valid IP Address. If set, only rules matching this address will be returned. The first returned rule will be the rule that fires on requests from this IP.
+         * @param {integer=} params.pageSize Maximum results to return per page.
+         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['appsId'],
+            pathParams: ['appsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.apps.firewall.ingressRules.patch
+         *
+         * @desc Updates the specified firewall rule.
+         *
+         * @alias appengine.apps.firewall.ingressRules.patch
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
+         * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
+         * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+         * @param {appengine(v1).FirewallRule} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            }, options),
+            params: params,
+            requiredParams: ['appsId', 'ingressRulesId'],
+            pathParams: ['appsId', 'ingressRulesId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    },
     locations: {
 
       /**
@@ -1395,6 +1631,20 @@ function Appengine(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef BatchUpdateIngressRulesRequest
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {appengine(v1).FirewallRule[]} ingressRules A list of FirewallRules to replace the existing set.
+ */
+
+/**
+ * @typedef BatchUpdateIngressRulesResponse
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {appengine(v1).FirewallRule[]} ingressRules The full list of ingress FirewallRules for this application.
+ */
+
+/**
  * @typedef CertificateRawData
  * @memberOf! appengine(v1)
  * @type object
@@ -1495,6 +1745,16 @@ function Appengine(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef FirewallRule
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {string} action The action to take on matched requests.
+ * @property {string} description An optional string description of this rule. This field has a maximum length of 100 characters.
+ * @property {integer} priority A positive integer between 1, Int32.MaxValue-1 that defines the order of rule evaluation. Rules with the lowest priority are evaluated first.A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule matches. Only the action of this rule can be modified by the user.
+ * @property {string} sourceRange IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character &quot;*&quot; to match all IPs equivalent to &quot;0/0&quot; and &quot;::/0&quot; together. Examples: 192.168.1.1 or 192.168.0.0/16 or 2001:db8::/32  or 2001:0db8:0000:0042:0000:8a2e:0370:7334.&lt;p&gt;Truncation will be silently performed on addresses which are not properly truncated. For example, 1.2.3.4/24 is accepted as the same address as 1.2.3.0/24. Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as 2001:db8::/32.
+ */
+
+/**
  * @typedef HealthCheck
  * @memberOf! appengine(v1)
  * @type object
@@ -1568,6 +1828,14 @@ function Appengine(options) { // eslint-disable-line
  * @memberOf! appengine(v1)
  * @type object
  * @property {appengine(v1).DomainMapping[]} domainMappings The domain mappings for the application.
+ * @property {string} nextPageToken Continuation token for fetching the next page of results.
+ */
+
+/**
+ * @typedef ListIngressRulesResponse
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {appengine(v1).FirewallRule[]} ingressRules The ingress FirewallRules for this application.
  * @property {string} nextPageToken Continuation token for fetching the next page of results.
  */
 

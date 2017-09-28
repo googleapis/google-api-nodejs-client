@@ -274,16 +274,16 @@ function Fitness(options) { // eslint-disable-line
         /**
          * fitness.users.dataSources.dataPointChanges.list
          *
-         * @desc results ordered by descending end_time
+         * @desc Queries for user's data point changes for a particular data source.
          *
          * @alias fitness.users.dataSources.dataPointChanges.list
          * @memberOf! fitness(v1)
          *
          * @param {object} params Parameters for request
          * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-         * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response. The default is 500 data point changes.
+         * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response.
          * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-         * @param {string} params.userId List data points for the person identified. Use "me" to indicate the authenticated user. Only "me" is supported at this time.
+         * @param {string} params.userId List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -773,8 +773,8 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @memberOf! fitness(v1)
  * @type object
  * @property {string} dataSourceId The data stream ID of the data source with data point changes.
- * @property {fitness(v1).DataPoint[]} deletedDataPoint Data points that have been removed and will not be included in any other request for dataset contents.
- * @property {fitness(v1).DataPoint[]} insertedDataPoint Data points listed.
+ * @property {fitness(v1).DataPoint[]} deletedDataPoint Deleted data points for the user. Note, for modifications this should be parsed before handling insertions.
+ * @property {fitness(v1).DataPoint[]} insertedDataPoint Inserted data points for the user.
  * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  */
 

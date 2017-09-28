@@ -786,7 +786,7 @@ United States
  * @typedef OrderLineItemShippingDetailsMethod
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier for the shipping. Optional.
+ * @property {string} carrier The carrier for the shipping. Optional. See shipments[].carrier for a list of acceptable values.
  * @property {integer} maxDaysInTransit Maximum transit time.
  * @property {string} methodName The name of the shipping method.
  * @property {integer} minDaysInTransit Minimum transit time.
@@ -864,14 +864,38 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @typedef OrderShipment
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier handling the shipment.
- * @property {string} creationDate Date on which the shipment has been created, in ISO 8601 format.
- * @property {string} deliveryDate Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delievered
- * @property {string} id The id of the shipment.
- * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems The line items that are shipped.
- * @property {string} status The status of the shipment.
- * @property {string} trackingId The tracking id for the shipment.
- */
+* @property {string} carrier The carrier handling the shipment.
+
+Acceptable values are:  
+- &quot;gsx&quot; 
+- &quot;ups&quot; 
+- &quot;united parcel service&quot; 
+- &quot;usps&quot; 
+- &quot;united states postal service&quot; 
+- &quot;fedex&quot; 
+- &quot;dhl&quot; 
+- &quot;ecourier&quot; 
+- &quot;cxt&quot; 
+- &quot;google&quot; 
+- &quot;on trac&quot; 
+- &quot;ontrac&quot; 
+- &quot;on-trac&quot; 
+- &quot;on_trac&quot; 
+- &quot;delvic&quot; 
+- &quot;dynamex&quot; 
+- &quot;lasership&quot; 
+- &quot;smartpost&quot; 
+- &quot;fedex smartpost&quot; 
+- &quot;mpx&quot; 
+- &quot;uds&quot; 
+- &quot;united delivery service&quot;
+* @property {string} creationDate Date on which the shipment has been created, in ISO 8601 format.
+* @property {string} deliveryDate Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delievered
+* @property {string} id The id of the shipment.
+* @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems The line items that are shipped.
+* @property {string} status The status of the shipment.
+* @property {string} trackingId The tracking id for the shipment.
+*/
 
 /**
  * @typedef OrderShipmentLineItemShipment
@@ -1023,8 +1047,18 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @typedef OrdersCustomBatchRequestEntryShipLineItems
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier handling the shipment.
+ * @property {string} carrier Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems Line items to ship.
+ * @property {string} shipmentId Deprecated. Please use shipmentInfo instead. The ID of the shipment.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[]} shipmentInfos Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
+ * @property {string} trackingId Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.
+ */
+
+/**
+ * @typedef OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo
+ * @memberOf! content(v2sandbox)
+ * @type object
+ * @property {string} carrier The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} trackingId The tracking id for the shipment.
  */
@@ -1033,7 +1067,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @typedef OrdersCustomBatchRequestEntryUpdateShipment
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier handling the shipment. Not updated if missing.
+ * @property {string} carrier The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} status New status for the shipment. Not updated if missing.
  * @property {string} trackingId The tracking id for the shipment. Not updated if missing.
@@ -1124,11 +1158,12 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @typedef OrdersShipLineItemsRequest
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier handling the shipment.
+ * @property {string} carrier Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {content(v2sandbox).OrderShipmentLineItemShipment[]} lineItems Line items to ship.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
- * @property {string} shipmentId The ID of the shipment.
- * @property {string} trackingId The tracking id for the shipment.
+ * @property {string} shipmentId Deprecated. Please use shipmentInfo instead. The ID of the shipment.
+ * @property {content(v2sandbox).OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[]} shipmentInfos Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
+ * @property {string} trackingId Deprecated. Please use shipmentInfo instead. The tracking id for the shipment.
  */
 
 /**
@@ -1159,7 +1194,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @typedef OrdersUpdateShipmentRequest
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} carrier The carrier handling the shipment. Not updated if missing.
+ * @property {string} carrier The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  * @property {string} shipmentId The ID of the shipment.
  * @property {string} status New status for the shipment. Not updated if missing.

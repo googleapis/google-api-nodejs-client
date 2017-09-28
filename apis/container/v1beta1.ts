@@ -1809,6 +1809,9 @@ has based on the resource usage of the existing pods.
 * @property {container(v1beta1).HttpLoadBalancing} httpLoadBalancing Configuration for the HTTP (L7) load balancing controller addon, which
 makes it easy to set up HTTP load balancers for services in a cluster.
 * @property {container(v1beta1).KubernetesDashboard} kubernetesDashboard Configuration for the Kubernetes Dashboard.
+* @property {container(v1beta1).NetworkPolicyConfig} networkPolicyConfig Configuration for NetworkPolicy. This only tracks whether the addon
+is enabled or not on the Master, it does not track whether network policy
+is enabled for the nodes.
 */
 
 /**
@@ -2249,6 +2252,13 @@ Kubernetes master through HTTPS.
  */
 
 /**
+ * @typedef NetworkPolicyConfig
+ * @memberOf! container(v1beta1)
+ * @type object
+ * @property {boolean} disabled Whether NetworkPolicy is enabled for this cluster.
+ */
+
+/**
  * @typedef NodeConfig
  * @memberOf! container(v1beta1)
  * @type object
@@ -2294,12 +2304,12 @@ the image running in the instance. The only restriction placed on them is
 that each value&#39;s size must be less than or equal to 32 KB.
 
 The total size of all keys and values must be less than 512 KB.
-* @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. The instance may be
-scheduled on the specified or newer cpu/platform. Applicable values are the
+* @property {string} minCpuPlatform Minimum CPU platform to be used by this instance. The instance may be
+scheduled on the specified or newer CPU platform. Applicable values are the
 friendly names of CPU platforms, such as
 &lt;code&gt;minCpuPlatform: &quot;Intel Haswell&quot;&lt;/code&gt; or
 &lt;code&gt;minCpuPlatform: &quot;Intel Sandy Bridge&quot;&lt;/code&gt;. For more
-information, read &lt;a href=&quot;/compute/docs/instances/specify-min-cpu-platform&quot;&gt;Specifying a Minimum CPU Platform&lt;/a&gt;.
+information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 * @property {string[]} oauthScopes The set of Google API scopes to be made available on all of the
 node VMs under the &quot;default&quot; service account.
 

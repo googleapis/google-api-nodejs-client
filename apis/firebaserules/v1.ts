@@ -192,6 +192,44 @@ function Firebaserules(options) { // eslint-disable-line
       },
 
       /**
+       * firebaserules.projects.releases.getExecutable
+       *
+       * @desc Get the `Release` executable to use when enforcing rules.
+       *
+       * @alias firebaserules.projects.releases.getExecutable
+       * @memberOf! firebaserules(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1
+       * @param {string} params.name Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getExecutable: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}:getExecutable').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * firebaserules.projects.releases.list
        *
        * @desc List the `Release` values for a project. This list may optionally be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any combination thereof.
@@ -469,6 +507,17 @@ invocation.
 The function name must match one provided by a service declaration.
 * @property {firebaserules(v1).Result} result The mock result of the function call.
 */
+
+/**
+ * @typedef GetReleaseExecutableResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} executable Executable view of the `Ruleset` referenced by the `Release`.
+ * @property {string} executableVersion The Rules runtime version of the executable.
+ * @property {string} language `Language` used to generate the executable bytes.
+ * @property {string} rulesetName `Ruleset` name associated with the `Release` executable.
+ * @property {string} updateTime Timestamp for the most recent `Release.update_time`.
+ */
 
 /**
  * @typedef Issue

@@ -384,6 +384,242 @@ function Classroom(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     },
+    announcements: {
+
+      /**
+       * classroom.courses.announcements.create
+       *
+       * @desc Creates an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create announcements in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error:     * AttachmentNotVisible
+       *
+       * @alias classroom.courses.announcements.create
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {classroom(v1).Announcement} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['courseId'],
+          pathParams: ['courseId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.announcements.delete
+       *
+       * @desc Deletes an announcement.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding announcement item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
+       *
+       * @alias classroom.courses.announcements.delete
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.announcements.get
+       *
+       * @desc Returns an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or announcement, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or announcement does not exist.
+       *
+       * @alias classroom.courses.announcements.get
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the announcement.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.announcements.list
+       *
+       * @desc Returns a list of announcements that the requester is permitted to view.  Course students may only view `PUBLISHED` announcements. Course teachers and domain administrators may view all announcements.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+       *
+       * @alias classroom.courses.announcements.list
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.announcementStates Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['courseId'],
+          pathParams: ['courseId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.announcements.modifyAssignees
+       *
+       * @desc Modifies assignee mode and options of an announcement.  Only a teacher of the course that contains the announcement may call this method.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
+       *
+       * @alias classroom.courses.announcements.modifyAssignees
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the announcement.
+       * @param {classroom(v1).ModifyAnnouncementAssigneesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyAssignees: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}:modifyAssignees').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.announcements.patch
+       *
+       * @desc Updates one or more fields of an announcement.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if the requested course or announcement does not exist
+       *
+       * @alias classroom.courses.announcements.patch
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the announcement.
+       * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
+       * @param {classroom(v1).Announcement} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
     courseWork: {
 
       /**
@@ -542,6 +778,45 @@ function Classroom(options) { // eslint-disable-line
       },
 
       /**
+       * classroom.courses.courseWork.modifyAssignees
+       *
+       * @desc Modifies assignee mode and options of a coursework.  Only a teacher of the course that contains the coursework may call this method.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
+       *
+       * @alias classroom.courses.courseWork.modifyAssignees
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the coursework.
+       * @param {classroom(v1).ModifyCourseWorkAssigneesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyAssignees: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * classroom.courses.courseWork.patch
        *
        * @desc Updates one or more fields of a course work.  See google.classroom.v1.CourseWork for details of which fields may be updated and who may change them.  This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item.  This method returns the following error codes:  * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
@@ -552,7 +827,7 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.id Identifier of the course work.
-       * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers: * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
+       * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
        * @param {classroom(v1).CourseWork} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -716,7 +991,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
-         * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers: * `draft_grade` * `assigned_grade`
+         * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers:  * `draft_grade` * `assigned_grade`
          * @param {classroom(v1).StudentSubmission} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -1371,6 +1646,84 @@ function Classroom(options) { // eslint-disable-line
 
   };
 
+  self.registrations = {
+
+    /**
+     * classroom.registrations.create
+     *
+     * @desc Creates a `Registration`, causing Classroom to start sending notifications from the provided `feed` to the provided `destination`.  Returns the created `Registration`. Currently, this will be the same as the argument, but with server-assigned fields such as `expiry_time` and `id` filled in.  Note that any value specified for the `expiry_time` or `id` fields will be ignored.  While Classroom may validate the `destination` and return errors on a best effort basis, it is the caller's responsibility to ensure that it exists and that Classroom has permission to publish to it.  This method may return the following error codes:  * `PERMISSION_DENIED` if:   * the authenticated user does not have permission to receive     notifications from the requested field; or   * the credential provided does not include the appropriate scope for the     requested feed.   * another access error is encountered. * `INVALID_ARGUMENT` if:   * no `destination` is specified, or the specified `destination` is not     valid; or   * no `feed` is specified, or the specified `feed` is not valid. * `NOT_FOUND` if:   * the specified `feed` cannot be located, or the requesting user does not     have permission to determine whether or not it exists; or   * the specified `destination` cannot be located, or Classroom has not     been granted permission to publish to it.
+     *
+     * @alias classroom.registrations.create
+     * @memberOf! classroom(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {classroom(v1).Registration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * classroom.registrations.delete
+     *
+     * @desc Deletes a `Registration`, causing Classroom to stop sending notifications for that `Registration`.
+     *
+     * @alias classroom.registrations.delete
+     * @memberOf! classroom(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.registrationId The `registration_id` of the `Registration` to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v1/registrations/{registrationId}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['registrationId'],
+        pathParams: ['registrationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.userProfiles = {
 
     /**
@@ -1690,6 +2043,46 @@ function Classroom(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef Announcement
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string} alternateLink Absolute link to this announcement in the Classroom web UI.
+This is only populated if `state` is `PUBLISHED`.
+
+Read-only.
+* @property {string} assigneeMode Assignee mode of the announcement.
+If unspecified, the default value is `ALL_STUDENTS`.
+* @property {string} courseId Identifier of the course.
+
+Read-only.
+* @property {string} creationTime Timestamp when this announcement was created.
+
+Read-only.
+* @property {string} creatorUserId Identifier for the user that created the announcement.
+
+Read-only.
+* @property {string} id Classroom-assigned identifier of this announcement, unique per course.
+
+Read-only.
+* @property {classroom(v1).IndividualStudentsOptions} individualStudentsOptions Identifiers of students with access to the announcement.
+This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this
+field will be able to see the announcement.
+* @property {classroom(v1).Material[]} materials Additional materials.
+
+Announcements must have no more than 20 material items.
+* @property {string} scheduledTime Optional timestamp when this announcement is scheduled to be published.
+* @property {string} state Status of this announcement.
+If unspecified, the default state is `DRAFT`.
+* @property {string} text Description of this announcement.
+The text must be a valid UTF-8 string containing no more
+than 30,000 characters.
+* @property {string} updateTime Timestamp of the most recent change to this announcement.
+
+Read-only.
+*/
+
+/**
  * @typedef Assignment
  * @memberOf! classroom(v1)
  * @type object
@@ -1720,6 +2113,14 @@ available, but others (e.g. title) may not be.
  * @property {classroom(v1).Link} link Link attachment.
  * @property {classroom(v1).YouTubeVideo} youTubeVideo Youtube video attachment.
  */
+
+/**
+ * @typedef CloudPubsubTopic
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string} topicName The `name` field of a Cloud Pub/Sub
+[Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+*/
 
 /**
  * @typedef Course
@@ -1847,6 +2248,13 @@ This field has a maximum length of 256 characters.
  */
 
 /**
+ * @typedef CourseRosterChangesInfo
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} courseId The `course_id` of the course to subscribe to roster changes for.
+ */
+
+/**
  * @typedef CourseWork
  * @memberOf! classroom(v1)
  * @type object
@@ -1854,6 +2262,8 @@ This field has a maximum length of 256 characters.
 This is only populated if `state` is `PUBLISHED`.
 
 Read-only.
+* @property {string} assigneeMode Assignee mode of the coursework.
+If unspecified, the default value is `ALL_STUDENTS`.
 * @property {classroom(v1).Assignment} assignment Assignment details.
 This is populated only when `work_type` is `ASSIGNMENT`.
 
@@ -1871,6 +2281,9 @@ Read-only.
 * @property {string} creationTime Timestamp when this course work was created.
 
 Read-only.
+* @property {string} creatorUserId Identifier for the user that created the coursework.
+
+Read-only.
 * @property {string} description Optional description of this course work.
 If set, the description must be a valid UTF-8 string containing no more
 than 30,000 characters.
@@ -1882,6 +2295,10 @@ This must be specified if `due_date` is specified.
 * @property {string} id Classroom-assigned identifier of this course work, unique per course.
 
 Read-only.
+* @property {classroom(v1).IndividualStudentsOptions} individualStudentsOptions Identifiers of students with access to the coursework.
+This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students
+specified in this field will be assigned the coursework.
 * @property {classroom(v1).Material[]} materials Additional materials.
 
 CourseWork must have no more than 20 material items.
@@ -1957,6 +2374,15 @@ Read-only.
  */
 
 /**
+ * @typedef Feed
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {classroom(v1).CourseRosterChangesInfo} courseRosterChangesInfo Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`.
+This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
+* @property {string} feedType The type of feed.
+*/
+
+/**
  * @typedef Form
  * @memberOf! classroom(v1)
  * @type object
@@ -2021,6 +2447,14 @@ This field is only visible to domain administrators.
 */
 
 /**
+ * @typedef IndividualStudentsOptions
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string[]} studentIds Identifiers for the students that have access to the
+coursework/announcement.
+*/
+
+/**
  * @typedef Invitation
  * @memberOf! classroom(v1)
  * @type object
@@ -2052,6 +2486,15 @@ Read-only.
 Read-only.
 * @property {string} url URL to link to.
 This must be a valid UTF-8 string containing between 1 and 2024 characters.
+*/
+
+/**
+ * @typedef ListAnnouncementsResponse
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {classroom(v1).Announcement[]} announcements Announcement items that match the request.
+* @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further
+results are available.
 */
 
 /**
@@ -2148,6 +2591,16 @@ if possible, and this will be reflected in the response.
 */
 
 /**
+ * @typedef ModifyAnnouncementAssigneesRequest
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string} assigneeMode Mode of the announcement describing whether it will be accessible by all
+students or specified individual students.
+* @property {classroom(v1).ModifyIndividualStudentsOptions} modifyIndividualStudentsOptions Set which students can view or cannot view the announcement.
+Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+*/
+
+/**
  * @typedef ModifyAttachmentsRequest
  * @memberOf! classroom(v1)
  * @type object
@@ -2155,6 +2608,26 @@ if possible, and this will be reflected in the response.
 A student submission may not have more than 20 attachments.
 
 Form attachments are not supported.
+*/
+
+/**
+ * @typedef ModifyCourseWorkAssigneesRequest
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string} assigneeMode Mode of the coursework describing whether it will be assigned to all
+students or specified individual students.
+* @property {classroom(v1).ModifyIndividualStudentsOptions} modifyIndividualStudentsOptions Set which students are assigned or not assigned to the coursework.
+Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
+*/
+
+/**
+ * @typedef ModifyIndividualStudentsOptions
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {string[]} addStudentIds Ids of students to be added as having access to this
+coursework/announcement.
+* @property {string[]} removeStudentIds Ids of students to be removed from having access to this
+coursework/announcement.
 */
 
 /**
@@ -2192,6 +2665,21 @@ Read-only.
  * @memberOf! classroom(v1)
  * @type object
  */
+
+/**
+ * @typedef Registration
+ * @memberOf! classroom(v1)
+ * @type object
+* @property {classroom(v1).CloudPubsubTopic} cloudPubsubTopic The Cloud Pub/Sub topic that notifications are to be sent to.
+* @property {string} expiryTime The time until which the `Registration` is effective.
+
+This is a read-only field assigned by the server.
+* @property {classroom(v1).Feed} feed Specification for the class of notifications that Classroom should deliver
+to the `destination`.
+* @property {string} registrationId A server-generated unique identifier for this `Registration`.
+
+Read-only.
+*/
 
 /**
  * @typedef ReturnStudentSubmissionRequest
@@ -2259,7 +2747,10 @@ This value must be non-negative. Decimal (i.e. non-integer) values are
 allowed, but will be rounded to two decimal places.
 
 This may be modified only by course teachers.
-* @property {classroom(v1).AssignmentSubmission} assignmentSubmission Submission content when course_work_type is ASSIGNMENT .
+* @property {classroom(v1).AssignmentSubmission} assignmentSubmission Submission content when course_work_type is ASSIGNMENT.
+
+Students can modify this content using
+google.classroom.Work.ModifyAttachments.
 * @property {boolean} associatedWithDeveloper Whether this student submission is associated with the Developer Console
 project making the request.
 

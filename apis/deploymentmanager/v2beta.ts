@@ -1732,7 +1732,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @memberOf! deploymentmanager(v2beta)
  * @type object
  * @property {string} action Required
- * @property {deploymentmanager(v2beta).Condition[]} conditions Additional restrictions that must be met
+ * @property {deploymentmanager(v2beta).Condition[]} conditions Additional restrictions that must be met. All conditions must pass for the rule to match.
  * @property {string} description Human-readable description of the rule.
  * @property {string[]} ins If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
  * @property {deploymentmanager(v2beta).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.

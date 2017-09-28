@@ -442,10 +442,10 @@ formats:
 To refer to a specific commit:
 `https://source.developers.google.com/projects/x/repos/x/revisions/x/paths/x
 To refer to a moveable alias (branch):
-`https://source.developers.google.com/projects/x/repos/x/aliases/movable/x/paths/x
+`https://source.developers.google.com/projects/x/repos/x/moveable-aliases/x/paths/x
 In particular, to refer to HEAD use `master` moveable alias.
 To refer to a specific fixed alias (tag):
-`https://source.developers.google.com/projects/x/repos/x/aliases/fixed/x/paths/x
+`https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x
 
 You may omit `paths/x if you want to use the main directory.
 * @property {string} status Output only. Status of the function deployment.
@@ -471,7 +471,7 @@ Google Cloud Pub/Sub `providers/cloud.pubsub/eventTypes/topic.publish`
      `providers/cloud.storage/eventTypes/object.change`
 
      Handle a write to the Firebase Realtime Database
-     `providers/firebase.database/eventTypes/data.write`
+     `providers/google.firebase.database/eventTypes/ref.write`
 * @property {cloudfunctions(v1beta2).FailurePolicy} failurePolicy Specifies policy for failed executions.
 * @property {string} resource Which instance of the source&#39;s service should send events. E.g. for Pub/Sub
 this would be a Pub/Sub topic at `projects/x/topics/x. For Google Cloud

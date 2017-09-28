@@ -1173,9 +1173,9 @@ If the state is set to COMPLETE, all the in-progress steps within the execution 
  * @typedef FailureDetail
  * @memberOf! toolresults(v1beta3)
  * @type object
- * @property {boolean} crashed If the failure was severe because the system under test crashed.
+ * @property {boolean} crashed If the failure was severe because the system (app) under test crashed.
  * @property {boolean} notInstalled If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.
- * @property {boolean} otherNativeCrash If a native process other than the app crashed.
+ * @property {boolean} otherNativeCrash If a native process (including any other than the app) crashed.
  * @property {boolean} timedOut If the test overran some time limit, and that is why it failed.
  * @property {boolean} unableToCrawl If the robo was unable to crawl the app; perhaps because the app did not start.
  */

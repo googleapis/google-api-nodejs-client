@@ -396,7 +396,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.getIamPolicy
          *
-         * @desc Gets the access control policy for a Queue. Returns an empty policy if the resource exists and does not have a policy set.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.getIamPolicy`
+         * @desc Gets the access control policy for a Queue. Returns an empty policy if the resource exists and does not have a policy set.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.getIamPolicy` 
          *
          * @example
          * // BEFORE RUNNING:
@@ -987,7 +987,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.setIamPolicy
          *
-         * @desc Sets the access control policy for a Queue. Replaces any existing policy.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.setIamPolicy`
+         * @desc Sets the access control policy for a Queue. Replaces any existing policy.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.setIamPolicy` 
          *
          * @example
          * // BEFORE RUNNING:
@@ -1081,7 +1081,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.testIamPermissions
          *
-         * @desc Returns permissions that a caller has on a Queue. If the resource does not exist, this will return an empty set of permissions, not a google.rpc.Code.NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         * @desc Returns permissions that a caller has on a Queue. If the resource does not exist, this will return an empty set of permissions, not a google.rpc.Code.NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning. 
          *
          * @example
          * // BEFORE RUNNING:
