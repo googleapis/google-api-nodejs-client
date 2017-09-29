@@ -43,7 +43,7 @@ function Streetviewpublish(options) { // eslint-disable-line
     /**
      * streetviewpublish.photo.create
      *
-     * @desc After the client finishes uploading the photo with the returned UploadRef, CreatePhoto publishes the uploaded Photo to Street View on Google Maps.  This method returns the following error codes:  * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the upload reference does not exist. * google.rpc.Code.RESOURCE_EXHAUSTED if the account has reached the storage limit.
+     * @desc After the client finishes uploading the photo with the returned UploadRef, CreatePhoto publishes the uploaded Photo to Street View on Google Maps.  Currently, the only way to set heading, pitch, and roll in CreatePhoto is through the [Photo Sphere XMP metadata](https://developers.google.com/streetview/spherical-metadata) in the photo bytes. The `pose.heading`, `pose.pitch`, `pose.roll`, `pose.altitude`, and `pose.level` fields in Pose are ignored for CreatePhoto.  This method returns the following error codes:  * google.rpc.Code.INVALID_ARGUMENT if the request is malformed. * google.rpc.Code.NOT_FOUND if the upload reference does not exist. * google.rpc.Code.RESOURCE_EXHAUSTED if the account has reached the storage limit.
      *
      * @alias streetviewpublish.photo.create
      * @memberOf! streetviewpublish(v1)
@@ -353,7 +353,7 @@ function Streetviewpublish(options) { // eslint-disable-line
      * @memberOf! streetviewpublish(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.
+     * @param {string=} params.filter The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
      * @param {integer=} params.pageSize The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 will be used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
      * @param {string=} params.pageToken The nextPageToken value returned from a previous ListPhotos request, if any.
      * @param {string=} params.view Specifies if a download URL for the photos bytes should be returned in the Photos response.

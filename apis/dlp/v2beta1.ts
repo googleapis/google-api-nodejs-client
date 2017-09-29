@@ -868,47 +868,11 @@ JPEG images.
  * @typedef GooglePrivacyDlpV2beta1CreateInspectOperationRequest
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OperationConfig} operationConfig Additional configuration settings for long running operations.
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OutputStorageConfig} outputConfig Optional location to store findings. The bucket must already exist and
-the Google APIs service account for DLP must have write permission to
-write to the given bucket.
-Results are split over multiple csv files with each file name matching
-the pattern &quot;[operation_id]_[count].csv&quot;, for example
-`3094877188788974909_1.csv`. The `operation_id` matches the
-identifier for the Operation, and the `count` is a counter used for
-tracking the number of files written.
-
-The CSV file(s) contain the following columns regardless of storage type
-scanned:
-- id
-- info_type
-- likelihood
-- byte size of finding
-- quote
-- timestamp
-
-For Cloud Storage the next columns are:
-
-- file_path
-- start_offset
-
-For Cloud Datastore the next columns are:
-
-- project_id
-- namespace_id
-- path
-- column_name
-- offset
-
-For BigQuery the next columns are:
-
-- row_number
-- project_id
-- dataset_id
-- table_id
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} storageConfig Specification of the data set to process.
-*/
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InspectConfig} inspectConfig Configuration for the inspector.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OperationConfig} operationConfig Additional configuration settings for long running operations.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1OutputStorageConfig} outputConfig Optional location to store findings.
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1StorageConfig} storageConfig Specification of the data set to process.
+ */
 
 /**
  * @typedef GooglePrivacyDlpV2beta1CryptoHashConfig
@@ -966,6 +930,27 @@ Number of characters must be in the range [2, 62].
 This must be encoded as ASCII.
 The order of characters does not matter.
 * @property {integer} radix The native way to select the alphabet. Must be in the range [2, 62].
+*/
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1CryptoReplaceRegexFpeConfig
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} context This is also known as the &#39;tweak&#39;.
+See `context` in `CryptoReplaceFfxFpeConfig` for more details.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the encryption algorithm.
+* @property {string} regex The regular expression to match the identifier/surrogate values.
+There are several restrictions on the regular expression:
+
+- It must match at least two distinct strings
+(for example, &#39;a&#39; is invalid but &#39;[ab]&#39; is valid).
+- Both the regular expression itself and the strings it matches must be
+representable by the ISO LATIN-1 character set.
+- Its [syntax](https://github.com/google/re2/wiki/Syntax) can be found
+under the google/re2 repository on GitHub.
+- It is advisable to anchor the regex (with &#39;^&#39; and &#39;$&#39;); otherwise
+implicit &#39;.*&#39;s are assumed.
+- It must be 1000 characters at most.
 */
 
 /**
@@ -1426,9 +1411,46 @@ sized buckets.
  * @typedef GooglePrivacyDlpV2beta1OutputStorageConfig
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStoragePath} storagePath The path to a Google Cloud Storage location to store output.
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1BigQueryTable} table Store findings in a new table in the dataset.
- */
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CloudStoragePath} storagePath The path to a Google Cloud Storage location to store output.
+The bucket must already exist and
+the Google APIs service account for DLP must have write permission to
+write to the given bucket.
+Results are split over multiple csv files with each file name matching
+the pattern &quot;[operation_id]_[count].csv&quot;, for example
+`3094877188788974909_1.csv`. The `operation_id` matches the
+identifier for the Operation, and the `count` is a counter used for
+tracking the number of files written.
+
+The CSV file(s) contain the following columns regardless of storage type
+scanned:
+- id
+- info_type
+- likelihood
+- byte size of finding
+- quote
+- timestamp
+
+For Cloud Storage the next columns are:
+
+- file_path
+- start_offset
+
+For Cloud Datastore the next columns are:
+
+- project_id
+- namespace_id
+- path
+- column_name
+- offset
+
+For BigQuery the next columns are:
+
+- row_number
+- project_id
+- dataset_id
+- table_id
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1BigQueryTable} table Store findings in a new table in the dataset.
+*/
 
 /**
  * @typedef GooglePrivacyDlpV2beta1PartitionId
@@ -1463,6 +1485,7 @@ Cannot be `&quot;&quot;`.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CharacterMaskConfig} characterMaskConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoHashConfig} cryptoHashConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoReplaceFfxFpeConfig} cryptoReplaceFfxFpeConfig 
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoReplaceRegexFpeConfig} cryptoReplaceRegexFpeConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FixedSizeBucketingConfig} fixedSizeBucketingConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RedactConfig} redactConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ReplaceValueConfig} replaceConfig 

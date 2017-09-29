@@ -38,6 +38,239 @@ function Dataproc(options) { // eslint-disable-line
   self._options = options || {};
 
   self.projects = {
+    locations: {
+      workflowTemplates: {
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.create
+         *
+         * @desc Creates new workflow template.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.create
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{parent}/workflowTemplates').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.delete
+         *
+         * @desc Deletes a workflow template. It does not cancel in-progress workflows.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.delete
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.get
+         *
+         * @desc Retrieves the latest workflow template.Can retrieve previously instantiated template by specifying optional version parameter.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.get
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.instantiate
+         *
+         * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling google.cloud.dataproc.v1beta2.OperationService.GetOperation. The Operation will complete when entire workflow is finished.The running workflow can be aborted via google.cloud.dataproc.v1beta2.OperationService.CancelOperation.The google.cloud.dataproc.v1beta2.Operation.metadata will always be google.cloud.dataproc.v1beta2.WorkflowMetadata.The google.cloud.dataproc.v1beta2.Operation.result will always be google.protobuf.Empty.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.instantiate
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        instantiate: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}:instantiate').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.list
+         *
+         * @desc Lists workflows that match the specified filter in the request.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.list
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Optional The maximum number of results to return in each response.
+         * @param {string=} params.pageToken Optional The page token, returned by a previous call, to request the next page of results.
+         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{parent}/workflowTemplates').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.locations.workflowTemplates.update
+         *
+         * @desc Updates (replaces) workflow template. The updated template must contain version that matches the current server version.
+         *
+         * @alias dataproc.projects.locations.workflowTemplates.update
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Output-only The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    },
     regions: {
       clusters: {
 
@@ -789,6 +1022,237 @@ function Dataproc(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         }
+      },
+      workflowTemplates: {
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.create
+         *
+         * @desc Creates new workflow template.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.create
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{parent}/workflowTemplates').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.delete
+         *
+         * @desc Deletes a workflow template. It does not cancel in-progress workflows.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.delete
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.get
+         *
+         * @desc Retrieves the latest workflow template.Can retrieve previously instantiated template by specifying optional version parameter.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.get
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.instantiate
+         *
+         * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling google.cloud.dataproc.v1beta2.OperationService.GetOperation. The Operation will complete when entire workflow is finished.The running workflow can be aborted via google.cloud.dataproc.v1beta2.OperationService.CancelOperation.The google.cloud.dataproc.v1beta2.Operation.metadata will always be google.cloud.dataproc.v1beta2.WorkflowMetadata.The google.cloud.dataproc.v1beta2.Operation.result will always be google.protobuf.Empty.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.instantiate
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        instantiate: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}:instantiate').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.list
+         *
+         * @desc Lists workflows that match the specified filter in the request.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.list
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {integer=} params.pageSize Optional The maximum number of results to return in each response.
+         * @param {string=} params.pageToken Optional The page token, returned by a previous call, to request the next page of results.
+         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{parent}/workflowTemplates').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.workflowTemplates.update
+         *
+         * @desc Updates (replaces) workflow template. The updated template must contain version that matches the current server version.
+         *
+         * @alias dataproc.projects.regions.workflowTemplates.update
+         * @memberOf! dataproc(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Output-only The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
       }
     }
   };
@@ -866,6 +1330,15 @@ fi
  */
 
 /**
+ * @typedef ClusterOperation
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {boolean} done Output-only Indicates the operation is done.
+ * @property {string} error Output-only Error, if operation failed.
+ * @property {string} operationId Output-only The id of the cluster operation.
+ */
+
+/**
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1beta2)
  * @type object
@@ -887,6 +1360,14 @@ fi
  * @property {string} innerState Output-only. A message containing the detailed operation state.
  * @property {string} state Output-only. A message containing the operation state.
  * @property {string} stateStartTime Output-only. The time this state was entered.
+ */
+
+/**
+ * @typedef ClusterSelector
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {object} clusterLabels Required The cluster labels. Cluster must have all labels to match.
+ * @property {string} zone Required The cluster target zone.
  */
 
 /**
@@ -1002,6 +1483,14 @@ n1-standard-2
 */
 
 /**
+ * @typedef InstantiateWorkflowTemplateRequest
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} instanceId Optional A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+ * @property {integer} version Optional The version of workflow template to instantiate. If specified, the workflow will be instantiated only if the current version of the workflow template has the supplied version.This option cannot be used to instantiate a previous version of workflow template.
+ */
+
+/**
  * @typedef Job
  * @memberOf! dataproc(v1beta2)
  * @type object
@@ -1089,10 +1578,27 @@ n1-standard-2
  */
 
 /**
+ * @typedef ListWorkflowTemplatesResponse
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} nextPageToken Output-only This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
+ * @property {dataproc(v1beta2).WorkflowTemplate[]} templates Output-only WorkflowTemplates list.
+ */
+
+/**
  * @typedef LoggingConfig
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {object} driverLogLevels The per-package log levels for the driver. This may include &quot;root&quot; package name to configure rootLogger. Examples:  &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache = DEBUG&#39;
+ */
+
+/**
+ * @typedef ManagedCluster
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} clusterName Required The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
+ * @property {dataproc(v1beta2).ClusterConfig} config Required The cluster configuration.
+ * @property {object} labels Optional The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given cluster.
  */
 
 /**
@@ -1120,6 +1626,22 @@ n1-standard-2
  * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
  * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+ */
+
+/**
+ * @typedef OrderedJob
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {dataproc(v1beta2).HadoopJob} hadoopJob Job is a Hadoop job.
+ * @property {dataproc(v1beta2).HiveJob} hiveJob Job is a Hive job.
+ * @property {object} labels Optional The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given job.
+ * @property {dataproc(v1beta2).PigJob} pigJob Job is a Pig job.
+ * @property {string[]} prerequisiteStepIds Optional The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
+ * @property {dataproc(v1beta2).PySparkJob} pysparkJob Job is a Pyspark job.
+ * @property {dataproc(v1beta2).JobScheduling} scheduling Optional Job scheduling configuration.
+ * @property {dataproc(v1beta2).SparkJob} sparkJob Job is a Spark job.
+ * @property {dataproc(v1beta2).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
+ * @property {string} stepId Required The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job workflow-step-id label, and in prerequisite_step_ids field from other steps.
  */
 
 /**
@@ -1253,6 +1775,59 @@ yarn: yarn-site.xmlFor more information, see Cluster properties.
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {string[]} permissions A subset of TestPermissionsRequest.permissions that the caller is allowed.
+ */
+
+/**
+ * @typedef WorkflowGraph
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {dataproc(v1beta2).WorkflowNode[]} nodes Output-only The workflow nodes.
+ */
+
+/**
+ * @typedef WorkflowMetadata
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} clusterName Output-only The name of the managed cluster.
+ * @property {dataproc(v1beta2).ClusterOperation} createCluster Output-only The create cluster operation metadata.
+ * @property {dataproc(v1beta2).ClusterOperation} deleteCluster Output-only The delete cluster operation metadata.
+ * @property {dataproc(v1beta2).WorkflowGraph} graph Output-only The workflow graph.
+ * @property {string} state Output-only The workflow state.
+ * @property {string} template Output-only The &quot;resource name&quot; of the template.
+ * @property {integer} version Output-only The version of template at the time of workflow instantiation.
+ */
+
+/**
+ * @typedef WorkflowNode
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} error Output-only The error detail.
+ * @property {string} jobId Output-only The job id; populated after the node enters RUNNING state.
+ * @property {string[]} prerequisiteStepIds Output-only Node&#39;s prerequisite nodes.
+ * @property {string} state Output-only The node state.
+ * @property {string} stepId Output-only The name of the node.
+ */
+
+/**
+ * @typedef WorkflowTemplate
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {string} createTime Output-only The time template was created.
+ * @property {string} id Required The template id.
+ * @property {dataproc(v1beta2).OrderedJob[]} jobs Required The Directed Acyclic Graph of Jobs to submit.
+ * @property {object} labels Optional The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance.Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels can be associated with a template.
+ * @property {string} name Output-only The &quot;resource name&quot; of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+ * @property {dataproc(v1beta2).WorkflowTemplatePlacement} placement Required WorkflowTemplate scheduling information.
+ * @property {string} updateTime Output-only The time template was last updated.
+ * @property {integer} version Optional Used to perform a consistent read-modify-write.This field should be left blank for a CreateWorkflowTemplate request. It is required for an UpdateWorkflowTemplate request, and must match the current server version. A typical update template flow would fetch the current template with a GetWorkflowTemplate request, which will return the current template with the version field filled in with the current server version. The user updates other fields in the template, then returns it as part of the UpdateWorkflowTemplate request.
+ */
+
+/**
+ * @typedef WorkflowTemplatePlacement
+ * @memberOf! dataproc(v1beta2)
+ * @type object
+ * @property {dataproc(v1beta2).ClusterSelector} clusterSelector Optional A selector that chooses target cluster for jobs based on metadata.The selector is evaluated at the time each job is submitted.
+ * @property {dataproc(v1beta2).ManagedCluster} managedCluster Optional A cluster that is managed by the workflow.
  */
 
 /**

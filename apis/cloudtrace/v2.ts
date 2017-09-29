@@ -89,7 +89,7 @@ function Cloudtrace(options) { // eslint-disable-line
          * @memberOf! cloudtrace(v2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project. [SPAN_ID] is a unique identifier for a span within a trace, assigned when the span is created.
+         * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project. [SPAN_ID] is a unique identifier for a span within a trace, assigned when the span is created.
          * @param {cloudtrace(v2).Span} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -236,7 +236,7 @@ is the time when the server application handler stops running.
 * @property {cloudtrace(v2).Links} links A maximum of 128 links are allowed per Span.
 * @property {string} name The resource name of the span in the following format:
 
-    projects/[PROJECT_ID]traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project.
+    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project.
 [SPAN_ID] is a unique identifier for a span within a trace,
 assigned when the span is created.
 * @property {string} parentSpanId The [SPAN_ID] of this span&#39;s parent span. If this is a root span,
