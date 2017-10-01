@@ -693,8 +693,10 @@ and an idempotent id is desirable for deduplication purpose, UUID version 5
 is recommended. See RFC 4122 for details.
 * @property {string} operationName Fully qualified name of the operation. Reserved for future use.
 * @property {servicecontrol(v1).QuotaProperties} quotaProperties Represents the properties needed for quota check. Applicable only if this
-operation is for a quota check request.
-* @property {string} resourceContainer The resource name of the parent of a resource in the resource hierarchy.
+operation is for a quota check request. If this is not specified, no quota
+check will be performed.
+* @property {string} resourceContainer DO NOT USE. This field is deprecated, use &quot;resources&quot; field instead.
+The resource name of the parent of a resource in the resource hierarchy.
 
 This can be in one of the following formats:
     - “projects/&lt;project-id or project-number&gt;”
@@ -795,19 +797,8 @@ an invalid argument error.
  * @typedef QuotaProperties
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {object} limitByIds LimitType IDs that should be used for checking quota. Key in this map
-should be a valid LimitType string, and the value is the ID to be used. For
-example, an entry &lt;USER, 123&gt; will cause all user quota limits to use 123
-as the user ID. See google/api/quota.proto for the definition of LimitType.
-CLIENT_PROJECT: Not supported.
-USER: Value of this entry will be used for enforcing user-level quota
-      limits. If none specified, caller IP passed in the
-      servicecontrol.googleapis.com/caller_ip label will be used instead.
-      If the server cannot resolve a value for this LimitType, an error
-      will be thrown. No validation will be performed on this ID.
-Deprecated: use servicecontrol.googleapis.com/user label to send user ID.
-* @property {string} quotaMode Quota mode for this operation.
-*/
+ * @property {string} quotaMode Quota mode for this operation.
+ */
 
 /**
  * @typedef ReleaseQuotaRequest
@@ -916,12 +907,20 @@ If there is no quota release request, report_quota_info will be empty.
  * @type object
 * @property {string} callerIp The IP address of the caller.
 For caller from internet, this will be public IPv4 or IPv6 address.
-For caller from GCE VM with external IP address, this will be the VM&#39;s
-external IP address. For caller from GCE VM without external IP address, if
-the VM is in the same GCP organization (or project) as the accessed
-resource, `caller_ip` will be the GCE VM&#39;s internal IPv4 address, otherwise
-it will be redacted to &quot;gce-internal-ip&quot;.
+For caller from a Compute Engine VM with external IP address, this
+will be the VM&#39;s external IP address. For caller from a Compute
+Engine VM without external IP address, if the VM is in the same
+organization (or project) as the accessed resource, `caller_ip` will
+be the VM&#39;s internal IPv4 address, otherwise the `caller_ip` will be
+redacted to &quot;gce-internal-ip&quot;.
 See https://cloud.google.com/compute/docs/vpc/ for more information.
+* @property {string} callerNetwork The network of the caller.
+Set only if the network host project is part of the same GCP organization
+(or project) as the accessed resource.
+See https://cloud.google.com/compute/docs/vpc/ for more information.
+This is a scheme-less URI full resource name. For example:
+
+    &quot;//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID&quot;
 * @property {string} callerSuppliedUserAgent The user agent of the caller.
 This information is not authenticated and should be treated accordingly.
 For example:

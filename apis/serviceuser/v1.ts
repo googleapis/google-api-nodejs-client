@@ -339,20 +339,6 @@ firebaserules.googleapis.com.
 */
 
 /**
- * @typedef AuthorizationRule
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} permissions The required permissions. The acceptable values vary depend on the
-authorization system used. For Google APIs, it should be a comma-separated
-Google IAM permission values. When multiple permissions are listed, the
-semantics is not defined by the system. Additional documentation must
-be provided manually.
-* @property {string} selector Selects the API elements to which this rule applies.
-
-Refer to selector for syntax details.
-*/
-
-/**
  * @typedef Backend
  * @memberOf! serviceuser(v1)
  * @type object
@@ -373,6 +359,26 @@ value lower than this will be rejected.
 * @property {string} selector Selects the methods to which this rule applies.
 
 Refer to selector for syntax details.
+*/
+
+/**
+ * @typedef Billing
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {serviceuser(v1).BillingDestination[]} consumerDestinations Billing configurations for sending metrics to the consumer project.
+There can be multiple consumer destinations per service, each one must have
+a different monitored resource type. A metric can be used in at most
+one consumer destination.
+*/
+
+/**
+ * @typedef BillingDestination
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string[]} metrics Names of the metrics to report to this billing destination.
+Each name must be defined in Service.metrics section.
+* @property {string} monitoredResource The monitored resource type. The type must be defined in
+Service.monitored_resources section.
 */
 
 /**
@@ -588,10 +594,6 @@ segment matches.
 * @property {serviceuser(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must
 not contain an `additional_bindings` field themselves (that is,
 the nesting may only be one level deep).
-* @property {serviceuser(v1).AuthorizationRule[]} authorizations Specifies the permission(s) required for an API element for the overall
-API request to succeed. It is typically used to mark request message fields
-that contain the name of the resource and indicates the permissions that
-will be checked on that resource.
 * @property {string} body The name of the request field whose value is mapped to the HTTP body, or
 `*` for mapping all fields not captured by the path pattern to the HTTP
 body. NOTE: the referred field must not be a repeated field and must be
@@ -617,42 +619,6 @@ response. Other response fields are ignored. This field is optional. When
 not set, the response message will be used as HTTP body of response.
 NOTE: the referred field must be not a repeated field and must be present
 at the top-level of response message type.
-* @property {string} restCollection DO NOT USE. This is an experimental field.
-
-Optional. The REST collection name is by default derived from the URL
-pattern. If specified, this field overrides the default collection name.
-Example:
-
-    rpc AddressesAggregatedList(AddressesAggregatedListRequest)
-        returns (AddressesAggregatedListResponse) {
-      option (google.api.http) = {
-        get: &quot;/v1/projects/{project_id}/aggregated/addresses&quot;
-        rest_collection: &quot;projects.addresses&quot;
-      };
-    }
-
-This method has the automatically derived collection name
-&quot;projects.aggregated&quot;. Because, semantically, this rpc is actually an
-operation on the &quot;projects.addresses&quot; collection, the `rest_collection`
-field is configured to override the derived collection name.
-* @property {string} restMethodName DO NOT USE. This is an experimental field.
-
-Optional. The rest method name is by default derived from the URL
-pattern. If specified, this field overrides the default method name.
-Example:
-
-    rpc CreateResource(CreateResourceRequest)
-        returns (CreateResourceResponse) {
-      option (google.api.http) = {
-        post: &quot;/v1/resources&quot;,
-        body: &quot;resource&quot;,
-        rest_method_name: &quot;insert&quot;
-      };
-    }
-
-This method has the automatically derived rest method name
-&quot;create&quot;, but for backwards compatibility with apiary, it is specified as
-insert.
 * @property {string} selector Selects methods to which this rule applies.
 
 Refer to selector for syntax details.
@@ -1152,6 +1118,7 @@ normalization process. It is an error to specify an API interface here
 which cannot be resolved against the associated IDL files.
 * @property {serviceuser(v1).Authentication} authentication Auth configuration.
 * @property {serviceuser(v1).Backend} backend API backend configuration.
+* @property {serviceuser(v1).Billing} billing Billing configuration.
 * @property {integer} configVersion The semantic version of the service configuration. The config version
 affects the interpretation of the service configuration. For example,
 certain features are enabled by default for certain config versions.

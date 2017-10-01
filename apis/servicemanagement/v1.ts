@@ -1158,6 +1158,26 @@ Refer to selector for syntax details.
 */
 
 /**
+ * @typedef Billing
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).BillingDestination[]} consumerDestinations Billing configurations for sending metrics to the consumer project.
+There can be multiple consumer destinations per service, each one must have
+a different monitored resource type. A metric can be used in at most
+one consumer destination.
+*/
+
+/**
+ * @typedef BillingDestination
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} metrics Names of the metrics to report to this billing destination.
+Each name must be defined in Service.metrics section.
+* @property {string} monitoredResource The monitored resource type. The type must be defined in
+Service.monitored_resources section.
+*/
+
+/**
  * @typedef Binding
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1515,8 +1535,12 @@ to ensure we don&#39;t have orphans.
 see also: go/prevent-orphaned-operations
 * @property {string} flowName The name of the top-level flow corresponding to this operation.
 Must be equal to the &quot;name&quot; field for a FlowName enum.
+* @property {integer} operationType Operation type which is a flow type and subtype info as that is missing in
+our datastore otherwise. This maps to the ordinal value of the enum:
+jcg/api/tenant/operations/OperationNamespace.java
 * @property {string[]} resourceNames The full name of the resources that this flow is directly associated with.
 * @property {string} startTime The start time of the operation.
+* @property {string} surface 
 */
 
 /**
@@ -2157,6 +2181,7 @@ normalization process. It is an error to specify an API interface here
 which cannot be resolved against the associated IDL files.
 * @property {servicemanagement(v1).Authentication} authentication Auth configuration.
 * @property {servicemanagement(v1).Backend} backend API backend configuration.
+* @property {servicemanagement(v1).Billing} billing Billing configuration.
 * @property {integer} configVersion The semantic version of the service configuration. The config version
 affects the interpretation of the service configuration. For example,
 certain features are enabled by default for certain config versions.

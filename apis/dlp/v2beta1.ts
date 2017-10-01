@@ -933,27 +933,6 @@ The order of characters does not matter.
 */
 
 /**
- * @typedef GooglePrivacyDlpV2beta1CryptoReplaceRegexFpeConfig
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId} context This is also known as the &#39;tweak&#39;.
-See `context` in `CryptoReplaceFfxFpeConfig` for more details.
-* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoKey} cryptoKey The key used by the encryption algorithm.
-* @property {string} regex The regular expression to match the identifier/surrogate values.
-There are several restrictions on the regular expression:
-
-- It must match at least two distinct strings
-(for example, &#39;a&#39; is invalid but &#39;[ab]&#39; is valid).
-- Both the regular expression itself and the strings it matches must be
-representable by the ISO LATIN-1 character set.
-- Its [syntax](https://github.com/google/re2/wiki/Syntax) can be found
-under the google/re2 repository on GitHub.
-- It is advisable to anchor the regex (with &#39;^&#39; and &#39;$&#39;); otherwise
-implicit &#39;.*&#39;s are assumed.
-- It must be 1000 characters at most.
-*/
-
-/**
  * @typedef GooglePrivacyDlpV2beta1DatastoreKey
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -1485,7 +1464,6 @@ Cannot be `&quot;&quot;`.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CharacterMaskConfig} characterMaskConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoHashConfig} cryptoHashConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoReplaceFfxFpeConfig} cryptoReplaceFfxFpeConfig 
- * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CryptoReplaceRegexFpeConfig} cryptoReplaceRegexFpeConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FixedSizeBucketingConfig} fixedSizeBucketingConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1RedactConfig} redactConfig 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ReplaceValueConfig} replaceConfig 

@@ -163,7 +163,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value of false will become active on September 28, 2017.
+     * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3017,6 +3017,7 @@ United States
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).OrderCancellation[]} cancellations Cancellations of the line item.
+ * @property {string} channelType The channel type of the order: &quot;purchaseOnGoogle&quot; or &quot;googleExpress&quot;.
  * @property {string} id The id of the line item.
  * @property {content(v2).Price} price Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
  * @property {content(v2).OrderLineItemProduct} product Product data from the time of the order placement.

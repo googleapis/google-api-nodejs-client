@@ -720,6 +720,7 @@ United States
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {content(v2sandbox).OrderCancellation[]} cancellations Cancellations of the line item.
+ * @property {string} channelType The channel type of the order: &quot;purchaseOnGoogle&quot; or &quot;googleExpress&quot;.
  * @property {string} id The id of the line item.
  * @property {content(v2sandbox).Price} price Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
  * @property {content(v2sandbox).OrderLineItemProduct} product Product data from the time of the order placement.

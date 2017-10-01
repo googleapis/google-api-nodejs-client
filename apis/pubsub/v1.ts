@@ -2301,7 +2301,7 @@ The maximum deadline you can specify is 600 seconds (10 minutes).
 An empty `pushConfig` indicates that the Pub/Sub system should
 stop pushing messages from the given subscription and allow
 messages to be pulled and acknowledged - effectively pausing
-the subscription if `Pull` is not called.
+the subscription if `Pull` or `StreamingPull` is not called.
 */
 
 /**
@@ -2438,7 +2438,8 @@ again during that time (on a best-effort basis).
 For pull subscriptions, this value is used as the initial value for the ack
 deadline. To override this value for a given message, call
 `ModifyAckDeadline` with the corresponding `ack_id` if using
-pull.
+non-streaming pull or send the `ack_id` in a
+`StreamingModifyAckDeadlineRequest` if using streaming pull.
 The minimum custom deadline you can specify is 10 seconds.
 The maximum custom deadline you can specify is 600 seconds (10 minutes).
 If this parameter is 0, a default value of 10 seconds is used.

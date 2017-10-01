@@ -21,7 +21,7 @@ import createAPIRequest from '../../lib/apirequest';
 /**
  * Google Apps Script Execution API
  *
- * Executes functions in Google Apps Script projects.
+ * An API for managing and executing Google Apps Script projects.
  *
  * @example
  * const google = require('googleapis');
