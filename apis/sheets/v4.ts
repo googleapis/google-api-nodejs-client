@@ -358,7 +358,7 @@ function Sheets(options) { // eslint-disable-line
       /**
        * sheets.spreadsheets.developerMetadata.get
        *
-       * @desc Returns the developer metadata with the specified id. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
+       * @desc Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
        *
        * @alias sheets.spreadsheets.developerMetadata.get
        * @memberOf! sheets(v4)
@@ -876,7 +876,7 @@ function Sheets(options) { // eslint-disable-line
       /**
        * sheets.spreadsheets.values.batchGetByDataFilter
        *
-       * @desc Returns one or more ranges of values from a spreadsheet that match the specified data filters.  The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
+       * @desc Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters.  Ranges that match any of the data filters in the request will be returned.
        *
        * @alias sheets.spreadsheets.values.batchGetByDataFilter
        * @memberOf! sheets(v4)
@@ -1550,6 +1550,7 @@ Only valid if the axis is not associated with the domain.
 * @property {string} position The position of this axis.
 * @property {string} title The title of this axis. If set, this overrides any title inferred
 from headers of the data.
+* @property {sheets(v4).TextPosition} titleTextPosition The axis title text position.
 */
 
 /**
@@ -1587,6 +1588,8 @@ and COLUMN are supported.
  * @type object
 * @property {sheets(v4).BasicChartAxis[]} axis The axis on the chart.
 * @property {string} chartType The type of the chart.
+* @property {string} compareMode The behavior of tooltips and data highlighting when hovering on data and
+chart area.
 * @property {sheets(v4).BasicChartDomain[]} domains The domain of data this is charting.
 Only a single domain is supported.
 * @property {integer} headerCount The number of rows or columns in the data that are &quot;headers&quot;.
@@ -1729,7 +1732,7 @@ replies to some requests may be empty.
  * @type object
 * @property {sheets(v4).DataFilterValueRange[]} data The new values to apply to the spreadsheet.  If more than one range is
 matched by the specified DataFilter the specified values will be
-applied to all of of those ranges.
+applied to all of those ranges.
 * @property {boolean} includeValuesInResponse Determines if the update response should include the values
 of the cells that were updated. By default, responses
 do not include the updated values. The `updatedData` field within
@@ -2031,9 +2034,16 @@ minimum padding.  False to use the default padding.
 (Not applicable to Geo and Org charts.)
 * @property {sheets(v4).OrgChartSpec} orgChart An org chart specification.
 * @property {sheets(v4).PieChartSpec} pieChart A pie chart specification.
+* @property {string} subtitle The subtitle of the chart.
+* @property {sheets(v4).TextFormat} subtitleTextFormat The subtitle text format.
+Strikethrough and underline are not supported.
+* @property {sheets(v4).TextPosition} subtitleTextPosition The subtitle text position.
+This field is optional.
 * @property {string} title The title of the chart.
 * @property {sheets(v4).TextFormat} titleTextFormat The title text format.
 Strikethrough and underline are not supported.
+* @property {sheets(v4).TextPosition} titleTextPosition The title text position.
+This field is optional.
 */
 
 /**
@@ -2310,25 +2320,25 @@ or column; it cannot be unbounded or span multiple rows or columns.
  * @type object
 * @property {string} locationMatchingStrategy Determines how this lookup matches the location.  If this field is
 specified as EXACT, only developer metadata associated on the exact
-location specified will be matched.  If this field is specified to INTERSECTING,
-developer metadata associated on intersecting locations will also be
-matched.  If left unspecified, this field will assume a default value of
+location specified is matched.  If this field is specified to INTERSECTING,
+developer metadata associated on intersecting locations is also
+matched.  If left unspecified, this field assumes a default value of
 INTERSECTING.
 If this field is specified, a metadataLocation
 must also be specified.
 * @property {string} locationType Limits the selected developer metadata to those entries which are
-associated with locations of the specified type.  For example, specifying
-this as ROW will only consider
-developer metadata associated on rows.  If left unspecified, all location
-types will be considered.  This field cannot be specified as
-SPREADSHEET when the
-locationMatchingStrategy is
-specified as INTERSECTING or when the
+associated with locations of the specified type.  For example, when this
+field is specified as ROW this lookup
+only considers developer metadata associated on rows.  If the field is left
+unspecified, all location types are considered.  This field cannot be
+specified as SPREADSHEET when
+the locationMatchingStrategy
+is specified as INTERSECTING or when the
 metadataLocation is specified as a
 non-spreadsheet location: spreadsheet metadata cannot intersect any other
-developer metadata location.  This field also must be left unspecified when the
-locationMatchingStrategy is
-specified as EXACT.
+developer metadata location.  This field also must be left unspecified when
+the locationMatchingStrategy
+is specified as EXACT.
 * @property {integer} metadataId Limits the selected developer metadata to that which has a matching
 DeveloperMetadata.metadata_id.
 * @property {string} metadataKey Limits the selected developer metadata to that which has a matching
@@ -2341,7 +2351,7 @@ locationMatchingStrategy.
 DeveloperMetadata.metadata_value.
 * @property {string} visibility Limits the selected developer metadata to that which has a matching
 DeveloperMetadata.visibility.  If left unspecified, all developer
-metadata visibile to the requesting project will be considered.
+metadata visibile to the requesting project is considered.
 */
 
 /**
@@ -3204,6 +3214,13 @@ be a custom time zone such as `GMT-07:00`.
  * @type object
  * @property {sheets(v4).TextFormat} format The format of this run.  Absent values inherit the cell&#39;s format.
  * @property {integer} startIndex The character index where this run starts.
+ */
+
+/**
+ * @typedef TextPosition
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {string} horizontalAlignment Horizontal alignment setting for the piece of text.
  */
 
 /**

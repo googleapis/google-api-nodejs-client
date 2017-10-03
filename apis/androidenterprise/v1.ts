@@ -3226,6 +3226,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @typedef AppVersion
  * @memberOf! androidenterprise(v1)
  * @type object
+ * @property {string} track The track that this app was published in. For example if track is &quot;alpha&quot;, this is an alpha version of the app.
  * @property {integer} versionCode Unique increasing identifier for the app version.
  * @property {string} versionString The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be &quot;1.4&quot;).
  */
@@ -3515,6 +3516,7 @@ Possible values include:
  * @type object
  * @property {androidenterprise(v1).AppVersion[]} appVersion App versions currently available for this product.
  * @property {string} authorName The name of the author of the product (for example, the app developer).
+ * @property {string[]} availableTracks The tracks that are visible to the enterprise.
  * @property {string} detailsUrl A link to the (consumer) Google Play details page for the product.
  * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
  * @property {string} iconUrl A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
@@ -3568,6 +3570,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
  * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility. Further &quot;allApproved&quot; or &quot;includeAll&quot; does not enable automatic visibility of &quot;alpha&quot; or &quot;beta&quot; tracks for Android app. Use ProductVisibility to enable &quot;alpha&quot; or &quot;beta&quot; tracks per user.
+ * @property {androidenterprise(v1).ProductVisibility[]} productVisibility Other products that are part of the set, in addition to those specified in the productId array. The only difference between this field and the productId array is that it&#39;s possible to specify additional information about this product visibility, see ProductVisibility and its fields for more information. Specifying the same product ID both here and in the productId array is not allowed and it will result in an error.
  */
 
 /**
@@ -3577,6 +3580,16 @@ Possible values include:
  * @property {string} certificateHashSha1 The base64 urlsafe encoded SHA1 hash of the certificate. (This field is deprecated in favor of SHA2-256. It should not be used and may be removed at any time.)
  * @property {string} certificateHashSha256 The base64 urlsafe encoded SHA2-256 hash of the certificate.
  */
+
+/**
+ * @typedef ProductVisibility
+ * @memberOf! androidenterprise(v1)
+ * @type object
+* @property {string} productId The product ID that should be made visible to the user. This is required.
+* @property {string[]} tracks This allows to only grant visibility to the specified tracks of the app. For example, if an app has a prod version, a beta version and an alpha version and the enterprise has been granted visibility to both the alpha and beta tracks, if tracks is {&quot;beta&quot;, &quot;production&quot;} the user will be able to install the app and they will get the beta version of the app. If there are no app versions in the specified track or if the enterprise wasn&#39;t granted visibility for the track, adding the &quot;alpha&quot; and &quot;beta&quot; values to the list of tracks will have no effect for now; however they will take effect once both conditions are met. Note that the enterprise itself needs to be granted access to the alpha and/or beta tracks, regardless of whether individual users or admins have access to those tracks.
+
+The allowed sets are: {} (considered equivalent to {&quot;production&quot;}) {&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;} {&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order of elements is not relevant. Any other set of tracks will be rejected with an error.
+*/
 
 /**
  * @typedef ProductsApproveRequest

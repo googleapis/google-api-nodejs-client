@@ -151,6 +151,43 @@ function Identitytoolkit(options) { // eslint-disable-line
     },
 
     /**
+     * identitytoolkit.relyingparty.emailLinkSignin
+     *
+     * @desc Reset password for a user.
+     *
+     * @alias identitytoolkit.relyingparty.emailLinkSignin
+     * @memberOf! identitytoolkit(v3)
+     *
+     * @param {object} params Parameters for request
+     * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    emailLinkSignin: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * identitytoolkit.relyingparty.getAccountInfo
      *
      * @desc Returns the account info.
@@ -756,6 +793,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} providerId The provider ID of the auth URI.
  * @property {boolean} registered Whether the user is registered if the identifier is an email.
  * @property {string} sessionId Session ID which should be passed in the following verifyAssertion request.
+ * @property {string[]} signinMethods All sign-in methods this user has used.
  */
 
 /**
@@ -772,6 +810,19 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} kind The fixed string &quot;identitytoolkit#DownloadAccountResponse&quot;.
  * @property {string} nextPageToken The next page token. To be used in a subsequent request to return the next page of results.
  * @property {identitytoolkit(v3).UserInfo[]} users The user accounts data.
+ */
+
+/**
+ * @typedef EmailLinkSigninResponse
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} email The user&#39;s email.
+ * @property {string} expiresIn Expiration time of STS id token in seconds.
+ * @property {string} idToken The STS id token to login the newly signed in user.
+ * @property {boolean} isNewUser Whether the user is new.
+ * @property {string} kind The fixed string &quot;identitytoolkit#EmailLinkSigninResponse&quot;.
+ * @property {string} localId The RP local ID of the user.
+ * @property {string} refreshToken The refresh token for the signed in user.
  */
 
 /**
@@ -849,6 +900,15 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {integer} maxResults The max number of results to return in the response.
  * @property {string} nextPageToken The token for the next page. This should be taken from the previous response.
  * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
+ */
+
+/**
+ * @typedef IdentitytoolkitRelyingpartyEmailLinkSigninRequest
+ * @memberOf! identitytoolkit(v3)
+ * @type object
+ * @property {string} email The email address of the user.
+ * @property {string} idToken Token for linking flow.
+ * @property {string} oobCode The confirmation code.
  */
 
 /**
