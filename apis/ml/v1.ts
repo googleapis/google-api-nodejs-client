@@ -572,6 +572,45 @@ function Ml(options) { // eslint-disable-line
       },
 
       /**
+       * ml.projects.models.patch
+       *
+       * @desc Updates a specific model resource.  Currently the only supported fields to update are `description` and `default_version.name`.
+       *
+       * @alias ml.projects.models.patch
+       * @memberOf! ml(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Required. The project name.
+       * @param {string=} params.updateMask Required. Specifies the path, relative to `Model`, of the field to update.  For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo",       "defaultVersion": {         "name":"version_1"       }     } In this example, the model is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your model resource.  Currently the supported update masks are `description`, `default_version.name`, `labels`, and `etag`.
+       * @param {ml(v1).GoogleCloudMlV1__Model} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * ml.projects.models.setIamPolicy
        *
        * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
@@ -793,6 +832,45 @@ function Ml(options) { // eslint-disable-line
             params: params,
             requiredParams: ['parent'],
             pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * ml.projects.models.versions.patch
+         *
+         * @desc Updates the specified Version resource.  Currently the only supported field to update is `description`.
+         *
+         * @alias ml.projects.models.versions.patch
+         * @memberOf! ml(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required. The name of the model.
+         * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     } In this example, the version is blindly overwritten since no etag is given.  To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your version resource.  Currently the only supported update masks are `description`, `labels`, and `etag`.
+         * @param {ml(v1).GoogleCloudMlV1__Version} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
             context: self
           };
 

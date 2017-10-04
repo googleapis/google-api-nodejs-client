@@ -1226,11 +1226,10 @@ not fulfill the regex pattern or min/max values.
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
 * @property {bigquerydatatransfer(v1).DataSource[]} dataSources List of supported data sources and their transfer settings.
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+* @property {string} nextPageToken Output only. The next-pagination token. For multiple-page list results,
 this token can be used as the
 `ListDataSourcesRequest.page_token`
 to request the next page of list results.
-Output only.
 */
 
 /**
@@ -1245,39 +1244,33 @@ Output only.
  * @typedef ListTransferConfigsResponse
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+* @property {string} nextPageToken Output only. The next-pagination token. For multiple-page list results,
 this token can be used as the
 `ListTransferConfigsRequest.page_token`
 to request the next page of list results.
-Output only.
-* @property {bigquerydatatransfer(v1).TransferConfig[]} transferConfigs The stored pipeline transfer configurations.
-Output only.
+* @property {bigquerydatatransfer(v1).TransferConfig[]} transferConfigs Output only. The stored pipeline transfer configurations.
 */
 
 /**
  * @typedef ListTransferLogsResponse
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+* @property {string} nextPageToken Output only. The next-pagination token. For multiple-page list results,
 this token can be used as the
 `GetTransferRunLogRequest.page_token`
 to request the next page of list results.
-Output only.
-* @property {bigquerydatatransfer(v1).TransferMessage[]} transferMessages The stored pipeline transfer messages.
-Output only.
+* @property {bigquerydatatransfer(v1).TransferMessage[]} transferMessages Output only. The stored pipeline transfer messages.
 */
 
 /**
  * @typedef ListTransferRunsResponse
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
-* @property {string} nextPageToken The next-pagination token. For multiple-page list results,
+* @property {string} nextPageToken Output only. The next-pagination token. For multiple-page list results,
 this token can be used as the
 `ListTransferRunsRequest.page_token`
 to request the next page of list results.
-Output only.
-* @property {bigquerydatatransfer(v1).TransferRun[]} transferRuns The stored pipeline transfer runs.
-Output only.
+* @property {bigquerydatatransfer(v1).TransferRun[]} transferRuns Output only. The stored pipeline transfer runs.
 */
 
 /**
@@ -1322,9 +1315,7 @@ for just [today-1].
 Only valid if the data source supports the feature. Set the value to  0
 to use the default value.
 * @property {string} dataSourceId Data source id. Cannot be changed once data transfer is created.
-* @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
-&quot;US&quot; and &quot;EU&quot;.
-Output only.
+* @property {string} datasetRegion Output only. Region in which BigQuery dataset is located.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {boolean} disabled Is this config disabled. When set to true, no runs are scheduled
 for a given transfer.
@@ -1335,8 +1326,7 @@ Transfer config names have the form
 Where `config_id` is usually a uuid, even though it is not
 guaranteed or required. The name is ignored when creating a transfer
 config.
-* @property {string} nextRunTime Next time when data transfer will run.
-Output only.
+* @property {string} nextRunTime Output only. Next time when data transfer will run.
 * @property {object} params Data transfer specific parameters.
 * @property {string} schedule Data transfer schedule.
 If the data source does not support a custom schedule, this should be
@@ -1350,14 +1340,11 @@ Examples of valid format:
 See more explanation about the format here:
 https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
 NOTE: the granularity should be at least 8 hours, or less frequent.
-* @property {string} state State of the most recently updated transfer run.
-Output only.
-* @property {string} updateTime Data transfer modification time. Ignored by server on input.
-Output only.
-* @property {string} userId Unique ID of the user on whose behalf transfer is done. Applicable only
-to data sources that do not support service accounts. When set to 0,
-the data source service account credentials are used.
-Output only.
+* @property {string} state Output only. State of the most recently updated transfer run.
+* @property {string} updateTime Output only. Data transfer modification time. Ignored by server on input.
+* @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done.
+Applicable only to data sources that do not support service accounts.
+When set to 0, the data source service account credentials are used.
 */
 
 /**
@@ -1373,15 +1360,11 @@ Output only.
  * @typedef TransferRun
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
-* @property {string} dataSourceId Data source id.
-Output only.
-* @property {string} datasetRegion Region in which BigQuery dataset is located. Currently possible values are:
-&quot;US&quot; and &quot;EU&quot;.
-Output only.
+* @property {string} dataSourceId Output only. Data source id.
+* @property {string} datasetRegion Output only. Region in which BigQuery dataset is located.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
-* @property {string} endTime Time when transfer run ended. Parameter ignored by server for input
-requests.
-Output only.
+* @property {string} endTime Output only. Time when transfer run ended.
+Parameter ignored by server for input requests.
 * @property {string} name The resource name of the transfer run.
 Transfer run names have the form
 `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
@@ -1389,23 +1372,18 @@ The name is ignored when creating a transfer run.
 * @property {object} params Data transfer specific parameters.
 * @property {string} runTime For batch transfer runs, specifies the date and time that
 data should be ingested.
-* @property {string} schedule Describes the schedule of this transfer run if it was created as part of
-a regular schedule. For batch transfer runs that are directly created,
-this is empty.
+* @property {string} schedule Output only. Describes the schedule of this transfer run if it was
+created as part of a regular schedule. For batch transfer runs that are
+scheduled manually, this is empty.
 NOTE: the system might choose to delay the schedule depending on the
 current load, so `schedule_time` doesn&#39;t always matches this.
-Output only.
 * @property {string} scheduleTime Minimum time after which a transfer run can be started.
-* @property {string} startTime Time when transfer run was started. Parameter ignored by server for input
-requests.
-Output only.
-* @property {string} state Data transfer run state. Ignored for input requests.
-Output only.
-* @property {string} updateTime Last time the data transfer run state was updated.
-Output only.
-* @property {string} userId Unique ID of the user on whose behalf transfer is done. Applicable only
-to data sources that do not support service accounts. When set to 0,
-the data source service account credentials are used.
-Output only.
+* @property {string} startTime Output only. Time when transfer run was started.
+Parameter ignored by server for input requests.
+* @property {string} state Output only. Data transfer run state. Ignored for input requests.
+* @property {string} updateTime Output only. Last time the data transfer run state was updated.
+* @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done.
+Applicable only to data sources that do not support service accounts.
+When set to 0, the data source service account credentials are used.
 */
 export = Bigquerydatatransfer;
