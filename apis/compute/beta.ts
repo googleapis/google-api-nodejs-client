@@ -14796,6 +14796,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(beta).Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36115,7 +36116,7 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
-* @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
 * @property {string} subnetwork For external addresses, this field should not be used.
 
 The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
@@ -36923,10 +36924,14 @@ If you choose to specify this property, you can specify the network as a full or
  * @typedef FixedOrPercent
  * @memberOf! compute(beta)
  * @type object
- * @property {integer} calculated [Output Only] Absolute value calculated based on mode: mode = fixed -&gt; calculated = fixed = percent -&gt; calculated = ceiling(percent/100 * base_value)
- * @property {integer} fixed fixed must be non-negative.
- * @property {integer} percent percent must belong to [0, 100].
- */
+* @property {integer} calculated [Output Only] Absolute value of VM instances calculated based on the specific mode.
+
+ 
+- If the value is fixed, then the caculated value is equal to the fixed value. 
+- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+* @property {integer} fixed Specifies a fixed number of VM instances. This must be a positive integer.
+* @property {integer} percent Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
+*/
 
 /**
  * @typedef ForwardingRule
@@ -37049,6 +37054,7 @@ This field is not used for internal load balancing.
  * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
+ * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
  */
 
 /**
@@ -37060,6 +37066,7 @@ This field is not used for internal load balancing.
  * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
+ * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
  */
 
 /**
@@ -37348,30 +37355,32 @@ Named ports apply to all instances in this instance group.
  * @typedef InstanceGroupManager
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies The autohealing policy for this managed instance group. You can specify only one value.
- * @property {string} baseInstanceName The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
- * @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
- * @property {compute(beta).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {compute(beta).DistributionPolicy} distributionPolicy Policy valid only for regional managed instance groups.
- * @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
- * @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
- * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
- * @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
- * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
- * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
- * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
- * @property {compute(beta).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
- * @property {compute(beta).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
- * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
- * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
- * @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
- * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
- * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
- * @property {compute(beta).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
- * @property {compute(beta).InstanceGroupManagerVersion[]} versions Versions supported by this IGM. User should set this field if they need fine-grained control over how many instances in each version are run by this IGM. Versions are keyed by instanceTemplate. Every instanceTemplate can appear at most once. This field overrides instanceTemplate field. If both instanceTemplate and versions are set, the user receives a warning. &quot;instanceTemplate: X&quot; is semantically equivalent to &quot;versions [ { instanceTemplate: X } ]&quot;. Exactly one version must have targetSize field left unset. Size of such a version will be calculated automatically.
- * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
- */
+* @property {compute(beta).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies The autohealing policy for this managed instance group. You can specify only one value.
+* @property {string} baseInstanceName The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+* @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+* @property {compute(beta).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {compute(beta).DistributionPolicy} distributionPolicy Policy valid only for regional managed instance groups.
+* @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
+* @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
+* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
+* @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
+* @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+* @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+* @property {compute(beta).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+* @property {compute(beta).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
+* @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+* @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
+* @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
+* @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+* @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+* @property {compute(beta).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
+* @property {compute(beta).InstanceGroupManagerVersion[]} versions Specifies the instance templates used by this managed instance group to create instances.
+
+Each version is defined by an instanceTemplate. Every template can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+* @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
+*/
 
 /**
  * @typedef InstanceGroupManagerActionsSummary
@@ -37436,21 +37445,31 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagerUpdatePolicy
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).FixedOrPercent} maxSurge Maximum number of instances that can be created above the InstanceGroupManager.targetSize during the update process. By default, a fixed value of 1 is used. Using maxSurge &gt; 0 will cause instance names to change during the update process. At least one of { maxSurge, maxUnavailable } must be greater than 0.
- * @property {compute(beta).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable during the update process. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a fixed value of 1 is used. At least one of { maxSurge, maxUnavailable } must be greater than 0.
- * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
- * @property {string} minimalAction Minimal action to be taken on an instance. The order of action types is: RESTART &lt; REPLACE.
- * @property {string} type 
- */
+* @property {compute(beta).FixedOrPercent} maxSurge The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+
+At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+* @property {compute(beta).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
+
+ 
+- The instance&#39;s status is RUNNING. 
+- If there is a health check on the instance grourp, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+
+At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+* @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
+* @property {string} minimalAction Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a code&gt;RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+* @property {string} type 
+*/
 
 /**
  * @typedef InstanceGroupManagerVersion
  * @memberOf! compute(beta)
  * @type object
- * @property {string} instanceTemplate 
- * @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
- * @property {compute(beta).FixedOrPercent} targetSize Intended number of instances that are created from instanceTemplate. The final number of instances created from instanceTemplate will be equal to: * if expressed as fixed number: min(targetSize.fixed, instanceGroupManager.targetSize), * if expressed as percent: ceiling(targetSize.percent * InstanceGroupManager.targetSize). If unset, this version will handle all the remaining instances.
- */
+* @property {string} instanceTemplate 
+* @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
+* @property {compute(beta).FixedOrPercent} targetSize Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  
+- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. 
+- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded up.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information.
+*/
 
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
@@ -38615,7 +38634,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(beta)
  * @type object
  * @property {string} action Required
- * @property {compute(beta).Condition[]} conditions Additional restrictions that must be met
+ * @property {compute(beta).Condition[]} conditions Additional restrictions that must be met. All conditions must pass for the rule to match.
  * @property {string} description Human-readable description of the rule.
  * @property {string[]} ins If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
  * @property {compute(beta).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.

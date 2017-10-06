@@ -510,12 +510,14 @@ For example:
  * @typedef SafeSearchAnnotation
  * @memberOf! vision(v1)
  * @type object
-* @property {string} adult Represents the adult content likelihood for the image.
+* @property {string} adult Represents the adult content likelihood for the image. Adult content may
+contain elements such as nudity, pornographic images or cartoons, or
+sexual activities.
 * @property {string} medical Likelihood that this is a medical image.
 * @property {string} spoof Spoof likelihood. The likelihood that an modification
 was made to the image&#39;s canonical version to make it appear
 funny or offensive.
-* @property {string} violence Violence likelihood.
+* @property {string} violence Likelihood that this image contains violent content.
 */
 
 /**

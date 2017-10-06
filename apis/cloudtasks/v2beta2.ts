@@ -1744,7 +1744,7 @@ function Cloudtasks(options) { // eslint-disable-line
           /**
            * cloudtasks.projects.locations.queues.tasks.pull
            *
-           * @desc Pulls tasks from a pull queue and acquires a lease on them for a specified PullTasksRequest.lease_duration.  This method is invoked by the lease holder to obtain the lease. The lease holder must acknowledge the task via CloudTasks.AcknowledgeTask after they have performed the work associated with the task.  The payload is intended to store data that the lease holder needs to perform the work associated with the task. To return the payloads in the PullTasksResponse, set PullTasksRequest.response_view to Task.View.FULL.
+           * @desc Pulls tasks from a pull queue and acquires a lease on them for a specified PullTasksRequest.lease_duration.  This method is invoked by the lease holder to obtain the lease. The lease holder must acknowledge the task via CloudTasks.AcknowledgeTask after they have performed the work associated with the task.  The payload is intended to store data that the lease holder needs to perform the work associated with the task. To return the payloads in the PullTasksResponse, set PullTasksRequest.response_view to Task.View.FULL.  A maximum of 10 qps of CloudTasks.PullTasks requests are allowed per queue. google.rpc.Code.RESOURCE_EXHAUSTED is returned when this limit is exceeded. google.rpc.Code.RESOURCE_EXHAUSTED is also returned when ThrottleConfig.max_tasks_dispatched_per_second is exceeded.
            *
            * @example
            * // BEFORE RUNNING:
@@ -2091,7 +2091,7 @@ task-specific information, are also be sent to the task handler; see
 
 The app&#39;s request handler for the task&#39;s target URL must be able to handle
 HTTP requests with this http_method, otherwise the task attempt will fail
-with error code 405 &quot;Method Not Allowed&quot; because &quot;the method specified in
+with error code 405 (Method Not Allowed). See
 the Request-Line is not allowed for the resource identified by the
 Request-URI&quot;. See
 [Writing a push task request handler](/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
@@ -2107,7 +2107,7 @@ an incompatible HttpMethod.
 * @property {string} relativeUrl The relative URL.
 
 The relative URL must begin with &quot;/&quot; and must be a valid HTTP relative URL.
-It can contain a path, query string arguments, and `#` fragments.
+It can contain a path and query string arguments.
 If the relative URL is empty, then the root path &quot;/&quot; will be used.
 No spaces are allowed, and the maximum length allowed is 2083 characters.
 */
@@ -2353,23 +2353,30 @@ Task.name. If a name is not specified then the system will
 generate a random unique task id, which will be returned in the
 response&#39;s Task.name.
 
-Explicitly specifying a Task.name enables task
-de-duplication. If a task&#39;s name is identical to the name of an
-existing task or a task that was deleted or completed within the
-last ~10 days then the call to CloudTasks.CreateTask will
-fail with google.rpc.Code.ALREADY_EXISTS. Because there is an
-extra lookup cost to identify duplicate task names, these
-CloudTasks.CreateTask calls have significantly increased
-latency. Using hashed strings for the task id or for the prefix
-of the task id is recommended. Choosing task ids that are
-sequential or have sequential prefixes, for example using a
+If Task.schedule_time is not set or is in the past then Cloud
+Tasks will set it to the current time.
+
+Task De-duplication:
+
+Explicitly specifying a task ID enables task de-duplication.  If
+a task&#39;s ID is identical to that of an existing task or a task
+that was deleted or completed recently then the call will
+fail. If the task&#39;s queue was created using Cloud Tasks, then
+another task with the same name can&#39;t be created for ~1hour after
+the original task was deleted or completed. If the task&#39;s queue
+was created using queue.yaml or queue.xml, then another task with
+the same name can&#39;t be created for ~9days after the original task
+was deleted or completed.
+
+Because there is an extra lookup cost to identify duplicate task
+names, these CloudTasks.CreateTask calls have significantly
+increased latency. Using hashed strings for the task id or for
+the prefix of the task id is recommended. Choosing task ids that
+are sequential or have sequential prefixes, for example using a
 timestamp, causes an increase in latency and error rates in all
 task commands. The infrastructure relies on an approximately
 uniform distribution of task ids to store and serve tasks
 efficiently.
-
-If Task.schedule_time is not set or is in the past then Cloud
-Tasks will set it to the current time.
 */
 
 /**
@@ -2502,27 +2509,19 @@ The tag must be less than 500 bytes.
 
 When `filter` is set to `tag=&lt;my-tag&gt;` then the
 PullTasksResponse will contain only tasks whose
-PullMessage.tag is equal to `&lt;my-tag&gt;`. `&lt;my-tag&gt;` can be
-a bytes encoded as a string and must be less than 500 bytes.
-If `&lt;my-tag&gt;` includes whitespace or special characters (characters which
-aren&#39;t letters, numbers, or underscores), then it must be double-quoted.
-Double quotes and backslashes in quoted strings must be escaped by
-preceding it with a backslash (`\`).
+PullMessage.tag is equal to `&lt;my-tag&gt;`. `&lt;my-tag&gt;` must be less than
+500 bytes.
 
-When `filter` is set to `tag=oldest_tag()`, only tasks which have the same
-tag as the task with the oldest schedule_time will be returned.
+When `filter` is set to `tag_function=oldest_tag()`, only tasks which have
+the same tag as the task with the oldest schedule_time will be returned.
 
 Grammar Syntax:
 
-* `filter = &quot;tag=&quot; comparable`
-
-*  `comparable = tag | function`
+* `filter = &quot;tag=&quot; tag | &quot;tag_function=&quot; function`
 
 * `tag = string | bytes`
 
 * `function = &quot;oldest_tag()&quot;`
-
-
 
 The `oldest_tag()` function returns tasks which have the same tag as the
 oldest task (ordered by schedule time).
@@ -2619,6 +2618,18 @@ The state of the queue.
 CloudTasks.PauseQueue, CloudTasks.ResumeQueue, or uploading
 [queue.yaml](/appengine/docs/python/config/queueref).
 CloudTasks.UpdateQueue cannot be used to change `queue_state`.
+* @property {cloudtasks(v2beta2).RateLimits} rateLimits Rate limits for task dispatches.
+
+Queue.rate_limits and Queue.retry_config are related because they
+both control task attempts however they control how tasks are attempted in
+different ways:
+
+* Queue.rate_limits controls the total rate of dispatches from a queue
+  (i.e. all traffic dispatched from the queue, regardless of whether the
+  dispatch is from a first attempt or a retry).
+* Queue.retry_config controls what happens to particular a task after
+  its first attempt fails. That is, Queue.retry_config controls task
+  retries (the second attempt, third attempt, etc).
 * @property {cloudtasks(v2beta2).RetryConfig} retryConfig Settings that determine the retry behavior.
 
 * For tasks created using Cloud Tasks: the queue-level retry settings
@@ -2628,7 +2639,56 @@ CloudTasks.UpdateQueue cannot be used to change `queue_state`.
   settings apply to all tasks in the queue which do not have retry settings
   explicitly set on the task and were created by the App Engine SDK. See
   [App Engine documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
-* @property {cloudtasks(v2beta2).ThrottleConfig} throttleConfig Config for throttling task dispatches.
+*/
+
+/**
+ * @typedef RateLimits
+ * @memberOf! cloudtasks(v2beta2)
+ * @type object
+* @property {integer} maxBurstSize Output only.
+
+The max burst size limits how fast the queue is processed when
+many tasks are in the queue and the rate is high. This field
+allows the queue to have a high rate so processing starts shortly
+after a task is enqueued, but still limits resource usage when
+many tasks are enqueued in a short period of time.
+
+* For App Engine queues, if
+  RateLimits.max_tasks_dispatched_per_second is 1, this
+  field is 10; otherwise this field is
+  RateLimits.max_tasks_dispatched_per_second / 5.
+* For pull queues, this field is output only and always 10,000.
+
+Note: For App Engine queues that were created through
+`queue.yaml/xml`, `max_burst_size` might not have the same
+settings as specified above; CloudTasks.UpdateQueue can be
+used to set `max_burst_size` only to the values specified above.
+
+This field has the same meaning as
+[bucket_size in queue.yaml](/appengine/docs/standard/python/config/queueref#bucket_size).
+* @property {integer} maxConcurrentTasks The maximum number of concurrent tasks that Cloud Tasks allows
+to be dispatched for this queue. After this threshold has been
+reached, Cloud Tasks stops dispatching tasks until the number of
+concurrent requests decreases.
+
+The maximum allowed value is 5,000.
+
+* For App Engine queues, this field is 10 by default.
+* For pull queues, this field is output only and always -1, which
+  indicates no limit.
+
+This field has the same meaning as
+[max_concurrent_requests in queue.yaml](/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
+* @property {number} maxTasksDispatchedPerSecond The maximum rate at which tasks are dispatched from this
+queue.
+
+The maximum allowed value is 500.
+
+* For App Engine queues, this field is 1 by default.
+* For pull queues, this field is output only and always 10,000.
+
+This field has the same meaning as
+[rate in queue.yaml](/appengine/docs/standard/python/config/queueref#rate).
 */
 
 /**
@@ -2686,10 +2746,11 @@ it fails. The default is 1 hour.
   is output only and always 0.
 
 `max_backoff` will be truncated to the nearest second.
-* @property {integer} maxDoublings The maximum number of times that the interval between failed task
-retries will be doubled before the increase becomes constant. The
-constant is: 2**(max_doublings - 1) *
-RetryConfig.min_backoff.
+* @property {integer} maxDoublings The time between retries increases exponentially `max_doublings` times.
+`max_doublings` is maximum number of times that the interval between failed
+task retries will be doubled before the interval increases linearly.
+After max_doublings intervals, the retry interval will be
+2^(max_doublings - 1) * RetryConfig.min_backoff.
 
 * For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),
   this field is 16 by default.
@@ -2859,55 +2920,5 @@ information see
  * @type object
 * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
 allowed.
-*/
-
-/**
- * @typedef ThrottleConfig
- * @memberOf! cloudtasks(v2beta2)
- * @type object
-* @property {integer} maxBurstSize Output only.
-
-The max burst size limits how fast the queue is processed when
-many tasks are in the queue and the rate is high. This field
-allows the queue to have a high rate so processing starts shortly
-after a task is enqueued, but still limits resource usage when
-many tasks are enqueued in a short period of time.
-
-* For App Engine queues, if
-  ThrottleConfig.max_tasks_dispatched_per_second is 1, this
-  field is 10; otherwise this field is
-  ThrottleConfig.max_tasks_dispatched_per_second / 5.
-* For pull queues, this field is output only and always 10,000.
-
-Note: For App Engine queues that were created through
-`queue.yaml/xml`, `max_burst_size` might not have the same
-settings as specified above; CloudTasks.UpdateQueue can be
-used to set `max_burst_size` only to the values specified above.
-
-This field has the same meaning as
-[bucket_size in queue.yaml](/appengine/docs/standard/python/config/queueref#bucket_size).
-* @property {integer} maxOutstandingTasks The maximum number of outstanding tasks that Cloud Tasks allows
-to be dispatched for this queue. After this threshold has been
-reached, Cloud Tasks stops dispatching tasks until the number of
-outstanding requests decreases.
-
-The maximum allowed value is 5,000.
-
-* For App Engine queues, this field is 10 by default.
-* For pull queues, this field is output only and always -1, which
-  indicates no limit.
-
-This field has the same meaning as
-[max_concurrent_requests in queue.yaml](/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
-* @property {number} maxTasksDispatchedPerSecond The maximum rate at which tasks are dispatched from this
-queue.
-
-The maximum allowed value is 500.
-
-* For App Engine queues, this field is 1 by default.
-* For pull queues, this field is output only and always 10,000.
-
-This field has the same meaning as
-[rate in queue.yaml](/appengine/docs/standard/python/config/queueref#rate).
 */
 export = Cloudtasks;

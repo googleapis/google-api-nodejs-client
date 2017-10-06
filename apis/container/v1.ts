@@ -3734,7 +3734,7 @@ clears the existing maintenance policy.
  * @typedef SetMasterAuthRequest
  * @memberOf! container(v1)
  * @type object
- * @property {string} action The exact form of action to be taken on the master auth
+ * @property {string} action The exact form of action to be taken on the master auth.
  * @property {container(v1).MasterAuth} update A description of the update.
  */
 

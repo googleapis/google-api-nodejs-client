@@ -323,6 +323,7 @@ function Dataproc(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.clusterName Required. The cluster name.
+         * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
          * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
          * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.

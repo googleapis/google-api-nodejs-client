@@ -13146,6 +13146,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setMinCpuPlatform
+     *
+     * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
+     *
+     * @alias compute.instances.setMinCpuPlatform
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(v1).InstancesSetMinCpuPlatformRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setMinCpuPlatform: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setScheduling
      *
      * @desc Sets an instance's scheduling options.
@@ -14637,6 +14678,46 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.networks.patch
+     *
+     * @desc Patches the specified network with the data included in the request.
+     *
+     * @alias compute.networks.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(v1).Network} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/networks/{network}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
         context: self
       };
 
@@ -28839,6 +28920,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeAggregatedList for aggregated lists of accelerator types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -28850,6 +28932,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeList for lists of accelerator types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -28874,18 +28957,22 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(v1)
  * @type object
- * @property {string} address The static IP address represented by this resource.
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {string} ipVersion The IP Version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
- * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
- * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
- */
+* @property {string} address The static IP address represented by this resource.
+* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} ipVersion The IP Version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
+* @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string} subnetwork For external addresses, this field should not be used.
+
+The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
+* @property {string[]} users [Output Only] The URLs of the resources that are using this address.
+*/
 
 /**
  * @typedef AddressAggregatedList
@@ -28896,6 +28983,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of resource. Always compute#addressAggregatedList for aggregated lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -28907,6 +28995,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of resource. Always compute#addressList for lists of addresses.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29026,6 +29115,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerAggregatedList for aggregated lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29037,6 +29127,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerList for lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29156,6 +29247,7 @@ This cannot be used for internal load balancing.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29214,6 +29306,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29250,6 +29343,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceList for lists of backend services.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29307,6 +29401,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentAggregatedList for aggregated lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29318,6 +29413,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#commitmentList for lists of commitments.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29430,6 +29526,7 @@ global/images/family/my-private-family
  * @property {string} kind [Output Only] Type of resource. Always compute#diskAggregatedList for aggregated lists of persistent disks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29441,6 +29538,7 @@ global/images/family/my-private-family
  * @property {string} kind [Output Only] Type of resource. Always compute#diskList for lists of disks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29482,6 +29580,7 @@ global/images/family/my-private-family
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29493,6 +29592,7 @@ global/images/family/my-private-family
  * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeList for disk types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29553,6 +29653,7 @@ If you choose to specify this property, you can specify the network as a full or
  * @property {string} kind [Output Only] Type of resource. Always compute#firewallList for lists of firewalls.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29617,6 +29718,7 @@ This field is not used for internal load balancing.
  * @property {string} kind [Output Only] Type of resource. Always compute#forwardingRuleAggregatedList for lists of forwarding rules.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29628,6 +29730,7 @@ This field is not used for internal load balancing.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29705,6 +29808,7 @@ This field is not used for internal load balancing.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29761,6 +29865,7 @@ This field is not used for internal load balancing.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29791,6 +29896,7 @@ This field is not used for internal load balancing.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29848,6 +29954,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29878,6 +29985,7 @@ For example: zones/us-central1-f/machineTypes/custom-4-5120
 
 For a full list of restrictions, read the Specifications for custom machine types.
 * @property {compute(v1).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+* @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(v1).NetworkInterface[]} networkInterfaces An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
 * @property {compute(v1).Scheduling} scheduling Sets the scheduling options for this instance.
@@ -29901,6 +30009,7 @@ Service accounts generate access tokens that can be accessed through the metadat
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceAggregatedList for aggregated lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29935,6 +30044,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupAggregatedList for aggregated lists of instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29946,6 +30056,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -29995,6 +30106,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerAggregatedList for an aggregated list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30006,6 +30118,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30075,6 +30188,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupsListInstances for the list of instances in the specified instance group.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30116,6 +30230,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} kind [Output Only] Type of resource. Always compute#instanceList for lists of Instance resources.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30143,6 +30258,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {object} labels Labels to apply to instances that are created from this template.
  * @property {string} machineType The machine type to use for instances that are created from this template.
  * @property {compute(v1).Metadata} metadata The metadata key/value pairs to assign to instances that are created from this template. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
+ * @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;. For more information, read Specifying a Minimum CPU Platform.
  * @property {compute(v1).NetworkInterface[]} networkInterfaces An array of network access configurations for this interface.
  * @property {compute(v1).Scheduling} scheduling Specifies the scheduling options for the instances that are created from this template.
  * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this template. Use metadata queries to obtain the access tokens for these instances.
@@ -30178,6 +30294,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplatesListResponse for instance template lists.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30217,6 +30334,13 @@ If you have disabled creation retries, this field will not be populated; instead
  * @memberOf! compute(v1)
  * @type object
  * @property {string} machineType Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+ */
+
+/**
+ * @typedef InstancesSetMinCpuPlatformRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} minCpuPlatform Minimum cpu/platform this instance should be started at.
  */
 
 /**
@@ -30278,6 +30402,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeAggregatedList for aggregated lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30289,6 +30414,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeList for lists of machine types.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30357,6 +30483,7 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
 * @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(v1).NetworkPeering[]} peerings [Output Only] List of network peerings for the resource.
+* @property {compute(v1).NetworkRoutingConfig} routingConfig The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} subnetworks [Output Only] Server-defined fully-qualified URLs for all subnetworks in this network.
 */
@@ -30392,6 +30519,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30403,6 +30531,13 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} network The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
+ */
+
+/**
+ * @typedef NetworkRoutingConfig
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} routingMode The network-wide routing mode to use. If set to REGIONAL, this network&#39;s cloud routers will only advertise routes with subnetworks of this network in the same region as the router. If set to GLOBAL, this network&#39;s cloud routers will advertise routes with all subnetworks of this network, across regions.
  */
 
 /**
@@ -30459,6 +30594,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind [Output Only] Type of resource. Always compute#operationAggregatedList for aggregated lists of operations.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30470,6 +30606,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind [Output Only] Type of resource. Always compute#operations for Operations resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30583,6 +30720,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30594,6 +30732,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30605,6 +30744,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups that exist in th regional scope.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30659,6 +30799,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind The resource type.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30686,6 +30827,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} kind [Output Only] Type of resource. Always compute#regionList for lists of regions.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30736,6 +30878,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30764,6 +30907,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30803,6 +30947,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30935,6 +31080,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30960,6 +31106,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -30989,6 +31136,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkAggregatedList for aggregated lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31000,6 +31148,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31075,6 +31224,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} kind Type of resource. Always compute#targetHttpProxyList for lists of target HTTP proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31110,6 +31260,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} kind Type of resource. Always compute#targetHttpsProxyList for lists of target HTTPS proxies.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31139,6 +31290,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31150,6 +31302,7 @@ To see the latest fingerprint, make get() request to the instance.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31198,6 +31351,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolAggregatedList for aggregated lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31217,6 +31371,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolList for lists of target pools.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31313,6 +31468,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31352,6 +31508,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31380,6 +31537,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31391,6 +31549,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31437,6 +31596,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31520,6 +31680,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31531,6 +31692,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31550,6 +31712,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of shared VPC hosts.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -31564,6 +31727,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @typedef Zone
  * @memberOf! compute(v1)
  * @type object
+ * @property {string[]} availableCpuPlatforms [Output Only] Available cpu/platform selections for the zone.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {compute(v1).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this zone.
  * @property {string} description [Output Only] Textual description of the resource.
@@ -31584,6 +31748,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**

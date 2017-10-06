@@ -1952,6 +1952,7 @@ range.
 * @property {container(v1beta1).NodePool[]} nodePools The node pools associated with this cluster.
 This field should not be set if &quot;node_config&quot; or &quot;initial_node_count&quot; are
 specified.
+* @property {container(v1beta1).PodSecurityPolicyConfig} podSecurityPolicyConfig Configuration for the PodSecurityPolicy feature.
 * @property {string} selfLink [Output only] Server-defined URL for the resource.
 * @property {string} servicesIpv4Cidr [Output only] The IP address range of the Kubernetes services in
 this cluster, in
@@ -2004,6 +2005,7 @@ node pool on the cluster.
 * @property {string} desiredNodeVersion The Kubernetes version to change the nodes to (typically an
 upgrade). Use `-` to upgrade to the latest version supported by
 the server.
+* @property {container(v1beta1).PodSecurityPolicyConfig} desiredPodSecurityPolicyConfig The desired configuration options for the PodSecurityPolicy feature.
 */
 
 /**
@@ -2417,6 +2419,14 @@ This field is deprecated, use location instead.
 */
 
 /**
+ * @typedef PodSecurityPolicyConfig
+ * @memberOf! container(v1beta1)
+ * @type object
+* @property {boolean} enabled Enable the PodSecurityPolicy controller for this cluster. If enabled, pods
+must be valid under a PodSecurityPolicy to be created.
+*/
+
+/**
  * @typedef RollbackNodePoolUpgradeRequest
  * @memberOf! container(v1beta1)
  * @type object
@@ -2510,7 +2520,7 @@ resides.
  * @typedef SetMasterAuthRequest
  * @memberOf! container(v1beta1)
  * @type object
-* @property {string} action The exact form of action to be taken on the master auth
+* @property {string} action The exact form of action to be taken on the master auth.
 * @property {string} clusterId The name of the cluster to upgrade.
 This field is deprecated, use name instead.
 * @property {string} name The name (project, location, cluster) of the cluster to set auth.

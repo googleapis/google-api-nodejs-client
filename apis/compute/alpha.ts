@@ -17560,6 +17560,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.targetVpnGateways.setLabels
+     *
+     * @desc Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * @alias compute.targetVpnGateways.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{resource}/setLabels').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.targetVpnGateways.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -18550,7 +18591,7 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
 If this field is not specified, it is assumed to be PREMIUM.
 * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
-* @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string} status [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
 * @property {string} subnetwork For external addresses, this field should not be used.
 
 The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
@@ -19290,6 +19331,16 @@ global/images/family/my-private-family
  */
 
 /**
+ * @typedef DiskInstantiationConfig
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+ * @property {string} deviceName Specifies the device name of the disk to which the configurations apply to.
+ * @property {string} instantiateFrom Specifies whether to include the disk and what image to use.
+ * @property {string} sourceImage The custom source image to be used to restore this disk when instantiating this instance template.
+ */
+
+/**
  * @typedef DiskList
  * @memberOf! compute(alpha)
  * @type object
@@ -19449,10 +19500,14 @@ If you choose to specify this property, you can specify the network as a full or
  * @typedef FixedOrPercent
  * @memberOf! compute(alpha)
  * @type object
- * @property {integer} calculated [Output Only] Absolute value calculated based on mode: mode = fixed -&gt; calculated = fixed = percent -&gt; calculated = ceiling(percent/100 * base_value)
- * @property {integer} fixed fixed must be non-negative.
- * @property {integer} percent percent must belong to [0, 100].
- */
+* @property {integer} calculated [Output Only] Absolute value of VM instances calculated based on the specific mode.
+
+ 
+- If the value is fixed, then the caculated value is equal to the fixed value. 
+- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+* @property {integer} fixed Specifies a fixed number of VM instances. This must be a positive integer.
+* @property {integer} percent Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
+*/
 
 /**
  * @typedef ForwardingRule
@@ -20090,32 +20145,34 @@ Named ports apply to all instances in this instance group.
  * @typedef InstanceGroupManager
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).InstanceGroupManagerActivities} activities 
- * @property {compute(alpha).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies The autohealing policy for this managed instance group. You can specify only one value.
- * @property {string} baseInstanceName The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
- * @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
- * @property {compute(alpha).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {compute(alpha).DistributionPolicy} distributionPolicy Policy valid only for regional managed instance groups.
- * @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
- * @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
- * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
- * @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
- * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
- * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
- * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
- * @property {compute(alpha).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
- * @property {compute(alpha).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
- * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
- * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
- * @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
- * @property {compute(alpha).InstanceGroupManagerStatefulPolicy} statefulPolicy Stateful configuration for this Instanced Group Manager
- * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
- * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
- * @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
- * @property {compute(alpha).InstanceGroupManagerVersion[]} versions Versions supported by this IGM. User should set this field if they need fine-grained control over how many instances in each version are run by this IGM. Versions are keyed by instanceTemplate. Every instanceTemplate can appear at most once. This field overrides instanceTemplate field. If both instanceTemplate and versions are set, the user receives a warning. &quot;instanceTemplate: X&quot; is semantically equivalent to &quot;versions [ { instanceTemplate: X } ]&quot;. Exactly one version must have targetSize field left unset. Size of such a version will be calculated automatically.
- * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
- */
+* @property {compute(alpha).InstanceGroupManagerActivities} activities 
+* @property {compute(alpha).InstanceGroupManagerAutoHealingPolicy[]} autoHealingPolicies The autohealing policy for this managed instance group. You can specify only one value.
+* @property {string} baseInstanceName The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+* @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+* @property {compute(alpha).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {compute(alpha).DistributionPolicy} distributionPolicy Policy valid only for regional managed instance groups.
+* @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
+* @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
+* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
+* @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
+* @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+* @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+* @property {compute(alpha).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+* @property {compute(alpha).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
+* @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+* @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
+* @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
+* @property {compute(alpha).InstanceGroupManagerStatefulPolicy} statefulPolicy Stateful configuration for this Instanced Group Manager
+* @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+* @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+* @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
+* @property {compute(alpha).InstanceGroupManagerVersion[]} versions Specifies the instance templates used by this managed instance group to create instances.
+
+Each version is defined by an instanceTemplate. Every template can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+* @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
+*/
 
 /**
  * @typedef InstanceGroupManagerActionsSummary
@@ -20208,22 +20265,32 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagerUpdatePolicy
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).FixedOrPercent} maxSurge Maximum number of instances that can be created above the InstanceGroupManager.targetSize during the update process. By default, a fixed value of 1 is used. Using maxSurge &gt; 0 will cause instance names to change during the update process. At least one of { maxSurge, maxUnavailable } must be greater than 0.
- * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable during the update process. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a fixed value of 1 is used. At least one of { maxSurge, maxUnavailable } must be greater than 0.
- * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
- * @property {string} minimalAction Minimal action to be taken on an instance. The order of action types is: RESTART &lt; REPLACE.
- * @property {string} type 
- */
+* @property {compute(alpha).FixedOrPercent} maxSurge The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+
+At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+* @property {compute(alpha).FixedOrPercent} maxUnavailable The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
+
+ 
+- The instance&#39;s status is RUNNING. 
+- If there is a health check on the instance grourp, the instance&#39;s liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+
+At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+* @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
+* @property {string} minimalAction Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a code&gt;RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+* @property {string} type 
+*/
 
 /**
  * @typedef InstanceGroupManagerVersion
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} instanceTemplate 
- * @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
- * @property {string} tag Tag describing the version. Used to trigger rollout of a target version even if instance_template remains unchanged. Deprecated in favor of &#39;name&#39;.
- * @property {compute(alpha).FixedOrPercent} targetSize Intended number of instances that are created from instanceTemplate. The final number of instances created from instanceTemplate will be equal to: * if expressed as fixed number: min(targetSize.fixed, instanceGroupManager.targetSize), * if expressed as percent: ceiling(targetSize.percent * InstanceGroupManager.targetSize). If unset, this version will handle all the remaining instances.
- */
+* @property {string} instanceTemplate 
+* @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
+* @property {string} tag Tag describing the version. Used to trigger rollout of a target version even if instance_template remains unchanged. Deprecated in favor of &#39;name&#39;.
+* @property {compute(alpha).FixedOrPercent} targetSize Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  
+- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. 
+- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded up.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information.
+*/
 
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
@@ -20456,6 +20523,7 @@ You can see which instances is being creating in which mode by calling the get o
 * @property {string} sourceInstance The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance 
 - projects/project/zones/zone/instances/instance
+* @property {compute(alpha).SourceInstanceParams} sourceInstanceParams The source instance params to use to create this instance template.
 */
 
 /**
@@ -21596,6 +21664,14 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  */
 
 /**
+ * @typedef RouterAdvertisedIpRange
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} description User-specified description for the IP range.
+ * @property {string} range The IP range to advertise. The value must be a CIDR-formatted string.
+ */
+
+/**
  * @typedef RouterAdvertisedPrefix
  * @memberOf! compute(alpha)
  * @type object
@@ -21621,6 +21697,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(alpha).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
  * @property {compute(alpha).RouterAdvertisedPrefix[]} advertisedPrefixs User-specified list of individual prefixes to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These prefixes will be advertised in addition to any specified groups. Leave this field blank to advertise no custom prefixes.
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
@@ -21631,6 +21708,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
  * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(alpha).RouterAdvertisedIpRange[]} advertisedIpRanges User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
  * @property {compute(alpha).RouterAdvertisedPrefix[]} advertisedPrefixs User-specified list of individual prefixes to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These prefixes will be advertised in addition to any specified groups. Leave this field blank to advertise no custom prefixes.
  * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
  * @property {string} interfaceName Name of the interface the BGP peer is associated with.
@@ -21750,7 +21828,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} action Required
- * @property {compute(alpha).Condition[]} conditions Additional restrictions that must be met
+ * @property {compute(alpha).Condition[]} conditions Additional restrictions that must be met. All conditions must pass for the rule to match.
  * @property {string} description Human-readable description of the rule.
  * @property {string[]} ins If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
  * @property {compute(alpha).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
@@ -21927,6 +22005,13 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef SourceInstanceParams
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).DiskInstantiationConfig[]} diskConfigs Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
  */
 
 /**
@@ -22598,6 +22683,8 @@ To see the latest fingerprint, make a get() request to retrieve an TargetVpnGate
  * @typedef UsableSubnetwork
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork.
+ * @property {string} network Network URL.
  * @property {string} subnetwork Subnetwork URL.
  */
 

@@ -2970,8 +2970,6 @@ Current possible values are:
   &quot;UNKNOWN&quot;: shutdown reason is unknown.
   &quot;PREEMPTION&quot;: shutdown reason is preemption.
 Other possible reasons may be added in the future.
-Note that this must match the names of the enum specified in
-google3/cloud/dataflow/router/protos/cloud_worker_messages_service.proto.
 */
 
 /**
