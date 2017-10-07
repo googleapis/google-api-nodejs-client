@@ -1363,7 +1363,7 @@ function Cloudtasks(options) { // eslint-disable-line
           /**
            * cloudtasks.projects.locations.queues.tasks.create
            *
-           * @desc Creates a task and adds it to a queue.  To add multiple tasks at the same time, use [HTTP batching](/storage/docs/json_api/v1/how-tos/batch) or the batching documentation for your client library, for example https://developers.google.com/api-client-library/python/guide/batch.  Tasks cannot be updated after creation; there is no UpdateTask command.
+           * @desc Creates a task and adds it to a queue.  To add multiple tasks at the same time, use [HTTP batching](/storage/docs/json_api/v1/how-tos/batch) or the batching documentation for your client library, for example https://developers.google.com/api-client-library/python/guide/batch.  Tasks cannot be updated after creation; there is no UpdateTask command.  * For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),   the maximum task size is 100KB. * For [pull queues](google.cloud.tasks.v2beta2.PullTarget), this   the maximum task size is 1MB.
            *
            * @example
            * // BEFORE RUNNING:
@@ -1744,7 +1744,7 @@ function Cloudtasks(options) { // eslint-disable-line
           /**
            * cloudtasks.projects.locations.queues.tasks.pull
            *
-           * @desc Pulls tasks from a pull queue and acquires a lease on them for a specified PullTasksRequest.lease_duration.  This method is invoked by the lease holder to obtain the lease. The lease holder must acknowledge the task via CloudTasks.AcknowledgeTask after they have performed the work associated with the task.  The payload is intended to store data that the lease holder needs to perform the work associated with the task. To return the payloads in the PullTasksResponse, set PullTasksRequest.response_view to Task.View.FULL.  A maximum of 10 qps of CloudTasks.PullTasks requests are allowed per queue. google.rpc.Code.RESOURCE_EXHAUSTED is returned when this limit is exceeded. google.rpc.Code.RESOURCE_EXHAUSTED is also returned when ThrottleConfig.max_tasks_dispatched_per_second is exceeded.
+           * @desc Pulls tasks from a pull queue and acquires a lease on them for a specified PullTasksRequest.lease_duration.  This method is invoked by the lease holder to obtain the lease. The lease holder must acknowledge the task via CloudTasks.AcknowledgeTask after they have performed the work associated with the task.  The payload is intended to store data that the lease holder needs to perform the work associated with the task. To return the payloads in the PullTasksResponse, set PullTasksRequest.response_view to Task.View.FULL.  A maximum of 10 qps of CloudTasks.PullTasks requests are allowed per queue. google.rpc.Code.RESOURCE_EXHAUSTED is returned when this limit is exceeded. google.rpc.Code.RESOURCE_EXHAUSTED is also returned when RateLimits.max_tasks_dispatched_per_second is exceeded.
            *
            * @example
            * // BEFORE RUNNING:
@@ -2360,13 +2360,13 @@ Task De-duplication:
 
 Explicitly specifying a task ID enables task de-duplication.  If
 a task&#39;s ID is identical to that of an existing task or a task
-that was deleted or completed recently then the call will
-fail. If the task&#39;s queue was created using Cloud Tasks, then
-another task with the same name can&#39;t be created for ~1hour after
-the original task was deleted or completed. If the task&#39;s queue
-was created using queue.yaml or queue.xml, then another task with
-the same name can&#39;t be created for ~9days after the original task
-was deleted or completed.
+that was deleted or completed recently then the call will fail
+with google.rpc.Code.ALREADY_EXISTS. If the task&#39;s queue was
+created using Cloud Tasks, then another task with the same name
+can&#39;t be created for ~1hour after the original task was deleted
+or completed. If the task&#39;s queue was created using queue.yaml or
+queue.xml, then another task with the same name can&#39;t be created
+for ~9days after the original task was deleted or completed.
 
 Because there is an extra lookup cost to identify duplicate task
 names, these CloudTasks.CreateTask calls have significantly
@@ -2746,6 +2746,9 @@ it fails. The default is 1 hour.
   is output only and always 0.
 
 `max_backoff` will be truncated to the nearest second.
+
+This field has the same meaning as
+[max_backoff_seconds in queue.yaml](/appengine/docs/standard/python/config/queueref#retry_parameters).
 * @property {integer} maxDoublings The time between retries increases exponentially `max_doublings` times.
 `max_doublings` is maximum number of times that the interval between failed
 task retries will be doubled before the interval increases linearly.
@@ -2756,6 +2759,26 @@ After max_doublings intervals, the retry interval will be
   this field is 16 by default.
 * For [pull queues](google.cloud.tasks.v2beta2.PullTarget), this field
   is output only and always 0.
+
+This field has the same meaning as
+[max_doublings in queue.yaml](/appengine/docs/standard/python/config/queueref#retry_parameters).
+* @property {string} maxRetryDuration If positive, `max_retry_duration` specifies the time limit for retrying a
+failed task, measured from when the task was first attempted. Once
+`max_retry_duration` time has passed *and* the task has been attempted
+RetryConfig.max_attempts times, no further attempts will be made and
+the task will be deleted.
+
+If zero, then the task age is unlimited.
+
+* For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),
+  this field is 0 seconds by default.
+* For [pull queues](google.cloud.tasks.v2beta2.PullTarget), this
+  field is output only and always 0.
+
+`max_retry_duration` will be truncated to the nearest second.
+
+This field has the same meaning as
+[task_age_limit in queue.yaml](/appengine/docs/standard/python/config/queueref#retry_parameters).
 * @property {string} minBackoff The minimum amount of time to wait before retrying a task after
 it fails.
 
@@ -2765,14 +2788,9 @@ it fails.
   field is output only and always 0.
 
 `min_backoff` will be truncated to the nearest second.
-* @property {string} taskAgeLimit If positive, task_age_limit specifies the time limit for retrying a failed
-task, measured from when the task was first run. If specified with
-RetryConfig.max_attempts, the task will be retried until both
-limits are reached.
 
-If zero, then the task age is unlimited. This field is zero by default.
-
-`task_age_limit` will be truncated to the nearest second.
+This field has the same meaning as
+[min_backoff_seconds in queue.yaml](/appengine/docs/standard/python/config/queueref#retry_parameters).
 * @property {boolean} unlimitedAttempts If true, then the number of attempts is unlimited.
 */
 

@@ -301,21 +301,13 @@ logging and diagnostics purposes.
 * @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Quota metrics to indicate the result of allocation. Depending on the
 request, one or more of the following metrics will be included:
 
-1. For rate quota, per quota group or per quota metric incremental usage
-will be specified using the following delta metric:
+1. Per quota group or per quota metric incremental usage will be specified
+using the following delta metric :
   &quot;serviceruntime.googleapis.com/api/consumer/quota_used_count&quot;
 
-2. For allocation quota, per quota metric total usage will be specified
-using the following gauge metric:
-  &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot;
-
-3. For both rate quota and allocation quota, the quota limit reached
-condition will be specified using the following boolean metric:
+2. The quota limit reached condition will be specified using the following
+boolean metric :
   &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
-
-4. For allocation quota, value for each quota limit associated with
-the metrics will be specified using the following gauge metric:
-  &quot;serviceruntime.googleapis.com/quota/limit&quot;
 * @property {string} serviceConfigId ID of the actual config used to process the request.
 */
 
@@ -327,7 +319,7 @@ the metrics will be specified using the following gauge metric:
 * @property {servicecontrol(v1).AuthorizationInfo[]} authorizationInfo Authorization information. If there are multiple
 resources or permissions involved, then there is
 one AuthorizationInfo element for each {resource, permission} tuple.
-* @property {object[]} metadata Other service-specific data about the request, response, and other
+* @property {object} metadata Other service-specific data about the request, response, and other
 information associated with the current audited event.
 * @property {string} methodName The name of the service method or operation.
 For API calls, this should be the name of the API method.

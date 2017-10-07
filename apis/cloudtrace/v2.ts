@@ -192,18 +192,6 @@ this value is 0, then no links were dropped.
 */
 
 /**
- * @typedef MessageEvent
- * @memberOf! cloudtrace(v2)
- * @type object
-* @property {string} compressedSize The number of compressed bytes sent or received. If missing assumed to
-be the same size as uncompressed.
-* @property {string} id An identifier for the message, which must be unique in this span.
-* @property {string} type Type of MessageEvent. Indicates whether the message was sent or
-received.
-* @property {string} uncompressedSize The number of uncompressed bytes sent or received.
-*/
-
-/**
  * @typedef Module
  * @memberOf! cloudtrace(v2)
  * @type object
@@ -211,6 +199,20 @@ received.
 contents (up to 128 bytes).
 * @property {cloudtrace(v2).TruncatableString} module For example: main binary, kernel modules, and dynamic libraries
 such as libc.so, sharedlib.so (up to 256 bytes).
+*/
+
+/**
+ * @typedef NetworkEvent
+ * @memberOf! cloudtrace(v2)
+ * @type object
+* @property {string} compressedMessageSize The number of compressed bytes sent or received.
+* @property {string} messageId An identifier for the message, which must be unique in this span.
+* @property {string} time For sent messages, this is the time at which the first bit was sent.
+For received messages, this is the time at which the last bit was
+received.
+* @property {string} type Type of NetworkEvent. Indicates whether the RPC message was sent or
+received.
+* @property {string} uncompressedMessageSize The number of uncompressed bytes sent or received.
 */
 
 /**
@@ -248,7 +250,7 @@ same process as the current span.
 the local machine where the span execution starts. On the server side, this
 is the time when the server&#39;s application handler starts running.
 * @property {cloudtrace(v2).Status} status An optional final status for this span.
-* @property {cloudtrace(v2).TimeEvents} timeEvents The included time events. There can be up to 32 annotations and 128 message
+* @property {cloudtrace(v2).TimeEvents} timeEvents The included time events. There can be up to 32 annotations and 128 network
 events per span.
 */
 
@@ -313,7 +315,7 @@ google.rpc.Status.details field, or localized by the client.
  * @memberOf! cloudtrace(v2)
  * @type object
  * @property {cloudtrace(v2).Annotation} annotation Text annotation with a set of attributes.
- * @property {cloudtrace(v2).MessageEvent} messageEvent An event describing a message sent/received between Spans.
+ * @property {cloudtrace(v2).NetworkEvent} networkEvent An event describing an RPC message sent/received on the network.
  * @property {string} time The timestamp indicating the time the event occurred.
  */
 
@@ -323,8 +325,8 @@ google.rpc.Status.details field, or localized by the client.
  * @type object
 * @property {integer} droppedAnnotationsCount The number of dropped annotations in all the included time events.
 If the value is 0, then no annotations were dropped.
-* @property {integer} droppedMessageEventsCount The number of dropped message events in all the included time events.
-If the value is 0, then no message events were dropped.
+* @property {integer} droppedNetworkEventsCount The number of dropped network events in all the included time events.
+If the value is 0, then no network events were dropped.
 * @property {cloudtrace(v2).TimeEvent[]} timeEvent A collection of `TimeEvent`s.
 */
 
