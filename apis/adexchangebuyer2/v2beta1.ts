@@ -1645,6 +1645,13 @@ Interpreted relative to Pacific time zone.
 owner.
 The value of this field is ignored in create operations.
 * @property {string} format The format on which to filter; optional.
+* @property {string} name A user-defined name of the filter set. Filter set names must be unique
+globally and match one of the patterns:
+
+- `bidders/x/filterSets/x (for accessing bidder-level troubleshooting
+data)
+- `bidders/x/accounts/x/filterSets/x (for accessing buyer-level
+troubleshooting data)
 * @property {string} ownerAccountId The account ID of the buyer who owns this filter set.
 The value of this field is ignored in create operations.
 * @property {string[]} platforms The list of platforms on which to filter; may be empty. The filters

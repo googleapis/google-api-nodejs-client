@@ -1194,6 +1194,32 @@ An INVALID_ARGUMENT error will be returned if the URI format is not supported.
 */
 
 /**
+ * @typedef GraphicsStats
+ * @memberOf! toolresults(v1beta3)
+ * @type object
+ * @property {toolresults(v1beta3).GraphicsStatsBucket[]} buckets Histogram of frame render times. There should be 154 buckets ranging from [5ms, 6ms) to [4950ms, infinity)
+ * @property {string} highInputLatencyCount Total &quot;high input latency&quot; events.
+ * @property {string} jankyFrames Total frames with slow render time. Should be &lt;= total_frames.
+ * @property {string} missedVsyncCount Total &quot;missed vsync&quot; events.
+ * @property {string} p50Millis 50th percentile frame render time in milliseconds.
+ * @property {string} p90Millis 90th percentile frame render time in milliseconds.
+ * @property {string} p95Millis 95th percentile frame render time in milliseconds.
+ * @property {string} p99Millis 99th percentile frame render time in milliseconds.
+ * @property {string} slowBitmapUploadCount Total &quot;slow bitmap upload&quot; events.
+ * @property {string} slowDrawCount Total &quot;slow draw&quot; events.
+ * @property {string} slowUiThreadCount Total &quot;slow UI thread&quot; events.
+ * @property {string} totalFrames Total frames rendered by package.
+ */
+
+/**
+ * @typedef GraphicsStatsBucket
+ * @memberOf! toolresults(v1beta3)
+ * @type object
+ * @property {string} frameCount Number of frames in the bucket.
+ * @property {string} renderMillis Lower bound of render time in milliseconds.
+ */
+
+/**
  * @typedef History
  * @memberOf! toolresults(v1beta3)
  * @type object
@@ -1355,6 +1381,7 @@ Required
  * @type object
  * @property {toolresults(v1beta3).AppStartTime} appStartTime 
  * @property {string} executionId A tool results execution ID.
+ * @property {toolresults(v1beta3).GraphicsStats} graphicsStats Graphics statistics for the entire run. Statistics are reset at the beginning of the run and collected at the end of the run.
  * @property {string} historyId A tool results history ID.
  * @property {toolresults(v1beta3).PerfEnvironment} perfEnvironment Describes the environment in which the performance metrics were collected
  * @property {string[]} perfMetrics Set of resource collected
