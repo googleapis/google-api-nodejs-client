@@ -669,6 +669,34 @@ receive a new random ID.
  */
 
 /**
+ * @typedef GroupObjectsRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string[]} childrenObjectIds The object IDs of the objects to group.
+
+Only page elements can be grouped. There should be at least two page
+elements on the same page that are not already in another group. Some page
+elements, such as videos, tables and placeholder shapes cannot be grouped.
+* @property {string} groupObjectId A user-supplied object ID for the group to be created.
+
+If you specify an ID, it must be unique among all pages and page elements
+in the presentation. The ID must start with an alphanumeric character or an
+underscore (matches regex `[a-zA-Z0-9_]`); remaining characters
+may include those as well as a hyphen or colon (matches regex
+`[a-zA-Z0-9_-:]`).
+The length of the ID must not be less than 5 or greater than 50.
+
+If you don&#39;t specify an ID, a unique one is generated.
+*/
+
+/**
+ * @typedef GroupObjectsResponse
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} objectId The object ID of the created group.
+ */
+
+/**
  * @typedef Image
  * @memberOf! slides(v1)
  * @type object
@@ -861,6 +889,19 @@ for the keys of this map are 0 through 8, inclusive.
  * @type object
  * @property {string} displayName The human-readable name of the master.
  */
+
+/**
+ * @typedef MergeTableCellsRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} objectId The object ID of the table.
+* @property {slides(v1).TableRange} tableRange The table range specifying which cells of the table to merge.
+
+Any text in the cells being merged will be concatenated and stored in the
+upper-left (&quot;head&quot;) cell of the range. If the range is non-rectangular
+(which can occur in some cases where the range covers cells that are
+already merged), a 400 bad request error is returned.
+*/
 
 /**
  * @typedef NestingLevel
@@ -1223,38 +1264,46 @@ or if a page with that object ID doesn&#39;t exist in the presentation.
  * @typedef Request
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).CreateImageRequest} createImage Creates an image.
- * @property {slides(v1).CreateLineRequest} createLine Creates a line.
- * @property {slides(v1).CreateParagraphBulletsRequest} createParagraphBullets Creates bullets for paragraphs.
- * @property {slides(v1).CreateShapeRequest} createShape Creates a new shape.
- * @property {slides(v1).CreateSheetsChartRequest} createSheetsChart Creates an embedded Google Sheets chart.
- * @property {slides(v1).CreateSlideRequest} createSlide Creates a new slide.
- * @property {slides(v1).CreateTableRequest} createTable Creates a new table.
- * @property {slides(v1).CreateVideoRequest} createVideo Creates a video.
- * @property {slides(v1).DeleteObjectRequest} deleteObject Deletes a page or page element from the presentation.
- * @property {slides(v1).DeleteParagraphBulletsRequest} deleteParagraphBullets Deletes bullets from paragraphs.
- * @property {slides(v1).DeleteTableColumnRequest} deleteTableColumn Deletes a column from a table.
- * @property {slides(v1).DeleteTableRowRequest} deleteTableRow Deletes a row from a table.
- * @property {slides(v1).DeleteTextRequest} deleteText Deletes text from a shape or a table cell.
- * @property {slides(v1).DuplicateObjectRequest} duplicateObject Duplicates a slide or page element.
- * @property {slides(v1).InsertTableColumnsRequest} insertTableColumns Inserts columns into a table.
- * @property {slides(v1).InsertTableRowsRequest} insertTableRows Inserts rows into a table.
- * @property {slides(v1).InsertTextRequest} insertText Inserts text into a shape or table cell.
- * @property {slides(v1).RefreshSheetsChartRequest} refreshSheetsChart Refreshes a Google Sheets chart.
- * @property {slides(v1).ReplaceAllShapesWithImageRequest} replaceAllShapesWithImage Replaces all shapes matching some criteria with an image.
- * @property {slides(v1).ReplaceAllShapesWithSheetsChartRequest} replaceAllShapesWithSheetsChart Replaces all shapes matching some criteria with a Google Sheets chart.
- * @property {slides(v1).ReplaceAllTextRequest} replaceAllText Replaces all instances of specified text.
- * @property {slides(v1).UpdateImagePropertiesRequest} updateImageProperties Updates the properties of an Image.
- * @property {slides(v1).UpdateLinePropertiesRequest} updateLineProperties Updates the properties of a Line.
- * @property {slides(v1).UpdatePageElementTransformRequest} updatePageElementTransform Updates the transform of a page element.
- * @property {slides(v1).UpdatePagePropertiesRequest} updatePageProperties Updates the properties of a Page.
- * @property {slides(v1).UpdateParagraphStyleRequest} updateParagraphStyle Updates the styling of paragraphs within a Shape or Table.
- * @property {slides(v1).UpdateShapePropertiesRequest} updateShapeProperties Updates the properties of a Shape.
- * @property {slides(v1).UpdateSlidesPositionRequest} updateSlidesPosition Updates the position of a set of slides in the presentation.
- * @property {slides(v1).UpdateTableCellPropertiesRequest} updateTableCellProperties Updates the properties of a TableCell.
- * @property {slides(v1).UpdateTextStyleRequest} updateTextStyle Updates the styling of text within a Shape or Table.
- * @property {slides(v1).UpdateVideoPropertiesRequest} updateVideoProperties Updates the properties of a Video.
- */
+* @property {slides(v1).CreateImageRequest} createImage Creates an image.
+* @property {slides(v1).CreateLineRequest} createLine Creates a line.
+* @property {slides(v1).CreateParagraphBulletsRequest} createParagraphBullets Creates bullets for paragraphs.
+* @property {slides(v1).CreateShapeRequest} createShape Creates a new shape.
+* @property {slides(v1).CreateSheetsChartRequest} createSheetsChart Creates an embedded Google Sheets chart.
+* @property {slides(v1).CreateSlideRequest} createSlide Creates a new slide.
+* @property {slides(v1).CreateTableRequest} createTable Creates a new table.
+* @property {slides(v1).CreateVideoRequest} createVideo Creates a video.
+* @property {slides(v1).DeleteObjectRequest} deleteObject Deletes a page or page element from the presentation.
+* @property {slides(v1).DeleteParagraphBulletsRequest} deleteParagraphBullets Deletes bullets from paragraphs.
+* @property {slides(v1).DeleteTableColumnRequest} deleteTableColumn Deletes a column from a table.
+* @property {slides(v1).DeleteTableRowRequest} deleteTableRow Deletes a row from a table.
+* @property {slides(v1).DeleteTextRequest} deleteText Deletes text from a shape or a table cell.
+* @property {slides(v1).DuplicateObjectRequest} duplicateObject Duplicates a slide or page element.
+* @property {slides(v1).GroupObjectsRequest} groupObjects Groups objects, such as page elements.
+* @property {slides(v1).InsertTableColumnsRequest} insertTableColumns Inserts columns into a table.
+* @property {slides(v1).InsertTableRowsRequest} insertTableRows Inserts rows into a table.
+* @property {slides(v1).InsertTextRequest} insertText Inserts text into a shape or table cell.
+* @property {slides(v1).MergeTableCellsRequest} mergeTableCells Merges cells in a Table.
+* @property {slides(v1).RefreshSheetsChartRequest} refreshSheetsChart Refreshes a Google Sheets chart.
+* @property {slides(v1).ReplaceAllShapesWithImageRequest} replaceAllShapesWithImage Replaces all shapes matching some criteria with an image.
+* @property {slides(v1).ReplaceAllShapesWithSheetsChartRequest} replaceAllShapesWithSheetsChart Replaces all shapes matching some criteria with a Google Sheets chart.
+* @property {slides(v1).ReplaceAllTextRequest} replaceAllText Replaces all instances of specified text.
+* @property {slides(v1).UngroupObjectsRequest} ungroupObjects Ungroups objects, such as groups.
+* @property {slides(v1).UnmergeTableCellsRequest} unmergeTableCells Unmerges cells in a Table.
+* @property {slides(v1).UpdateImagePropertiesRequest} updateImageProperties Updates the properties of an Image.
+* @property {slides(v1).UpdateLinePropertiesRequest} updateLineProperties Updates the properties of a Line.
+* @property {slides(v1).UpdatePageElementTransformRequest} updatePageElementTransform Updates the transform of a page element.
+* @property {slides(v1).UpdatePagePropertiesRequest} updatePageProperties Updates the properties of a Page.
+* @property {slides(v1).UpdateParagraphStyleRequest} updateParagraphStyle Updates the styling of paragraphs within a Shape or Table.
+* @property {slides(v1).UpdateShapePropertiesRequest} updateShapeProperties Updates the properties of a Shape.
+* @property {slides(v1).UpdateSlidesPositionRequest} updateSlidesPosition Updates the position of a set of slides in the presentation.
+* @property {slides(v1).UpdateTableBorderPropertiesRequest} updateTableBorderProperties Updates the properties of the table borders in a Table.
+* @property {slides(v1).UpdateTableCellPropertiesRequest} updateTableCellProperties Updates the properties of a TableCell.
+* @property {slides(v1).UpdateTableColumnPropertiesRequest} updateTableColumnProperties Updates the properties of a Table
+column.
+* @property {slides(v1).UpdateTableRowPropertiesRequest} updateTableRowProperties Updates the properties of a Table row.
+* @property {slides(v1).UpdateTextStyleRequest} updateTextStyle Updates the styling of text within a Shape or Table.
+* @property {slides(v1).UpdateVideoPropertiesRequest} updateVideoProperties Updates the properties of a Video.
+*/
 
 /**
  * @typedef Response
@@ -1268,6 +1317,7 @@ or if a page with that object ID doesn&#39;t exist in the presentation.
 * @property {slides(v1).CreateTableResponse} createTable The result of creating a table.
 * @property {slides(v1).CreateVideoResponse} createVideo The result of creating a video.
 * @property {slides(v1).DuplicateObjectResponse} duplicateObject The result of duplicating an object.
+* @property {slides(v1).GroupObjectsResponse} groupObjects The result of grouping objects.
 * @property {slides(v1).ReplaceAllShapesWithImageResponse} replaceAllShapesWithImage The result of replacing all shapes matching some criteria with an
 image.
 * @property {slides(v1).ReplaceAllShapesWithSheetsChartResponse} replaceAllShapesWithSheetsChart The result of replacing all shapes matching some criteria with a Google
@@ -1452,6 +1502,12 @@ The provided URL can be at maximum 2K bytes large.
  * @memberOf! slides(v1)
  * @type object
 * @property {integer} columns Number of columns in the table.
+* @property {slides(v1).TableBorderRow[]} horizontalBorderRows Properties of horizontal cell borders.
+
+A table&#39;s horizontal cell borders are represented as a grid. The grid has
+one more row than the number of rows in the table and the same number of
+columns as the table. For example, if the table is 3 x 3, its horizontal
+borders will be represented as a grid with 4 rows and 3 columns.
 * @property {integer} rows Number of rows in the table.
 * @property {slides(v1).TableColumnProperties[]} tableColumns Properties of each column.
 * @property {slides(v1).TableRow[]} tableRows Properties and contents of each row.
@@ -1459,6 +1515,44 @@ The provided URL can be at maximum 2K bytes large.
 Cells that span multiple rows are contained in only one of these rows and
 have a row_span greater
 than 1.
+* @property {slides(v1).TableBorderRow[]} verticalBorderRows Properties of vertical cell borders.
+
+A table&#39;s vertical cell borders are represented as a grid. The grid has the
+same number of rows as the table and one more column than the number of
+columns in the table. For example, if the table is 3 x 3, its vertical
+borders will be represented as a grid with 3 rows and 4 columns.
+*/
+
+/**
+ * @typedef TableBorderCell
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {slides(v1).TableCellLocation} location The location of the border within the border table.
+ * @property {slides(v1).TableBorderProperties} tableBorderProperties The border properties.
+ */
+
+/**
+ * @typedef TableBorderFill
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {slides(v1).SolidFill} solidFill Solid fill.
+ */
+
+/**
+ * @typedef TableBorderProperties
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} dashStyle The dash style of the border.
+ * @property {slides(v1).TableBorderFill} tableBorderFill The fill of the table border.
+ * @property {slides(v1).Dimension} weight The thickness of the border.
+ */
+
+/**
+ * @typedef TableBorderRow
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).TableBorderCell[]} tableBorderCells Properties of each border cell. When a border&#39;s adjacent table cells are
+merged, it is not included in the response.
 */
 
 /**
@@ -1528,6 +1622,16 @@ Cells that span multiple columns are represented only once with a
 column_span greater
 than 1. As a result, the length of this collection does not always match
 the number of columns of the entire table.
+* @property {slides(v1).TableRowProperties} tableRowProperties Properties of the row.
+*/
+
+/**
+ * @typedef TableRowProperties
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).Dimension} minRowHeight Minimum height of the row. The row will be rendered in the Slides editor at
+a height equal to or greater than this value in order to show all the text
+in the row&#39;s cell(s).
 */
 
 /**
@@ -1676,6 +1780,32 @@ The mime type of the thumbnail image is the same as specified in the
 */
 
 /**
+ * @typedef UngroupObjectsRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string[]} objectIds The object IDs of the objects to ungroup.
+
+Only groups that are not inside other
+groups can be ungrouped. All the groups
+should be on the same page. The group itself is deleted. The visual sizes
+and positions of all the children are preserved.
+*/
+
+/**
+ * @typedef UnmergeTableCellsRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} objectId The object ID of the table.
+* @property {slides(v1).TableRange} tableRange The table range specifying which cells of the table to unmerge.
+
+All merged cells in this range will be unmerged, and cells that are already
+unmerged will not be affected. If the range has no merged cells, the
+request will do nothing. If there is text in any of the merged cells, the
+text will remain in the upper-left (&quot;head&quot;) cell of the resulting block of
+unmerged cells.
+*/
+
+/**
  * @typedef UpdateImagePropertiesRequest
  * @memberOf! slides(v1)
  * @type object
@@ -1796,6 +1926,31 @@ duplicates.
 */
 
 /**
+ * @typedef UpdateTableBorderPropertiesRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} borderPosition The border position in the table range the updates should apply to. If a
+border position is not specified, the updates will apply to all borders in
+the table range.
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `tableBorderProperties` is
+implied and should not be specified. A single `&quot;*&quot;` can be used as
+short-hand for listing every field.
+
+For example to update the table border solid fill color, set
+`fields` to `&quot;tableBorderFill.solidFill.color&quot;`.
+
+To reset a property to its default value, include its field name in the
+field mask but leave the field itself unset.
+* @property {string} objectId The object ID of the table.
+* @property {slides(v1).TableBorderProperties} tableBorderProperties The table border properties to update.
+* @property {slides(v1).TableRange} tableRange The table range representing the subset of the table to which the updates
+are applied. If a table range is not specified, the updates will apply to
+the entire table.
+*/
+
+/**
  * @typedef UpdateTableCellPropertiesRequest
  * @memberOf! slides(v1)
  * @type object
@@ -1815,6 +1970,50 @@ field mask but leave the field itself unset.
 * @property {slides(v1).TableRange} tableRange The table range representing the subset of the table to which the updates
 are applied. If a table range is not specified, the updates will apply to
 the entire table.
+*/
+
+/**
+ * @typedef UpdateTableColumnPropertiesRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {integer[]} columnIndices The list of zero-based indices specifying which columns to update. If no
+indices are provided, all columns in the table will be updated.
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `tableColumnProperties` is
+implied and should not be specified. A single `&quot;*&quot;` can be used as
+short-hand for listing every field.
+
+For example to update the column width, set `fields` to `&quot;column_width&quot;`.
+
+If &#39;&quot;column_width&quot;&#39; is included in the field mask but the property is left
+unset, the column width will default to 406,400 EMU (32 points).
+* @property {string} objectId The object ID of the table.
+* @property {slides(v1).TableColumnProperties} tableColumnProperties The table column properties to update.
+
+If the value of `table_column_properties#column_width` in the request is
+less than 406,400 EMU (32 points), a 400 bad request error is returned.
+*/
+
+/**
+ * @typedef UpdateTableRowPropertiesRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `tableRowProperties` is
+implied and should not be specified. A single `&quot;*&quot;` can be used as
+short-hand for listing every field.
+
+For example to update the minimum row height, set `fields` to
+`&quot;min_row_height&quot;`.
+
+If &#39;&quot;min_row_height&quot;&#39; is included in the field mask but the property is
+left unset, the minimum row height will default to 0.
+* @property {string} objectId The object ID of the table.
+* @property {integer[]} rowIndices The list of zero-based indices specifying which rows to update. If no
+indices are provided, all rows in the table will be updated.
+* @property {slides(v1).TableRowProperties} tableRowProperties The table row properties to update.
 */
 
 /**
