@@ -200,6 +200,13 @@ For example,
  */
 
 /**
+ * @typedef DesktopInfo
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+ * @property {string} desktopFallbackLink Link to open on desktop.
+ */
+
+/**
  * @typedef DeviceInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
@@ -226,6 +233,8 @@ For example,
 * @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the
 [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
 * @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
+* @property {firebasedynamiclinks(v1).DesktopInfo} desktopInfo Desktop related information. See desktop related parameters in the
 [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
 * @property {string} dynamicLinkDomain Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl
 [Learn more](https://firebase.google.com/docs/dynamic-links/android/receive)

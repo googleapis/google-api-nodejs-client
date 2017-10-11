@@ -246,7 +246,7 @@ https://support.google.com/manufacturers/answer/6124116#productline.
 https://support.google.com/manufacturers/answer/6124116#productname.
 * @property {string} productPageUrl The URL of the detail page of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#productpage.
-* @property {string[]} productType The category of the product. For more information, see
+* @property {string[]} productType The type or category of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#producttype.
 * @property {string} releaseDate The release date of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#release.
@@ -260,7 +260,7 @@ https://support.google.com/manufacturers/answer/6124116#sizesystem.
 https://support.google.com/manufacturers/answer/6124116#sizetype.
 * @property {manufacturers(v1).Price} suggestedRetailPrice The suggested retail price (MSRP) of the product. For more information,
 see https://support.google.com/manufacturers/answer/6124116#price.
-* @property {string} targetAccountId The target account id. Should only be used in the accounts of the data
+* @property {string} targetClientId The target client id. Should only be used in the accounts of the data
 partners.
 * @property {string} theme The theme of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#theme.
