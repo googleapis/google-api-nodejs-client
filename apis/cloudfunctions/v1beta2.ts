@@ -276,6 +276,82 @@ function Cloudfunctions(options) { // eslint-disable-line
         },
 
         /**
+         * cloudfunctions.projects.locations.functions.generateDownloadUrl
+         *
+         * @desc Returns a signed URL for downloading deployed function source code. The URL is only valid for a limited period and should be used within minutes after generation. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls
+         *
+         * @alias cloudfunctions.projects.locations.functions.generateDownloadUrl
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of function for which source code Google Cloud Storage signed URL should be generated.
+         * @param {cloudfunctions(v1beta2).GenerateDownloadUrlRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        generateDownloadUrl: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{name}:generateDownloadUrl').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudfunctions.projects.locations.functions.generateUploadUrl
+         *
+         * @desc Returns a signed URL for uploading a function source code. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls Once the function source code upload is complete, the used signed URL should be provided in CreateFunction or UpdateFunction request as a reference to the function source code.
+         *
+         * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.parent The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x
+         * @param {cloudfunctions(v1beta2).GenerateUploadUrlRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        generateUploadUrl: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v1beta2/{parent}/functions:generateUploadUrl').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * cloudfunctions.projects.locations.functions.get
          *
          * @desc Returns a function with the given name from the requested project.
@@ -448,6 +524,8 @@ To refer to a specific fixed alias (tag):
 `https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x
 
 You may omit `paths/x if you want to use the main directory.
+* @property {string} sourceUploadUrl The Google Cloud Storage signed URL used for source uploading, generated
+by google.cloud.functions.v1beta2.GenerateUploadUrl
 * @property {string} status Output only. Status of the function deployment.
 * @property {string} timeout The function execution timeout. Execution is considered failed and
 can be terminated if the function is not completed at the end of the
@@ -491,6 +569,36 @@ event types in the &#39;google.storage` namespace.
  * @type object
  * @property {cloudfunctions(v1beta2).Retry} retry If specified, then the function will be retried in case of a failure.
  */
+
+/**
+ * @typedef GenerateDownloadUrlRequest
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ * @property {string} versionId The optional version of function.
+ */
+
+/**
+ * @typedef GenerateDownloadUrlResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} downloadUrl The generated Google Cloud Storage signed URL that should be used for
+function source code download.
+*/
+
+/**
+ * @typedef GenerateUploadUrlRequest
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ */
+
+/**
+ * @typedef GenerateUploadUrlResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} uploadUrl The generated Google Cloud Storage signed URL that should be used for a
+function source code upload. The uploaded file should be a zip archive
+which contains a function.
+*/
 
 /**
  * @typedef HTTPSTrigger

@@ -2087,82 +2087,6 @@ function Admin(options) { // eslint-disable-line
 
   };
 
-  self.resolvedAppAccessSettings = {
-
-    /**
-     * directory.resolvedAppAccessSettings.GetSettings
-     *
-     * @desc Retrieves resolved app access settings of the logged in user.
-     *
-     * @alias directory.resolvedAppAccessSettings.GetSettings
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    GetSettings: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/resolvedappaccesssettings').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * directory.resolvedAppAccessSettings.ListTrustedApps
-     *
-     * @desc Retrieves the list of apps trusted by the admin of the logged in user.
-     *
-     * @alias directory.resolvedAppAccessSettings.ListTrustedApps
-     * @memberOf! admin(directory_v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    ListTrustedApps: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/directory/v1/trustedapps').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.resources = {
     calendars: {
 
@@ -2322,7 +2246,7 @@ function Admin(options) { // eslint-disable-line
       /**
        * directory.resources.calendars.patch
        *
-       * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved. This method supports patch semantics.
+       * @desc Updates a calendar resource. This method supports patch semantics.
        *
        * @alias directory.resources.calendars.patch
        * @memberOf! admin(directory_v1)
@@ -2361,7 +2285,7 @@ function Admin(options) { // eslint-disable-line
       /**
        * directory.resources.calendars.update
        *
-       * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
+       * @desc Updates a calendar resource.
        *
        * @alias directory.resources.calendars.update
        * @memberOf! admin(directory_v1)
@@ -3953,20 +3877,6 @@ function Admin(options) { // eslint-disable-line
  */
 
 /**
- * @typedef AppAccessCollections
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string[]} blockedApiAccessBuckets List of blocked api access buckets.
- * @property {boolean} enforceSettingsForAndroidDrive Boolean to indicate whether to enforce app access settings on Android Drive or not.
- * @property {string} errorMessage Error message provided by the Admin that will be shown to the user when an app is blocked.
- * @property {string} etag ETag of the resource.
- * @property {string} kind Identifies the resource as an app access collection. Value: admin#directory#appaccesscollection
- * @property {string} resourceId Unique ID of app access collection. (Readonly)
- * @property {string} resourceName Resource name given by the customer while creating/updating. Should be unique under given customer.
- * @property {boolean} trustDomainOwnedApps Boolean that indicates whether to trust domain owned apps.
- */
-
-/**
  * @typedef Asp
  * @memberOf! admin(directory_v1)
  * @type object
@@ -4445,27 +4355,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} etag ETag of the resource.
  * @property {admin(directory_v1).Token[]} items A list of Token resources.
  * @property {string} kind The type of the API resource. This is always admin#directory#tokenList.
- */
-
-/**
- * @typedef TrustedAppId
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string} androidPackageName Android package name.
- * @property {string} certificateHashSHA1 SHA1 signature of the app certificate.
- * @property {string} certificateHashSHA256 SHA256 signature of the app certificate.
- * @property {string} etag 
- * @property {string} kind Identifies the resource as a trusted AppId.
- */
-
-/**
- * @typedef TrustedApps
- * @memberOf! admin(directory_v1)
- * @type object
- * @property {string} etag ETag of the resource.
- * @property {string} kind Identifies the resource as trusted apps response.
- * @property {string} nextPageToken 
- * @property {admin(directory_v1).TrustedAppId[]} trustedApps Trusted Apps list.
  */
 
 /**

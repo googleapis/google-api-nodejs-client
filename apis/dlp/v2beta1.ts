@@ -933,6 +933,15 @@ The order of characters does not matter.
 */
 
 /**
+ * @typedef GooglePrivacyDlpV2beta1CustomInfoType
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Dictionary} dictionary Dictionary-based custom info type.
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1InfoType} infoType Info type configuration. All custom info types must have configurations
+that do not conflict with built-in info types or other custom info types.
+*/
+
+/**
  * @typedef GooglePrivacyDlpV2beta1DatastoreKey
  * @memberOf! dlp(v2beta1)
  * @type object
@@ -985,6 +994,13 @@ All items will be treated as text/*.
  * @type object
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1ContentItem[]} items 
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1DeidentificationSummary[]} summaries A review of the transformations that took place for each item.
+ */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1Dictionary
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1WordList} wordList List of words or phrases to search for.
  */
 
 /**
@@ -1145,6 +1161,7 @@ for a given info type. [required]
  * @typedef GooglePrivacyDlpV2beta1InspectConfig
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {dlp(v2beta1).GooglePrivacyDlpV2beta1CustomInfoType[]} customInfoTypes Custom info types provided by the user.
 * @property {boolean} excludeTypes When true, excludes type information of the findings.
 * @property {boolean} includeQuote When true, a contextual quote from the data that triggered a finding is
 included in the response; see Finding.quote.
@@ -1702,6 +1719,15 @@ When the data crypto key is generated, this name is not used in any way
  * @property {string} count How many times the value is contained in the field.
  * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1Value} value A value contained in the field in question.
  */
+
+/**
+ * @typedef GooglePrivacyDlpV2beta1WordList
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string[]} words Words or phrases defining the dictionary. No word can be shorter than 3
+characters in length. To match, there must be whitespace or punctuation
+around the targeted string. [required]
+*/
 
 /**
  * @typedef GoogleProtobufEmpty

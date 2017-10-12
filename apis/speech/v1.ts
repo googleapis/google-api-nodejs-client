@@ -410,7 +410,8 @@ to add additional words to the vocabulary of the recognizer. See
 indicates an estimated greater likelihood that the recognized words are
 correct. This field is typically provided only for the top hypothesis, and
 only for `is_final=true` results. Clients should not rely on the
-`confidence` field as it is not guaranteed to be accurate or consistent.
+`confidence` field as it is not guaranteed to be accurate, or even set, in
+any of the results.
 The default of 0.0 is a sentinel value indicating `confidence` was not set.
 * @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
 * @property {speech(v1).WordInfo[]} words *Output-only* A list of word-specific information for each recognized word.

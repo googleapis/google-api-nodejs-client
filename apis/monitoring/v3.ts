@@ -1288,9 +1288,253 @@ function Monitoring(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
+    },
+    uptimeCheckConfigs: {
+
+      /**
+       * monitoring.projects.uptimeCheckConfigs.create
+       *
+       * @desc Creates a new uptime check configuration.
+       *
+       * @alias monitoring.projects.uptimeCheckConfigs.create
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The project in which to create the uptime check. The format is:projects/[PROJECT_ID].
+       * @param {monitoring(v3).UptimeCheckConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * monitoring.projects.uptimeCheckConfigs.delete
+       *
+       * @desc Deletes an uptime check configuration. Note that this method will fail if the uptime check configuration is referenced by an alert policy or other dependent configs that would be rendered invalid by the deletion.
+       *
+       * @alias monitoring.projects.uptimeCheckConfigs.delete
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The uptime check configuration to delete. The format isprojects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * monitoring.projects.uptimeCheckConfigs.get
+       *
+       * @desc Gets a single uptime check configuration.
+       *
+       * @alias monitoring.projects.uptimeCheckConfigs.get
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The uptime check configuration to retrieve. The format isprojects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * monitoring.projects.uptimeCheckConfigs.list
+       *
+       * @desc Lists the existing valid uptime check configurations for the project, leaving out any invalid configurations.
+       *
+       * @alias monitoring.projects.uptimeCheckConfigs.list
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter If provided, specifies the criteria that must be met by uptime check configurations in the provided project to be included in the response. One of the following filters can be provided.  uptime_check_config.id = {uptime_check_id}  resource.type = gce_instance AND resource.label.instance_id =  {instance_id}  resource.type = aws_ec2_instance AND resource.label.instance_id =  {instance_id}  resource.type = aws_elb_load_balancer AND  resource.label.name = {name}  resource.type = gae_app AND resource.label.module_id = {module_id}  resource.type = uptime_url AND resource.label.host = {host}  group.id = {group_id}
+       * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
+       * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
+       * @param {string} params.parent The project whose uptime check configurations are listed. The format isprojects/[PROJECT_ID].
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * monitoring.projects.uptimeCheckConfigs.patch
+       *
+       * @desc Updates an uptime check configuration. You can either replace the entire configuration with a new one or replace only certain fields in the current configuration by specifying the fields to be updated via "updateMask". Returns the updated configuration.
+       *
+       * @alias monitoring.projects.uptimeCheckConfigs.patch
+       * @memberOf! monitoring(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+       * @param {string=} params.name1 The uptime check configuration to update. The format isprojects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+       * @param {string=} params.updateMask Optional. If present, only the listed fields in the current uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
+       * @param {monitoring(v3).UptimeCheckConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
+
+  self.uptimeCheckIps = {
+
+    /**
+     * monitoring.uptimeCheckIps.list
+     *
+     * @desc Returns the list of IPs that checkers run from
+     *
+     * @alias monitoring.uptimeCheckIps.list
+     * @memberOf! monitoring(v3)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned. NOTE: this field is not yet implemented
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call. NOTE: this field is not yet implemented
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/v3/uptimeCheckIps').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
+
+/**
+ * @typedef BasicAuthentication
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} password The password to authenticate.
+ * @property {string} username The username to authenticate.
+ */
 
 /**
  * @typedef BucketOptions
@@ -1339,6 +1583,13 @@ function Monitoring(options) { // eslint-disable-line
  * @type object
  * @property {monitoring(v3).Status} error Records the error status for the value.
  * @property {integer} index The zero-based index in CollectdPayload.values within the parent CreateCollectdTimeSeriesRequest.collectd_payloads.
+ */
+
+/**
+ * @typedef ContentMatcher
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} content String content to match
  */
 
 /**
@@ -1428,6 +1679,18 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  */
 
 /**
+ * @typedef HttpCheck
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).BasicAuthentication} authInfo The authentication information. Optional when creating an HTTP check; defaults to empty.
+ * @property {object} headers The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second.
+ * @property {boolean} maskHeaders Boolean specifiying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
+ * @property {string} path The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to &quot;/&quot;).
+ * @property {integer} port The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) and path to construct the full URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+ * @property {boolean} useSsl If true, use HTTPS instead of HTTP to run the check.
+ */
+
+/**
  * @typedef LabelDescriptor
  * @memberOf! monitoring(v3)
  * @type object
@@ -1484,6 +1747,22 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  * @type object
  * @property {string} nextPageToken If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
  * @property {monitoring(v3).TimeSeries[]} timeSeries One or more time series that match the filter included in the request.
+ */
+
+/**
+ * @typedef ListUptimeCheckConfigsResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} nextPageToken This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field).
+ * @property {monitoring(v3).UptimeCheckConfig[]} uptimeCheckConfigs The returned uptime check configurations.
+ */
+
+/**
+ * @typedef ListUptimeCheckIpsResponse
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} nextPageToken This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field). NOTE: this field is not yet implemented
+ * @property {monitoring(v3).UptimeCheckIp[]} uptimeCheckIps The returned list of IP addresses (including region and location) that the checkers run from.
  */
 
 /**
@@ -1594,6 +1873,14 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  */
 
 /**
+ * @typedef ResourceGroup
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} groupId The group of resources being monitored. Should be only the group_id, not projects/&lt;project_id&gt;/groups/&lt;group_id&gt;.
+ * @property {string} resourceType The resource type of the group members.
+ */
+
+/**
  * @typedef SourceContext
  * @memberOf! monitoring(v3)
  * @type object
@@ -1607,6 +1894,13 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {object[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+ */
+
+/**
+ * @typedef TcpCheck
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {integer} port The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL. Required.
  */
 
 /**
@@ -1649,5 +1943,30 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  * @property {number} doubleValue A 64-bit double-precision floating-point number. Its magnitude is approximately &amp;plusmn;10&lt;sup&gt;&amp;plusmn;300&lt;/sup&gt; and it has 16 significant digits of precision.
  * @property {string} int64Value A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
  * @property {string} stringValue A variable-length string value.
+ */
+
+/**
+ * @typedef UptimeCheckConfig
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {monitoring(v3).ContentMatcher[]} contentMatchers The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response&#39;s content. This field is optional and should only be specified if a content match is required.
+ * @property {string} displayName A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Account in order to make it easier to identify; however, uniqueness is not enforced. Required.
+ * @property {monitoring(v3).HttpCheck} httpCheck Contains information needed to make an HTTP or HTTPS check.
+ * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource associated with the configuration.
+ * @property {string} name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+ * @property {string} period How often the uptime check is performed. Currently, only 1, 5, 10, and 15 minutes are supported. Required.
+ * @property {monitoring(v3).ResourceGroup} resourceGroup The group resource associated with the configuration.
+ * @property {string[]} selectedRegions The list of regions from which the check will be run. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
+ * @property {monitoring(v3).TcpCheck} tcpCheck Contains information needed to make a TCP check.
+ * @property {string} timeout The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Required.
+ */
+
+/**
+ * @typedef UptimeCheckIp
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} ipAddress The IP address from which the uptime check originates. This is a full IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely and should support interpreting this field in either IPv4 or IPv6 format.
+ * @property {string} location A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category.
+ * @property {string} region A broad region category in which the IP address is located.
  */
 export = Monitoring;

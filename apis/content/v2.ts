@@ -2627,16 +2627,16 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {string} attributeLanguage The two-letter ISO 639-1 language in which the attributes are defined in the data feed.
- * @property {string} contentLanguage [DEPRECATED] Please use target.language instead. The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
+ * @property {string} contentLanguage [DEPRECATED] Please use targets[].language instead. The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
  * @property {string} contentType The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
  * @property {content(v2).DatafeedFetchSchedule} fetchSchedule Fetch schedule for the feed file.
  * @property {string} fileName The filename of the feed. All feeds must have a unique file name.
  * @property {content(v2).DatafeedFormat} format Format of the feed file.
  * @property {string} id The ID of the data feed.
- * @property {string[]} intendedDestinations [DEPRECATED] Please use target.includedDestination instead. The list of intended destinations (corresponds to checked check boxes in Merchant Center).
+ * @property {string[]} intendedDestinations [DEPRECATED] Please use targets[].includedDestinations instead. The list of intended destinations (corresponds to checked check boxes in Merchant Center).
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeed&quot;.
  * @property {string} name A descriptive name of the data feed.
- * @property {string} targetCountry [DEPRECATED] Please use target.country instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
+ * @property {string} targetCountry [DEPRECATED] Please use targets[].country instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
  * @property {content(v2).DatafeedTarget[]} targets The targets this feed should apply to (country, language, destinations).
  */
 
@@ -2831,8 +2831,8 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).LocationIdSet[]} locations A list of location ID sets. Must be non-empty. Can only be set if all other fields are not set.
  * @property {string[]} numberOfItems A list of inclusive number of items upper bounds. The last value can be &quot;infinity&quot;. For example [&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;] represents the headers &quot;&lt;= 10 items&quot;, &quot; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
  * @property {string[]} postalCodeGroupNames A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
- * @property {content(v2).Price[]} prices be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
- * @property {content(v2).Weight[]} weights be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {content(v2).Price[]} prices A list of inclusive order price upper bounds. The last price&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {content(v2).Weight[]} weights A list of inclusive order weight upper bounds. The last weight&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
  */
 
 /**
