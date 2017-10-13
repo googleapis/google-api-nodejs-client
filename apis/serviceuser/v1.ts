@@ -742,6 +742,8 @@ Specify name of the upload service if one is used for upload.
 * @property {string} description A detailed description of the metric, which can be used in documentation.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces.
 Use sentence case without an ending period, for example &quot;Request count&quot;.
+This field is optional but it is recommended to be set for any metrics
+associated with user-visible concepts, such as Quota.
 * @property {serviceuser(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific
 instance of this metric type. For example, the
 `appengine.googleapis.com/http/server/response_latencies` metric
@@ -750,14 +752,7 @@ you can look at latencies for successful responses or just
 for responses that failed.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc.
 Some combinations of `metric_kind` and `value_type` might not be supported.
-* @property {string} name The resource name of the metric descriptor. Depending on the
-implementation, the name typically includes: (1) the parent resource name
-that defines the scope of the metric type or of its data; and (2) the
-metric&#39;s URL-encoded type, which also appears in the `type` field of this
-descriptor. For example, following is the resource name of a custom
-metric within the GCP project `my-project-id`:
-
-    &quot;projects/my-project-id/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount&quot;
+* @property {string} name The resource name of the metric descriptor.
 * @property {string} type The metric type, including its DNS name prefix. The type is not
 URL-encoded.  All user-defined custom metric types have the DNS name
 `custom.googleapis.com`.  Metric types should use a natural hierarchical
@@ -1059,43 +1054,24 @@ Used by group-based quotas only.
 * @property {string} metric The name of the metric this quota limit applies to. The quota limits with
 the same metric will be checked together during runtime. The metric must be
 defined within the service config.
+* @property {string} name Name of the quota limit.
 
-Used by metric-based quotas only.
-* @property {string} name Name of the quota limit. The name is used to refer to the limit when
-overriding the default limit on per-consumer basis.
-
-For metric-based quota limits, the name must be provided, and it must be
-unique within the service. The name can only include alphanumeric
-characters as well as &#39;-&#39;.
+The name must be provided, and it must be unique within the service. The
+name can only include alphanumeric characters as well as &#39;-&#39;.
 
 The maximum length of the limit name is 64 characters.
-
-The name of a limit is used as a unique identifier for this limit.
-Therefore, once a limit has been put into use, its name should be
-immutable. You can use the display_name field to provide a user-friendly
-name for the limit. The display name can be evolved over time without
-affecting the identity of the limit.
 * @property {string} unit Specify the unit of the quota limit. It uses the same syntax as
 Metric.unit. The supported unit kinds are determined by the quota
 backend system.
-
-The [Google Service Control](https://cloud.google.com/service-control)
-supports the following unit components:
-* One of the time intevals:
-  * &quot;/min&quot;  for quota every minute.
-  * &quot;/d&quot;  for quota every 24 hours, starting 00:00 US Pacific Time.
-  * Otherwise the quota won&#39;t be reset by time, such as storage limit.
-* One and only one of the granted containers:
-  * &quot;/{project}&quot; quota for a project
 
 Here are some examples:
 * &quot;1/min/{project}&quot; for quota per minute per project.
 
 Note: the order of unit components is insignificant.
 The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
-
-Used by metric-based quotas only.
-* @property {object} values Tiered limit values, currently only STANDARD is supported.
+* @property {object} values Tiered limit values. You must specify this as a key:value pair, with an
+integer value that is the maximum number of requests allowed for the
+specified unit. Currently only STANDARD is supported.
 */
 
 /**
@@ -1311,6 +1287,8 @@ methods in all APIs.
 Refer to selector for syntax details.
 * @property {boolean} skipServiceControl True, if the method should skip service control. If so, no control plane
 feature (like quota and billing) will be enabled.
+This flag is used by ESP to allow some Endpoints customers to bypass
+Google internal checks.
 */
 
 /**

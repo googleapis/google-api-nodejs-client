@@ -50,7 +50,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
          * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -88,8 +88,8 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-         * @param {integer=} params.version Optional The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -126,8 +126,8 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-         * @param {integer=} params.version Optional The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -164,7 +164,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
          * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -202,9 +202,9 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Optional The maximum number of results to return in each response.
-         * @param {string=} params.pageToken Optional The page token, returned by a previous call, to request the next page of results.
-         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
+         * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+         * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -241,7 +241,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Output-only The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
          * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -1035,7 +1035,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
          * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -1073,8 +1073,8 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-         * @param {integer=} params.version Optional The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1111,8 +1111,8 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
-         * @param {integer=} params.version Optional The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1149,7 +1149,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Required The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
          * @param {dataproc(v1beta2).InstantiateWorkflowTemplateRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -1187,9 +1187,9 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Optional The maximum number of results to return in each response.
-         * @param {string=} params.pageToken Optional The page token, returned by a previous call, to request the next page of results.
-         * @param {string} params.parent Required The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+         * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
+         * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+         * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1226,7 +1226,7 @@ function Dataproc(options) { // eslint-disable-line
          * @memberOf! dataproc(v1beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name Output-only The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+         * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
          * @param {dataproc(v1beta2).WorkflowTemplate} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -1334,9 +1334,9 @@ fi
  * @typedef ClusterOperation
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {boolean} done Output-only Indicates the operation is done.
- * @property {string} error Output-only Error, if operation failed.
- * @property {string} operationId Output-only The id of the cluster operation.
+ * @property {boolean} done Output only. Indicates the operation is done.
+ * @property {string} error Output only. Error, if operation failed.
+ * @property {string} operationId Output only. The id of the cluster operation.
  */
 
 /**
@@ -1367,8 +1367,8 @@ fi
  * @typedef ClusterSelector
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {object} clusterLabels Required The cluster labels. Cluster must have all labels to match.
- * @property {string} zone Required The cluster target zone.
+ * @property {object} clusterLabels Required. The cluster labels. Cluster must have all labels to match.
+ * @property {string} zone Optional. The zone where workflow process executes. This parameter does not affect the selection of the cluster.If unspecified, the zone of the first cluster matching the selector is used.
  */
 
 /**
@@ -1487,8 +1487,8 @@ n1-standard-2
  * @typedef InstantiateWorkflowTemplateRequest
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} instanceId Optional A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
- * @property {integer} version Optional The version of workflow template to instantiate. If specified, the workflow will be instantiated only if the current version of the workflow template has the supplied version.This option cannot be used to instantiate a previous version of workflow template.
+ * @property {string} instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+ * @property {integer} version Optional. The version of workflow template to instantiate. If specified, the workflow will be instantiated only if the current version of the workflow template has the supplied version.This option cannot be used to instantiate a previous version of workflow template.
  */
 
 /**
@@ -1582,8 +1582,8 @@ n1-standard-2
  * @typedef ListWorkflowTemplatesResponse
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} nextPageToken Output-only This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
- * @property {dataproc(v1beta2).WorkflowTemplate[]} templates Output-only WorkflowTemplates list.
+ * @property {string} nextPageToken Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
+ * @property {dataproc(v1beta2).WorkflowTemplate[]} templates Output only. WorkflowTemplates list.
  */
 
 /**
@@ -1597,9 +1597,9 @@ n1-standard-2
  * @typedef ManagedCluster
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} clusterName Required The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
- * @property {dataproc(v1beta2).ClusterConfig} config Required The cluster configuration.
- * @property {object} labels Optional The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given cluster.
+ * @property {string} clusterName Required. The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
+ * @property {dataproc(v1beta2).ClusterConfig} config Required. The cluster configuration.
+ * @property {object} labels Optional. The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given cluster.
  */
 
 /**
@@ -1635,14 +1635,14 @@ n1-standard-2
  * @type object
  * @property {dataproc(v1beta2).HadoopJob} hadoopJob Job is a Hadoop job.
  * @property {dataproc(v1beta2).HiveJob} hiveJob Job is a Hive job.
- * @property {object} labels Optional The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given job.
+ * @property {object} labels Optional. The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given job.
  * @property {dataproc(v1beta2).PigJob} pigJob Job is a Pig job.
- * @property {string[]} prerequisiteStepIds Optional The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
+ * @property {string[]} prerequisiteStepIds Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
  * @property {dataproc(v1beta2).PySparkJob} pysparkJob Job is a Pyspark job.
- * @property {dataproc(v1beta2).JobScheduling} scheduling Optional Job scheduling configuration.
+ * @property {dataproc(v1beta2).JobScheduling} scheduling Optional. Job scheduling configuration.
  * @property {dataproc(v1beta2).SparkJob} sparkJob Job is a Spark job.
  * @property {dataproc(v1beta2).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
- * @property {string} stepId Required The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job workflow-step-id label, and in prerequisite_step_ids field from other steps.
+ * @property {string} stepId Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job workflow-step-id label, and in prerequisite_step_ids field from other steps.
  */
 
 /**
@@ -1782,53 +1782,53 @@ yarn: yarn-site.xmlFor more information, see Cluster properties.
  * @typedef WorkflowGraph
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {dataproc(v1beta2).WorkflowNode[]} nodes Output-only The workflow nodes.
+ * @property {dataproc(v1beta2).WorkflowNode[]} nodes Output only. The workflow nodes.
  */
 
 /**
  * @typedef WorkflowMetadata
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} clusterName Output-only The name of the managed cluster.
- * @property {dataproc(v1beta2).ClusterOperation} createCluster Output-only The create cluster operation metadata.
- * @property {dataproc(v1beta2).ClusterOperation} deleteCluster Output-only The delete cluster operation metadata.
- * @property {dataproc(v1beta2).WorkflowGraph} graph Output-only The workflow graph.
- * @property {string} state Output-only The workflow state.
- * @property {string} template Output-only The &quot;resource name&quot; of the template.
- * @property {integer} version Output-only The version of template at the time of workflow instantiation.
+ * @property {string} clusterName Output only. The name of the managed cluster.
+ * @property {dataproc(v1beta2).ClusterOperation} createCluster Output only. The create cluster operation metadata.
+ * @property {dataproc(v1beta2).ClusterOperation} deleteCluster Output only. The delete cluster operation metadata.
+ * @property {dataproc(v1beta2).WorkflowGraph} graph Output only. The workflow graph.
+ * @property {string} state Output only. The workflow state.
+ * @property {string} template Output only. The &quot;resource name&quot; of the template.
+ * @property {integer} version Output only. The version of template at the time of workflow instantiation.
  */
 
 /**
  * @typedef WorkflowNode
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} error Output-only The error detail.
- * @property {string} jobId Output-only The job id; populated after the node enters RUNNING state.
- * @property {string[]} prerequisiteStepIds Output-only Node&#39;s prerequisite nodes.
- * @property {string} state Output-only The node state.
- * @property {string} stepId Output-only The name of the node.
+ * @property {string} error Output only. The error detail.
+ * @property {string} jobId Output only. The job id; populated after the node enters RUNNING state.
+ * @property {string[]} prerequisiteStepIds Output only. Node&#39;s prerequisite nodes.
+ * @property {string} state Output only. The node state.
+ * @property {string} stepId Output only. The name of the node.
  */
 
 /**
  * @typedef WorkflowTemplate
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} createTime Output-only The time template was created.
- * @property {string} id Required The template id.
- * @property {dataproc(v1beta2).OrderedJob[]} jobs Required The Directed Acyclic Graph of Jobs to submit.
- * @property {object} labels Optional The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance.Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels can be associated with a template.
- * @property {string} name Output-only The &quot;resource name&quot; of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
- * @property {dataproc(v1beta2).WorkflowTemplatePlacement} placement Required WorkflowTemplate scheduling information.
- * @property {string} updateTime Output-only The time template was last updated.
- * @property {integer} version Optional Used to perform a consistent read-modify-write.This field should be left blank for a CreateWorkflowTemplate request. It is required for an UpdateWorkflowTemplate request, and must match the current server version. A typical update template flow would fetch the current template with a GetWorkflowTemplate request, which will return the current template with the version field filled in with the current server version. The user updates other fields in the template, then returns it as part of the UpdateWorkflowTemplate request.
+ * @property {string} createTime Output only. The time template was created.
+ * @property {string} id Required. The template id.
+ * @property {dataproc(v1beta2).OrderedJob[]} jobs Required. The Directed Acyclic Graph of Jobs to submit.
+ * @property {object} labels Optional. The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance.Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels can be associated with a template.
+ * @property {string} name Output only. The &quot;resource name&quot; of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+ * @property {dataproc(v1beta2).WorkflowTemplatePlacement} placement Required. WorkflowTemplate scheduling information.
+ * @property {string} updateTime Output only. The time template was last updated.
+ * @property {integer} version Optional. Used to perform a consistent read-modify-write.This field should be left blank for a CreateWorkflowTemplate request. It is required for an UpdateWorkflowTemplate request, and must match the current server version. A typical update template flow would fetch the current template with a GetWorkflowTemplate request, which will return the current template with the version field filled in with the current server version. The user updates other fields in the template, then returns it as part of the UpdateWorkflowTemplate request.
  */
 
 /**
  * @typedef WorkflowTemplatePlacement
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {dataproc(v1beta2).ClusterSelector} clusterSelector Optional A selector that chooses target cluster for jobs based on metadata.The selector is evaluated at the time each job is submitted.
- * @property {dataproc(v1beta2).ManagedCluster} managedCluster Optional A cluster that is managed by the workflow.
+ * @property {dataproc(v1beta2).ClusterSelector} clusterSelector Optional. A selector that chooses target cluster for jobs based on metadata.The selector is evaluated at the time each job is submitted.
+ * @property {dataproc(v1beta2).ManagedCluster} managedCluster Optional. A cluster that is managed by the workflow.
  */
 
 /**

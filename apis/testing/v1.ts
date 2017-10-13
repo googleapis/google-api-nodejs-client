@@ -700,13 +700,21 @@ Required
  * @type object
 * @property {testing(v1).Account} account The device will be logged in on this account for the duration of the test.
 Optional
-* @property {string[]} directoriesToPull The directories on the device to upload to GCS at the end of the test;
-they must be absolute, whitelisted paths.
-Refer to RegularFile for whitelisted paths.
+* @property {string[]} directoriesToPull List of directories on the device to upload to GCS at the end of the test;
+they must be absolute paths under /sdcard or /data/local/tmp.
+Path names are restricted to characters a-z A-Z 0-9 _ - . + and /
+
+Note: The paths /sdcard and /data will be made available and treated as
+implicit path substitutions. E.g. if /sdcard on a particular device does
+not map to external storage, the system will replace it with the external
+storage path prefix for that device.
+
 Optional
 * @property {testing(v1).EnvironmentVariable[]} environmentVariables Environment variables to set for the test (only applicable for
 instrumentation tests).
-* @property {testing(v1).DeviceFile[]} filesToPush Optional
+* @property {testing(v1).DeviceFile[]} filesToPush List of files to push to the device before starting the test.
+
+Optional
 * @property {string} networkProfile The network traffic profile used for running the test.
 Optional
 */
