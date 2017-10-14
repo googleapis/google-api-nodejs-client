@@ -759,8 +759,11 @@ This can be in one of the following formats:
 * @property {object} labels Labels describing the operation.
 * @property {string} methodName Fully qualified name of the API method for which this quota operation is
 requested. This name is used for matching quota rules or metric rules and
-billing status rules defined in service configuration. This field is not
-required if the quota operation is performed on non-API resources.
+billing status rules defined in service configuration.
+
+This field should not be set if any of the following is true:
+(1) the quota operation is performed on non-API resources.
+(2) quota_metrics is set because the caller is doing quota override.
 
 Example of an RPC method name:
     google.example.library.v1.LibraryService.CreateShelf
@@ -782,6 +785,8 @@ MetricValue instances that have the same metric names and identical
 label value combinations. If a request has such duplicated MetricValue
 instances, the entire request is rejected with
 an invalid argument error.
+
+This field is mutually exclusive with method_name.
 * @property {string} quotaMode Quota mode for this operation.
 */
 
