@@ -195,12 +195,14 @@ this value is 0, then no links were dropped.
  * @typedef MessageEvent
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {string} compressedSize The number of compressed bytes sent or received. If missing assumed to
+* @property {string} compressedSizeBytes The number of compressed bytes sent or received. If missing assumed to
 be the same size as uncompressed.
-* @property {string} id An identifier for the message, which must be unique in this span.
+* @property {string} id An identifier for the MessageEvent&#39;s message that can be used to match
+SENT and RECEIVED MessageEvents. It is recommended to be unique within
+a Span.
 * @property {string} type Type of MessageEvent. Indicates whether the message was sent or
 received.
-* @property {string} uncompressedSize The number of uncompressed bytes sent or received.
+* @property {string} uncompressedSizeBytes The number of uncompressed bytes sent or received.
 */
 
 /**

@@ -718,7 +718,7 @@ image may be lost if the presentation&#39;s sharing settings change.
 * @property {slides(v1).CropProperties} cropProperties The crop properties of the image. If not set, the image is not cropped.
 This property is read-only.
 * @property {slides(v1).Link} link The hyperlink destination of the image. If unset, there is no link.
-* @property {slides(v1).Outline} outline The outline of the image. If not set, the the image has no outline.
+* @property {slides(v1).Outline} outline The outline of the image. If not set, the image has no outline.
 * @property {slides(v1).Recolor} recolor The recolor effect of the image. If not set, the image is not recolored.
 This property is read-only.
 * @property {slides(v1).Shadow} shadow The shadow of the image. If not set, the image has no shadow. This property
@@ -1377,7 +1377,7 @@ Placeholder.parent_object_id field.
  * @type object
 * @property {string} propertyState The background fill property state.
 
-Updating the the fill on a shape will implicitly update this field to
+Updating the fill on a shape will implicitly update this field to
 `RENDERED`, unless another value is specified in the same request. To
 have no fill on a shape, set this field to `NOT_RENDERED`. In this case,
 any other fill fields set in the same request will be ignored.
@@ -1572,7 +1572,7 @@ merged, it is not included in the response.
  * @type object
 * @property {string} propertyState The background fill property state.
 
-Updating the the fill on a table cell will implicitly update this field
+Updating the fill on a table cell will implicitly update this field
 to `RENDERED`, unless another value is specified in the same request. To
 have no fill on a table cell, set this field to `NOT_RENDERED`. In this
 case, any other fill fields set in the same request will be ignored.

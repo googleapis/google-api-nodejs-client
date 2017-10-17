@@ -2884,8 +2884,7 @@ or vertically (as rows).
  * @type object
 * @property {string} formula A custom formula to calculate the value.  The formula must start
 with an `=` character.
-* @property {string} name A name to use for the value. This is only used if formula was set.
-Otherwise, the column name is used.
+* @property {string} name A name to use for the value.
 * @property {integer} sourceColumnOffset The column offset of the source range that this value reads from.
 
 For example, if the source was `C10:E15`, a `sourceColumnOffset` of `0`

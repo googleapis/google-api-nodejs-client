@@ -1490,6 +1490,7 @@ be empty.
 * @property {string[]} jobFunctions A list of ids represnting which job categories the user selected.
 * @property {string[]} languages The list of languages this user understands.
 * @property {string[]} markets A list of ids representing which markets the user was interested in.
+* @property {boolean} migrateToAfa Whether or not to migrate the user&#39;s exam data to Academy for Ads.
 * @property {string} phoneNumber The user&#39;s phone number.
 * @property {string} primaryCountryCode The user&#39;s primary country, an ISO 2-character code.
 * @property {boolean} profilePublic Whether the user&#39;s public profile is visible to anyone with the URL.
