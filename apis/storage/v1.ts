@@ -102,7 +102,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -196,7 +196,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -289,7 +289,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -379,7 +379,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -478,7 +478,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -578,7 +578,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -671,7 +671,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If set, only deletes the bucket if its metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the bucket if its metageneration does not match this value.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -763,7 +763,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -852,7 +852,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -948,7 +948,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1055,7 +1055,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.prefix Filter results to buckets whose names begin with this prefix.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1154,7 +1154,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1249,7 +1249,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1343,7 +1343,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1442,7 +1442,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Bucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1628,7 +1628,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1722,7 +1722,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1815,7 +1815,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1907,7 +1907,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2006,7 +2006,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2106,7 +2106,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2201,7 +2201,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification ID of the notification to delete.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2294,7 +2294,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
      * @param {string} params.notification Notification ID
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2387,7 +2387,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket The parent bucket of the notification.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Notification} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2477,7 +2477,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a Google Cloud Storage bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2578,7 +2578,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2678,7 +2678,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2777,7 +2777,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2873,7 +2873,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2978,7 +2978,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3084,7 +3084,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3195,7 +3195,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).ComposeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3320,7 +3320,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3417,7 +3417,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3521,7 +3521,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3616,7 +3616,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3726,7 +3726,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
@@ -3838,7 +3838,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3945,7 +3945,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4069,7 +4069,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4170,7 +4170,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Policy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4270,7 +4270,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4380,7 +4380,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4479,7 +4479,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {storage(v1).Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4575,7 +4575,7 @@ function Storage(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.projectId Project ID
-       * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
+       * @param {string=} params.userProject The project to be billed for this request.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
