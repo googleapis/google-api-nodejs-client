@@ -150,6 +150,11 @@ sorted by the server. The &#39;key&#39; values of the params must be unique.
  * @typedef RemoteConfigCondition
  * @memberOf! firebaseremoteconfig(v1)
  * @type object
+* @property {string} description Optional.
+A description for this Condition. Length must be less than or equal to
+100 characters (or more precisely, unicode code points, which is defined in
+java/com/google/wireless/android/config/ConstsExporter.java).
+A description may contain any Unicode characters
 * @property {string} expression Required.
 * @property {string} name Required.
 A non empty and unique name of this condition.
@@ -174,6 +179,11 @@ highest priority (the one listed first in the conditions array) determines
 the value of this parameter.
 * @property {firebaseremoteconfig(v1).RemoteConfigParameterValue} defaultValue Optional - value to set the parameter to, when none of the named conditions
 evaluate to &lt;code&gt;true&lt;/code&gt;.
+* @property {string} description Optional.
+A description for this Parameter. Length must be less than or equal to
+100 characters (or more precisely, unicode code points, which is defined in
+java/com/google/wireless/android/config/ConstsExporter.java).
+A description may contain any Unicode characters
 */
 
 /**

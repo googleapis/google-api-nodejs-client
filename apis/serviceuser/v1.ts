@@ -505,8 +505,8 @@ is used.
  * @memberOf! serviceuser(v1)
  * @type object
 * @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases,
-please specify multiple google.api.Endpoint for each of the intented
-alias.
+please specify multiple google.api.Endpoint for each of the intended
+aliases.
 
 Additional names that this endpoint will be hosted on.
 * @property {boolean} allowCors Allowing

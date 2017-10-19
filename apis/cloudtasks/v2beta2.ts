@@ -2128,7 +2128,7 @@ task-level app_engine_routing.
  * @typedef AppEngineQueueConfig
  * @memberOf! cloudtasks(v2beta2)
  * @type object
- * @property {cloudtasks(v2beta2).AppEngineRouting} appEngineRoutingOverride Deprecated. Use AppEngineTarget.app_engine_routing_override.
+ * @property {cloudtasks(v2beta2).AppEngineRouting} appEngineRoutingOverride Deprecated. Use AppEngineHttpTarget.app_engine_routing_override.
  */
 
 /**

@@ -193,44 +193,6 @@ function Datastore(options) { // eslint-disable-line
     },
 
     /**
-     * datastore.projects.reserveIds
-     *
-     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore.
-     *
-     * @alias datastore.projects.reserveIds
-     * @memberOf! datastore(v1beta3)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
-     * @param {datastore(v1beta3).ReserveIdsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    reserveIds: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/v1beta3/projects/{projectId}:reserveIds').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * datastore.projects.rollback
      *
      * @desc Rolls back a transaction.
@@ -761,21 +723,6 @@ Datastore.BeginTransaction.
  * @memberOf! datastore(v1beta3)
  * @type object
  * @property {string} previousTransaction The transaction identifier of the transaction being retried.
- */
-
-/**
- * @typedef ReserveIdsRequest
- * @memberOf! datastore(v1beta3)
- * @type object
-* @property {string} databaseId If not empty, the ID of the database against which to make the request.
-* @property {datastore(v1beta3).Key[]} keys A list of keys with complete key paths whose numeric IDs should not be
-auto-allocated.
-*/
-
-/**
- * @typedef ReserveIdsResponse
- * @memberOf! datastore(v1beta3)
- * @type object
  */
 
 /**

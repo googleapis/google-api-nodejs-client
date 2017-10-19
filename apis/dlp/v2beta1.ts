@@ -1724,9 +1724,9 @@ When the data crypto key is generated, this name is not used in any way
  * @typedef GooglePrivacyDlpV2beta1WordList
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {string[]} words Words or phrases defining the dictionary. No word can be shorter than 3
-characters in length. To match, there must be whitespace or punctuation
-around the targeted string. [required]
+* @property {string[]} words Words or phrases defining the dictionary. The dictionary must contain
+at least one phrase and every phrase must contain at least 2 characters
+that are letters or digits. [required]
 */
 
 /**
