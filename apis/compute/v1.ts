@@ -12633,6 +12633,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setDeletionProtection
+     *
+     * @desc Sets deletion protection on the instance.
+     *
+     * @alias compute.instances.setDeletionProtection
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.deletionProtection Whether the resource should be protected against deletion.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setDeletionProtection: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setDiskAutoDelete
      *
      * @desc Sets the auto-delete flag for a disk attached to an instance.
@@ -13694,7 +13735,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.stop
      *
-     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur per-minute, virtual machine usage charges while they are stopped, but any resources that the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
+     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * @example
      * // BEFORE RUNNING:
@@ -13782,6 +13823,496 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnectAttachments = {
+
+    /**
+     * compute.interconnectAttachments.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of interconnect attachments.
+     *
+     * @alias compute.interconnectAttachments.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/aggregated/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.delete
+     *
+     * @desc Deletes the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.get
+     *
+     * @desc Returns the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.insert
+     *
+     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnectAttachments.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(v1).InterconnectAttachment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.list
+     *
+     * @desc Retrieves the list of interconnect attachments contained within the specified region.
+     *
+     * @alias compute.interconnectAttachments.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnectLocations = {
+
+    /**
+     * compute.interconnectLocations.get
+     *
+     * @desc Returns the details for the specified interconnect location. Get a list of available interconnect locations by making a list() request.
+     *
+     * @alias compute.interconnectLocations.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectLocation Name of the interconnect location to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnectLocations/{interconnectLocation}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnectLocation'],
+        pathParams: ['interconnectLocation', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectLocations.list
+     *
+     * @desc Retrieves the list of interconnect locations available to the specified project.
+     *
+     * @alias compute.interconnectLocations.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnectLocations').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnects = {
+
+    /**
+     * compute.interconnects.delete
+     *
+     * @desc Deletes the specified interconnect.
+     *
+     * @alias compute.interconnects.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.get
+     *
+     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     *
+     * @alias compute.interconnects.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.insert
+     *
+     * @desc Creates a Interconnect in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnects.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(v1).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnects').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.list
+     *
+     * @desc Retrieves the list of interconnect available to the specified project.
+     *
+     * @alias compute.interconnects.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnects').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.patch
+     *
+     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     *
+     * @alias compute.interconnects.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(v1).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/v1/projects/{project}/global/interconnects/{interconnect}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
         context: self
       };
 
@@ -29040,7 +29571,7 @@ This property is mutually exclusive with the source property; you can only defin
 * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
 * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
 * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
-* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.
 
 If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
 
@@ -29062,7 +29593,7 @@ Other values include pd-ssd and local-ssd. If you define this field, you can pro
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
 - projects/project/zones/zone/diskTypes/diskType 
 - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
-* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
 
@@ -29175,10 +29706,10 @@ If the average CPU is above the target utilization, the autoscaler scales up unt
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(v1)
  * @type object
-* @property {string} metric The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric.
+* @property {string} metric The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values.
 
 The metric must have a value type of INT64 or DOUBLE.
-* @property {number} utilizationTarget The target value of the metric that autoscaler should maintain. This must be a positive value.
+* @property {number} utilizationTarget The target value of the metric that autoscaler should maintain. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.
 
 For example, a good metric to use as a utilization_target is compute.googleapis.com/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.
 * @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
@@ -29640,8 +30171,10 @@ If you choose to specify this property, you can specify the network as a full or
 * @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
+* @property {string[]} sourceServiceAccounts If source service accounts are specified, the firewall will apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both properties for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
 * @property {string[]} sourceTags If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
-* @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+* @property {string[]} targetServiceAccounts A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
+* @property {string[]} targetTags A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 */
 
 /**
@@ -29662,9 +30195,19 @@ If you choose to specify this property, you can specify the network as a full or
  * @type object
 * @property {string} IPAddress The IP address that this forwarding rule is serving on behalf of.
 
-For global forwarding rules, the address must be a global IP. For regional forwarding rules, the address must live in the same region as the forwarding rule. By default, this field is empty and an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.
+Addresses are restricted based on the forwarding rule&#39;s load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional).
 
-When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnetwork configured for the forwarding rule. A reserved address cannot be used. If the field is empty, the IP address will be automatically allocated from the internal IP range of the subnetwork or network configured for this forwarding rule.
+When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.
+
+When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule.
+
+An address can be specified either by a literal IP address or a URL reference to an existing Address resource. The following examples are all valid:  
+- 100.1.2.3 
+- https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address 
+- projects/project/regions/region/addresses/address 
+- regions/region/addresses/address 
+- global/addresses/address 
+- address
 * @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
 
 When the load balancing scheme is INTERNAL, only TCP and UDP are valid.
@@ -29964,6 +30507,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {boolean} canIpForward Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.
 * @property {string} cpuPlatform [Output Only] The CPU platform used by this instance.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {boolean} deletionProtection Whether the resource should be protected against deletion.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(v1).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
 * @property {compute(v1).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
@@ -30361,6 +30905,168 @@ In order to start the instance, the disk url and its corresponding key must be p
 
 If the disk is not protected with a customer-supplied encryption key it should not be specified.
 */
+
+/**
+ * @typedef Interconnect
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {compute(v1).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {compute(v1).InterconnectOutageNotification[]} expectedOutages [Output Only] List of outages expected for this Interconnect.
+ * @property {string} googleIpAddress [Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.
+ * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+ * @property {string} interconnectType 
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
+ * @property {string} linkType 
+ * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this Interconnect is functional.
+ * @property {string} peerIpAddress [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
+ * @property {integer} provisionedLinkCount [Output Only] Number of links actually provisioned in this interconnect.
+ * @property {integer} requestedLinkCount Target number of physical links in the link bundle, as requested by the customer.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectAttachment
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
+ * @property {compute(v1).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
+ * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectAttachmentAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of InterconnectAttachmentsScopedList resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentAggregatedList for aggregated lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef InterconnectAttachmentList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InterconnectAttachment[]} items A list of InterconnectAttachment resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentList for lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef InterconnectAttachmentPrivateInfo
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} tag8021q [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
+ */
+
+/**
+ * @typedef InterconnectAttachmentsScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InterconnectAttachment[]} interconnectAttachments List of interconnect attachments contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+
+/**
+ * @typedef InterconnectCircuitInfo
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} customerDemarcId Customer-side demarc ID for this circuit. This will only be set if it was provided by the Customer to Google during circuit turn-up.
+ * @property {string} googleCircuitId Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
+ * @property {string} googleDemarcId Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+ */
+
+/**
+ * @typedef InterconnectList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Interconnect[]} items A list of Interconnect resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectList for lists of interconnects.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef InterconnectLocation
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+ * @property {string} availabilityZone Availability zone for this location. Within a city, maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
+ * @property {string} city City designator used by the Interconnect UI to locate this InterconnectLocation within the Continent. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
+ * @property {string} continent Continent for this location. Used by the location picker in the Interconnect UI.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] An optional description of the resource.
+ * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+ * @property {string} facilityProviderFacilityId [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} peeringdbFacilityId [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+ * @property {compute(v1).InterconnectLocationRegionInfo[]} regionInfos [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+
+/**
+ * @typedef InterconnectLocationList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).InterconnectLocation[]} items A list of InterconnectLocation resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef InterconnectLocationRegionInfo
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} expectedRttMs Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+ * @property {string} locationPresence Identifies the network presence of this location.
+ * @property {string} region URL for the region of this location.
+ */
+
+/**
+ * @typedef InterconnectOutageNotification
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} affectedCircuits Iff issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
+ * @property {string} description Short user-visible description of the purpose of the outage.
+ * @property {string} endTime 
+ * @property {string} issueType 
+ * @property {string} name Unique identifier for this outage notification.
+ * @property {string} source 
+ * @property {string} startTime Scheduled start and end times for the outage (milliseconds since Unix epoch).
+ * @property {string} state 
+ */
 
 /**
  * @typedef License
@@ -30934,6 +31640,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(v1)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+ * @property {string} linkedInterconnectAttachment URI of the linked interconnect attachment. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */

@@ -425,6 +425,9 @@ The default of 0.0 is a sentinel value indicating `confidence` was not set.
 maximum specified in `max_alternatives`).
 These alternatives are ordered in terms of accuracy, with the top (first)
 alternative being the most probable, as ranked by the recognizer.
+* @property {integer} channelTag For multi-channel audio, this is the channel number corresponding to the
+recognized result for the audio from that channel.
+For audio_channel_count = N, its output values can range from &#39;0&#39; to &#39;N-1&#39;.
 */
 
 /**

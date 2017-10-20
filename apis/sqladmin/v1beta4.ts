@@ -558,6 +558,45 @@ function Sqladmin(options) { // eslint-disable-line
     },
 
     /**
+     * sql.instances.demoteMaster
+     *
+     * @desc Demotes the standalone instance to be a read replica Cloud SQL instance of an on-premises master.
+     *
+     * @alias sql.instances.demoteMaster
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance name.
+     * @param {string} params.project ID of the project that contains the instance.
+     * @param {sqladmin(v1beta4).InstancesDemoteMasterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    demoteMaster: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/demoteMaster').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * sql.instances.export
      *
      * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage bucket as a MySQL dump file.
@@ -1760,6 +1799,35 @@ UNKNOWN_STATE: The state of the instance is unknown.
  */
 
 /**
+ * @typedef DemoteMasterConfiguration
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {string} kind This is always sql#demoteMasterConfiguration.
+ * @property {sqladmin(v1beta4).DemoteMasterMySqlReplicaConfiguration} mysqlReplicaConfiguration MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
+ */
+
+/**
+ * @typedef DemoteMasterContext
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {string} kind This is always sql#demoteMasterContext.
+ * @property {string} masterInstanceName The name of the instance which will act as on-premises master in the replication setup.
+ * @property {sqladmin(v1beta4).DemoteMasterConfiguration} replicaConfiguration Configuration specific to read-replicas replicating from the on-premises master.
+ */
+
+/**
+ * @typedef DemoteMasterMySqlReplicaConfiguration
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {string} caCertificate PEM representation of the trusted CA&#39;s x509 certificate.
+ * @property {string} clientCertificate PEM representation of the slave&#39;s x509 certificate.
+ * @property {string} clientKey PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the slave&#39;s private key can be either PKCS #1 or PKCS #8.
+ * @property {string} kind This is always sql#demoteMasterMysqlReplicaConfiguration.
+ * @property {string} password The password for the replication connection.
+ * @property {string} username The username for the replication connection.
+ */
+
+/**
  * @typedef ExportContext
  * @memberOf! sqladmin(v1beta4)
  * @type object
@@ -1822,6 +1890,13 @@ CSV: The file contains CSV data.
  * @memberOf! sqladmin(v1beta4)
  * @type object
  * @property {sqladmin(v1beta4).CloneContext} cloneContext Contains details about the clone operation.
+ */
+
+/**
+ * @typedef InstancesDemoteMasterRequest
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {sqladmin(v1beta4).DemoteMasterContext} demoteMasterContext Contains details about the demoteMaster operation.
  */
 
 /**

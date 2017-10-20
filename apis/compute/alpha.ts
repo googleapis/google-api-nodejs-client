@@ -7994,7 +7994,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.stop
      *
-     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur per-minute, virtual machine usage charges while they are stopped, but any resources that the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
+     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * @alias compute.instances.stop
      * @memberOf! compute(alpha)
@@ -13893,6 +13893,45 @@ function Compute(options) { // eslint-disable-line
   self.securityPolicies = {
 
     /**
+     * compute.securityPolicies.addRule
+     *
+     * @desc Inserts a rule into a security policy.
+     *
+     * @alias compute.securityPolicies.addRule
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {compute(alpha).SecurityPolicyRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addRule: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}/addRule').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.securityPolicies.delete
      *
      * @desc Deletes the specified policy.
@@ -13958,6 +13997,45 @@ function Compute(options) { // eslint-disable-line
       const parameters = {
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.getRule
+     *
+     * @desc Gets a rule at the specified priority.
+     *
+     * @alias compute.securityPolicies.getRule
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to get from the security policy.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to which the queried rule belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getRule: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}/getRule').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
         }, options),
         params: params,
@@ -14079,6 +14157,85 @@ function Compute(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}').replace(/([^:]\/)\/+/g, '$1'),
           method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.patchRule
+     *
+     * @desc Patches a rule at the specified priority.
+     *
+     * @alias compute.securityPolicies.patchRule
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {compute(alpha).SecurityPolicyRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patchRule: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}/patchRule').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.removeRule
+     *
+     * @desc Deletes a rule at the specified priority.
+     *
+     * @alias compute.securityPolicies.removeRule
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to remove from the security policy.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeRule: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}/removeRule').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['project', 'securityPolicy'],
@@ -18665,7 +18822,7 @@ This property is mutually exclusive with the source property; you can only defin
 * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
 * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
 * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
-* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.
 
 If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
 
@@ -18688,7 +18845,7 @@ Other values include pd-ssd and local-ssd. If you define this field, you can pro
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
 - projects/project/zones/zone/diskTypes/diskType 
 - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
-* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
 
@@ -18827,27 +18984,27 @@ If the average CPU is above the target utilization, the autoscaler scales up unt
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} filter A filter string, compatible with a Stackdriver Monitoring filter string for TimeSeries.list API call. This filter is used to select a specific TimeSeries for the purpose of autoscaling and to determine whether the metric is exporting per-instance or global data.
+* @property {string} filter A filter string, compatible with a Stackdriver Monitoring filter string for TimeSeries.list API call. This filter is used to select a specific TimeSeries for the purpose of autoscaling and to determine whether the metric is exporting per-instance or per-group data.
 
 For the filter to be valid for autoscaling purposes, the following rules apply:  
 - You can only use the AND operator for joining selectors. 
 - You can only use direct equality comparison operator (=) without any functions for each selector. 
 - You can specify the metric in both the filter string and in the metric field. However, if specified in both places, the metric must be identical. 
 - The monitored resource type determines what kind of values are expected for the metric. If it is a gce_instance, the autoscaler expects the metric to include a separate TimeSeries for each instance in a group. In such a case, you cannot filter on resource labels.
-If the resource type is any other value, the autoscaler expects this metric to contain values that apply to the entire autoscaled instance group and resource label filtering can be performed to point autoscaler at the correct TimeSeries to scale upon. This is / called a global metric for the purpose of autoscaling.
+If the resource type is any other value, the autoscaler expects this metric to contain values that apply to the entire autoscaled instance group and resource label filtering can be performed to point autoscaler at the correct TimeSeries to scale upon. This is called a per-group metric for the purpose of autoscaling.
 
 If not specified, the type defaults to gce_instance.  
 
 You should provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.
-* @property {string} metric The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric.
+* @property {string} metric The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values.
 
 The metric must have a value type of INT64 or DOUBLE.
-* @property {number} singleInstanceAssignment If scaling is based on a global metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler will keep the number of instances proportional to the value of this metric, the metric itself should not change value due to group resizing.
+* @property {number} singleInstanceAssignment If scaling is based on a per-group metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler will keep the number of instances proportional to the value of this metric, the metric itself should not change value due to group resizing.
 
 A good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.
 
 A bad example would be a metric exporting an average or median latency, since this value can&#39;t include a chunk assignable to a single instance, it could be better used with utilization_target instead.
-* @property {number} utilizationTarget The target value of the metric that autoscaler should maintain. This must be a positive value.
+* @property {number} utilizationTarget The target value of the metric that autoscaler should maintain. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.
 
 For example, a good metric to use as a utilization_target is compute.googleapis.com/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.
 * @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
@@ -19267,6 +19424,9 @@ After you encrypt a disk with a customer-supplied key, you must provide the same
 Customer-supplied encryption keys do not protect access to metadata of the disk.
 
 If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+* @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable disks only. Currently, only one feature can be enabled, VIRTIO_SCSI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows disks, you can only enable VIRTIO_SCSI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux disks with kernel versions 3.17 and higher will support VIRTIO_SCSI_MULTIQUEUE.
+
+For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#disk for disks.
 * @property {string} labelFingerprint A fingerprint for the labels being applied to this disk, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
@@ -19465,6 +19625,7 @@ The application context of the containing message determines which well-known fe
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
 * @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
+* @property {boolean} disabled Denotes whether the firewall rule is disabled, i.e not applied to the network it is associated with. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
 * @property {boolean} enableLogging This field denotes whether to enable logging for a particular firewall rule. If logging is enabled, logs will be exported to the configured export destination for all firewall logs in the network. Logs may be exported to BigQuery or Pub/Sub.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#firewall for firewall rules.
@@ -19481,7 +19642,7 @@ If you choose to specify this property, you can specify the network as a full or
 * @property {string[]} sourceServiceAccounts If source service accounts are specified, the firewall will apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both properties for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
 * @property {string[]} sourceTags If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance&#39;s external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
 * @property {string[]} targetServiceAccounts A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
-* @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+* @property {string[]} targetTags A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 */
 
 /**
@@ -19515,9 +19676,19 @@ If you choose to specify this property, you can specify the network as a full or
  * @type object
 * @property {string} IPAddress The IP address that this forwarding rule is serving on behalf of.
 
-For global forwarding rules, the address must be a global IP. For regional forwarding rules, the address must live in the same region as the forwarding rule. By default, this field is empty and an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.
+Addresses are restricted based on the forwarding rule&#39;s load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional).
 
-When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnetwork configured for the forwarding rule. A reserved address cannot be used. If the field is empty, the IP address will be automatically allocated from the internal IP range of the subnetwork or network configured for this forwarding rule.
+When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6.
+
+When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule.
+
+An address can be specified either by a literal IP address or a URL reference to an existing Address resource. The following examples are all valid:  
+- 100.1.2.3 
+- https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address 
+- projects/project/regions/region/addresses/address 
+- regions/region/addresses/address 
+- global/addresses/address 
+- address
 * @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
 
 When the load balancing scheme is INTERNAL, only TCP and UDP are valid.
@@ -20164,7 +20335,7 @@ Named ports apply to all instances in this instance group.
 * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
 * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
 * @property {string} serviceAccount [Output Only] The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.
-* @property {compute(alpha).InstanceGroupManagerStatefulPolicy} statefulPolicy Stateful configuration for this Instanced Group Manager
+* @property {compute(alpha).StatefulPolicy} statefulPolicy Stateful configuration for this Instanced Group Manager
 * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
 * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
 * @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
@@ -20245,20 +20416,6 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {integer} deleting [Output Only] The number of instances in the managed instance group that are pending to be deleted.
  * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are pending to be recreated.
  * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are pending to be restarted.
- */
-
-/**
- * @typedef InstanceGroupManagerStatefulPolicy
- * @memberOf! compute(alpha)
- * @type object
- * @property {compute(alpha).InstanceGroupManagerStatefulPolicyDiskPolicy[]} preservedDisks Disks created on the instances that will be preserved on instance delete, resize down, etc.
- */
-
-/**
- * @typedef InstanceGroupManagerStatefulPolicyDiskPolicy
- * @memberOf! compute(alpha)
- * @type object
- * @property {string} deviceName Device name of the disk to be preserved
  */
 
 /**
@@ -20612,7 +20769,6 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @type object
  * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
  * @property {compute(alpha).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
- * @property {string} connectionAuthorization [Output Only] URL to retrieve the Letter Of Authority and Customer Facility Assignment (LOA-CFA) documentation relating to this Interconnect. This documentation authorizes the facility provider to connect to the specified crossconnect ports.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -20753,7 +20909,6 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @property {string} expectedRttMs Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
  * @property {string} locationPresence Identifies the network presence of this location.
  * @property {string} region URL for the region of this location.
- * @property {string} regionKey Scope key for the region of this location.
  */
 
 /**
@@ -21924,6 +22079,7 @@ To see the latest fingerprint, make get() request to the security policy.
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).SecurityPolicyRuleMatcherConfig} config The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
+ * @property {compute(alpha).Expr} expr User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
  * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
  * @property {string[]} srcRegionCodes Match by country or region code.
  * @property {string} versionedExpr Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
@@ -22083,6 +22239,28 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} sslPolicy URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with the target proxy resource.
+ */
+
+/**
+ * @typedef StatefulPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).StatefulPolicyPreservedDisk[]} preservedDisks Disks created on the instances that will be preserved on instance delete, resize down, etc. DEPRECATED in favor of preservedResources.disks field.
+ * @property {compute(alpha).StatefulPolicyPreservedResources} preservedResources 
+ */
+
+/**
+ * @typedef StatefulPolicyPreservedDisk
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} deviceName Device name of the disk to be preserved
+ */
+
+/**
+ * @typedef StatefulPolicyPreservedResources
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).StatefulPolicyPreservedDisk[]} disks Disks created on the instances that will be preserved on instance delete, resize down, etc.
  */
 
 /**

@@ -270,6 +270,44 @@ function Firebaserules(options) { // eslint-disable-line
       },
 
       /**
+       * firebaserules.projects.releases.patch
+       *
+       * @desc Update a `Release` via PATCH.  Only updates to the `ruleset_name` and `test_suite_name` fields will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.
+       *
+       * @alias firebaserules.projects.releases.patch
+       * @memberOf! firebaserules(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
+       * @param {firebaserules(v1).UpdateReleaseRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://firebaserules.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * firebaserules.projects.releases.update
        *
        * @desc Update a `Release`.  Only updates to the `ruleset_name` and `test_suite_name` fields will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.
@@ -705,5 +743,13 @@ The results will appear in the same order as the test cases appear in the
  * @memberOf! firebaserules(v1)
  * @type object
  * @property {firebaserules(v1).TestCase[]} testCases Collection of test cases associated with the `TestSuite`.
+ */
+
+/**
+ * @typedef UpdateReleaseRequest
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).Release} release `Release` to update.
+ * @property {string} updateMask Specifies which fields to update.
  */
 export = Firebaserules;

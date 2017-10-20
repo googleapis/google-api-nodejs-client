@@ -791,21 +791,638 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       }
+    }
+  };
+
+  self.bidders = {
+    accounts: {
+      filterSets: {
+
+        /**
+         * adexchangebuyer2.bidders.accounts.filterSets.create
+         *
+         * @desc Creates the specified filter set for the account with the given account ID.
+         *
+         * @alias adexchangebuyer2.bidders.accounts.filterSets.create
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
+         * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: "bidders/123" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456"
+         * @param {adexchangebuyer2(v2beta1).FilterSet} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2beta1/{ownerName}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['ownerName'],
+            pathParams: ['ownerName'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.bidders.accounts.filterSets.delete
+         *
+         * @desc Deletes the requested filter set from the account with the given account ID.
+         *
+         * @alias adexchangebuyer2.bidders.accounts.filterSets.delete
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to delete.
+         * @param {string} params.name Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.bidders.accounts.filterSets.get
+         *
+         * @desc Retrieves the requested filter set for the account with the given account ID.
+         *
+         * @alias adexchangebuyer2.bidders.accounts.filterSets.get
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to get.
+         * @param {string} params.name Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.bidders.accounts.filterSets.list
+         *
+         * @desc Lists all filter sets for the account with the given account ID.
+         *
+         * @alias adexchangebuyer2.bidders.accounts.filterSets.list
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: "bidders/123" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456"
+         * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+          const parameters = {
+            options: Object.assign({
+              url: (rootUrl + '/v2beta1/{ownerName}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['ownerName'],
+            pathParams: ['ownerName'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+        bidMetrics: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list
+           *
+           * @desc Lists all metrics that are measured in terms of number of bids.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.bidMetrics.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/bidMetrics').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        bidResponseErrors: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list
+           *
+           * @desc List all errors that occurred in bid responses, with the number of bid responses affected for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.bidResponseErrors.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/bidResponseErrors').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        bidResponsesWithoutBids: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list
+           *
+           * @desc List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.bidResponsesWithoutBids.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/bidResponsesWithoutBids').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        filteredBidRequests: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list
+           *
+           * @desc List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBidRequests.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/filteredBidRequests').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        filteredBids: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list
+           *
+           * @desc List all reasons for which bids were filtered, with the number of bids filtered for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+          creatives: {
+
+            /**
+             * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list
+             *
+             * @desc List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.
+             *
+             * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.creatives.list
+             * @memberOf! adexchangebuyer2(v2beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string=} params.accountId Account ID of the buyer.
+             * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+             * @param {string=} params.filterSetId The ID of the filter set to apply.
+             * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+             * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+             * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            list: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
+              const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+              const parameters = {
+                options: Object.assign({
+                  url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/creatives').replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                }, options),
+                params: params,
+                requiredParams: ['filterSetName', 'creativeStatusId'],
+                pathParams: ['creativeStatusId', 'filterSetName'],
+                context: self
+              };
+
+              return createAPIRequest(parameters, callback);
+            }
+          },
+          details: {
+
+            /**
+             * adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list
+             *
+             * @desc List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.
+             *
+             * @alias adexchangebuyer2.bidders.accounts.filterSets.filteredBids.details.list
+             * @memberOf! adexchangebuyer2(v2beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string=} params.accountId Account ID of the buyer.
+             * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+             * @param {string=} params.filterSetId The ID of the filter set to apply.
+             * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+             * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+             * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            list: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
+              const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+              const parameters = {
+                options: Object.assign({
+                  url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/details').replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                }, options),
+                params: params,
+                requiredParams: ['filterSetName', 'creativeStatusId'],
+                pathParams: ['creativeStatusId', 'filterSetName'],
+                context: self
+              };
+
+              return createAPIRequest(parameters, callback);
+            }
+          }
+        },
+        impressionMetrics: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list
+           *
+           * @desc Lists all metrics that are measured in terms of number of impressions.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.impressionMetrics.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/impressionMetrics').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        losingBids: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.losingBids.list
+           *
+           * @desc List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.losingBids.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/losingBids').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        },
+        nonBillableWinningBids: {
+
+          /**
+           * adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list
+           *
+           * @desc List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.
+           *
+           * @alias adexchangebuyer2.bidders.accounts.filterSets.nonBillableWinningBids.list
+           * @memberOf! adexchangebuyer2(v2beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.accountId Account ID of the buyer.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
+           * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const rootUrl = options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+
+            const parameters = {
+              options: Object.assign({
+                url: (rootUrl + '/v2beta1/{filterSetName}/nonBillableWinningBids').replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['filterSetName'],
+              pathParams: ['filterSetName'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
+        }
+      }
     },
     filterSets: {
 
       /**
-       * adexchangebuyer2.accounts.filterSets.create
+       * adexchangebuyer2.bidders.filterSets.create
        *
        * @desc Creates the specified filter set for the account with the given account ID.
        *
-       * @alias adexchangebuyer2.accounts.filterSets.create
+       * @alias adexchangebuyer2.bidders.filterSets.create
        * @memberOf! adexchangebuyer2(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID of the buyer.
+       * @param {string=} params.accountId Account ID of the buyer.
+       * @param {integer=} params.filterSet.absoluteDateRange.endDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year/month where the day is not significant.
+       * @param {integer=} params.filterSet.absoluteDateRange.endDate.month Month of year. Must be from 1 to 12.
+       * @param {integer=} params.filterSet.absoluteDateRange.endDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+       * @param {integer=} params.filterSet.absoluteDateRange.startDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year/month where the day is not significant.
+       * @param {integer=} params.filterSet.absoluteDateRange.startDate.month Month of year. Must be from 1 to 12.
+       * @param {integer=} params.filterSet.absoluteDateRange.startDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+       * @param {string=} params.filterSet.buyerAccountId The ID of the buyer account on which to filter; optional.
+       * @param {string=} params.filterSet.creativeId The ID of the creative on which to filter; optional.
+       * @param {string=} params.filterSet.dealId The ID of the deal on which to filter; optional.
+       * @param {string=} params.filterSet.environment The environment on which to filter; optional.
+       * @param {string=} params.filterSet.filterSetId The ID of the filter set; unique within the account of the filter set owner. The value of this field is ignored in create operations.
+       * @param {string=} params.filterSet.format The format on which to filter; optional.
+       * @param {string=} params.filterSet.name A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x` (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x` (for accessing buyer-level troubleshooting data)
+       * @param {string=} params.filterSet.ownerAccountId The account ID of the buyer who owns this filter set. The value of this field is ignored in create operations.
+       * @param {string=} params.filterSet.platforms The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e. if non-empty, results must match any one of the platforms).
+       * @param {string=} params.filterSet.realtimeTimeRange.startTimestamp The start timestamp of the real-time RTB metrics aggregation.
+       * @param {integer=} params.filterSet.relativeDateRange.durationDays The number of days in the requested date range. E.g. for a range spanning today, 1. For a range spanning the last 7 days, 7.
+       * @param {integer=} params.filterSet.relativeDateRange.offsetDays The end date of the filter set, specified as the number of days before today. E.g. for a range where the last date is today, 0.
+       * @param {integer=} params.filterSet.sellerNetworkIds The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (i.e. if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.
+       * @param {string=} params.filterSet.timeSeriesGranularity The granularity of time intervals if a time series breakdown is desired; optional.
        * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
-       * @param {adexchangebuyer2(v2beta1).FilterSet} params.resource Request body data
+       * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example: - For a bidder-level filter set for bidder 123: "bidders/123" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456"
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -821,12 +1438,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{ownerName}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           }, options),
           params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
+          requiredParams: ['ownerName'],
+          pathParams: ['ownerName'],
           context: self
         };
 
@@ -834,16 +1451,17 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       /**
-       * adexchangebuyer2.accounts.filterSets.delete
+       * adexchangebuyer2.bidders.filterSets.delete
        *
        * @desc Deletes the requested filter set from the account with the given account ID.
        *
-       * @alias adexchangebuyer2.accounts.filterSets.delete
+       * @alias adexchangebuyer2.bidders.filterSets.delete
        * @memberOf! adexchangebuyer2(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID of the buyer.
-       * @param {string} params.filterSetId The ID of the filter set to delete.
+       * @param {string=} params.accountId Account ID of the buyer.
+       * @param {string=} params.filterSetId The ID of the filter set to delete.
+       * @param {string} params.name Full name of the resource to delete. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -859,12 +1477,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           }, options),
           params: params,
-          requiredParams: ['accountId', 'filterSetId'],
-          pathParams: ['accountId', 'filterSetId'],
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -872,16 +1490,17 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       /**
-       * adexchangebuyer2.accounts.filterSets.get
+       * adexchangebuyer2.bidders.filterSets.get
        *
        * @desc Retrieves the requested filter set for the account with the given account ID.
        *
-       * @alias adexchangebuyer2.accounts.filterSets.get
+       * @alias adexchangebuyer2.bidders.filterSets.get
        * @memberOf! adexchangebuyer2(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID of the buyer.
-       * @param {string} params.filterSetId The ID of the filter set to get.
+       * @param {string=} params.accountId Account ID of the buyer.
+       * @param {string=} params.filterSetId The ID of the filter set to get.
+       * @param {string} params.name Full name of the resource being requested. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -897,12 +1516,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
-          requiredParams: ['accountId', 'filterSetId'],
-          pathParams: ['accountId', 'filterSetId'],
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -910,15 +1529,16 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       /**
-       * adexchangebuyer2.accounts.filterSets.list
+       * adexchangebuyer2.bidders.filterSets.list
        *
        * @desc Lists all filter sets for the account with the given account ID.
        *
-       * @alias adexchangebuyer2.accounts.filterSets.list
+       * @alias adexchangebuyer2.bidders.filterSets.list
        * @memberOf! adexchangebuyer2(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID of the buyer.
+       * @param {string=} params.accountId Account ID of the buyer.
+       * @param {string} params.ownerName Name of the owner (bidder or account) of the filter sets to be listed. For example: - For a bidder-level filter set for bidder 123: "bidders/123" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456"
        * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
        * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilterSetsResponse.nextPageToken returned from the previous call to the accounts.filterSets.list method.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -936,12 +1556,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
         const parameters = {
           options: Object.assign({
-            url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{ownerName}/filterSets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           }, options),
           params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
+          requiredParams: ['ownerName'],
+          pathParams: ['ownerName'],
           context: self
         };
 
@@ -950,18 +1570,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       bidMetrics: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.bidMetrics.list
+         * adexchangebuyer2.bidders.filterSets.bidMetrics.list
          *
          * @desc Lists all metrics that are measured in terms of number of bids.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.bidMetrics.list
+         * @alias adexchangebuyer2.bidders.filterSets.bidMetrics.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the accounts.filterSets.bidMetrics.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidMetricsResponse.nextPageToken returned from the previous call to the bidMetrics.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -977,12 +1598,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/bidMetrics').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/bidMetrics').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -992,18 +1613,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       bidResponseErrors: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.bidResponseErrors.list
+         * adexchangebuyer2.bidders.filterSets.bidResponseErrors.list
          *
          * @desc List all errors that occurred in bid responses, with the number of bid responses affected for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.bidResponseErrors.list
+         * @alias adexchangebuyer2.bidders.filterSets.bidResponseErrors.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the accounts.filterSets.bidResponseErrors.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponseErrorsResponse.nextPageToken returned from the previous call to the bidResponseErrors.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1019,12 +1641,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/bidResponseErrors').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/bidResponseErrors').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1034,18 +1656,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       bidResponsesWithoutBids: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.bidResponsesWithoutBids.list
+         * adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list
          *
          * @desc List all reasons for which bid responses were considered to have no applicable bids, with the number of bid responses affected for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.bidResponsesWithoutBids.list
+         * @alias adexchangebuyer2.bidders.filterSets.bidResponsesWithoutBids.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the accounts.filterSets.bidResponsesWithoutBids.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListBidResponsesWithoutBidsResponse.nextPageToken returned from the previous call to the bidResponsesWithoutBids.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1061,12 +1684,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/bidResponsesWithoutBids').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/bidResponsesWithoutBids').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1076,18 +1699,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       filteredBidRequests: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.filteredBidRequests.list
+         * adexchangebuyer2.bidders.filterSets.filteredBidRequests.list
          *
          * @desc List all reasons that caused a bid request not to be sent for an impression, with the number of bid requests not sent for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.filteredBidRequests.list
+         * @alias adexchangebuyer2.bidders.filterSets.filteredBidRequests.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the accounts.filterSets.filteredBidRequests.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidRequestsResponse.nextPageToken returned from the previous call to the filteredBidRequests.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1103,12 +1727,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/filteredBidRequests').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/filteredBidRequests').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1118,18 +1742,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       filteredBids: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.filteredBids.list
+         * adexchangebuyer2.bidders.filterSets.filteredBids.list
          *
          * @desc List all reasons for which bids were filtered, with the number of bids filtered for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.filteredBids.list
+         * @alias adexchangebuyer2.bidders.filterSets.filteredBids.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the accounts.filterSets.filteredBids.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListFilteredBidsResponse.nextPageToken returned from the previous call to the filteredBids.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1145,12 +1770,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/filteredBids').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1159,19 +1784,20 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         creatives: {
 
           /**
-           * adexchangebuyer2.accounts.filterSets.filteredBids.creatives.list
+           * adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list
            *
            * @desc List all creatives associated with a specific reason for which bids were filtered, with the number of bids filtered for each creative.
            *
-           * @alias adexchangebuyer2.accounts.filterSets.filteredBids.creatives.list
+           * @alias adexchangebuyer2.bidders.filterSets.filteredBids.creatives.list
            * @memberOf! adexchangebuyer2(v2beta1)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.accountId Account ID of the buyer.
+           * @param {string=} params.accountId Account ID of the buyer.
            * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
-           * @param {string} params.filterSetId The ID of the filter set to apply.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
            * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the accounts.filterSets.filteredBids.creatives.list method.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -1187,12 +1813,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
             const parameters = {
               options: Object.assign({
-                url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/filteredBids/{creativeStatusId}/creatives').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/creatives').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               }, options),
               params: params,
-              requiredParams: ['accountId', 'filterSetId', 'creativeStatusId'],
-              pathParams: ['accountId', 'creativeStatusId', 'filterSetId'],
+              requiredParams: ['filterSetName', 'creativeStatusId'],
+              pathParams: ['creativeStatusId', 'filterSetName'],
               context: self
             };
 
@@ -1202,19 +1828,20 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         details: {
 
           /**
-           * adexchangebuyer2.accounts.filterSets.filteredBids.details.list
+           * adexchangebuyer2.bidders.filterSets.filteredBids.details.list
            *
            * @desc List all details associated with a specific reason for which bids were filtered, with the number of bids filtered for each detail.
            *
-           * @alias adexchangebuyer2.accounts.filterSets.filteredBids.details.list
+           * @alias adexchangebuyer2.bidders.filterSets.filteredBids.details.list
            * @memberOf! adexchangebuyer2(v2beta1)
            *
            * @param {object} params Parameters for request
-           * @param {string} params.accountId Account ID of the buyer.
+           * @param {string=} params.accountId Account ID of the buyer.
            * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
-           * @param {string} params.filterSetId The ID of the filter set to apply.
+           * @param {string=} params.filterSetId The ID of the filter set to apply.
+           * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
            * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the accounts.filterSets.filteredBids.details.list method.
+           * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -1230,12 +1857,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
             const parameters = {
               options: Object.assign({
-                url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/filteredBids/{creativeStatusId}/details').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/details').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               }, options),
               params: params,
-              requiredParams: ['accountId', 'filterSetId', 'creativeStatusId'],
-              pathParams: ['accountId', 'creativeStatusId', 'filterSetId'],
+              requiredParams: ['filterSetName', 'creativeStatusId'],
+              pathParams: ['creativeStatusId', 'filterSetName'],
               context: self
             };
 
@@ -1246,18 +1873,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       impressionMetrics: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.impressionMetrics.list
+         * adexchangebuyer2.bidders.filterSets.impressionMetrics.list
          *
          * @desc Lists all metrics that are measured in terms of number of impressions.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.impressionMetrics.list
+         * @alias adexchangebuyer2.bidders.filterSets.impressionMetrics.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the accounts.filterSets.impressionMetrics.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListImpressionMetricsResponse.nextPageToken returned from the previous call to the impressionMetrics.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1273,12 +1901,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/impressionMetrics').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/impressionMetrics').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1288,18 +1916,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       losingBids: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.losingBids.list
+         * adexchangebuyer2.bidders.filterSets.losingBids.list
          *
          * @desc List all reasons for which bids lost in the auction, with the number of bids that lost for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.losingBids.list
+         * @alias adexchangebuyer2.bidders.filterSets.losingBids.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the accounts.filterSets.losingBids.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListLosingBidsResponse.nextPageToken returned from the previous call to the losingBids.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1315,12 +1944,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/losingBids').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/losingBids').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1330,18 +1959,19 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       nonBillableWinningBids: {
 
         /**
-         * adexchangebuyer2.accounts.filterSets.nonBillableWinningBids.list
+         * adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list
          *
          * @desc List all reasons for which winning bids were not billable, with the number of bids not billed for each reason.
          *
-         * @alias adexchangebuyer2.accounts.filterSets.nonBillableWinningBids.list
+         * @alias adexchangebuyer2.bidders.filterSets.nonBillableWinningBids.list
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the buyer.
-         * @param {string} params.filterSetId The ID of the filter set to apply.
+         * @param {string=} params.accountId Account ID of the buyer.
+         * @param {string=} params.filterSetId The ID of the filter set to apply.
+         * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example: - For a bidder-level filter set for bidder 123:   "bidders/123/filterSets/abc" - For an account-level filter set for the buyer account representing bidder   123: "bidders/123/accounts/123/filterSets/abc" - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: "bidders/123/accounts/456/filterSets/abc"
          * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the accounts.filterSets.nonBillableWinningBids.list method.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListNonBillableWinningBidsResponse.nextPageToken returned from the previous call to the nonBillableWinningBids.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1357,12 +1987,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2beta1/accounts/{accountId}/filterSets/{filterSetId}/nonBillableWinningBids').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2beta1/{filterSetName}/nonBillableWinningBids').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             }, options),
             params: params,
-            requiredParams: ['accountId', 'filterSetId'],
-            pathParams: ['accountId', 'filterSetId'],
+            requiredParams: ['filterSetName'],
+            pathParams: ['filterSetName'],
             context: self
           };
 
@@ -1743,8 +2373,7 @@ to Ad Exchange.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListBidMetricsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.bidMetrics.list
+field in the subsequent call to the bidMetrics.list
 method to retrieve the next page of results.
 */
 
@@ -1756,8 +2385,7 @@ method to retrieve the next page of results.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListBidResponseErrorsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.bidResponseErrors.list
+field in the subsequent call to the bidResponseErrors.list
 method to retrieve the next page of results.
 */
 
@@ -1770,8 +2398,7 @@ status.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListBidResponsesWithoutBidsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.bidResponsesWithoutBids.list
+field in the subsequent call to the bidResponsesWithoutBids.list
 method to retrieve the next page of results.
 */
 
@@ -1825,8 +2452,7 @@ by creative.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListCreativeStatusBreakdownByCreativeRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.filteredBids.creatives.list
+field in the subsequent call to the filteredBids.creatives.list
 method to retrieve the next page of results.
 */
 
@@ -1840,8 +2466,7 @@ by detail.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListCreativeStatusBreakdownByDetailRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.filteredBids.details.list
+field in the subsequent call to the filteredBids.details.list
 method to retrieve the next page of results.
 */
 
@@ -1891,8 +2516,7 @@ status.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListFilteredBidRequestsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.filteredBidRequests.list
+field in the subsequent call to the filteredBidRequests.list
 method to retrieve the next page of results.
 */
 
@@ -1905,8 +2529,7 @@ method to retrieve the next page of results.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListFilteredBidsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.filteredBids.list
+field in the subsequent call to the filteredBids.list
 method to retrieve the next page of results.
 */
 
@@ -1918,8 +2541,7 @@ method to retrieve the next page of results.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListImpressionMetricsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.impressionMetrics.list
+field in the subsequent call to the impressionMetrics.list
 method to retrieve the next page of results.
 */
 
@@ -1932,8 +2554,7 @@ creative status).
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListLosingBidsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.losingBids.list
+field in the subsequent call to the losingBids.list
 method to retrieve the next page of results.
 */
 
@@ -1944,8 +2565,7 @@ method to retrieve the next page of results.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListNonBillableWinningBidsRequest.pageToken
-field in the subsequent call to the
-accounts.filterSets.nonBillableWinningBids.list
+field in the subsequent call to the nonBillableWinningBids.list
 method to retrieve the next page of results.
 * @property {adexchangebuyer2(v2beta1).NonBillableWinningBidStatusRow[]} nonBillableWinningBidStatusRows List of rows, with counts of bids not billed aggregated by reason.
 */

@@ -410,7 +410,7 @@ Removing this key from the other service would deauthorize
 Google Cloud Source Repositories from mirroring.
 * @property {string} url URL of the main repository at the other hosting service.
 * @property {string} webhookId ID of the webhook listening to updates to trigger mirroring.
-Removing this webook from the other hosting service will stop
+Removing this webhook from the other hosting service will stop
 Google Cloud Source Repositories from receiving notifications,
 and thereby disabling mirroring.
 */

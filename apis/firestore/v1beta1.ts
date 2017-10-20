@@ -329,9 +329,8 @@ function Firestore(options) { // eslint-disable-line
          * @memberOf! firestore(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize The maximum number of results to return.
-         * @param {string=} params.pageToken A page token. Must be a value from ListCollectionIdsResponse.
          * @param {string} params.parent The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+         * @param {firestore(v1beta1).ListCollectionIdsRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -785,8 +784,7 @@ When set, selects only collections with this ID.
  * @typedef CommitRequest
  * @memberOf! firestore(v1beta1)
  * @type object
-* @property {string} transaction If non-empty, applies all writes in this transaction, and commits it.
-Otherwise, applies the writes as if they were in their own transaction.
+* @property {string} transaction If set, applies all writes in this transaction, and commits it.
 * @property {firestore(v1beta1).Write[]} writes The writes to apply.
 
 Always executed atomically and in order.
@@ -984,9 +982,9 @@ reference.
 * @property {string} collectionId The collection ID to which this index applies. Required.
 * @property {firestore(v1beta1).IndexField[]} fields The fields to index.
 * @property {string} name The resource name of the index.
+Output only.
 * @property {string} state The state of the index.
-The state is read-only.
-@OutputOnly
+Output only.
 */
 
 /**
@@ -1001,28 +999,21 @@ path. `__type__` may be used only at the end of path.
 */
 
 /**
- * @typedef IndexOperationMetadata
- * @memberOf! firestore(v1beta1)
- * @type object
-* @property {boolean} cancelled True if the [google.longrunning.Operation] was cancelled. If the
-cancellation is in progress, cancelled will be true but
-google.longrunning.Operation.done will be false.
-* @property {firestore(v1beta1).Progress} documentProgress Progress of the existing operation, measured in number of documents.
-* @property {string} endTime The time the operation ended, either successfully or otherwise. Unset if
-the operation is still active.
-* @property {string} index The index resource that this operation is acting on. For example:
-`projects/{project_id}/databases/{database_id}/indexes/{index_id}`
-* @property {string} operationType The type of index operation.
-* @property {string} startTime The time that work began on the operation.
-*/
-
-/**
  * @typedef LatLng
  * @memberOf! firestore(v1beta1)
  * @type object
  * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
  * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
  */
+
+/**
+ * @typedef ListCollectionIdsRequest
+ * @memberOf! firestore(v1beta1)
+ * @type object
+* @property {integer} pageSize The maximum number of results to return.
+* @property {string} pageToken A page token. Must be a value from
+ListCollectionIdsResponse.
+*/
 
 /**
  * @typedef ListCollectionIdsResponse
@@ -1126,16 +1117,6 @@ is `TakeSnapshot()`, the inferred response type is
 When set to `false`, the target document must not exist.
 * @property {string} updateTime When set, the target document must exist and have been last updated at
 that time.
-*/
-
-/**
- * @typedef Progress
- * @memberOf! firestore(v1beta1)
- * @type object
-* @property {string} workCompleted An estimate of how much work has been completed. Note that this may be
-greater than `work_estimated`.
-* @property {string} workEstimated An estimate of how much work needs to be performed. Zero if the
-work estimate is unavailable. May change as work progresses.
 */
 
 /**
