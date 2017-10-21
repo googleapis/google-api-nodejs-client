@@ -17,7 +17,7 @@ import * as fs from 'fs';
 import * as url from 'url';
 import * as util from 'util';
 import createAPIRequest from './apirequest';
-import * as DefaultTransporter from 'google-auth-library/lib/transporters';
+import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
 const handleError = generatorUtils.handleError;
 const transporter = new DefaultTransporter();

@@ -15,7 +15,7 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+const googleapis = require('../lib/googleapis');
 
 describe('Query params', () => {
   let localCompute, remoteCompute;
@@ -132,7 +132,7 @@ describe('Query params', () => {
       'CLIENT_SECRET',
       'REDIRECT_URI'
     );
-    oauth2client.setCredentials({ access_token: 'abc123' });
+    oauth2client.credentials = { access_token: 'abc123' };
     let req = localDrive.files.get({
       fileId: '123',
       auth: oauth2client

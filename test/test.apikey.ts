@@ -15,7 +15,7 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+const googleapis = require('../lib/googleapis');
 
 function testGet (drive) {
   const req = drive.files.get({
@@ -82,7 +82,7 @@ describe('API key', () => {
     const google = new googleapis.GoogleApis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
-    authClient.setCredentials({ access_token: 'abc123' });
+    authClient.credentials = { access_token: 'abc123' };
     localDrive = google.drive('v2');
     localUrlshortener = google.urlshortener('v1');
   });
