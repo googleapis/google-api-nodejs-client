@@ -576,10 +576,12 @@ Default time is ten minutes.
  * @typedef BuildOptions
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string} requestedVerifyOption Requested verifiability options.
- * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
- * @property {string} substitutionOption SubstitutionOption to allow unmatch substitutions.
- */
+* @property {string} logStreamingOption LogStreamingOption to define build log streaming behavior to Google Cloud
+Storage.
+* @property {string} requestedVerifyOption Requested verifiability options.
+* @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
+* @property {string} substitutionOption SubstitutionOption to allow unmatch substitutions.
+*/
 
 /**
  * @typedef BuildStep

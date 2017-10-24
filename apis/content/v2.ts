@@ -78,14 +78,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.claimwebsite
      *
-     * @desc Claims the website of a Merchant Center sub-account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Claims the website of a Merchant Center sub-account.
      *
      * @alias content.accounts.claimwebsite
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account whose website is claimed.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {boolean=} params.overwrite Only available to selected merchants. When set to True, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -155,7 +155,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.delete
      *
-     * @desc Deletes a Merchant Center sub-account. This method can only be called for multi-client accounts.
+     * @desc Deletes a Merchant Center sub-account.
      *
      * @alias content.accounts.delete
      * @memberOf! content(v2)
@@ -164,7 +164,7 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -195,14 +195,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.get
      *
-     * @desc Retrieves a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Retrieves a Merchant Center account.
      *
      * @alias content.accounts.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -233,14 +233,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.insert
      *
-     * @desc Creates a Merchant Center sub-account. This method can only be called for multi-client accounts.
+     * @desc Creates a Merchant Center sub-account.
      *
      * @alias content.accounts.insert
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {content(v2).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -272,14 +272,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.list
      *
-     * @desc Lists the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
+     * @desc Lists the sub-accounts in your Merchant Center account.
      *
      * @alias content.accounts.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -311,7 +311,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.patch
      *
-     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates a Merchant Center account. This method supports patch semantics.
      *
      * @alias content.accounts.patch
      * @memberOf! content(v2)
@@ -319,7 +319,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -351,7 +351,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.update
      *
-     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Updates a Merchant Center account.
      *
      * @alias content.accounts.update
      * @memberOf! content(v2)
@@ -359,7 +359,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -432,14 +432,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountstatuses.get
      *
-     * @desc Retrieves the status of a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Retrieves the status of a Merchant Center account.
      *
      * @alias content.accountstatuses.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -470,14 +470,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountstatuses.list
      *
-     * @desc Lists the statuses of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
+     * @desc Lists the statuses of the sub-accounts in your Merchant Center account.
      *
      * @alias content.accountstatuses.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -551,14 +551,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.get
      *
-     * @desc Retrieves the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Retrieves the tax settings of the account.
      *
      * @alias content.accounttax.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -589,14 +589,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.list
      *
-     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
+     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
      *
      * @alias content.accounttax.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -628,7 +628,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.patch
      *
-     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates the tax settings of the account. This method supports patch semantics.
      *
      * @alias content.accounttax.patch
      * @memberOf! content(v2)
@@ -636,7 +636,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).AccountTax} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -668,7 +668,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.update
      *
-     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Updates the tax settings of the account.
      *
      * @alias content.accounttax.update
      * @memberOf! content(v2)
@@ -676,7 +676,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).AccountTax} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -750,15 +750,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.delete
      *
-     * @desc Deletes a datafeed configuration from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Deletes a datafeed configuration from your Merchant Center account.
      *
      * @alias content.datafeeds.delete
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datafeedId 
+     * @param {string} params.datafeedId The ID of the datafeed.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId 
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -789,14 +789,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.get
      *
-     * @desc Retrieves a datafeed configuration from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves a datafeed configuration from your Merchant Center account.
      *
      * @alias content.datafeeds.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datafeedId 
-     * @param {string} params.merchantId 
+     * @param {string} params.datafeedId The ID of the datafeed.
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -827,14 +827,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.insert
      *
-     * @desc Registers a datafeed configuration with your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Registers a datafeed configuration with your Merchant Center account.
      *
      * @alias content.datafeeds.insert
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId 
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {content(v2).Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -866,14 +866,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.list
      *
-     * @desc Lists the datafeeds in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the datafeeds in your Merchant Center account.
      *
      * @alias content.datafeeds.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -905,15 +905,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.patch
      *
-     * @desc Updates a datafeed configuration of your Merchant Center account. This method can only be called for non-multi-client accounts. This method supports patch semantics.
+     * @desc Updates a datafeed configuration of your Merchant Center account. This method supports patch semantics.
      *
      * @alias content.datafeeds.patch
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datafeedId 
+     * @param {string} params.datafeedId The ID of the datafeed.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId 
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {content(v2).Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -945,15 +945,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.update
      *
-     * @desc Updates a datafeed configuration of your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Updates a datafeed configuration of your Merchant Center account.
      *
      * @alias content.datafeeds.update
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datafeedId 
+     * @param {string} params.datafeedId The ID of the datafeed.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId 
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {content(v2).Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1026,16 +1026,16 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeedstatuses.get
      *
-     * @desc Retrieves the status of a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves the status of a datafeed from your Merchant Center account.
      *
      * @alias content.datafeedstatuses.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     * @param {string} params.datafeedId 
+     * @param {string} params.datafeedId The ID of the datafeed.
      * @param {string=} params.language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     * @param {string} params.merchantId 
+     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1066,14 +1066,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeedstatuses.list
      *
-     * @desc Lists the statuses of the datafeeds in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the statuses of the datafeeds in your Merchant Center account.
      *
      * @alias content.datafeedstatuses.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1109,7 +1109,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.inventory.custombatch
      *
-     * @desc Updates price and availability for multiple products or stores in a single request. This operation does not update the expiration date of the products. This method can only be called for non-multi-client accounts.
+     * @desc Updates price and availability for multiple products or stores in a single request. This operation does not update the expiration date of the products.
      *
      * @alias content.inventory.custombatch
      * @memberOf! content(v2)
@@ -1147,15 +1147,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.inventory.set
      *
-     * @desc Updates price and availability of a product in your Merchant Center account. This operation does not update the expiration date of the product. This method can only be called for non-multi-client accounts.
+     * @desc Updates price and availability of a product in your Merchant Center account.
      *
      * @alias content.inventory.set
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
-     * @param {string} params.productId The ID of the product for which to update price and availability.
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST id of the product for which to update price and availability.
      * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
      * @param {content(v2).InventorySetRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1192,13 +1192,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.acknowledge
      *
-     * @desc Marks an order as acknowledged. This method can only be called for non-multi-client accounts.
+     * @desc Marks an order as acknowledged.
      *
      * @alias content.orders.acknowledge
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersAcknowledgeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1231,13 +1231,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.advancetestorder
      *
-     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment". This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment".
      *
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the test order to modify.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1269,13 +1269,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancel
      *
-     * @desc Cancels all line items in an order, making a full refund. This method can only be called for non-multi-client accounts.
+     * @desc Cancels all line items in an order, making a full refund.
      *
      * @alias content.orders.cancel
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to cancel.
      * @param {content(v2).OrdersCancelRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1308,13 +1308,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancellineitem
      *
-     * @desc Cancels a line item, making a full refund. This method can only be called for non-multi-client accounts.
+     * @desc Cancels a line item, making a full refund.
      *
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersCancelLineItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1347,13 +1347,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.createtestorder
      *
-     * @desc Sandbox only. Creates a test order. This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Creates a test order.
      *
      * @alias content.orders.createtestorder
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {content(v2).OrdersCreateTestOrderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1385,7 +1385,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.custombatch
      *
-     * @desc Retrieves or modifies multiple orders in a single request. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves or modifies multiple orders in a single request.
      *
      * @alias content.orders.custombatch
      * @memberOf! content(v2)
@@ -1422,13 +1422,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.get
      *
-     * @desc Retrieves an order from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves an order from your Merchant Center account.
      *
      * @alias content.orders.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1460,13 +1460,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.getbymerchantorderid
      *
-     * @desc Retrieves an order using merchant order id. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves an order using merchant order id.
      *
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.merchantOrderId The merchant order id to be looked for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1498,13 +1498,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.gettestordertemplate
      *
-     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox. This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
      *
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {string} params.templateName The name of the template to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1536,7 +1536,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.list
      *
-     * @desc Lists the orders in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the orders in your Merchant Center account.
      *
      * @alias content.orders.list
      * @memberOf! content(v2)
@@ -1544,7 +1544,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
      * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
@@ -1580,13 +1580,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.refund
      *
-     * @desc Refund a portion of the order, up to the full amount paid. This method can only be called for non-multi-client accounts.
+     * @desc Refund a portion of the order, up to the full amount paid.
      *
      * @alias content.orders.refund
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to refund.
      * @param {content(v2).OrdersRefundRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1619,13 +1619,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.returnlineitem
      *
-     * @desc Returns a line item. This method can only be called for non-multi-client accounts.
+     * @desc Returns a line item.
      *
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersReturnLineItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1658,13 +1658,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.shiplineitems
      *
-     * @desc Marks line item(s) as shipped. This method can only be called for non-multi-client accounts.
+     * @desc Marks line item(s) as shipped.
      *
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersShipLineItemsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1697,13 +1697,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updatemerchantorderid
      *
-     * @desc Updates the merchant order ID for a given order. This method can only be called for non-multi-client accounts.
+     * @desc Updates the merchant order ID for a given order.
      *
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1736,13 +1736,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updateshipment
      *
-     * @desc Updates a shipment's status, carrier, and/or tracking ID. This method can only be called for non-multi-client accounts.
+     * @desc Updates a shipment's status, carrier, and/or tracking ID.
      *
      * @alias content.orders.updateshipment
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersUpdateShipmentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1779,7 +1779,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.custombatch
      *
-     * @desc Retrieves, inserts, and deletes multiple products in a single request. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves, inserts, and deletes multiple products in a single request.
      *
      * @alias content.products.custombatch
      * @memberOf! content(v2)
@@ -1817,15 +1817,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.delete
      *
-     * @desc Deletes a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Deletes a product from your Merchant Center account.
      *
      * @alias content.products.delete
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
-     * @param {string} params.productId The ID of the product.
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST id of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1856,14 +1856,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.get
      *
-     * @desc Retrieves a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves a product from your Merchant Center account.
      *
      * @alias content.products.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
-     * @param {string} params.productId The ID of the product.
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST id of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1894,14 +1894,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.insert
      *
-     * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry. This method can only be called for non-multi-client accounts.
+     * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
      *
      * @alias content.products.insert
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
      * @param {content(v2).Product} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1933,7 +1933,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.list
      *
-     * @desc Lists the products in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the products in your Merchant Center account.
      *
      * @alias content.products.list
      * @memberOf! content(v2)
@@ -1941,7 +1941,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1977,7 +1977,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.custombatch
      *
-     * @desc Gets the statuses of multiple products in a single request. This method can only be called for non-multi-client accounts.
+     * @desc Gets the statuses of multiple products in a single request.
      *
      * @alias content.productstatuses.custombatch
      * @memberOf! content(v2)
@@ -2015,15 +2015,15 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.get
      *
-     * @desc Gets the status of a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Gets the status of a product from your Merchant Center account.
      *
      * @alias content.productstatuses.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.includeAttributes Flag to include full product data in the result of this get request. The default value is false.
-     * @param {string} params.merchantId The ID of the managing account.
-     * @param {string} params.productId The ID of the product.
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST id of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2054,7 +2054,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.list
      *
-     * @desc Lists the statuses of the products in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the statuses of the products in your Merchant Center account.
      *
      * @alias content.productstatuses.list
      * @memberOf! content(v2)
@@ -2063,7 +2063,7 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.includeAttributes Flag to include full product data in the results of the list request. The default value is false.
      * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
      * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2137,14 +2137,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.get
      *
-     * @desc Retrieves the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Retrieves the shipping settings of the account.
      *
      * @alias content.shippingsettings.get
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2212,14 +2212,14 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.list
      *
-     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
      *
      * @alias content.shippingsettings.list
      * @memberOf! content(v2)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2251,7 +2251,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.patch
      *
-     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account. This method supports patch semantics.
+     * @desc Updates the shipping settings of the account. This method supports patch semantics.
      *
      * @alias content.shippingsettings.patch
      * @memberOf! content(v2)
@@ -2259,7 +2259,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).ShippingSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2291,7 +2291,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.update
      *
-     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself for any Merchant Center account, or any sub-account when the managing account is a multi-client account.
+     * @desc Updates the shipping settings of the account.
      *
      * @alias content.shippingsettings.update
      * @memberOf! content(v2)
@@ -2299,7 +2299,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
      * @param {content(v2).ShippingSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3536,81 +3536,83 @@ Acceptable values are:
  * @typedef Product
  * @memberOf! content(v2)
  * @type object
- * @property {string[]} additionalImageLinks Additional URLs of images of the item.
- * @property {string[]} additionalProductTypes Additional categories of the item (formatted as in products feed specification).
- * @property {boolean} adult Set to true if the item is targeted towards adults.
- * @property {string} adwordsGrouping Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
- * @property {string[]} adwordsLabels Similar to adwords_grouping, but only works on CPC.
- * @property {string} adwordsRedirect Allows advertisers to override the item URL when the product is shown within the context of Product Ads.
- * @property {string} ageGroup Target age group of the item.
- * @property {content(v2).ProductAspect[]} aspects Specifies the intended aspects for the product.
- * @property {string} availability Availability status of the item.
- * @property {string} availabilityDate The day a pre-ordered product becomes available for delivery, in ISO 8601 format.
- * @property {string} brand Brand of the item.
- * @property {string} channel The item&#39;s channel (online or local).
- * @property {string} color Color of the item.
- * @property {string} condition Condition or state of the item.
- * @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
- * @property {content(v2).ProductCustomAttribute[]} customAttributes A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;type&quot;: &quot;text&quot;, &quot;value&quot;: &quot;regular&quot; }). This is useful for submitting attributes not explicitly exposed by the API.
- * @property {content(v2).ProductCustomGroup[]} customGroups A list of custom (merchant-provided) custom attribute groups.
- * @property {string} customLabel0 Custom label 0 for custom grouping of items in a Shopping campaign.
- * @property {string} customLabel1 Custom label 1 for custom grouping of items in a Shopping campaign.
- * @property {string} customLabel2 Custom label 2 for custom grouping of items in a Shopping campaign.
- * @property {string} customLabel3 Custom label 3 for custom grouping of items in a Shopping campaign.
- * @property {string} customLabel4 Custom label 4 for custom grouping of items in a Shopping campaign.
- * @property {string} description Description of the item.
- * @property {content(v2).ProductDestination[]} destinations Specifies the intended destinations for the product.
- * @property {string} displayAdsId An identifier for an item for dynamic remarketing campaigns.
- * @property {string} displayAdsLink URL directly to your item&#39;s landing page for dynamic remarketing campaigns.
- * @property {string[]} displayAdsSimilarIds Advertiser-specified recommendations.
- * @property {string} displayAdsTitle Title of an item for dynamic remarketing campaigns.
- * @property {number} displayAdsValue Offer margin for dynamic remarketing campaigns.
- * @property {string} energyEfficiencyClass The energy efficiency class as defined in EU directive 2010/30/EU.
- * @property {string} expirationDate Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in productstatuses as googleExpirationDate and might be earlier if expirationDate is too far in the future.
- * @property {string} gender Target gender of the item.
- * @property {string} googleProductCategory Google&#39;s category of the item (see Google product taxonomy).
- * @property {string} gtin Global Trade Item Number (GTIN) of the item.
- * @property {string} id The REST id of the product.
- * @property {boolean} identifierExists False when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Required according to the Unique Product Identifier Rules for all target countries except for Canada.
- * @property {string} imageLink URL of an image of the item.
- * @property {content(v2).Installment} installment Number and amount of installments to pay for an item. Brazil only.
- * @property {boolean} isBundle Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.
- * @property {string} itemGroupId Shared identifier for all variants of the same product.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#product&quot;.
- * @property {string} link URL directly linking to your item&#39;s page on your website.
- * @property {content(v2).LoyaltyPoints} loyaltyPoints Loyalty points that users receive after purchasing the item. Japan only.
- * @property {string} material The material of which the item is made.
- * @property {string} maxHandlingTime Maximal product handling time (in business days).
- * @property {string} minHandlingTime Minimal product handling time (in business days).
- * @property {string} mobileLink Link to a mobile-optimized version of the landing page.
- * @property {string} mpn Manufacturer Part Number (MPN) of the item.
- * @property {string} multipack The number of identical products in a merchant-defined multipack.
- * @property {string} offerId An identifier of the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details.
- * @property {boolean} onlineOnly Whether an item is available for purchase only online.
- * @property {string} pattern The item&#39;s pattern (e.g. polka dots).
- * @property {content(v2).Price} price Price of the item.
- * @property {string} productType Your category of the item (formatted as in products feed specification).
- * @property {string[]} promotionIds The unique ID of a promotion.
- * @property {content(v2).Price} salePrice Advertised sale price of the item.
- * @property {string} salePriceEffectiveDate Date range during which the item is on sale (see products feed specification).
- * @property {string} sellOnGoogleQuantity The quantity of the product that is reserved for sell-on-google ads.
- * @property {content(v2).ProductShipping[]} shipping Shipping rules.
- * @property {content(v2).ProductShippingDimension} shippingHeight Height of the item for shipping.
- * @property {string} shippingLabel The shipping label of the product, used to group product in account-level shipping rules.
- * @property {content(v2).ProductShippingDimension} shippingLength Length of the item for shipping.
- * @property {content(v2).ProductShippingWeight} shippingWeight Weight of the item for shipping.
- * @property {content(v2).ProductShippingDimension} shippingWidth Width of the item for shipping.
- * @property {string} sizeSystem System in which the size is specified. Recommended for apparel items.
- * @property {string} sizeType The cut of the item. Recommended for apparel items.
- * @property {string[]} sizes Size of the item.
- * @property {string} targetCountry The CLDR territory code for the item.
- * @property {content(v2).ProductTax[]} taxes Tax information.
- * @property {string} title Title of the item.
- * @property {content(v2).ProductUnitPricingBaseMeasure} unitPricingBaseMeasure The preference of the denominator of the unit price.
- * @property {content(v2).ProductUnitPricingMeasure} unitPricingMeasure The measure and dimension of an item.
- * @property {string[]} validatedDestinations The read-only list of intended destinations which passed validation.
- * @property {content(v2).Error[]} warnings Read-only warnings.
- */
+* @property {string[]} additionalImageLinks Additional URLs of images of the item.
+* @property {string[]} additionalProductTypes Additional categories of the item (formatted as in products feed specification).
+* @property {boolean} adult Set to true if the item is targeted towards adults.
+* @property {string} adwordsGrouping Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
+* @property {string[]} adwordsLabels Similar to adwords_grouping, but only works on CPC.
+* @property {string} adwordsRedirect Allows advertisers to override the item URL when the product is shown within the context of Product Ads.
+* @property {string} ageGroup Target age group of the item.
+* @property {content(v2).ProductAspect[]} aspects Specifies the intended aspects for the product.
+* @property {string} availability Availability status of the item.
+* @property {string} availabilityDate The day a pre-ordered product becomes available for delivery, in ISO 8601 format.
+* @property {string} brand Brand of the item.
+* @property {string} channel The item&#39;s channel (online or local).
+* @property {string} color Color of the item.
+* @property {string} condition Condition or state of the item.
+* @property {string} contentLanguage The two-letter ISO 639-1 language code for the item.
+* @property {content(v2).ProductCustomAttribute[]} customAttributes A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;type&quot;: &quot;text&quot;, &quot;value&quot;: &quot;regular&quot; }). This is useful for submitting attributes not explicitly exposed by the API.
+* @property {content(v2).ProductCustomGroup[]} customGroups A list of custom (merchant-provided) custom attribute groups.
+* @property {string} customLabel0 Custom label 0 for custom grouping of items in a Shopping campaign.
+* @property {string} customLabel1 Custom label 1 for custom grouping of items in a Shopping campaign.
+* @property {string} customLabel2 Custom label 2 for custom grouping of items in a Shopping campaign.
+* @property {string} customLabel3 Custom label 3 for custom grouping of items in a Shopping campaign.
+* @property {string} customLabel4 Custom label 4 for custom grouping of items in a Shopping campaign.
+* @property {string} description Description of the item.
+* @property {content(v2).ProductDestination[]} destinations Specifies the intended destinations for the product.
+* @property {string} displayAdsId An identifier for an item for dynamic remarketing campaigns.
+* @property {string} displayAdsLink URL directly to your item&#39;s landing page for dynamic remarketing campaigns.
+* @property {string[]} displayAdsSimilarIds Advertiser-specified recommendations.
+* @property {string} displayAdsTitle Title of an item for dynamic remarketing campaigns.
+* @property {number} displayAdsValue Offer margin for dynamic remarketing campaigns.
+* @property {string} energyEfficiencyClass The energy efficiency class as defined in EU directive 2010/30/EU.
+* @property {string} expirationDate Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in productstatuses as googleExpirationDate and might be earlier if expirationDate is too far in the future.
+* @property {string} gender Target gender of the item.
+* @property {string} googleProductCategory Google&#39;s category of the item (see Google product taxonomy).
+* @property {string} gtin Global Trade Item Number (GTIN) of the item.
+* @property {string} id The REST id of the product. Content API methods that operate on products take this as their productId parameter.
+The REST id for a product is of the form channel:contentLanguage:targetCountry:offerId.
+* @property {boolean} identifierExists False when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Required according to the Unique Product Identifier Rules for all target countries except for Canada.
+* @property {string} imageLink URL of an image of the item.
+* @property {content(v2).Installment} installment Number and amount of installments to pay for an item. Brazil only.
+* @property {boolean} isBundle Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.
+* @property {string} itemGroupId Shared identifier for all variants of the same product.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#product&quot;.
+* @property {string} link URL directly linking to your item&#39;s page on your website.
+* @property {content(v2).LoyaltyPoints} loyaltyPoints Loyalty points that users receive after purchasing the item. Japan only.
+* @property {string} material The material of which the item is made.
+* @property {string} maxHandlingTime Maximal product handling time (in business days).
+* @property {string} minHandlingTime Minimal product handling time (in business days).
+* @property {string} mobileLink Link to a mobile-optimized version of the landing page.
+* @property {string} mpn Manufacturer Part Number (MPN) of the item.
+* @property {string} multipack The number of identical products in a merchant-defined multipack.
+* @property {string} offerId A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details.
+Note: Content API methods that operate on products take the REST id of the product, not this identifier.
+* @property {boolean} onlineOnly Whether an item is available for purchase only online.
+* @property {string} pattern The item&#39;s pattern (e.g. polka dots).
+* @property {content(v2).Price} price Price of the item.
+* @property {string} productType Your category of the item (formatted as in products feed specification).
+* @property {string[]} promotionIds The unique ID of a promotion.
+* @property {content(v2).Price} salePrice Advertised sale price of the item.
+* @property {string} salePriceEffectiveDate Date range during which the item is on sale (see products feed specification).
+* @property {string} sellOnGoogleQuantity The quantity of the product that is reserved for sell-on-google ads.
+* @property {content(v2).ProductShipping[]} shipping Shipping rules.
+* @property {content(v2).ProductShippingDimension} shippingHeight Height of the item for shipping.
+* @property {string} shippingLabel The shipping label of the product, used to group product in account-level shipping rules.
+* @property {content(v2).ProductShippingDimension} shippingLength Length of the item for shipping.
+* @property {content(v2).ProductShippingWeight} shippingWeight Weight of the item for shipping.
+* @property {content(v2).ProductShippingDimension} shippingWidth Width of the item for shipping.
+* @property {string} sizeSystem System in which the size is specified. Recommended for apparel items.
+* @property {string} sizeType The cut of the item. Recommended for apparel items.
+* @property {string[]} sizes Size of the item.
+* @property {string} targetCountry The CLDR territory code for the item.
+* @property {content(v2).ProductTax[]} taxes Tax information.
+* @property {string} title Title of the item.
+* @property {content(v2).ProductUnitPricingBaseMeasure} unitPricingBaseMeasure The preference of the denominator of the unit price.
+* @property {content(v2).ProductUnitPricingMeasure} unitPricingMeasure The measure and dimension of an item.
+* @property {string[]} validatedDestinations The read-only list of intended destinations which passed validation.
+* @property {content(v2).Error[]} warnings Read-only warnings.
+*/
 
 /**
  * @typedef ProductAspect

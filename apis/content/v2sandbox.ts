@@ -42,13 +42,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.acknowledge
      *
-     * @desc Marks an order as acknowledged. This method can only be called for non-multi-client accounts.
+     * @desc Marks an order as acknowledged.
      *
      * @alias content.orders.acknowledge
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersAcknowledgeRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -81,13 +81,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.advancetestorder
      *
-     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment". This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment".
      *
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the test order to modify.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -119,13 +119,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancel
      *
-     * @desc Cancels all line items in an order, making a full refund. This method can only be called for non-multi-client accounts.
+     * @desc Cancels all line items in an order, making a full refund.
      *
      * @alias content.orders.cancel
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to cancel.
      * @param {content(v2sandbox).OrdersCancelRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -158,13 +158,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancellineitem
      *
-     * @desc Cancels a line item, making a full refund. This method can only be called for non-multi-client accounts.
+     * @desc Cancels a line item, making a full refund.
      *
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersCancelLineItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -197,13 +197,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.createtestorder
      *
-     * @desc Sandbox only. Creates a test order. This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Creates a test order.
      *
      * @alias content.orders.createtestorder
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {content(v2sandbox).OrdersCreateTestOrderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -235,7 +235,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.custombatch
      *
-     * @desc Retrieves or modifies multiple orders in a single request. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves or modifies multiple orders in a single request.
      *
      * @alias content.orders.custombatch
      * @memberOf! content(v2sandbox)
@@ -272,13 +272,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.get
      *
-     * @desc Retrieves an order from your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves an order from your Merchant Center account.
      *
      * @alias content.orders.get
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -310,13 +310,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.getbymerchantorderid
      *
-     * @desc Retrieves an order using merchant order id. This method can only be called for non-multi-client accounts.
+     * @desc Retrieves an order using merchant order id.
      *
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.merchantOrderId The merchant order id to be looked for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -348,13 +348,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.gettestordertemplate
      *
-     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox. This method can only be called for non-multi-client accounts.
+     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
      *
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {string} params.templateName The name of the template to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -386,7 +386,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.list
      *
-     * @desc Lists the orders in your Merchant Center account. This method can only be called for non-multi-client accounts.
+     * @desc Lists the orders in your Merchant Center account.
      *
      * @alias content.orders.list
      * @memberOf! content(v2sandbox)
@@ -394,7 +394,7 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
      * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
@@ -430,13 +430,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.refund
      *
-     * @desc Refund a portion of the order, up to the full amount paid. This method can only be called for non-multi-client accounts.
+     * @desc Refund a portion of the order, up to the full amount paid.
      *
      * @alias content.orders.refund
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order to refund.
      * @param {content(v2sandbox).OrdersRefundRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -469,13 +469,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.returnlineitem
      *
-     * @desc Returns a line item. This method can only be called for non-multi-client accounts.
+     * @desc Returns a line item.
      *
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersReturnLineItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -508,13 +508,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.shiplineitems
      *
-     * @desc Marks line item(s) as shipped. This method can only be called for non-multi-client accounts.
+     * @desc Marks line item(s) as shipped.
      *
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersShipLineItemsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -547,13 +547,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updatemerchantorderid
      *
-     * @desc Updates the merchant order ID for a given order. This method can only be called for non-multi-client accounts.
+     * @desc Updates the merchant order ID for a given order.
      *
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -586,13 +586,13 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updateshipment
      *
-     * @desc Updates a shipment's status, carrier, and/or tracking ID. This method can only be called for non-multi-client accounts.
+     * @desc Updates a shipment's status, carrier, and/or tracking ID.
      *
      * @alias content.orders.updateshipment
      * @memberOf! content(v2sandbox)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersUpdateShipmentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
