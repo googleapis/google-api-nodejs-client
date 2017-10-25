@@ -1361,7 +1361,6 @@ When set to 0, the data source service account credentials are used.
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
 * @property {string} dataSourceId Output only. Data source id.
-* @property {string} datasetRegion Output only. Region in which BigQuery dataset is located.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {string} endTime Output only. Time when transfer run ended.
 Parameter ignored by server for input requests.
@@ -1380,10 +1379,11 @@ current load, so `schedule_time` doesn&#39;t always matches this.
 * @property {string} scheduleTime Minimum time after which a transfer run can be started.
 * @property {string} startTime Output only. Time when transfer run was started.
 Parameter ignored by server for input requests.
-* @property {string} state Output only. Data transfer run state. Ignored for input requests.
+* @property {string} state Data transfer run state. Ignored for input requests.
 * @property {string} updateTime Output only. Last time the data transfer run state was updated.
 * @property {string} userId Output only. Unique ID of the user on whose behalf transfer is done.
 Applicable only to data sources that do not support service accounts.
 When set to 0, the data source service account credentials are used.
+May be negative.
 */
 export = Bigquerydatatransfer;

@@ -245,6 +245,7 @@ then this field must be empty.
 crosses a process boundary. True when the parent_span belongs to the
 same process as the current span.
 * @property {string} spanId The [SPAN_ID] portion of the span&#39;s resource name.
+The ID is a 16-character hexadecimal encoding of an 8-byte array.
 * @property {cloudtrace(v2).StackTrace} stackTrace Stack trace captured at the start of the span.
 * @property {string} startTime The start time of the span. On the client side, this is the time kept by
 the local machine where the span execution starts. On the server side, this

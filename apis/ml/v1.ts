@@ -541,6 +541,7 @@ function Ml(options) { // eslint-disable-line
        * @memberOf! ml(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter Optional. Specifies the subset of models to retrieve.
        * @param {integer=} params.pageSize Optional. The number of models to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
        * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
        * @param {string} params.parent Required. The name of the project whose models are to be listed.
@@ -808,6 +809,7 @@ function Ml(options) { // eslint-disable-line
          * @memberOf! ml(v1)
          *
          * @param {object} params Parameters for request
+         * @param {string=} params.filter Optional. Specifies the subset of versions to retrieve.
          * @param {integer=} params.pageSize Optional. The number of versions to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
          * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
          * @param {string} params.parent Required. The name of the model for which to list the version.
@@ -1389,15 +1391,34 @@ The following types are supported:
   &lt;dt&gt;standard_gpu&lt;/dt&gt;
   &lt;dd&gt;
   A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that
-  also includes a
+  also includes a single NVIDIA Tesla K80 GPU. See more about
   &lt;a href=&quot;/ml-engine/docs/how-tos/using-gpus&quot;&gt;
-  GPU that you can use in your trainer&lt;/a&gt;.
+  using GPUs for training your model&lt;/a&gt;.
   &lt;/dd&gt;
   &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;
   &lt;dd&gt;
   A machine equivalent to
   &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes
-  four GPUs.
+  four NVIDIA Tesla K80 GPUs.
+  &lt;/dd&gt;
+  &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;
+  &lt;dd&gt;
+  A machine equivalent to
+  &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_l&lt;/code&gt; that also includes
+  eight NVIDIA Tesla K80 GPUs.
+  &lt;/dd&gt;
+  &lt;dt&gt;standard_p100&lt;/dt&gt;
+  &lt;dd&gt;
+  A machine equivalent to &lt;code suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that
+  also includes a single NVIDIA Tesla P100 GPU. The availability of these
+  GPUs is in the Alpha launch stage.
+  &lt;/dd&gt;
+  &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;
+  &lt;dd&gt;
+  A machine equivalent to
+  &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also includes
+  four NVIDIA Tesla P100 GPUs. The availability of these GPUs is in
+  the Alpha launch stage.
   &lt;/dd&gt;
 &lt;/dl&gt;
 

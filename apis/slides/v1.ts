@@ -327,7 +327,7 @@ display inside the presentation. Images must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
 
-The provided URL can be at maximum 2K bytes large.
+The provided URL can be at most 2 kB in length.
 */
 
 /**
@@ -946,9 +946,9 @@ a transparent color.
 * @property {slides(v1).OutlineFill} outlineFill The fill of the outline.
 * @property {string} propertyState The outline property state.
 
-Updating the the outline on a page element will implicitly update this
-field to`RENDERED`, unless another value is specified in the same request.
-To have no outline on a page element, set this field to `NOT_RENDERED`. In
+Updating the outline on a page element will implicitly update this field
+to `RENDERED`, unless another value is specified in the same request. To
+have no outline on a page element, set this field to `NOT_RENDERED`. In
 this case, any other outline fields set in the same request will be
 ignored.
 * @property {slides(v1).Dimension} weight The thickness of the outline.
@@ -1198,7 +1198,7 @@ display inside the presentation. Images must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
 
-The provided URL can be at maximum 2K bytes large.
+The provided URL can be at most 2 kB in length.
 * @property {string[]} pageObjectIds If non-empty, limits the matches to page elements only on the given pages.
 
 Returns a 400 bad request error if given the page object ID of a
@@ -1346,9 +1346,9 @@ shadow becomes.
 * @property {slides(v1).OpaqueColor} color The shadow color value.
 * @property {string} propertyState The shadow property state.
 
-Updating the the shadow on a page element will implicitly update this field
-to `RENDERED`, unless another value is specified in the same request. To
-have no shadow on a page element, set this field to `NOT_RENDERED`. In this
+Updating the shadow on a page element will implicitly update this field to
+`RENDERED`, unless another value is specified in the same request. To have
+no shadow on a page element, set this field to `NOT_RENDERED`. In this
 case, any other shadow fields set in the same request will be ignored.
 * @property {boolean} rotateWithShape Whether the shadow should rotate with the shape.
 * @property {slides(v1).AffineTransform} transform Transform that encodes the translate, scale, and skew of the shadow,
@@ -1482,7 +1482,7 @@ display inside the presentation. Pictures must be less than 50MB in size,
 cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF
 format.
 
-The provided URL can be at maximum 2K bytes large.
+The provided URL can be at most 2 kB in length.
 * @property {slides(v1).Size} size The original size of the picture fill. This field is read-only.
 */
 
