@@ -1042,7 +1042,7 @@ function Toolresults(options) { // eslint-disable-line
 * @property {string[]} testTargets Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot;
 
 If empty, all targets in the module will be run.
-* @property {boolean} useOrchestrator The flag indicates whether Android Test Orchestrator will be used to run test or not. Test orchestrator is used if either: - orchestrator_option field is USE_ORCHESTRATOR, and test runner is compatible with orchestrator. Or - orchestrator_option field is unspecified or ORCHESTRATOR_OPTION_UNSPECIFIED, and test runner is compatible with orchestrator.
+* @property {boolean} useOrchestrator The flag indicates whether Android Test Orchestrator will be used to run test or not.
 */
 
 /**

@@ -1232,6 +1232,17 @@ smaller batches.
  * @type object
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1EntityId} entityId Optional message indicating that each distinct `EntityId` should not
 contribute to the k-anonymity count more than once per equivalence class.
+If an entity_id appears on several rows with different quasi-identifier
+tuples, it will contribute to each count exactly once. This can lead to
+unexpected results, consider for example the following table:
+  entity_id | quasi_id
+  --------------------
+          1 |    &quot;foo&quot;
+          2 |    &quot;bar&quot;
+          3 |    &quot;foo&quot;
+          3 |    &quot;bar&quot;
+The anonymity value associated to entity_id 3 will be 2, even if it is
+the only entity_id to be associated to both values &quot;foo&quot; and &quot;bar&quot;.
 * @property {dlp(v2beta1).GooglePrivacyDlpV2beta1FieldId[]} quasiIds Set of fields to compute k-anonymity over. When multiple fields are
 specified, they are considered a single composite key. Structs and
 repeated data types are not supported; however, nested fields are

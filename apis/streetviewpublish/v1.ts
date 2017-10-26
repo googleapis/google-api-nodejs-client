@@ -556,7 +556,7 @@ https://developers.google.com/places/place-id.
  * @typedef Pose
  * @memberOf! streetviewpublish(v1)
  * @type object
-* @property {number} altitude Altitude of the pose in meters above ground level (as defined by WGS84).
+* @property {number} altitude Altitude of the pose in meters above WGS84 ellipsoid.
 NaN indicates an unmeasured quantity.
 * @property {number} heading Compass heading, measured at the center of the photo in degrees clockwise
 from North. Value must be &gt;=0 and &lt;360.

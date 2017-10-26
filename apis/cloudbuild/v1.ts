@@ -312,6 +312,45 @@ function Cloudbuild(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.builds.retry
+       *
+       * @desc Creates a new build based on the given build.  This API creates a new build using the original build request,  which may or may not result in an identical build.  For triggered builds:  * Triggered builds resolve to a precise revision, so a retry of a triggered build will result in a build that uses the same revision.  For non-triggered builds that specify RepoSource:  * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source.  For builds that specify StorageSource:  * If the original build pulled source from a GCS object without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from a GCS object and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+       *
+       * @alias cloudbuild.projects.builds.retry
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.id Build ID of the original build.
+       * @param {string} params.projectId ID of the project.
+       * @param {cloudbuild(v1).RetryBuildRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      retry: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:retry').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'id'],
+          pathParams: ['id', 'projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     },
     triggers: {
@@ -496,6 +535,45 @@ function Cloudbuild(options) { // eslint-disable-line
           options: Object.assign({
             url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'triggerId'],
+          pathParams: ['projectId', 'triggerId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.triggers.run
+       *
+       * @desc Runs a BuildTrigger at a particular source revision.
+       *
+       * @alias cloudbuild.projects.triggers.run
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project.
+       * @param {string} params.triggerId ID of the trigger.
+       * @param {cloudbuild(v1).RepoSource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      run: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
           }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
@@ -767,6 +845,12 @@ the build is assumed.
  * @type object
  * @property {string[]} buildStepImages List of build step digests, in order corresponding to build step indices.
  * @property {cloudbuild(v1).BuiltImage[]} images Images that were built as a part of the build.
+ */
+
+/**
+ * @typedef RetryBuildRequest
+ * @memberOf! cloudbuild(v1)
+ * @type object
  */
 
 /**
