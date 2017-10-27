@@ -289,6 +289,7 @@ function Appengine(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
        * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.
+       * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
        * @param {appengine(v1alpha).DomainMapping} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -771,17 +772,6 @@ function Appengine(options) { // eslint-disable-line
  * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
  * @property {string} operationType Type of this operation. Deprecated, use method field instead. Example: &quot;create_version&quot;.@OutputOnly
  * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/modules/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-
-/**
- * @typedef OperationMetadataExperimental
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.experimental.CustomDomains.CreateCustomDomain.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/customDomains/example.com.@OutputOnly
  * @property {string} user User who requested this operation.@OutputOnly
  */
 

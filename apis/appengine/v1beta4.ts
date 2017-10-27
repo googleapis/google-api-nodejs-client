@@ -943,6 +943,14 @@ function Appengine(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef EndpointsApiService
+ * @memberOf! appengine(v1beta4)
+ * @type object
+ * @property {string} configId Endpoints service configuration id as specified by the Service Management API. For example &quot;2016-09-19r1&quot;By default, the Endpoints service configuration id is fixed and config_id must be specified. To keep the Endpoints service configuration id updated with each rollout, specify RolloutStrategy.MANAGED and omit config_id.
+ * @property {string} name Endpoints service name which is the name of the &quot;service&quot; resource in the Service Management API. For example &quot;myapi.endpoints.myproject.cloud.goog&quot;
+ */
+
+/**
  * @typedef ErrorHandler
  * @memberOf! appengine(v1beta4)
  * @type object
@@ -1132,17 +1140,6 @@ function Appengine(options) { // eslint-disable-line
  */
 
 /**
- * @typedef OperationMetadataExperimental
- * @memberOf! appengine(v1beta4)
- * @type object
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.experimental.CustomDomains.CreateCustomDomain.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/customDomains/example.com.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-
-/**
  * @typedef OperationMetadataV1
  * @memberOf! appengine(v1beta4)
  * @type object
@@ -1303,6 +1300,7 @@ function Appengine(options) { // eslint-disable-line
 * @property {string} defaultExpiration Duration that static files should be cached by web proxies and browsers. Only applicable if the corresponding StaticFilesHandler (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#staticfileshandler) does not specify its own expiration time.Only returned in GET requests if view=FULL is set.
 * @property {string} deployer Email address of the user who created this version.@OutputOnly
 * @property {appengine(v1beta4).Deployment} deployment Code and application artifacts that make up this version.Only returned in GET requests if view=FULL is set.
+* @property {appengine(v1beta4).EndpointsApiService} endpointsApiService Cloud Endpoints configuration.If endpoints_api_service is set, the Cloud Endpoints Extensible Service Proxy will be provided to serve the API implemented by the app.
 * @property {string} env App Engine execution environment to use for this version.Defaults to 1.
 * @property {object} envVariables Environment variables made available to the application.Only returned in GET requests if view=FULL is set.
 * @property {appengine(v1beta4).ErrorHandler[]} errorHandlers Custom static error pages. Limited to 10KB per page.Only returned in GET requests if view=FULL is set.

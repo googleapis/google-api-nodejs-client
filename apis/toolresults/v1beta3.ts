@@ -1638,7 +1638,7 @@ The exit code of this tool will be used to determine if the test passed.
  * @property {string} severity Severity of issue. Required.
  * @property {toolresults(v1beta3).StackTrace} stackTrace Deprecated in favor of stack trace fields inside specific warnings.
  * @property {string} type Type of issue. Required.
- * @property {toolresults(v1beta3).Any} warning Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings Required.
+ * @property {toolresults(v1beta3).Any} warning Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings
  */
 
 /**

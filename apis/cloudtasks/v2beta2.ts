@@ -1709,7 +1709,7 @@ function Cloudtasks(options) { // eslint-disable-line
            * @memberOf! cloudtasks(v2beta2)
            *
            * @param {object} params Parameters for request
-           * @param {string=} params.orderBy  Sort order used for the query. The fields supported for sorting are Task.schedule_time and PullMessage.tag. All results will be returned in approximately ascending order. The default ordering is by Task.schedule_time.
+           * @param {string=} params.orderBy Sort order used for the query. The only fields supported for sorting are `schedule_time` and `pull_message.tag`. All results will be returned in approximately ascending order. The default ordering is by `schedule_time`.
            * @param {integer=} params.pageSize Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use ListTasksResponse.next_page_token to determine if more tasks exist.
            * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of ListTasksResponse.next_page_token returned from the previous call to CloudTasks.ListTasks method.  The page token is valid for only 2 hours.
            * @param {string} params.parent Required.  The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`

@@ -439,6 +439,7 @@ function Appengine(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+       * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
        * @param {appengine(v1beta).DomainMapping} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1725,7 +1726,7 @@ function Appengine(options) { // eslint-disable-line
  * @typedef EndpointsApiService
  * @memberOf! appengine(v1beta)
  * @type object
- * @property {string} configId Endpoints service configuration id as specified by the Service Management API. For example &quot;2016-09-19r1&quot;
+ * @property {string} configId Endpoints service configuration id as specified by the Service Management API. For example &quot;2016-09-19r1&quot;By default, the Endpoints service configuration id is fixed and config_id must be specified. To keep the Endpoints service configuration id updated with each rollout, specify RolloutStrategy.MANAGED and omit config_id.
  * @property {string} name Endpoints service name which is the name of the &quot;service&quot; resource in the Service Management API. For example &quot;myapi.endpoints.myproject.cloud.goog&quot;
  */
 
@@ -1980,17 +1981,6 @@ If the network the VM instance is being created in is a custom Subnet Mode Netwo
  * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
  * @property {string} operationType Type of this operation. Deprecated, use method field instead. Example: &quot;create_version&quot;.@OutputOnly
  * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/modules/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-
-/**
- * @typedef OperationMetadataExperimental
- * @memberOf! appengine(v1beta)
- * @type object
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.experimental.CustomDomains.CreateCustomDomain.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/customDomains/example.com.@OutputOnly
  * @property {string} user User who requested this operation.@OutputOnly
  */
 
