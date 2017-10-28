@@ -1761,6 +1761,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @type object
  * @property {deploymentmanager(v2beta).ImportFile[]} imports Import files referenced by the main template.
  * @property {string} interpreter Which interpreter (python or jinja) should be used during expansion.
+ * @property {string} mainTemplate The filename of the mainTemplate
  * @property {string} schema The contents of the template schema.
  * @property {string} template The contents of the main template file.
  */

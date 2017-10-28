@@ -1407,14 +1407,12 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {integer=} params.filterSet.absoluteDateRange.startDate.day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year/month where the day is not significant.
        * @param {integer=} params.filterSet.absoluteDateRange.startDate.month Month of year. Must be from 1 to 12.
        * @param {integer=} params.filterSet.absoluteDateRange.startDate.year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
-       * @param {string=} params.filterSet.buyerAccountId The ID of the buyer account on which to filter; optional.
        * @param {string=} params.filterSet.creativeId The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses buyer-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
        * @param {string=} params.filterSet.dealId The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses buyer-level troubleshooting data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
        * @param {string=} params.filterSet.environment The environment on which to filter; optional.
        * @param {string=} params.filterSet.filterSetId The ID of the filter set; unique within the account of the filter set owner. The value of this field is ignored in create operations.
        * @param {string=} params.filterSet.format The format on which to filter; optional.
        * @param {string=} params.filterSet.name A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x` (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x` (for accessing buyer-level troubleshooting data)  This field is required in create operations.
-       * @param {string=} params.filterSet.ownerAccountId The account ID of the buyer who owns this filter set. The value of this field is ignored in create operations.
        * @param {string=} params.filterSet.platforms The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e. if non-empty, results must match any one of the platforms).
        * @param {string=} params.filterSet.realtimeTimeRange.startTimestamp The start timestamp of the real-time RTB metrics aggregation.
        * @param {integer=} params.filterSet.relativeDateRange.durationDays The number of days in the requested date range. E.g. for a range spanning today, 1. For a range spanning the last 7 days, 7.
@@ -2267,7 +2265,6 @@ a year.
  * @type object
 * @property {adexchangebuyer2(v2beta1).AbsoluteDateRange} absoluteDateRange An absolute date range, defined by a start date and an end date.
 Interpreted relative to Pacific time zone.
-* @property {string} buyerAccountId The ID of the buyer account on which to filter; optional.
 * @property {string} creativeId The ID of the creative on which to filter; optional. This field may be set
 only for a filter set that accesses buyer-level troubleshooting data, i.e.
 one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
@@ -2288,8 +2285,6 @@ data)
 troubleshooting data)
 
 This field is required in create operations.
-* @property {string} ownerAccountId The account ID of the buyer who owns this filter set.
-The value of this field is ignored in create operations.
 * @property {string[]} platforms The list of platforms on which to filter; may be empty. The filters
 represented by multiple platforms are ORed together (i.e. if non-empty,
 results must match any one of the platforms).

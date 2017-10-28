@@ -2514,6 +2514,8 @@ function Bigquery(options) { // eslint-disable-line
  * @type object
  * @property {integer} billingTier [Output-only] Billing tier for the job.
  * @property {boolean} cacheHit [Output-only] Whether the query result was fetched from the query cache.
+ * @property {string} ddlOperationPerformed [Output-only, Experimental] The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): &quot;CREATE&quot;: The query created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. &quot;DROP&quot;: The query deleted the DDL target.
+ * @property {bigquery(v2).TableReference} ddlTargetTable [Output-only, Experimental] The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
  * @property {string} numDmlAffectedRows [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
  * @property {bigquery(v2).ExplainQueryStage[]} queryPlan [Output-only] Describes execution plan for the query.
  * @property {bigquery(v2).TableReference[]} referencedTables [Output-only, Experimental] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.

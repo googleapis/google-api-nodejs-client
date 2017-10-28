@@ -1383,13 +1383,14 @@ context of the other fields.
 Required.
 * @property {string} origin One of the standard Origins defined above.
 * @property {string} originNamespace A string containing a more specific namespace of the counter&#39;s origin.
-* @property {string} originalShuffleStepName The GroupByKey step name from the original graph.
+* @property {string} originalRequestingStepName The step name requesting an operation, such as GBK.
+I.e. the ParDo causing a read/write from shuffle to occur.
 * @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
 optimization.
 * @property {string} portion Portion of this counter, either key or value.
 * @property {dataflow(v1b3).SideInputId} sideInput ID of a side input being read from/written to. Side inputs are identified
 by a pair of (reader, input_index). The reader is usually equal to the
-original name, but it may be different, if a ParDo emits it&#39;s Iterator /
+original name, but it may be different, if a ParDo emits its Iterator /
 Map side input object.
 * @property {string} workerId ID of a particular worker.
 */
@@ -2388,9 +2389,16 @@ the (encoded) keys in lexicographically sorted order.
  * @typedef SourceOperationRequest
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
- * @property {dataflow(v1b3).SourceSplitRequest} split Information about a request to split a source.
- */
+* @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
+* @property {string} name User-provided name of the Read instruction for this source.
+* @property {string} originalName System-defined name for the Read instruction for this source
+in the original workflow graph.
+* @property {dataflow(v1b3).SourceSplitRequest} split Information about a request to split a source.
+* @property {string} stageName System-defined name of the stage containing the source operation.
+Unique across the workflow.
+* @property {string} systemName System-defined name of the Read instruction for this source.
+Unique across the workflow.
+*/
 
 /**
  * @typedef SourceOperationResponse
