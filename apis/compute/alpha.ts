@@ -20237,6 +20237,7 @@ zones/zone/machineTypes/custom-CPUS-MEMORY
 For example: zones/us-central1-f/machineTypes/custom-4-5120 
 
 For a full list of restrictions, read the Specifications for custom machine types.
+* @property {string[]} maintenancePolicies Maintenance policies applied to this instance.
 * @property {compute(alpha).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
 * @property {string} minCpuPlatform Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
