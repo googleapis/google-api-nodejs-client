@@ -881,6 +881,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.sendNotificationEmail Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {drive(v3).Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -921,6 +922,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file or Team Drive.
      * @param {string} params.permissionId The ID of the permission.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -960,6 +962,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.permissionId The ID of the permission.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1000,6 +1003,7 @@ function Drive(options) { // eslint-disable-line
      * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1041,6 +1045,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
      * @param {drive(v3).Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1520,6 +1525,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1558,6 +1564,8 @@ function Drive(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of Team Drives to return.
      * @param {string=} params.pageToken Page token for Team Drives.
+     * @param {string=} params.q Query string for searching Team Drives.
+     * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1903,6 +1911,7 @@ This field is only applicable to files with binary content in Drive.
  * @property {string} backgroundImageLink A short-lived link to this Team Drive&#39;s background image.
  * @property {object} capabilities Capabilities the current user has on this Team Drive.
  * @property {string} colorRgb The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
+ * @property {string} createdTime The time at which the Team Drive was created (RFC 3339 date-time).
  * @property {string} id The ID of this Team Drive which is also the ID of the top level folder for this Team Drive.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#teamDrive&quot;.
  * @property {string} name The name of this Team Drive.

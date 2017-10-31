@@ -241,7 +241,7 @@ function Cloudiot(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
-         * @param {string=} params.updateMask Only updates the `device_registry` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `event_notification_config`, `mqtt_config`, and `state_notification_config`.
+         * @param {string=} params.updateMask Only updates the `device_registry` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `event_notification_config`, `http_config`, `mqtt_config`, and `state_notification_config`.
          * @param {cloudiot(v1).DeviceRegistry} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -431,6 +431,7 @@ function Cloudiot(options) { // eslint-disable-line
            * @memberOf! cloudiot(v1)
            *
            * @param {object} params Parameters for request
+           * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
            * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
