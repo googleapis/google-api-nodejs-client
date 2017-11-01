@@ -3025,6 +3025,44 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.users.revokeDeviceAccess
+     *
+     * @desc Revokes access to all devices currently provisioned to the user. The user will no longer be able to use the managed Play store on any of their managed devices.  This call only works with EMM-managed accounts.
+     *
+     * @alias androidenterprise.users.revokeDeviceAccess
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    revokeDeviceAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['enterpriseId', 'userId'],
+        pathParams: ['enterpriseId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.users.revokeToken
      *
      * @desc Revokes a previously generated token (activation code) for the user.

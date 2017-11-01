@@ -1033,8 +1033,9 @@ policy is overwritten blindly.
     projects/[PROJECT_ID]/configs/[CONFIG_NAME]
 
 The `[PROJECT_ID]` must be a valid project ID, and `[CONFIG_NAME]` is an
-arbitrary name that matches RFC 1035 segment specification. The length of
-`[CONFIG_NAME]` must be less than 64 bytes.
+arbitrary name that matches
+[0-9A-Za-z](?:[_.A-Za-z0-9-]{0,62}[_.A-Za-z0-9])? regular expression.
+The length of `[CONFIG_NAME]` must be less than 64 characters.
 
 You pick the RuntimeConfig resource name, but the server will validate that
 the name adheres to this format. After you create the resource, you cannot
@@ -1097,8 +1098,9 @@ The `[VARIABLE_NAME]` can contain ASCII letters, numbers, slashes and
 dashes. Slashes are used as path element separators and are not part of the
 `[VARIABLE_NAME]` itself, so `[VARIABLE_NAME]` must contain at least one
 non-slash character. Multiple slashes are coalesced into single slash
-character. Each path segment should follow RFC 1035 segment specification.
-The length of a `[VARIABLE_NAME]` must be less than 256 bytes.
+character. Each path segment should match
+[0-9A-Za-z](?:[_.A-Za-z0-9-]{0,62}[_.A-Za-z0-9])? regular expression.
+The length of a `[VARIABLE_NAME]` must be less than 256 characters.
 
 Once you create a variable, you cannot change the variable name.
 * @property {string} state [Ouput only] The current state of the variable. The variable state indicates

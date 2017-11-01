@@ -1656,43 +1656,6 @@ function Androidpublisher(options) { // eslint-disable-line
   self.inappproducts = {
 
     /**
-     * androidpublisher.inappproducts.batch
-     *
-     * 
-     *
-     * @alias androidpublisher.inappproducts.batch
-     * @memberOf! androidpublisher(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {androidpublisher(v2).InappproductsBatchRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    batch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/androidpublisher/v2/applications/inappproducts/batch').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * androidpublisher.inappproducts.delete
      *
      * @desc Delete an in-app product for an app.
@@ -2579,54 +2542,6 @@ function Androidpublisher(options) { // eslint-disable-line
  */
 
 /**
- * @typedef InappproductsBatchRequest
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InappproductsBatchRequestEntry[]} entrys 
- */
-
-/**
- * @typedef InappproductsBatchRequestEntry
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {integer} batchId 
- * @property {androidpublisher(v2).InappproductsInsertRequest} inappproductsinsertrequest 
- * @property {androidpublisher(v2).InappproductsUpdateRequest} inappproductsupdaterequest 
- * @property {string} methodName 
- */
-
-/**
- * @typedef InappproductsBatchResponse
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InappproductsBatchResponseEntry[]} entrys 
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsBatchResponse&quot;.
- */
-
-/**
- * @typedef InappproductsBatchResponseEntry
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {integer} batchId 
- * @property {androidpublisher(v2).InappproductsInsertResponse} inappproductsinsertresponse 
- * @property {androidpublisher(v2).InappproductsUpdateResponse} inappproductsupdateresponse 
- */
-
-/**
- * @typedef InappproductsInsertRequest
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InAppProduct} inappproduct 
- */
-
-/**
- * @typedef InappproductsInsertResponse
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InAppProduct} inappproduct 
- */
-
-/**
  * @typedef InappproductsListResponse
  * @memberOf! androidpublisher(v2)
  * @type object
@@ -2634,20 +2549,6 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsListResponse&quot;.
  * @property {androidpublisher(v2).PageInfo} pageInfo 
  * @property {androidpublisher(v2).TokenPagination} tokenPagination 
- */
-
-/**
- * @typedef InappproductsUpdateRequest
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InAppProduct} inappproduct 
- */
-
-/**
- * @typedef InappproductsUpdateResponse
- * @memberOf! androidpublisher(v2)
- * @type object
- * @property {androidpublisher(v2).InAppProduct} inappproduct 
  */
 
 /**

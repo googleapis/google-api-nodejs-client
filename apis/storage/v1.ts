@@ -3870,7 +3870,7 @@ function Storage(options) { // eslint-disable-line
     /**
      * storage.objects.patch
      *
-     * @desc Updates an object's metadata. This method supports patch semantics.
+     * @desc Patches an object's metadata.
      *
      * @example
      * // BEFORE RUNNING:
@@ -3945,7 +3945,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
+     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
      * @param {storage(v1).Object} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.

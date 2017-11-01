@@ -833,6 +833,7 @@ is `TakeSnapshot()`, the inferred response type is
  * @type object
 * @property {string} branchName Name of the branch to build.
 * @property {string} commitSha Explicit commit SHA to build.
+* @property {string} dir Directory, relative to the source root, in which to run the build.
 * @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
 the build is assumed.
 * @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
