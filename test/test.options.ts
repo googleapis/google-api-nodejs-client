@@ -14,7 +14,7 @@
 import * as assert from 'power-assert';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+const googleapis = require('../lib/googleapis');
 
 describe('Options', () => {
   let authClient;
@@ -111,7 +111,7 @@ describe('Options', () => {
     const google = new googleapis.GoogleApis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
-    authClient.setCredentials({ access_token: 'abc' });
+    authClient.credentials = { access_token: 'abc' };
     const drive = google.drive({ version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com' });
     const req = drive.files.get({ auth: authClient, fileId: 'woot' }, utils.noop);
     assert.equal(req.proxy.host, 'proxy.example.com');

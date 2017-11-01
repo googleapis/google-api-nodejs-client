@@ -13,9 +13,7 @@
 
 import * as stream from 'stream';
 import * as parseString from 'string-template';
-
-const DefaultTransporter = require('google-auth-library/lib/transporters.js');
-
+import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
 function isReadableStream (obj) {
   return obj instanceof stream.Stream &&

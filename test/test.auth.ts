@@ -62,7 +62,7 @@ function testNoTokens (urlshortener, oauth2client, cb) {
     shortUrl: '123',
     auth: oauth2client
   }, (err, result) => {
-    assert.equal(err.message, 'No access or refresh token is set.');
+    assert.equal(err.message, 'No access, refresh token or API key is set.');
     assert.equal(result, null);
     cb();
   });

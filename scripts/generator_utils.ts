@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { DefaultTransporter } from 'google-auth-library';
+import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
 /**
  * Build a string used to create a URL from the discovery doc provided URL.
