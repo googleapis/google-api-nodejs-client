@@ -15,7 +15,8 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-const googleapis = require('../lib/googleapis');
+import googleapis from '../lib/googleapis';
+
 
 function testGet (drive) {
   const req = drive.files.get({
@@ -56,7 +57,7 @@ describe('API key', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
@@ -79,7 +80,7 @@ describe('API key', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
     authClient.credentials = { access_token: 'abc123' };
