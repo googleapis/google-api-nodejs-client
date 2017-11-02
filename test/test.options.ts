@@ -14,7 +14,7 @@
 import * as assert from 'power-assert';
 import * as nock from 'nock';
 import utils from './utils';
-const googleapis = require('../lib/googleapis');
+import googleapis from '../lib/googleapis';
 
 describe('Options', () => {
   let authClient;
@@ -25,24 +25,24 @@ describe('Options', () => {
   });
 
   it('should be a function', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     assert.equal(typeof google.options, 'function');
   });
 
   it('should expose _options', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ hello: 'world' });
     assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
   });
 
   it('should expose _options values', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ hello: 'world' });
     assert.equal(google._options.hello, 'world');
   });
 
   it('should promote endpoint options over global options', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ hello: 'world' });
     const drive = google.drive({ version: 'v2', hello: 'changed' });
     const req = drive.files.get({ fileId: '123' }, utils.noop);
@@ -50,7 +50,7 @@ describe('Options', () => {
   });
 
   it('should support global request params', (done) => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ params: { myParam: '123' } });
     const drive = google.drive('v2');
     let req = drive.files.get({ fileId: '123' }, utils.noop);
@@ -74,7 +74,7 @@ describe('Options', () => {
   });
 
   it('should promote auth apikey options on request basis', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ auth: 'apikey1' });
     const drive = google.drive({ version: 'v2', auth: 'apikey2' });
     const req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, utils.noop);
@@ -82,7 +82,7 @@ describe('Options', () => {
   });
 
   it('should apply google options to request object like proxy', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     google.options({ proxy: 'http://proxy.example.com' });
     const drive = google.drive({ version: 'v2', auth: 'apikey2' });
     const req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, utils.noop);
@@ -91,7 +91,7 @@ describe('Options', () => {
   });
 
   it('should apply endpoint options to request object like proxy', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const drive = google.drive({ version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com' });
     const req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, utils.noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
@@ -100,7 +100,7 @@ describe('Options', () => {
   });
 
   it('should allow overriding endpoint options', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const drive = google.drive('v3');
     const req = drive.files.get({ fileId: 'woot' }, { url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null }, utils.noop);
     assert.equal(req.url, 'https://myproxy.com/drive/v3/files/woot', 'Request used overridden url.');
@@ -108,7 +108,7 @@ describe('Options', () => {
   });
 
   it('should apply endpoint options like proxy to oauth transporter', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
     authClient.credentials = { access_token: 'abc' };
@@ -120,7 +120,7 @@ describe('Options', () => {
   });
 
   it('should allow overriding rootUrl via options', () => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const drive = google.drive('v3');
     const reqWithSlash = drive.files.get({ fileId: 'woot' }, { rootUrl: 'https://myrooturl.com/' }, utils.noop);
     assert.equal(reqWithSlash.url, 'https://myrooturl.com/drive/v3/files/woot', 'Request used overridden rootUrl with trailing slash.');

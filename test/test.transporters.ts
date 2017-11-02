@@ -15,7 +15,7 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 function testHeaders (drive) {
   const req = drive.comments.insert({
@@ -84,7 +84,7 @@ describe('Transporters', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
@@ -111,7 +111,7 @@ describe('Transporters', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localDrive = google.drive('v2');
     localOauth2 = google.oauth2('v2');
     localUrlshortener = google.urlshortener('v1');

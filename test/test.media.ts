@@ -17,7 +17,7 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 const boundaryPrefix = 'multipart/related; boundary=';
 
@@ -87,7 +87,7 @@ describe('Media', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
@@ -110,7 +110,7 @@ describe('Media', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
   });

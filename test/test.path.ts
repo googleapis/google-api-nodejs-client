@@ -14,14 +14,14 @@
 import * as assert from 'power-assert';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 describe('Path params', () => {
   let localDrive, remoteDrive;
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
@@ -36,7 +36,7 @@ describe('Path params', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localDrive = google.drive('v2');
   });
 

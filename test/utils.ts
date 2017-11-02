@@ -28,4 +28,3 @@ abstract class utils {
   public static readonly noop = () => {};
 }
 export default utils;
-

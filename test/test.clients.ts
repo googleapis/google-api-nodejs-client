@@ -17,7 +17,7 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 describe('Clients', () => {
   let localPlus, remotePlus;
@@ -25,7 +25,7 @@ describe('Clients', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
@@ -48,7 +48,7 @@ describe('Clients', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localPlus = google.plus('v1');
     localOauth2 = google.oauth2('v2');
   });
@@ -129,7 +129,7 @@ describe('Clients', () => {
   });
 
   it('should support default params', (done) => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
@@ -166,7 +166,7 @@ describe('Clients', () => {
   });
 
   it('should allow default params to be overriden per-request', (done) => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
@@ -213,7 +213,7 @@ describe('Clients', () => {
   });
 
   it('should include default params when only callback is provided to API call', (done) => {
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const datastore = google.datastore({
       version: 'v1beta3',
       params: {
