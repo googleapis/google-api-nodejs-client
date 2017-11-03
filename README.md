@@ -260,7 +260,7 @@ var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
 
 // WARNING: it's important to keep filled  YOUR_CLIENT_ID,
-// YOUR_CLIENT_SECRET, YOUR_REDIRECT_URL for  for use automatically refreshed
+// YOUR_CLIENT_SECRET, YOUR_REDIRECT_URL for use automatically refreshed
 // access_token
 var oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
