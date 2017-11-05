@@ -11,3 +11,4 @@ apis/iam/v1alpha1.js
 **/*.js.map
 !samples/**/*.js
 .vscode
+**/*.d.ts

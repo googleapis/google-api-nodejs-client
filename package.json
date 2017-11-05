@@ -68,7 +68,7 @@
     "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
     "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "pretest": "npm run build",
-    "clean": "find . -name '*.js.map' -type f -delete && find -E . -regex '\\./(test|lib|apis|scripts)/.*.js$' -type f -delete"
+    "clean": "del-cli \"**/*.js.map\" \"*(test|lib|apis|scripts)/**/*.js\" \"**/*.d.ts\""
   },
   "author": "Google Inc.",
   "keywords": [
@@ -88,6 +88,7 @@
     "@types/mkdirp": "^0.3.29",
     "@types/mocha": "^2.2.41",
     "@types/node": "^7.0.13",
+    "del-cli": "^1.1.0",
     "ink-docstrap": "1.3.0",
     "intelli-espower-loader": "1.0.1",
     "js-beautify": "1.6.12",
