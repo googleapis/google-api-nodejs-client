@@ -10,7 +10,7 @@
 [Node.js][node] client library for using Google APIs. Support for authorization and authentication with OAuth 2.0, API Keys and JWT (Service Tokens) is included.
 
 ## Library maintenance
-This client library is supported but in maintenance mode only.  We are fixing necessary bugs and adding essential features to ensure this library continues to meet your needs for accessing Google APIs.  Non-critical issues will be closed.  Any issue may be reopened if it is causing ongoing problems.
+This client library is supported but in maintenance mode only.  We are fixing important bugs and adding essential features to ensure this library continues to meet your needs for accessing Google APIs.  Non-critical issues will be closed.  Any issue may be reopened if it is causing ongoing problems.
 
 ## Table of Contents
 
@@ -57,7 +57,7 @@ This library is in Alpha. We will make an effort to support the library, but we 
 ### Migrating to version `2.x` of this library
 
 If you've used this library before `1.x`, see our [Migration Guide][migrating]
-to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy :)
+to learn about migrating your code from `0.x.x` to `1.x`. It's pretty easy.
 
 If your code already works with a `1.x` version of this library, no work is required
 to move to `2.x`. However, note that return data of getToken has become an array. Furthermore, it is recommended that you update any direct links in your code,
@@ -69,8 +69,8 @@ The full list of supported APIs can be found [here][supported-list]. The API end
 
 ### Questions/problems?
 
-* Ask your development related questions on [![Ask a question on Stackoverflow][overflowimg]][stackoverflow]
-* If you've found an bug/issue, please [file it on GitHub][bugs].
+* Ask your development related questions on [![Ask a question on StackOverflow][overflowimg]][stackoverflow]
+* If you've found a bug/issue, please [file it on GitHub][bugs].
 
 ### Working with Google Cloud Platform APIs?
 
@@ -83,7 +83,7 @@ You can find the list of Google Cloud Platform APIs supported by google-cloud in
 
 ## Installation
 
-This library is distributed on `npm`. In order to add it as a dependency,
+This library is distributed on `npm`. To add it as a dependency,
 run the following command:
 
 ``` sh
@@ -115,7 +115,7 @@ urlshortener.url.get(params, function (err, response) {
 
 ### Create a service client
 
-To interact with the various Google APIs you need to create a service client
+To interact with the various Google APIs, you need to create a service client
 for that particular API. These are immutable objects you use to make API calls.
 
 Example: Creating a `urlshortener` client with version `v1` of the API.
@@ -160,7 +160,7 @@ var oauth2Client = new OAuth2(
   YOUR_REDIRECT_URL
 );
 
-// generate a url that asks permissions for Google+ and Google Calendar scopes
+// generate an url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
   'https://www.googleapis.com/auth/plus.me',
   'https://www.googleapis.com/auth/calendar'
@@ -203,7 +203,7 @@ oauth2Client.getToken(code, function (err, tokens) {
 
 ##### Setting global or service-level auth
 
-You can set the `auth` as a global or service-level option so you don't need to
+You can set the `auth` as a global or service-level option, so you don't need to
 specify it every request.
 
 Example: Setting a global `auth` option.
@@ -247,7 +247,7 @@ See the [Options section][options] for more information.
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
 `refresh_token` and `expiry_date` (milliseconds since the Unix Epoch) and the
-`access_token` has expired, the `access_token` will be automatically refreshed
+`access_token` has expired, the `access_token` will be automatically refreshed,
 and the request is replayed (with the except of requests with a media body, as
 we cannot reliably restart your media stream). Set `expiry_date` to `true` to
 force a refresh.
@@ -296,7 +296,7 @@ oauth2Client.refreshAccessToken(function(err, tokens) {
 #### Using API keys
 
 You may need to send an API key with the request you are going to make.
-The following uses an API key to make a request to the Google+ API service to
+The following uses an API key to request the Google+ API service to
 retrieve a person's profile given a userId:
 
 ``` js
@@ -328,7 +328,7 @@ To learn more about API keys, please see the [documentation][usingkeys].
 
 #### Using JWT (Service Tokens)
 
-The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
+The Google Developers Console provides a `.json` file that you can use to configure a JWT auth client and authenticate your requests, for example when using a service account.
 
 ``` js
 var google = require('googleapis');
@@ -364,7 +364,7 @@ file are explained in [samples/jwt.js](samples/jwt.js).
 #### Choosing the correct credential type automatically
 
 Rather than manually creating an OAuth2 client, JWT client, or Compute client,
-the auth library can create the correct credential type for you, depending upon
+the auth library can generate the correct credential type for you, depending upon
 the environment your code is running under.
 
 For example, a JWT auth client will be created when your code is running on your
@@ -416,7 +416,7 @@ google.auth.getApplicationDefault(function (err, authClient, projectId) {
 
 The body of the request is specified in the `resource` parameter object of the
 request. The resource/body is specified as a JavaScript object with key/value
-pairs. See the example in the next section below for an example on how it is
+pairs. See the example in the next section below for example on how it is
 specified.
 
 ### Media uploads
@@ -446,7 +446,7 @@ drive.files.create({
 ```
 
 You can also upload media by specifying `media.body` as a [Readable stream][stream].
-This can allow you to upload very large files that cannot fit into memory.
+This can allow you to upload huge files that cannot fit into memory.
 
 Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
