@@ -6,6 +6,9 @@
 [![Build Status][travisimg]][travis]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
+[![Dependency Status][david-image]][david-url]
+[![devDependency Status][david-dev-image]][david-dev-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 
 [Node.js][node] client library for using Google APIs. Support for authorization and authentication with OAuth 2.0, API Keys and JWT (Service Tokens) is included.
 
@@ -178,7 +181,7 @@ var url = oauth2Client.generateAuthUrl({
 });
 ```
 ##### IMPORTANT NOTE
-`refresh_token` is only returned on the first authorization.  
+`refresh_token` is only returned on the first authorization.
  More details [here](https://github.com/google/google-api-nodejs-client/issues/750#issuecomment-304521450)
 
 ##### Retrieve authorization code
@@ -618,6 +621,12 @@ available in [COPYING][copying].
 
 See [CONTRIBUTING][contributing].
 
+[snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
+[snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
+[david-image]: https://david-dm.org/google/google-api-nodejs-client.svg
+[david-url]: https://david-dm.org/google/google-api-nodejs-client
+[david-dev-image]: https://david-dm.org/google/google-api-nodejs-client/dev-status.svg
+[david-dev-url]: https://david-dm.org/google/google-api-nodejs-client?type=dev
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
 [travisimg]: https://api.travis-ci.org/google/google-api-nodejs-client.svg
