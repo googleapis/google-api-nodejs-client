@@ -21,9 +21,9 @@
 var google = require('../lib/googleapis');
 var OAuth2Client = google.auth.OAuth2;
 var http = require('http');
-var spawn = require('child_process').spawn;
 var url = require('url');
 var querystring = require('querystring');
+var opn = require('opn');
 var secrets = require('./secrets.json');
 
 var called = false;
@@ -77,7 +77,7 @@ function SampleClient (options) {
       });
     }).listen(8080, function () {
       // open the browser to the authorize url to start the workflow
-      spawn('open', [self.authorizeUrl]);
+      opn(self.authorizeUrl);
     });
   };
 
