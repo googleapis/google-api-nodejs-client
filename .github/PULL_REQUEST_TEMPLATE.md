@@ -5,4 +5,4 @@ Fixes #<issue_number_goes_here> (it's a good idea to open an issue first for dis
 - [ ] I did NOT manually make changes to anything in `apis/`
 - [ ] Code coverage does not decrease (if any source code was changed)
 - [ ] Appropriate JSDoc comments were updated in source code (if applicable)
-- [ ] Approprate changes to readme/docs are included in PR
+- [ ] Appropriate changes to readme/docs are included in PR
