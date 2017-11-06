@@ -2,6 +2,8 @@
 
 # Google APIs Node.js Client
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/google/google-api-nodejs-client.svg)](https://greenkeeper.io/)
+
 [![npm version][npmimg]][npm]
 [![Build Status][travisimg]][travis]
 [![Code Coverage][codecovimg]][codecov]
