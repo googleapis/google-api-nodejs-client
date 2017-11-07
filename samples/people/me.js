@@ -30,7 +30,6 @@ function me (tokens) {
     if (err) {
       console.error(err);
       process.exit();
-      return;
     }
 
     console.log(me);
