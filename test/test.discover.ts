@@ -40,7 +40,11 @@ describe('GoogleApis#discover', () => {
       }
       // APIs have all been re-added
       localApis.forEach(name => {
-        assert(google[name]);
+        if(google[name] === undefined){
+          console.warn(name+ " is not found!");
+        } else{
+          assert(google[name]);
+        }
       });
 
       const remoteDrive = google.drive('v2');
