@@ -28,10 +28,11 @@ describe('GoogleApis#discover', () => {
 
     localApis.forEach((name) => {
       assert(google[name]);
-      google[name] = undefined;
+      // Setting all the APIs to null initially
+      google[name] = null;
     });
 
-    assert.equal(google.drive, undefined);
+    assert.equal(google.drive, null);
 
     google.discover('https://www.googleapis.com/discovery/v1/apis', (err) => {
       if (err) {
@@ -40,7 +41,11 @@ describe('GoogleApis#discover', () => {
       }
       // APIs have all been re-added
       localApis.forEach(name => {
-        if(google[name] === undefined){
+        // In case an API was not found during the discovery process,
+        // the value will remain null.
+        // Printing out the value to the console to prevent breaking of the
+        // test process. For any other failure, test is done.
+        if (google[name] === null){
           console.warn(name+ " is not found!");
         } else{
           assert(google[name]);
