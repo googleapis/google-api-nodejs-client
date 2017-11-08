@@ -28,7 +28,7 @@ describe('GoogleApis#discover', () => {
 
     localApis.forEach((name) => {
       assert(google[name]);
-      // Setting all the APIs to null initially
+      // Setting all APIs to null initially.
       google[name] = null;
     });
 
@@ -39,15 +39,12 @@ describe('GoogleApis#discover', () => {
         console.warn(err);
         return done();
       }
-      // APIs have all been re-added
+      // APIs have all been re-added.
       localApis.forEach(name => {
-        // In case an API was not found during the discovery process,
-        // the value will remain null.
-        // Printing out the value to the console to prevent breaking of the
-        // test process. For any other failure, test is done.
-        if (google[name] === null){
-          console.warn(name+ " is not found!");
-        } else{
+        if (google[name] === null) {
+          // Warn if an API remains null (was not found during the discovery process) to avoid failing the test.
+          console.warn(name + ' was not found.');
+        } else {
           assert(google[name]);
         }
       });
