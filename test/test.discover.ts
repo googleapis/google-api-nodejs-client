@@ -14,13 +14,13 @@
 import * as assert from 'power-assert';
 import * as fs from 'fs';
 import * as path from 'path';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {
 
     const localApis = fs.readdirSync(path.join(__dirname, '../apis'));
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     const localDrive = google.drive('v2');
 
     assert.equal(typeof google.drive, 'function');

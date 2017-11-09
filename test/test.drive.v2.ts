@@ -14,14 +14,15 @@
 import * as assert from 'power-assert';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
+const google = new googleapis();
 
 describe('drive:v2', () => {
   let localDrive, remoteDrive;
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
@@ -36,17 +37,17 @@ describe('drive:v2', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localDrive = google.drive('v2');
   });
 
   it('should exist', (done) => {
-    assert.notEqual(typeof googleapis.drive, null);
+    assert.notEqual(typeof google.drive, null);
     done();
   });
 
   it('should be a function', (done) => {
-    assert.equal(typeof googleapis.drive, 'function');
+    assert.equal(typeof google.drive, 'function');
     done();
   });
 

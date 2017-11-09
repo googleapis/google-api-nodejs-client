@@ -15,7 +15,7 @@ import * as assert from 'power-assert';
 import * as nock from 'nock';
 import * as path from 'path';
 import utils from './utils';
-let googleapis = require('../');
+import googleapis from '../lib/googleapis';
 
 function testSingleRequest (urlshortener) {
   const obj = { longUrl: 'http://someurl...' };
@@ -51,7 +51,7 @@ describe('Urlshortener', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
       nock.disableNetConnect();
@@ -66,7 +66,7 @@ describe('Urlshortener', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localUrlshortener = google.urlshortener('v1');
   });
 

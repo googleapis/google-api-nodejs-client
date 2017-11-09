@@ -15,7 +15,8 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-const googleapis = require('../lib/googleapis');
+import googleapis from '../lib/googleapis';
+const google = new googleapis();
 
 describe('Query params', () => {
   let localCompute, remoteCompute;
@@ -24,7 +25,7 @@ describe('Query params', () => {
 
   before((done) => {
     nock.cleanAll();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
@@ -51,7 +52,7 @@ describe('Query params', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    const google = new googleapis.GoogleApis();
+    const google = new googleapis();
     localCompute = google.compute('v1');
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
@@ -127,7 +128,7 @@ describe('Query params', () => {
   });
 
   it('should not include auth if auth is an OAuth2Client object', () => {
-    const oauth2client = new googleapis.auth.OAuth2(
+    const oauth2client = new google.auth.OAuth2(
       'CLIENT_ID',
       'CLIENT_SECRET',
       'REDIRECT_URI'

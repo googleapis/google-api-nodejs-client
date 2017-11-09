@@ -211,4 +211,4 @@ GoogleApis.prototype.discoverAPI = function (path, options, callback) {
  * @module googleapis
  * @type {GoogleApis}
  */
-export = new GoogleApis();
+export default GoogleApis;
