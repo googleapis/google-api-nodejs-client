@@ -34,7 +34,6 @@ function list (query, tokens) {
     if (err) {
       console.error(err);
       process.exit();
-      return;
     }
 
     console.log(result.files);
