@@ -11,21 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-abstract class utils {
-  public static getDiscoveryUrl (name, version) {
+export abstract class Utils {
+  static getDiscoveryUrl (name, version) {
     return 'https://www.googleapis.com/discovery/v1/apis/' + name +
       '/' + version + '/rest';
   }
 
-  public static loadApi (google, name, version, options, cb) {
+  static loadApi (google, name, version, options, cb) {
     if (typeof options === 'function') {
       cb = options;
       options = {};
     }
-    return google.discoverAPI(utils.getDiscoveryUrl(name, version), options, cb);
+    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options, cb);
   }
 
-  public static readonly noop = () => {};
+  static readonly noop = () => undefined;
 }
-export default utils;
-

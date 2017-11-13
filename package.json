@@ -68,7 +68,9 @@
     "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
     "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "pretest": "npm run build",
-    "clean": "del-cli \"**/*.js.map\" \"*(test|lib|apis|scripts)/**/*.js\" \"**/*.d.ts\""
+    "clean": "del-cli \"**/*.js.map\" \"*(test|lib|apis|scripts)/**/*.js\" \"**/*.d.ts\"",
+    "check": "gts check",
+    "fix": "gts fix"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -89,6 +91,7 @@
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.49",
     "del-cli": "^1.1.0",
+    "gts": "^0.4.1",
     "ink-docstrap": "^1.3.0",
     "intelli-espower-loader": "^1.0.1",
     "js-beautify": "^1.7.4",

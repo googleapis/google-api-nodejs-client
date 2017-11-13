@@ -14,7 +14,7 @@
 import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
-import utils from './utils';
+import {Utils} from './utils';
 const googleapis = require('../lib/googleapis');
 
 describe('Query params', () => {
@@ -28,13 +28,13 @@ describe('Query params', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'compute', 'v1', {}, cb);
+        Utils.loadApi(google, 'compute', 'v1', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'gmail', 'v1', {}, cb);
+        Utils.loadApi(google, 'gmail', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -58,56 +58,56 @@ describe('Query params', () => {
   });
 
   it('should not append ? with no query parameters', () => {
-    let uri = localDrive.files.get({ fileId: 'ID' }, utils.noop).uri;
+    let uri = localDrive.files.get({ fileId: 'ID' }, Utils.noop).uri;
     assert.equal(-1, uri.href.indexOf('?'));
-    uri = remoteDrive.files.get({ fileId: 'ID' }, utils.noop).uri;
+    uri = remoteDrive.files.get({ fileId: 'ID' }, Utils.noop).uri;
     assert.equal(-1, uri.href.indexOf('?'));
   });
 
   it('should be null if no object passed', () => {
-    let req = localDrive.files.list(utils.noop);
+    let req = localDrive.files.list(Utils.noop);
     assert.equal(req.uri.query, null);
-    req = remoteDrive.files.list(utils.noop);
+    req = remoteDrive.files.list(Utils.noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be null if params passed are in path', () => {
-    let req = localDrive.files.get({ fileId: '123' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123' }, Utils.noop);
     assert.equal(req.uri.query, null);
-    req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
+    req = remoteDrive.files.get({ fileId: '123' }, Utils.noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be set if params passed are optional query params', () => {
-    let req = localDrive.files.get({ fileId: '123', updateViewedDate: true }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', updateViewedDate: true }, Utils.noop);
     assert.equal(req.uri.query, 'updateViewedDate=true');
-    req = remoteDrive.files.get({ fileId: '123', updateViewedDate: true }, utils.noop);
+    req = remoteDrive.files.get({ fileId: '123', updateViewedDate: true }, Utils.noop);
     assert.equal(req.uri.query, 'updateViewedDate=true');
   });
 
   it('should be set if params passed are unknown params', () => {
-    let req = localDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, Utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello');
-    req = remoteDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, utils.noop);
+    req = remoteDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, Utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello');
   });
 
   it('should be set if params passed are aliased names', () => {
-    let req = localDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', resource_: 'hello' }, Utils.noop);
     assert.equal(req.uri.query, 'resource=hello');
-    req = remoteDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
+    req = remoteDrive.files.get({ fileId: '123', resource_: 'hello' }, Utils.noop);
     assert.equal(req.uri.query, 'resource=hello');
   });
 
   it('should be set if params passed are falsy', () => {
-    let req = localCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, utils.noop);
+    let req = localCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, Utils.noop);
     assert.equal(req.uri.query, 'autoDelete=false&deviceName=');
-    req = remoteCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, utils.noop);
+    req = remoteCompute.instances.setDiskAutoDelete({ project: '', zone: '', instance: '', autoDelete: false, deviceName: '' }, Utils.noop);
     assert.equal(req.uri.query, 'autoDelete=false&deviceName=');
 
-    req = localCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, utils.noop);
+    req = localCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, Utils.noop);
     assert.equal(req.uri.query, 'size=0');
-    req = remoteCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, utils.noop);
+    req = remoteCompute.instanceGroupManagers.resize({ project: '', zone: '', instanceGroupManager: '', size: 0 }, Utils.noop);
     assert.equal(req.uri.query, 'size=0');
   });
 
@@ -116,13 +116,13 @@ describe('Query params', () => {
       fileId: '123',
       madeThisUp: 'hello',
       thisToo: 'world'
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello&thisToo=world');
     req = remoteDrive.files.get({
       fileId: '123',
       madeThisUp: 'hello',
       thisToo: 'world'
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello&thisToo=world');
   });
 
@@ -136,12 +136,12 @@ describe('Query params', () => {
     let req = localDrive.files.get({
       fileId: '123',
       auth: oauth2client
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, null);
     req = remoteDrive.files.get({
       fileId: '123',
       auth: oauth2client
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, null);
   });
 
@@ -150,13 +150,13 @@ describe('Query params', () => {
       userId: 'me',
       id: 'abc123',
       metadataHeaders: ['To', 'Date']
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'metadataHeaders=To&metadataHeaders=Date');
     req = remoteGmail.users.messages.get({
       userId: 'me',
       id: 'abc123',
       metadataHeaders: ['To', 'Date']
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'metadataHeaders=To&metadataHeaders=Date');
   });
 

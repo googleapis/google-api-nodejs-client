@@ -16,7 +16,7 @@
 
 /* jshint maxlen: false */
 
-import createAPIRequest from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 {% set Name = name|capitalize %}
 {% set Version = version|replace('\.', '_')|capitalize %}
