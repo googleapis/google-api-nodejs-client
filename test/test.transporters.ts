@@ -138,7 +138,7 @@ describe('Transporters', () => {
   });
 
   it('should return errors within response body as instances of Error', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from Google's API endpoint
@@ -153,7 +153,7 @@ describe('Transporters', () => {
   });
 
   it('should return error message correctly when error is not an object', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/oauth2/v2/tokeninfo?access_token=hello')
       .times(2)
       // Simulate an error returned via response body from Google's tokeninfo endpoint
@@ -168,7 +168,7 @@ describe('Transporters', () => {
   });
 
   it('should return 5xx responses as errors', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, 'There was an error!');
@@ -182,7 +182,7 @@ describe('Transporters', () => {
   });
 
   it('should handle 5xx responses that include errors', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, { error: { message: 'There was an error!' } });
@@ -196,7 +196,7 @@ describe('Transporters', () => {
   });
 
   it('should handle a Backend Error', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, {
