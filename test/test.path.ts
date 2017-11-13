@@ -51,8 +51,8 @@ describe('Path params', () => {
   it('should return an err object if not included and required', (done) => {
     localDrive.files.get({}, (err) => {
       assert.notEqual(err, null);
-      remoteDrive.files.get({}, (err) => {
-        assert.notEqual(err, null);
+      remoteDrive.files.get({}, e => {
+        assert.notEqual(e, null);
         done();
       });
     });
@@ -61,8 +61,8 @@ describe('Path params', () => {
   it('should be mentioned in err.message when missing', (done) => {
     localDrive.files.get({}, (err) => {
       assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
-      remoteDrive.files.get({}, (err) => {
-        assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
+      remoteDrive.files.get({}, e => {
+        assert.notEqual(e.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
         done();
       });
     });
@@ -72,9 +72,9 @@ describe('Path params', () => {
     localDrive.files.get({}, (err, resp) => {
       assert(err);
       assert.equal(resp, null);
-      remoteDrive.files.get({}, (err, resp) => {
-        assert(err);
-        assert.equal(resp, null);
+      remoteDrive.files.get({}, (e, resp2) => {
+        assert(e);
+        assert.equal(resp2, null);
         done();
       });
     });

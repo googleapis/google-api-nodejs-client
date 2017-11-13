@@ -164,8 +164,8 @@ describe('drive:v2', () => {
         .reply(200);
       localDrive.files.list({ q: 'hello' }, (err) => {
         assert.equal(err, null);
-        remoteDrive.files.list({ q: 'hello' }, (err) => {
-          assert.equal(err, null);
+        remoteDrive.files.list({ q: 'hello' }, err2 => {
+          assert.equal(err2, null);
           scope.done();
           done();
         });

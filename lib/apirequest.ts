@@ -11,27 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {DefaultTransporter} from 'google-auth-library/lib/transporters';
 import * as stream from 'stream';
 import * as parseString from 'string-template';
-import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
-function isReadableStream (obj) {
+function isReadableStream(obj) {
   return obj instanceof stream.Stream &&
-    typeof (obj as any)._read === 'function' &&
-    typeof (obj as any)._readableState === 'object';
+      typeof (obj as any)._read === 'function' &&
+      typeof (obj as any)._readableState === 'object';
 }
 
-function logError (err) {
+function logError(err) {
   if (err) {
     console.error(err);
   }
 }
 
-function createCallback (callback) {
+function createCallback(callback) {
   return typeof callback === 'function' ? callback : logError;
 }
 
-function getMissingParams (params, required) {
+function getMissingParams(params, required) {
   const missing = [];
 
   required.forEach(param => {
@@ -41,7 +41,8 @@ function getMissingParams (params, required) {
     }
   });
 
-  // If there are any required params missing, return their names in array, otherwise return null
+  // If there are any required params missing, return their names in array,
+  // otherwise return null
   return missing.length > 0 ? missing : null;
 }
 
@@ -51,7 +52,7 @@ function getMissingParams (params, required) {
  * @param  {Function} callback   Callback when request finished or error found
  * @return {Request}             Returns Request object or null
  */
-export function createAPIRequest (parameters, callback) {
+export function createAPIRequest(parameters, callback) {
   let req, body, missingParams;
   let params = parameters.params;
   let options = Object.assign({}, parameters.options);
@@ -63,22 +64,24 @@ export function createAPIRequest (parameters, callback) {
     params = {};
   }
 
-  // Create a new params object so it can no longer be modified from outside code
-  // Also support global and per-client params, but allow them to be overriden per-request
+  // Create a new params object so it can no longer be modified from outside
+  // code Also support global and per-client params, but allow them to be
+  // overriden per-request
   params = Object.assign(
-    {}, // New base object
-    parameters.context.google._options.params, // Global params
-    parameters.context._options.params, // Per-client params
-    params // API call params
+      {},                                         // New base object
+      parameters.context.google._options.params,  // Global params
+      parameters.context._options.params,         // Per-client params
+      params                                      // API call params
   );
 
   const media = params.media || {};
   const resource = params.resource;
-  let authClient = params.auth ||
-    parameters.context._options.auth ||
-    parameters.context.google._options.auth;
+  let authClient = params.auth || parameters.context._options.auth ||
+      parameters.context.google._options.auth;
 
-  const defaultMime = typeof media.body === 'string' ? 'text/plain' : 'application/octet-stream';
+  const defaultMime = typeof media.body === 'string' ?
+      'text/plain' :
+      'application/octet-stream';
   delete params.media;
   delete params.resource;
   delete params.auth;
@@ -102,9 +105,10 @@ export function createAPIRequest (parameters, callback) {
   // Check for missing required parameters in the API request
   missingParams = getMissingParams(params, parameters.requiredParams);
   if (missingParams) {
-    // Some params are missing - stop further operations and inform the developer which required
-    // params are not included in the request
-    callback(new Error('Missing required parameters: ' + missingParams.join(', ')));
+    // Some params are missing - stop further operations and inform the
+    // developer which required params are not included in the request
+    callback(
+        new Error('Missing required parameters: ' + missingParams.join(', ')));
 
     return null;
   }
@@ -117,7 +121,8 @@ export function createAPIRequest (parameters, callback) {
     parameters.mediaUrl = parseString(parameters.mediaUrl, params);
   }
 
-  // delete path parameters from the params object so they do not end up in query
+  // delete path parameters from the params object so they do not end up in
+  // query
   parameters.pathParams.forEach(param => {
     delete params[param];
   });
@@ -133,20 +138,15 @@ export function createAPIRequest (parameters, callback) {
     if (resource) {
       params.uploadType = 'multipart';
       options.multipart = [
-        {
-          'Content-Type': 'application/json',
-          body: JSON.stringify(resource)
-        },
-        {
-          'Content-Type': media.mimeType || (resource && resource.mimeType) || defaultMime,
-          body: media.body // can be a readable stream or raw string!
+        {'Content-Type': 'application/json', body: JSON.stringify(resource)}, {
+          'Content-Type':
+              media.mimeType || (resource && resource.mimeType) || defaultMime,
+          body: media.body  // can be a readable stream or raw string!
         }
       ];
     } else {
       params.uploadType = 'media';
-      Object.assign(headers, {
-        'Content-Type': media.mimeType || defaultMime
-      });
+      Object.assign(headers, {'Content-Type': media.mimeType || defaultMime});
 
       if (isReadableStream(media.body)) {
         body = media.body;
@@ -155,22 +155,20 @@ export function createAPIRequest (parameters, callback) {
       }
     }
   } else {
-    options.json = resource || (
-      (options.method === 'GET' || options.method === 'DELETE') ? true : {}
-    );
+    options.json = resource ||
+        ((options.method === 'GET' || options.method === 'DELETE') ? true : {});
   }
 
   options.headers = headers;
   options.qs = params;
   options.useQuerystring = true;
 
-  options = Object.assign({},
-    parameters.context.google._options,
-    parameters.context._options,
-    options
-  );
-  delete options.auth; // is overridden by our auth code
-  delete options.params; // We handle params ourselves and Request does not recognise 'params'
+  options = Object.assign(
+      {}, parameters.context.google._options, parameters.context._options,
+      options);
+  delete options.auth;    // is overridden by our auth code
+  delete options.params;  // We handle params ourselves and Request does not
+                          // recognise 'params'
 
   // create request (using authClient or otherwise and return request obj)
   if (authClient) {
