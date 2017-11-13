@@ -97,7 +97,7 @@ $ npm install googleapis --save
 
 ## Usage
 
-Example: Creates a URL Shortener client and retrieves the long url of the
+**Example** Creates a URL Shortener client and retrieves the long url of the
 given short url:
 
 ``` js
@@ -117,6 +117,23 @@ urlshortener.url.get(params, function (err, response) {
   }
 });
 ```
+
+**Example** Updates an email message's labels, using the `resource`
+parameter to specify the request body.
+
+```
+gmail.users.messages.modify({
+  id: Number,
+  resource: {
+    addLabelIds: Array,
+    removeLabelIds: Array
+  },
+  userId: 'me',
+}, (err, response) => {
+  // ...
+});
+```
+
 
 ### Create a service client
 
