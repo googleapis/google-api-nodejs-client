@@ -26,6 +26,11 @@ describe('GoogleApis#discover', () => {
     assert.equal(typeof google.drive, 'function');
     assert.equal(typeof localDrive, 'object');
 
+    localApis.splice(localApis.indexOf('index.ts'), 1);
+    localApis.splice(localApis.indexOf('index.d.ts'), 1);
+    localApis.splice(localApis.indexOf('index.js'), 1);
+    localApis.splice(localApis.indexOf('index.js.map'), 1);
+
     localApis.forEach((name) => {
       assert(google[name]);
       // Setting all APIs to null initially.
