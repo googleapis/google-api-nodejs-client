@@ -32,6 +32,7 @@ const DISCOVERY_URL = argv['discovery-url'] ? argv['discovery-url'] : (
 const FRAGMENT_URL = 'https://storage.googleapis.com/apisnippets-staging/public/';
 
 const API_TEMPLATE = './templates/api-endpoint.ts';
+const INDEX_TEMPLATE = './templates/index.ts';
 const BEAUTIFY_OPTIONS = {
   'indent_size': 2,
   'indent_char': ' ',
@@ -56,6 +57,7 @@ const BEAUTIFY_OPTIONS = {
 };
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 const templateContents = fs.readFileSync(API_TEMPLATE, { encoding: 'utf8' });
+const indexTemplateContents = fs.readFileSync(INDEX_TEMPLATE, { encoding: 'utf8' });
 
 export class Generator {
 
@@ -133,12 +135,12 @@ export class Generator {
    */
   constructor (options) {
     this._options = options || {};
-    
+
     /**
-     * This API can generate thousands of concurrent HTTP requests.  
-     * If left to happen while generating all APIs, things get very unstable.  
-     * This makes sure we only ever have 10 concurrent network requests, and 
-     * adds retry logic. 
+     * This API can generate thousands of concurrent HTTP requests.
+     * If left to happen while generating all APIs, things get very unstable.
+     * This makes sure we only ever have 10 concurrent network requests, and
+     * adds retry logic.
      */
     this._requestQueue = async.queue((opts, callback) => {
       async.retry(3, () => {
@@ -159,13 +161,13 @@ export class Generator {
   }
 
   /**
-   * Add a requests to the rate limited queue. 
+   * Add a requests to the rate limited queue.
    * @param opts Options to pass to the default transporter
-   * @param callback 
+   * @param callback
    */
   private makeRequest (opts, callback) {
     this._requestQueue.push(opts, callback);
-  } 
+  }
 
   /**
    * Log output of generator
@@ -178,9 +180,9 @@ export class Generator {
   }
 
   /**
-   * Write to the state log, which is used for debugging.  
+   * Write to the state log, which is used for debugging.
    * @param id DiscoveryRestUrl of the endpoint to log
-   * @param message 
+   * @param message
    */
   private logResult (id, message) {
     if (!this._state[id]) {
@@ -222,23 +224,52 @@ export class Generator {
         });
       }, 3);
 
+
       apis.forEach((api) => {
         queue.push(api);
       });
 
       queue.drain = (err:Error) => {
         console.log((util as any).inspect(this._state, { maxArrayLength: null }));
-        if (callback) callback(err);
+        if (err && callback) {
+          callback(err);
+          return;
+        }
+        this.generateIndex(callback);
       };
+    });
+  }
+
+  generateIndex (callback: Function) {
+    const apis = {};
+    const apisPath = path.join(__dirname, '../apis');
+    const indexPath = path.join(apisPath, 'index.ts');
+
+    // Dynamically discover available APIs
+    fs.readdirSync(apisPath).forEach(file => {
+      const filePath = path.join(apisPath, file);
+      if (!fs.statSync(filePath).isDirectory()) {
+        return;
+      }
+      apis[file] = {};
+      fs.readdirSync(path.join(apisPath, file)).forEach(version => {
+        apis[file][version] = path.parse(version).name;
+      });
+    });
+
+    const result = swig.render(indexTemplateContents, { locals: { apis } });
+    const contents = js_beautify(result, BEAUTIFY_OPTIONS);
+    fs.writeFile(indexPath, contents, { encoding: 'utf8' }, err => {
+      if (callback) callback(err);
     });
   }
 
   /**
    * Given a discovery doc, parse it and recursively iterate over the various embedded links.
-   * @param api 
-   * @param schema 
-   * @param path 
-   * @param tasks 
+   * @param api
+   * @param schema
+   * @param path
+   * @param tasks
    */
   private getFragmentsForSchema (apiDiscoveryUrl, schema, path, tasks) {
     if (schema.methods) {
