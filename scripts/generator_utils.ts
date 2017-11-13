@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { DefaultTransporter } from 'google-auth-library/lib/transporters';
+export { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
 /**
  * Build a string used to create a URL from the discovery doc provided URL.
@@ -20,7 +20,7 @@ import { DefaultTransporter } from 'google-auth-library/lib/transporters';
  * @param  {String} input URL to build from
  * @return {String}       Resulting built URL
  */
-function buildurl (input) {
+export function buildurl (input) {
   return ('\'' + input + '\'')
     // No * symbols
     .replace(/\*/g, '')
@@ -45,15 +45,8 @@ function buildurl (input) {
  * @param  {Error}   err      Error object to return in callback
  * @param  {Function=} callback Optional callback function
  */
-function handleError (err: Error, callback: Function) {
+export function handleError (err: Error, callback: Function) {
   if (callback && typeof callback === 'function') {
     callback(err, null);
   }
 }
-
-export default {
-  DefaultTransporter: DefaultTransporter,
-  buildurl: buildurl,
-  handleError: handleError
-}
-

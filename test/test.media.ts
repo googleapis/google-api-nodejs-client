@@ -16,8 +16,8 @@ import * as async from 'async';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
-import utils from './utils';
-let googleapis = require('../');
+import {Utils} from './utils';
+const googleapis = require('../');
 
 const boundaryPrefix = 'multipart/related; boundary=';
 
@@ -28,7 +28,7 @@ function testMultpart (drive, cb) {
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  const req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
+  const req = drive.files.insert({ resource, media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -58,7 +58,7 @@ function testMediaBody (drive, cb) {
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  const req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
+  const req = drive.files.insert({ resource, media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -91,10 +91,10 @@ describe('Media', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-      utils.loadApi(google, 'gmail', 'v1', {}, cb);
+      Utils.loadApi(google, 'gmail', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -166,7 +166,7 @@ describe('Media', () => {
         return reqBody; // return request body as response for testing purposes
       });
     const media = { body: 'hey' };
-    let req = localDrive.files.insert({ media: media }, (err, body) => {
+    let req = localDrive.files.insert({ media }, (err, body) => {
       if (err) {
         return done(err);
       }
@@ -176,7 +176,7 @@ describe('Media', () => {
         'https://www.googleapis.com/upload/drive/v2/files?uploadType=media'
       );
       assert.strictEqual(media.body, body);
-      req = remoteDrive.files.insert({ media: media }, (err, body) => {
+      req = remoteDrive.files.insert({ media }, (err, body) => {
         if (err) {
           return done(err);
         }
@@ -218,19 +218,19 @@ describe('Media', () => {
     let req = localDrive.files.insert({
       someAttr: 'someValue',
       media: { body: 'wat' }
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue&uploadType=media');
     req = remoteDrive.files.insert({
       someAttr: 'someValue',
       media: { body: 'wat' }
-    }, utils.noop);
+    }, Utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue&uploadType=media');
   });
 
   it('should not multipart upload if no media body given', () => {
-    let req = localDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
+    let req = localDrive.files.insert({ someAttr: 'someValue' }, Utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
-    req = remoteDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
+    req = remoteDrive.files.insert({ someAttr: 'someValue' }, Utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
   });
 
@@ -265,7 +265,7 @@ describe('Media', () => {
       });
     const resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
     let req = localGmail.users.drafts.create(
-      { userId: 'me', resource: resource, media: { mimeType: 'message/rfc822' } },
+      { userId: 'me', resource, media: { mimeType: 'message/rfc822' } },
       (err, resp) => {
         if (err) {
           return done(err);
@@ -273,7 +273,7 @@ describe('Media', () => {
         assert.equal(req.headers['content-type'], 'application/json');
         assert.equal(JSON.stringify(resp), JSON.stringify(resource));
         req = remoteGmail.users.drafts.create(
-        { userId: 'me', resource: resource, media: { mimeType: 'message/rfc822' } },
+        { userId: 'me', resource, media: { mimeType: 'message/rfc822' } },
         (err, resp) => {
           if (err) {
             return done(err);
@@ -302,7 +302,7 @@ describe('Media', () => {
       userId: 'me',
       media: {
         mimeType: 'message/rfc822',
-        body: body
+        body
       }
     }, (err, resp) => {
       if (err) {
@@ -315,7 +315,7 @@ describe('Media', () => {
         userId: 'me',
         media: {
           mimeType: 'message/rfc822',
-          body: body
+          body
         }
       }, (err, resp) => {
         if (err) {
@@ -339,15 +339,15 @@ describe('Media', () => {
     let resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
     let body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
     let bodyString = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'), { encoding: 'utf8' });
-    let media = { mimeType: 'message/rfc822', body: body };
+    let media = { mimeType: 'message/rfc822', body };
     let expectedBody = fs.readFileSync(
       path.join(__dirname, '/fixtures/media-response.txt'),
       { encoding: 'utf8' }
     );
     let req = localGmail.users.drafts.create({
       userId: 'me',
-      resource: resource,
-      media: media
+      resource,
+      media
     }, (err, resp) => {
       if (err) {
         return done(err);
@@ -364,15 +364,15 @@ describe('Media', () => {
       resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
       body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
       bodyString = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'), { encoding: 'utf8' });
-      media = { mimeType: 'message/rfc822', body: body };
+      media = { mimeType: 'message/rfc822', body };
       expectedBody = fs.readFileSync(
         path.join(__dirname, '/fixtures/media-response.txt'),
         { encoding: 'utf8' }
       );
       req = remoteGmail.users.drafts.create({
         userId: 'me',
-        resource: resource,
-        media: media
+        resource,
+        media
       }, (err, resp) => {
         if (err) {
           return done(err);
@@ -401,12 +401,12 @@ describe('Media', () => {
       });
 
     let resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
-    let body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-    let media = { mimeType: 'message/rfc822', body: body };
+    const body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let media = { mimeType: 'message/rfc822', body };
     localGmail.users.drafts.create({
       userId: 'me',
-      resource: resource,
-      media: media
+      resource,
+      media
     }, (err, body, resp) => {
       if (err) {
         return done(err);
@@ -417,11 +417,11 @@ describe('Media', () => {
       assert.equal(resp.body, JSON.stringify(body));
       resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
       body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-      media = { mimeType: 'message/rfc822', body: body };
+      media = { mimeType: 'message/rfc822', body };
       remoteGmail.users.drafts.create({
         userId: 'me',
-        resource: resource,
-        media: media
+        resource,
+        media
       }, (err, body, resp) => {
         if (err) {
           return done(err);

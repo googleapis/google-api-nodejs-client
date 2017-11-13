@@ -13,8 +13,8 @@
 
 import * as assert from 'power-assert';
 import * as nock from 'nock';
-import utils from './utils';
-let googleapis = require('../');
+import {Utils} from './utils';
+const googleapis = require('../');
 
 describe('drive:v2', () => {
   let localDrive, remoteDrive;
@@ -23,7 +23,7 @@ describe('drive:v2', () => {
     nock.cleanAll();
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
+    Utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -89,9 +89,9 @@ describe('drive:v2', () => {
       });
 
       it('should return a Request object', (done) => {
-        let req = localDrive.files.insert({}, utils.noop);
+        let req = localDrive.files.insert({}, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
-        req = remoteDrive.files.insert({}, utils.noop);
+        req = remoteDrive.files.insert({}, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
         done();
       });
@@ -109,9 +109,9 @@ describe('drive:v2', () => {
       });
 
       it('should return a Request object', () => {
-        let req = localDrive.files.get({ fileId: '123' }, utils.noop);
+        let req = localDrive.files.get({ fileId: '123' }, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
-        req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
+        req = remoteDrive.files.get({ fileId: '123' }, Utils.noop);
         assert.equal(req.constructor.name, 'Request');
       });
 

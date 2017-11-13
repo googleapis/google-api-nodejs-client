@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Generator from './generator';
+import {Generator} from './generator';
 import * as rimraf from 'rimraf';
 import * as path from 'path';
 import * as minimist from 'minimist';
@@ -28,7 +28,7 @@ const debug = true;
 const argv = minimist(process.argv.slice(2));
 
 // constructors
-const gen = new Generator({ debug: debug, includePrivate: false });
+const gen = new Generator({ debug, includePrivate: false });
 
 const args = argv._;
 

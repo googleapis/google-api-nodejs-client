@@ -14,14 +14,14 @@
 import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
-import utils from './utils';
+import {Utils} from './utils';
 const googleapis = require('../lib/googleapis');
 
 function testGet (drive) {
   const req = drive.files.get({
     fileId: '123',
     auth: 'APIKEY'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.uri.query, 'key=APIKEY');
 }
 
@@ -29,7 +29,7 @@ function testParams2 (drive) {
   const req = drive.files.get({
     fileId: '123',
     auth: 'API KEY'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.uri.query, 'key=API%20KEY');
 }
 
@@ -38,14 +38,14 @@ function testKeyParam (drive) {
     fileId: '123',
     auth: 'API KEY',
     key: 'abc123'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.uri.query, 'key=abc123');
 }
 
 function testAuthKey (urlshortener) {
   const req = urlshortener.url.list({
     auth: 'YOUR API KEY'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
 }
 
@@ -60,10 +60,10 @@ describe('API key', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
+        Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {

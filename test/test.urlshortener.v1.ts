@@ -14,12 +14,12 @@
 import * as assert from 'power-assert';
 import * as nock from 'nock';
 import * as path from 'path';
-import utils from './utils';
-let googleapis = require('../');
+import {Utils} from './utils';
+const googleapis = require('../');
 
 function testSingleRequest (urlshortener) {
   const obj = { longUrl: 'http://someurl...' };
-  const req = urlshortener.url.insert(obj, utils.noop);
+  const req = urlshortener.url.insert(obj, Utils.noop);
   assert.equal(
     req.uri.href,
     'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
@@ -29,7 +29,7 @@ function testSingleRequest (urlshortener) {
 
 function testParams (urlshortener) {
   const params = { shortUrl: 'a' };
-  const req = urlshortener.url.get(params, utils.noop);
+  const req = urlshortener.url.get(params, Utils.noop);
   assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
   assert.equal(req.method, 'GET');
 }
@@ -53,7 +53,7 @@ describe('Urlshortener', () => {
     nock.cleanAll();
     const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
+    Utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);

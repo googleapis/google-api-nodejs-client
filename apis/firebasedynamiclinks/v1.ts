@@ -16,7 +16,7 @@
 
 /* jshint maxlen: false */
 
-import createAPIRequest from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Firebase Dynamic Links API

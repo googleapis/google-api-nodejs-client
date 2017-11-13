@@ -34,7 +34,7 @@ function createCallback (callback) {
 function getMissingParams (params, required) {
   const missing = [];
 
-  required.forEach(function (param) {
+  required.forEach(param => {
     // Is the required param in the params object?
     if (params[param] === undefined) {
       missing.push(param);
@@ -51,7 +51,7 @@ function getMissingParams (params, required) {
  * @param  {Function} callback   Callback when request finished or error found
  * @return {Request}             Returns Request object or null
  */
-function createAPIRequest (parameters, callback) {
+export function createAPIRequest (parameters, callback) {
   let req, body, missingParams;
   let params = parameters.params;
   let options = Object.assign({}, parameters.options);
@@ -88,7 +88,7 @@ function createAPIRequest (parameters, callback) {
   delete params.headers;
 
   // Un-alias parameters that were modified due to conflicts with reserved names
-  Object.keys(params).forEach(function (key) {
+  Object.keys(params).forEach(key => {
     if (key.slice(-1) === '_') {
       const newKey = key.slice(0, -1);
       params[newKey] = params[key];
@@ -118,7 +118,7 @@ function createAPIRequest (parameters, callback) {
   }
 
   // delete path parameters from the params object so they do not end up in query
-  parameters.pathParams.forEach(function (param) {
+  parameters.pathParams.forEach(param => {
     delete params[param];
   });
 
@@ -184,9 +184,3 @@ function createAPIRequest (parameters, callback) {
   }
   return req;
 }
-
-/**
- * Exports createAPIRequest
- * @type {Function}
- */
-export default createAPIRequest;

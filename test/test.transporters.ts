@@ -14,8 +14,8 @@
 import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
-import utils from './utils';
-let googleapis = require('../');
+import {Utils} from './utils';
+const googleapis = require('../');
 
 function testHeaders (drive) {
   const req = drive.comments.insert({
@@ -23,19 +23,19 @@ function testHeaders (drive) {
     headers: {
       'If-None-Match': '12345'
     }
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['If-None-Match'], '12345');
 }
 
 function testContentType (drive) {
   const req = drive.comments.insert({
     fileId: 'a'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['content-type'], 'application/json');
 }
 
 function testBody (drive) {
-  const req = drive.files.list(utils.noop);
+  const req = drive.files.list(Utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
 }
@@ -43,7 +43,7 @@ function testBody (drive) {
 function testBodyDelete (drive) {
   const req = drive.files.delete({
     fileId: 'test'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
 }
@@ -88,13 +88,13 @@ describe('Transporters', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'oauth2', 'v2', {}, cb);
+        Utils.loadApi(google, 'oauth2', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
+        Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -138,7 +138,7 @@ describe('Transporters', () => {
   });
 
   it('should return errors within response body as instances of Error', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from Google's API endpoint
@@ -153,7 +153,7 @@ describe('Transporters', () => {
   });
 
   it('should return error message correctly when error is not an object', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/oauth2/v2/tokeninfo?access_token=hello')
       .times(2)
       // Simulate an error returned via response body from Google's tokeninfo endpoint
@@ -168,7 +168,7 @@ describe('Transporters', () => {
   });
 
   it('should return 5xx responses as errors', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, 'There was an error!');
@@ -182,7 +182,7 @@ describe('Transporters', () => {
   });
 
   it('should handle 5xx responses that include errors', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, { error: { message: 'There was an error!' } });
@@ -196,7 +196,7 @@ describe('Transporters', () => {
   });
 
   it('should handle a Backend Error', (done) => {
-    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com')
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, {
