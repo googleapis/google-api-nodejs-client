@@ -14,7 +14,7 @@
 import * as assert from 'power-assert';
 import * as fs from 'fs';
 import * as path from 'path';
-let googleapis = require('../');
+const googleapis = require('../');
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {

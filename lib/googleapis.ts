@@ -14,7 +14,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as util from 'util';
-import Discovery from './discovery';
+import {Discovery} from './discovery';
 
 const discovery = new Discovery({ debug: false, includePrivate: false });
 
@@ -32,7 +32,7 @@ const apis = {};
  * @private
  */
 function requireAPI (filename) {
-  return function (options) {
+  return function(options) {
     const type = typeof options;
     let version;
     if (type === 'string') {
@@ -58,7 +58,7 @@ function requireAPI (filename) {
 }
 
 // Dynamically discover available APIs
-fs.readdirSync(path.join(__dirname, '../apis')).forEach(function (file) {
+fs.readdirSync(path.join(__dirname, '../apis')).forEach(file => {
   apis[file] = requireAPI('../apis/' + file);
 });
 
@@ -143,7 +143,7 @@ GoogleApis.prototype.addAPIs = function (apis) {
 GoogleApis.prototype.discover = function (url, callback) {
   const self = this;
 
-  discovery.discoverAllAPIs(url, function (err, apis) {
+  discovery.discoverAllAPIs(url, (err, apis) => {
     if (err) {
       return callback(err);
     }
@@ -178,7 +178,7 @@ GoogleApis.prototype.discoverAPI = function (path, options, callback) {
   if (!options) {
     options = {};
   }
-  discovery.discoverAPI(path, function (err, Endpoint) {
+  discovery.discoverAPI(path, (err, Endpoint) => {
     if (err) {
       return callback(err);
     }

@@ -11,15 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import generatorUtils from '../scripts/generator_utils';
+import {handleError, buildurl} from '../scripts/generator_utils';
 import * as async from 'async';
 import * as fs from 'fs';
 import * as url from 'url';
 import * as util from 'util';
-import createAPIRequest from './apirequest';
+import {createAPIRequest} from './apirequest';
 import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
-const handleError = generatorUtils.handleError;
 const transporter = new DefaultTransporter();
 
 function getPathParams (params) {
@@ -27,7 +26,7 @@ function getPathParams (params) {
   if (typeof params !== 'object') {
     params = {};
   }
-  Object.keys(params).forEach(function (key) {
+  Object.keys(params).forEach(key => {
     if (params[key].location === 'path') {
       pathParams.push(key);
     }
@@ -45,25 +44,25 @@ function getPathParams (params) {
  * @param {object} context The context to add to the method.
  */
 function makeMethod (schema, method, context) {
-  return function (params, callback) {
-    const url = generatorUtils.buildurl(schema.rootUrl + schema.servicePath + method.path);
+  return (params, callback) => {
+    const url = buildurl(schema.rootUrl + schema.servicePath + method.path);
 
     const parameters = {
       options: {
         url: url.substring(1, url.length - 1),
         method: method.httpMethod
       },
-      params: params,
+      params,
       requiredParams: method.parameterOrder || [],
       pathParams: getPathParams(method.parameters),
-      context: context,
+      context,
       mediaUrl: null
     };
 
     if (method.mediaUpload && method.mediaUpload.protocols &&
       method.mediaUpload.protocols.simple &&
       method.mediaUpload.protocols.simple.path) {
-      const mediaUrl = generatorUtils.buildurl(
+      const mediaUrl = buildurl(
         schema.rootUrl +
         method.mediaUpload.protocols.simple.path
       );
@@ -142,7 +141,7 @@ function makeEndpoint (schema) {
  * @param {object} options Options for discovery
  * @this {Discovery}
  */
-function Discovery (options) {
+export function Discovery (options) {
   this.options = options || {};
 }
 
@@ -167,15 +166,15 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
   const headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
   transporter.request({
     uri: discoveryUrl,
-    headers: headers
-  }, function (err, resp) {
+    headers
+  }, (err, resp) => {
     if (err) {
       return handleError(err, callback);
     }
 
-    async.parallel(resp.items.map(function (api) {
-      return function (cb) {
-        self.discoverAPI(api.discoveryRestUrl, function (err, _api) {
+    async.parallel(resp.items.map(api => {
+      return (cb) => {
+        self.discoverAPI(api.discoveryRestUrl, (err, _api) => {
           if (err) {
             return cb(err);
           }
@@ -183,7 +182,7 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
           cb(null, api);
         });
       };
-    }), function (err, apis) {
+    }), (err, apis) => {
       if (err) {
         return callback(err);
       }
@@ -191,10 +190,10 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
       const versionIndex = {};
       const apisIndex = {};
 
-      apis.forEach(function (api) {
+      apis.forEach(api => {
         if (!apisIndex[api.name]) {
           versionIndex[api.name] = {};
-          apisIndex[api.name] = function (options) {
+          apisIndex[api.name] = (options) => {
             const type = typeof options;
             let version;
             if (type === 'string') {
@@ -248,7 +247,7 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
       try {
         return fs.readFile(apiDiscoveryUrl, {
           encoding: 'utf8'
-        }, function (err, file) {
+        }, (err, file) => {
           _generate(err, JSON.parse(file));
         });
       } catch (err) {
@@ -283,9 +282,3 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
     createAPIRequest(parameters, _generate);
   }
 };
-
-/**
- * Export the Discovery object
- * @type {Discovery}
- */
-export default Discovery;

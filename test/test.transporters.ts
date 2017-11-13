@@ -14,8 +14,8 @@
 import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
-import utils from './utils';
-let googleapis = require('../');
+import {Utils} from './utils';
+const googleapis = require('../');
 
 function testHeaders (drive) {
   const req = drive.comments.insert({
@@ -23,19 +23,19 @@ function testHeaders (drive) {
     headers: {
       'If-None-Match': '12345'
     }
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['If-None-Match'], '12345');
 }
 
 function testContentType (drive) {
   const req = drive.comments.insert({
     fileId: 'a'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['content-type'], 'application/json');
 }
 
 function testBody (drive) {
-  const req = drive.files.list(utils.noop);
+  const req = drive.files.list(Utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
 }
@@ -43,7 +43,7 @@ function testBody (drive) {
 function testBodyDelete (drive) {
   const req = drive.files.delete({
     fileId: 'test'
-  }, utils.noop);
+  }, Utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
 }
@@ -88,13 +88,13 @@ describe('Transporters', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'oauth2', 'v2', {}, cb);
+        Utils.loadApi(google, 'oauth2', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
+        Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {

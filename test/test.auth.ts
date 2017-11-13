@@ -14,7 +14,7 @@
 import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
-import utils from './utils';
+import {Utils} from './utils';
 const googleapis = require('../');
 
 
@@ -117,10 +117,10 @@ describe('OAuth2 client', () => {
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', {}, cb);
+        Utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
+        Utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -165,8 +165,8 @@ describe('OAuth2 client', () => {
     oauth2client.credentials = { refresh_token: 'refresh_token' };
     assert.doesNotThrow(() => {
       const options = { auth: oauth2client, shortUrl: '...' };
-      localUrlshortener.url.get(options, utils.noop);
-      remoteUrlshortener.url.get(options, utils.noop);
+      localUrlshortener.url.get(options, Utils.noop);
+      remoteUrlshortener.url.get(options, Utils.noop);
     });
   });
 
@@ -291,7 +291,7 @@ describe('OAuth2 client', () => {
         .post('/o/oauth2/token')
         .times(2)
         .reply(200, { access_token: 'abc123', expires_in: 1 });
-    let oauth2client = new googleapis.auth.OAuth2(
+    const oauth2client = new googleapis.auth.OAuth2(
       CLIENT_ID,
       CLIENT_SECRET,
       REDIRECT_URI

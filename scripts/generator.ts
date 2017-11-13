@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import generatorUtils from './generator_utils';
+import {handleError, buildurl} from './generator_utils';
 import * as async from 'async';
 import * as swig from 'swig';
 import * as path from 'path';
@@ -23,7 +23,6 @@ import { js_beautify } from 'js-beautify';
 import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 import * as minimist from 'minimist';
 
-const handleError = generatorUtils.handleError;
 const argv = minimist(process.argv.slice(2));
 const args = argv._;
 
@@ -58,7 +57,7 @@ const BEAUTIFY_OPTIONS = {
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 const templateContents = fs.readFileSync(API_TEMPLATE, { encoding: 'utf8' });
 
-export default class Generator {
+export class Generator {
 
   private _transporter = new DefaultTransporter();
   private _requestQueue;
@@ -106,7 +105,7 @@ export default class Generator {
     if (typeof params !== 'object') {
       params = {};
     }
-    Object.keys(params).forEach(function (key) {
+    Object.keys(params).forEach(key => {
       if (params[key].location === 'path') {
         pathParams.push(key);
       }
@@ -147,7 +146,7 @@ export default class Generator {
       });
     }, 10);
 
-    swig.setFilter('buildurl', generatorUtils.buildurl);
+    swig.setFilter('buildurl', buildurl);
     swig.setFilter('getAPIs', this.getAPIs);
     swig.setFilter('oneLine', this.oneLine);
     swig.setFilter('cleanComments', this.cleanComments);
@@ -176,7 +175,7 @@ export default class Generator {
     if (this._options && this._options.debug) {
       console.log.apply(this, arguments);
     }
-  };
+  }
 
   /**
    * Write to the state log, which is used for debugging.  
@@ -196,11 +195,11 @@ export default class Generator {
    * @param {function} callback Callback when all APIs have been generated
    * @throws {Error} If there is an error generating any of the APIs
    */
-  public generateAllAPIs (callback: Function) {
+  generateAllAPIs (callback: Function) {
     const headers = this._options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
     this.makeRequest({
       uri: DISCOVERY_URL,
-      headers: headers
+      headers
     }, (err, resp) => {
       if (err) {
         return handleError(err, callback);
@@ -232,7 +231,7 @@ export default class Generator {
         if (callback) callback(err);
       };
     });
-  };
+  }
 
   /**
    * Given a discovery doc, parse it and recursively iterate over the various embedded links.
@@ -293,8 +292,8 @@ export default class Generator {
    * @param {function} callback Callback when successful write of API
    * @throws {Error} If there is an error generating the API.
    */
-  public generateAPI (apiDiscoveryUrl, callback: Function) {
-    let _generate = (err: Error, resp) => {
+  generateAPI (apiDiscoveryUrl, callback: Function) {
+    const _generate = (err: Error, resp) => {
       this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
       if (err) {
         handleError(err, callback);
@@ -335,7 +334,7 @@ export default class Generator {
         this.logResult(apiDiscoveryUrl, `Template generation complete.`);
         callback(null, exportFilename);
       });
-    }
+    };
 
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
@@ -354,5 +353,5 @@ export default class Generator {
         uri: apiDiscoveryUrl
       }, _generate);
     }
-  };
+  }
 }
