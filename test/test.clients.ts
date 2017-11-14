@@ -92,37 +92,39 @@ describe('Clients', () => {
   });
 
   it('should be able to require all api files without error', () => {
-    function getFiles (dir, files_?) {
-      files_ = files_ || [];
-      if (typeof files_ === 'undefined') {
-        files_ = [];
+    function getFiles (dir: string, files?: string[]) {
+      files = files || [];
+      if (typeof files === 'undefined') {
+        files = [];
       }
-      const files = fs.readdirSync(dir);
-      for (const i in files) {
-        if (!files.hasOwnProperty(i)) {
+      const files2 = fs.readdirSync(dir);
+      for (const i in files2) {
+        if (!files2.hasOwnProperty(i)) {
           continue;
         }
-        const name = dir + '/' + files[i];
+        const name = dir + '/' + files2[i];
         if (fs.statSync(name).isDirectory()) {
-          getFiles(name, files_);
+          getFiles(name, files);
         } else {
-          if (path.extname(name) === ".js") {
-            files_.push(name);
+          if (path.extname(name) === '.js') {
+            files.push(name);
           }
         }
       }
-      return files_;
+      return files;
     }
 
     const apiFiles = getFiles(path.join(__dirname, '/../apis'));
 
     assert.doesNotThrow(() => {
       for (const i in apiFiles) {
-        try {
-          require(apiFiles[i]);
-        } catch (err) {
-          console.error(err);
-          throw err;
+        if (apiFiles.hasOwnProperty(i)) {
+          try {
+            require(apiFiles[i]);
+          } catch (err) {
+            console.error(err);
+            throw err;
+          }
         }
       }
     });
@@ -148,16 +150,16 @@ describe('Clients', () => {
     nock.enableNetConnect();
     Utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, (err, datastore) => {
+    }, (err, datastore2) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
-      const req = datastore.projects.lookup({ projectId: 'test-project-id' }, Utils.noop);
-      const query = req.uri.query || '';
+      const req2 = datastore2.projects.lookup({ projectId: 'test-project-id' }, Utils.noop);
+      const query2 = req2.uri.query || '';
 
       assert.notEqual(
-        query.indexOf('myParam=123'),
+        query2.indexOf('myParam=123'),
         -1,
         'Default param in query'
       );
@@ -189,22 +191,22 @@ describe('Clients', () => {
     nock.enableNetConnect();
     Utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, (err, datastore) => {
+    }, (err, datastore2) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
       // Override the default datasetId param for this particular API call
-      const req = datastore.projects.lookup({
+      const req2 = datastore2.projects.lookup({
         projectId: 'test-project-id', myParam: '456'
       }, Utils.noop);
       // If the default param handling is broken, query might be undefined, thus
       // concealing the assertion message with some generic "cannot call .indexOf
       // of undefined"
-      const query = req.uri.query || '';
+      const query2 = req2.uri.query || '';
 
       assert.notEqual(
-        query.indexOf('myParam=456'),
+        query2.indexOf('myParam=456'),
         -1,
         'Default param not found in query'
       );
@@ -241,13 +243,13 @@ describe('Clients', () => {
         return done(err);
       }
       // No params given - only callback
-      const req = datastore.projects.lookup(Utils.noop);
+      const req2 = datastore.projects.lookup(Utils.noop);
       // If the default param handling is broken, req or query might be
       // undefined, thus concealing the assertion message with some generic
       // "cannot call .indexOf of undefined"
-      const query = (req && req.uri.query) || '';
+      const query2 = (req2 && req2.uri.query) || '';
 
-      assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
+      assert.notEqual(query2.indexOf('myParam=123'), -1, 'Default param not found in query');
       done();
     });
   });

@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { DefaultTransporter } from 'google-auth-library/lib/transporters';
+export {DefaultTransporter} from 'google-auth-library/lib/transporters';
 
 /**
  * Build a string used to create a URL from the discovery doc provided URL.
@@ -20,16 +20,16 @@ export { DefaultTransporter } from 'google-auth-library/lib/transporters';
  * @param  {String} input URL to build from
  * @return {String}       Resulting built URL
  */
-export function buildurl (input) {
+export function buildurl(input) {
   return ('\'' + input + '\'')
-    // No * symbols
-    .replace(/\*/g, '')
-    // No + symbols
-    .replace(/\+/g, '')
-    // replace double slashes with single slash (except in https://)
-    .replace(/([^:]\/)\/+/g, '$1')
-    // No {/ symbols
-    .replace(/\{\//g, '/{');
+      // No * symbols
+      .replace(/\*/g, '')
+      // No + symbols
+      .replace(/\+/g, '')
+      // replace double slashes with single slash (except in https://)
+      .replace(/([^:]\/)\/+/g, '$1')
+      // No {/ symbols
+      .replace(/\{\//g, '/{');
 }
 
 /**
@@ -45,7 +45,7 @@ export function buildurl (input) {
  * @param  {Error}   err      Error object to return in callback
  * @param  {Function=} callback Optional callback function
  */
-export function handleError (err: Error, callback: Function) {
+export function handleError(err: Error, callback: Function) {
   if (callback && typeof callback === 'function') {
     callback(err, null);
   }

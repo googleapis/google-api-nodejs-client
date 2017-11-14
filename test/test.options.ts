@@ -59,12 +59,12 @@ describe('Options', () => {
     let query = req.uri.query || '';
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
     nock.enableNetConnect();
-    Utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
+    Utils.loadApi(google, 'drive', 'v2', {}, (err, d) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
-      req = drive.files.get({ fileId: '123' }, Utils.noop);
+      req = d.files.get({ fileId: '123' }, Utils.noop);
       // If the default param handling is broken, query might be undefined, thus concealing the
       // assertion message with some generic "cannot call .indexOf of undefined"
       query = req.uri.query || '';

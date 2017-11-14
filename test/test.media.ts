@@ -126,11 +126,11 @@ describe('Media', () => {
         return done(err);
       }
       assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
-      remoteDrive.files.insert({ resource: {}, media: { body: 'hello' } }, (err, body) => {
-        if (err) {
-          return done(err);
+      remoteDrive.files.insert({ resource: {}, media: { body: 'hello' } }, (e2, b2) => {
+        if (e2) {
+          return done(e2);
         }
-        assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
+        assert.equal(JSON.stringify(b2), JSON.stringify({ fileId: 'abc123' }));
         scope.done();
         done();
       });
@@ -147,11 +147,11 @@ describe('Media', () => {
         return done(err);
       }
       assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
-      remoteDrive.files.insert({ media: { body: 'hello' } }, (err, body) => {
-        if (err) {
-          return done(err);
+      remoteDrive.files.insert({ media: { body: 'hello' } }, (e2, b2) => {
+        if (e2) {
+          return done(e2);
         }
-        assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
+        assert.equal(JSON.stringify(b2), JSON.stringify({ fileId: 'abc123' }));
         scope.done();
         done();
       });
@@ -176,16 +176,16 @@ describe('Media', () => {
         'https://www.googleapis.com/upload/drive/v2/files?uploadType=media'
       );
       assert.strictEqual(media.body, body);
-      req = remoteDrive.files.insert({ media }, (err, body) => {
-        if (err) {
-          return done(err);
+      req = remoteDrive.files.insert({ media }, (e2, b2) => {
+        if (e2) {
+          return done(e2);
         }
         assert.equal(req.method, 'POST');
         assert.equal(
           req.uri.href,
           'https://www.googleapis.com/upload/drive/v2/files?uploadType=media'
         );
-        assert.strictEqual(media.body, body);
+        assert.strictEqual(media.body, b2);
         scope.done();
         done();
       });
@@ -204,9 +204,9 @@ describe('Media', () => {
       if (err) {
         return done(err);
       }
-      testMultpart(remoteDrive, (err) => {
-        if (err) {
-          return done(err);
+      testMultpart(remoteDrive, e2 => {
+        if (e2) {
+          return done(e2);
         }
         scope.done();
         done();
@@ -246,9 +246,9 @@ describe('Media', () => {
       if (err) {
         return done(err);
       }
-      testMediaBody(remoteDrive, (err) => {
-        if (err) {
-          return done(err);
+      testMediaBody(remoteDrive, e2 => {
+        if (e2) {
+          return done(e2);
         }
         scope.done();
         done();
@@ -274,12 +274,12 @@ describe('Media', () => {
         assert.equal(JSON.stringify(resp), JSON.stringify(resource));
         req = remoteGmail.users.drafts.create(
         { userId: 'me', resource, media: { mimeType: 'message/rfc822' } },
-        (err, resp) => {
-          if (err) {
-            return done(err);
+        (e2, resp2) => {
+          if (e2) {
+            return done(e2);
           }
           assert.equal(req.headers['content-type'], 'application/json');
-          assert.equal(JSON.stringify(resp), JSON.stringify(resource));
+          assert.equal(JSON.stringify(resp2), JSON.stringify(resource));
           scope.done();
           done();
         }
@@ -317,11 +317,11 @@ describe('Media', () => {
           mimeType: 'message/rfc822',
           body
         }
-      }, (err, resp) => {
-        if (err) {
-          return done(err);
+      }, (e2, resp2) => {
+        if (e2) {
+          return done(e2);
         }
-        assert.equal(resp, expectedBody);
+        assert.equal(resp2, expectedBody);
         scope.done();
         done();
       });
@@ -373,19 +373,19 @@ describe('Media', () => {
         userId: 'me',
         resource,
         media
-      }, (err, resp) => {
-        if (err) {
-          return done(err);
+      }, (err2, resp2) => {
+        if (err2) {
+          return done(err2);
         }
-        const boundary = req.headers['content-type'].replace(boundaryPrefix, '');
+        const boundary2 = req.headers['content-type'].replace(boundaryPrefix, '');
         expectedBody = expectedBody
             .replace(/\n/g, '\r\n')
-            .replace(/\$boundary/g, boundary)
+            .replace(/\$boundary/g, boundary2)
             .replace('$media', bodyString)
             .replace('$resource', JSON.stringify(resource))
             .replace('$mimeType', 'message/rfc822')
             .trim();
-        assert.strictEqual(expectedBody, resp);
+        assert.strictEqual(expectedBody, resp2);
         scope.done();
         done();
       });
@@ -407,29 +407,29 @@ describe('Media', () => {
       userId: 'me',
       resource,
       media
-    }, (err, body, resp) => {
+    }, (err, body2, resp) => {
       if (err) {
         return done(err);
       }
-      assert.equal(typeof body, 'object');
-      assert.equal(body.hello, 'world');
+      assert.equal(typeof body2, 'object');
+      assert.equal(body2.hello, 'world');
       assert.equal(typeof resp, 'object');
-      assert.equal(resp.body, JSON.stringify(body));
+      assert.equal(resp.body, JSON.stringify(body2));
       resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
-      body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-      media = { mimeType: 'message/rfc822', body };
+      body2 = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+      media = { mimeType: 'message/rfc822', body: body2 };
       remoteGmail.users.drafts.create({
         userId: 'me',
         resource,
         media
-      }, (err, body, resp) => {
+      }, (err, body3, resp) => {
         if (err) {
           return done(err);
         }
-        assert.equal(typeof body, 'object');
-        assert.equal(body.hello, 'world');
+        assert.equal(typeof body3, 'object');
+        assert.equal(body3.hello, 'world');
         assert.equal(typeof resp, 'object');
-        assert.equal(resp.body, JSON.stringify(body));
+        assert.equal(resp.body, JSON.stringify(body3));
         scope.done();
         done();
       });

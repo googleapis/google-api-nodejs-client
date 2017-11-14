@@ -11,17 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {handleError, buildurl} from '../scripts/generator_utils';
 import * as async from 'async';
 import * as fs from 'fs';
+import {DefaultTransporter} from 'google-auth-library/lib/transporters';
 import * as url from 'url';
 import * as util from 'util';
+
+import {buildurl, handleError} from '../scripts/generator_utils';
+
 import {createAPIRequest} from './apirequest';
-import { DefaultTransporter } from 'google-auth-library/lib/transporters';
 
 const transporter = new DefaultTransporter();
 
-function getPathParams (params) {
+function getPathParams(params) {
   const pathParams = [];
   if (typeof params !== 'object') {
     params = {};
@@ -43,13 +45,14 @@ function getPathParams (params) {
  * @param {object} method The method schema from which to generate the method.
  * @param {object} context The context to add to the method.
  */
-function makeMethod (schema, method, context) {
+function makeMethod(schema, method, context) {
   return (params, callback) => {
-    const url = buildurl(schema.rootUrl + schema.servicePath + method.path);
+    const schemaUrl =
+        buildurl(schema.rootUrl + schema.servicePath + method.path);
 
     const parameters = {
       options: {
-        url: url.substring(1, url.length - 1),
+        url: schemaUrl.substring(1, schemaUrl.length - 1),
         method: method.httpMethod
       },
       params,
@@ -60,12 +63,10 @@ function makeMethod (schema, method, context) {
     };
 
     if (method.mediaUpload && method.mediaUpload.protocols &&
-      method.mediaUpload.protocols.simple &&
-      method.mediaUpload.protocols.simple.path) {
-      const mediaUrl = buildurl(
-        schema.rootUrl +
-        method.mediaUpload.protocols.simple.path
-      );
+        method.mediaUpload.protocols.simple &&
+        method.mediaUpload.protocols.simple.path) {
+      const mediaUrl =
+          buildurl(schema.rootUrl + method.mediaUpload.protocols.simple.path);
       parameters.mediaUrl = mediaUrl.substring(1, mediaUrl.length - 1);
     }
 
@@ -83,11 +84,13 @@ function makeMethod (schema, method, context) {
  * @param {object} schema The current schema from which to extract methods.
  * @param {object} context The context to add to each method.
  */
-function applyMethodsFromSchema (target, rootSchema, schema, context) {
+function applyMethodsFromSchema(target, rootSchema, schema, context) {
   if (schema.methods) {
     for (const name in schema.methods) {
-      const method = schema.methods[name];
-      target[name] = makeMethod(rootSchema, method, context);
+      if (schema.methods.hasOwnProperty(name)) {
+        const method = schema.methods[name];
+        target[name] = makeMethod(rootSchema, method, context);
+      }
     }
   }
 }
@@ -103,16 +106,18 @@ function applyMethodsFromSchema (target, rootSchema, schema, context) {
  * resources.
  * @param {object} context The context to add to each method.
  */
-function applySchema (target, rootSchema, schema, context) {
+function applySchema(target, rootSchema, schema, context) {
   applyMethodsFromSchema(target, rootSchema, schema, context);
 
   if (schema.resources) {
     for (const resourceName in schema.resources) {
-      const resource = schema.resources[resourceName];
-      if (!target[resourceName]) {
-        target[resourceName] = {};
+      if (schema.resources.hasOwnProperty(resourceName)) {
+        const resource = schema.resources[resourceName];
+        if (!target[resourceName]) {
+          target[resourceName] = {};
+        }
+        applySchema(target[resourceName], rootSchema, resource, context);
       }
-      applySchema(target[resourceName], rootSchema, resource, context);
     }
   }
 }
@@ -124,8 +129,10 @@ function applySchema (target, rootSchema, schema, context) {
  * @param {object} schema The schema from which to generate the Endpoint.
  * @return Function The Endpoint.
  */
-function makeEndpoint (schema) {
-  const Endpoint = function (options) {
+function makeEndpoint(schema) {
+  // Creating an object, so Pascal case is appropriate.
+  // tslint:disable-next-line
+  const Endpoint = function(options) {
     const self = this;
     self._options = options || {};
 
@@ -141,7 +148,7 @@ function makeEndpoint (schema) {
  * @param {object} options Options for discovery
  * @this {Discovery}
  */
-export function Discovery (options) {
+export function Discovery(options) {
   this.options = options || {};
 }
 
@@ -149,7 +156,7 @@ export function Discovery (options) {
  * Log output of generator
  * Works just like console.log
  */
-Discovery.prototype.log = function () {
+Discovery.prototype.log = function() {
   if (this.options && this.options.debug) {
     console.log.apply(this, arguments);
   }
@@ -161,66 +168,69 @@ Discovery.prototype.log = function () {
  * @param {function} callback Callback when all APIs have been generated
  * @throws {Error} If there is an error generating any of the APIs
  */
-Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
+Discovery.prototype.discoverAllAPIs = function(discoveryUrl, callback) {
   const self = this;
-  const headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
-  transporter.request({
-    uri: discoveryUrl,
-    headers
-  }, (err, resp) => {
+  const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
+  transporter.request({uri: discoveryUrl, headers}, (err, resp) => {
     if (err) {
       return handleError(err, callback);
     }
 
-    async.parallel(resp.items.map(api => {
-      return (cb) => {
-        self.discoverAPI(api.discoveryRestUrl, (err, _api) => {
-          if (err) {
-            return cb(err);
-          }
-          api.api = _api;
-          cb(null, api);
-        });
-      };
-    }), (err, apis) => {
-      if (err) {
-        return callback(err);
-      }
-
-      const versionIndex = {};
-      const apisIndex = {};
-
-      apis.forEach(api => {
-        if (!apisIndex[api.name]) {
-          versionIndex[api.name] = {};
-          apisIndex[api.name] = (options) => {
-            const type = typeof options;
-            let version;
-            if (type === 'string') {
-              version = options;
-              options = {};
-            } else if (type === 'object') {
-              version = options.version;
-              delete options.version;
-            } else {
-              throw new Error('Argument error: Accepts only string or object');
-            }
-            try {
-              const Endpoint = versionIndex[api.name][version];
-              const ep = new Endpoint(options);
-              ep.google = this; // for drive.google.transporter
-              return Object.freeze(ep); // create new & freeze
-            } catch (e) {
-              throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
-                api.name, version, e.message));
-            }
+    async.parallel(
+        resp.items.map(api => {
+          return (cb) => {
+            self.discoverAPI(api.discoveryRestUrl, (e, newApi) => {
+              if (e) {
+                return cb(e);
+              }
+              api.api = newApi;
+              cb(null, api);
+            });
           };
-        }
-        versionIndex[api.name][api.version] = api.api;
-      });
+        }),
+        (e, apis) => {
+          if (e) {
+            return callback(e);
+          }
 
-      return callback(null, apisIndex);
-    });
+          const versionIndex = {};
+          const apisIndex = {};
+
+          apis.forEach(api => {
+            if (!apisIndex[api.name]) {
+              versionIndex[api.name] = {};
+              apisIndex[api.name] = (options) => {
+                const type = typeof options;
+                let version;
+                if (type === 'string') {
+                  version = options;
+                  options = {};
+                } else if (type === 'object') {
+                  version = options.version;
+                  delete options.version;
+                } else {
+                  throw new Error(
+                      'Argument error: Accepts only string or object');
+                }
+                try {
+                  // Creating an object, so Pascal case is appropriate.
+                  // tslint:disable-next-line
+                  const Endpoint = versionIndex[api.name][version];
+                  const ep = new Endpoint(options);
+                  ep.google = this;          // for drive.google.transporter
+                  return Object.freeze(ep);  // create new & freeze
+                } catch (e) {
+                  throw new Error(util.format(
+                      'Unable to load endpoint %s("%s"): %s', api.name, version,
+                      e.message));
+                }
+              };
+            }
+            versionIndex[api.name][api.version] = api.api;
+          });
+
+          return callback(null, apisIndex);
+        });
   });
 };
 
@@ -231,8 +241,8 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
  * @param {function} callback Callback when successful write of API
  * @throws {Error} If there is an error generating the API.
  */
-Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
-  function _generate (err, resp) {
+Discovery.prototype.discoverAPI = function(apiDiscoveryUrl, callback) {
+  function _generate(err, resp) {
     if (err) {
       return handleError(err, callback);
     }
@@ -245,9 +255,7 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
       try {
-        return fs.readFile(apiDiscoveryUrl, {
-          encoding: 'utf8'
-        }, (err, file) => {
+        return fs.readFile(apiDiscoveryUrl, {encoding: 'utf8'}, (err, file) => {
           _generate(err, JSON.parse(file));
         });
       } catch (err) {
@@ -255,27 +263,17 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
       }
     } else {
       this.log('Requesting ' + apiDiscoveryUrl);
-      transporter.request({
-        uri: apiDiscoveryUrl
-      }, _generate);
+      transporter.request({uri: apiDiscoveryUrl}, _generate);
     }
   } else {
     const options = apiDiscoveryUrl;
     this.log('Requesting ' + options.url);
     const parameters = {
-      options: {
-        url: options.url,
-        method: 'GET'
-      },
+      options: {url: options.url, method: 'GET'},
       requiredParams: [],
       pathParams: [],
       params: null,
-      context: {
-        google: {
-          _options: {}
-        },
-        _options: {}
-      }
+      context: {google: {_options: {}}, _options: {}}
     };
     delete options.url;
     parameters.params = options;

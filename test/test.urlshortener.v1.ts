@@ -92,9 +92,9 @@ describe('Urlshortener', () => {
       if (err) {
         return done(err);
       }
-      testInsert(remoteUrlshortener, (err) => {
-        if (err) {
-          return done(err);
+      testInsert(remoteUrlshortener, e => {
+        if (e) {
+          return done(e);
         }
         scope.done();
         done();

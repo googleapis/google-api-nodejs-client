@@ -186,9 +186,9 @@ describe('OAuth2 client', () => {
       if (err) {
         return done(err);
       }
-      testNoBearer(remoteUrlshortener, oauth2client, (err) => {
-        if (err) {
-          return done(err);
+      testNoBearer(remoteUrlshortener, oauth2client, (e) => {
+        if (e) {
+          return done(e);
         }
         scope.done();
         done();

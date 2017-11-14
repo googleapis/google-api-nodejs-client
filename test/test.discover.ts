@@ -54,7 +54,9 @@ describe('GoogleApis#discover', () => {
       assert.equal(typeof remoteDrive, 'object');
 
       for (const key in localDrive) {
-        assert(remoteDrive[key], 'generated drive has same keys');
+        if (localDrive.hasOwnProperty(key)) {
+          assert(remoteDrive[key], 'generated drive has same keys');
+        }
       }
       done();
     });

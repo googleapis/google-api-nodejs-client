@@ -11,25 +11,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {handleError, buildurl} from './generator_utils';
 import * as async from 'async';
-import * as swig from 'swig';
-import * as path from 'path';
-import * as mkdirp from 'mkdirp';
 import * as fs from 'fs';
+import {DefaultTransporter} from 'google-auth-library/lib/transporters';
+import {js_beautify} from 'js-beautify';
+import * as minimist from 'minimist';
+import * as mkdirp from 'mkdirp';
+import * as path from 'path';
+import * as swig from 'swig';
 import * as url from 'url';
 import * as util from 'util';
-import { js_beautify } from 'js-beautify';
-import { DefaultTransporter } from 'google-auth-library/lib/transporters';
-import * as minimist from 'minimist';
+
+import {buildurl, handleError} from './generator_utils';
 
 const argv = minimist(process.argv.slice(2));
-const args = argv._;
+const cliArgs = argv._;
 
-const DISCOVERY_URL = argv['discovery-url'] ? argv['discovery-url'] : (
-  args.length ? args[0] : 'https://www.googleapis.com/discovery/v1/apis/'
-);
-const FRAGMENT_URL = 'https://storage.googleapis.com/apisnippets-staging/public/';
+const DISCOVERY_URL = argv['discovery-url'] ?
+    argv['discovery-url'] :
+    (cliArgs.length ? cliArgs[0] :
+                      'https://www.googleapis.com/discovery/v1/apis/');
+const FRAGMENT_URL =
+    'https://storage.googleapis.com/apisnippets-staging/public/';
 
 const API_TEMPLATE = './templates/api-endpoint.ts';
 const BEAUTIFY_OPTIONS = {
@@ -55,12 +58,11 @@ const BEAUTIFY_OPTIONS = {
   'end_with_newline': true
 };
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
-const templateContents = fs.readFileSync(API_TEMPLATE, { encoding: 'utf8' });
+const templateContents = fs.readFileSync(API_TEMPLATE, {encoding: 'utf8'});
 
 export class Generator {
-
-  private _transporter = new DefaultTransporter();
-  private _requestQueue;
+  private transporter = new DefaultTransporter();
+  private requestQueue;
 
   /**
    * A multi-line string is turned into one line.
@@ -69,7 +71,7 @@ export class Generator {
    * @param  {string} str String to process
    * @return {string}     Single line string processed
    */
-  private oneLine (str: string) {
+  private oneLine(str: string) {
     return str.replace(/\n/g, ' ');
   }
 
@@ -80,7 +82,7 @@ export class Generator {
    * @param  {string} str String to process
    * @return {string}     Single line string processed
    */
-  private cleanComments (str: string) {
+  private cleanComments(str: string) {
     // Convert /* into /x and */ into x/
     return str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x');
   }
@@ -92,15 +94,17 @@ export class Generator {
    * @param  {object} items Object of api endpoints
    * @return {array}        Array of api names
    */
-  private getAPIs (items) {
+  private getAPIs(items) {
     const apis = [];
     for (const i in items) {
-      apis.push(items[i].name);
+      if (items.hasOwnProperty(i)) {
+        apis.push(items[i].name);
+      }
     }
     return apis;
   }
 
-  private getPathParams (params) {
+  private getPathParams(params) {
     const pathParams = [];
     if (typeof params !== 'object') {
       params = {};
@@ -113,16 +117,16 @@ export class Generator {
     return pathParams;
   }
 
-  private getSafeParamName (param) {
+  private getSafeParamName(param) {
     if (RESERVED_PARAMS.indexOf(param) !== -1) {
       return param + '_';
     }
     return param;
   }
 
-  private _options: any;
+  private options: any;
 
-  private _state = {};
+  private state = {};
 
   /**
    * Generator for generating API endpoints
@@ -131,18 +135,18 @@ export class Generator {
    * @param {object} options Options for generation
    * @this {Generator}
    */
-  constructor (options) {
-    this._options = options || {};
-    
+  constructor(options = {}) {
+    this.options = options;
+
     /**
-     * This API can generate thousands of concurrent HTTP requests.  
-     * If left to happen while generating all APIs, things get very unstable.  
-     * This makes sure we only ever have 10 concurrent network requests, and 
-     * adds retry logic. 
+     * This API can generate thousands of concurrent HTTP requests.
+     * If left to happen while generating all APIs, things get very unstable.
+     * This makes sure we only ever have 10 concurrent network requests, and
+     * adds retry logic.
      */
-    this._requestQueue = async.queue((opts, callback) => {
+    this.requestQueue = async.queue((opts, callback) => {
       async.retry(3, () => {
-        return this._transporter.request(opts, callback);
+        return this.transporter.request(opts, callback);
       });
     }, 10);
 
@@ -155,38 +159,39 @@ export class Generator {
     swig.setFilter('cleanPaths', (str) => {
       return str.replace(/\/\*\//gi, '/x/').replace(/\/\*`/gi, '/x');
     });
-    swig.setDefaults({ loader: swig.loaders.fs(path.join(__dirname, '..', 'templates')) });
+    swig.setDefaults(
+        {loader: swig.loaders.fs(path.join(__dirname, '..', 'templates'))});
   }
 
   /**
-   * Add a requests to the rate limited queue. 
+   * Add a requests to the rate limited queue.
    * @param opts Options to pass to the default transporter
-   * @param callback 
+   * @param callback
    */
-  private makeRequest (opts, callback) {
-    this._requestQueue.push(opts, callback);
-  } 
+  private makeRequest(opts, callback) {
+    this.requestQueue.push(opts, callback);
+  }
 
   /**
    * Log output of generator
    * Works just like console.log
    */
-  private log (...args) {
-    if (this._options && this._options.debug) {
+  private log(...args) {
+    if (this.options && this.options.debug) {
       console.log.apply(this, arguments);
     }
   }
 
   /**
-   * Write to the state log, which is used for debugging.  
+   * Write to the state log, which is used for debugging.
    * @param id DiscoveryRestUrl of the endpoint to log
-   * @param message 
+   * @param message
    */
-  private logResult (id, message) {
-    if (!this._state[id]) {
-      this._state[id] = [];
+  private logResult(id, message) {
+    if (!this.state[id]) {
+      this.state[id] = [];
     }
-    this._state[id].push(message);
+    this.state[id].push(message);
   }
 
   /**
@@ -195,12 +200,9 @@ export class Generator {
    * @param {function} callback Callback when all APIs have been generated
    * @throws {Error} If there is an error generating any of the APIs
    */
-  generateAllAPIs (callback: Function) {
-    const headers = this._options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
-    this.makeRequest({
-      uri: DISCOVERY_URL,
-      headers
-    }, (err, resp) => {
+  generateAllAPIs(callback: Function) {
+    const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
+    this.makeRequest({uri: DISCOVERY_URL, headers}, (err, resp) => {
       if (err) {
         return handleError(err, callback);
       }
@@ -208,80 +210,92 @@ export class Generator {
 
       const queue = async.queue((api: any, next) => {
         this.log('Generating API for %s...', api.id);
-        this.logResult(api.discoveryRestUrl, 'Attempting first generateAPI call...');
-        async.retry(3, this.generateAPI.bind(this, api.discoveryRestUrl), (err, results) => {
-          if (err) {
-            this.logResult(api.discoveryRestUrl, `GenerateAPI call failed with error: ${err}, moving on.`);
-            console.error(`Failed to generate API: ${api.id}`);
-            console.log(api.id + "\n-----------\n" + (util as any).inspect(this._state[api.discoveryRestUrl], { maxArrayLength: null }) + '\n');
-          } else {
-            this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
-          }
-          this._state[api.discoveryRestUrl].done = true;
-          next(err, results);
-        });
+        this.logResult(
+            api.discoveryRestUrl, 'Attempting first generateAPI call...');
+        async.retry(
+            3, this.generateAPI.bind(this, api.discoveryRestUrl),
+            (e, results) => {
+              if (e) {
+                this.logResult(
+                    api.discoveryRestUrl,
+                    `GenerateAPI call failed with error: ${e}, moving on.`);
+                console.error(`Failed to generate API: ${api.id}`);
+                console.log(
+                    api.id + '\n-----------\n' +
+                    (util as any).inspect(this.state[api.discoveryRestUrl], {
+                      maxArrayLength: null
+                    }) +
+                    '\n');
+              } else {
+                this.logResult(
+                    api.discoveryRestUrl, `GenerateAPI call success!`);
+              }
+              this.state[api.discoveryRestUrl].done = true;
+              next(e, results);
+            });
       }, 3);
 
       apis.forEach((api) => {
         queue.push(api);
       });
 
-      queue.drain = (err:Error) => {
-        console.log((util as any).inspect(this._state, { maxArrayLength: null }));
-        if (callback) callback(err);
+      queue.drain = (e: Error) => {
+        console.log((util as any).inspect(this.state, {maxArrayLength: null}));
+        if (callback) callback(e);
       };
     });
   }
 
   /**
-   * Given a discovery doc, parse it and recursively iterate over the various embedded links.
-   * @param api 
-   * @param schema 
-   * @param path 
-   * @param tasks 
+   * Given a discovery doc, parse it and recursively iterate over the various
+   * embedded links.
+   * @param api
+   * @param schema
+   * @param apiPath
+   * @param tasks
    */
-  private getFragmentsForSchema (apiDiscoveryUrl, schema, path, tasks) {
+  private getFragmentsForSchema(apiDiscoveryUrl, schema, apiPath, tasks) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
-        const methodSchema = schema.methods[methodName];
-        methodSchema.sampleUrl = path + '.' + methodName + '.frag.json';
-        tasks.push((cb) => {
-          this.logResult(apiDiscoveryUrl, `Making fragment request...`);
-          this.logResult(apiDiscoveryUrl, methodSchema.sampleUrl);
-          this.makeRequest({
-            uri: methodSchema.sampleUrl
-          }, (err, response) => {
-            if (err) {
-              this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
-              return cb(err);
-            }
-            this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
-            if (response && response.codeFragment && response.codeFragment['Node.js']) {
-              let fragment = response.codeFragment['Node.js'].fragment;
-              fragment = fragment.replace(/\/\*/gi, '/<');
-              fragment = fragment.replace(/\*\//gi, '>/');
-              fragment = fragment.replace(/`\*/gi, '`<');
-              fragment = fragment.replace(/\*`/gi, '>`');
-              const lines = fragment.split('\n');
-              lines.forEach((_line, i) => {
-                lines[i] = '*' + (_line ? ' ' + lines[i] : '');
-              });
-              fragment = lines.join('\n');
-              methodSchema.fragment = fragment;
-            }
-            cb();
+        if (schema.methods.hasOwnProperty(methodName)) {
+          const methodSchema = schema.methods[methodName];
+          methodSchema.sampleUrl = apiPath + '.' + methodName + '.frag.json';
+          tasks.push((cb) => {
+            this.logResult(apiDiscoveryUrl, `Making fragment request...`);
+            this.logResult(apiDiscoveryUrl, methodSchema.sampleUrl);
+            this.makeRequest({uri: methodSchema.sampleUrl}, (err, response) => {
+              if (err) {
+                this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
+                return cb(err);
+              }
+              this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
+              if (response && response.codeFragment &&
+                  response.codeFragment['Node.js']) {
+                let fragment = response.codeFragment['Node.js'].fragment;
+                fragment = fragment.replace(/\/\*/gi, '/<');
+                fragment = fragment.replace(/\*\//gi, '>/');
+                fragment = fragment.replace(/`\*/gi, '`<');
+                fragment = fragment.replace(/\*`/gi, '>`');
+                const lines = fragment.split('\n');
+                lines.forEach((line, i) => {
+                  lines[i] = '*' + (line ? ' ' + lines[i] : '');
+                });
+                fragment = lines.join('\n');
+                methodSchema.fragment = fragment;
+              }
+              cb();
+            });
           });
-        });
+        }
       }
     }
     if (schema.resources) {
       for (const resourceName in schema.resources) {
-        this.getFragmentsForSchema(
-          apiDiscoveryUrl,
-          schema.resources[resourceName],
-          path + '.' + resourceName,
-          tasks
-        );
+        if (schema.resources.hasOwnProperty(resourceName)) {
+          this.getFragmentsForSchema(
+              apiDiscoveryUrl, schema.resources[resourceName],
+              apiPath + '.' + resourceName, tasks);
+        }
       }
     }
   }
@@ -292,8 +306,8 @@ export class Generator {
    * @param {function} callback Callback when successful write of API
    * @throws {Error} If there is an error generating the API.
    */
-  generateAPI (apiDiscoveryUrl, callback: Function) {
-    const _generate = (err: Error, resp) => {
+  generateAPI(apiDiscoveryUrl, callback: Function) {
+    const generate = (err: Error, resp) => {
       this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
       if (err) {
         handleError(err, callback);
@@ -301,57 +315,56 @@ export class Generator {
       }
       const tasks = [];
       this.getFragmentsForSchema(
-        apiDiscoveryUrl,
-        resp,
-        FRAGMENT_URL + resp.name + '/' + resp.version + '/0/' + resp.name,
-        tasks
-      );
+          apiDiscoveryUrl, resp,
+          FRAGMENT_URL + resp.name + '/' + resp.version + '/0/' + resp.name,
+          tasks);
 
       // e.g. apis/drive/v2.js
-      const exportFilename = path.join(__dirname, '../apis', resp.name, resp.version + '.ts');
+      const exportFilename =
+          path.join(__dirname, '../apis', resp.name, resp.version + '.ts');
       let contents;
       this.logResult(apiDiscoveryUrl, `Generating templates...`);
-      async.waterfall([
-        (cb) => {
-          this.logResult(apiDiscoveryUrl, `Step 1...`);
-          async.parallel(tasks, cb);
-        },
-        (results, cb) => {
-          this.logResult(apiDiscoveryUrl, `Step 2...`);
-          const result = swig.render(templateContents, { locals: resp });
-          contents = js_beautify(result, BEAUTIFY_OPTIONS);
-          mkdirp(path.dirname(exportFilename), cb);
-        },
-        (dir, cb) => {
-          this.logResult(apiDiscoveryUrl, `Step 3...`);
-          fs.writeFile(exportFilename, contents, { encoding: 'utf8' }, cb);
-        }
-      ], (err) => {
-        if (err) {
-          handleError(err, callback);
-          return;
-        }
-        this.logResult(apiDiscoveryUrl, `Template generation complete.`);
-        callback(null, exportFilename);
-      });
+      async.waterfall(
+          [
+            (cb) => {
+              this.logResult(apiDiscoveryUrl, `Step 1...`);
+              async.parallel(tasks, cb);
+            },
+            (results, cb) => {
+              this.logResult(apiDiscoveryUrl, `Step 2...`);
+              const result = swig.render(templateContents, {locals: resp});
+              contents = js_beautify(result, BEAUTIFY_OPTIONS);
+              mkdirp(path.dirname(exportFilename), cb);
+            },
+            (dir, cb) => {
+              this.logResult(apiDiscoveryUrl, `Step 3...`);
+              fs.writeFile(exportFilename, contents, {encoding: 'utf8'}, cb);
+            }
+          ],
+          (e) => {
+            if (e) {
+              handleError(e, callback);
+              return;
+            }
+            this.logResult(apiDiscoveryUrl, `Template generation complete.`);
+            callback(null, exportFilename);
+          });
     };
 
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
       try {
-        return _generate(null, JSON.parse(fs.readFileSync(apiDiscoveryUrl, {
-          encoding: 'utf-8'
-        })));
+        return generate(
+            null,
+            JSON.parse(fs.readFileSync(apiDiscoveryUrl, {encoding: 'utf-8'})));
       } catch (err) {
         return handleError(err, callback);
       }
     } else {
       this.logResult(apiDiscoveryUrl, `Starting discovery doc request...`);
       this.logResult(apiDiscoveryUrl, apiDiscoveryUrl);
-      this.makeRequest({
-        uri: apiDiscoveryUrl
-      }, _generate);
+      this.makeRequest({uri: apiDiscoveryUrl}, generate);
     }
   }
 }

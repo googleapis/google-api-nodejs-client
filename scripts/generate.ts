@@ -48,9 +48,9 @@ if (args.length) {
       throw err;
     }
     console.log('Generating APIs...');
-    gen.generateAllAPIs((err) => {
-      if (err) {
-        throw err;
+    gen.generateAllAPIs(e => {
+      if (e) {
+        throw e;
       }
       console.log('Finished generating APIs!');
     });
