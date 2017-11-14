@@ -60,7 +60,8 @@ const BEAUTIFY_OPTIONS = {
 };
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 const templateContents = fs.readFileSync(API_TEMPLATE, {encoding: 'utf8'});
-const indexTemplateContents = fs.readFileSync(INDEX_TEMPLATE, {encoding: 'utf8'});
+const indexTemplateContents =
+    fs.readFileSync(INDEX_TEMPLATE, {encoding: 'utf8'});
 
 export class Generator {
   private transporter = new DefaultTransporter();
@@ -242,10 +243,10 @@ export class Generator {
         queue.push(api);
       });
 
-      queue.drain = (err:Error) => {
+      queue.drain = (drainError: Error) => {
         console.log((util as any).inspect(this.state, {maxArrayLength: null}));
-        if (err && callback) {
-          callback(err);
+        if (drainError && callback) {
+          callback(drainError);
           return;
         }
         this.generateIndex(callback);
@@ -253,7 +254,7 @@ export class Generator {
     });
   }
 
-  generateIndex (callback: Function) {
+  generateIndex(callback: Function) {
     const apis = {};
     const apisPath = path.join(__dirname, '../apis');
     const indexPath = path.join(apisPath, 'index.ts');
@@ -270,9 +271,9 @@ export class Generator {
       });
     });
 
-    const result = swig.render(indexTemplateContents, { locals: { apis } });
+    const result = swig.render(indexTemplateContents, {locals: {apis}});
     const contents = js_beautify(result, BEAUTIFY_OPTIONS);
-    fs.writeFile(indexPath, contents, { encoding: 'utf8' }, err => {
+    fs.writeFile(indexPath, contents, {encoding: 'utf8'}, err => {
       if (callback) callback(err);
     });
   }
@@ -297,7 +298,8 @@ export class Generator {
             this.makeRequest({uri: methodSchema.sampleUrl}, (err, response) => {
               if (err) {
                 this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
-                if (!err.message || err.message.indexOf('AccessDenied') === -1) {
+                if (!err.message ||
+                    err.message.indexOf('AccessDenied') === -1) {
                   return cb(err);
                 } else {
                   this.logResult(apiDiscoveryUrl, 'Ignoring error.');

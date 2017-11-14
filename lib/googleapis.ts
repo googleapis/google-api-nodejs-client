@@ -15,8 +15,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
 
-import {Discovery} from './discovery';
 import * as apis from '../apis';
+
+import {Discovery} from './discovery';
 
 const discovery = new Discovery({debug: false, includePrivate: false});
 
