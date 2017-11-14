@@ -16,7 +16,7 @@
 import * as path from 'path';
 import * as util from 'util';
 
-const _apis = {
+const APIS = {
   {% for apiName in apis|sort %}{% set api = apis[apiName] %}{{ apiName }}: {
     {% for versionName in api|sort %}{% set version = api[versionName] %}'{{ version }}': require('./{{ apiName }}/{{ version }}'),
     {%- endfor -%}
@@ -37,13 +37,13 @@ function getAPI (api, options) {
     throw new Error('Argument error: Accepts only string or object');
   }
   try {
-    const Endpoint = _apis[api][path.basename(version)];
-    const ep = new Endpoint(options);
-    ep.google = this; // for drive.google.transporter
-    return Object.freeze(ep); // create new & freeze
+    const endpoint = APIS[api][path.basename(version)];
+    const ep = new endpoint(options);
+    ep.google = this;          // for drive.google.transporter
+    return Object.freeze(ep);  // create new & freeze
   } catch (e) {
-    throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
-      api, version, e.message));
+    throw new Error(util.format(
+        'Unable to load endpoint %s("%s"): %s', api, version, e.message));
   }
 }
 
