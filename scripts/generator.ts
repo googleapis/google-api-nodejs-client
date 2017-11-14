@@ -35,6 +35,7 @@ const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
 const API_TEMPLATE = './templates/api-endpoint.ts';
+const INDEX_TEMPLATE = './templates/index.ts';
 const BEAUTIFY_OPTIONS = {
   'indent_size': 2,
   'indent_char': ' ',
@@ -59,6 +60,8 @@ const BEAUTIFY_OPTIONS = {
 };
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 const templateContents = fs.readFileSync(API_TEMPLATE, {encoding: 'utf8'});
+const indexTemplateContents =
+    fs.readFileSync(INDEX_TEMPLATE, {encoding: 'utf8'});
 
 export class Generator {
   private transporter = new DefaultTransporter();
@@ -235,14 +238,43 @@ export class Generator {
             });
       }, 3);
 
+
       apis.forEach((api) => {
         queue.push(api);
       });
 
-      queue.drain = (e: Error) => {
+      queue.drain = (drainError: Error) => {
         console.log((util as any).inspect(this.state, {maxArrayLength: null}));
-        if (callback) callback(e);
+        if (drainError && callback) {
+          callback(drainError);
+          return;
+        }
+        this.generateIndex(callback);
       };
+    });
+  }
+
+  generateIndex(callback: Function) {
+    const apis = {};
+    const apisPath = path.join(__dirname, '../apis');
+    const indexPath = path.join(apisPath, 'index.ts');
+
+    // Dynamically discover available APIs
+    fs.readdirSync(apisPath).forEach(file => {
+      const filePath = path.join(apisPath, file);
+      if (!fs.statSync(filePath).isDirectory()) {
+        return;
+      }
+      apis[file] = {};
+      fs.readdirSync(path.join(apisPath, file)).forEach(version => {
+        apis[file][version] = path.parse(version).name;
+      });
+    });
+
+    const result = swig.render(indexTemplateContents, {locals: {apis}});
+    const contents = js_beautify(result, BEAUTIFY_OPTIONS);
+    fs.writeFile(indexPath, contents, {encoding: 'utf8'}, err => {
+      if (callback) callback(err);
     });
   }
 
@@ -266,7 +298,12 @@ export class Generator {
             this.makeRequest({uri: methodSchema.sampleUrl}, (err, response) => {
               if (err) {
                 this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
-                return cb(err);
+                if (!err.message ||
+                    err.message.indexOf('AccessDenied') === -1) {
+                  return cb(err);
+                } else {
+                  this.logResult(apiDiscoveryUrl, 'Ignoring error.');
+                }
               }
               this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
               if (response && response.codeFragment &&

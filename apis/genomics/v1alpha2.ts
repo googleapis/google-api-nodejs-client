@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Genomics API
@@ -1186,12 +1188,14 @@ as the key to the input and output maps in RunPipeline.
  * @type object
 * @property {string} acceleratorCount Optional. The number of accelerators of the specified type to attach.
 By specifying this parameter, you will download and install the following
-third-party software onto your managed GCE instances: NVIDIA® Tesla®
-drivers and NVIDIA® CUDA toolkit.
-* @property {string} acceleratorType Optional. The GCE defined accelerator type.
+third-party software onto your managed Compute Engine instances:
+NVIDIA® Tesla® drivers and NVIDIA® CUDA toolkit.
+* @property {string} acceleratorType Optional. The Compute Engine defined accelerator type.
 By specifying this parameter, you will download and install the following
-third-party software onto your managed GCE instances: NVIDIA® Tesla®
-drivers and NVIDIA® CUDA toolkit.
+third-party software onto your managed Compute Engine instances: NVIDIA®
+Tesla® drivers and NVIDIA® CUDA toolkit.
+Please see https://cloud.google.com/compute/docs/gpus/ for a list of
+available accelerator types.
 * @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
 * @property {genomics(v1alpha2).Disk[]} disks Disks to attach.
 * @property {integer} minimumCpuCores The minimum number of cores to use. Defaults to 1.

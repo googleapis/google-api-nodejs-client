@@ -16,12 +16,14 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Stackdriver Trace API
  *
- * Send and retrieve trace data from Stackdriver Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Stackdriver Trace for display, reporting, and analysis.
+ * Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API.
 
  *
  * @example
@@ -44,13 +46,13 @@ function Cloudtrace(options) { // eslint-disable-line
       /**
        * cloudtrace.projects.traces.batchWrite
        *
-       * @desc Sends new spans to Stackdriver Trace or updates existing traces. If the name of a trace that you send matches that of an existing trace, new spans are added to the existing trace. Attempt to update existing spans results undefined behavior. If the name does not match, a new trace is created with given set of spans.
+       * @desc Sends new spans to new or existing traces. You cannot update existing spans.
        *
        * @alias cloudtrace.projects.traces.batchWrite
        * @memberOf! cloudtrace(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name Required. Name of the project where the spans belong. The format is `projects/PROJECT_ID`.
+       * @param {string} params.name Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
        * @param {cloudtrace(v2).BatchWriteSpansRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -83,13 +85,13 @@ function Cloudtrace(options) { // eslint-disable-line
         /**
          * cloudtrace.projects.traces.spans.create
          *
-         * @desc Creates a new Span.
+         * @desc Creates a new span.
          *
          * @alias cloudtrace.projects.traces.spans.create
          * @memberOf! cloudtrace(v2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project. [SPAN_ID] is a unique identifier for a span within a trace, assigned when the span is created.
+         * @param {string} params.name The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
          * @param {cloudtrace(v2).Span} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -106,8 +108,8 @@ function Cloudtrace(options) { // eslint-disable-line
 
           const parameters = {
             options: Object.assign({
-              url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
+              url: (rootUrl + '/v2/{name}/spans').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
             }, options),
             params: params,
             requiredParams: ['name'],
@@ -126,7 +128,7 @@ function Cloudtrace(options) { // eslint-disable-line
  * @typedef Annotation
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the annotation. There is a limit of 4 attributes
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the annotation. You can have up to 4 attributes
 per Annotation.
 * @property {cloudtrace(v2).TruncatableString} description A user-supplied message describing the event. The maximum length for
 the description is 256 bytes.
@@ -162,8 +164,9 @@ If this value is 0 then all attributes are valid.
  * @typedef BatchWriteSpansRequest
  * @memberOf! cloudtrace(v2)
  * @type object
- * @property {cloudtrace(v2).Span[]} spans A collection of spans.
- */
+* @property {cloudtrace(v2).Span[]} spans A list of new spans. The span names must not match existing
+spans, or the results are undefined.
+*/
 
 /**
  * @typedef Empty
@@ -175,10 +178,10 @@ If this value is 0 then all attributes are valid.
  * @typedef Link
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the link. There is a limit of 32 attributes per
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the link. You have have up to  32 attributes per
 link.
-* @property {string} spanId `SPAN_ID` identifies a span within a trace.
-* @property {string} traceId `TRACE_ID` identifies a trace within a project.
+* @property {string} spanId The [SPAN_ID] for a span within a trace.
+* @property {string} traceId The [TRACE_ID] for a trace within a project.
 * @property {string} type The relationship of the current span relative to the linked span.
 */
 
@@ -219,7 +222,7 @@ such as libc.so, sharedlib.so (up to 256 bytes).
  * @typedef Span
  * @memberOf! cloudtrace(v2)
  * @type object
-* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the span. There is a limit of 32 attributes per
+* @property {cloudtrace(v2).Attributes} attributes A set of attributes on the span. You can have up to 32 attributes per
 span.
 * @property {integer} childSpanCount An optional number of child spans that were generated while this span
 was active. If set, allows implementation to detect missing child spans.
@@ -233,25 +236,27 @@ This makes it easier to correlate spans in different traces.
 * @property {string} endTime The end time of the span. On the client side, this is the time kept by
 the local machine where the span execution ends. On the server side, this
 is the time when the server application handler stops running.
-* @property {cloudtrace(v2).Links} links A maximum of 128 links are allowed per Span.
+* @property {cloudtrace(v2).Links} links Links associated with the span. You can have up to 128 links per Span.
 * @property {string} name The resource name of the span in the following format:
 
-    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project.
-[SPAN_ID] is a unique identifier for a span within a trace,
-assigned when the span is created.
+    projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project;
+it is a 32-character hexadecimal encoding of a 16-byte array.
+
+[SPAN_ID] is a unique identifier for a span within a trace; it
+is a 16-character hexadecimal encoding of an 8-byte array.
 * @property {string} parentSpanId The [SPAN_ID] of this span&#39;s parent span. If this is a root span,
 then this field must be empty.
-* @property {boolean} sameProcessAsParentSpan A highly recommended but not required flag that identifies when a trace
-crosses a process boundary. True when the parent_span belongs to the
-same process as the current span.
+* @property {boolean} sameProcessAsParentSpan (Optional) Set this parameter to indicate whether this span is in
+the same process as its parent. If you do not set this parameter,
+Stackdriver Trace is unable to take advantage of this helpful
+information.
 * @property {string} spanId The [SPAN_ID] portion of the span&#39;s resource name.
-The ID is a 16-character hexadecimal encoding of an 8-byte array.
 * @property {cloudtrace(v2).StackTrace} stackTrace Stack trace captured at the start of the span.
 * @property {string} startTime The start time of the span. On the client side, this is the time kept by
 the local machine where the span execution starts. On the server side, this
 is the time when the server&#39;s application handler starts running.
 * @property {cloudtrace(v2).Status} status An optional final status for this span.
-* @property {cloudtrace(v2).TimeEvents} timeEvents The included time events. There can be up to 32 annotations and 128 message
+* @property {cloudtrace(v2).TimeEvents} timeEvents A set of time events. You can have up to 32 annotations and 128 message
 events per span.
 */
 
@@ -337,11 +342,12 @@ If the value is 0, then no message events were dropped.
  * @type object
 * @property {integer} truncatedByteCount The number of bytes removed from the original string. If this
 value is 0, then the string was not shortened.
-* @property {string} value The shortened string. For example, if the original string was 500
-bytes long and the limit of the string was 128 bytes, then this
-value contains the first 128 bytes of the 500-byte string. Note that
-truncation always happens on the character boundary, to ensure that
-truncated string is still valid UTF8. In case of multi-byte characters,
-size of truncated string can be less than truncation limit.
+* @property {string} value The shortened string. For example, if the original string is 500
+bytes long and the limit of the string is 128 bytes, then
+`value` contains the first 128 bytes of the 500-byte string.
+
+Truncation always happens on a UTF8 character boundary. If there
+are multi-byte characters in the string, then the length of the
+shortened string might be less than the size limit.
 */
 export = Cloudtrace;

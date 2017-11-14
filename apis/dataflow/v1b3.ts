@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Dataflow API
@@ -1378,20 +1380,23 @@ most closely associated.
  * @type object
 * @property {string} componentStepName Name of the optimized step being executed by the workers.
 * @property {string} executionStepName Name of the stage. An execution step contains multiple component steps.
+* @property {integer} inputIndex Index of an input collection that&#39;s being read from/written to as a side
+input.
+The index identifies a step&#39;s side inputs starting by 1 (e.g. the first
+side input has input_index 1, the third has input_index 3).
+Side inputs are identified by a pair of (original_step_name, input_index).
+This field helps uniquely identify them.
 * @property {string} name Counter name. Not necessarily globally-unique, but unique within the
 context of the other fields.
 Required.
 * @property {string} origin One of the standard Origins defined above.
 * @property {string} originNamespace A string containing a more specific namespace of the counter&#39;s origin.
 * @property {string} originalRequestingStepName The step name requesting an operation, such as GBK.
-I.e. the ParDo causing a read/write from shuffle to occur.
+I.e. the ParDo causing a read/write from shuffle to occur, or a
+read from side inputs.
 * @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
 optimization.
 * @property {string} portion Portion of this counter, either key or value.
-* @property {dataflow(v1b3).SideInputId} sideInput ID of a side input being read from/written to. Side inputs are identified
-by a pair of (reader, input_index). The reader is usually equal to the
-original name, but it may be different, if a ParDo emits its Iterator /
-Map side input object.
 * @property {string} workerId ID of a particular worker.
 */
 
@@ -2277,14 +2282,6 @@ Unique across the workflow.
  * @type object
  * @property {string} command The shell command to run.
  * @property {integer} exitCode Exit code for the task.
- */
-
-/**
- * @typedef SideInputId
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} declaringStepName The step that receives and usually consumes this side input.
- * @property {integer} inputIndex The index of the side input, from the list of non_parallel_inputs.
  */
 
 /**

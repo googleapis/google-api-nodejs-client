@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Cloud Storage JSON API
@@ -3153,10 +3155,6 @@ function Storage(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body.
      *     },
      *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
-     *
      *     auth: authClient,
      *   };
      *
@@ -3268,10 +3266,6 @@ function Storage(options) { // eslint-disable-line
      *     resource: {
      *       // TODO: Add desired properties to the request body.
      *     },
-     *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
      *
      *     auth: authClient,
      *   };
@@ -4334,10 +4328,6 @@ function Storage(options) { // eslint-disable-line
      *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
-     *
-     *     // TODO: To download media content, use:
-     *     //
-     *     // alt: 'media',
      *
      *     auth: authClient,
      *   };

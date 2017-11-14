@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Cloud Spanner API
@@ -277,7 +279,7 @@ function Spanner(options) { // eslint-disable-line
        * @memberOf! spanner(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * name   * display_name   * labels.key where key is the name of a label  Some examples of using filters are:    * name:* --> The instance has a name.   * name:Howl --> The instance's name contains the string "howl".   * name:HOWL --> Equivalent to above.   * NAME:howl --> Equivalent to above.   * labels.env:* --> The instance has the label "env".   * labels.env:dev --> The instance has the label "env" and the value of                        the label contains the string "dev".   * name:howl labels.env:dev --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
+       * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `name`   * `display_name`   * `labels.key` where key is the name of a label  Some examples of using filters are:    * `name:*` --> The instance has a name.   * `name:Howl` --> The instance's name contains the string "howl".   * `name:HOWL` --> Equivalent to above.   * `NAME:howl` --> Equivalent to above.   * `labels.env:*` --> The instance has the label "env".   * `labels.env:dev` --> The instance has the label "env" and the value of                        the label contains the string "dev".   * `name:howl labels.env:dev` --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
        * @param {integer=} params.pageSize Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
        * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse.
        * @param {string} params.parent Required. The name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
@@ -1191,7 +1193,7 @@ function Spanner(options) { // eslint-disable-line
            *
            * @param {object} params Parameters for request
            * @param {string} params.database Required. The database in which to list sessions.
-           * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * labels.key where key is the name of a label  Some examples of using filters are:    * labels.env:* --> The session has the label "env".   * labels.env:dev --> The session has the label "env" and the value of                        the label contains the string "dev".
+           * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `labels.key` where key is the name of a label  Some examples of using filters are:    * `labels.env:*` --> The session has the label "env".   * `labels.env:dev` --> The session has the label "env" and the value of                        the label contains the string "dev".
            * @param {integer=} params.pageSize Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
            * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1763,19 +1765,8 @@ segment of the name must be between 6 and 30 characters in length.
 * @property {integer} nodeCount Required. The number of nodes allocated to this instance. This may be zero
 in API responses for instances that are not yet in state `READY`.
 
-Each Spanner node can provide up to 10,000 QPS of reads or 2000 QPS of
-writes (writing single rows at 1KB data per row), and 2 TiB storage.
-
-For optimal performance, we recommend provisioning enough nodes to keep
-overall CPU utilization under 75%.
-
-A minimum of 3 nodes is recommended for production environments.  This
-minimum is required for SLAs to apply to your instance.
-
-Note that Cloud Spanner performance is highly dependent on workload, schema
-design, and dataset characteristics. The performance numbers above are
-estimates, and assume [best practices](https://cloud.google.com/spanner/docs/bulk-loading)
-are followed.
+See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+for more information about nodes.
 * @property {string} state Output only. The current instance state. For
 CreateInstance, the state must be
 either omitted or set to `CREATING`. For
@@ -2097,6 +2088,9 @@ read, or data that is fresh enough to observe the effects of some
 previously committed transaction whose timestamp is known.
 
 Note that this option can only be used in single-use transactions.
+
+A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds.
+Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
 * @property {string} readTimestamp Executes all reads at the given timestamp. Unlike other modes,
 reads at a specific timestamp are repeatable; the same read at
 the same timestamp always returns the same data. If the
@@ -2106,6 +2100,9 @@ specified timestamp, modulo the read&#39;s deadline.
 Useful for large scale consistent reads such as mapreduces, or
 for coordinating many reads against a consistent snapshot of the
 data.
+
+A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds.
+Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
 * @property {boolean} returnReadTimestamp If true, the Cloud Spanner-selected read timestamp is included in
 the Transaction message that describes the transaction.
 * @property {boolean} strong Read at a timestamp where all previously committed transactions
@@ -2133,7 +2130,6 @@ It is not an error for the `key_set` to name rows that do not
 exist in the database. Read yields nothing for nonexistent rows.
 * @property {string} limit If greater than zero, only the first `limit` rows are yielded. If `limit`
 is zero, the default is no limit.
-A limit cannot be specified if partition_token is set.
 * @property {string} resumeToken If this request is resuming a previously interrupted read,
 `resume_token` should be copied from the last
 PartialResultSet yielded before the interruption. Doing this
@@ -2219,8 +2215,11 @@ typically earlier than the actual last use time.
    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
  * Label values must be between 0 and 63 characters long and must conform
    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
- * No more than 20 labels can be associated with a given session.
-* @property {string} name The name of the session.
+ * No more than 64 labels can be associated with a given session.
+
+See https://goo.gl/xmQnxf for more information on and examples of labels.
+* @property {string} name The name of the session. This is always system-assigned; values provided
+when creating a session are ignored.
 */
 
 /**
@@ -2300,6 +2299,9 @@ single-use transactions do not support multiple requests.
 * @property {string} readTimestamp For snapshot read-only transactions, the read timestamp chosen
 for the transaction. Not returned by default: see
 TransactionOptions.ReadOnly.return_read_timestamp.
+
+A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds.
+Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
 */
 
 /**

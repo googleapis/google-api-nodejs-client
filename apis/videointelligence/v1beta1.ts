@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Cloud Video Intelligence API
@@ -94,34 +96,61 @@ function Videointelligence(options) { // eslint-disable-line
  */
 
 /**
- * @typedef GoogleCloudVideointelligenceV1_LabelAnnotation
+ * @typedef GoogleCloudVideointelligenceV1_Entity
  * @memberOf! videointelligence(v1beta1)
  * @type object
- * @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
- * @property {string} languageCode Language code for `description` in BCP-47 format.
- * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelLocation[]} locations Where the label was detected and with what confidence.
+* @property {string} description Textual description, e.g. `Fixed-gear bicycle`.
+* @property {string} entityId Opaque entity ID. Some IDs may be available in
+[Google Knowledge Graph Search
+API](https://developers.google.com/knowledge-graph/).
+* @property {string} languageCode Language code for `description` in BCP-47 format.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1_ExplicitContentAnnotation
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_ExplicitContentFrame[]} frames All video frames where explicit content was detected.
  */
 
 /**
- * @typedef GoogleCloudVideointelligenceV1_LabelLocation
+ * @typedef GoogleCloudVideointelligenceV1_ExplicitContentFrame
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
-* @property {string} level Label level.
-* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment} segment Video segment. Unset for video-level labels.
-Set to a frame timestamp for frame-level labels.
-Otherwise, corresponds to one of `AnnotateSpec.segments`
-(if specified) or to shot boundaries (if requested).
+* @property {string} pornographyLikelihood Likelihood of the pornography content..
+* @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the
+video frame for this location.
 */
 
 /**
- * @typedef GoogleCloudVideointelligenceV1_SafeSearchAnnotation
+ * @typedef GoogleCloudVideointelligenceV1_LabelAnnotation
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {string} adult Likelihood of adult content.
-* @property {string} time Time-offset, relative to the beginning of the video,
-corresponding to the video frame for this annotation.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_Entity[]} categoryEntities Common categories for the detected entity.
+E.g. when the label is `Terrier` the category is likely `dog`. And in some
+cases there might be more than one categories e.g. `Terrier` could also be
+a `pet`.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_Entity} entity Detected entity.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelFrame[]} frames All video frames where a label was detected.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelSegment[]} segments All video segments where a label was detected.
 */
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1_LabelFrame
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+* @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+* @property {string} timeOffset Time-offset, relative to the beginning of the video, corresponding to the
+video frame for this location.
+*/
+
+/**
+ * @typedef GoogleCloudVideointelligenceV1_LabelSegment
+ * @memberOf! videointelligence(v1beta1)
+ * @type object
+ * @property {number} confidence Confidence that the label is accurate. Range: [0, 1].
+ * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment} segment Video segment where a label was detected.
+ */
 
 /**
  * @typedef GoogleCloudVideointelligenceV1_VideoAnnotationProgress
@@ -141,20 +170,25 @@ Guaranteed to be 100 when fully processed.
  * @type object
 * @property {videointelligence(v1beta1).GoogleRpc_Status} error If set, indicates an error. Note that for a single `AnnotateVideoRequest`
 some videos may succeed and some may fail.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_ExplicitContentAnnotation} explicitAnnotation Explicit content annotation.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} frameLabelAnnotations Label annotations on frame level.
+There is exactly one element for each unique label.
 * @property {string} inputUri Video file location in
 [Google Cloud Storage](https://cloud.google.com/storage/).
-* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} labelAnnotations Label annotations. There is exactly one element for each unique label.
-* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_SafeSearchAnnotation[]} safeSearchAnnotations Safe search annotations.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} segmentLabelAnnotations Label annotations on video level or user specified segment level.
+There is exactly one element for each unique label.
 * @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_VideoSegment[]} shotAnnotations Shot annotations. Each shot is represented as a video segment.
+* @property {videointelligence(v1beta1).GoogleCloudVideointelligenceV1_LabelAnnotation[]} shotLabelAnnotations Label annotations on shot level.
+There is exactly one element for each unique label.
 */
 
 /**
  * @typedef GoogleCloudVideointelligenceV1_VideoSegment
  * @memberOf! videointelligence(v1beta1)
  * @type object
-* @property {string} endTime Time-offset, relative to the beginning of the video,
+* @property {string} endTimeOffset Time-offset, relative to the beginning of the video,
 corresponding to the end of the segment (inclusive).
-* @property {string} startTime Time-offset, relative to the beginning of the video,
+* @property {string} startTimeOffset Time-offset, relative to the beginning of the video,
 corresponding to the start of the segment (inclusive).
 */
 

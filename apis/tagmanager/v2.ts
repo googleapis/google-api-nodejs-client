@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Tag Manager API
@@ -3236,6 +3238,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v2).Parameter[]} parameter The tag&#39;s parameters.
  * @property {string} parentFolderId Parent folder id.
  * @property {string} path GTM Tag&#39;s API relative path.
+ * @property {boolean} paused Indicates whether the tag is paused, which prevents the tag from firing.
  * @property {tagmanager(v2).Parameter} priority User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
  * @property {string} scheduleEndMs The end timestamp in milliseconds to schedule a tag.
  * @property {string} scheduleStartMs The start timestamp in milliseconds to schedule a tag.

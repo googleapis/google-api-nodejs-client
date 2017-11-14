@@ -16,12 +16,14 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud OS Login API
  *
- * Manages OS login configuration for Directory API users.
+ * Manages OS login configuration for Google account users.
  *
  * @example
  * const google = require('googleapis');
@@ -86,6 +88,7 @@ function Oslogin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The unique ID for the user in format `users/{user}`.
+     * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
      * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -112,6 +115,45 @@ function Oslogin(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+    projects: {
+
+      /**
+       * oslogin.users.projects.delete
+       *
+       * @desc Deletes a POSIX account.
+       *
+       * @alias oslogin.users.projects.delete
+       * @memberOf! oslogin(v1alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     },
     sshPublicKeys: {
 
@@ -258,6 +300,7 @@ function Oslogin(options) { // eslint-disable-line
  * @typedef PosixAccount
  * @memberOf! oslogin(v1alpha)
  * @type object
+* @property {string} accountId Output only. A POSIX account identifier.
 * @property {string} gecos The GECOS (user information) entry for this account.
 * @property {string} gid The default group ID.
 * @property {string} homeDirectory The path to the home directory for this account.
@@ -274,8 +317,7 @@ By default, the empty value is used.
  * @memberOf! oslogin(v1alpha)
  * @type object
 * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
-* @property {string} fingerprint The SHA-256 fingerprint of the SSH public key.
-Output only.
+* @property {string} fingerprint Output only. The SHA-256 fingerprint of the SSH public key.
 * @property {string} key Public key text in SSH format, defined by
 &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt;
 section 6.6.

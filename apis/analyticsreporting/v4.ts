@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Analytics Reporting API
@@ -240,14 +242,25 @@ is treated as an `OR`.
 * @property {analyticsreporting(v4).ReportRequest[]} reportRequests Requests, each request will have a separate response.
 There can be a maximum of 5 requests. All requests should have the same
 `dateRanges`, `viewId`, `segments`, `samplingLevel`, and `cohortGroup`.
+* @property {boolean} useResourceQuotas Enables
+[resource based quotas](/analytics/devguides/reporting/core/v4/limits-quotas#analytics_reporting_api_v4),
+(defaults to `False`). If this field is set to `True` the
+per view (profile) quotas are governed by the computational
+cost of the request. Note that using cost based quotas will
+higher enable sampling rates. (10 Million for `SMALL`,
+100M for `LARGE`. See the
+[limits and quotas documentation](/analytics/devguides/reporting/core/v4/limits-quotas#analytics_reporting_api_v4) for details.
 */
 
 /**
  * @typedef GetReportsResponse
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).Report[]} reports Responses corresponding to each of the request.
- */
+* @property {integer} queryCost The amount of resource quota tokens deducted to execute the query. Includes
+all responses.
+* @property {analyticsreporting(v4).Report[]} reports Responses corresponding to each of the request.
+* @property {analyticsreporting(v4).ResourceQuotasRemaining} resourceQuotasRemaining The amount of resource quota remaining for the property.
+*/
 
 /**
  * @typedef Metric
@@ -523,6 +536,14 @@ within a `batchGet` method must contain the same `viewId`.
  * @type object
  * @property {string[]} dimensions List of requested dimensions.
  * @property {analyticsreporting(v4).DateRangeValues[]} metrics List of metrics for each requested DateRange.
+ */
+
+/**
+ * @typedef ResourceQuotasRemaining
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {integer} dailyQuotaTokensRemaining Daily resource quota remaining remaining.
+ * @property {integer} hourlyQuotaTokensRemaining Hourly resource quota tokens remaining.
  */
 
 /**

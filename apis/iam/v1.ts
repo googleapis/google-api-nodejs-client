@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Identity and Access Management (IAM) API
@@ -1467,7 +1469,7 @@ address or the `unique_id` of the service account.
 
 In responses the resource name will always be in the format
 `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
-* @property {string} oauth2ClientId @OutputOnly. The OAuth2 client id for the service account.
+* @property {string} oauth2ClientId @OutputOnly The OAuth2 client id for the service account.
 This is used in conjunction with the OAuth2 clientconfig API to make
 three legged OAuth2 (3LO) flows to access the data of Google users.
 * @property {string} projectId @OutputOnly The id of the project that owns the service account.

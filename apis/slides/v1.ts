@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Slides API
@@ -1388,6 +1390,10 @@ any other fill fields set in the same request will be ignored.
  * @typedef ShapeProperties
  * @memberOf! slides(v1)
  * @type object
+* @property {string} contentAlignment The alignment of the content in the shape. If unspecified,
+the alignment is inherited from a parent placeholder if it exists. If the
+shape has no parent, the default alignment matches the alignment for new
+shapes created in the Slides editor.
 * @property {slides(v1).Link} link The hyperlink destination of the shape. If unset, there is no link. Links
 are not inherited from parent placeholders.
 * @property {slides(v1).Outline} outline The outline of the shape. If unset, the outline is inherited from a
@@ -1591,6 +1597,8 @@ case, any other fill fields set in the same request will be ignored.
  * @typedef TableCellProperties
  * @memberOf! slides(v1)
  * @type object
+* @property {string} contentAlignment The alignment of the content in the table cell. The default alignment
+matches the alignment for newly created table cells in the Slides editor.
 * @property {slides(v1).TableCellBackgroundFill} tableCellBackgroundFill The background fill of the table cell. The default fill matches the fill
 for newly created table cells in the Slides editor.
 */

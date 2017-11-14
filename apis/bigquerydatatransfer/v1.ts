@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * BigQuery Data Transfer API
@@ -1305,6 +1307,18 @@ For example: `&quot;projects/example-project/locations/us-east1&quot;`
  */
 
 /**
+ * @typedef Status
+ * @memberOf! bigquerydatatransfer(v1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There is a common set of
+message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+
+/**
  * @typedef TransferConfig
  * @memberOf! bigquerydatatransfer(v1)
  * @type object
@@ -1364,6 +1378,7 @@ When set to 0, the data source service account credentials are used.
 * @property {string} destinationDatasetId The BigQuery target dataset id.
 * @property {string} endTime Output only. Time when transfer run ended.
 Parameter ignored by server for input requests.
+* @property {bigquerydatatransfer(v1).Status} errorStatus Status of the transfer run.
 * @property {string} name The resource name of the transfer run.
 Transfer run names have the form
 `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.

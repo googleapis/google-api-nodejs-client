@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Tag Manager API
@@ -2304,6 +2306,7 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {string} notes User notes on how to apply this tag in the container.
  * @property {tagmanager(v1).Parameter[]} parameter The tag&#39;s parameters.
  * @property {string} parentFolderId Parent folder id.
+ * @property {boolean} paused True if the tag is paused.
  * @property {tagmanager(v1).Parameter} priority User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
  * @property {string} scheduleEndMs The end timestamp in milliseconds to schedule a tag.
  * @property {string} scheduleStartMs The start timestamp in milliseconds to schedule a tag.
@@ -2330,19 +2333,28 @@ function Tagmanager(options) { // eslint-disable-line
  * @property {tagmanager(v1).Condition[]} autoEventFilter Used in the case of auto event tracking.
  * @property {tagmanager(v1).Parameter} checkValidation Whether or not we should only fire tags if the form submit or link click event is not cancelled by some other event handler (e.g. because of validation). Only valid for Form Submission and Link Click triggers.
  * @property {string} containerId GTM Container ID.
+ * @property {tagmanager(v1).Parameter} continuousTimeMinMilliseconds A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
  * @property {tagmanager(v1).Condition[]} customEventFilter Used in the case of custom event, which is fired iff all Conditions are true.
- * @property {tagmanager(v1).Parameter} enableAllVideos Reloads the videos in the page that don&#39;t already have the YT API enabled. If false, only capture events from videos that already have the API enabled. Only valid for YouTube triggers.
  * @property {tagmanager(v1).Parameter} eventName Name of the GTM event that is fired. Only valid for Timer triggers.
  * @property {tagmanager(v1).Condition[]} filter The trigger will only fire iff all Conditions are true.
  * @property {string} fingerprint The fingerprint of the GTM Trigger as computed at storage time. This value is recomputed whenever the trigger is modified.
+ * @property {tagmanager(v1).Parameter} horizontalScrollPercentageList List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
  * @property {tagmanager(v1).Parameter} interval Time between triggering recurring Timer Events (in milliseconds). Only valid for Timer triggers.
+ * @property {tagmanager(v1).Parameter} intervalSeconds Time between Timer Events to fire (in seconds). Only valid for AMP Timer trigger.
  * @property {tagmanager(v1).Parameter} limit Limit of the number of GTM events this Timer Trigger will fire. If no limit is set, we will continue to fire GTM events until the user leaves the page. Only valid for Timer triggers.
+ * @property {tagmanager(v1).Parameter} maxTimerLengthSeconds Max time to fire Timer Events (in seconds). Only valid for AMP Timer trigger.
  * @property {string} name Trigger display name.
+ * @property {tagmanager(v1).Parameter[]} parameter Additional parameters.
  * @property {string} parentFolderId Parent folder id.
+ * @property {tagmanager(v1).Parameter} selector A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
+ * @property {tagmanager(v1).Parameter} totalTimeMinMilliseconds A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
  * @property {string} triggerId The Trigger ID uniquely identifies the GTM Trigger.
  * @property {string} type Defines the data layer event that causes this trigger.
  * @property {tagmanager(v1).Parameter} uniqueTriggerId Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers.
- * @property {tagmanager(v1).Parameter} videoPercentageList List of integer percentage values. The trigger will fire as each percentage is reached in any instrumented videos. Only valid for YouTube triggers.
+ * @property {tagmanager(v1).Parameter} verticalScrollPercentageList List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled vertically. Only valid for AMP scroll triggers.
+ * @property {tagmanager(v1).Parameter} visibilitySelector A visibility trigger CSS selector (i.e. &quot;#id&quot;). Only valid for AMP Visibility trigger.
+ * @property {tagmanager(v1).Parameter} visiblePercentageMax A visibility trigger maximum percent visibility. Only valid for AMP Visibility trigger.
+ * @property {tagmanager(v1).Parameter} visiblePercentageMin A visibility trigger minimum percent visibility. Only valid for AMP Visibility trigger.
  * @property {tagmanager(v1).Parameter} waitForTags Whether or not we should delay the form submissions or link opening until all of the tags have fired (by preventing the default action and later simulating the default action). Only valid for Form Submission and Link Click triggers.
  * @property {tagmanager(v1).Parameter} waitForTagsTimeout How long to wait (in milliseconds) for tags to fire when &#39;waits_for_tags&#39; above evaluates to true. Only valid for Form Submission and Link Click triggers.
  */

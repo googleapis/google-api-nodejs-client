@@ -15,57 +15,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
 
+import * as apis from '../apis';
+
 import {Discovery} from './discovery';
 
 const discovery = new Discovery({debug: false, includePrivate: false});
-
-/**
- * Load the apis from apis index file
- * This file holds all version information
- * @private
- */
-const apis = {};
-
-/**
- * Return a Function that requires an API from the disk
- * @param  {String} filename Filename of API
- * @return {function}        function used to require the API from disk
- * @private
- */
-function requireAPI(filename) {
-  return function(options) {
-    const type = typeof options;
-    let version;
-    if (type === 'string') {
-      version = options;
-      options = {};
-    } else if (type === 'object') {
-      version = options.version;
-      delete options.version;
-    } else {
-      throw new Error('Argument error: Accepts only string or object');
-    }
-    try {
-      const endpointPath =
-          path.join(__dirname, filename, path.basename(version));
-      // Creating an object, so Pascal case is appropriate.
-      // tslint:disable-next-line
-      const Endpoint = require(endpointPath);
-      const ep = new Endpoint(options);
-      ep.google = this;          // for drive.google.transporter
-      return Object.freeze(ep);  // create new & freeze
-    } catch (e) {
-      throw new Error(util.format(
-          'Unable to load endpoint %s("%s"): %s', filename, version,
-          e.message));
-    }
-  };
-}
-
-// Dynamically discover available APIs
-fs.readdirSync(path.join(__dirname, '../apis')).forEach(file => {
-  apis[file] = requireAPI('../apis/' + file);
-});
 
 /**
  * @class GoogleAuth

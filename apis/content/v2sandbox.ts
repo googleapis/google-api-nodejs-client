@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Content API for Shopping
@@ -720,7 +722,6 @@ United States
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {content(v2sandbox).OrderCancellation[]} cancellations Cancellations of the line item.
- * @property {string} channelType The channel type of the order: &quot;purchaseOnGoogle&quot; or &quot;googleExpress&quot;.
  * @property {string} id The id of the line item.
  * @property {content(v2sandbox).Price} price Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
  * @property {content(v2sandbox).OrderLineItemProduct} product Product data from the time of the order placement.
@@ -902,7 +903,7 @@ Acceptable values are:
  * @typedef OrderShipmentLineItemShipment
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} lineItemId The id of the line item that is shipped.
+ * @property {string} lineItemId The id of the line item that is shipped. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity that is shipped.
  */
 
@@ -933,7 +934,7 @@ Acceptable values are:
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {content(v2sandbox).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
- * @property {string} lineItemId The ID of the line item to cancel.
+ * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  * @property {integer} quantity The quantity to cancel.
  * @property {string} reason The reason for the cancellation.
@@ -1019,7 +1020,7 @@ Acceptable values are:
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {content(v2sandbox).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
- * @property {string} lineItemId The ID of the line item to cancel.
+ * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to cancel.
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
@@ -1038,7 +1039,7 @@ Acceptable values are:
  * @typedef OrdersCustomBatchRequestEntryReturnLineItem
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} lineItemId The ID of the line item to return.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to return.
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
@@ -1140,7 +1141,7 @@ Acceptable values are:
  * @typedef OrdersReturnLineItemRequest
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} lineItemId The ID of the line item to return.
+ * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  * @property {integer} quantity The quantity to return.
  * @property {string} reason The reason for the return.
