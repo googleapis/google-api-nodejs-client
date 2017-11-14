@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud Deployment Manager Alpha API
@@ -1603,7 +1605,7 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @property {string} id Output only. Unique identifier for the resource; defined by the server.
  * @property {string} insertTime Output only. Timestamp when the composite type was created, in RFC3339 text format.
  * @property {deploymentmanager(alpha).CompositeTypeLabelEntry[]} labels Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
- * @property {string} name Name of the composite type.
+ * @property {string} name Name of the composite type, must follow the expression: [a-z]([-a-z0-9_.]{0,61}[a-z0-9])?.
  * @property {deploymentmanager(alpha).Operation} operation Output only. The Operation that most recently ran, or is currently running, on this composite type.
  * @property {string} selfLink Output only. Self link for the type provider.
  * @property {string} status 

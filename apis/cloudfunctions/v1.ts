@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud Functions API
@@ -568,7 +570,7 @@ See each *service&#39;s* documentation for supported formats.
 
 If no string is provided, the default service implementing the API will
 be used. For example, `storage.googleapis.com` is the default for all
-event types in the &#39;google.storage` namespace.
+event types in the `google.storage` namespace.
 */
 
 /**
@@ -690,6 +692,7 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} target Target of the operation - for example
 projects/project-1/locations/region-1/functions/function-1
 * @property {string} type Type of operation.
+* @property {string} updateTime The last update timestamp of the operation.
 * @property {string} versionId Version id of the function created or updated by an API call.
 This field is only pupulated for Create and Update operations.
 */
@@ -702,6 +705,7 @@ This field is only pupulated for Create and Update operations.
 * @property {string} target Target of the operation - for example
 projects/project-1/locations/region-1/functions/function-1
 * @property {string} type Type of operation.
+* @property {string} updateTime The last update timestamp of the operation.
 * @property {string} versionId Version id of the function created or updated by an API call.
 This field is only pupulated for Create and Update operations.
 */

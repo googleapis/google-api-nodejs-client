@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Storage Transfer API
@@ -1297,8 +1299,8 @@ allow the value 60 if it allows leap-seconds.
 * @property {string} bytesDeletedFromSource Bytes that are deleted from the data source.
 * @property {string} bytesFailedToDeleteFromSink Bytes that failed to be deleted from the data sink.
 * @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred,
-which will be copied, excluded based on conditions, or skipped due to
-failures.
+excluding any that are filtered based on object conditions or skipped due
+to sync.
 * @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
 * @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
 * @property {string} bytesFromSourceSkippedBySync Bytes in the data source that are not transferred because they already
@@ -1308,8 +1310,8 @@ exist in the data sink.
 * @property {string} objectsDeletedFromSource Objects that are deleted from the data source.
 * @property {string} objectsFailedToDeleteFromSink Objects that failed to be deleted from the data sink.
 * @property {string} objectsFoundFromSource Objects found in the data source that are scheduled to be transferred,
-which will be copied, excluded based on conditions, or skipped due to
-failures.
+excluding any that are filtered based on object conditions or skipped due
+to sync.
 * @property {string} objectsFoundOnlyFromSink Objects found only in the data sink that are scheduled to be deleted.
 * @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
 * @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already

@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Apps Script API
@@ -151,9 +153,8 @@ they can only return primitive types such as a `string`, `number`, `array`,
  * @typedef Status
  * @memberOf! script(v1)
  * @type object
-* @property {integer} code The status code. For this API, this value either:
-&lt;ul&gt; &lt;li&gt; 3, indicating an `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1, indicating a `CANCELLED` asynchronous execution.&lt;/li&gt; &lt;/ul&gt;
-* @property {object[]} details An array that contains a single ExecutionError object that provides information about the nature of the error.
-* @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [google.rpc.Status.details](google.rpc.Status.details) field, or localized by the client.
-*/
+ * @property {integer} code The status code. For this API, this value either: &lt;ul&gt; &lt;li&gt; 3, indicating an `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1, indicating a `CANCELLED` asynchronous execution.&lt;/li&gt; &lt;/ul&gt;
+ * @property {object[]} details An array that contains a single ExecutionError object that provides information about the nature of the error.
+ * @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [google.rpc.Status.details](google.rpc.Status.details) field, or localized by the client.
+ */
 export = Script;

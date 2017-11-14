@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Play EMM API
@@ -1729,7 +1731,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.managedconfigurationsforuser.patch
      *
-     * @desc Adds or updates a per-user managed configuration for an app for the specified user. This method supports patch semantics.
+     * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties. This method supports patch semantics.
      *
      * @alias androidenterprise.managedconfigurationsforuser.patch
      * @memberOf! androidenterprise(v1)
@@ -1769,7 +1771,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.managedconfigurationsforuser.update
      *
-     * @desc Adds or updates a per-user managed configuration for an app for the specified user.
+     * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties.
      *
      * @alias androidenterprise.managedconfigurationsforuser.update
      * @memberOf! androidenterprise(v1)
@@ -1800,6 +1802,48 @@ function Androidenterprise(options) { // eslint-disable-line
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.managedconfigurationssettings = {
+
+    /**
+     * androidenterprise.managedconfigurationssettings.list
+     *
+     * @desc Lists all the managed configurations settings for the specified app. Only the ID and the name is set.
+     *
+     * @alias androidenterprise.managedconfigurationssettings.list
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.productId The ID of the product for which the managed configurations settings applies to.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['enterpriseId', 'productId'],
+        pathParams: ['enterpriseId', 'productId'],
         context: self
       };
 
@@ -3286,6 +3330,15 @@ function Androidenterprise(options) { // eslint-disable-line
  */
 
 /**
+ * @typedef ConfigurationVariables
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#configurationVariables&quot;.
+ * @property {string} mcmId The ID of the managed configurations settings.
+ * @property {androidenterprise(v1).VariableSet[]} variableSet The variable set that is attributed to the user.
+ */
+
+/**
  * @typedef Device
  * @memberOf! androidenterprise(v1)
  * @type object
@@ -3441,6 +3494,7 @@ Possible values include:
  * @typedef ManagedConfiguration
  * @memberOf! androidenterprise(v1)
  * @type object
+ * @property {androidenterprise(v1).ConfigurationVariables} configurationVariables Contains the ID of the managed configuration profile and the set of configuration variables (if any) defined for the user.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfiguration&quot;.
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The set of managed properties for this configuration.
  * @property {string} productId The ID of the product that the managed configuration is for, e.g. &quot;app:com.google.android.gm&quot;.
@@ -3460,6 +3514,24 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsForUserListResponse&quot;.
  * @property {androidenterprise(v1).ManagedConfiguration[]} managedConfigurationForUser A managed configuration for an app for a specific user.
+ */
+
+/**
+ * @typedef ManagedConfigurationsSettings
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsSettings&quot;.
+ * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The set of managed properties for this configuration.
+ * @property {string} mcmId The ID of the managed configurations settings.
+ * @property {string} name The name of the managed configurations settings.
+ */
+
+/**
+ * @typedef ManagedConfigurationsSettingsListResponse
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsSettingsListResponse&quot;.
+ * @property {androidenterprise(v1).ManagedConfigurationsSettings[]} managedConfigurationsSettings A managed configurations settings for an app that may be assigned to a group of users in an enterprise.
  */
 
 /**
@@ -3778,5 +3850,14 @@ No attempt is made to verify that all pages are reachable from the homepage.
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#usersListResponse&quot;.
  * @property {androidenterprise(v1).User[]} user A user of an enterprise.
+ */
+
+/**
+ * @typedef VariableSet
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#variableSet&quot;.
+ * @property {string} placeholder The placeholder string; defined by EMM.
+ * @property {string} userValue The value of the placeholder, specific to the user.
  */
 export = Androidenterprise;

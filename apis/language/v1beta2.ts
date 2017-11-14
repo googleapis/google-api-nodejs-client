@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud Natural Language API
@@ -464,12 +466,14 @@ the entity in the provided document.
  * @typedef Features
  * @memberOf! language(v1beta2)
  * @type object
- * @property {boolean} classifyText Classify the full document into categories.
- * @property {boolean} extractDocumentSentiment Extract document-level sentiment.
- * @property {boolean} extractEntities Extract entities.
- * @property {boolean} extractEntitySentiment Extract entities and their associated sentiment.
- * @property {boolean} extractSyntax Extract syntax information.
- */
+* @property {boolean} classifyText Classify the full document into categories. If this is true,
+the API will use the default model which classifies into a
+[predefined taxonomy](/natural-language/docs/categories).
+* @property {boolean} extractDocumentSentiment Extract document-level sentiment.
+* @property {boolean} extractEntities Extract entities.
+* @property {boolean} extractEntitySentiment Extract entities and their associated sentiment.
+* @property {boolean} extractSyntax Extract syntax information.
+*/
 
 /**
  * @typedef PartOfSpeech

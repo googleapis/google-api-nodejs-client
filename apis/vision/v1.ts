@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud Vision API
@@ -311,7 +313,8 @@ indicate the location of the scene in the image, and another location
 may indicate the location of the place where the image was taken.
 Location information is usually present for landmarks.
 * @property {string} mid Opaque entity ID. Some IDs may be available in
-[Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+[Google Knowledge Graph Search
+API](https://developers.google.com/knowledge-graph/).
 * @property {vision(v1).Property[]} properties Some entities may have optional user-supplied `Property` (name/value)
 fields, such a score or string that qualifies the entity.
 * @property {number} score Overall score of the result. Range [0, 1].

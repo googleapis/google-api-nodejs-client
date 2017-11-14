@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Service User API
@@ -515,10 +517,6 @@ cross-domain traffic, would allow the backends served from this endpoint to
 receive and respond to HTTP OPTIONS requests. The response will be used by
 the browser to determine whether the subsequent cross-origin request is
 allowed to proceed.
-* @property {string[]} apis The list of APIs served by this endpoint.
-
-If no APIs are specified this translates to &quot;all APIs&quot; exported by the
-service, as defined in the top-level service configuration.
 * @property {string[]} features The list of features enabled on this endpoint.
 * @property {string} name The canonical name of this endpoint.
 * @property {string} target The specification of an Internet routable address of API frontend that will

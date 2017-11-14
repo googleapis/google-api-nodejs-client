@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud Machine Learning Engine
@@ -299,6 +301,45 @@ function Ml(options) { // eslint-disable-line
           params: params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * ml.projects.jobs.patch
+       *
+       * @desc Updates a specific job resource.  Currently the only supported fields to update are `labels`.
+       *
+       * @alias ml.projects.jobs.patch
+       * @memberOf! ml(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Required. The job name.
+       * @param {string=} params.updateMask Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource.  For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows:     {       "labels": {          "owner": "Google",          "color": "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"     } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated.  Currently the only supported update masks are `labels` and `etag`.
+       * @param {ml(v1).GoogleCloudMlV1__Job} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+
+        const parameters = {
+          options: Object.assign({
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -1175,17 +1216,29 @@ Defaults to one.
  * @typedef GoogleCloudMlV1__Job
  * @memberOf! ml(v1)
  * @type object
- * @property {string} createTime Output only. When the job was created.
- * @property {string} endTime Output only. When the job processing was completed.
- * @property {string} errorMessage Output only. The details of a failure or a cancellation.
- * @property {string} jobId Required. The user-specified id of the job.
- * @property {ml(v1).GoogleCloudMlV1__PredictionInput} predictionInput Input parameters to create a prediction job.
- * @property {ml(v1).GoogleCloudMlV1__PredictionOutput} predictionOutput The current prediction job result.
- * @property {string} startTime Output only. When the job processing was started.
- * @property {string} state Output only. The detailed state of a job.
- * @property {ml(v1).GoogleCloudMlV1__TrainingInput} trainingInput Input parameters to create a training job.
- * @property {ml(v1).GoogleCloudMlV1__TrainingOutput} trainingOutput The current training job result.
- */
+* @property {string} createTime Output only. When the job was created.
+* @property {string} endTime Output only. When the job processing was completed.
+* @property {string} errorMessage Output only. The details of a failure or a cancellation.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a job from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform job updates in order to avoid race
+conditions: An `etag` is returned in the response to `GetJob`, and
+systems are expected to put that etag in the request to `UpdateJob` to
+ensure that their change will be applied to the same version of the job.
+* @property {string} jobId Required. The user-specified id of the job.
+* @property {object} labels Optional. One or more labels that you can add, to organize your jobs.
+Each label is a key-value pair, where both the key and the value are
+arbitrary strings that you supply.
+For more information, see the documentation on
+&lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
+* @property {ml(v1).GoogleCloudMlV1__PredictionInput} predictionInput Input parameters to create a prediction job.
+* @property {ml(v1).GoogleCloudMlV1__PredictionOutput} predictionOutput The current prediction job result.
+* @property {string} startTime Output only. When the job processing was started.
+* @property {string} state Output only. The detailed state of a job.
+* @property {ml(v1).GoogleCloudMlV1__TrainingInput} trainingInput Input parameters to create a training job.
+* @property {ml(v1).GoogleCloudMlV1__TrainingOutput} trainingOutput The current training job result.
+*/
 
 /**
  * @typedef GoogleCloudMlV1__ListJobsResponse
@@ -1234,6 +1287,18 @@ handle prediction requests that do not specify a version.
 You can change the default version by calling
 [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
 * @property {string} description Optional. The description specified for the model when it was created.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a model from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform model updates in order to avoid race
+conditions: An `etag` is returned in the response to `GetModel`, and
+systems are expected to put that etag in the request to `UpdateModel` to
+ensure that their change will be applied to the model as intended.
+* @property {object} labels Optional. One or more labels that you can add, to organize your models.
+Each label is a key-value pair, where both the key and the value are
+arbitrary strings that you supply.
+For more information, see the documentation on
+&lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
 * @property {string} name Required. The name specified for the model when it was created.
 
 The model name must be unique within the project it is created in.
@@ -1254,14 +1319,16 @@ Note:
  * @typedef GoogleCloudMlV1__OperationMetadata
  * @memberOf! ml(v1)
  * @type object
- * @property {string} createTime The time the operation was submitted.
- * @property {string} endTime The time operation processing completed.
- * @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
- * @property {string} modelName Contains the name of the model associated with the operation.
- * @property {string} operationType The operation type.
- * @property {string} startTime The time operation processing started.
- * @property {ml(v1).GoogleCloudMlV1__Version} version Contains the version associated with the operation.
- */
+* @property {string} createTime The time the operation was submitted.
+* @property {string} endTime The time operation processing completed.
+* @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
+* @property {object} labels The user labels, inherited from the model or the model version being
+operated on.
+* @property {string} modelName Contains the name of the model associated with the operation.
+* @property {string} operationType The operation type.
+* @property {string} startTime The time operation processing started.
+* @property {ml(v1).GoogleCloudMlV1__Version} version Contains the version associated with the operation.
+*/
 
 /**
  * @typedef GoogleCloudMlV1__ParameterSpec
@@ -1496,11 +1563,23 @@ this location is useful only as a historical record.
 The total number of model files can&#39;t exceed 1000.
 * @property {string} description Optional. The description specified for the version when it was created.
 * @property {string} errorMessage Output only. The details of a failure or a cancellation.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a model from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform model updates in order to avoid race
+conditions: An `etag` is returned in the response to `GetVersion`, and
+systems are expected to put that etag in the request to `UpdateVersion` to
+ensure that their change will be applied to the model as intended.
 * @property {boolean} isDefault Output only. If true, this version will be used to handle prediction
 requests that do not specify a version.
 
 You can change the default version by calling
 [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
+* @property {object} labels Optional. One or more labels that you can add, to organize your model
+versions. Each label is a key-value pair, where both the key and the value
+are arbitrary strings that you supply.
+For more information, see the documentation on
+&lt;a href=&quot;/ml-engine/docs/how-tos/resource-labels&quot;&gt;using labels&lt;/a&gt;.
 * @property {string} lastUseTime Output only. The time the version was last used for prediction.
 * @property {ml(v1).GoogleCloudMlV1__ManualScaling} manualScaling Manually select the number of nodes to use for serving the
 model. You should generally use `auto_scaling` with an appropriate

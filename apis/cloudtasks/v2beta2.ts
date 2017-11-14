@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Cloud Tasks API
@@ -44,6 +46,57 @@ function Cloudtasks(options) { // eslint-disable-line
        * cloudtasks.projects.locations.get
        *
        * @desc Get information about a location.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud Tasks API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudtasks
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudTasks = google.cloudtasks('v2beta2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Resource name for the location.
+       *     name: 'projects/my-project/locations/my-location',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudTasks.projects.locations.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudtasks.projects.locations.get
        * @memberOf! cloudtasks(v2beta2)
@@ -81,6 +134,70 @@ function Cloudtasks(options) { // eslint-disable-line
        * cloudtasks.projects.locations.list
        *
        * @desc Lists information about the supported locations for this service.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud Tasks API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/cloudtasks
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudTasks = google.cloudtasks('v2beta2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The resource that owns the locations collection, if applicable.
+       *     name: 'projects/my-project',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var locationsPage = response['locations'];
+       *     if (!locationsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < locationsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in `locationsPage`:
+       *       console.log(JSON.stringify(locationsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudTasks.projects.locations.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   cloudTasks.projects.locations.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudtasks.projects.locations.list
        * @memberOf! cloudtasks(v2beta2)
@@ -396,7 +513,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.getIamPolicy
          *
-         * @desc Gets the access control policy for a Queue. Returns an empty policy if the resource exists and does not have a policy set.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.getIamPolicy` 
+         * @desc Gets the access control policy for a Queue. Returns an empty policy if the resource exists and does not have a policy set.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.getIamPolicy`
          *
          * @example
          * // BEFORE RUNNING:
@@ -669,7 +786,7 @@ function Cloudtasks(options) { // eslint-disable-line
          * @memberOf! cloudtasks(v2beta2)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain uppercase and lowercase letters,   numbers, hyphens, colons, and periods; that is, it must match   the regular expression: `[a-zA-Z\\d-:\\.]+`. * `QUEUE_ID` can contain uppercase and lowercase letters,   numbers, and hyphens; that is, it must match the regular   expression: `[a-zA-Z\\d-]+`. The maximum length is 100   characters.  Caller-specified and required in CreateQueueRequest, after which it becomes output only.
+         * @param {string} params.name The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.). * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.  Caller-specified and required in CreateQueueRequest, after which it becomes output only.
          * @param {string=} params.updateMask A mask used to specify which fields of the queue are being updated.  If empty, then all fields will be updated.
          * @param {cloudtasks(v2beta2).Queue} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -702,7 +819,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.pause
          *
-         * @desc Pauses the queue.  If a queue is paused then the system will stop executing the tasks in the queue until it is resumed via CloudTasks.ResumeQueue. Tasks can still be added when the queue is paused. The state of the queue is stored in Queue.queue_state; if paused it will be set to Queue.QueueState.PAUSED.  WARNING: This method is only available to whitelisted users. Using this method carries some risk. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully and then sign up for [whitelist access to this method](https://goo.gl/Fe5mUy).
+         * @desc Pauses the queue.  If a queue is paused then the system will stop executing the tasks in the queue until it is resumed via CloudTasks.ResumeQueue. Tasks can still be added when the queue is paused. The state of the queue is stored in Queue.queue_state; if paused it will be set to Queue.QueueState.PAUSED.
          *
          * @example
          * // BEFORE RUNNING:
@@ -892,7 +1009,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.resume
          *
-         * @desc Resume a queue.  This method resumes a queue after it has been Queue.QueueState.PAUSED or Queue.QueueState.DISABLED. The state of a queue is stored in Queue.queue_state; after calling this method it will be set to Queue.QueueState.RUNNING.  WARNING: This method is only available to whitelisted users. Using this method carries some risk. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully and then sign up for [whitelist access to this method](https://goo.gl/Fe5mUy).  WARNING: Resuming many high-QPS queues at the same time can lead to target overloading. If you are resuming high-QPS queues, follow the 500/50/5 pattern described in [Managing Cloud Tasks Scaling Risks](/cloud-tasks/pdfs/managing-cloud-tasks-scaling-risks-2017-06-05.pdf).
+         * @desc Resume a queue.  This method resumes a queue after it has been Queue.QueueState.PAUSED or Queue.QueueState.DISABLED. The state of a queue is stored in Queue.queue_state; after calling this method it will be set to Queue.QueueState.RUNNING.  WARNING: Resuming many high-QPS queues at the same time can lead to target overloading. If you are resuming high-QPS queues, follow the 500/50/5 pattern described in [Managing Cloud Tasks Scaling Risks](/cloud-tasks/pdfs/managing-cloud-tasks-scaling-risks-2017-06-05.pdf).
          *
          * @example
          * // BEFORE RUNNING:
@@ -987,7 +1104,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.setIamPolicy
          *
-         * @desc Sets the access control policy for a Queue. Replaces any existing policy.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.setIamPolicy` 
+         * @desc Sets the access control policy for a Queue. Replaces any existing policy.  Note: The Cloud Console does not check queue-level IAM permissions yet. Project-level permissions are required to use the Cloud Console.  Authorization requires the following [Google IAM](/iam) permission on the specified resource parent:  * `cloudtasks.queues.setIamPolicy`
          *
          * @example
          * // BEFORE RUNNING:
@@ -1081,7 +1198,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.testIamPermissions
          *
-         * @desc Returns permissions that a caller has on a Queue. If the resource does not exist, this will return an empty set of permissions, not a google.rpc.Code.NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning. 
+         * @desc Returns permissions that a caller has on a Queue. If the resource does not exist, this will return an empty set of permissions, not a google.rpc.Code.NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
          *
          * @example
          * // BEFORE RUNNING:
@@ -1176,7 +1293,7 @@ function Cloudtasks(options) { // eslint-disable-line
           /**
            * cloudtasks.projects.locations.queues.tasks.acknowledge
            *
-           * @desc Acknowledges a pull task.  The lease holder, that is, the entity that received this task in a PullTasksResponse, must call this method to indicate that the work associated with the task has finished.  The lease holder must acknowledge a task within the PullTasksRequest.lease_duration or the lease will expire and the task will become ready to be returned in a different PullTasksResponse. After the task is acknowledged, it will not be returned by a later CloudTasks.PullTasks, CloudTasks.GetTask, or CloudTasks.ListTasks.
+           * @desc Acknowledges a pull task.  The lease holder, that is, the entity that received this task in a PullTasksResponse, must call this method to indicate that the work associated with the task has finished.  The lease holder must acknowledge a task within the PullTasksRequest.lease_duration or the lease will expire and the task will become ready to be returned in a different PullTasksResponse. After the task is acknowledged, it will not be returned by a later CloudTasks.PullTasks, CloudTasks.GetTask, or CloudTasks.ListTasks.  To acknowledge multiple tasks at the same time, use [HTTP batching](/storage/docs/json_api/v1/how-tos/batch) or the batching documentation for your client library, for example https://developers.google.com/api-client-library/python/guide/batch.
            *
            * @example
            * // BEFORE RUNNING:
@@ -2092,8 +2209,6 @@ task-specific information, are also be sent to the task handler; see
 The app&#39;s request handler for the task&#39;s target URL must be able to handle
 HTTP requests with this http_method, otherwise the task attempt will fail
 with error code 405 (Method Not Allowed). See
-the Request-Line is not allowed for the resource identified by the
-Request-URI&quot;. See
 [Writing a push task request handler](/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
 and the documentation for the request handlers in the language your app is
 written in e.g.
@@ -2135,9 +2250,9 @@ task-level app_engine_routing.
  * @typedef AppEngineRouting
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {string} host Output only.
+* @property {string} host Output only. The host that the task is sent to.
 
-The host that the task is sent to. For more information, see
+For more information, see
 [How Requests are Routed](/appengine/docs/standard/python/how-requests-are-routed).
 
 The host is constructed as:
@@ -2246,25 +2361,17 @@ AppEngineRouting.instance are the empty string.
  * @typedef AttemptStatus
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {string} dispatchTime Output only.
-
-The time that this attempt was dispatched.
+* @property {string} dispatchTime Output only. The time that this attempt was dispatched.
 
 `dispatch_time` will be truncated to the nearest microsecond.
-* @property {cloudtasks(v2beta2).Status} responseStatus Output only.
-
-The response from the target for this attempt.
+* @property {cloudtasks(v2beta2).Status} responseStatus Output only. The response from the target for this attempt.
 
 If the task has not been attempted or the task is currently running
 then the response status is google.rpc.Code.UNKNOWN.
-* @property {string} responseTime Output only.
-
-The time that this attempt response was received.
+* @property {string} responseTime Output only. The time that this attempt response was received.
 
 `response_time` will be truncated to the nearest microsecond.
-* @property {string} scheduleTime Output only.
-
-The time that this attempt was scheduled.
+* @property {string} scheduleTime Output only. The time that this attempt was scheduled.
 
 `schedule_time` will be truncated to the nearest microsecond.
 */
@@ -2473,10 +2580,16 @@ policy is overwritten blindly.
  * @memberOf! cloudtasks(v2beta2)
  * @type object
 * @property {string} payload A data payload consumed by the task worker to execute the task.
-* @property {string} tag A meta-data tag for this task.
+* @property {string} tag The task&#39;s tag.
 
-This value is used by CloudTasks.PullTasks calls when
-PullTasksRequest.filter is `tag=&lt;tag&gt;`.
+Tags allow similar tasks to be processed in a batch. If you label
+tasks with a tag, your task worker can pull tasks
+with the same tag using PullTasksRequest.filter. For example,
+if you want to aggregate the events associated with a specific
+user once a day, you could tag tasks with the user ID.
+
+The task&#39;s tag can only be set when the
+task is created.
 
 The tag must be less than 500 bytes.
 */
@@ -2586,13 +2699,10 @@ An App Engine queue is a queue that has an AppEngineHttpTarget.
 The queue name must have the following format:
 `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
 
-* `PROJECT_ID` can contain uppercase and lowercase letters,
-  numbers, hyphens, colons, and periods; that is, it must match
-  the regular expression: `[a-zA-Z\\d-:\\.]+`.
-* `QUEUE_ID` can contain uppercase and lowercase letters,
-  numbers, and hyphens; that is, it must match the regular
-  expression: `[a-zA-Z\\d-]+`. The maximum length is 100
-  characters.
+* `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
+   hyphens (-), colons (:), or periods (.).
+* `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
+  hyphens (-). The maximum length is 100 characters.
 
 Caller-specified and required in CreateQueueRequest, after which
 it becomes output only.
@@ -2600,19 +2710,17 @@ it becomes output only.
 * @property {cloudtasks(v2beta2).PullTarget} pullTarget Pull target.
 
 A pull queue is a queue that has a PullTarget.
-* @property {string} purgeTime Output only.
+* @property {string} purgeTime Output only. The last time this queue was purged.
 
-The last time this queue was purged. All tasks that were
-created before this time were purged.
+All tasks that were created before this time
+were purged.
 
 A queue can be purged using CloudTasks.PurgeQueue, the
 [App Engine Task Queue SDK, or the Cloud Console](/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
 
 Purge time will be truncated to the nearest microsecond. Purge
 time will be zero if the queue has never been purged.
-* @property {string} queueState Output only.
-
-The state of the queue.
+* @property {string} queueState Output only. The state of the queue.
 
 `queue_state` can only be changed by called
 CloudTasks.PauseQueue, CloudTasks.ResumeQueue, or uploading
@@ -2645,13 +2753,13 @@ different ways:
  * @typedef RateLimits
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {integer} maxBurstSize Output only.
+* @property {integer} maxBurstSize Output only. The max burst size.
 
-The max burst size limits how fast the queue is processed when
-many tasks are in the queue and the rate is high. This field
-allows the queue to have a high rate so processing starts shortly
-after a task is enqueued, but still limits resource usage when
-many tasks are enqueued in a short period of time.
+Max burst size limits how fast the queue is processed when many
+tasks are in the queue and the rate is high. This field allows
+the queue to have a high rate so processing starts shortly after
+a task is enqueued, but still limits resource usage when many
+tasks are enqueued in a short period of time.
 
 * For App Engine queues, if
   RateLimits.max_tasks_dispatched_per_second is 1, this
@@ -2843,9 +2951,7 @@ only if Queue.app_engine_http_target is set.
 
 An App Engine task is a task that has AppEngineHttpRequest set.
 * @property {cloudtasks(v2beta2).AppEngineTaskTarget} appEngineTaskTarget Deprecated. Use Task.app_engine_http_request.
-* @property {string} createTime Output only.
-
-The time that the task was created.
+* @property {string} createTime Output only. The time that the task was created.
 
 `create_time` will be truncated to the nearest second.
 * @property {string} name The task name.
@@ -2853,17 +2959,12 @@ The time that the task was created.
 The task name must have the following format:
 `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
 
-* `PROJECT_ID` can contain uppercase and lowercase letters,
-  numbers, hyphens, colons, and periods; that is, it must match
-  the regular expression: `[a-zA-Z\\d-:\\.]+`.
-* `QUEUE_ID` can contain uppercase and lowercase letters,
-  numbers, and hyphens; that is, it must match the regular
-  expression: `[a-zA-Z\\d-]+`. The maximum length is 100
-  characters.
-* `TASK_ID` contain uppercase and lowercase letters, numbers,
-  underscores, and hyphens; that is, it must match the regular
-  expression: `[a-zA-Z\\d_-]+`. The maximum length is 500
-  characters.
+* `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
+   hyphens (-), colons (:), or periods (.).
+* `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
+  hyphens (-). The maximum length is 100 characters.
+* `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
+  hyphens (-), or underscores (_). The maximum length is 500 characters.
 
 Optionally caller-specified in CreateTaskRequest.
 * @property {cloudtasks(v2beta2).PullMessage} pullMessage Pull message contains data that should be used by the caller of
@@ -2882,41 +2983,31 @@ leased plus the PullTasksRequest.lease_duration.
 For App Engine queues, this is when the task will be attempted or retried.
 
 `schedule_time` will be truncated to the nearest microsecond.
-* @property {cloudtasks(v2beta2).TaskStatus} taskStatus Output only.
-
-Task status.
-* @property {string} view Output only.
-
-The view specifies which subset of the Task has been
-returned.
+* @property {cloudtasks(v2beta2).TaskStatus} taskStatus Output only. The task status.
+* @property {string} view Output only. The view specifies which subset of the Task has
+been returned.
 */
 
 /**
  * @typedef TaskStatus
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {string} attemptDispatchCount Output only.
+* @property {string} attemptDispatchCount Output only. The number of attempts dispatched.
 
-The number of attempts dispatched. This count includes tasks which have
-been dispatched but haven&#39;t received a response.
-* @property {string} attemptResponseCount Output only.
-
-The number of attempts which have received a response.
+This count includes tasks which have been dispatched but haven&#39;t
+received a response.
+* @property {string} attemptResponseCount Output only. The number of attempts which have received a response.
 
 This field is not calculated for
 [pull tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
-* @property {cloudtasks(v2beta2).AttemptStatus} firstAttemptStatus Output only.
-
-The status of the task&#39;s first attempt.
+* @property {cloudtasks(v2beta2).AttemptStatus} firstAttemptStatus Output only. The status of the task&#39;s first attempt.
 
 Only AttemptStatus.dispatch_time will be set.
 The other AttemptStatus information is not retained by Cloud Tasks.
 
 This field is not calculated for
 [pull tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
-* @property {cloudtasks(v2beta2).AttemptStatus} lastAttemptStatus Output only.
-
-The status of the task&#39;s last attempt.
+* @property {cloudtasks(v2beta2).AttemptStatus} lastAttemptStatus Output only. The status of the task&#39;s last attempt.
 
 This field is not calculated for
 [pull tasks](google.cloud.tasks.v2beta2.PullTaskTarget).

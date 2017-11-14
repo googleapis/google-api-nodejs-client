@@ -297,7 +297,11 @@ export class Generator {
             this.makeRequest({uri: methodSchema.sampleUrl}, (err, response) => {
               if (err) {
                 this.logResult(apiDiscoveryUrl, `Fragment request err: ${err}`);
-                return cb(err);
+                if (!err.message || err.message.indexOf('AccessDenied') === -1) {
+                  return cb(err);
+                } else {
+                  this.logResult(apiDiscoveryUrl, 'Ignoring error.');
+                }
               }
               this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
               if (response && response.codeFragment &&

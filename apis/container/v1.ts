@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Container Engine API
@@ -1364,6 +1366,70 @@ function Container(options) { // eslint-disable-line
          * container.projects.zones.clusters.setMaintenancePolicy
          *
          * @desc Sets the maintenance policy for a cluster.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk and run
+         * //    `gcloud beta auth application-default login`.
+         * //    For more information, see
+         * //    https://developers.google.com/identity/protocols/application-default-credentials
+         * // 3. Install the Node.js client library by running
+         * //    `npm install googleapis --save`
+         *
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * authorize(function(authClient) {
+         *   var request = {
+         *     // The Google Developers Console [project ID or project
+         *     // number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+         *
+         *     // The name of the Google Compute Engine
+         *     // [zone](/compute/docs/zones#available) in which the cluster
+         *     // resides.
+         *     zone: 'my-zone',  // TODO: Update placeholder value.
+         *
+         *     // The name of the cluster to update.
+         *     clusterId: 'my-cluster-id',  // TODO: Update placeholder value.
+         *
+         *     resource: {
+         *       // TODO: Add desired properties to the request body.
+         *     },
+         *
+         *     auth: authClient,
+         *   };
+         *
+         *   container.projects.zones.clusters.setMaintenancePolicy(request, function(err, response) {
+         *     if (err) {
+         *       console.error(err);
+         *       return;
+         *     }
+         *
+         *     // TODO: Change code below to process the `response` object:
+         *     console.log(JSON.stringify(response, null, 2));
+         *   });
+         * });
+         *
+         * function authorize(callback) {
+         *   google.auth.getApplicationDefault(function(err, authClient) {
+         *     if (err) {
+         *       console.error('authentication failed: ', err);
+         *       return;
+         *     }
+         *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *       authClient = authClient.createScoped(scopes);
+         *     }
+         *     callback(authClient);
+         *   });
+         * }
          *
          * @alias container.projects.zones.clusters.setMaintenancePolicy
          * @memberOf! container(v1)
@@ -3166,9 +3232,7 @@ For requests, this field should only be used in lieu of a
 &quot;node_pool&quot; object, since this configuration (along with the
 &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an
 auto-generated name. Do not use this and a node_pool at the same time.
-* @property {string[]} instanceGroupUrls [Output only] The resource URLs of [instance
-groups](/compute/docs/instance-groups/) associated with this
-cluster.
+* @property {string[]} instanceGroupUrls Deprecated. Use node_pools.instance_group_urls.
 * @property {container(v1).IPAllocationPolicy} ipAllocationPolicy Configuration for cluster IP allocation.
 * @property {string} labelFingerprint The fingerprint of the set of labels for this cluster.
 * @property {container(v1).LegacyAbac} legacyAbac Configuration for the legacy ABAC authorization mode.
@@ -3610,16 +3674,16 @@ only if a valid configuration is present.
 Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt;
 is sufficient for this number of instances. You must also have available
 firewall and routes quota.
-* @property {string[]} instanceGroupUrls [Output only] The resource URLs of [instance
-groups](/compute/docs/instance-groups/) associated with this
-node pool.
+* @property {string[]} instanceGroupUrls [Output only] The resource URLs of the [managed instance
+groups](/compute/docs/instance-groups/creating-groups-of-managed-instances)
+associated with this node pool.
 * @property {container(v1).NodeManagement} management NodeManagement configuration for this NodePool.
 * @property {string} name The name of the node pool.
 * @property {string} selfLink [Output only] Server-defined URL for the resource.
 * @property {string} status [Output only] The status of the nodes in this pool instance.
 * @property {string} statusMessage [Output only] Additional information about the current status of this
 node pool instance, if available.
-* @property {string} version [Output only] The version of the Kubernetes of this node.
+* @property {string} version The version of the Kubernetes of this node.
 */
 
 /**

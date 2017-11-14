@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Google Cloud IoT API
@@ -849,7 +851,11 @@ its registry credentials are revoked, deleted, or modified.
 * @property {cloudiot(v1).EventNotificationConfig[]} eventNotificationConfigs The configuration for notification of telemetry events received from the
 device. All telemetry events that were successfully published by the
 device and acknowledged by Cloud IoT Core are guaranteed to be
-delivered to Cloud Pub/Sub. Only the first configuration is used.
+delivered to Cloud Pub/Sub. Only the first configuration is used. If you
+try to publish a device telemetry event using MQTT without specifying a
+Cloud Pub/Sub topic for the device&#39;s registry, the connection closes
+automatically. If you try to do so using an HTTP connection, an error
+is returned.
 * @property {cloudiot(v1).HttpConfig} httpConfig The DeviceService (HTTP) configuration for this device registry.
 * @property {string} id The identifier of this device registry. For example, `myRegistry`.
 * @property {cloudiot(v1).MqttConfig} mqttConfig The MQTT configuration for this device registry.

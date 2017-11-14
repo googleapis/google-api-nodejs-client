@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * DCM/DFA Reporting And Trafficking API
@@ -19068,7 +19070,8 @@ Acceptable values are:
 - &quot;46&quot; for AED 
 - &quot;47&quot; for BGN 
 - &quot;48&quot; for HRK 
-- &quot;49&quot; for MXN
+- &quot;49&quot; for MXN 
+- &quot;50&quot; for NGN
 * @property {string} defaultCreativeSizeId Default placement dimensions for this account.
 * @property {string} description Description of this account.
 * @property {string} id ID of this account. This is a read-only, auto-generated field.
@@ -19701,7 +19704,7 @@ Acceptable values are:
 * @property {string} authoringTool Authoring tool for HTML5 banner creatives. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 * @property {boolean} autoAdvanceImages Whether images are automatically advanced for image gallery creatives. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
 * @property {string} backgroundColor The 6-character HTML color code, beginning with #, for the background of the window area where the Flash file is displayed. Default is white. Applicable to the following creative types: FLASH_INPAGE.
-* @property {string} backupImageClickThroughUrl Click-through URL for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {string} backupImageClickThroughUrl Click-through URL for backup image. Applicable to the following creative types: FLASH_INPAGE, and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {string[]} backupImageFeatures List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by DCM for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {string} backupImageReportingLabel Reporting label used for HTML5 banner backup image. Applicable to the following creative types: DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {dfareporting(v2.8).TargetWindow} backupImageTargetWindow Target window for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
@@ -20230,7 +20233,8 @@ Possible values are:
 - &quot;46&quot; for AED 
 - &quot;47&quot; for BGN 
 - &quot;48&quot; for HRK 
-- &quot;49&quot; for MXN
+- &quot;49&quot; for MXN 
+- &quot;50&quot; for NGN
 * @property {string} description Description of this directory site. This is a read-only field.
 * @property {string} id ID of this directory site. This is a read-only, auto-generated field.
 * @property {dfareporting(v2.8).DimensionValue} idDimensionValue Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
@@ -20417,7 +20421,7 @@ Acceptable values are:
  * @typedef FloodlightActivitiesGenerateTagResponse
  * @memberOf! dfareporting(v2.8)
  * @type object
- * @property {string} floodlightActivityTag Generated tag for this floodlight activity.
+ * @property {string} floodlightActivityTag Generated tag for this Floodlight activity. For global site tags, this is the event snippet.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
  */
 
@@ -20460,7 +20464,7 @@ Acceptable values are:
 * @property {boolean} sslRequired Whether this floodlight activity must be SSL-compliant.
 * @property {string} subaccountId Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
 * @property {string} tagFormat Tag format type for the floodlight activity. If left blank, the tag format will default to HTML.
-* @property {string} tagString Value of the cat= paramter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
+* @property {string} tagString Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
 * @property {string[]} userDefinedVariableTypes List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type.
 Acceptable values are U1 to U100, inclusive.
 */

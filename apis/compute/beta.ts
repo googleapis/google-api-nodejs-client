@@ -16,7 +16,9 @@
 
 /* jshint maxlen: false */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import {
+  createAPIRequest
+} from '../../lib/apirequest';
 
 /**
  * Compute Engine API
@@ -15151,6 +15153,63 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Sets deletion protection on the instance.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: 'my-resource',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.instances.setDeletionProtection(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.instances.setDeletionProtection
      * @memberOf! compute(beta)
      *
@@ -16510,6 +16569,70 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // The instance name for this request.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
+     *
+     *     // The name of the network interface where the access config is attached.
+     *     networkInterface: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.instances.updateAccessConfig(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.instances.updateAccessConfig
      * @memberOf! compute(beta)
      *
@@ -16551,6 +16674,71 @@ function Compute(options) { // eslint-disable-line
      * compute.instances.updateNetworkInterface
      *
      * @desc Updates an instance's network interface. This method follows PATCH semantics.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // The name of the zone for this request.
+     *     zone: 'my-zone',  // TODO: Update placeholder value.
+     *
+     *     // The instance name for this request.
+     *     instance: 'my-instance',  // TODO: Update placeholder value.
+     *
+     *     // The name of the network interface to update.
+     *     networkInterface: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.instances.updateNetworkInterface(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.instances.updateNetworkInterface
      * @memberOf! compute(beta)
@@ -28668,6 +28856,68 @@ function Compute(options) { // eslint-disable-line
      * compute.subnetworks.patch
      *
      * @desc Patches the specified subnetwork with the data included in the request. Only the following fields within the subnetwork resource can be specified in the request: secondary_ip_range and allow_subnet_cidr_routes_overlap. It is also mandatory to specify the current fingeprint of the subnetwork resource being patched.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('beta');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: 'my-project',  // TODO: Update placeholder value.
+     *
+     *     // Name of the region scoping this request.
+     *     region: 'my-region',  // TODO: Update placeholder value.
+     *
+     *     // Name of the Subnetwork resource to patch.
+     *     subnetwork: 'my-subnetwork',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   compute.subnetworks.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient) {
+     *     if (err) {
+     *       console.error('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.subnetworks.patch
      * @memberOf! compute(beta)
