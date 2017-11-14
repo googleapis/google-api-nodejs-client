@@ -89,7 +89,7 @@
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.1",
     "@types/mocha": "2.2.44",
-    "@types/node": "8.0.51",
+    "@types/node": "8.0.52",
     "del-cli": "1.1.0",
     "gts": "0.4.1",
     "ink-docstrap": "1.3.1",
