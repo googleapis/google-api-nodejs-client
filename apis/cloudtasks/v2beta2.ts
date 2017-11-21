@@ -238,7 +238,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.create
          *
-         * @desc Creates a queue.  WARNING: This method is only available to whitelisted users. Using this method carries some risk. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully and then sign up for [whitelist access to this method](https://goo.gl/Fe5mUy).
+         * @desc Creates a queue.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully before using this method.
          *
          * @example
          * // BEFORE RUNNING:
@@ -336,7 +336,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.delete
          *
-         * @desc Deletes a queue.  This command will delete the queue even if it has tasks in it.  Note: If you delete a queue, a queue with the same name can't be created for 7 days.  WARNING: This method is only available to whitelisted users. Using this method carries some risk. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully and then sign up for [whitelist access to this method](https://goo.gl/Fe5mUy).
+         * @desc Deletes a queue.  This command will delete the queue even if it has tasks in it.  Note: If you delete a queue, a queue with the same name can't be created for 7 days.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully before using this method.
          *
          * @example
          * // BEFORE RUNNING:
@@ -713,7 +713,7 @@ function Cloudtasks(options) { // eslint-disable-line
         /**
          * cloudtasks.projects.locations.queues.patch
          *
-         * @desc Updates a queue.  This method creates the queue if it does not exist and updates the queue if it does exist.  WARNING: This method is only available to whitelisted users. Using this method carries some risk. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully and then sign up for [whitelist access to this method](https://goo.gl/Fe5mUy).
+         * @desc Updates a queue.  This method creates the queue if it does not exist and updates the queue if it does exist.  WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml) carefully before using this method.
          *
          * @example
          * // BEFORE RUNNING:
@@ -2803,13 +2803,13 @@ This field has the same meaning as
  * @typedef RenewLeaseRequest
  * @memberOf! cloudtasks(v2beta2)
  * @type object
-* @property {string} newLeaseDuration Required.
+* @property {string} leaseDuration Required.
 
 The desired new lease duration, starting from now.
 
 
 The maximum lease duration is 1 week.
-`new_lease_duration` will be truncated to the nearest second.
+`lease_duration` will be truncated to the nearest second.
 * @property {string} responseView The response_view specifies which subset of the Task will be
 returned.
 
@@ -2857,11 +2857,21 @@ it fails. The default is 1 hour.
 
 This field has the same meaning as
 [max_backoff_seconds in queue.yaml](/appengine/docs/standard/python/config/queueref#retry_parameters).
-* @property {integer} maxDoublings The time between retries increases exponentially `max_doublings` times.
-`max_doublings` is maximum number of times that the interval between failed
-task retries will be doubled before the interval increases linearly.
-After max_doublings intervals, the retry interval will be
-2^(max_doublings - 1) * RetryConfig.min_backoff.
+* @property {integer} maxDoublings The time between retries will double `max_doublings` times.
+
+A task&#39;s retry interval starts at RetryConfig.min_backoff,
+then doubles `max_doublings` times, then increases linearly, and
+finally retries retries at intervals of
+RetryConfig.max_backoff up to max_attempts times.
+
+For example, if RetryConfig.min_backoff is 10s,
+RetryConfig.max_backoff is 300s, and `max_doublings` is 3,
+then the a task will first be retried in 10s. The retry interval
+will double three times, and then increase linearly by 2^3 * 10s.
+Finally, the task will retry at intervals of
+RetryConfig.max_backoff until the task has been attempted
+`max_attempts` times. Thus, the requests will retry at 10s, 20s,
+40s, 80s, 160s, 240s, 300s, 300s, ....
 
 * For [App Engine queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),
   this field is 16 by default.

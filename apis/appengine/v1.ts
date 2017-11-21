@@ -1623,6 +1623,7 @@ function Appengine(options) { // eslint-disable-line
  * @property {integer} minTotalInstances Minimum number of instances that should be maintained for this version.
  * @property {appengine(v1).NetworkUtilization} networkUtilization Target scaling by network usage.
  * @property {appengine(v1).RequestUtilization} requestUtilization Target scaling by request utilization.
+ * @property {appengine(v1).StandardSchedulerSettings} standardSchedulerSettings Scheduler settings for standard environment.
  */
 
 /**
@@ -2085,6 +2086,16 @@ If the network the VM instance is being created in is a custom Subnet Mode Netwo
  * @memberOf! appengine(v1)
  * @type object
  * @property {string} certificateId ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will remove SSL support. Example: 12345.
+ */
+
+/**
+ * @typedef StandardSchedulerSettings
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {integer} maxInstances Maximum number of instances for an app version. Set to a non-positive value (0 by convention) to disable max_instances configuration.
+ * @property {integer} minInstances Minimum number of instances for an app version. Set to a non-positive value (0 by convention) to disable min_instances configuration.
+ * @property {number} targetCpuUtilization Target CPU utilization ratio to maintain when scaling.
+ * @property {number} targetThroughputUtilization Target throughput utilization ratio to maintain when scaling
  */
 
 /**

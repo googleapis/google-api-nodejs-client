@@ -795,9 +795,9 @@ False to not send notification email.
  * @typedef HeldGroupsQuery
  * @memberOf! vault(v1)
  * @type object
-* @property {string} endTime The end date range for the search query. These timestamps are in GMT and
+* @property {string} endTime The end time range for the search query. These timestamps are in GMT and
 rounded down to the start of the given date.
-* @property {string} startTime The start date range for the search query. These timestamps are in GMT and
+* @property {string} startTime The start time range for the search query. These timestamps are in GMT and
 rounded down to the start of the given date.
 * @property {string} terms The search terms for the hold.
 */
@@ -806,9 +806,9 @@ rounded down to the start of the given date.
  * @typedef HeldMailQuery
  * @memberOf! vault(v1)
  * @type object
-* @property {string} endTime The end date range for the search query. These timestamps are in GMT and
+* @property {string} endTime The end time range for the search query. These timestamps are in GMT and
 rounded down to the start of the given date.
-* @property {string} startTime The start date range for the search query. These timestamps are in GMT and
+* @property {string} startTime The start time range for the search query. These timestamps are in GMT and
 rounded down to the start of the given date.
 * @property {string} terms The search terms for the hold.
 */

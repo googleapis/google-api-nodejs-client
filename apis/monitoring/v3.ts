@@ -1691,6 +1691,17 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
  */
 
 /**
+ * @typedef InternalChecker
+ * @memberOf! monitoring(v3)
+ * @type object
+ * @property {string} checkerId The checker ID.
+ * @property {string} displayName The checker&#39;s human-readable name.
+ * @property {string} gcpZone The GCP zone the uptime check should egress from. Only respected for internal uptime checks, where internal_network is specified.
+ * @property {string} network The internal network to perform this uptime check on.
+ * @property {string} projectId The GCP project ID. Not necessarily the same as the project_id for the config.
+ */
+
+/**
  * @typedef LabelDescriptor
  * @memberOf! monitoring(v3)
  * @type object
@@ -1786,46 +1797,7 @@ Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd editio
 &quot;custom.googleapis.com/invoice/paid/amount&quot;
 &quot;appengine.googleapis.com/http/server/response_latencies&quot;
 
-* @property {string} unit The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT)
-bit bit
-By byte
-s second
-min minute
-h hour
-d dayPrefixes (PREFIX)
-k kilo (10**3)
-M mega (10**6)
-G giga (10**9)
-T tera (10**12)
-P peta (10**15)
-E exa (10**18)
-Z zetta (10**21)
-Y yotta (10**24)
-m milli (10**-3)
-u micro (10**-6)
-n nano (10**-9)
-p pico (10**-12)
-f femto (10**-15)
-a atto (10**-18)
-z zepto (10**-21)
-y yocto (10**-24)
-Ki kibi (2**10)
-Mi mebi (2**20)
-Gi gibi (2**30)
-Ti tebi (2**40)GrammarThe grammar includes the dimensionless unit 1, such as 1/s.The grammar also includes these connectors:
-/ division (as an infix operator, e.g. 1/s).
-. multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit is as follows:
-Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;
-
-Component = [ PREFIX ] UNIT [ Annotation ]
-          | Annotation
-          | &quot;1&quot;
-          ;
-
-Annotation = &quot;{&quot; NAME &quot;}&quot; ;
-Notes:
-Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s.
-NAME is a sequence of non-blank printable ASCII characters not  containing &#39;{&#39; or &#39;}&#39;.
+* @property {string} unit Optional. The unit in which the metric value is reported. For example, kBy/s means kilobytes/sec, and 1 is the dimensionless unit. The supported units are a subset of The Unified Code for Units of Measure standard (http://unitsofmeasure.org/ucum.html).&lt;br&gt;&lt;br&gt; This field is part of the metric&#39;s documentation, but it is ignored by Stackdriver.
 * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
 */
 
@@ -1952,6 +1924,7 @@ NAME is a sequence of non-blank printable ASCII characters not  containing &#39;
  * @property {monitoring(v3).ContentMatcher[]} contentMatchers The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response&#39;s content. This field is optional and should only be specified if a content match is required.
  * @property {string} displayName A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Account in order to make it easier to identify; however, uniqueness is not enforced. Required.
  * @property {monitoring(v3).HttpCheck} httpCheck Contains information needed to make an HTTP or HTTPS check.
+ * @property {monitoring(v3).InternalChecker[]} internalCheckers The internal checkers that this check will egress from.
  * @property {monitoring(v3).MonitoredResource} monitoredResource The monitored resource associated with the configuration.
  * @property {string} name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
  * @property {string} period How often the uptime check is performed. Currently, only 1, 5, 10, and 15 minutes are supported. Required.

@@ -92,7 +92,7 @@ function Androiddeviceprovisioning(options) { // eslint-disable-line
        * @memberOf! androiddeviceprovisioning(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The parent resource ID in format `partners/[PARTNER_ID]` that identifies the reseller.
+       * @param {string} params.parent Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
        * @param {androiddeviceprovisioning(v1).CreateCustomerRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -561,40 +561,49 @@ with a Google Account. The values for `companyId` and `name` must be empty.
  * @typedef Device
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims Claims.
-* @property {string} configuration The resource name of the configuration.
-Only set for customers.
-* @property {string} deviceId Device ID.
-* @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier Device identifier.
-* @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata Device metadata.
-* @property {string} name Resource name in `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
+* @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims Output only. The provisioning claims for a device. Devices claimed for
+zero-touch enrollment have a claim with the type `SECTION_TYPE_ZERO_TOUCH`.
+Call
+`partners.devices.unclaim`
+or
+`partners.devices.unclaimAsync`
+to remove the device from zero-touch enrollment.
+* @property {string} configuration Not available to resellers.
+* @property {string} deviceId Output only. The ID of the device. Assigned by the server.
+* @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The hardware IDs that identify a manufactured device. To learn more, read
+[Identifiers](/zero-touch/guides/identifiers).
+* @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata The metadata attached to the device. Structured as key-value pairs. To
+learn more, read [Device metadata](/zero-touch/guides/metadata).
+* @property {string} name Output only. The API resource name in the format
+`partners/[PARTNER_ID]/devices/[DEVICE_ID]`. Assigned by the server.
 */
 
 /**
  * @typedef DeviceClaim
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string} ownerCompanyId Owner ID.
- * @property {string} sectionType Section type of the device claim.
+ * @property {string} ownerCompanyId The ID of the Customer that purchased the device.
+ * @property {string} sectionType Output only. The type of claim made on the device.
  */
 
 /**
  * @typedef DeviceIdentifier
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
-* @property {string} imei IMEI number.
-* @property {string} manufacturer Manufacturer name to match `android.os.Build.MANUFACTURER` (required).
-Allowed values listed in
-[manufacturer names](/zero-touch/resources/manufacturer-names).
-* @property {string} meid MEID number.
-* @property {string} serialNumber Serial number (optional).
+* @property {string} imei The device’s IMEI number. Validated on input.
+* @property {string} manufacturer Required. The device manufacturer’s name. Matches the device&#39;s built-in
+value returned from `android.os.Build.MANUFACTURER`. Allowed values are
+listed in [manufacturer names](/zero-touch/resources/manufacturer-names).
+* @property {string} meid The device’s MEID number.
+* @property {string} serialNumber The manufacturer&#39;s serial number for the device. This value might not be
+unique.
 */
 
 /**
  * @typedef DeviceMetadata
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {object} entries Metadata entries
+ * @property {object} entries Metadata entries recorded as key-value pairs.
  */
 
 /**

@@ -10354,7 +10354,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @example
      * // BEFORE RUNNING:
@@ -18174,7 +18174,88 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.licenseCodes = {
+
+    /**
+     * compute.licenseCodes.get
+     *
+     * @desc Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code.
+     *
+     * @alias compute.licenseCodes.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.licenseCode Number corresponding to the License code resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/licenseCodes/{licenseCode}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'licenseCode'],
+        pathParams: ['licenseCode', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.licenses = {
+
+    /**
+     * compute.licenses.delete
+     *
+     * @desc Deletes the specified license.
+     *
+     * @alias compute.licenses.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.license Name of the license resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/licenses/{license}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'license'],
+        pathParams: ['license', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * compute.licenses.get
@@ -18262,6 +18343,86 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenses.insert
+     *
+     * @desc Create a License resource in the specified project.
+     *
+     * @alias compute.licenses.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(beta).License} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/licenses').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenses.list
+     *
+     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 8. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     *
+     * @alias compute.licenses.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/beta/projects/{project}/global/licenses').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
         context: self
       };
 
@@ -36394,7 +36555,7 @@ function Compute(options) { // eslint-disable-line
  * @memberOf! compute(beta)
  * @type object
 * @property {string} address The static IP address represented by this resource.
-* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
+* @property {string} addressType The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -36513,13 +36674,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family 
+global/images/family/my-image-family 
 
 If the source image is deleted later, this field will not be set.
 * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
@@ -37005,6 +37166,7 @@ To see the latest fingerprint, make a get() request to retrieve a disk.
 * @property {object} labels Labels to apply to this disk. These can be later modified by the setLabels method.
 * @property {string} lastAttachTimestamp [Output Only] Last attach timestamp in RFC3339 text format.
 * @property {string} lastDetachTimestamp [Output Only] Last detach timestamp in RFC3339 text format.
+* @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this disk.
 * @property {string[]} licenses Any applicable publicly visible licenses.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} options Internal use only.
@@ -37022,13 +37184,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-image-family
 * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 * @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
 * @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  
@@ -37518,6 +37680,7 @@ If you do not provide an encryption key when creating the image, then the disk w
 
 To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {object} labels Labels to apply to this image. These can be later modified by the setLabels method.
+* @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this image.
 * @property {string[]} licenses Any applicable license URI.
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {object} rawDisk The parameters of the raw disk image.
@@ -38052,7 +38215,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @typedef Interconnect
  * @memberOf! compute(beta)
  * @type object
- * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
  * @property {compute(beta).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
@@ -38062,9 +38225,9 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
- * @property {string} interconnectType 
+ * @property {string} interconnectType Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
- * @property {string} linkType 
+ * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
@@ -38082,14 +38245,14 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} description An optional description of this resource.
  * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
- * @property {compute(beta).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {compute(beta).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
  * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -38138,7 +38301,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @typedef InterconnectCircuitInfo
  * @memberOf! compute(beta)
  * @type object
- * @property {string} customerDemarcId Customer-side demarc ID for this circuit. This will only be set if it was provided by the Customer to Google during circuit turn-up.
+ * @property {string} customerDemarcId Customer-side demarc ID for this circuit.
  * @property {string} googleCircuitId Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
  * @property {string} googleDemarcId Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
  */
@@ -38160,9 +38323,9 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @memberOf! compute(beta)
  * @type object
  * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
- * @property {string} availabilityZone Availability zone for this location. Within a city, maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
- * @property {string} city City designator used by the Interconnect UI to locate this InterconnectLocation within the Continent. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
- * @property {string} continent Continent for this location. Used by the location picker in the Interconnect UI.
+ * @property {string} availabilityZone [Output Only] Availability zone for this location. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
+ * @property {string} city [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
+ * @property {string} continent [Output Only] Continent for this location.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description [Output Only] An optional description of the resource.
  * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
@@ -38201,13 +38364,13 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @memberOf! compute(beta)
  * @type object
  * @property {string[]} affectedCircuits Iff issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
- * @property {string} description Short user-visible description of the purpose of the outage.
- * @property {string} endTime 
- * @property {string} issueType 
+ * @property {string} description A description about the purpose of the outage.
+ * @property {string} endTime Scheduled end time for the outage (milliseconds since Unix epoch).
+ * @property {string} issueType Form this outage is expected to take. Note that the &quot;IT_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  * @property {string} name Unique identifier for this outage notification.
- * @property {string} source 
- * @property {string} startTime Scheduled start and end times for the outage (milliseconds since Unix epoch).
- * @property {string} state 
+ * @property {string} source The party that generated this notification. Note that &quot;NSRC_GOOGLE&quot; has been deprecated in favor of &quot;GOOGLE&quot;
+ * @property {string} startTime Scheduled start time for the outage (milliseconds since Unix epoch).
+ * @property {string} state State of this notification. Note that the &quot;NS_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  */
 
 /**
@@ -38215,9 +38378,57 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @memberOf! compute(beta)
  * @type object
  * @property {boolean} chargesUseFee [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of resource. Always compute#license for licenses.
+ * @property {string} licenseCode [Output Only] The unique code used to attach this license to images, snapshots, and disks.
  * @property {string} name [Output Only] Name of the resource. The name is 1-63 characters long and complies with RFC1035.
+ * @property {compute(beta).LicenseResourceRequirements} resourceRequirements 
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {boolean} transferable If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+ */
+
+/**
+ * @typedef LicenseCode
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] Description of this License Code.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of resource. Always compute#licenseCode for licenses.
+ * @property {compute(beta).LicenseCodeLicenseAlias[]} licenseAlias [Output Only] URL and description aliases of Licenses with the same License Code.
+ * @property {string} name [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} state [Output Only] Current state of this License Code.
+ * @property {boolean} transferable [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
+ */
+
+/**
+ * @typedef LicenseCodeLicenseAlias
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} description [Output Only] Description of this License Code.
+ * @property {string} selfLink [Output Only] URL of license corresponding to this License Code.
+ */
+
+/**
+ * @typedef LicenseResourceRequirements
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {integer} minGuestCpuCount Minimum number of guest cpus required to use the Instance. Enforced at Instance creation and Instance start.
+ * @property {integer} minMemoryMb Minimum memory required to use the Instance. Enforced at Instance creation and Instance start.
+ */
+
+/**
+ * @typedef LicensesListResponse
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).License[]} items A list of License resources.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
  */
 
 /**
@@ -39049,6 +39260,7 @@ To see the latest fingerprint, make get() request to the security policy.
 
 To see the latest fingerprint, make a get() request to retrieve a snapshot.
 * @property {object} labels Labels to apply to this snapshot. These can be later modified by the setLabels method. Label values may be empty.
+* @property {string[]} licenseCodes Integer license codes indicating which licenses are attached to this snapshot.
 * @property {string[]} licenses [Output Only] A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses attached (such as a Windows image).
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.

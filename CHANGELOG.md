@@ -1,3 +1,8 @@
+##### 23.0.0 - 21 November 2017
+
+- Regenerated
+- Updated dependencies
+
 ##### 22.2.0 - 25 September 2017
 
 ###### Backwards compatible changes

@@ -289,7 +289,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
      * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
@@ -324,14 +324,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.chromeosdevices.moveDevicesToOu
      *
-     * @desc Move or insert multiple Chrome OS Devices to Organization Unit
+     * @desc Move or insert multiple Chrome OS Devices to organizational unit
      *
      * @alias directory.chromeosdevices.moveDevicesToOu
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the target organization unit or its Id
+     * @param {string} params.orgUnitPath Full path of the target organizational unit or its ID
      * @param {admin(directory_v1).ChromeOsMoveDevicesToOu} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -881,7 +881,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.groupKey Email or immutable ID of the group
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -918,7 +918,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.groupKey Email or immutable ID of the group
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -996,7 +996,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
+     * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If ID, it should match with id of user object
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1033,7 +1033,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
      * @param {admin(directory_v1).Group} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1071,7 +1071,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
+     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
      * @param {admin(directory_v1).Group} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1111,7 +1111,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.alias The alias to be removed
-       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {string} params.groupKey Email or immutable ID of the group
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1148,7 +1148,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {string} params.groupKey Email or immutable ID of the group
        * @param {admin(directory_v1).Alias} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1186,7 +1186,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {string} params.groupKey Email or immutable ID of the group
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1227,8 +1227,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
-     * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {string} params.groupKey Email or immutable ID of the group
+     * @param {string} params.memberKey Email or immutable ID of the member
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1265,8 +1265,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
-     * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {string} params.groupKey Email or immutable ID of the group
+     * @param {string} params.memberKey Email or immutable ID of the member
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1295,6 +1295,44 @@ function Admin(options) { // eslint-disable-line
     },
 
     /**
+     * directory.members.hasMember
+     *
+     * @desc Checks Membership of an user within a Group
+     *
+     * @alias directory.members.hasMember
+     * @memberOf! admin(directory_v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    hasMember: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/hasMember/{memberKey}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['groupKey', 'memberKey'],
+        pathParams: ['groupKey', 'memberKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * directory.members.insert
      *
      * @desc Add user to the specified group.
@@ -1303,7 +1341,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.groupKey Email or immutable ID of the group
      * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1341,7 +1379,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {string} params.groupKey Email or immutable ID of the group
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.roles Comma separated role values to filter list results on.
@@ -1381,8 +1419,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
+     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
      * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1420,8 +1458,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
+     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
+     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
      * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1818,14 +1856,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.delete
      *
-     * @desc Remove Organization Unit
+     * @desc Remove organizational unit
      *
      * @alias directory.orgunits.delete
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1856,14 +1894,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.get
      *
-     * @desc Retrieve Organization Unit
+     * @desc Retrieve organizational unit
      *
      * @alias directory.orgunits.get
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1894,7 +1932,7 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.insert
      *
-     * @desc Add Organization Unit
+     * @desc Add organizational unit
      *
      * @alias directory.orgunits.insert
      * @memberOf! admin(directory_v1)
@@ -1932,14 +1970,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.list
      *
-     * @desc Retrieve all Organization Units
+     * @desc Retrieve all organizational units
      *
      * @alias directory.orgunits.list
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string=} params.orgUnitPath the URL-encoded organization unit's path or its Id
+     * @param {string=} params.orgUnitPath the URL-encoded organizational unit's path or its ID
      * @param {string=} params.type Whether to return all sub-organizations or just immediate children
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1971,14 +2009,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.patch
      *
-     * @desc Update Organization Unit. This method supports patch semantics.
+     * @desc Update organizational unit. This method supports patch semantics.
      *
      * @alias directory.orgunits.patch
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2010,14 +2048,14 @@ function Admin(options) { // eslint-disable-line
     /**
      * directory.orgunits.update
      *
-     * @desc Update Organization Unit
+     * @desc Update organizational unit
      *
      * @alias directory.orgunits.update
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2807,7 +2845,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {string} params.schemaKey Name or immutable ID of the schema
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2845,7 +2883,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {string} params.schemaKey Name or immutable ID of the schema
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2958,7 +2996,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable Id of the schema.
+     * @param {string} params.schemaKey Name or immutable ID of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2997,7 +3035,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable Id of the schema.
+     * @param {string} params.schemaKey Name or immutable ID of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3156,7 +3194,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {string} params.userKey Email or immutable ID of the user
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3195,7 +3233,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {string} params.userKey Email or immutable ID of the user
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3318,7 +3356,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user as admin
+     * @param {string} params.userKey Email or immutable ID of the user as admin
      * @param {admin(directory_v1).UserMakeAdmin} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3356,7 +3394,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
+     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
      * @param {admin(directory_v1).User} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3432,7 +3470,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
+     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
      * @param {admin(directory_v1).User} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3521,7 +3559,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.alias The alias to be removed
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -3558,7 +3596,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {admin(directory_v1).Alias} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -3597,7 +3635,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string=} params.event Event on which subscription is intended (if subscribing)
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -3635,7 +3673,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string=} params.event Event on which subscription is intended (if subscribing)
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {admin(directory_v1).Channel} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -3675,7 +3713,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -3712,7 +3750,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -3749,7 +3787,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {admin(directory_v1).UserPhoto} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -3787,7 +3825,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable Id of the user
+       * @param {string} params.userKey Email or immutable ID of the user
        * @param {admin(directory_v1).UserPhoto} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -3829,7 +3867,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {string} params.userKey Email or immutable ID of the user
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3866,7 +3904,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable Id of the user
+     * @param {string} params.userKey Email or immutable ID of the user
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4206,6 +4244,13 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {admin(directory_v1).Member[]} members List of member objects.
  * @property {string} nextPageToken Token used to access next page of this result.
+ */
+
+/**
+ * @typedef MembersHasMember
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} isMember Identifies whether given user is a member or not.
  */
 
 /**
@@ -4684,6 +4729,7 @@ function Admin(options) { // eslint-disable-line
  * @typedef UserPosixAccount
  * @memberOf! admin(directory_v1)
  * @type object
+ * @property {string} accountId A POSIX account field identifier. (Read-only)
  * @property {string} gecos The GECOS (user information) for this account.
  * @property {string} gid The default group ID.
  * @property {string} homeDirectory The path to the home directory for this account.

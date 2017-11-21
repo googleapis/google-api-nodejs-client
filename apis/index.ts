@@ -185,6 +185,9 @@ const APIS = {
     'v2.8': require('./dfareporting/v2.8'),
     'v3.0': require('./dfareporting/v3.0'),
   },
+  dialogflow: {
+    'v2beta1': require('./dialogflow/v2beta1'),
+  },
   discovery: {
     'v1': require('./discovery/v1'),
   },
@@ -349,6 +352,9 @@ const APIS = {
   searchconsole: {
     'v1': require('./searchconsole/v1'),
   },
+  serviceconsumermanagement: {
+    'v1': require('./serviceconsumermanagement/v1'),
+  },
   servicecontrol: {
     'v1': require('./servicecontrol/v1'),
   },
@@ -415,6 +421,9 @@ const APIS = {
   toolresults: {
     'v1beta3': require('./toolresults/v1beta3'),
   },
+  tpu: {
+    'v1alpha1': require('./tpu/v1alpha1'),
+  },
   translate: {
     'v2': require('./translate/v2'),
   },
@@ -464,11 +473,11 @@ function getAPI(api, options) {
   try {
     const endpoint = APIS[api][path.basename(version)];
     const ep = new endpoint(options);
-    ep.google = this;          // for drive.google.transporter
-    return Object.freeze(ep);  // create new & freeze
+    ep.google = this; // for drive.google.transporter
+    return Object.freeze(ep); // create new & freeze
   } catch (e) {
     throw new Error(util.format(
-        'Unable to load endpoint %s("%s"): %s', api, version, e.message));
+      'Unable to load endpoint %s("%s"): %s', api, version, e.message));
   }
 }
 
@@ -650,6 +659,10 @@ export function deploymentmanager(options) {
 
 export function dfareporting(options) {
   return getAPI.call(this, 'dfareporting', options);
+}
+
+export function dialogflow(options) {
+  return getAPI.call(this, 'dialogflow', options);
 }
 
 export function discovery(options) {
@@ -844,6 +857,10 @@ export function searchconsole(options) {
   return getAPI.call(this, 'searchconsole', options);
 }
 
+export function serviceconsumermanagement(options) {
+  return getAPI.call(this, 'serviceconsumermanagement', options);
+}
+
 export function servicecontrol(options) {
   return getAPI.call(this, 'servicecontrol', options);
 }
@@ -922,6 +939,10 @@ export function testing(options) {
 
 export function toolresults(options) {
   return getAPI.call(this, 'toolresults', options);
+}
+
+export function tpu(options) {
+  return getAPI.call(this, 'tpu', options);
 }
 
 export function translate(options) {
