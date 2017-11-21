@@ -13,3 +13,4 @@ apis/iam/v1alpha1.js
 .vscode
 **/*.d.ts
 yarn.lock
+package-lock.json
