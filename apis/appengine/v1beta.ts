@@ -1746,6 +1746,7 @@ function Appengine(options) { // eslint-disable-line
  * @memberOf! appengine(v1beta)
  * @type object
  * @property {boolean} splitHealthChecks Boolean value indicating if split health checks should be used instead of the legacy health checks. At an app.yaml level, this means defaulting to &#39;readiness_check&#39; and &#39;liveness_check&#39; values instead of &#39;health_check&#39; ones. Once the legacy &#39;health_check&#39; behavior is deprecated, and this value is always true, this setting can be removed.
+ * @property {boolean} useContainerOptimizedOs If true, use Container-Optimized OS (https://cloud.google.com/container-optimized-os/) base image for VMs, rather than a base Debian image.
  */
 
 /**

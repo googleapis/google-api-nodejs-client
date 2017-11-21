@@ -1031,7 +1031,8 @@ Required
  * @memberOf! cloudkms(v1)
  * @type object
 * @property {string} createTime Output only. The time at which this CryptoKey was created.
-* @property {object} labels Labels with user defined metadata.
+* @property {object} labels Labels with user-defined metadata. For more information, see
+[Labeling CryptoKeys](/kms/docs/labeling-keys).
 * @property {string} name Output only. The resource name for this CryptoKey in the format
 `projects/x/locations/x/keyRings/x/cryptoKeys/x.
 * @property {string} nextRotationTime At next_rotation_time, the Key Management Service will automatically:

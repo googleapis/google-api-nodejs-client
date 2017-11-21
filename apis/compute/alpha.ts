@@ -5214,7 +5214,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @alias compute.images.list
      * @memberOf! compute(alpha)
@@ -6892,6 +6892,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.addMaintenancePolicies
+     *
+     * @desc Adds existing maintenance policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
+     *
+     * @alias compute.instances.addMaintenancePolicies
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).InstancesAddMaintenancePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addMaintenancePolicies: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/addMaintenancePolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.aggregatedList
      *
      * @desc Retrieves aggregated list of instances.
@@ -7372,6 +7413,47 @@ function Compute(options) { // eslint-disable-line
         options: Object.assign({
           url: (rootUrl + '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/referrers').replace(/([^:]\/)\/+/g, '$1'),
           method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.removeMaintenancePolicies
+     *
+     * @desc Removes maintenance policies from an instance.
+     *
+     * @alias compute.instances.removeMaintenancePolicies
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).InstancesRemoveMaintenancePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeMaintenancePolicies: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/removeMaintenancePolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
@@ -8192,6 +8274,47 @@ function Compute(options) { // eslint-disable-line
         }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.updateShieldedVmConfig
+     *
+     * @desc Updates the Shielded VM config for an instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     *
+     * @alias compute.instances.updateShieldedVmConfig
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).ShieldedVmConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateShieldedVmConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedVmConfig').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
         context: self
       };
@@ -9518,6 +9641,331 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.maintenancePolicies = {
+
+    /**
+     * compute.maintenancePolicies.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of maintenance policies.
+     *
+     * @alias compute.maintenancePolicies.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/aggregated/maintenancePolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.delete
+     *
+     * @desc Deletes the specified maintenance policy.
+     *
+     * @alias compute.maintenancePolicies.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.maintenancePolicy Name of the maintenance policy to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies/{maintenancePolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'maintenancePolicy'],
+        pathParams: ['maintenancePolicy', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.get
+     *
+     * @desc Retrieves all information of the specified maintenance policy.
+     *
+     * @alias compute.maintenancePolicies.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.maintenancePolicy Name of the maintenance policy to retrieve.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies/{maintenancePolicy}').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'maintenancePolicy'],
+        pathParams: ['maintenancePolicy', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.maintenancePolicies.getIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies/{resource}/getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.insert
+     *
+     * @desc Creates a new maintenance policy.
+     *
+     * @alias compute.maintenancePolicies.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {compute(alpha).MaintenancePolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.list
+     *
+     * @desc List all the maintenance policies that have been configured for the specified project in specified region.
+     *
+     * @alias compute.maintenancePolicies.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias compute.maintenancePolicies.setIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies/{resource}/setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.maintenancePolicies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.maintenancePolicies.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign({
+          url: (rootUrl + '/compute/alpha/projects/{project}/regions/{region}/maintenancePolicies/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 
@@ -18734,7 +19182,7 @@ If an AccessConfig with a valid external IP address is specified, it must match 
  * @memberOf! compute(alpha)
  * @type object
 * @property {string} address The static IP address represented by this resource.
-* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
+* @property {string} addressType The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -18857,13 +19305,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family 
+global/images/family/my-image-family 
 
 If the source image is deleted later, this field will not be set.
 * @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
@@ -19403,6 +19851,15 @@ https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
  */
 
 /**
+ * @typedef DailyMaintenanceWindow
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {integer} daysInCycle Allows to define schedule that runs every nth day of the month.
+ * @property {string} duration [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
+ * @property {string} startTime Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+ */
+
+/**
  * @typedef DeprecationStatus
  * @memberOf! compute(alpha)
  * @type object
@@ -19458,13 +19915,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-image-family
 * @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 * @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
 * @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  
@@ -20077,6 +20534,15 @@ To see the latest fingerprint, make get() request to the host.
  */
 
 /**
+ * @typedef HourlyMaintenanceWindow
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} duration [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
+ * @property {integer} hoursInCycle Allows to define schedule that runs every nth hour.
+ * @property {string} startTime Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+ */
+
+/**
  * @typedef HttpHealthCheck
  * @memberOf! compute(alpha)
  * @type object
@@ -20181,6 +20647,13 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 - the sourceDisk property   in order to create an image.
 * @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 * @property {string} sourceImageId [Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.
+* @property {string} sourceSnapshot URL of the source snapshot used to create this image. This can be a full or valid partial URL. You must provide exactly one of:  
+- this property, or  
+- the sourceImage property, or  
+- the rawDisk.source property, or  
+- the sourceDisk property   in order to create an image.
+* @property {compute(alpha).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
+* @property {string} sourceSnapshotId [Output Only] The ID value of the snapshot used to create this image. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given snapshot name.
 * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
 * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
 */
@@ -20249,6 +20722,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(alpha).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
 
 Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
+* @property {compute(alpha).ShieldedVmConfig} shieldedVmConfig 
 * @property {boolean} startRestricted [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
 * @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
@@ -20397,6 +20871,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {string} healthCheck The URL for the health check that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
  * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable when autohealing. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a percent value of 100% is used.
+ * @property {string} mode Defines operating mode for this policy.
  */
 
 /**
@@ -20708,6 +21183,20 @@ You can see which instances is being creating in which mode by calling the get o
  */
 
 /**
+ * @typedef InstancesAddMaintenancePoliciesRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} maintenancePolicies Maintenance policies to be added to this instance.
+ */
+
+/**
+ * @typedef InstancesRemoveMaintenancePoliciesRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} maintenancePolicies Maintenance policies to be removed from this instance.
+ */
+
+/**
  * @typedef InstancesScopedList
  * @memberOf! compute(alpha)
  * @type object
@@ -20770,7 +21259,7 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @typedef Interconnect
  * @memberOf! compute(alpha)
  * @type object
- * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
  * @property {compute(alpha).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
@@ -20780,9 +21269,9 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
- * @property {string} interconnectType 
+ * @property {string} interconnectType Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
- * @property {string} linkType 
+ * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
@@ -20797,20 +21286,28 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @typedef InterconnectAttachment
  * @memberOf! compute(alpha)
  * @type object
+ * @property {boolean} adminEnabled Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
+ * @property {string} availabilityZone 
+ * @property {string} bandwidth 
+ * @property {string[]} candidateSubnets Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google?s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
  * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} description An optional description of this resource.
  * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
- * @property {compute(alpha).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {string} pairingKey [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. Opaque string identifying an PARTNER attachment. Of the form ?cloud-region/XXXXXX?.
+ * @property {compute(alpha).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
  * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} state [Output Only] The current state of whether or not this interconnect attachment is functional.
+ * @property {string} type 
+ * @property {integer} vlanTag8021q Available only for DEDICATED and PARTNER_PROVIDER New field: VLAN. Only specified at creation time. This field is mapped to ieee_802_1q_tag in the resource proto.
  */
 
 /**
@@ -20856,7 +21353,7 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @typedef InterconnectCircuitInfo
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} customerDemarcId Customer-side demarc ID for this circuit. This will only be set if it was provided by the Customer to Google during circuit turn-up.
+ * @property {string} customerDemarcId Customer-side demarc ID for this circuit.
  * @property {string} googleCircuitId Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
  * @property {string} googleDemarcId Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
  */
@@ -20878,9 +21375,9 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
- * @property {string} availabilityZone Availability zone for this location. Within a city, maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
- * @property {string} city City designator used by the Interconnect UI to locate this InterconnectLocation within the Continent. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
- * @property {string} continent Continent for this location. Used by the location picker in the Interconnect UI.
+ * @property {string} availabilityZone [Output Only] Availability zone for this location. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
+ * @property {string} city [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
+ * @property {string} continent [Output Only] Continent for this location.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description [Output Only] An optional description of the resource.
  * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
@@ -20919,13 +21416,13 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @memberOf! compute(alpha)
  * @type object
  * @property {string[]} affectedCircuits Iff issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
- * @property {string} description Short user-visible description of the purpose of the outage.
- * @property {string} endTime 
- * @property {string} issueType 
+ * @property {string} description A description about the purpose of the outage.
+ * @property {string} endTime Scheduled end time for the outage (milliseconds since Unix epoch).
+ * @property {string} issueType Form this outage is expected to take. Note that the &quot;IT_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  * @property {string} name Unique identifier for this outage notification.
- * @property {string} source 
- * @property {string} startTime Scheduled start and end times for the outage (milliseconds since Unix epoch).
- * @property {string} state 
+ * @property {string} source The party that generated this notification. Note that &quot;NSRC_GOOGLE&quot; has been deprecated in favor of &quot;GOOGLE&quot;
+ * @property {string} startTime Scheduled start time for the outage (milliseconds since Unix epoch).
+ * @property {string} state State of this notification. Note that the &quot;NS_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  */
 
 /**
@@ -21088,6 +21585,60 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @type object
  * @property {compute(alpha).MachineType[]} machineTypes [Output Only] List of machine types contained in this scope.
  * @property {object} warning [Output Only] An informational warning that appears when the machine types list is empty.
+ */
+
+/**
+ * @typedef MaintenancePoliciesList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).MaintenancePolicy[]} items [Output Only] A list of MaintenancePolicy resources.
+ * @property {string} kind [Output Only] Type of resource.Always compute#maintenancePoliciesList for listsof maintenancePolicies
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef MaintenancePoliciesScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).MaintenancePolicy[]} maintenancePolicies List of maintenancePolicies contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of maintenancePolicies when the list is empty.
+ */
+
+/**
+ * @typedef MaintenancePolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description 
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#maintenance_policies for maintenance policies.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} region 
+ * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
+ * @property {compute(alpha).VmMaintenancePolicy} vmMaintenancePolicy Maintenance policy applicable to VMs for infrastructure maintenance.
+ */
+
+/**
+ * @typedef MaintenancePolicyAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A list of MaintenancePolicy resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {object} warning [Output Only] Informational warning message.
+ */
+
+/**
+ * @typedef MaintenanceWindow
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).DailyMaintenanceWindow} dailyMaintenanceWindow 
+ * @property {compute(alpha).HourlyMaintenanceWindow} hourlyMaintenanceWindow 
  */
 
 /**
@@ -22115,6 +22666,14 @@ To see the latest fingerprint, make get() request to the security policy.
  */
 
 /**
+ * @typedef ShieldedVmConfig
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} enableSecureBoot Defines whether the instance should have secure boot enabled.
+ * @property {boolean} enableVtpm Defines whether the instance should have the TPM enabled.
+ */
+
+/**
  * @typedef SignedUrlKey
  * @memberOf! compute(alpha)
  * @type object
@@ -22248,7 +22807,6 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @typedef StatefulPolicy
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).StatefulPolicyPreservedDisk[]} preservedDisks Disks created on the instances that will be preserved on instance delete, resize down, etc. DEPRECATED in favor of preservedResources.disks field.
  * @property {compute(alpha).StatefulPolicyPreservedResources} preservedResources 
  */
 
@@ -22887,6 +23445,13 @@ To see the latest fingerprint, make a get() request to retrieve an TargetVpnGate
  * @type object
  * @property {string} bucketName The name of an existing bucket in Cloud Storage where the usage report object is stored. The Google Service Account is granted write access to this bucket. This can either be the bucket name by itself, such as example-bucket, or the bucket name with gs:// or https://storage.googleapis.com/ in front of it, such as gs://example-bucket.
  * @property {string} reportNamePrefix An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.
+ */
+
+/**
+ * @typedef VmMaintenancePolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).MaintenanceWindow} maintenanceWindow Maintenance windows that are applied to VMs covered by this policy.
  */
 
 /**

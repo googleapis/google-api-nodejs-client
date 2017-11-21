@@ -8774,7 +8774,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.list
      *
-     * @desc Retrieves the list of private images available to the specified project. Private images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * @example
      * // BEFORE RUNNING:
@@ -30375,7 +30375,7 @@ function Compute(options) { // eslint-disable-line
  * @memberOf! compute(v1)
  * @type object
 * @property {string} address The static IP address represented by this resource.
-* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
+* @property {string} addressType The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -30489,13 +30489,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family 
+global/images/family/my-image-family 
 
 If the source image is deleted later, this field will not be set.
 * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
@@ -30913,13 +30913,13 @@ Alternatively, use a specific version of a public operating system image:
 
 projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
 
-To create a disk with a private image that you created, specify the image name in the following format:
+To create a disk with a custom image that you created, specify the image name in the following format:
 
-global/images/my-private-image 
+global/images/my-custom-image 
 
-You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-image-family
 * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 * @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
 * @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  
@@ -31796,7 +31796,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @typedef Interconnect
  * @memberOf! compute(v1)
  * @type object
- * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
  * @property {compute(v1).InterconnectCircuitInfo[]} circuitInfos [Output Only] List of CircuitInfo objects, that describe the individual circuits in this LAG.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerName Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
@@ -31806,9 +31806,9 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
- * @property {string} interconnectType 
+ * @property {string} interconnectType Type of interconnect. Note that &quot;IT_PRIVATE&quot; has been deprecated in favor of &quot;DEDICATED&quot;
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
- * @property {string} linkType 
+ * @property {string} linkType Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle. Only 10G per link is allowed for a dedicated interconnect. Options: Ethernet_10G_LR
  * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
@@ -31826,14 +31826,14 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} description An optional description of this resource.
  * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
  * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
- * @property {compute(v1).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {compute(v1).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
  * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
  * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
@@ -31882,7 +31882,7 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @typedef InterconnectCircuitInfo
  * @memberOf! compute(v1)
  * @type object
- * @property {string} customerDemarcId Customer-side demarc ID for this circuit. This will only be set if it was provided by the Customer to Google during circuit turn-up.
+ * @property {string} customerDemarcId Customer-side demarc ID for this circuit.
  * @property {string} googleCircuitId Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
  * @property {string} googleDemarcId Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
  */
@@ -31904,9 +31904,9 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @memberOf! compute(v1)
  * @type object
  * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
- * @property {string} availabilityZone Availability zone for this location. Within a city, maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
- * @property {string} city City designator used by the Interconnect UI to locate this InterconnectLocation within the Continent. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
- * @property {string} continent Continent for this location. Used by the location picker in the Interconnect UI.
+ * @property {string} availabilityZone [Output Only] Availability zone for this location. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: &quot;zone1&quot; or &quot;zone2&quot;.
+ * @property {string} city [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: &quot;Chicago, IL&quot;, &quot;Amsterdam, Netherlands&quot;.
+ * @property {string} continent [Output Only] Continent for this location.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description [Output Only] An optional description of the resource.
  * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
@@ -31945,13 +31945,13 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @memberOf! compute(v1)
  * @type object
  * @property {string[]} affectedCircuits Iff issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
- * @property {string} description Short user-visible description of the purpose of the outage.
- * @property {string} endTime 
- * @property {string} issueType 
+ * @property {string} description A description about the purpose of the outage.
+ * @property {string} endTime Scheduled end time for the outage (milliseconds since Unix epoch).
+ * @property {string} issueType Form this outage is expected to take. Note that the &quot;IT_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  * @property {string} name Unique identifier for this outage notification.
- * @property {string} source 
- * @property {string} startTime Scheduled start and end times for the outage (milliseconds since Unix epoch).
- * @property {string} state 
+ * @property {string} source The party that generated this notification. Note that &quot;NSRC_GOOGLE&quot; has been deprecated in favor of &quot;GOOGLE&quot;
+ * @property {string} startTime Scheduled start time for the outage (milliseconds since Unix epoch).
+ * @property {string} state State of this notification. Note that the &quot;NS_&quot; versions of this enum have been deprecated in favor of the unprefixed values.
  */
 
 /**

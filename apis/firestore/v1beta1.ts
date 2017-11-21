@@ -914,6 +914,7 @@ Greater or equal to the `commit_time` of the change/delete/remove.
 * @property {string} document The name of the document to transform.
 * @property {firestore(v1beta1).FieldTransform[]} fieldTransforms The list of transformations to apply to the fields of the document, in
 order.
+This must not be empty.
 */
 
 /**

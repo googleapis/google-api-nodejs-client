@@ -443,12 +443,14 @@ policy is overwritten blindly.
  * @memberOf! sourcerepo(v1)
  * @type object
 * @property {sourcerepo(v1).MirrorConfig} mirrorConfig How this repository mirrors a repository managed by another service.
+Read-only field.
 * @property {string} name Resource name of the repository, of the form
 `projects/&lt;project&gt;/repos/&lt;repo&gt;`.  The repo name may contain slashes.
 eg, `projects/myproject/repos/name/with/slash`
-* @property {string} size The disk usage of the repo, in bytes.
-Only returned by GetRepo.
+* @property {string} size The disk usage of the repo, in bytes. Read-only field. Size is only
+returned by GetRepo.
 * @property {string} url URL to clone the repository from Google Cloud Source Repositories.
+Read-only field.
 */
 
 /**
