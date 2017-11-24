@@ -12,17 +12,18 @@
 // limitations under the License.
 
 export abstract class Utils {
-  static getDiscoveryUrl (name, version) {
-    return 'https://www.googleapis.com/discovery/v1/apis/' + name +
-      '/' + version + '/rest';
+  static getDiscoveryUrl(name, version) {
+    return 'https://www.googleapis.com/discovery/v1/apis/' + name + '/' +
+        version + '/rest';
   }
 
-  static loadApi (google, name, version, options, cb) {
+  static loadApi(google, name, version, options, cb) {
     if (typeof options === 'function') {
       cb = options;
       options = {};
     }
-    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options, cb);
+    return google.discoverAPI(
+        Utils.getDiscoveryUrl(name, version), options, cb);
   }
 
   static readonly noop = () => undefined;

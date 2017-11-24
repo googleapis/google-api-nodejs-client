@@ -11,9 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'power-assert';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as assert from 'power-assert';
+
 const googleapis = require('../');
 
 describe('GoogleApis#discover', () => {
@@ -47,7 +48,8 @@ describe('GoogleApis#discover', () => {
       // APIs have all been re-added.
       localApis.forEach(name => {
         if (google[name] === null) {
-          // Warn if an API remains null (was not found during the discovery process) to avoid failing the test.
+          // Warn if an API remains null (was not found during the discovery
+          // process) to avoid failing the test.
           console.warn(name + ' was not found.');
         } else {
           assert(google[name]);
