@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Surveys API
  *
- * Creates and conducts surveys, lists the surveys that an authenticated user owns, and retrieves survey results and information about specified surveys.
+ * Creates and conducts surveys, lists the surveys that an authenticated user
+ * owns, and retrieves survey results and information about specified surveys.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,14 @@ import {
  * @variation v2
  * @param {object=} options Options for Surveys
  */
-function Surveys(options) { // eslint-disable-line
+function Surveys(options) {
   const self = this;
   self._options = options || {};
-
   self.mobileapppanels = {
-
     /**
      * surveys.mobileapppanels.get
-     *
-     * @desc Retrieves a MobileAppPanel that is available to the authenticated user.
-     *
+     * @desc Retrieves a MobileAppPanel that is available to the authenticated
+     * user.
      * @alias surveys.mobileapppanels.get
      * @memberOf! surveys(v2)
      *
@@ -55,7 +49,7 @@ function Surveys(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,36 +59,36 @@ function Surveys(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * surveys.mobileapppanels.list
-     *
-     * @desc Lists the MobileAppPanels available to the authenticated user.
-     *
-     * @alias surveys.mobileapppanels.list
-     * @memberOf! surveys(v2)
-     *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults 
-     * @param {integer=} params.startIndex 
-     * @param {string=} params.token 
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * surveys.mobileapppanels.list
+       * @desc Lists the MobileAppPanels available to the authenticated user.
+       * @alias surveys.mobileapppanels.list
+       * @memberOf! surveys(v2)
+       *
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults
+       * @param {integer=} params.startIndex
+       * @param {string=} params.token
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,35 +98,36 @@ function Surveys(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/mobileAppPanels').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/mobileAppPanels')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * surveys.mobileapppanels.update
-     *
-     * @desc Updates a MobileAppPanel. Currently the only property that can be updated is the owners property.
-     *
-     * @alias surveys.mobileapppanels.update
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.panelId External URL ID for the panel.
-     * @param {surveys(v2).MobileAppPanel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
+    , /**
+       * surveys.mobileapppanels.update
+       * @desc Updates a MobileAppPanel. Currently the only property that can be
+       * updated is the owners property.
+       * @alias surveys.mobileapppanels.update
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.panelId External URL ID for the panel.
+       * @param {surveys(v2).MobileAppPanel} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -142,28 +137,29 @@ function Surveys(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
         params: params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.results = {
-
     /**
      * surveys.results.get
-     *
-     * @desc Retrieves any survey results that have been produced so far. Results are formatted as an Excel file. You must add "?alt=media" to the URL as an argument to get results.
-     *
+     * @desc Retrieves any survey results that have been produced so far.
+     * Results are formatted as an Excel file. You must add "?alt=media" to the
+     * URL as an argument to get results.
      * @alias surveys.results.get
      * @memberOf! surveys(v2)
      *
@@ -174,7 +170,7 @@ function Surveys(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -184,28 +180,27 @@ function Surveys(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.surveys = {
-
     /**
      * surveys.surveys.delete
-     *
      * @desc Removes a survey from view in all user GET requests.
-     *
      * @alias surveys.surveys.delete
      * @memberOf! surveys(v2)
      *
@@ -215,7 +210,7 @@ function Surveys(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -225,256 +220,258 @@ function Surveys(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.get
-     *
-     * @desc Retrieves information about the specified survey.
-     *
-     * @alias surveys.surveys.get
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.surveyUrlId External URL ID for the survey.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['surveyUrlId'],
-        pathParams: ['surveyUrlId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.insert
-     *
-     * @desc Creates a survey.
-     *
-     * @alias surveys.surveys.insert
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {surveys(v2).Survey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.list
-     *
-     * @desc Lists the surveys owned by the authenticated user.
-     *
-     * @alias surveys.surveys.list
-     * @memberOf! surveys(v2)
-     *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults 
-     * @param {integer=} params.startIndex 
-     * @param {string=} params.token 
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.start
-     *
-     * @desc Begins running a survey.
-     *
-     * @alias surveys.surveys.start
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceId 
-     * @param {surveys(v2).SurveysStartRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    start: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resourceId'],
-        pathParams: ['resourceId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.stop
-     *
-     * @desc Stops a running survey.
-     *
-     * @alias surveys.surveys.stop
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceId 
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    stop: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resourceId'],
-        pathParams: ['resourceId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * surveys.surveys.update
-     *
-     * @desc Updates a survey. Currently the only property that can be updated is the owners property.
-     *
-     * @alias surveys.surveys.update
-     * @memberOf! surveys(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.surveyUrlId External URL ID for the survey.
-     * @param {surveys(v2).Survey} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['surveyUrlId'],
-        pathParams: ['surveyUrlId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * surveys.surveys.get
+       * @desc Retrieves information about the specified survey.
+       * @alias surveys.surveys.get
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.surveyUrlId External URL ID for the survey.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['surveyUrlId'],
+        pathParams: ['surveyUrlId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * surveys.surveys.insert
+       * @desc Creates a survey.
+       * @alias surveys.surveys.insert
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {surveys(v2).Survey} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * surveys.surveys.list
+       * @desc Lists the surveys owned by the authenticated user.
+       * @alias surveys.surveys.list
+       * @memberOf! surveys(v2)
+       *
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults
+       * @param {integer=} params.startIndex
+       * @param {string=} params.token
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * surveys.surveys.start
+       * @desc Begins running a survey.
+       * @alias surveys.surveys.start
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resourceId
+       * @param {surveys(v2).SurveysStartRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    start: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['resourceId'],
+        pathParams: ['resourceId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * surveys.surveys.stop
+       * @desc Stops a running survey.
+       * @alias surveys.surveys.stop
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resourceId
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    stop: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['resourceId'],
+        pathParams: ['resourceId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * surveys.surveys.update
+       * @desc Updates a survey. Currently the only property that can be updated
+       * is the owners property.
+       * @alias surveys.surveys.update
+       * @memberOf! surveys(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.surveyUrlId External URL ID for the survey.
+       * @param {surveys(v2).Survey} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['surveyUrlId'],
+        pathParams: ['surveyUrlId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef FieldMask
  * @memberOf! surveys(v2)
  * @type object
- * @property {surveys(v2).FieldMask[]} fields 
- * @property {integer} id 
+ * @property {surveys(v2).FieldMask[]} fields
+ * @property {integer} id
  */
-
 /**
  * @typedef MobileAppPanel
  * @memberOf! surveys(v2)
@@ -486,41 +483,36 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} name Human readable name of the audience panel.
  * @property {string[]} owners List of email addresses for users who can target members of this panel. Must contain at least the address of the user making the API call for panels that are not public. This field will be empty for public panels.
  */
-
 /**
  * @typedef MobileAppPanelsListResponse
  * @memberOf! surveys(v2)
  * @type object
- * @property {surveys(v2).PageInfo} pageInfo 
+ * @property {surveys(v2).PageInfo} pageInfo
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  * @property {surveys(v2).MobileAppPanel[]} resources An individual predefined panel of Opinion Rewards mobile users.
- * @property {surveys(v2).TokenPagination} tokenPagination 
+ * @property {surveys(v2).TokenPagination} tokenPagination
  */
-
 /**
  * @typedef PageInfo
  * @memberOf! surveys(v2)
  * @type object
- * @property {integer} resultPerPage 
- * @property {integer} startIndex 
- * @property {integer} totalResults 
+ * @property {integer} resultPerPage
+ * @property {integer} startIndex
+ * @property {integer} totalResults
  */
-
 /**
  * @typedef ResultsGetRequest
  * @memberOf! surveys(v2)
  * @type object
- * @property {surveys(v2).ResultsMask} resultMask 
+ * @property {surveys(v2).ResultsMask} resultMask
  */
-
 /**
  * @typedef ResultsMask
  * @memberOf! surveys(v2)
  * @type object
- * @property {surveys(v2).FieldMask[]} fields 
- * @property {string} projection 
+ * @property {surveys(v2).FieldMask[]} fields
+ * @property {string} projection
  */
-
 /**
  * @typedef Survey
  * @memberOf! surveys(v2)
@@ -537,7 +529,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} title Optional name that will be given to the survey.
  * @property {integer} wantedResponseCount Number of responses desired for the survey.
  */
-
 /**
  * @typedef SurveyAudience
  * @memberOf! surveys(v2)
@@ -550,7 +541,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} mobileAppPanelId Key for predefined panel that causes survey to be sent to a predefined set of Opinion Rewards App users. You must set PopulationSource to ANDROID_APP_PANEL to use this field.
  * @property {string} populationSource Online population source where the respondents are sampled from.
  */
-
 /**
  * @typedef SurveyCost
  * @memberOf! surveys(v2)
@@ -560,7 +550,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} maxCostPerResponseNanos Threshold to start a survey automatically if the quoted price is at most this value. When a survey has a Screener (threshold) question, it must go through an incidence pricing test to determine the final cost per response. Typically you will have to make a followup call to start the survey giving the final computed cost per response. If the survey has no threshold_answers, setting this property will return an error. By specifying this property, you indicate the max price per response you are willing to pay in advance of the incidence test. If the price turns out to be lower than the specified value, the survey will begin immediately and you will be charged at the rate determined by the incidence pricing test. If the price turns out to be greater than the specified value the survey will not be started and you will instead be notified what price was determined by the incidence test. At that point, you must raise the value of this property to be greater than or equal to that cost before attempting to start the survey again. This will immediately start the survey as long the incidence test was run within the last 21 days.
  * @property {string} nanos Cost of survey in nano units of the given currency. DEPRECATED in favor of cost_per_response_nanos
  */
-
 /**
  * @typedef SurveyQuestion
  * @memberOf! surveys(v2)
@@ -569,7 +558,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string[]} answers Required list of answer options for a question.
  * @property {boolean} hasOther Option to allow open-ended text box for Single Answer and Multiple Answer question types. This can be used with SINGLE_ANSWER, SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and MULTIPLE_ANSWERS_WITH_IMAGE question types.
  * @property {string} highValueLabel For rating questions, the text for the higher end of the scale, such as &#39;Best&#39;. For numeric questions, a string representing a floating-point that is the maximum allowed number for a response.
- * @property {surveys(v2).SurveyQuestionImage[]} images 
+ * @property {surveys(v2).SurveyQuestionImage[]} images
  * @property {boolean} lastAnswerPositionPinned Currently only support pinning an answer option to the last position.
  * @property {string} lowValueLabel For rating questions, the text for the lower end of the scale, such as &#39;Worst&#39;. For numeric questions, a string representing a floating-point that is the minimum allowed number for a response.
  * @property {boolean} mustPickSuggestion Option to force the user to pick one of the open text suggestions. This requires that suggestions are provided for this question.
@@ -584,7 +573,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} unitOfMeasurementLabel Optional unit of measurement for display (for example: hours, people, miles).
  * @property {string} videoId The YouTube video ID to be show in video questions.
  */
-
 /**
  * @typedef SurveyQuestionImage
  * @memberOf! surveys(v2)
@@ -593,7 +581,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} data Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
  * @property {string} url The read-only URL for the hosted images.
  */
-
 /**
  * @typedef SurveyRejection
  * @memberOf! surveys(v2)
@@ -601,7 +588,6 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} explanation A human-readable explanation of what was wrong with the survey.
  * @property {string} type Which category of rejection this was. See the  Google Surveys Help Center for additional details on each category.
  */
-
 /**
  * @typedef SurveyResults
  * @memberOf! surveys(v2)
@@ -609,50 +595,45 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} status Human readable string describing the status of the request.
  * @property {string} surveyUrlId External survey ID as viewable by survey owners in the editor view.
  */
-
 /**
  * @typedef SurveysDeleteResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
-
 /**
  * @typedef SurveysListResponse
  * @memberOf! surveys(v2)
  * @type object
- * @property {surveys(v2).PageInfo} pageInfo 
+ * @property {surveys(v2).PageInfo} pageInfo
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  * @property {surveys(v2).Survey[]} resources An individual survey resource.
- * @property {surveys(v2).TokenPagination} tokenPagination 
+ * @property {surveys(v2).TokenPagination} tokenPagination
  */
-
 /**
  * @typedef SurveysStartRequest
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} maxCostPerResponseNanos Threshold to start a survey automically if the quoted prices is less than or equal to this value. See Survey.Cost for more details.
  */
-
 /**
  * @typedef SurveysStartResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
-
 /**
  * @typedef SurveysStopResponse
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
  */
-
 /**
  * @typedef TokenPagination
  * @memberOf! surveys(v2)
  * @type object
- * @property {string} nextPageToken 
- * @property {string} previousPageToken 
+ * @property {string} nextPageToken
+ * @property {string} previousPageToken
  */
+
 export = Surveys;

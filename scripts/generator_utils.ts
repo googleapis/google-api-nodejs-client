@@ -20,8 +20,8 @@ export {DefaultTransporter} from 'google-auth-library/lib/transporters';
  * @param  {String} input URL to build from
  * @return {String}       Resulting built URL
  */
-export function buildurl(input) {
-  return ('\'' + input + '\'')
+export function buildurl(input?: string) {
+  return input ? ('\'' + input + '\'')
       // No * symbols
       .replace(/\*/g, '')
       // No + symbols
@@ -29,14 +29,8 @@ export function buildurl(input) {
       // replace double slashes with single slash (except in https://)
       .replace(/([^:]\/)\/+/g, '$1')
       // No {/ symbols
-      .replace(/\{\//g, '/{');
+      .replace(/\{\//g, '/{') : '';
 }
-
-/**
- * Disable auto-escaping its output
- * @type {Boolean}
- */
-(buildurl as any).safe = true;
 
 /**
  * Handle error object with callback

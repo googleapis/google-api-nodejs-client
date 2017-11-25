@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Cloud User Accounts API
  *
- * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
+ * Creates and manages users and groups for accessing Google Compute Engine
+ * virtual machines.
  *
  * @example
  * const google = require('googleapis');
@@ -35,29 +32,27 @@ import {
  * @variation beta
  * @param {object=} options Options for Clouduseraccounts
  */
-function Clouduseraccounts(options) { // eslint-disable-line
+function Clouduseraccounts(options) {
   const self = this;
   self._options = options || {};
-
   self.globalAccountsOperations = {
-
     /**
      * clouduseraccounts.globalAccountsOperations.delete
-     *
      * @desc Deletes the specified operation resource.
-     *
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -75,10 +70,8 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *     auth: authClient,
      *   };
      *
-     *   cloudUserAccounts.globalAccountsOperations.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
+     *   cloudUserAccounts.globalAccountsOperations.delete(request,
+     * function(err) { if (err) { console.error(err); return;
      *     }
      *   });
      * });
@@ -89,14 +82,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias clouduseraccounts.globalAccountsOperations.delete
      * @memberOf! clouduseraccounts(beta)
      *
@@ -107,7 +100,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -117,89 +110,91 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.globalAccountsOperations.get
-     *
-     * @desc Retrieves the specified operation resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the Operations resource to return.
-     *     operation: 'my-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.globalAccountsOperations.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.globalAccountsOperations.get
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.operation Name of the Operations resource to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.globalAccountsOperations.get
+       * @desc Retrieves the specified operation resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the Operations resource to return.
+       *     operation: 'my-operation',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.globalAccountsOperations.get(request, function(err,
+       * response) { if (err) { console.error(err); return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.globalAccountsOperations.get
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.operation Name of the Operations resource to return.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -209,102 +204,108 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.globalAccountsOperations.list
-     *
-     * @desc Retrieves the list of operation resources contained within the specified project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudUserAccounts.globalAccountsOperations.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudUserAccounts.globalAccountsOperations.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.globalAccountsOperations.list
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.globalAccountsOperations.list
+       * @desc Retrieves the list of operation resources contained within the
+       * specified project.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var itemsPage = response['items'];
+       *     if (!itemsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < itemsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudUserAccounts.globalAccountsOperations.list(request,
+       * handlePage);
+       *     }
+       *   };
+       *
+       *   cloudUserAccounts.globalAccountsOperations.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.globalAccountsOperations.list
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -314,40 +315,43 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/operations').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/operations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.groups = {
-
     /**
      * clouduseraccounts.groups.addMember
-     *
      * @desc Adds users to the specified group.
-     *
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -386,14 +390,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias clouduseraccounts.groups.addMember
      * @memberOf! clouduseraccounts(beta)
      *
@@ -405,7 +409,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addMember: function (params, options, callback) {
+    addMember: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -415,519 +419,541 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/addMember').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/addMember')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.delete
-     *
-     * @desc Deletes the specified Group resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the Group resource to delete.
-     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.groups.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.groups.delete
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the Group resource to delete.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.get
-     *
-     * @desc Returns the specified Group resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the Group resource to return.
-     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.groups.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.groups.get
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the Group resource to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.insert
-     *
-     * @desc Creates a Group resource in the specified project using the data included in the request.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.groups.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.groups.insert
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(beta).Group} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.list
-     *
-     * @desc Retrieves the list of groups contained within the specified project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudUserAccounts.groups.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudUserAccounts.groups.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.groups.list
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.removeMember
-     *
-     * @desc Removes users from the specified group.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the group for this request.
-     *     groupName: 'my-group-name',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.groups.removeMember(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.groups.removeMember
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the group for this request.
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(beta).GroupsRemoveMemberRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    removeMember: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/removeMember').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * clouduseraccounts.groups.delete
+       * @desc Deletes the specified Group resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the Group resource to delete.
+       *     groupName: 'my-group-name',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.groups.delete(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.groups.delete
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the Group resource to delete.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.get
+       * @desc Returns the specified Group resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the Group resource to return.
+       *     groupName: 'my-group-name',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.groups.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.groups.get
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the Group resource to return.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.insert
+       * @desc Creates a Group resource in the specified project using the data
+       * included in the request.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.groups.insert(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.groups.insert
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(beta).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/clouduseraccounts/beta/projects/{project}/global/groups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.list
+       * @desc Retrieves the list of groups contained within the specified
+       * project.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var itemsPage = response['items'];
+       *     if (!itemsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < itemsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudUserAccounts.groups.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   cloudUserAccounts.groups.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.groups.list
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/clouduseraccounts/beta/projects/{project}/global/groups')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.removeMember
+       * @desc Removes users from the specified group.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the group for this request.
+       *     groupName: 'my-group-name',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.groups.removeMember(request, function(err,
+       * response) { if (err) { console.error(err); return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.groups.removeMember
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the group for this request.
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(beta).GroupsRemoveMemberRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    removeMember: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/groups/{groupName}/removeMember')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.linux = {
-
     /**
      * clouduseraccounts.linux.getAuthorizedKeysView
-     *
-     * @desc Returns a list of authorized public keys for a specific user account.
-     *
+     * @desc Returns a list of authorized public keys for a specific user
+     * account.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -942,19 +968,17 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *     // Name of the zone for this request.
      *     zone: 'my-zone',  // TODO: Update placeholder value.
      *
-     *     // The user account for which you want to get a list of authorized public keys.
-     *     user: 'my-user',  // TODO: Update placeholder value.
+     *     // The user account for which you want to get a list of authorized
+     * public keys. user: 'my-user',  // TODO: Update placeholder value.
      *
-     *     // The fully-qualified URL of the virtual machine requesting the view.
-     *     instance: '',  // TODO: Update placeholder value.
+     *     // The fully-qualified URL of the virtual machine requesting the
+     * view. instance: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
      *
-     *   cloudUserAccounts.linux.getAuthorizedKeysView(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
+     *   cloudUserAccounts.linux.getAuthorizedKeysView(request, function(err,
+     * response) { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -968,14 +992,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias clouduseraccounts.linux.getAuthorizedKeysView
      * @memberOf! clouduseraccounts(beta)
      *
@@ -989,7 +1013,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAuthorizedKeysView: function (params, options, callback) {
+    getAuthorizedKeysView: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -999,97 +1023,100 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'zone', 'user', 'instance'],
         pathParams: ['project', 'user', 'zone'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.linux.getLinuxAccountViews
-     *
-     * @desc Retrieves a list of user accounts for an instance within a specific project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the zone for this request.
-     *     zone: 'my-zone',  // TODO: Update placeholder value.
-     *
-     *     // The fully-qualified URL of the virtual machine requesting the views.
-     *     instance: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.linux.getLinuxAccountViews(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.linux.getLinuxAccountViews
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getLinuxAccountViews: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.linux.getLinuxAccountViews
+       * @desc Retrieves a list of user accounts for an instance within a
+       * specific project.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the zone for this request.
+       *     zone: 'my-zone',  // TODO: Update placeholder value.
+       *
+       *     // The fully-qualified URL of the virtual machine requesting the
+       * views. instance: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.linux.getLinuxAccountViews(request, function(err,
+       * response) { if (err) { console.error(err); return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.linux.getLinuxAccountViews
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.zone Name of the zone for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getLinuxAccountViews: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1099,40 +1126,44 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/zones/{zone}/linuxAccountViews').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/zones/{zone}/linuxAccountViews')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['project', 'zone'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.users = {
-
     /**
      * clouduseraccounts.users.addPublicKey
-     *
-     * @desc Adds a public key to the specified User resource with the data included in the request.
-     *
+     * @desc Adds a public key to the specified User resource with the data
+     * included in the request.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Cloud User Accounts API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1171,14 +1202,14 @@ function Clouduseraccounts(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias clouduseraccounts.users.addPublicKey
      * @memberOf! clouduseraccounts(beta)
      *
@@ -1190,7 +1221,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPublicKey: function (params, options, callback) {
+    addPublicKey: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1200,89 +1231,93 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}/addPublicKey').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/users/{user}/addPublicKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.delete
-     *
-     * @desc Deletes the specified User resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the user resource to delete.
-     *     user: 'my-user',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.users.delete(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.users.delete
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user resource to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.delete
+       * @desc Deletes the specified User resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the user resource to delete.
+       *     user: 'my-user',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.users.delete(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.users.delete
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user resource to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1292,89 +1327,93 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/users/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.get
-     *
-     * @desc Returns the specified User resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the user resource to return.
-     *     user: 'my-user',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.users.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.users.get
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user resource to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.get
+       * @desc Returns the specified User resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the user resource to return.
+       *     user: 'my-user',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.users.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.users.get
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user resource to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1384,90 +1423,95 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/users/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.insert
-     *
-     * @desc Creates a User resource in the specified project using the data included in the request.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.users.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.users.insert
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(beta).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.insert
+       * @desc Creates a User resource in the specified project using the data
+       * included in the request.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.users.insert(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.users.insert
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(beta).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1477,102 +1521,105 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/clouduseraccounts/beta/projects/{project}/global/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.list
-     *
-     * @desc Retrieves a list of users contained within the specified project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var itemsPage = response['items'];
-     *     if (!itemsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < itemsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `itemsPage`:
-     *       console.log(JSON.stringify(itemsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudUserAccounts.users.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudUserAccounts.users.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.users.list
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.list
+       * @desc Retrieves a list of users contained within the specified project.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var itemsPage = response['items'];
+       *     if (!itemsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < itemsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudUserAccounts.users.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   cloudUserAccounts.users.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.users.list
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1582,94 +1629,96 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/clouduseraccounts/beta/projects/{project}/global/users')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.removePublicKey
-     *
-     * @desc Removes the specified public key from the user.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Cloud User Accounts API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/clouduseraccounts
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudUserAccounts = google.clouduseraccounts('beta');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID for this request.
-     *     project: 'my-project',  // TODO: Update placeholder value.
-     *
-     *     // Name of the user for this request.
-     *     user: 'my-user',  // TODO: Update placeholder value.
-     *
-     *     // The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which
-     *     // is defined by RFC4716 to be the MD5 digest of the public key.
-     *     fingerprint: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   cloudUserAccounts.users.removePublicKey(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias clouduseraccounts.users.removePublicKey
-     * @memberOf! clouduseraccounts(beta)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    removePublicKey: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.removePublicKey
+       * @desc Removes the specified public key from the user.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Cloud User Accounts API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/clouduseraccounts
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var cloudUserAccounts = google.clouduseraccounts('beta');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID for this request.
+       *     project: 'my-project',  // TODO: Update placeholder value.
+       *
+       *     // Name of the user for this request.
+       *     user: 'my-user',  // TODO: Update placeholder value.
+       *
+       *     // The fingerprint of the public key to delete. Public keys are
+       * identified by their fingerprint, which
+       *     // is defined by RFC4716 to be the MD5 digest of the public key.
+       *     fingerprint: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   cloudUserAccounts.users.removePublicKey(request, function(err,
+       * response) { if (err) { console.error(err); return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias clouduseraccounts.users.removePublicKey
+       * @memberOf! clouduseraccounts(beta)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    removePublicKey: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1679,22 +1728,26 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/beta/projects/{project}/global/users/{user}/removePublicKey').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/beta/projects/{project}/global/users/{user}/removePublicKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef AuthorizedKeysView
  * @memberOf! clouduseraccounts(beta)
@@ -1702,7 +1755,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} keys [Output Only] The list of authorized public keys in SSH format.
  * @property {boolean} sudoer [Output Only] Whether the user has the ability to elevate on the instance that requested the authorized keys.
  */
-
 /**
  * @typedef Group
  * @memberOf! clouduseraccounts(beta)
@@ -1715,7 +1767,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} name Name of the resource; provided by the client when the resource is created.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
-
 /**
  * @typedef GroupList
  * @memberOf! clouduseraccounts(beta)
@@ -1726,21 +1777,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
-
 /**
  * @typedef GroupsAddMemberRequest
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to add.
  */
-
 /**
  * @typedef GroupsRemoveMemberRequest
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to remove.
  */
-
 /**
  * @typedef LinuxAccountViews
  * @memberOf! clouduseraccounts(beta)
@@ -1749,21 +1797,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#linuxAccountViews for Linux resources.
  * @property {clouduseraccounts(beta).LinuxUserView[]} userViews [Output Only] A list of all users within a project.
  */
-
 /**
  * @typedef LinuxGetAuthorizedKeysViewResponse
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {clouduseraccounts(beta).AuthorizedKeysView} resource [Output Only] A list of authorized public keys for a user.
  */
-
 /**
  * @typedef LinuxGetLinuxAccountViewsResponse
  * @memberOf! clouduseraccounts(beta)
  * @type object
  * @property {clouduseraccounts(beta).LinuxAccountViews} resource [Output Only] A list of authorized user accounts and groups.
  */
-
 /**
  * @typedef LinuxGroupView
  * @memberOf! clouduseraccounts(beta)
@@ -1772,7 +1817,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} groupName [Output Only] Group name.
  * @property {string[]} members [Output Only] List of user accounts that belong to the group.
  */
-
 /**
  * @typedef LinuxUserView
  * @memberOf! clouduseraccounts(beta)
@@ -1784,7 +1828,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {integer} uid [Output Only] User ID.
  * @property {string} username [Output Only] The username of the account.
  */
-
 /**
  * @typedef Operation
  * @memberOf! clouduseraccounts(beta)
@@ -1813,7 +1856,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
-
 /**
  * @typedef OperationList
  * @memberOf! clouduseraccounts(beta)
@@ -1824,7 +1866,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
-
 /**
  * @typedef PublicKey
  * @memberOf! clouduseraccounts(beta)
@@ -1835,7 +1876,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} fingerprint [Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key.
  * @property {string} key Public key text in SSH format, defined by RFC4253 section 6.6.
  */
-
 /**
  * @typedef User
  * @memberOf! clouduseraccounts(beta)
@@ -1850,7 +1890,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {clouduseraccounts(beta).PublicKey[]} publicKeys [Output Only] Public keys that this user may use to login.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
-
 /**
  * @typedef UserList
  * @memberOf! clouduseraccounts(beta)
@@ -1861,4 +1900,5 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
+
 export = Clouduseraccounts;

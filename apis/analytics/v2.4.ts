@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Analytics API
@@ -35,17 +31,13 @@ import {
  * @variation v2.4
  * @param {object=} options Options for Analytics
  */
-function Analytics(options) { // eslint-disable-line
+function Analytics(options) {
   const self = this;
   self._options = options || {};
-
   self.data = {
-
     /**
      * analytics.data.get
-     *
      * @desc Returns Analytics report data for a view (profile).
-     *
      * @alias analytics.data.get
      * @memberOf! analytics(v2.4)
      *
@@ -64,7 +56,7 @@ function Analytics(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -74,29 +66,28 @@ function Analytics(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/analytics/v2.4/data').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/analytics/v2.4/data')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
-  };
 
+  };
   self.management = {
     accounts: {
-
       /**
        * analytics.management.accounts.list
-       *
        * @desc Lists all accounts to which the user has access.
-       *
        * @alias analytics.management.accounts.list
        * @memberOf! analytics(v2.4)
        *
@@ -107,7 +98,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -117,26 +108,27 @@ function Analytics(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/analytics/v2.4/management/accounts').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl + '/analytics/v2.4/management/accounts')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     goals: {
-
       /**
        * analytics.management.goals.list
-       *
        * @desc Lists goals to which the user has access.
-       *
        * @alias analytics.management.goals.list
        * @memberOf! analytics(v2.4)
        *
@@ -150,7 +142,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -160,26 +152,29 @@ function Analytics(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     profiles: {
-
       /**
        * analytics.management.profiles.list
-       *
        * @desc Lists views (profiles) to which the user has access.
-       *
        * @alias analytics.management.profiles.list
        * @memberOf! analytics(v2.4)
        *
@@ -192,7 +187,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -202,26 +197,29 @@ function Analytics(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     segments: {
-
       /**
        * analytics.management.segments.list
-       *
        * @desc Lists advanced segments to which the user has access.
-       *
        * @alias analytics.management.segments.list
        * @memberOf! analytics(v2.4)
        *
@@ -232,7 +230,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -242,26 +240,27 @@ function Analytics(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/analytics/v2.4/management/segments').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl + '/analytics/v2.4/management/segments')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     },
     webproperties: {
-
       /**
        * analytics.management.webproperties.list
-       *
        * @desc Lists web properties to which the user has access.
-       *
        * @alias analytics.management.webproperties.list
        * @memberOf! analytics(v2.4)
        *
@@ -273,7 +272,7 @@ function Analytics(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -283,18 +282,24 @@ function Analytics(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/analytics/v2.4/management/accounts/{accountId}/webproperties').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url:
+                    (rootUrl +
+                     '/analytics/v2.4/management/accounts/{accountId}/webproperties')
+                        .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     }
   };
 }

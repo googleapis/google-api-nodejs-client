@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Blogger API
@@ -35,17 +31,13 @@ import {
  * @variation v2
  * @param {object=} options Options for Blogger
  */
-function Blogger(options) { // eslint-disable-line
+function Blogger(options) {
   const self = this;
   self._options = options || {};
-
   self.blogs = {
-
     /**
      * blogger.blogs.get
-     *
      * @desc Gets one blog by id.
-     *
      * @alias blogger.blogs.get
      * @memberOf! blogger(v2)
      *
@@ -55,7 +47,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -65,28 +57,27 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/blogs/{blogId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.comments = {
-
     /**
      * blogger.comments.get
-     *
      * @desc Gets one comment by id.
-     *
      * @alias blogger.comments.get
      * @memberOf! blogger(v2)
      *
@@ -98,7 +89,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -108,39 +99,41 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * blogger.comments.list
-     *
-     * @desc Retrieves the comments for a blog, possibly filtered.
-     *
-     * @alias blogger.comments.list
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch comments from.
-     * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
-     * @param {integer=} params.maxResults Maximum number of comments to include in the result.
-     * @param {string=} params.pageToken Continuation token if request is paged.
-     * @param {string} params.postId ID of the post to fetch posts from.
-     * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * blogger.comments.list
+       * @desc Retrieves the comments for a blog, possibly filtered.
+       * @alias blogger.comments.list
+       * @memberOf! blogger(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.blogId ID of the blog to fetch comments from.
+       * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
+       * @param {integer=} params.maxResults Maximum number of comments to include in the result.
+       * @param {string=} params.pageToken Continuation token if request is paged.
+       * @param {string} params.postId ID of the post to fetch posts from.
+       * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -150,28 +143,28 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}/comments').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.pages = {
-
     /**
      * blogger.pages.get
-     *
      * @desc Gets one blog page by id.
-     *
      * @alias blogger.pages.get
      * @memberOf! blogger(v2)
      *
@@ -182,7 +175,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -192,35 +185,35 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * blogger.pages.list
-     *
-     * @desc Retrieves pages for a blog, possibly filtered.
-     *
-     * @alias blogger.pages.list
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch pages from.
-     * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * blogger.pages.list
+       * @desc Retrieves pages for a blog, possibly filtered.
+       * @alias blogger.pages.list
+       * @memberOf! blogger(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.blogId ID of the blog to fetch pages from.
+       * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -230,28 +223,27 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.posts = {
-
     /**
      * blogger.posts.get
-     *
      * @desc Get a post by id.
-     *
      * @alias blogger.posts.get
      * @memberOf! blogger(v2)
      *
@@ -262,7 +254,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -272,38 +264,38 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * blogger.posts.list
-     *
-     * @desc Retrieves a list of posts, possibly filtered.
-     *
-     * @alias blogger.posts.list
-     * @memberOf! blogger(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId ID of the blog to fetch posts from.
-     * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
-     * @param {integer=} params.maxResults Maximum number of posts to fetch.
-     * @param {string=} params.pageToken Continuation token if the request is paged.
-     * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * blogger.posts.list
+       * @desc Retrieves a list of posts, possibly filtered.
+       * @alias blogger.posts.list
+       * @memberOf! blogger(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.blogId ID of the blog to fetch posts from.
+       * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
+       * @param {integer=} params.maxResults Maximum number of posts to fetch.
+       * @param {string=} params.pageToken Continuation token if the request is paged.
+       * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -313,28 +305,27 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.users = {
-
     /**
      * blogger.users.get
-     *
      * @desc Gets one user by id.
-     *
      * @alias blogger.users.get
      * @memberOf! blogger(v2)
      *
@@ -344,7 +335,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -354,25 +345,26 @@ function Blogger(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/blogger/v2/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/blogger/v2/users/{userId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
-    blogs: {
+    }
 
+    ,
+    blogs: {
       /**
        * blogger.users.blogs.list
-       *
        * @desc Retrieves a list of blogs, possibly filtered.
-       *
        * @alias blogger.users.blogs.list
        * @memberOf! blogger(v2)
        *
@@ -382,7 +374,7 @@ function Blogger(options) { // eslint-disable-line
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      list: function(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -392,22 +384,25 @@ function Blogger(options) { // eslint-disable-line
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
         const parameters = {
-          options: Object.assign({
-            url: (rootUrl + '/blogger/v2/users/{userId}/blogs').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          }, options),
+          options: Object.assign(
+              {
+                url: (rootUrl + '/blogger/v2/users/{userId}/blogs')
+                         .replace(/([^:]\/)\/+/g, '$1'),
+                method: 'GET'
+              },
+              options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
-
         return createAPIRequest(parameters, callback);
       }
+
+
     }
   };
 }
-
 /**
  * @typedef Blog
  * @memberOf! blogger(v2)
@@ -424,7 +419,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this blog was last updated.
  * @property {string} url The URL where this blog is published.
  */
-
 /**
  * @typedef BlogList
  * @memberOf! blogger(v2)
@@ -432,7 +426,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v2).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
  * @property {string} kind The kind of this entity. Always blogger#blogList
  */
-
 /**
  * @typedef Comment
  * @memberOf! blogger(v2)
@@ -448,7 +441,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} selfLink The API REST URL to fetch this resource from.
  * @property {string} updated RFC 3339 date-time when this comment was last updated.
  */
-
 /**
  * @typedef CommentList
  * @memberOf! blogger(v2)
@@ -458,7 +450,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
  */
-
 /**
  * @typedef Page
  * @memberOf! blogger(v2)
@@ -474,7 +465,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Page was last updated.
  * @property {string} url The URL that this Page is displayed at.
  */
-
 /**
  * @typedef PageList
  * @memberOf! blogger(v2)
@@ -482,7 +472,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {blogger(v2).Page[]} items The list of Pages for a Blog.
  * @property {string} kind The kind of this entity. Always blogger#pageList
  */
-
 /**
  * @typedef Post
  * @memberOf! blogger(v2)
@@ -500,7 +489,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} updated RFC 3339 date-time when this Post was last updated.
  * @property {string} url The URL where this Post is displayed.
  */
-
 /**
  * @typedef PostList
  * @memberOf! blogger(v2)
@@ -510,7 +498,6 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
  * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
  */
-
 /**
  * @typedef User
  * @memberOf! blogger(v2)
@@ -525,4 +512,5 @@ function Blogger(options) { // eslint-disable-line
  * @property {string} selfLink The API REST URL to fetch this resource from.
  * @property {string} url The user&#39;s profile page.
  */
+
 export = Blogger;

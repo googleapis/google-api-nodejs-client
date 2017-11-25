@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * APIs Discovery Service
  *
- * Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
+ * Provides information about other Google APIs, such as what APIs are
+ * available, the resource, and method details for each API.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,13 @@ import {
  * @variation v1
  * @param {object=} options Options for Discovery
  */
-function Discovery(options) { // eslint-disable-line
+function Discovery(options) {
   const self = this;
   self._options = options || {};
-
   self.apis = {
-
     /**
      * discovery.apis.getRest
-     *
      * @desc Retrieve the description of a particular version of an api.
-     *
      * @alias discovery.apis.getRest
      * @memberOf! discovery(v1)
      *
@@ -56,7 +49,7 @@ function Discovery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest: function (params, options, callback) {
+    getRest: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -66,35 +59,35 @@ function Discovery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * discovery.apis.list
-     *
-     * @desc Retrieve the list of APIs supported at this endpoint.
-     *
-     * @alias discovery.apis.list
-     * @memberOf! discovery(v1)
-     *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.name Only include APIs with the given name.
-     * @param {boolean=} params.preferred Return only the preferred version of an API.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * discovery.apis.list
+       * @desc Retrieve the list of APIs supported at this endpoint.
+       * @alias discovery.apis.list
+       * @memberOf! discovery(v1)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.name Only include APIs with the given name.
+       * @param {boolean=} params.preferred Return only the preferred version of an API.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,22 +97,24 @@ function Discovery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/discovery/v1/apis')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef DirectoryList
  * @memberOf! discovery(v1)
@@ -128,7 +123,6 @@ function Discovery(options) { // eslint-disable-line
  * @property {object[]} items The individual directory entries. One entry per api/version pair.
  * @property {string} kind The kind for this response.
  */
-
 /**
  * @typedef JsonSchema
  * @memberOf! discovery(v1)
@@ -154,7 +148,6 @@ function Discovery(options) { // eslint-disable-line
  * @property {string} type The value type for this schema. A list of values can be found here: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1
  * @property {object} variant In a variant data type, the value of one property is used to determine how to interpret the entire entity. Its value must exist in a map of descriminant values to schema names.
  */
-
 /**
  * @typedef RestDescription
  * @memberOf! discovery(v1)
@@ -188,9 +181,8 @@ function Discovery(options) { // eslint-disable-line
  * @property {string} servicePath The base path for all REST requests.
  * @property {string} title The title of this API.
  * @property {string} version The version of this API.
- * @property {boolean} version_module 
+ * @property {boolean} version_module
  */
-
 /**
  * @typedef RestMethod
  * @memberOf! discovery(v1)
@@ -211,7 +203,6 @@ function Discovery(options) { // eslint-disable-line
  * @property {boolean} supportsSubscription Whether this method supports subscriptions.
  * @property {boolean} useMediaDownloadService Indicates that downloads from this method should use the download service URL (i.e. &quot;/download&quot;). Only applies if the method supports media download.
  */
-
 /**
  * @typedef RestResource
  * @memberOf! discovery(v1)
@@ -219,4 +210,5 @@ function Discovery(options) { // eslint-disable-line
  * @property {object} methods Methods on this resource.
  * @property {object} resources Sub-resources on this resource.
  */
+
 export = Discovery;

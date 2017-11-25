@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google Civic Information API
  *
- * Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.
+ * Provides polling places, early vote locations, contest data, election
+ * officials, and government representatives for U.S. residential addresses.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,13 @@ import {
  * @variation v2
  * @param {object=} options Options for Civicinfo
  */
-function Civicinfo(options) { // eslint-disable-line
+function Civicinfo(options) {
   const self = this;
   self._options = options || {};
-
   self.divisions = {
-
     /**
      * civicinfo.divisions.search
-     *
      * @desc Searches for political divisions by their natural name or OCD ID.
-     *
      * @alias civicinfo.divisions.search
      * @memberOf! civicinfo(v2)
      *
@@ -56,7 +49,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, options, callback) {
+    search: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -66,28 +59,27 @@ function Civicinfo(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/civicinfo/v2/divisions').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/civicinfo/v2/divisions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.elections = {
-
     /**
      * civicinfo.elections.electionQuery
-     *
      * @desc List of available elections to query.
-     *
      * @alias civicinfo.elections.electionQuery
      * @memberOf! civicinfo(v2)
      *
@@ -97,7 +89,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    electionQuery: function (params, options, callback) {
+    electionQuery: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -107,38 +99,39 @@ function Civicinfo(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/civicinfo/v2/elections').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/civicinfo/v2/elections')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * civicinfo.elections.voterInfoQuery
-     *
-     * @desc Looks up information relevant to a voter based on the voter's registered address.
-     *
-     * @alias civicinfo.elections.voterInfoQuery
-     * @memberOf! civicinfo(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.address The registered address of the voter to look up.
-     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
-     * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
-     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-     * @param {civicinfo(v2).VoterInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    voterInfoQuery: function (params, options, callback) {
+    , /**
+       * civicinfo.elections.voterInfoQuery
+       * @desc Looks up information relevant to a voter based on the voter's
+       * registered address.
+       * @alias civicinfo.elections.voterInfoQuery
+       * @memberOf! civicinfo(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.address The registered address of the voter to look up.
+       * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
+       * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+       * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+       * @param {civicinfo(v2).VoterInfoRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    voterInfoQuery: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -148,28 +141,28 @@ function Civicinfo(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/civicinfo/v2/voterinfo').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/civicinfo/v2/voterinfo')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['address'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.representatives = {
-
     /**
      * civicinfo.representatives.representativeInfoByAddress
-     *
-     * @desc Looks up political geography and representative information for a single address.
-     *
+     * @desc Looks up political geography and representative information for a
+     * single address.
      * @alias civicinfo.representatives.representativeInfoByAddress
      * @memberOf! civicinfo(v2)
      *
@@ -183,7 +176,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByAddress: function (params, options, callback) {
+    representativeInfoByAddress: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -193,38 +186,39 @@ function Civicinfo(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/civicinfo/v2/representatives').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/civicinfo/v2/representatives')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * civicinfo.representatives.representativeInfoByDivision
-     *
-     * @desc Looks up representative information for a single geographic division.
-     *
-     * @alias civicinfo.representatives.representativeInfoByDivision
-     * @memberOf! civicinfo(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
-     * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
-     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     * @param {civicinfo(v2).DivisionRepresentativeInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    representativeInfoByDivision: function (params, options, callback) {
+    , /**
+       * civicinfo.representatives.representativeInfoByDivision
+       * @desc Looks up representative information for a single geographic
+       * division.
+       * @alias civicinfo.representatives.representativeInfoByDivision
+       * @memberOf! civicinfo(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+       * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
+       * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
+       * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+       * @param {civicinfo(v2).DivisionRepresentativeInfoRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    representativeInfoByDivision: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -234,22 +228,24 @@ function Civicinfo(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef AdministrationRegion
  * @memberOf! civicinfo(v2)
@@ -260,13 +256,12 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The name of the jurisdiction.
  * @property {civicinfo(v2).Source[]} sources A list of sources for this area. If multiple sources are listed the data has been aggregated from those sources.
  */
-
 /**
  * @typedef AdministrativeBody
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {string} absenteeVotingInfoUrl A URL provided by this administrative body for information on absentee voting.
- * @property {string[]} addressLines 
+ * @property {string[]} addressLines
  * @property {string} ballotInfoUrl A URL provided by this administrative body to give contest information to the voter.
  * @property {civicinfo(v2).SimpleAddressType} correspondenceAddress The mailing address of this administrative body.
  * @property {string} electionInfoUrl A URL provided by this administrative body for looking up general election information.
@@ -280,7 +275,6 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string[]} voter_services A description of the services this administrative body may provide.
  * @property {string} votingLocationFinderUrl A URL provided by this administrative body for looking up where to vote.
  */
-
 /**
  * @typedef Candidate
  * @memberOf! civicinfo(v2)
@@ -294,7 +288,6 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} phone The voice phone number for the candidate&#39;s campaign office.
  * @property {string} photoUrl A URL for a photo of the candidate.
  */
-
 /**
  * @typedef Channel
  * @memberOf! civicinfo(v2)
@@ -302,7 +295,6 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} id The unique public identifier for the candidate&#39;s channel.
  * @property {string} type The type of channel. The following is a list of types of channels, but is not exhaustive. More channel types may be added at a later time. One of: GooglePlus, YouTube, Facebook, Twitter
  */
-
 /**
  * @typedef Contest
  * @memberOf! civicinfo(v2)
@@ -332,36 +324,31 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} special &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
  * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
  */
-
 /**
  * @typedef ContextParams
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {string} clientProfile 
+ * @property {string} clientProfile
  */
-
 /**
  * @typedef DivisionRepresentativeInfoRequest
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {civicinfo(v2).ContextParams} contextParams 
+ * @property {civicinfo(v2).ContextParams} contextParams
  */
-
 /**
  * @typedef DivisionSearchRequest
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {civicinfo(v2).ContextParams} contextParams 
+ * @property {civicinfo(v2).ContextParams} contextParams
  */
-
 /**
  * @typedef DivisionSearchResponse
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#divisionSearchResponse&quot;.
- * @property {civicinfo(v2).DivisionSearchResult[]} results 
+ * @property {civicinfo(v2).DivisionSearchResult[]} results
  */
-
 /**
  * @typedef DivisionSearchResult
  * @memberOf! civicinfo(v2)
@@ -370,7 +357,6 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The name of the division.
  * @property {string} ocdId The unique Open Civic Data identifier for this division.
  */
-
 /**
  * @typedef Election
  * @memberOf! civicinfo(v2)
@@ -380,7 +366,6 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name A displayable name for the election.
  * @property {string} ocdDivisionId The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).
  */
-
 /**
  * @typedef ElectionOfficial
  * @memberOf! civicinfo(v2)
@@ -391,14 +376,12 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} officePhoneNumber The office phone number of the election official.
  * @property {string} title The title of the election official.
  */
-
 /**
  * @typedef ElectionsQueryRequest
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {civicinfo(v2).ContextParams} contextParams 
+ * @property {civicinfo(v2).ContextParams} contextParams
  */
-
 /**
  * @typedef ElectionsQueryResponse
  * @memberOf! civicinfo(v2)
@@ -406,30 +389,34 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {civicinfo(v2).Election[]} elections A list of available elections
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#electionsQueryResponse&quot;.
  */
-
 /**
  * @typedef ElectoralDistrict
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {string} id An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
- * @property {string} kgForeignKey 
+ * @property {string} kgForeignKey
  * @property {string} name The name of the district.
  * @property {string} scope The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
  */
-
 /**
  * @typedef GeographicDivision
  * @memberOf! civicinfo(v2)
  * @type object
-* @property {string[]} alsoKnownAs Any other valid OCD IDs that refer to the same division.
+ * @property {string[]} alsoKnownAs Any other valid OCD IDs that refer to the same division.
 
-Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.
+Because OCD IDs are meant to be human-readable and at least somewhat
+predictable, there are occasionally several identifiers for a single division.
+These identifiers are defined to be equivalent to one another, and one is always
+indicated as the primary identifier. The primary identifier will be returned in
+ocd_id above, and any other equivalent valid identifiers will be returned in
+this list.
 
-For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
-* @property {string} name The name of the division.
-* @property {integer[]} officeIndices List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
-*/
-
+For example, if this division&#39;s OCD ID is
+ocd-division/country:us/district:dc, this will contain
+ocd-division/country:us/state:dc.
+ * @property {string} name The name of the division.
+ * @property {integer[]} officeIndices List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
+ */
 /**
  * @typedef Office
  * @memberOf! civicinfo(v2)
@@ -441,7 +428,6 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string[]} roles The roles which this office fulfills. Roles are not meant to be exhaustive, or to exactly specify the entire set of responsibilities of a given office, but are meant to be rough categories that are useful for general selection from or sorting of a list of offices.
  * @property {civicinfo(v2).Source[]} sources A list of sources for this office. If multiple sources are listed, the data has been aggregated from those sources.
  */
-
 /**
  * @typedef Official
  * @memberOf! civicinfo(v2)
@@ -455,7 +441,6 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} photoUrl A URL for a photo of the official.
  * @property {string[]} urls The official&#39;s public website URLs.
  */
-
 /**
  * @typedef PollingLocation
  * @memberOf! civicinfo(v2)
@@ -470,44 +455,42 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} startDate The first date that this early vote site or drop off location may be used. This field is not populated for polling locations.
  * @property {string} voterServices The services provided by this early vote site or drop off location. This field is not populated for polling locations.
  */
-
 /**
  * @typedef PostalAddress
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {string[]} addressLines 
- * @property {string} administrativeAreaName 
- * @property {string} countryName 
- * @property {string} countryNameCode 
- * @property {string} dependentLocalityName 
- * @property {string} dependentThoroughfareLeadingType 
- * @property {string} dependentThoroughfareName 
- * @property {string} dependentThoroughfarePostDirection 
- * @property {string} dependentThoroughfarePreDirection 
- * @property {string} dependentThoroughfareTrailingType 
- * @property {string} dependentThoroughfaresConnector 
- * @property {string} dependentThoroughfaresIndicator 
- * @property {string} dependentThoroughfaresType 
- * @property {string} firmName 
- * @property {boolean} isDisputed 
- * @property {string} languageCode 
- * @property {string} localityName 
- * @property {string} postBoxNumber 
- * @property {string} postalCodeNumber 
- * @property {string} postalCodeNumberExtension 
- * @property {string} premiseName 
- * @property {string} recipientName 
- * @property {string} sortingCode 
- * @property {string} subAdministrativeAreaName 
- * @property {string} subPremiseName 
- * @property {string} thoroughfareLeadingType 
- * @property {string} thoroughfareName 
- * @property {string} thoroughfareNumber 
- * @property {string} thoroughfarePostDirection 
- * @property {string} thoroughfarePreDirection 
- * @property {string} thoroughfareTrailingType 
+ * @property {string[]} addressLines
+ * @property {string} administrativeAreaName
+ * @property {string} countryName
+ * @property {string} countryNameCode
+ * @property {string} dependentLocalityName
+ * @property {string} dependentThoroughfareLeadingType
+ * @property {string} dependentThoroughfareName
+ * @property {string} dependentThoroughfarePostDirection
+ * @property {string} dependentThoroughfarePreDirection
+ * @property {string} dependentThoroughfaresConnector
+ * @property {string} dependentThoroughfaresIndicator
+ * @property {string} dependentThoroughfaresType
+ * @property {string} dependentThoroughfareTrailingType
+ * @property {string} firmName
+ * @property {boolean} isDisputed
+ * @property {string} languageCode
+ * @property {string} localityName
+ * @property {string} postalCodeNumber
+ * @property {string} postalCodeNumberExtension
+ * @property {string} postBoxNumber
+ * @property {string} premiseName
+ * @property {string} recipientName
+ * @property {string} sortingCode
+ * @property {string} subAdministrativeAreaName
+ * @property {string} subPremiseName
+ * @property {string} thoroughfareLeadingType
+ * @property {string} thoroughfareName
+ * @property {string} thoroughfareNumber
+ * @property {string} thoroughfarePostDirection
+ * @property {string} thoroughfarePreDirection
+ * @property {string} thoroughfareTrailingType
  */
-
 /**
  * @typedef RepresentativeInfoData
  * @memberOf! civicinfo(v2)
@@ -516,14 +499,12 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
  * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
  */
-
 /**
  * @typedef RepresentativeInfoRequest
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {civicinfo(v2).ContextParams} contextParams 
+ * @property {civicinfo(v2).ContextParams} contextParams
  */
-
 /**
  * @typedef RepresentativeInfoResponse
  * @memberOf! civicinfo(v2)
@@ -534,7 +515,6 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
  * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
  */
-
 /**
  * @typedef SimpleAddressType
  * @memberOf! civicinfo(v2)
@@ -547,7 +527,6 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} state The US two letter state abbreviation of the address.
  * @property {string} zip The US Postal Zip Code of the address.
  */
-
 /**
  * @typedef Source
  * @memberOf! civicinfo(v2)
@@ -555,15 +534,13 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} name The name of the data source.
  * @property {boolean} official Whether this data comes from an official government source.
  */
-
 /**
  * @typedef VoterInfoRequest
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {civicinfo(v2).ContextParams} contextParams 
- * @property {civicinfo(v2).VoterInfoSegmentResult} voterInfoSegmentResult 
+ * @property {civicinfo(v2).ContextParams} contextParams
+ * @property {civicinfo(v2).VoterInfoSegmentResult} voterInfoSegmentResult
  */
-
 /**
  * @typedef VoterInfoResponse
  * @memberOf! civicinfo(v2)
@@ -577,17 +554,17 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).SimpleAddressType} normalizedInput The normalized version of the requested address
  * @property {civicinfo(v2).Election[]} otherElections If no election ID was specified in the query, and there was more than one election with data for the given voter, this will contain information about the other elections that could apply.
  * @property {civicinfo(v2).PollingLocation[]} pollingLocations Locations where the voter is eligible to vote on election day.
- * @property {string} precinctId 
+ * @property {string} precinctId
  * @property {civicinfo(v2).AdministrationRegion[]} state Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
  */
-
 /**
  * @typedef VoterInfoSegmentResult
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {string} generatedMillis 
- * @property {civicinfo(v2).PostalAddress} postalAddress 
- * @property {civicinfo(v2).VoterInfoRequest} request 
- * @property {civicinfo(v2).VoterInfoResponse} response 
+ * @property {string} generatedMillis
+ * @property {civicinfo(v2).PostalAddress} postalAddress
+ * @property {civicinfo(v2).VoterInfoRequest} request
+ * @property {civicinfo(v2).VoterInfoResponse} response
  */
+
 export = Civicinfo;

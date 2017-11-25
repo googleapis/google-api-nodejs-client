@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * TaskQueue API
@@ -35,17 +31,13 @@ import {
  * @variation v1beta1
  * @param {object=} options Options for Taskqueue
  */
-function Taskqueue(options) { // eslint-disable-line
+function Taskqueue(options) {
   const self = this;
   self._options = options || {};
-
   self.taskqueues = {
-
     /**
      * taskqueue.taskqueues.get
-     *
      * @desc Get detailed information about a TaskQueue.
-     *
      * @alias taskqueue.taskqueues.get
      * @memberOf! taskqueue(v1beta1)
      *
@@ -57,7 +49,7 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -67,28 +59,29 @@ function Taskqueue(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.tasks = {
-
     /**
      * taskqueue.tasks.delete
-     *
      * @desc Delete a task from a TaskQueue.
-     *
      * @alias taskqueue.tasks.delete
      * @memberOf! taskqueue(v1beta1)
      *
@@ -100,7 +93,7 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -110,36 +103,38 @@ function Taskqueue(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * taskqueue.tasks.get
-     *
-     * @desc Get a particular task from a TaskQueue.
-     *
-     * @alias taskqueue.tasks.get
-     * @memberOf! taskqueue(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project under which the queue lies.
-     * @param {string} params.task The task to get properties of.
-     * @param {string} params.taskqueue The taskqueue in which the task belongs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * taskqueue.tasks.get
+       * @desc Get a particular task from a TaskQueue.
+       * @alias taskqueue.tasks.get
+       * @memberOf! taskqueue(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project The project under which the queue lies.
+       * @param {string} params.task The task to get properties of.
+       * @param {string} params.taskqueue The taskqueue in which the task belongs.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -149,37 +144,39 @@ function Taskqueue(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/{task}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * taskqueue.tasks.lease
-     *
-     * @desc Lease 1 or more tasks from a TaskQueue.
-     *
-     * @alias taskqueue.tasks.lease
-     * @memberOf! taskqueue(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {integer} params.leaseSecs The lease in seconds.
-     * @param {integer} params.numTasks The number of tasks to lease.
-     * @param {string} params.project The project under which the queue lies.
-     * @param {string} params.taskqueue The taskqueue to lease a task from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    lease: function (params, options, callback) {
+    , /**
+       * taskqueue.tasks.lease
+       * @desc Lease 1 or more tasks from a TaskQueue.
+       * @alias taskqueue.tasks.lease
+       * @memberOf! taskqueue(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer} params.leaseSecs The lease in seconds.
+       * @param {integer} params.numTasks The number of tasks to lease.
+       * @param {string} params.project The project under which the queue lies.
+       * @param {string} params.taskqueue The taskqueue to lease a task from.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    lease: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -189,35 +186,37 @@ function Taskqueue(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/lease').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/lease')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'numTasks', 'leaseSecs'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * taskqueue.tasks.list
-     *
-     * @desc List Tasks in a TaskQueue
-     *
-     * @alias taskqueue.tasks.list
-     * @memberOf! taskqueue(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project under which the queue lies.
-     * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * taskqueue.tasks.list
+       * @desc List Tasks in a TaskQueue
+       * @alias taskqueue.tasks.list
+       * @memberOf! taskqueue(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project The project under which the queue lies.
+       * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -227,22 +226,26 @@ function Taskqueue(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef Task
  * @memberOf! taskqueue(v1beta1)
@@ -254,7 +257,6 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {string} payloadBase64 A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded.
  * @property {string} queueName Name of the queue that the task is in.
  */
-
 /**
  * @typedef TaskQueue
  * @memberOf! taskqueue(v1beta1)
@@ -265,7 +267,6 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {integer} maxLeases The number of times we should lease out tasks before giving up on them. If unset we lease them out forever until a worker deletes the task.
  * @property {object} stats Statistics for the TaskQueue object in question.
  */
-
 /**
  * @typedef Tasks
  * @memberOf! taskqueue(v1beta1)
@@ -273,7 +274,6 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {taskqueue(v1beta1).Task[]} items The actual list of tasks returned as a result of the lease operation.
  * @property {string} kind The kind of object returned, a list of tasks.
  */
-
 /**
  * @typedef Tasks2
  * @memberOf! taskqueue(v1beta1)
@@ -281,4 +281,5 @@ function Taskqueue(options) { // eslint-disable-line
  * @property {taskqueue(v1beta1).Task[]} items The actual list of tasks currently active in the TaskQueue.
  * @property {string} kind The kind of object returned, a list of tasks.
  */
+
 export = Taskqueue;

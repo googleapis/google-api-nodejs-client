@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * BigQuery API
@@ -35,29 +31,30 @@ import {
  * @variation v2
  * @param {object=} options Options for Bigquery
  */
-function Bigquery(options) { // eslint-disable-line
+function Bigquery(options) {
   const self = this;
   self._options = options || {};
-
   self.datasets = {
-
     /**
      * bigquery.datasets.delete
-     *
-     * @desc Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
-     *
+     * @desc Deletes the dataset specified by the datasetId value. Before you
+     * can delete a dataset, you must delete all its tables, either manually or
+     * by specifying deleteContents. Immediately after deletion, you can create
+     * another dataset with the same name.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the BigQuery API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -89,14 +86,14 @@ function Bigquery(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias bigquery.datasets.delete
      * @memberOf! bigquery(v2)
      *
@@ -108,7 +105,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -118,526 +115,552 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.datasets.get
-     *
-     * @desc Returns the dataset specified by datasetID.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested dataset
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested dataset
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.datasets.get
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the requested dataset
-     * @param {string} params.projectId Project ID of the requested dataset
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.datasets.insert
-     *
-     * @desc Creates a new empty dataset.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the new dataset
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.datasets.insert
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the new dataset
-     * @param {bigquery(v2).Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.datasets.list
-     *
-     * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the datasets to be listed
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var datasetsPage = response['datasets'];
-     *     if (!datasetsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < datasetsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `datasetsPage`:
-     *       console.log(JSON.stringify(datasetsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.datasets.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.datasets.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.datasets.list
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.all Whether to list all datasets, including hidden ones
-     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
-     * @param {integer=} params.maxResults The maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Project ID of the datasets to be listed
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.datasets.patch
-     *
-     * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the dataset being updated
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the dataset being updated
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.datasets.patch
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the dataset being updated
-     * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {bigquery(v2).Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.datasets.update
-     *
-     * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the dataset being updated
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the dataset being updated
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.datasets.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.datasets.update
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the dataset being updated
-     * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {bigquery(v2).Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * bigquery.datasets.get
+       * @desc Returns the dataset specified by datasetID.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the requested dataset
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the requested dataset
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.datasets.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.datasets.get
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the requested dataset
+       * @param {string} params.projectId Project ID of the requested dataset
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.datasets.insert
+       * @desc Creates a new empty dataset.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the new dataset
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.datasets.insert(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.datasets.insert
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Project ID of the new dataset
+       * @param {bigquery(v2).Dataset} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.datasets.list
+       * @desc Lists all datasets in the specified project to which you have
+       * been granted the READER dataset role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the datasets to be listed
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var datasetsPage = response['datasets'];
+       *     if (!datasetsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < datasetsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `datasetsPage`: console.log(JSON.stringify(datasetsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       bigquery.datasets.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.datasets.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.datasets.list
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.all Whether to list all datasets, including hidden ones
+       * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+       * @param {integer=} params.maxResults The maximum number of results to return
+       * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+       * @param {string} params.projectId Project ID of the datasets to be listed
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.datasets.patch
+       * @desc Updates information in an existing dataset. The update method
+       * replaces the entire dataset resource, whereas the patch method only
+       * replaces fields that are provided in the submitted dataset resource.
+       * This method supports patch semantics.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the dataset being updated
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the dataset being updated
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body. Only these
+       * properties
+       *       // will be changed.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.datasets.patch(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.datasets.patch
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the dataset being updated
+       * @param {string} params.projectId Project ID of the dataset being updated
+       * @param {bigquery(v2).Dataset} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.datasets.update
+       * @desc Updates information in an existing dataset. The update method
+       * replaces the entire dataset resource, whereas the patch method only
+       * replaces fields that are provided in the submitted dataset resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the dataset being updated
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the dataset being updated
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body. All existing
+       * properties
+       *       // will be replaced.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.datasets.update(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.datasets.update
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the dataset being updated
+       * @param {string} params.projectId Project ID of the dataset being updated
+       * @param {bigquery(v2).Dataset} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.jobs = {
-
     /**
      * bigquery.jobs.cancel
-     *
-     * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
-     *
+     * @desc Requests that a job be cancelled. This call will return
+     * immediately, and the client will need to poll for the job status to see
+     * if the cancel completed successfully. Cancelled jobs may still incur
+     * costs.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the BigQuery API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -672,14 +695,14 @@ function Bigquery(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias bigquery.jobs.cancel
      * @memberOf! bigquery(v2)
      *
@@ -690,7 +713,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, options, callback) {
+    cancel: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -700,544 +723,568 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.jobs.get
-     *
-     * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // [Required] Project ID of the requested job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // [Required] Job ID of the requested job
-     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.jobs.get
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string} params.projectId [Required] Project ID of the requested job
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'jobId'],
-        pathParams: ['jobId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.jobs.getQueryResults
-     *
-     * @desc Retrieves the results of a query job.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // [Required] Project ID of the query job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // [Required] Job ID of the query job
-     *     jobId: 'my-job-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var errorsPage = response['errors'];
-     *     if (!errorsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < errorsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `errorsPage`:
-     *       console.log(JSON.stringify(errorsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.pageToken) {
-     *       request.pageToken = response.pageToken;
-     *       bigquery.jobs.getQueryResults(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.jobs.getQueryResults(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.jobs.getQueryResults
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {integer=} params.maxResults Maximum number of results to read
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId [Required] Project ID of the query job
-     * @param {string=} params.startIndex Zero-based index of the starting row
-     * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getQueryResults: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'jobId'],
-        pathParams: ['jobId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.jobs.insert
-     *
-     * @desc Starts a new asynchronous job. Requires the Can View project role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the project that will be billed for the job
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     media: {
-     *       // TODO: Add desired media content for upload. See
-     *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
-     *       body: '',
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.jobs.insert
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project that will be billed for the job
-     * @param  {object} params.resource Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.jobs.list
-     *
-     * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the jobs to list
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var jobsPage = response['jobs'];
-     *     if (!jobsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < jobsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `jobsPage`:
-     *       console.log(JSON.stringify(jobsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.jobs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.jobs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.jobs.list
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Project ID of the jobs to list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields
-     * @param {string=} params.stateFilter Filter for job state
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.jobs.query
-     *
-     * @desc Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the project billed for the query
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.jobs.query(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.jobs.query
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project billed for the query
-     * @param {bigquery(v2).QueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    query: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * bigquery.jobs.get
+       * @desc Returns information about a specific job. Job information is
+       * available for a six month period after creation. Requires that you're
+       * the person who ran the job, or have the Is Owner project role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // [Required] Project ID of the requested job
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // [Required] Job ID of the requested job
+       *     jobId: 'my-job-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.jobs.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.jobs.get
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.jobId [Required] Job ID of the requested job
+       * @param {string} params.projectId [Required] Project ID of the requested job
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.jobs.getQueryResults
+       * @desc Retrieves the results of a query job.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // [Required] Project ID of the query job
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // [Required] Job ID of the query job
+       *     jobId: 'my-job-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var errorsPage = response['errors'];
+       *     if (!errorsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < errorsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `errorsPage`: console.log(JSON.stringify(errorsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.pageToken) {
+       *       request.pageToken = response.pageToken;
+       *       bigquery.jobs.getQueryResults(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.jobs.getQueryResults(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.jobs.getQueryResults
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.jobId [Required] Job ID of the query job
+       * @param {integer=} params.maxResults Maximum number of results to read
+       * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+       * @param {string} params.projectId [Required] Project ID of the query job
+       * @param {string=} params.startIndex Zero-based index of the starting row
+       * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getQueryResults: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/bigquery/v2/projects/{projectId}/queries/{jobId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.jobs.insert
+       * @desc Starts a new asynchronous job. Requires the Can View project
+       * role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the project that will be billed for the job
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     media: {
+       *       // TODO: Add desired media content for upload. See
+       *       //
+       * https://github.com/google/google-api-nodejs-client#media-uploads
+       *       mimeType: '',  // See
+       * https://www.w3.org/Protocols/rfc1341/4_Content-Type.html body: '',
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.jobs.insert(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.jobs.insert
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Project ID of the project that will be billed for the job
+       * @param  {object} params.resource Media resource metadata
+       * @param {object} params.media Media object
+       * @param {string} params.media.mimeType Media mime-type
+       * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.jobs.list
+       * @desc Lists all jobs that you started in the specified project. Job
+       * information is available for a six month period after creation. The job
+       * list is sorted in reverse chronological order, by job creation time.
+       * Requires the Can View project role, or the Is Owner project role if you
+       * set the allUsers property.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the jobs to list
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var jobsPage = response['jobs'];
+       *     if (!jobsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < jobsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `jobsPage`: console.log(JSON.stringify(jobsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       bigquery.jobs.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.jobs.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.jobs.list
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+       * @param {string} params.projectId Project ID of the jobs to list
+       * @param {string=} params.projection Restrict information returned to a set of selected fields
+       * @param {string=} params.stateFilter Filter for job state
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.jobs.query
+       * @desc Runs a BigQuery SQL query synchronously and returns query results
+       * if the query completes within a specified timeout.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the project billed for the query
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.jobs.query(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.jobs.query
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Project ID of the project billed for the query
+       * @param {bigquery(v2).QueryRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    query: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.projects = {
-
     /**
      * bigquery.projects.getServiceAccount
-     *
-     * @desc Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
-     *
+     * @desc Returns the email address of the service account for your project
+     * used for interactions with Google Cloud KMS.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the BigQuery API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1269,14 +1316,14 @@ function Bigquery(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias bigquery.projects.getServiceAccount
      * @memberOf! bigquery(v2)
      *
@@ -1286,7 +1333,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getServiceAccount: function (params, options, callback) {
+    getServiceAccount: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1296,96 +1343,100 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * bigquery.projects.list
-     *
-     * @desc Lists all projects to which you have been granted any project role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var projectsPage = response['projects'];
-     *     if (!projectsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < projectsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `projectsPage`:
-     *       console.log(JSON.stringify(projectsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.projects.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.projects.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.projects.list
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * bigquery.projects.list
+       * @desc Lists all projects to which you have been granted any project
+       * role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var projectsPage = response['projects'];
+       *     if (!projectsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < projectsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `projectsPage`: console.log(JSON.stringify(projectsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       bigquery.projects.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.projects.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.projects.list
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object=} params Parameters for request
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1395,40 +1446,42 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/bigquery/v2/projects')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.tabledata = {
-
     /**
      * bigquery.tabledata.insertAll
-     *
-     * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
-     *
+     * @desc Streams data into BigQuery one record at a time without needing to
+     * run a load job. Requires the WRITER dataset role.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the BigQuery API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1470,14 +1523,14 @@ function Bigquery(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias bigquery.tabledata.insertAll
      * @memberOf! bigquery(v2)
      *
@@ -1490,7 +1543,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll: function (params, options, callback) {
+    insertAll: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1500,153 +1553,162 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tabledata.list
-     *
-     * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to read
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to read
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to read
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var rowsPage = response['rows'];
-     *     if (!rowsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < rowsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `rowsPage`:
-     *       console.log(JSON.stringify(rowsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.pageToken) {
-     *       request.pageToken = response.pageToken;
-     *       bigquery.tabledata.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.tabledata.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tabledata.list
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to read
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
-     * @param {string} params.projectId Project ID of the table to read
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
-     * @param {string=} params.startIndex Zero-based index of the starting row to read
-     * @param {string} params.tableId Table ID of the table to read
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId', 'tableId'],
-        pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * bigquery.tabledata.list
+       * @desc Retrieves table data from a specified set of rows. Requires the
+       * READER dataset role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the table to read
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the table to read
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     // Table ID of the table to read
+       *     tableId: 'my-table-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var rowsPage = response['rows'];
+       *     if (!rowsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < rowsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `rowsPage`: console.log(JSON.stringify(rowsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.pageToken) {
+       *       request.pageToken = response.pageToken;
+       *       bigquery.tabledata.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.tabledata.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tabledata.list
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the table to read
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
+       * @param {string} params.projectId Project ID of the table to read
+       * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
+       * @param {string=} params.startIndex Zero-based index of the starting row to read
+       * @param {string} params.tableId Table ID of the table to read
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.tables = {
-
     /**
      * bigquery.tables.delete
-     *
-     * @desc Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
-     *
+     * @desc Deletes the table specified by tableId from the dataset. If the
+     * table contains data, all the data will be deleted.
      * @example
      * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the BigQuery API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
+     * // 2. This sample uses Application Default Credentials for
+     * authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * //
+     * https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1681,14 +1743,14 @@ function Bigquery(options) { // eslint-disable-line
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired &&
+     * authClient.createScopedRequired()) { var scopes =
+     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+     * authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
      * }
-     *
      * @alias bigquery.tables.delete
      * @memberOf! bigquery(v2)
      *
@@ -1700,7 +1762,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -1710,527 +1772,561 @@ function Bigquery(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tables.get
-     *
-     * @desc Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the requested table
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the requested table
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the requested table
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.get(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tables.get
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the requested table
-     * @param {string} params.projectId Project ID of the requested table
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
-     * @param {string} params.tableId Table ID of the requested table
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId', 'tableId'],
-        pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tables.insert
-     *
-     * @desc Creates a new, empty table in the dataset.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the new table
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the new table
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.insert(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tables.insert
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the new table
-     * @param {string} params.projectId Project ID of the new table
-     * @param {bigquery(v2).Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tables.list
-     *
-     * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the tables to list
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the tables to list
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var tablesPage = response['tables'];
-     *     if (!tablesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < tablesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `tablesPage`:
-     *       console.log(JSON.stringify(tablesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       bigquery.tables.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   bigquery.tables.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tables.list
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the tables to list
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Project ID of the tables to list
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tables.patch
-     *
-     * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to update
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to update
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to update
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. Only these properties
-     *       // will be changed.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.patch(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tables.patch
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to update
-     * @param {string} params.projectId Project ID of the table to update
-     * @param {string} params.tableId Table ID of the table to update
-     * @param {bigquery(v2).Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId', 'tableId'],
-        pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * bigquery.tables.update
-     *
-     * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the BigQuery API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/bigquery
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var bigquery = google.bigquery('v2');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Project ID of the table to update
-     *     projectId: 'my-project-id',  // TODO: Update placeholder value.
-     *
-     *     // Dataset ID of the table to update
-     *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
-     *
-     *     // Table ID of the table to update
-     *     tableId: 'my-table-id',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   bigquery.tables.update(request, function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias bigquery.tables.update
-     * @memberOf! bigquery(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to update
-     * @param {string} params.projectId Project ID of the table to update
-     * @param {string} params.tableId Table ID of the table to update
-     * @param {bigquery(v2).Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['projectId', 'datasetId', 'tableId'],
-        pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * bigquery.tables.get
+       * @desc Gets the specified table resource by table ID. This method does
+       * not return the data in the table, it only returns the table resource,
+       * which describes the structure of this table.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the requested table
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the requested table
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     // Table ID of the requested table
+       *     tableId: 'my-table-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.tables.get(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tables.get
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the requested table
+       * @param {string} params.projectId Project ID of the requested table
+       * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
+       * @param {string} params.tableId Table ID of the requested table
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.tables.insert
+       * @desc Creates a new, empty table in the dataset.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the new table
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the new table
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.tables.insert(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tables.insert
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the new table
+       * @param {string} params.projectId Project ID of the new table
+       * @param {bigquery(v2).Table} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.tables.list
+       * @desc Lists all tables in the specified dataset. Requires the READER
+       * dataset role.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the tables to list
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the tables to list
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     var tablesPage = response['tables'];
+       *     if (!tablesPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < tablesPage.length; i++) {
+       *       // TODO: Change code below to process each resource in
+       * `tablesPage`: console.log(JSON.stringify(tablesPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       bigquery.tables.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   bigquery.tables.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tables.list
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the tables to list
+       * @param {integer=} params.maxResults Maximum number of results to return
+       * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+       * @param {string} params.projectId Project ID of the tables to list
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId'],
+        pathParams: ['datasetId', 'projectId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.tables.patch
+       * @desc Updates information in an existing table. The update method
+       * replaces the entire table resource, whereas the patch method only
+       * replaces fields that are provided in the submitted table resource. This
+       * method supports patch semantics.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the table to update
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the table to update
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     // Table ID of the table to update
+       *     tableId: 'my-table-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body. Only these
+       * properties
+       *       // will be changed.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.tables.patch(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tables.patch
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the table to update
+       * @param {string} params.projectId Project ID of the table to update
+       * @param {string} params.tableId Table ID of the table to update
+       * @param {bigquery(v2).Table} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    patch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * bigquery.tables.update
+       * @desc Updates information in an existing table. The update method
+       * replaces the entire table resource, whereas the patch method only
+       * replaces fields that are provided in the submitted table resource.
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the BigQuery API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/bigquery
+       * // 2. This sample uses Application Default Credentials for
+       * authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //
+       * https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var bigquery = google.bigquery('v2');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Project ID of the table to update
+       *     projectId: 'my-project-id',  // TODO: Update placeholder value.
+       *
+       *     // Dataset ID of the table to update
+       *     datasetId: 'my-dataset-id',  // TODO: Update placeholder value.
+       *
+       *     // Table ID of the table to update
+       *     tableId: 'my-table-id',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body. All existing
+       * properties
+       *       // will be replaced.
+       *     },
+       *
+       *     auth: authClient,
+       *   };
+       *
+       *   bigquery.tables.update(request, function(err, response) {
+       *     if (err) {
+       *       console.error(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient) {
+       *     if (err) {
+       *       console.error('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired &&
+       * authClient.createScopedRequired()) { var scopes =
+       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+       * authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       * @alias bigquery.tables.update
+       * @memberOf! bigquery(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.datasetId Dataset ID of the table to update
+       * @param {string} params.projectId Project ID of the table to update
+       * @param {string} params.tableId Table ID of the table to update
+       * @param {bigquery(v2).Table} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    update: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params: params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef BigtableColumn
  * @memberOf! bigquery(v2)
@@ -2239,10 +2335,9 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} fieldName [Optional] If the qualifier is not a valid BigQuery field identifier i.e. does not match [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as the column field name and is used as field name in queries.
  * @property {boolean} onlyReadLatest [Optional] If this is set, only the latest version of value in this column are exposed. &#39;onlyReadLatest&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;onlyReadLatest&#39; is set at both levels.
  * @property {string} qualifierEncoded [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as . field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match [a-zA-Z][a-zA-Z0-9_]*, a valid identifier must be provided as field_name.
- * @property {string} qualifierString 
+ * @property {string} qualifierString
  * @property {string} type [Optional] The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. &#39;type&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;type&#39; is set at both levels.
  */
-
 /**
  * @typedef BigtableColumnFamily
  * @memberOf! bigquery(v2)
@@ -2253,7 +2348,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} onlyReadLatest [Optional] If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a different setting for that column.
  * @property {string} type [Optional] The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a type for it.
  */
-
 /**
  * @typedef BigtableOptions
  * @memberOf! bigquery(v2)
@@ -2262,7 +2356,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} ignoreUnspecifiedColumnFamilies [Optional] If field is true, then the column families that are not specified in columnFamilies list are not exposed in the table schema. Otherwise, they are read with BYTES type values. The default value is false.
  * @property {boolean} readRowkeyAsString [Optional] If field is true, then the rowkey column families will be read and converted to string. Otherwise they are read with BYTES type values and users need to manually cast them with CAST if necessary. The default value is false.
  */
-
 /**
  * @typedef CsvOptions
  * @memberOf! bigquery(v2)
@@ -2274,7 +2367,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} quote [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
  * @property {string} skipLeadingRows [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
  */
-
 /**
  * @typedef Dataset
  * @memberOf! bigquery(v2)
@@ -2293,7 +2385,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} location The geographic location where the dataset should reside. Possible values include EU and US. The default value is US.
  * @property {string} selfLink [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
  */
-
 /**
  * @typedef DatasetList
  * @memberOf! bigquery(v2)
@@ -2303,7 +2394,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind The list type. This property always returns the value &quot;bigquery#datasetList&quot;.
  * @property {string} nextPageToken A token that can be used to request the next results page. This property is omitted on the final results page.
  */
-
 /**
  * @typedef DatasetReference
  * @memberOf! bigquery(v2)
@@ -2311,14 +2401,12 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} datasetId [Required] A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
  * @property {string} projectId [Optional] The ID of the project containing this dataset.
  */
-
 /**
  * @typedef EncryptionConfiguration
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} kmsKeyName [Optional] Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key.
  */
-
 /**
  * @typedef ErrorProto
  * @memberOf! bigquery(v2)
@@ -2328,7 +2416,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} message A human-readable description of the error.
  * @property {string} reason A short error code that summarizes the error.
  */
-
 /**
  * @typedef ExplainQueryStage
  * @memberOf! bigquery(v2)
@@ -2358,7 +2445,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {number} writeRatioAvg Relative amount of time the average shard spent on writing output.
  * @property {number} writeRatioMax Relative amount of time the slowest shard spent on writing output.
  */
-
 /**
  * @typedef ExplainQueryStep
  * @memberOf! bigquery(v2)
@@ -2366,7 +2452,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind Machine-readable operation type.
  * @property {string[]} substeps Human-readable stage descriptions.
  */
-
 /**
  * @typedef ExternalDataConfiguration
  * @memberOf! bigquery(v2)
@@ -2382,7 +2467,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} sourceFormat [Required] The data format. For CSV files, specify &quot;CSV&quot;. For Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro files, specify &quot;AVRO&quot;. For Google Cloud Datastore backups, specify &quot;DATASTORE_BACKUP&quot;. [Beta] For Google Cloud Bigtable, specify &quot;BIGTABLE&quot;.
  * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
  */
-
 /**
  * @typedef GetQueryResultsResponse
  * @memberOf! bigquery(v2)
@@ -2400,7 +2484,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalBytesProcessed The total number of bytes processed for this query.
  * @property {string} totalRows The total number of rows in the complete query result set, which can be more than the number of rows in this single page of results. Present only when the query completes successfully.
  */
-
 /**
  * @typedef GetServiceAccountResponse
  * @memberOf! bigquery(v2)
@@ -2408,14 +2491,12 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} email The service account email address.
  * @property {string} kind The resource type of the response.
  */
-
 /**
  * @typedef GoogleSheetsOptions
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} skipLeadingRows [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
  */
-
 /**
  * @typedef Job
  * @memberOf! bigquery(v2)
@@ -2430,7 +2511,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).JobStatus} status [Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.
  * @property {string} user_email [Output-only] Email address of the user who ran the job.
  */
-
 /**
  * @typedef JobCancelResponse
  * @memberOf! bigquery(v2)
@@ -2438,7 +2518,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).Job} job The final state of the job.
  * @property {string} kind The resource type of the response.
  */
-
 /**
  * @typedef JobConfiguration
  * @memberOf! bigquery(v2)
@@ -2450,7 +2529,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).JobConfigurationLoad} load [Pick one] Configures a load job.
  * @property {bigquery(v2).JobConfigurationQuery} query [Pick one] Configures a query job.
  */
-
 /**
  * @typedef JobConfigurationExtract
  * @memberOf! bigquery(v2)
@@ -2463,7 +2541,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} printHeader [Optional] Whether to print out a header row in the results. Default is true.
  * @property {bigquery(v2).TableReference} sourceTable [Required] A reference to the table being exported.
  */
-
 /**
  * @typedef JobConfigurationLoad
  * @memberOf! bigquery(v2)
@@ -2491,7 +2568,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TimePartitioning} timePartitioning If specified, configures time-based partitioning for the destination table.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
-
 /**
  * @typedef JobConfigurationQuery
  * @memberOf! bigquery(v2)
@@ -2517,7 +2593,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
-
 /**
  * @typedef JobConfigurationTableCopy
  * @memberOf! bigquery(v2)
@@ -2529,7 +2604,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableReference[]} sourceTables [Pick one] Source tables to copy.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
-
 /**
  * @typedef JobList
  * @memberOf! bigquery(v2)
@@ -2539,7 +2613,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} kind The resource type of the response.
  * @property {string} nextPageToken A token to request the next page of results.
  */
-
 /**
  * @typedef JobReference
  * @memberOf! bigquery(v2)
@@ -2547,7 +2620,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} jobId [Required] The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
  * @property {string} projectId [Required] The ID of the project containing this job.
  */
-
 /**
  * @typedef JobStatistics
  * @memberOf! bigquery(v2)
@@ -2560,7 +2632,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} startTime [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
  * @property {string} totalBytesProcessed [Output-only] [Deprecated] Use the bytes processed in the query statistics instead.
  */
-
 /**
  * @typedef JobStatistics2
  * @memberOf! bigquery(v2)
@@ -2579,7 +2650,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalSlotMs [Output-only] Slot-milliseconds for the job.
  * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
  */
-
 /**
  * @typedef JobStatistics3
  * @memberOf! bigquery(v2)
@@ -2590,14 +2660,12 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} outputBytes [Output-only] Size of the loaded data in bytes. Note that while a load job is in the running state, this value may change.
  * @property {string} outputRows [Output-only] Number of rows imported in a load job. Note that while an import job is in the running state, this value may change.
  */
-
 /**
  * @typedef JobStatistics4
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string[]} destinationUriFileCounts [Output-only] Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the &#39;destinationUris&#39; field.
  */
-
 /**
  * @typedef JobStatus
  * @memberOf! bigquery(v2)
@@ -2606,19 +2674,16 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).ErrorProto[]} errors [Output-only] The first errors encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
  * @property {string} state [Output-only] Running state of the job.
  */
-
 /**
  * @typedef JsonObject
  * @memberOf! bigquery(v2)
  * @type object
  */
-
 /**
  * @typedef JsonValue
  * @memberOf! bigquery(v2)
  * @type any
  */
-
 /**
  * @typedef ProjectList
  * @memberOf! bigquery(v2)
@@ -2629,14 +2694,12 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} projects Projects to which you have at least READ access.
  * @property {integer} totalItems The total number of projects in the list.
  */
-
 /**
  * @typedef ProjectReference
  * @memberOf! bigquery(v2)
  * @type object
  * @property {string} projectId [Required] ID of the project. Can be either the numeric ID or the assigned ID of the project.
  */
-
 /**
  * @typedef QueryParameter
  * @memberOf! bigquery(v2)
@@ -2645,7 +2708,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).QueryParameterType} parameterType [Required] The type of this parameter.
  * @property {bigquery(v2).QueryParameterValue} parameterValue [Required] The value of this parameter.
  */
-
 /**
  * @typedef QueryParameterType
  * @memberOf! bigquery(v2)
@@ -2654,7 +2716,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} structTypes [Optional] The types of the fields of this struct, in order, if this is a struct.
  * @property {string} type [Required] The top level type of this field.
  */
-
 /**
  * @typedef QueryParameterValue
  * @memberOf! bigquery(v2)
@@ -2663,7 +2724,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object} structValues [Optional] The struct field values, in order of the struct type&#39;s declaration.
  * @property {string} value [Optional] The value of this value, if a simple scalar type.
  */
-
 /**
  * @typedef QueryRequest
  * @memberOf! bigquery(v2)
@@ -2680,7 +2740,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
  */
-
 /**
  * @typedef QueryResponse
  * @memberOf! bigquery(v2)
@@ -2697,7 +2756,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} totalBytesProcessed The total number of bytes processed for this query. If this query was a dry run, this is the number of bytes that would be processed if the query were run.
  * @property {string} totalRows The total number of rows in the complete query result set, which can be more than the number of rows in this single page of results.
  */
-
 /**
  * @typedef Streamingbuffer
  * @memberOf! bigquery(v2)
@@ -2706,7 +2764,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} estimatedRows [Output-only] A lower-bound estimate of the number of rows currently in the streaming buffer.
  * @property {string} oldestEntryTime [Output-only] Contains the timestamp of the oldest entry in the streaming buffer, in milliseconds since the epoch, if the streaming buffer is available.
  */
-
 /**
  * @typedef Table
  * @memberOf! bigquery(v2)
@@ -2734,14 +2791,12 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} type [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
  * @property {bigquery(v2).ViewDefinition} view [Optional] The view definition.
  */
-
 /**
  * @typedef TableCell
  * @memberOf! bigquery(v2)
  * @type object
- * @property {any} v 
+ * @property {any} v
  */
-
 /**
  * @typedef TableDataInsertAllRequest
  * @memberOf! bigquery(v2)
@@ -2752,7 +2807,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} skipInvalidRows [Optional] Insert all valid rows of a request, even if invalid rows exist. The default value is false, which causes the entire request to fail if any invalid rows exist.
  * @property {string} templateSuffix [Experimental] If specified, treats the destination table as a base template, and inserts the rows into an instance table named &quot;{destination}{templateSuffix}&quot;. BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
  */
-
 /**
  * @typedef TableDataInsertAllResponse
  * @memberOf! bigquery(v2)
@@ -2760,7 +2814,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} insertErrors An array of errors for rows that were not inserted.
  * @property {string} kind The resource type of the response.
  */
-
 /**
  * @typedef TableDataList
  * @memberOf! bigquery(v2)
@@ -2771,7 +2824,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableRow[]} rows Rows of results.
  * @property {string} totalRows The total number of rows in the complete table.
  */
-
 /**
  * @typedef TableFieldSchema
  * @memberOf! bigquery(v2)
@@ -2782,7 +2834,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} name [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
  * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
  */
-
 /**
  * @typedef TableList
  * @memberOf! bigquery(v2)
@@ -2793,7 +2844,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object[]} tables Tables in the requested dataset.
  * @property {integer} totalItems The total number of tables in the dataset.
  */
-
 /**
  * @typedef TableReference
  * @memberOf! bigquery(v2)
@@ -2802,21 +2852,18 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} projectId [Required] The ID of the project containing this table.
  * @property {string} tableId [Required] The ID of the table. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
  */
-
 /**
  * @typedef TableRow
  * @memberOf! bigquery(v2)
  * @type object
  * @property {bigquery(v2).TableCell[]} f Represents a single row in the result set, consisting of one or more fields.
  */
-
 /**
  * @typedef TableSchema
  * @memberOf! bigquery(v2)
  * @type object
  * @property {bigquery(v2).TableFieldSchema[]} fields Describes the fields in a table.
  */
-
 /**
  * @typedef TimePartitioning
  * @memberOf! bigquery(v2)
@@ -2825,7 +2872,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} field [Experimental] [Optional] If not set, the table is partitioned by pseudo column &#39;_PARTITIONTIME&#39;; if set, the table is partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
  * @property {string} type [Required] The only type supported is DAY, which will generate one partition per day.
  */
-
 /**
  * @typedef UserDefinedFunctionResource
  * @memberOf! bigquery(v2)
@@ -2833,7 +2879,6 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} inlineCode [Pick one] An inline resource that contains code for a user-defined function (UDF). Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
  * @property {string} resourceUri [Pick one] A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
  */
-
 /**
  * @typedef ViewDefinition
  * @memberOf! bigquery(v2)
@@ -2842,4 +2887,5 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
  * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
  */
+
 export = Bigquery;

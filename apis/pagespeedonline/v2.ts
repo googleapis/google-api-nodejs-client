@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * PageSpeed Insights API
  *
- * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
+ * Analyzes the performance of a web page and provides tailored suggestions to
+ * make that page faster.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,15 @@ import {
  * @variation v2
  * @param {object=} options Options for Pagespeedonline
  */
-function Pagespeedonline(options) { // eslint-disable-line
+function Pagespeedonline(options) {
   const self = this;
   self._options = options || {};
-
   self.pagespeedapi = {
-
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
-     *
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
-     *
+     * @desc Runs PageSpeed analysis on the page at the specified URL, and
+     * returns PageSpeed scores, a list of suggestions to make that page faster,
+     * and other information.
      * @alias pagespeedonline.pagespeedapi.runpagespeed
      * @memberOf! pagespeedonline(v2)
      *
@@ -60,7 +55,7 @@ function Pagespeedonline(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runpagespeed: function (params, options, callback) {
+    runpagespeed: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -70,22 +65,24 @@ function Pagespeedonline(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/pagespeedonline/v2/runPagespeed').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/pagespeedonline/v2/runPagespeed')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['url'],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef PagespeedApiFormatStringV2
  * @memberOf! pagespeedonline(v2)
@@ -93,7 +90,6 @@ function Pagespeedonline(options) { // eslint-disable-line
  * @property {object[]} args List of arguments for the format string.
  * @property {string} format A localized format string with {{FOO}} placeholders, where &#39;FOO&#39; is the key of the argument whose value should be substituted. For HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}} and {{END_FOO}} for the argument with key &#39;FOO&#39;.
  */
-
 /**
  * @typedef PagespeedApiImageV2
  * @memberOf! pagespeedonline(v2)
@@ -105,7 +101,6 @@ function Pagespeedonline(options) { // eslint-disable-line
  * @property {object} page_rect The region of the page that is captured by this image, with dimensions measured in CSS pixels.
  * @property {integer} width Width of screenshot in pixels.
  */
-
 /**
  * @typedef Result
  * @memberOf! pagespeedonline(v2)
@@ -121,4 +116,5 @@ function Pagespeedonline(options) { // eslint-disable-line
  * @property {string} title Title of the page, as displayed in the browser&#39;s title bar.
  * @property {object} version The version of PageSpeed used to generate these results.
  */
+
 export = Pagespeedonline;

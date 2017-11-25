@@ -31,28 +31,28 @@ const argv = minimist(process.argv.slice(2));
 const gen = new Generator({ debug, includePrivate: false });
 
 const args = argv._;
-
-if (args.length) {
-  args.forEach((url) => {
-    gen.generateAPI(url, (err) => {
-      if (err) {
-        throw err;
-      }
-      console.log('Generated API for ' + url);
-    });
-  });
-} else {
-  console.log('Removing old APIs...');
-  rimraf(path.join(__dirname, '..', 'apis'), (err) => {
-    if (err) {
-      throw err;
-    }
-    console.log('Generating APIs...');
-    gen.generateAllAPIs(e => {
-      if (e) {
-        throw e;
-      }
-      console.log('Finished generating APIs!');
-    });
-  });
-}
+gen.generateIndex(err => console.error);
+// if (args.length) {
+//   args.forEach((url) => {
+//     gen.generateAPI(url, (err) => {
+//       if (err) {
+//         throw err;
+//       }
+//       console.log('Generated API for ' + url);
+//     });
+//   });
+// } else {
+//   console.log('Removing old APIs...');
+//   rimraf(path.join(__dirname, '..', 'apis'), (err) => {
+//     if (err) {
+//       throw err;
+//     }
+//     console.log('Generating APIs...');
+//     gen.generateAllAPIs(e => {
+//       if (e) {
+//         throw e;
+//       }
+//       console.log('Finished generating APIs!');
+//     });
+//   });
+// }

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Google OAuth2 API
@@ -35,15 +31,11 @@ import {
  * @variation v2
  * @param {object=} options Options for Oauth2
  */
-function Oauth2(options) { // eslint-disable-line
+function Oauth2(options) {
   const self = this;
   self._options = options || {};
-
   /**
    * oauth2.getCertForOpenIdConnect
-   *
-   * 
-   *
    * @alias oauth2.getCertForOpenIdConnect
    * @memberOf! oauth2(v2)
    *
@@ -52,7 +44,8 @@ function Oauth2(options) { // eslint-disable-line
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect = function (params, options, callback) {
+  this.getCertForOpenIdConnect =
+      function(params, options, callback) {
     if (typeof options === 'function') {
       callback = options;
       options = {};
@@ -62,36 +55,35 @@ function Oauth2(options) { // eslint-disable-line
     const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
     const parameters = {
-      options: Object.assign({
-        url: (rootUrl + '/oauth2/v2/certs').replace(/([^:]\/)\/+/g, '$1'),
-        method: 'GET'
-      }, options),
+      options: Object.assign(
+          {
+            url: (rootUrl + '/oauth2/v2/certs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
       params: params,
       requiredParams: [],
       pathParams: [],
       context: self
     };
-
     return createAPIRequest(parameters, callback);
-  };
+  }
 
-  /**
-   * oauth2.tokeninfo
-   *
-   * 
-   *
-   * @alias oauth2.tokeninfo
-   * @memberOf! oauth2(v2)
-   *
-   * @param {object=} params Parameters for request
-   * @param {string=} params.access_token 
-   * @param {string=} params.id_token 
-   * @param {string=} params.token_handle 
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  this.tokeninfo = function (params, options, callback) {
+      /**
+       * oauth2.tokeninfo
+       * @alias oauth2.tokeninfo
+       * @memberOf! oauth2(v2)
+       *
+       * @param {object=} params Parameters for request
+       * @param {string=} params.access_token
+       * @param {string=} params.id_token
+       * @param {string=} params.token_handle
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      this.tokeninfo =
+          function(params, options, callback) {
     if (typeof options === 'function') {
       callback = options;
       options = {};
@@ -101,26 +93,24 @@ function Oauth2(options) { // eslint-disable-line
     const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
     const parameters = {
-      options: Object.assign({
-        url: (rootUrl + '/oauth2/v2/tokeninfo').replace(/([^:]\/)\/+/g, '$1'),
-        method: 'POST'
-      }, options),
+      options: Object.assign(
+          {
+            url: (rootUrl + '/oauth2/v2/tokeninfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
       params: params,
       requiredParams: [],
       pathParams: [],
       context: self
     };
-
     return createAPIRequest(parameters, callback);
-  };
+  }
 
-  self.userinfo = {
-
+          self.userinfo = {
     /**
      * oauth2.userinfo.get
-     *
-     * 
-     *
      * @alias oauth2.userinfo.get
      * @memberOf! oauth2(v2)
      *
@@ -129,7 +119,7 @@ function Oauth2(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -139,26 +129,26 @@ function Oauth2(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/oauth2/v2/userinfo').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/oauth2/v2/userinfo')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
+
+    ,
     v2: {
       me: {
-
         /**
          * oauth2.userinfo.v2.me.get
-         *
-         * 
-         *
          * @alias oauth2.userinfo.v2.me.get
          * @memberOf! oauth2(v2)
          *
@@ -167,7 +157,7 @@ function Oauth2(options) { // eslint-disable-line
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, options, callback) {
+        get: function(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -177,30 +167,32 @@ function Oauth2(options) { // eslint-disable-line
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
           const parameters = {
-            options: Object.assign({
-              url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            }, options),
+            options: Object.assign(
+                {
+                  url: (rootUrl + '/userinfo/v2/me')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
             params: params,
             requiredParams: [],
             pathParams: [],
             context: self
           };
-
           return createAPIRequest(parameters, callback);
         }
+
+
       }
     }
   };
 }
-
 /**
  * @typedef Jwk
  * @memberOf! oauth2(v2)
  * @type object
- * @property {object[]} keys 
+ * @property {object[]} keys
  */
-
 /**
  * @typedef Tokeninfo
  * @memberOf! oauth2(v2)
@@ -215,7 +207,6 @@ function Oauth2(options) { // eslint-disable-line
  * @property {string} user_id The obfuscated user id.
  * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
  */
-
 /**
  * @typedef Userinfoplus
  * @memberOf! oauth2(v2)
@@ -232,4 +223,5 @@ function Oauth2(options) { // eslint-disable-line
  * @property {string} picture URL of the user&#39;s picture image.
  * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
  */
+
 export = Oauth2;

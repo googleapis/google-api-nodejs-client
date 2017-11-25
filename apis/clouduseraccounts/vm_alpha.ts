@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Cloud User Accounts API
  *
- * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
+ * Creates and manages users and groups for accessing Google Compute Engine
+ * virtual machines.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,13 @@ import {
  * @variation vm_alpha
  * @param {object=} options Options for Clouduseraccounts
  */
-function Clouduseraccounts(options) { // eslint-disable-line
+function Clouduseraccounts(options) {
   const self = this;
   self._options = options || {};
-
   self.globalAccountsOperations = {
-
     /**
      * clouduseraccounts.globalAccountsOperations.delete
-     *
      * @desc Deletes the specified operation resource.
-     *
      * @alias clouduseraccounts.globalAccountsOperations.delete
      * @memberOf! clouduseraccounts(vm_alpha)
      *
@@ -56,7 +49,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -66,35 +59,37 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.globalAccountsOperations.get
-     *
-     * @desc Retrieves the specified operation resource.
-     *
-     * @alias clouduseraccounts.globalAccountsOperations.get
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.operation Name of the Operations resource to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.globalAccountsOperations.get
+       * @desc Retrieves the specified operation resource.
+       * @alias clouduseraccounts.globalAccountsOperations.get
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.operation Name of the Operations resource to return.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -104,38 +99,41 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.globalAccountsOperations.list
-     *
-     * @desc Retrieves the list of operation resources contained within the specified project.
-     *
-     * @alias clouduseraccounts.globalAccountsOperations.list
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.globalAccountsOperations.list
+       * @desc Retrieves the list of operation resources contained within the
+       * specified project.
+       * @alias clouduseraccounts.globalAccountsOperations.list
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -145,28 +143,29 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/operations').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/operations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.groups = {
-
     /**
      * clouduseraccounts.groups.addMember
-     *
      * @desc Adds users to the specified group.
-     *
      * @alias clouduseraccounts.groups.addMember
      * @memberOf! clouduseraccounts(vm_alpha)
      *
@@ -178,7 +177,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addMember: function (params, options, callback) {
+    addMember: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -188,338 +187,360 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/addMember').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/addMember')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.delete
-     *
-     * @desc Deletes the specified Group resource.
-     *
-     * @alias clouduseraccounts.groups.delete
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the Group resource to delete.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.get
-     *
-     * @desc Returns the specified Group resource.
-     *
-     * @alias clouduseraccounts.groups.get
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the Group resource to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.getIamPolicy
-     *
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
-     *
-     * @alias clouduseraccounts.groups.getIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.insert
-     *
-     * @desc Creates a Group resource in the specified project using the data included in the request.
-     *
-     * @alias clouduseraccounts.groups.insert
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(vm_alpha).Group} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.list
-     *
-     * @desc Retrieves the list of groups contained within the specified project.
-     *
-     * @alias clouduseraccounts.groups.list
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.removeMember
-     *
-     * @desc Removes users from the specified group.
-     *
-     * @alias clouduseraccounts.groups.removeMember
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupName Name of the group for this request.
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(vm_alpha).GroupsRemoveMemberRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    removeMember: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/removeMember').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'groupName'],
-        pathParams: ['groupName', 'project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.setIamPolicy
-     *
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     *
-     * @alias clouduseraccounts.groups.setIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.groups.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias clouduseraccounts.groups.testIamPermissions
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * clouduseraccounts.groups.delete
+       * @desc Deletes the specified Group resource.
+       * @alias clouduseraccounts.groups.delete
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the Group resource to delete.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.get
+       * @desc Returns the specified Group resource.
+       * @alias clouduseraccounts.groups.get
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the Group resource to return.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.getIamPolicy
+       * @desc Gets the access control policy for a resource. May be empty if no
+       * such policy or resource exists.
+       * @alias clouduseraccounts.groups.getIamPolicy
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getIamPolicy: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.insert
+       * @desc Creates a Group resource in the specified project using the data
+       * included in the request.
+       * @alias clouduseraccounts.groups.insert
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(vm_alpha).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.list
+       * @desc Retrieves the list of groups contained within the specified
+       * project.
+       * @alias clouduseraccounts.groups.list
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.removeMember
+       * @desc Removes users from the specified group.
+       * @alias clouduseraccounts.groups.removeMember
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName Name of the group for this request.
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(vm_alpha).GroupsRemoveMemberRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    removeMember: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{groupName}/removeMember')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'groupName'],
+        pathParams: ['groupName', 'project'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.setIamPolicy
+       * @desc Sets the access control policy on the specified resource.
+       * Replaces any existing policy.
+       * @alias clouduseraccounts.groups.setIamPolicy
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setIamPolicy: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.groups.testIamPermissions
+       * @desc Returns permissions that a caller has on the specified resource.
+       * @alias clouduseraccounts.groups.testIamPermissions
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    testIamPermissions: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/groups/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.linux = {
-
     /**
      * clouduseraccounts.linux.getAuthorizedKeysView
-     *
-     * @desc Returns a list of authorized public keys for a specific user account.
-     *
+     * @desc Returns a list of authorized public keys for a specific user
+     * account.
      * @alias clouduseraccounts.linux.getAuthorizedKeysView
      * @memberOf! clouduseraccounts(vm_alpha)
      *
@@ -533,7 +554,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAuthorizedKeysView: function (params, options, callback) {
+    getAuthorizedKeysView: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -543,40 +564,43 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'zone', 'user', 'instance'],
         pathParams: ['project', 'user', 'zone'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.linux.getLinuxAccountViews
-     *
-     * @desc Retrieves a list of user accounts for an instance within a specific project.
-     *
-     * @alias clouduseraccounts.linux.getLinuxAccountViews
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getLinuxAccountViews: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.linux.getLinuxAccountViews
+       * @desc Retrieves a list of user accounts for an instance within a
+       * specific project.
+       * @alias clouduseraccounts.linux.getLinuxAccountViews
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.zone Name of the zone for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getLinuxAccountViews: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -586,28 +610,30 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/linuxAccountViews').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/zones/{zone}/linuxAccountViews')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['project', 'zone'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.users = {
-
     /**
      * clouduseraccounts.users.addPublicKey
-     *
-     * @desc Adds a public key to the specified User resource with the data included in the request.
-     *
+     * @desc Adds a public key to the specified User resource with the data
+     * included in the request.
      * @alias clouduseraccounts.users.addPublicKey
      * @memberOf! clouduseraccounts(vm_alpha)
      *
@@ -619,7 +645,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPublicKey: function (params, options, callback) {
+    addPublicKey: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -629,35 +655,37 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/addPublicKey').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/addPublicKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.delete
-     *
-     * @desc Deletes the specified User resource.
-     *
-     * @alias clouduseraccounts.users.delete
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user resource to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.delete
+       * @desc Deletes the specified User resource.
+       * @alias clouduseraccounts.users.delete
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user resource to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    delete: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -667,35 +695,37 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'DELETE'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.get
-     *
-     * @desc Returns the specified User resource.
-     *
-     * @alias clouduseraccounts.users.get
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user resource to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.get
+       * @desc Returns the specified User resource.
+       * @alias clouduseraccounts.users.get
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user resource to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -705,35 +735,38 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.getIamPolicy
-     *
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
-     *
-     * @alias clouduseraccounts.users.getIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.getIamPolicy
+       * @desc Gets the access control policy for a resource. May be empty if no
+       * such policy or resource exists.
+       * @alias clouduseraccounts.users.getIamPolicy
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    getIamPolicy: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -743,35 +776,38 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/getIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.insert
-     *
-     * @desc Creates a User resource in the specified project using the data included in the request.
-     *
-     * @alias clouduseraccounts.users.insert
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {clouduseraccounts(vm_alpha).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.insert
+       * @desc Creates a User resource in the specified project using the data
+       * included in the request.
+       * @alias clouduseraccounts.users.insert
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {clouduseraccounts(vm_alpha).User} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    insert: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -781,38 +817,40 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.list
-     *
-     * @desc Retrieves a list of users contained within the specified project.
-     *
-     * @alias clouduseraccounts.users.list
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.list
+       * @desc Retrieves a list of users contained within the specified project.
+       * @alias clouduseraccounts.users.list
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+       * @param {string} params.project Project ID for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -822,36 +860,38 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
-    },
+    }
 
-    /**
-     * clouduseraccounts.users.removePublicKey
-     *
-     * @desc Removes the specified public key from the user.
-     *
-     * @alias clouduseraccounts.users.removePublicKey
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.user Name of the user for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    removePublicKey: function (params, options, callback) {
+    , /**
+       * clouduseraccounts.users.removePublicKey
+       * @desc Removes the specified public key from the user.
+       * @alias clouduseraccounts.users.removePublicKey
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.user Name of the user for this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    removePublicKey: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -861,100 +901,109 @@ function Clouduseraccounts(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/removePublicKey').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{user}/removePublicKey')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.users.setIamPolicy
-     *
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-     *
-     * @alias clouduseraccounts.users.setIamPolicy
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/setIamPolicy').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * clouduseraccounts.users.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias clouduseraccounts.users.testIamPermissions
-     * @memberOf! clouduseraccounts(vm_alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/testIamPermissions').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'resource'],
-        pathParams: ['project', 'resource'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * clouduseraccounts.users.setIamPolicy
+       * @desc Sets the access control policy on the specified resource.
+       * Replaces any existing policy.
+       * @alias clouduseraccounts.users.setIamPolicy
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {clouduseraccounts(vm_alpha).Policy} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    setIamPolicy: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+    , /**
+       * clouduseraccounts.users.testIamPermissions
+       * @desc Returns permissions that a caller has on the specified resource.
+       * @alias clouduseraccounts.users.testIamPermissions
+       * @memberOf! clouduseraccounts(vm_alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.project Project ID for this request.
+       * @param {string} params.resource_ Name of the resource for this request.
+       * @param {clouduseraccounts(vm_alpha).TestPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    testIamPermissions: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/clouduseraccounts/vm_alpha/projects/{project}/global/users/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
 }
-
 /**
  * @typedef AuditConfig
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -962,7 +1011,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
  * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
  */
-
 /**
  * @typedef AuthorizedKeysView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -970,27 +1018,31 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string[]} keys [Output Only] The list of authorized public keys in SSH format.
  * @property {boolean} sudoer [Output Only] Whether the user has the ability to elevate on the instance that requested the authorized keys.
  */
-
 /**
  * @typedef Binding
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
-* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
+ * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
 
-* `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+* `allUsers`: A special identifier that represents anyone who is on the
+internet; with or without a Google account.
 
-* `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+* `allAuthenticatedUsers`: A special identifier that represents anyone who is
+authenticated with a Google account or a service account.
 
-* `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.
+* `user:{emailid}`: An email address that represents a specific Google account.
+For example, `alice@gmail.com` or `joe@example.com`.
 
-* `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
+* `serviceAccount:{emailid}`: An email address that represents a service
+account. For example, `my-other-app@appspot.gserviceaccount.com`.
 
-* `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.
+* `group:{emailid}`: An email address that represents a Google group. For
+example, `admins@example.com`.
 
-* `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
-* @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-*/
-
+* `domain:{domain}`: A Google Apps domain name that represents all the users of
+that domain. For example, `google.com` or `example.com`.
+ * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+ */
 /**
  * @typedef Condition
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1002,7 +1054,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} value The object of the condition. Exactly one of these must be set.
  * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
  */
-
 /**
  * @typedef Group
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1015,7 +1066,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} name Name of the resource; provided by the client when the resource is created.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
-
 /**
  * @typedef GroupList
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1026,21 +1076,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
-
 /**
  * @typedef GroupsAddMemberRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to add.
  */
-
 /**
  * @typedef GroupsRemoveMemberRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} users Fully-qualified URLs of the User resources to remove.
  */
-
 /**
  * @typedef LinuxAccountViews
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1049,21 +1096,18 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} kind [Output Only] Type of the resource. Always clouduseraccounts#linuxAccountViews for Linux resources.
  * @property {clouduseraccounts(vm_alpha).LinuxUserView[]} userViews [Output Only] A list of all users within a project.
  */
-
 /**
  * @typedef LinuxGetAuthorizedKeysViewResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).AuthorizedKeysView} resource [Output Only] A list of authorized public keys for a user.
  */
-
 /**
  * @typedef LinuxGetLinuxAccountViewsResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).LinuxAccountViews} resource [Output Only] A list of authorized user accounts and groups.
  */
-
 /**
  * @typedef LinuxGroupView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1072,7 +1116,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} groupName [Output Only] Group name.
  * @property {string[]} members [Output Only] List of user accounts that belong to the group.
  */
-
 /**
  * @typedef LinuxUserView
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1084,14 +1127,12 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {integer} uid [Output Only] User ID.
  * @property {string} username [Output Only] The username of the account.
  */
-
 /**
  * @typedef LogConfig
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {clouduseraccounts(vm_alpha).LogConfigCounterOptions} counter Counter options.
  */
-
 /**
  * @typedef LogConfigCounterOptions
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1099,7 +1140,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} field The field value to attribute.
  * @property {string} metric The metric to update.
  */
-
 /**
  * @typedef Operation
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1128,7 +1168,6 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
  */
-
 /**
  * @typedef OperationList
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1139,23 +1178,23 @@ function Clouduseraccounts(options) { // eslint-disable-line
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
-
 /**
  * @typedef Policy
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
-* @property {clouduseraccounts(vm_alpha).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
+ * @property {clouduseraccounts(vm_alpha).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
 
-Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
-* @property {clouduseraccounts(vm_alpha).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
+Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which
+always enables audit logging.
+ * @property {clouduseraccounts(vm_alpha).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
+ * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
 
-If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
-* @property {boolean} iamOwned 
-* @property {clouduseraccounts(vm_alpha).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
-* @property {integer} version Version of the `Policy`. The default version is 0.
-*/
-
+If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
+is overwritten blindly.
+ * @property {boolean} iamOwned
+ * @property {clouduseraccounts(vm_alpha).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
+ * @property {integer} version Version of the `Policy`. The default version is 0.
+ */
 /**
  * @typedef PublicKey
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1166,7 +1205,6 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} fingerprint [Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key.
  * @property {string} key Public key text in SSH format, defined by RFC4253 section 6.6.
  */
-
 /**
  * @typedef Rule
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1179,21 +1217,18 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string[]} notIns The rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is not in this set of entries.
  * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
  */
-
 /**
  * @typedef TestPermissionsRequest
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} permissions The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
  */
-
 /**
  * @typedef TestPermissionsResponse
  * @memberOf! clouduseraccounts(vm_alpha)
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
-
 /**
  * @typedef User
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1208,7 +1243,6 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {clouduseraccounts(vm_alpha).PublicKey[]} publicKeys [Output Only] Public keys that this user may use to login.
  * @property {string} selfLink [Output Only] Server defined URL for the resource.
  */
-
 /**
  * @typedef UserList
  * @memberOf! clouduseraccounts(vm_alpha)
@@ -1219,4 +1253,5 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server defined URL for this resource.
  */
+
 export = Clouduseraccounts;

@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-/* jshint maxlen: false */
-
-import {
-  createAPIRequest
-} from '../../lib/apirequest';
+import {createAPIRequest} from '../../lib/apirequest';
 
 /**
  * Admin Reports API
  *
- * Fetches reports for the administrators of G Suite customers about the usage, collaboration, security, and risk for their users.
+ * Fetches reports for the administrators of G Suite customers about the usage,
+ * collaboration, security, and risk for their users.
  *
  * @example
  * const google = require('googleapis');
@@ -35,17 +32,14 @@ import {
  * @variation reports_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options) { // eslint-disable-line
+function Admin(options) {
   const self = this;
   self._options = options || {};
-
   self.activities = {
-
     /**
      * reports.activities.list
-     *
-     * @desc Retrieves a list of activities for a specific customer and application.
-     *
+     * @desc Retrieves a list of activities for a specific customer and
+     * application.
      * @alias reports.activities.list
      * @memberOf! admin(reports_v1)
      *
@@ -64,7 +58,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    list: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -74,75 +68,78 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * reports.activities.watch
-     *
-     * @desc Push changes to activities
-     *
-     * @alias reports.activities.watch
-     * @memberOf! admin(reports_v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
-     * @param {string} params.applicationName Application name for which the events are to be retrieved.
-     * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-     * @param {string=} params.endTime Return events which occurred at or before this time.
-     * @param {string=} params.eventName Name of the event being queried.
-     * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-     * @param {integer=} params.maxResults Number of activity records to be shown in each page.
-     * @param {string=} params.pageToken Token to specify next page.
-     * @param {string=} params.startTime Return events which occurred at or after this time.
-     * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
-     * @param {admin(reports_v1).Channel} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    watch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-      const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['userKey', 'applicationName'],
-        pathParams: ['applicationName', 'userKey'],
-        context: self
-      };
-
       return createAPIRequest(parameters, callback);
     }
 
+    , /**
+       * reports.activities.watch
+       * @desc Push changes to activities
+       * @alias reports.activities.watch
+       * @memberOf! admin(reports_v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+       * @param {string} params.applicationName Application name for which the events are to be retrieved.
+       * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
+       * @param {string=} params.endTime Return events which occurred at or before this time.
+       * @param {string=} params.eventName Name of the event being queried.
+       * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
+       * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+       * @param {string=} params.pageToken Token to specify next page.
+       * @param {string=} params.startTime Return events which occurred at or after this time.
+       * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+       * @param {admin(reports_v1).Channel} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+    watch: function(params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params: params,
+        requiredParams: ['userKey', 'applicationName'],
+        pathParams: ['applicationName', 'userKey'],
+        context: self
+      };
+      return createAPIRequest(parameters, callback);
+    }
+
+
   };
-
   self.channels = {
-
     /**
      * admin.channels.stop
-     *
      * @desc Stop watching resources through this channel
-     *
      * @alias admin.channels.stop
      * @memberOf! admin(reports_v1)
      *
@@ -152,7 +149,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, options, callback) {
+    stop: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -162,28 +159,29 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/reports/v1/admin/reports_v1/channels/stop').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'POST'
-        }, options),
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/admin/reports/v1/admin/reports_v1/channels/stop')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
         params: params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.customerUsageReports = {
-
     /**
      * reports.customerUsageReports.get
-     *
-     * @desc Retrieves a report which is a collection of properties / statistics for a specific customer.
-     *
+     * @desc Retrieves a report which is a collection of properties / statistics
+     * for a specific customer.
      * @alias reports.customerUsageReports.get
      * @memberOf! admin(reports_v1)
      *
@@ -196,7 +194,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -206,28 +204,28 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/reports/v1/usage/dates/{date}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl + '/admin/reports/v1/usage/dates/{date}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['date'],
         pathParams: ['date'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
-
   self.userUsageReport = {
-
     /**
      * reports.userUsageReport.get
-     *
-     * @desc Retrieves a report which is a collection of properties / statistics for a set of users.
-     *
+     * @desc Retrieves a report which is a collection of properties / statistics
+     * for a set of users.
      * @alias reports.userUsageReport.get
      * @memberOf! admin(reports_v1)
      *
@@ -243,7 +241,7 @@ function Admin(options) { // eslint-disable-line
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    get: function(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -253,22 +251,25 @@ function Admin(options) { // eslint-disable-line
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
 
       const parameters = {
-        options: Object.assign({
-          url: (rootUrl + '/admin/reports/v1/usage/users/{userKey}/dates/{date}').replace(/([^:]\/)\/+/g, '$1'),
-          method: 'GET'
-        }, options),
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/admin/reports/v1/usage/users/{userKey}/dates/{date}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
         params: params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
         context: self
       };
-
       return createAPIRequest(parameters, callback);
     }
 
+
   };
 }
-
 /**
  * @typedef Activities
  * @memberOf! admin(reports_v1)
@@ -278,7 +279,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of list response this is.
  * @property {string} nextPageToken Token for retrieving the next page
  */
-
 /**
  * @typedef Activity
  * @memberOf! admin(reports_v1)
@@ -291,7 +291,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind Kind of resource this is.
  * @property {string} ownerDomain Domain of source customer.
  */
-
 /**
  * @typedef Channel
  * @memberOf! admin(reports_v1)
@@ -307,7 +306,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
  * @property {string} type The type of delivery mechanism used for this channel.
  */
-
 /**
  * @typedef UsageReport
  * @memberOf! admin(reports_v1)
@@ -318,7 +316,6 @@ function Admin(options) { // eslint-disable-line
  * @property {string} kind The kind of object.
  * @property {object[]} parameters Parameter value pairs for various applications.
  */
-
 /**
  * @typedef UsageReports
  * @memberOf! admin(reports_v1)
@@ -329,4 +326,5 @@ function Admin(options) { // eslint-disable-line
  * @property {admin(reports_v1).UsageReport[]} usageReports Various application parameter records.
  * @property {object[]} warnings Warnings if any.
  */
+
 export = Admin;
