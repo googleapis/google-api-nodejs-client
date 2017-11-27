@@ -16,10 +16,11 @@ import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library/lib/transporters';
 import * as minimist from 'minimist';
 import * as mkdirp from 'mkdirp';
-import * as path from 'path';
 import * as nunjucks from 'nunjucks';
+import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
+
 import {buildurl, handleError} from './generator_utils';
 
 const argv = minimist(process.argv.slice(2));
@@ -36,6 +37,16 @@ const API_TEMPLATE = './api-endpoint.njk';
 const INDEX_TEMPLATE = './templates/index.njk';
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 
+export interface GeneratorOptions {
+  debug?: boolean;
+  includePrivate?: boolean;
+}
+
+interface Api {
+  discoveryRestUrl?: string;
+  id?: string;
+}
+
 export class Generator {
   private transporter = new DefaultTransporter();
   private requestQueue;
@@ -49,7 +60,7 @@ export class Generator {
    * @return {string}     Single line string processed
    */
   private oneLine(str?: string) {
-    return str ? str.replace(/\n/g, ' '): '';
+    return str ? str.replace(/\n/g, ' ') : '';
   }
 
   /**
@@ -62,25 +73,6 @@ export class Generator {
   private cleanComments(str?: string) {
     // Convert /* into /x and */ into x/
     return str ? str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x') : '';
-  }
-
-  /**
-   * Returns the list of names of APIS
-   *
-   * @private
-   * @param  {object} items Object of api endpoints
-   * @return {array}        Array of api names
-   */
-  private getAPIs(items) {
-    const apis = [];
-    if (items) {
-      for (const i in items) {
-        if (items.hasOwnProperty(i)) {
-          apis.push(items[i].name);
-        }
-      }
-    }
-    return apis;
   }
 
   private getPathParams(params) {
@@ -103,7 +95,7 @@ export class Generator {
     return param;
   }
 
-  private options: any;
+  private options: GeneratorOptions;
 
   private state = {};
 
@@ -114,7 +106,7 @@ export class Generator {
    * @param {object} options Options for generation
    * @this {Generator}
    */
-  constructor(options = {}) {
+  constructor(options: GeneratorOptions = {}) {
     this.options = options;
 
     /**
@@ -129,11 +121,9 @@ export class Generator {
       });
     }, 10);
 
-    this.env = new nunjucks.Environment(new nunjucks.FileSystemLoader('templates'), {
-      trimBlocks: true
-    });
+    this.env = new nunjucks.Environment(
+        new nunjucks.FileSystemLoader('templates'), {trimBlocks: true});
     this.env.addFilter('buildurl', buildurl);
-    this.env.addFilter('getAPIs', this.getAPIs);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
@@ -186,9 +176,9 @@ export class Generator {
       if (err) {
         return handleError(err, callback);
       }
-      const apis = resp.items;
+      const apis: Api[] = resp.items;
 
-      const queue = async.queue((api: any, next) => {
+      const queue = async.queue((api: Api, next) => {
         this.log('Generating API for %s...', api.id);
         this.logResult(
             api.discoveryRestUrl, 'Attempting first generateAPI call...');
@@ -202,9 +192,9 @@ export class Generator {
                 console.error(`Failed to generate API: ${api.id}`);
                 console.log(
                     api.id + '\n-----------\n' +
-                    (util as any).inspect(this.state[api.discoveryRestUrl], {
-                      maxArrayLength: null
-                    }) +
+                    util.inspect(
+                        this.state[api.discoveryRestUrl],
+                        {maxArrayLength: null}) +
                     '\n');
               } else {
                 this.logResult(
@@ -221,7 +211,7 @@ export class Generator {
       });
 
       queue.drain = (drainError: Error) => {
-        console.log((util as any).inspect(this.state, {maxArrayLength: null}));
+        console.log(util.inspect(this.state, {maxArrayLength: null}));
         if (drainError && callback) {
           callback(drainError);
           return;
@@ -246,12 +236,11 @@ export class Generator {
       fs.readdirSync(path.join(apisPath, file)).forEach(version => {
         const parts = path.parse(version);
         if (!version.endsWith('.d.ts') && parts.ext === '.ts') {
-          apis[file][version] = path.parse(version).name;
+          apis[file][version] = parts.name;
         }
       });
     });
-    console.log(apis);
-    const result = this.env.render('index.njk', {apis: apis});
+    const result = this.env.render('index.njk', {apis});
     fs.writeFile(indexPath, result, {encoding: 'utf8'}, err => {
       if (callback) callback(err);
     });
