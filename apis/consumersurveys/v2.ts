@@ -49,15 +49,13 @@ function Consumersurveys(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -66,37 +64,33 @@ function Consumersurveys(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.mobileapppanels.list
-       * @desc Lists the MobileAppPanels available to the authenticated user.
-       * @alias consumersurveys.mobileapppanels.list
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.maxResults
-       * @param {integer=} params.startIndex
-       * @param {string=} params.token
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * consumersurveys.mobileapppanels.list
+        * @desc Lists the MobileAppPanels available to the authenticated user.
+        * @alias consumersurveys.mobileapppanels.list
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.maxResults
+        * @param {integer=} params.startIndex
+        * @param {string=} params.token
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -105,37 +99,33 @@ function Consumersurveys(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.mobileapppanels.update
-       * @desc Updates a MobileAppPanel. Currently the only property that can be
-       * updated is the owners property.
-       * @alias consumersurveys.mobileapppanels.update
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.panelId External URL ID for the panel.
-       * @param {consumersurveys(v2).MobileAppPanel} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * consumersurveys.mobileapppanels.update
+        * @desc Updates a MobileAppPanel. Currently the only property that can
+        * be updated is the owners property.
+        * @alias consumersurveys.mobileapppanels.update
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.panelId External URL ID for the panel.
+        * @param {consumersurveys(v2).MobileAppPanel} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -144,14 +134,13 @@ function Consumersurveys(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.results = {
@@ -170,15 +159,13 @@ function Consumersurveys(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -188,14 +175,13 @@ function Consumersurveys(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.surveys = {
@@ -211,15 +197,13 @@ function Consumersurveys(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -228,35 +212,31 @@ function Consumersurveys(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.get
-       * @desc Retrieves information about the specified survey.
-       * @alias consumersurveys.surveys.get
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.surveyUrlId External URL ID for the survey.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.get
+        * @desc Retrieves information about the specified survey.
+        * @alias consumersurveys.surveys.get
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.surveyUrlId External URL ID for the survey.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -265,35 +245,31 @@ function Consumersurveys(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.insert
-       * @desc Creates a survey.
-       * @alias consumersurveys.surveys.insert
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {consumersurveys(v2).Survey} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.insert
+        * @desc Creates a survey.
+        * @alias consumersurveys.surveys.insert
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {consumersurveys(v2).Survey} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -302,37 +278,33 @@ function Consumersurveys(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.list
-       * @desc Lists the surveys owned by the authenticated user.
-       * @alias consumersurveys.surveys.list
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.maxResults
-       * @param {integer=} params.startIndex
-       * @param {string=} params.token
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.list
+        * @desc Lists the surveys owned by the authenticated user.
+        * @alias consumersurveys.surveys.list
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.maxResults
+        * @param {integer=} params.startIndex
+        * @param {string=} params.token
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -341,36 +313,32 @@ function Consumersurveys(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.start
-       * @desc Begins running a survey.
-       * @alias consumersurveys.surveys.start
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resourceId
-       * @param {consumersurveys(v2).SurveysStartRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    start: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.start
+        * @desc Begins running a survey.
+        * @alias consumersurveys.surveys.start
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.resourceId
+        * @param {consumersurveys(v2).SurveysStartRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    start(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -379,35 +347,31 @@ function Consumersurveys(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.stop
-       * @desc Stops a running survey.
-       * @alias consumersurveys.surveys.stop
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resourceId
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    stop: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.stop
+        * @desc Stops a running survey.
+        * @alias consumersurveys.surveys.stop
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.resourceId
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    stop(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -416,37 +380,33 @@ function Consumersurveys(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * consumersurveys.surveys.update
-       * @desc Updates a survey. Currently the only property that can be updated
-       * is the owners property.
-       * @alias consumersurveys.surveys.update
-       * @memberOf! consumersurveys(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.surveyUrlId External URL ID for the survey.
-       * @param {consumersurveys(v2).Survey} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * consumersurveys.surveys.update
+        * @desc Updates a survey. Currently the only property that can be
+        * updated is the owners property.
+        * @alias consumersurveys.surveys.update
+        * @memberOf! consumersurveys(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.surveyUrlId External URL ID for the survey.
+        * @param {consumersurveys(v2).Survey} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -455,14 +415,13 @@ function Consumersurveys(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

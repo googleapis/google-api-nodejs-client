@@ -50,16 +50,14 @@ function Androiddeviceprovisioning(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl ||
           'https://androiddeviceprovisioning.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -67,14 +65,13 @@ function Androiddeviceprovisioning(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['name'],
         pathParams: ['name'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.partners = {
@@ -95,16 +92,14 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -113,39 +108,35 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.customers.list
-         * @desc Lists the customers that are enrolled to the reseller
-         * identified by the `partnerId` argument. This list includes customers
-         * that the reseller created and customers that enrolled themselves
-         * using the portal.
-         * @alias androiddeviceprovisioning.partners.customers.list
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId The ID of the partner.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.customers.list
+          * @desc Lists the customers that are enrolled to the reseller
+          * identified by the `partnerId` argument. This list includes customers
+          * that the reseller created and customers that enrolled themselves
+          * using the portal.
+          * @alias androiddeviceprovisioning.partners.customers.list
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId The ID of the partner.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -154,14 +145,13 @@ function Androiddeviceprovisioning(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     devices: {
@@ -178,16 +168,14 @@ function Androiddeviceprovisioning(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      claim: function(params, options, callback) {
+      claim(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -196,37 +184,33 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.claimAsync
-         * @desc Claim devices asynchronously.
-         * @alias androiddeviceprovisioning.partners.devices.claimAsync
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId Partner ID.
-         * @param {androiddeviceprovisioning(v1).ClaimDevicesRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      claimAsync: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.claimAsync
+          * @desc Claim devices asynchronously.
+          * @alias androiddeviceprovisioning.partners.devices.claimAsync
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId Partner ID.
+          * @param {androiddeviceprovisioning(v1).ClaimDevicesRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      claimAsync(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -235,37 +219,33 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.findByIdentifier
-         * @desc Find devices by device identifier.
-         * @alias androiddeviceprovisioning.partners.devices.findByIdentifier
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId ID of the partner.
-         * @param {androiddeviceprovisioning(v1).FindDevicesByDeviceIdentifierRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      findByIdentifier: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.findByIdentifier
+          * @desc Find devices by device identifier.
+          * @alias androiddeviceprovisioning.partners.devices.findByIdentifier
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId ID of the partner.
+          * @param {androiddeviceprovisioning(v1).FindDevicesByDeviceIdentifierRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      findByIdentifier(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -275,37 +255,33 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.findByOwner
-         * @desc Find devices by ownership.
-         * @alias androiddeviceprovisioning.partners.devices.findByOwner
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId ID of the partner.
-         * @param {androiddeviceprovisioning(v1).FindDevicesByOwnerRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      findByOwner: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.findByOwner
+          * @desc Find devices by ownership.
+          * @alias androiddeviceprovisioning.partners.devices.findByOwner
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId ID of the partner.
+          * @param {androiddeviceprovisioning(v1).FindDevicesByOwnerRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      findByOwner(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -314,36 +290,32 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.get
-         * @desc Get a device.
-         * @alias androiddeviceprovisioning.partners.devices.get
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name Resource name in `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.get
+          * @desc Get a device.
+          * @alias androiddeviceprovisioning.partners.devices.get
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name Resource name in `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -351,38 +323,34 @@ function Androiddeviceprovisioning(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['name'],
           pathParams: ['name'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.metadata
-         * @desc Update the metadata.
-         * @alias androiddeviceprovisioning.partners.devices.metadata
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.deviceId ID of the partner.
-         * @param {string} params.metadataOwnerId The owner of the newly set metadata. Set this to the partner ID.
-         * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      metadata: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.metadata
+          * @desc Update the metadata.
+          * @alias androiddeviceprovisioning.partners.devices.metadata
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.deviceId ID of the partner.
+          * @param {string} params.metadataOwnerId The owner of the newly set metadata. Set this to the partner ID.
+          * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      metadata(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -393,38 +361,34 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['metadataOwnerId', 'deviceId'],
           pathParams: ['deviceId', 'metadataOwnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.unclaim
-         * @desc Unclaim the device identified by the `device_id` or the
-         * `deviceIdentifier`.
-         * @alias androiddeviceprovisioning.partners.devices.unclaim
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId ID of the partner.
-         * @param {androiddeviceprovisioning(v1).UnclaimDeviceRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      unclaim: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.unclaim
+          * @desc Unclaim the device identified by the `device_id` or the
+          * `deviceIdentifier`.
+          * @alias androiddeviceprovisioning.partners.devices.unclaim
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId ID of the partner.
+          * @param {androiddeviceprovisioning(v1).UnclaimDeviceRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      unclaim(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -433,37 +397,33 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.unclaimAsync
-         * @desc Unclaim devices asynchronously.
-         * @alias androiddeviceprovisioning.partners.devices.unclaimAsync
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId Partner ID.
-         * @param {androiddeviceprovisioning(v1).UnclaimDevicesRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      unclaimAsync: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.unclaimAsync
+          * @desc Unclaim devices asynchronously.
+          * @alias androiddeviceprovisioning.partners.devices.unclaimAsync
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId Partner ID.
+          * @param {androiddeviceprovisioning(v1).UnclaimDevicesRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      unclaimAsync(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -472,37 +432,34 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * androiddeviceprovisioning.partners.devices.updateMetadataAsync
-         * @desc Set metadata in batch asynchronously.
-         * @alias androiddeviceprovisioning.partners.devices.updateMetadataAsync
-         * @memberOf! androiddeviceprovisioning(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.partnerId Partner ID.
-         * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataInBatchRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      updateMetadataAsync: function(params, options, callback) {
+      }, /**
+          * androiddeviceprovisioning.partners.devices.updateMetadataAsync
+          * @desc Set metadata in batch asynchronously.
+          * @alias
+          * androiddeviceprovisioning.partners.devices.updateMetadataAsync
+          * @memberOf! androiddeviceprovisioning(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.partnerId Partner ID.
+          * @param {androiddeviceprovisioning(v1).UpdateDeviceMetadataInBatchRequest} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      updateMetadataAsync(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl ||
             'https://androiddeviceprovisioning.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -512,14 +469,13 @@ function Androiddeviceprovisioning(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['partnerId'],
           pathParams: ['partnerId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -537,8 +493,7 @@ function Androiddeviceprovisioning(options) {
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
  * @property {string} deviceId The device ID of the claimed device.
- * @property {string} deviceName The resource name of the device in the format
-`partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
+ * @property {string} deviceName The resource name of the device in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
  */
 /**
  * @typedef ClaimDevicesRequest
@@ -550,46 +505,28 @@ function Androiddeviceprovisioning(options) {
  * @typedef Company
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {string[]} adminEmails Input only. Optional. Email address of customer&#39;s users in the admin role.
-Each email address must be associated with a Google Account.
+ * @property {string[]} adminEmails Input only. Optional. Email address of customer&#39;s users in the admin role. Each email address must be associated with a Google Account.
  * @property {string} companyId Output only. The ID of the company. Assigned by the server.
- * @property {string} companyName Required. The name of the company. For example _XYZ Corp_. Characters
-allowed are: Latin letters, numerals, hyphens, and spaces. Displayed to the
-customer&#39;s employees in the zero-touch enrollment portal.
- * @property {string} name Output only. The API resource name of the company in the format
-`partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`. Assigned by the server.
- * @property {string[]} ownerEmails Input only. Email address of customer&#39;s users in the owner role. At least
-one `owner_email` is required. Each email address must be associated with a
-Google Account. Owners share the same access as admins but can also add,
-delete, and edit your organization&#39;s portal users.
+ * @property {string} companyName Required. The name of the company. For example _XYZ Corp_. Characters allowed are: Latin letters, numerals, hyphens, and spaces. Displayed to the customer&#39;s employees in the zero-touch enrollment portal.
+ * @property {string} name Output only. The API resource name of the company in the format `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`. Assigned by the server.
+ * @property {string[]} ownerEmails Input only. Email address of customer&#39;s users in the owner role. At least one `owner_email` is required. Each email address must be associated with a Google Account. Owners share the same access as admins but can also add, delete, and edit your organization&#39;s portal users.
  */
 /**
  * @typedef CreateCustomerRequest
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).Company} customer Required. The company data to populate the new customer. Must contain a
-value for `companyName` and at least one `owner_email` that&#39;s associated
-with a Google Account. The values for `companyId` and `name` must be empty.
+ * @property {androiddeviceprovisioning(v1).Company} customer Required. The company data to populate the new customer. Must contain a value for `companyName` and at least one `owner_email` that&#39;s associated with a Google Account. The values for `companyId` and `name` must be empty.
  */
 /**
  * @typedef Device
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims Output only. The provisioning claims for a device. Devices claimed for
-zero-touch enrollment have a claim with the type `SECTION_TYPE_ZERO_TOUCH`.
-Call
-`partners.devices.unclaim`
-or
-`partners.devices.unclaimAsync`
-to remove the device from zero-touch enrollment.
+ * @property {androiddeviceprovisioning(v1).DeviceClaim[]} claims Output only. The provisioning claims for a device. Devices claimed for zero-touch enrollment have a claim with the type `SECTION_TYPE_ZERO_TOUCH`. Call `partners.devices.unclaim` or `partners.devices.unclaimAsync` to remove the device from zero-touch enrollment.
  * @property {string} configuration Not available to resellers.
  * @property {string} deviceId Output only. The ID of the device. Assigned by the server.
- * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The hardware IDs that identify a manufactured device. To learn more, read
-[Identifiers](/zero-touch/guides/identifiers).
- * @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata The metadata attached to the device. Structured as key-value pairs. To
-learn more, read [Device metadata](/zero-touch/guides/metadata).
- * @property {string} name Output only. The API resource name in the format
-`partners/[PARTNER_ID]/devices/[DEVICE_ID]`. Assigned by the server.
+ * @property {androiddeviceprovisioning(v1).DeviceIdentifier} deviceIdentifier The hardware IDs that identify a manufactured device. To learn more, read [Identifiers](/zero-touch/guides/identifiers).
+ * @property {androiddeviceprovisioning(v1).DeviceMetadata} deviceMetadata The metadata attached to the device. Structured as key-value pairs. To learn more, read [Device metadata](/zero-touch/guides/metadata).
+ * @property {string} name Output only. The API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`. Assigned by the server.
  */
 /**
  * @typedef DeviceClaim
@@ -603,12 +540,9 @@ learn more, read [Device metadata](/zero-touch/guides/metadata).
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
  * @property {string} imei The device’s IMEI number. Validated on input.
- * @property {string} manufacturer Required. The device manufacturer’s name. Matches the device&#39;s built-in
-value returned from `android.os.Build.MANUFACTURER`. Allowed values are
-listed in [manufacturer names](/zero-touch/resources/manufacturer-names).
+ * @property {string} manufacturer Required. The device manufacturer’s name. Matches the device&#39;s built-in value returned from `android.os.Build.MANUFACTURER`. Allowed values are listed in [manufacturer names](/zero-touch/resources/manufacturer-names).
  * @property {string} meid The device’s MEID number.
- * @property {string} serialNumber The manufacturer&#39;s serial number for the device. This value might not be
-unique.
+ * @property {string} serialNumber The manufacturer&#39;s serial number for the device. This value might not be unique.
  */
 /**
  * @typedef DeviceMetadata
@@ -628,8 +562,7 @@ unique.
  * @typedef DevicesLongRunningOperationResponse
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {androiddeviceprovisioning(v1).OperationPerDevice[]} perDeviceStatus Processing status for each device.
-One `PerDeviceStatus` per device. The order is the same as in your requests.
+ * @property {androiddeviceprovisioning(v1).OperationPerDevice[]} perDeviceStatus Processing status for each device. One `PerDeviceStatus` per device. The order is the same as in your requests.
  * @property {integer} successCount Number of succeesfully processed ones.
  */
 /**
@@ -678,14 +611,10 @@ One `PerDeviceStatus` per device. The order is the same as in your requests.
  * @typedef Operation
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
- * @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If `true`, the operation is completed, and either `error` or `response` is
-available.
+ * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
  * @property {androiddeviceprovisioning(v1).Status} error This field will always be not set if the operation is created by `claimAsync`, `unclaimAsync`, or `updateMetadataAsync`. In this case, error information for each device is set in `response.perDeviceStatus.result.status`.
  * @property {object} metadata This field will contain a `DevicesLongRunningOperationMetadata` object if the operation is created by `claimAsync`, `unclaimAsync`, or `updateMetadataAsync`.
- * @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
+ * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} response This field will contain a `DevicesLongRunningOperationResponse` object if the operation is created by `claimAsync`, `unclaimAsync`, or `updateMetadataAsync`.
  */
 /**
@@ -728,11 +657,8 @@ originally returns it. If you use the default HTTP mapping, the
  * @memberOf! androiddeviceprovisioning(v1)
  * @type object
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
- * @property {object[]} details A list of messages that carry the error details.  There is a common set of
-message types for APIs to use.
- * @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
+ * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+ * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
 /**
  * @typedef UnclaimDeviceRequest

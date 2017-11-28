@@ -48,15 +48,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -67,14 +65,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'summaryAccountId'],
         pathParams: ['profileId', 'summaryAccountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accountPermissionGroups = {
@@ -91,15 +88,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -110,35 +105,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountPermissionGroups.list
-       * @desc Retrieves the list of account permission groups.
-       * @alias dfareporting.accountPermissionGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountPermissionGroups.list
+        * @desc Retrieves the list of account permission groups.
+        * @alias dfareporting.accountPermissionGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -149,14 +140,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accountPermissions = {
@@ -173,15 +163,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -192,35 +180,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountPermissions.list
-       * @desc Retrieves the list of account permissions.
-       * @alias dfareporting.accountPermissions.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountPermissions.list
+        * @desc Retrieves the list of account permissions.
+        * @alias dfareporting.accountPermissions.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -231,14 +215,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accounts = {
@@ -255,15 +238,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -273,43 +254,39 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accounts.list
-       * @desc Retrieves the list of accounts, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.accounts.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active accounts. Don't set this field to select both active and non-active accounts.
-       * @param {string=} params.ids Select only accounts with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.accounts.list
+        * @desc Retrieves the list of accounts, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.accounts.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active accounts. Don't set this field to select both active and non-active accounts.
+        * @param {string=} params.ids Select only accounts with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -319,38 +296,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accounts.patch
-       * @desc Updates an existing account. This method supports patch
-       * semantics.
-       * @alias dfareporting.accounts.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Account ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.accounts.patch
+        * @desc Updates an existing account. This method supports patch
+        * semantics.
+        * @alias dfareporting.accounts.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Account ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -360,36 +333,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accounts.update
-       * @desc Updates an existing account.
-       * @alias dfareporting.accounts.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.accounts.update
+        * @desc Updates an existing account.
+        * @alias dfareporting.accounts.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -399,14 +368,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accountUserProfiles = {
@@ -423,15 +391,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -442,36 +408,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountUserProfiles.insert
-       * @desc Inserts a new account user profile.
-       * @alias dfareporting.accountUserProfiles.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountUserProfiles.insert
+        * @desc Inserts a new account user profile.
+        * @alias dfareporting.accountUserProfiles.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -482,45 +444,41 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountUserProfiles.list
-       * @desc Retrieves a list of account user profiles, possibly filtered.
-       * This method supports paging.
-       * @alias dfareporting.accountUserProfiles.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active user profiles.
-       * @param {string=} params.ids Select only user profiles with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
-       * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountUserProfiles.list
+        * @desc Retrieves a list of account user profiles, possibly filtered.
+        * This method supports paging.
+        * @alias dfareporting.accountUserProfiles.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active user profiles.
+        * @param {string=} params.ids Select only user profiles with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
+        * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -531,38 +489,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountUserProfiles.patch
-       * @desc Updates an existing account user profile. This method supports
-       * patch semantics.
-       * @alias dfareporting.accountUserProfiles.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id User profile ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountUserProfiles.patch
+        * @desc Updates an existing account user profile. This method supports
+        * patch semantics.
+        * @alias dfareporting.accountUserProfiles.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id User profile ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -573,36 +527,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.accountUserProfiles.update
-       * @desc Updates an existing account user profile.
-       * @alias dfareporting.accountUserProfiles.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.accountUserProfiles.update
+        * @desc Updates an existing account user profile.
+        * @alias dfareporting.accountUserProfiles.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AccountUserProfile} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -613,14 +563,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.ads = {
@@ -637,15 +586,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -655,36 +602,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.ads.insert
-       * @desc Inserts a new ad.
-       * @alias dfareporting.ads.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Ad} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.ads.insert
+        * @desc Inserts a new ad.
+        * @alias dfareporting.ads.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Ad} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -693,59 +636,55 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.ads.list
-       * @desc Retrieves a list of ads, possibly filtered. This method supports
-       * paging.
-       * @alias dfareporting.ads.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active ads.
-       * @param {string=} params.advertiserId Select only ads with this advertiser ID.
-       * @param {boolean=} params.archived Select only archived ads.
-       * @param {string=} params.audienceSegmentIds Select only ads with these audience segment IDs.
-       * @param {string=} params.campaignIds Select only ads with these campaign IDs.
-       * @param {string=} params.compatibility Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
-       * @param {string=} params.creativeIds Select only ads with these creative IDs assigned.
-       * @param {string=} params.creativeOptimizationConfigurationIds Select only ads with these creative optimization configuration IDs.
-       * @param {boolean=} params.dynamicClickTracker Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
-       * @param {string=} params.ids Select only ads with these IDs.
-       * @param {string=} params.landingPageIds Select only ads with these landing page IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.overriddenEventTagId Select only ads with this event tag override ID.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string=} params.placementIds Select only ads with these placement IDs assigned.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.remarketingListIds Select only ads whose list targeting expression use these remarketing list IDs.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
-       * @param {string=} params.sizeIds Select only ads with these size IDs.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
-       * @param {boolean=} params.sslRequired Select only ads that require SSL.
-       * @param {string=} params.type Select only ads with these types.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.ads.list
+        * @desc Retrieves a list of ads, possibly filtered. This method supports
+        * paging.
+        * @alias dfareporting.ads.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active ads.
+        * @param {string=} params.advertiserId Select only ads with this advertiser ID.
+        * @param {boolean=} params.archived Select only archived ads.
+        * @param {string=} params.audienceSegmentIds Select only ads with these audience segment IDs.
+        * @param {string=} params.campaignIds Select only ads with these campaign IDs.
+        * @param {string=} params.compatibility Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
+        * @param {string=} params.creativeIds Select only ads with these creative IDs assigned.
+        * @param {string=} params.creativeOptimizationConfigurationIds Select only ads with these creative optimization configuration IDs.
+        * @param {boolean=} params.dynamicClickTracker Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
+        * @param {string=} params.ids Select only ads with these IDs.
+        * @param {string=} params.landingPageIds Select only ads with these landing page IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.overriddenEventTagId Select only ads with this event tag override ID.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string=} params.placementIds Select only ads with these placement IDs assigned.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.remarketingListIds Select only ads whose list targeting expression use these remarketing list IDs.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
+        * @param {string=} params.sizeIds Select only ads with these size IDs.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
+        * @param {boolean=} params.sslRequired Select only ads that require SSL.
+        * @param {string=} params.type Select only ads with these types.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -754,37 +693,33 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.ads.patch
-       * @desc Updates an existing ad. This method supports patch semantics.
-       * @alias dfareporting.ads.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Ad ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Ad} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.ads.patch
+        * @desc Updates an existing ad. This method supports patch semantics.
+        * @alias dfareporting.ads.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Ad ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Ad} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -793,36 +728,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.ads.update
-       * @desc Updates an existing ad.
-       * @alias dfareporting.ads.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Ad} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.ads.update
+        * @desc Updates an existing ad.
+        * @alias dfareporting.ads.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Ad} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -831,14 +762,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.advertiserGroups = {
@@ -855,15 +785,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -874,36 +802,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserGroups.get
-       * @desc Gets one advertiser group by ID.
-       * @alias dfareporting.advertiserGroups.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Advertiser group ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserGroups.get
+        * @desc Gets one advertiser group by ID.
+        * @alias dfareporting.advertiserGroups.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Advertiser group ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -914,36 +838,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserGroups.insert
-       * @desc Inserts a new advertiser group.
-       * @alias dfareporting.advertiserGroups.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserGroups.insert
+        * @desc Inserts a new advertiser group.
+        * @alias dfareporting.advertiserGroups.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -954,42 +874,38 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserGroups.list
-       * @desc Retrieves a list of advertiser groups, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.advertiserGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only advertiser groups with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserGroups.list
+        * @desc Retrieves a list of advertiser groups, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.advertiserGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only advertiser groups with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1000,38 +916,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserGroups.patch
-       * @desc Updates an existing advertiser group. This method supports patch
-       * semantics.
-       * @alias dfareporting.advertiserGroups.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Advertiser group ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserGroups.patch
+        * @desc Updates an existing advertiser group. This method supports patch
+        * semantics.
+        * @alias dfareporting.advertiserGroups.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Advertiser group ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1042,36 +954,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserGroups.update
-       * @desc Updates an existing advertiser group.
-       * @alias dfareporting.advertiserGroups.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserGroups.update
+        * @desc Updates an existing advertiser group.
+        * @alias dfareporting.advertiserGroups.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).AdvertiserGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1082,14 +990,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.advertiserLandingPages = {
@@ -1106,15 +1013,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1125,36 +1030,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserLandingPages.insert
-       * @desc Inserts a new landing page.
-       * @alias dfareporting.advertiserLandingPages.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserLandingPages.insert
+        * @desc Inserts a new landing page.
+        * @alias dfareporting.advertiserLandingPages.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1165,44 +1066,40 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserLandingPages.list
-       * @desc Retrieves a list of landing pages.
-       * @alias dfareporting.advertiserLandingPages.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only landing pages that belong to these advertisers.
-       * @param {boolean=} params.archived Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
-       * @param {string=} params.ids Select only landing pages with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.subaccountId Select only landing pages that belong to this subaccount.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserLandingPages.list
+        * @desc Retrieves a list of landing pages.
+        * @alias dfareporting.advertiserLandingPages.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only landing pages that belong to these advertisers.
+        * @param {boolean=} params.archived Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
+        * @param {string=} params.ids Select only landing pages with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.subaccountId Select only landing pages that belong to this subaccount.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1213,38 +1110,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserLandingPages.patch
-       * @desc Updates an existing landing page. This method supports patch
-       * semantics.
-       * @alias dfareporting.advertiserLandingPages.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Landing page ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserLandingPages.patch
+        * @desc Updates an existing landing page. This method supports patch
+        * semantics.
+        * @alias dfareporting.advertiserLandingPages.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Landing page ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1255,36 +1148,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertiserLandingPages.update
-       * @desc Updates an existing landing page.
-       * @alias dfareporting.advertiserLandingPages.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertiserLandingPages.update
+        * @desc Updates an existing landing page.
+        * @alias dfareporting.advertiserLandingPages.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).LandingPage} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1295,14 +1184,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.advertisers = {
@@ -1319,15 +1207,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1338,36 +1224,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertisers.insert
-       * @desc Inserts a new advertiser.
-       * @alias dfareporting.advertisers.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertisers.insert
+        * @desc Inserts a new advertiser.
+        * @alias dfareporting.advertisers.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1377,48 +1259,44 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertisers.list
-       * @desc Retrieves a list of advertisers, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.advertisers.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserGroupIds Select only advertisers with these advertiser group IDs.
-       * @param {string=} params.floodlightConfigurationIds Select only advertisers with these floodlight configuration IDs.
-       * @param {string=} params.ids Select only advertisers with these IDs.
-       * @param {boolean=} params.includeAdvertisersWithoutGroupsOnly Select only advertisers which do not belong to any advertiser group.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {boolean=} params.onlyParent Select only advertisers which use another advertiser's floodlight configuration.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.status Select only advertisers with the specified status.
-       * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertisers.list
+        * @desc Retrieves a list of advertisers, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.advertisers.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserGroupIds Select only advertisers with these advertiser group IDs.
+        * @param {string=} params.floodlightConfigurationIds Select only advertisers with these floodlight configuration IDs.
+        * @param {string=} params.ids Select only advertisers with these IDs.
+        * @param {boolean=} params.includeAdvertisersWithoutGroupsOnly Select only advertisers which do not belong to any advertiser group.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {boolean=} params.onlyParent Select only advertisers which use another advertiser's floodlight configuration.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.status Select only advertisers with the specified status.
+        * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1428,38 +1306,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertisers.patch
-       * @desc Updates an existing advertiser. This method supports patch
-       * semantics.
-       * @alias dfareporting.advertisers.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Advertiser ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertisers.patch
+        * @desc Updates an existing advertiser. This method supports patch
+        * semantics.
+        * @alias dfareporting.advertisers.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Advertiser ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1469,36 +1343,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.advertisers.update
-       * @desc Updates an existing advertiser.
-       * @alias dfareporting.advertisers.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.advertisers.update
+        * @desc Updates an existing advertiser.
+        * @alias dfareporting.advertisers.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Advertiser} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1508,14 +1378,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.browsers = {
@@ -1531,15 +1400,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1549,14 +1416,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.campaignCreativeAssociations = {
@@ -1576,15 +1442,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, options, callback) {
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1595,40 +1459,36 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.campaignCreativeAssociations.list
-       * @desc Retrieves the list of creative IDs associated with the specified
-       * campaign. This method supports paging.
-       * @alias dfareporting.campaignCreativeAssociations.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.campaignId Campaign ID in this association.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.campaignCreativeAssociations.list
+        * @desc Retrieves the list of creative IDs associated with the specified
+        * campaign. This method supports paging.
+        * @alias dfareporting.campaignCreativeAssociations.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.campaignId Campaign ID in this association.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1639,14 +1499,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.campaigns = {
@@ -1663,15 +1522,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1682,36 +1539,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.campaigns.insert
-       * @desc Inserts a new campaign.
-       * @alias dfareporting.campaigns.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Campaign} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.campaigns.insert
+        * @desc Inserts a new campaign.
+        * @alias dfareporting.campaigns.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Campaign} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1721,49 +1574,45 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.campaigns.list
-       * @desc Retrieves a list of campaigns, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.campaigns.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserGroupIds Select only campaigns whose advertisers belong to these advertiser groups.
-       * @param {string=} params.advertiserIds Select only campaigns that belong to these advertisers.
-       * @param {boolean=} params.archived Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
-       * @param {boolean=} params.atLeastOneOptimizationActivity Select only campaigns that have at least one optimization activity.
-       * @param {string=} params.excludedIds Exclude campaigns with these IDs.
-       * @param {string=} params.ids Select only campaigns with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.overriddenEventTagId Select only campaigns that have overridden this event tag ID.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.campaigns.list
+        * @desc Retrieves a list of campaigns, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.campaigns.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserGroupIds Select only campaigns whose advertisers belong to these advertiser groups.
+        * @param {string=} params.advertiserIds Select only campaigns that belong to these advertisers.
+        * @param {boolean=} params.archived Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
+        * @param {boolean=} params.atLeastOneOptimizationActivity Select only campaigns that have at least one optimization activity.
+        * @param {string=} params.excludedIds Exclude campaigns with these IDs.
+        * @param {string=} params.ids Select only campaigns with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.overriddenEventTagId Select only campaigns that have overridden this event tag ID.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1773,38 +1622,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.campaigns.patch
-       * @desc Updates an existing campaign. This method supports patch
-       * semantics.
-       * @alias dfareporting.campaigns.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Campaign ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Campaign} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.campaigns.patch
+        * @desc Updates an existing campaign. This method supports patch
+        * semantics.
+        * @alias dfareporting.campaigns.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Campaign ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Campaign} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1814,36 +1659,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.campaigns.update
-       * @desc Updates an existing campaign.
-       * @alias dfareporting.campaigns.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Campaign} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.campaigns.update
+        * @desc Updates an existing campaign.
+        * @alias dfareporting.campaigns.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Campaign} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1853,14 +1694,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.changeLogs = {
@@ -1877,15 +1717,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1896,45 +1734,41 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.changeLogs.list
-       * @desc Retrieves a list of change logs. This method supports paging.
-       * @alias dfareporting.changeLogs.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.action Select only change logs with the specified action.
-       * @param {string=} params.ids Select only change logs with these IDs.
-       * @param {string=} params.maxChangeTime Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.minChangeTime Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
-       * @param {string=} params.objectIds Select only change logs with these object IDs.
-       * @param {string=} params.objectType Select only change logs with the specified object type.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Select only change logs whose object ID, user name, old or new values match the search string.
-       * @param {string=} params.userProfileIds Select only change logs with these user profile IDs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.changeLogs.list
+        * @desc Retrieves a list of change logs. This method supports paging.
+        * @alias dfareporting.changeLogs.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.action Select only change logs with the specified action.
+        * @param {string=} params.ids Select only change logs with these IDs.
+        * @param {string=} params.maxChangeTime Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.minChangeTime Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+        * @param {string=} params.objectIds Select only change logs with these object IDs.
+        * @param {string=} params.objectType Select only change logs with the specified object type.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Select only change logs whose object ID, user name, old or new values match the search string.
+        * @param {string=} params.userProfileIds Select only change logs with these user profile IDs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1944,14 +1778,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.cities = {
@@ -1971,15 +1804,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1989,14 +1820,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.connectionTypes = {
@@ -2013,15 +1843,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2032,35 +1860,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.connectionTypes.list
-       * @desc Retrieves a list of connection types.
-       * @alias dfareporting.connectionTypes.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.connectionTypes.list
+        * @desc Retrieves a list of connection types.
+        * @alias dfareporting.connectionTypes.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2071,14 +1895,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.contentCategories = {
@@ -2095,15 +1918,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2114,36 +1935,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.contentCategories.get
-       * @desc Gets one content category by ID.
-       * @alias dfareporting.contentCategories.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Content category ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.contentCategories.get
+        * @desc Gets one content category by ID.
+        * @alias dfareporting.contentCategories.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Content category ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2154,36 +1971,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.contentCategories.insert
-       * @desc Inserts a new content category.
-       * @alias dfareporting.contentCategories.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.contentCategories.insert
+        * @desc Inserts a new content category.
+        * @alias dfareporting.contentCategories.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2194,42 +2007,38 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.contentCategories.list
-       * @desc Retrieves a list of content categories, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.contentCategories.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only content categories with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.contentCategories.list
+        * @desc Retrieves a list of content categories, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.contentCategories.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only content categories with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2240,38 +2049,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.contentCategories.patch
-       * @desc Updates an existing content category. This method supports patch
-       * semantics.
-       * @alias dfareporting.contentCategories.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Content category ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.contentCategories.patch
+        * @desc Updates an existing content category. This method supports patch
+        * semantics.
+        * @alias dfareporting.contentCategories.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Content category ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2282,36 +2087,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.contentCategories.update
-       * @desc Updates an existing content category.
-       * @alias dfareporting.contentCategories.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.contentCategories.update
+        * @desc Updates an existing content category.
+        * @alias dfareporting.contentCategories.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).ContentCategory} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2322,14 +2123,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.conversions = {
@@ -2346,15 +2146,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchinsert: function(params, options, callback) {
+    batchinsert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2365,36 +2163,32 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.conversions.batchupdate
-       * @desc Updates existing conversions.
-       * @alias dfareporting.conversions.batchupdate
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).ConversionsBatchUpdateRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    batchupdate: function(params, options, callback) {
+    }, /**
+        * dfareporting.conversions.batchupdate
+        * @desc Updates existing conversions.
+        * @alias dfareporting.conversions.batchupdate
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).ConversionsBatchUpdateRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    batchupdate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2405,14 +2199,13 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.countries = {
@@ -2429,15 +2222,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2448,35 +2239,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.countries.list
-       * @desc Retrieves a list of countries.
-       * @alias dfareporting.countries.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.countries.list
+        * @desc Retrieves a list of countries.
+        * @alias dfareporting.countries.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2486,14 +2273,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creativeAssets = {
@@ -2514,15 +2300,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, options, callback) {
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2533,7 +2317,7 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         mediaUrl:
             (rootUrl +
              '/upload/dfareporting/v3.0/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
@@ -2544,7 +2328,6 @@ function Dfareporting(options) {
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creativeFields = {
@@ -2561,15 +2344,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2580,36 +2361,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFields.get
-       * @desc Gets one creative field by ID.
-       * @alias dfareporting.creativeFields.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Creative Field ID
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFields.get
+        * @desc Gets one creative field by ID.
+        * @alias dfareporting.creativeFields.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Creative Field ID
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2620,36 +2397,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFields.insert
-       * @desc Inserts a new creative field.
-       * @alias dfareporting.creativeFields.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFields.insert
+        * @desc Inserts a new creative field.
+        * @alias dfareporting.creativeFields.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2660,43 +2433,39 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFields.list
-       * @desc Retrieves a list of creative fields, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.creativeFields.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only creative fields that belong to these advertisers.
-       * @param {string=} params.ids Select only creative fields with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFields.list
+        * @desc Retrieves a list of creative fields, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.creativeFields.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only creative fields that belong to these advertisers.
+        * @param {string=} params.ids Select only creative fields with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2707,38 +2476,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFields.patch
-       * @desc Updates an existing creative field. This method supports patch
-       * semantics.
-       * @alias dfareporting.creativeFields.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Creative Field ID
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFields.patch
+        * @desc Updates an existing creative field. This method supports patch
+        * semantics.
+        * @alias dfareporting.creativeFields.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Creative Field ID
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2749,36 +2514,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFields.update
-       * @desc Updates an existing creative field.
-       * @alias dfareporting.creativeFields.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFields.update
+        * @desc Updates an existing creative field.
+        * @alias dfareporting.creativeFields.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeField} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2789,14 +2550,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creativeFieldValues = {
@@ -2814,15 +2574,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2833,37 +2591,33 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFieldValues.get
-       * @desc Gets one creative field value by ID.
-       * @alias dfareporting.creativeFieldValues.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-       * @param {string} params.id Creative Field Value ID
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFieldValues.get
+        * @desc Gets one creative field value by ID.
+        * @alias dfareporting.creativeFieldValues.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+        * @param {string} params.id Creative Field Value ID
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2874,37 +2628,33 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFieldValues.insert
-       * @desc Inserts a new creative field value.
-       * @alias dfareporting.creativeFieldValues.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFieldValues.insert
+        * @desc Inserts a new creative field value.
+        * @alias dfareporting.creativeFieldValues.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2915,43 +2665,39 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFieldValues.list
-       * @desc Retrieves a list of creative field values, possibly filtered.
-       * This method supports paging.
-       * @alias dfareporting.creativeFieldValues.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-       * @param {string=} params.ids Select only creative field values with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFieldValues.list
+        * @desc Retrieves a list of creative field values, possibly filtered.
+        * This method supports paging.
+        * @alias dfareporting.creativeFieldValues.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+        * @param {string=} params.ids Select only creative field values with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2962,39 +2708,35 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFieldValues.patch
-       * @desc Updates an existing creative field value. This method supports
-       * patch semantics.
-       * @alias dfareporting.creativeFieldValues.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-       * @param {string} params.id Creative Field Value ID
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFieldValues.patch
+        * @desc Updates an existing creative field value. This method supports
+        * patch semantics.
+        * @alias dfareporting.creativeFieldValues.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+        * @param {string} params.id Creative Field Value ID
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3005,37 +2747,33 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeFieldValues.update
-       * @desc Updates an existing creative field value.
-       * @alias dfareporting.creativeFieldValues.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeFieldValues.update
+        * @desc Updates an existing creative field value.
+        * @alias dfareporting.creativeFieldValues.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.creativeFieldId Creative field ID for this creative field value.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeFieldValue} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3046,14 +2784,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creativeGroups = {
@@ -3070,15 +2807,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3089,36 +2824,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeGroups.insert
-       * @desc Inserts a new creative group.
-       * @alias dfareporting.creativeGroups.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeGroups.insert
+        * @desc Inserts a new creative group.
+        * @alias dfareporting.creativeGroups.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3129,44 +2860,40 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeGroups.list
-       * @desc Retrieves a list of creative groups, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.creativeGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only creative groups that belong to these advertisers.
-       * @param {integer=} params.groupNumber Select only creative groups that belong to this subgroup.
-       * @param {string=} params.ids Select only creative groups with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeGroups.list
+        * @desc Retrieves a list of creative groups, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.creativeGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only creative groups that belong to these advertisers.
+        * @param {integer=} params.groupNumber Select only creative groups that belong to this subgroup.
+        * @param {string=} params.ids Select only creative groups with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3177,38 +2904,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeGroups.patch
-       * @desc Updates an existing creative group. This method supports patch
-       * semantics.
-       * @alias dfareporting.creativeGroups.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Creative group ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeGroups.patch
+        * @desc Updates an existing creative group. This method supports patch
+        * semantics.
+        * @alias dfareporting.creativeGroups.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Creative group ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3219,36 +2942,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creativeGroups.update
-       * @desc Updates an existing creative group.
-       * @alias dfareporting.creativeGroups.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.creativeGroups.update
+        * @desc Updates an existing creative group.
+        * @alias dfareporting.creativeGroups.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).CreativeGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3259,14 +2978,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creatives = {
@@ -3283,15 +3001,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3302,36 +3018,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creatives.insert
-       * @desc Inserts a new creative.
-       * @alias dfareporting.creatives.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Creative} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.creatives.insert
+        * @desc Inserts a new creative.
+        * @alias dfareporting.creatives.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Creative} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3341,52 +3053,48 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creatives.list
-       * @desc Retrieves a list of creatives, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.creatives.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active creatives. Leave blank to select active and inactive creatives.
-       * @param {string=} params.advertiserId Select only creatives with this advertiser ID.
-       * @param {boolean=} params.archived Select only archived creatives. Leave blank to select archived and unarchived creatives.
-       * @param {string=} params.campaignId Select only creatives with this campaign ID.
-       * @param {string=} params.companionCreativeIds Select only in-stream video creatives with these companion IDs.
-       * @param {string=} params.creativeFieldIds Select only creatives with these creative field IDs.
-       * @param {string=} params.ids Select only creatives with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.renderingIds Select only creatives with these rendering IDs.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
-       * @param {string=} params.sizeIds Select only creatives with these size IDs.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
-       * @param {string=} params.types Select only creatives with these creative types.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.creatives.list
+        * @desc Retrieves a list of creatives, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.creatives.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active creatives. Leave blank to select active and inactive creatives.
+        * @param {string=} params.advertiserId Select only creatives with this advertiser ID.
+        * @param {boolean=} params.archived Select only archived creatives. Leave blank to select archived and unarchived creatives.
+        * @param {string=} params.campaignId Select only creatives with this campaign ID.
+        * @param {string=} params.companionCreativeIds Select only in-stream video creatives with these companion IDs.
+        * @param {string=} params.creativeFieldIds Select only creatives with these creative field IDs.
+        * @param {string=} params.ids Select only creatives with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.renderingIds Select only creatives with these rendering IDs.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
+        * @param {string=} params.sizeIds Select only creatives with these size IDs.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
+        * @param {string=} params.types Select only creatives with these creative types.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3396,38 +3104,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creatives.patch
-       * @desc Updates an existing creative. This method supports patch
-       * semantics.
-       * @alias dfareporting.creatives.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Creative ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Creative} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.creatives.patch
+        * @desc Updates an existing creative. This method supports patch
+        * semantics.
+        * @alias dfareporting.creatives.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Creative ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Creative} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3437,36 +3141,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.creatives.update
-       * @desc Updates an existing creative.
-       * @alias dfareporting.creatives.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Creative} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.creatives.update
+        * @desc Updates an existing creative.
+        * @alias dfareporting.creatives.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Creative} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3476,14 +3176,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.dimensionValues = {
@@ -3502,15 +3201,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, options, callback) {
+    query(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3521,14 +3218,13 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.directorySiteContacts = {
@@ -3545,15 +3241,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3564,43 +3258,39 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.directorySiteContacts.list
-       * @desc Retrieves a list of directory site contacts, possibly filtered.
-       * This method supports paging.
-       * @alias dfareporting.directorySiteContacts.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.directorySiteIds Select only directory site contacts with these directory site IDs. This is a required field.
-       * @param {string=} params.ids Select only directory site contacts with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.directorySiteContacts.list
+        * @desc Retrieves a list of directory site contacts, possibly filtered.
+        * This method supports paging.
+        * @alias dfareporting.directorySiteContacts.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.directorySiteIds Select only directory site contacts with these directory site IDs. This is a required field.
+        * @param {string=} params.ids Select only directory site contacts with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3611,14 +3301,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.directorySites = {
@@ -3635,15 +3324,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3654,36 +3341,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.directorySites.insert
-       * @desc Inserts a new directory site.
-       * @alias dfareporting.directorySites.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).DirectorySite} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.directorySites.insert
+        * @desc Inserts a new directory site.
+        * @alias dfareporting.directorySites.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).DirectorySite} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3694,49 +3377,45 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.directorySites.list
-       * @desc Retrieves a list of directory sites, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.directorySites.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
-       * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
-       * @param {boolean=} params.acceptsPublisherPaidPlacements Select only directory sites that accept publisher paid placements. This field can be left blank.
-       * @param {boolean=} params.active Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
-       * @param {string=} params.countryId Select only directory sites with this country ID.
-       * @param {string=} params.dfpNetworkCode Select only directory sites with this DFP network code.
-       * @param {string=} params.ids Select only directory sites with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string=} params.parentId Select only directory sites with this parent ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.directorySites.list
+        * @desc Retrieves a list of directory sites, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.directorySites.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
+        * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
+        * @param {boolean=} params.acceptsPublisherPaidPlacements Select only directory sites that accept publisher paid placements. This field can be left blank.
+        * @param {boolean=} params.active Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
+        * @param {string=} params.countryId Select only directory sites with this country ID.
+        * @param {string=} params.dfpNetworkCode Select only directory sites with this DFP network code.
+        * @param {string=} params.ids Select only directory sites with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string=} params.parentId Select only directory sites with this parent ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3747,14 +3426,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.dynamicTargetingKeys = {
@@ -3773,15 +3451,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3792,40 +3468,36 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
         pathParams: ['objectId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.dynamicTargetingKeys.insert
-       * @desc Inserts a new dynamic targeting key. Keys must be created at the
-       * advertiser level before being assigned to the advertiser's ads,
-       * creatives, or placements. There is a maximum of 1000 keys per
-       * advertiser, out of which a maximum of 20 keys can be assigned per ad,
-       * creative, or placement.
-       * @alias dfareporting.dynamicTargetingKeys.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).DynamicTargetingKey} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.dynamicTargetingKeys.insert
+        * @desc Inserts a new dynamic targeting key. Keys must be created at the
+        * advertiser level before being assigned to the advertiser's ads,
+        * creatives, or placements. There is a maximum of 1000 keys per
+        * advertiser, out of which a maximum of 20 keys can be assigned per ad,
+        * creative, or placement.
+        * @alias dfareporting.dynamicTargetingKeys.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).DynamicTargetingKey} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3836,39 +3508,35 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.dynamicTargetingKeys.list
-       * @desc Retrieves a list of dynamic targeting keys.
-       * @alias dfareporting.dynamicTargetingKeys.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserId Select only dynamic targeting keys whose object has this advertiser ID.
-       * @param {string=} params.names Select only dynamic targeting keys exactly matching these names.
-       * @param {string=} params.objectId Select only dynamic targeting keys with this object ID.
-       * @param {string=} params.objectType Select only dynamic targeting keys with this object type.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.dynamicTargetingKeys.list
+        * @desc Retrieves a list of dynamic targeting keys.
+        * @alias dfareporting.dynamicTargetingKeys.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserId Select only dynamic targeting keys whose object has this advertiser ID.
+        * @param {string=} params.names Select only dynamic targeting keys exactly matching these names.
+        * @param {string=} params.objectId Select only dynamic targeting keys with this object ID.
+        * @param {string=} params.objectType Select only dynamic targeting keys with this object type.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3879,14 +3547,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.eventTags = {
@@ -3903,15 +3570,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3922,36 +3587,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.eventTags.get
-       * @desc Gets one event tag by ID.
-       * @alias dfareporting.eventTags.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Event tag ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.eventTags.get
+        * @desc Gets one event tag by ID.
+        * @alias dfareporting.eventTags.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Event tag ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3962,36 +3623,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.eventTags.insert
-       * @desc Inserts a new event tag.
-       * @alias dfareporting.eventTags.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).EventTag} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.eventTags.insert
+        * @desc Inserts a new event tag.
+        * @alias dfareporting.eventTags.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).EventTag} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4001,45 +3658,41 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.eventTags.list
-       * @desc Retrieves a list of event tags, possibly filtered.
-       * @alias dfareporting.eventTags.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.adId Select only event tags that belong to this ad.
-       * @param {string=} params.advertiserId Select only event tags that belong to this advertiser.
-       * @param {string=} params.campaignId Select only event tags that belong to this campaign.
-       * @param {boolean=} params.definitionsOnly Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
-       * @param {boolean=} params.enabled Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
-       * @param {string=} params.eventTagTypes Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
-       * @param {string=} params.ids Select only event tags with these IDs.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.eventTags.list
+        * @desc Retrieves a list of event tags, possibly filtered.
+        * @alias dfareporting.eventTags.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.adId Select only event tags that belong to this ad.
+        * @param {string=} params.advertiserId Select only event tags that belong to this advertiser.
+        * @param {string=} params.campaignId Select only event tags that belong to this campaign.
+        * @param {boolean=} params.definitionsOnly Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
+        * @param {boolean=} params.enabled Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
+        * @param {string=} params.eventTagTypes Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
+        * @param {string=} params.ids Select only event tags with these IDs.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4049,38 +3702,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.eventTags.patch
-       * @desc Updates an existing event tag. This method supports patch
-       * semantics.
-       * @alias dfareporting.eventTags.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Event tag ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).EventTag} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.eventTags.patch
+        * @desc Updates an existing event tag. This method supports patch
+        * semantics.
+        * @alias dfareporting.eventTags.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Event tag ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).EventTag} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4090,36 +3739,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.eventTags.update
-       * @desc Updates an existing event tag.
-       * @alias dfareporting.eventTags.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).EventTag} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.eventTags.update
+        * @desc Updates an existing event tag.
+        * @alias dfareporting.eventTags.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).EventTag} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4129,14 +3774,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.files = {
@@ -4154,15 +3798,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4172,40 +3814,36 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['reportId', 'fileId'],
         pathParams: ['fileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.files.list
-       * @desc Lists files for a user profile.
-       * @alias dfareporting.files.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-       * @param {string} params.profileId The DFA profile ID.
-       * @param {string=} params.scope The scope that defines which results are returned.
-       * @param {string=} params.sortField The field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.files.list
+        * @desc Lists files for a user profile.
+        * @alias dfareporting.files.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+        * @param {string} params.profileId The DFA profile ID.
+        * @param {string=} params.scope The scope that defines which results are returned.
+        * @param {string=} params.sortField The field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4215,14 +3853,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.floodlightActivities = {
@@ -4239,15 +3876,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4258,36 +3893,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.generatetag
-       * @desc Generates a tag for a floodlight activity.
-       * @alias dfareporting.floodlightActivities.generatetag
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    generatetag: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.generatetag
+        * @desc Generates a tag for a floodlight activity.
+        * @alias dfareporting.floodlightActivities.generatetag
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    generatetag(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4298,36 +3929,32 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.get
-       * @desc Gets one floodlight activity by ID.
-       * @alias dfareporting.floodlightActivities.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Floodlight activity ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.get
+        * @desc Gets one floodlight activity by ID.
+        * @alias dfareporting.floodlightActivities.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Floodlight activity ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4338,36 +3965,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.insert
-       * @desc Inserts a new floodlight activity.
-       * @alias dfareporting.floodlightActivities.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.insert
+        * @desc Inserts a new floodlight activity.
+        * @alias dfareporting.floodlightActivities.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4378,49 +4001,45 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.list
-       * @desc Retrieves a list of floodlight activities, possibly filtered.
-       * This method supports paging.
-       * @alias dfareporting.floodlightActivities.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserId Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-       * @param {string=} params.floodlightActivityGroupIds Select only floodlight activities with the specified floodlight activity group IDs.
-       * @param {string=} params.floodlightActivityGroupName Select only floodlight activities with the specified floodlight activity group name.
-       * @param {string=} params.floodlightActivityGroupTagString Select only floodlight activities with the specified floodlight activity group tag string.
-       * @param {string=} params.floodlightActivityGroupType Select only floodlight activities with the specified floodlight activity group type.
-       * @param {string=} params.floodlightConfigurationId Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-       * @param {string=} params.ids Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.list
+        * @desc Retrieves a list of floodlight activities, possibly filtered.
+        * This method supports paging.
+        * @alias dfareporting.floodlightActivities.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserId Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+        * @param {string=} params.floodlightActivityGroupIds Select only floodlight activities with the specified floodlight activity group IDs.
+        * @param {string=} params.floodlightActivityGroupName Select only floodlight activities with the specified floodlight activity group name.
+        * @param {string=} params.floodlightActivityGroupTagString Select only floodlight activities with the specified floodlight activity group tag string.
+        * @param {string=} params.floodlightActivityGroupType Select only floodlight activities with the specified floodlight activity group type.
+        * @param {string=} params.floodlightConfigurationId Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+        * @param {string=} params.ids Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4431,38 +4050,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.patch
-       * @desc Updates an existing floodlight activity. This method supports
-       * patch semantics.
-       * @alias dfareporting.floodlightActivities.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Floodlight activity ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.patch
+        * @desc Updates an existing floodlight activity. This method supports
+        * patch semantics.
+        * @alias dfareporting.floodlightActivities.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Floodlight activity ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4473,36 +4088,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivities.update
-       * @desc Updates an existing floodlight activity.
-       * @alias dfareporting.floodlightActivities.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivities.update
+        * @desc Updates an existing floodlight activity.
+        * @alias dfareporting.floodlightActivities.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivity} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4513,14 +4124,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.floodlightActivityGroups = {
@@ -4537,15 +4147,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4556,36 +4164,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivityGroups.insert
-       * @desc Inserts a new floodlight activity group.
-       * @alias dfareporting.floodlightActivityGroups.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivityGroups.insert
+        * @desc Inserts a new floodlight activity group.
+        * @alias dfareporting.floodlightActivityGroups.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4596,45 +4200,41 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivityGroups.list
-       * @desc Retrieves a list of floodlight activity groups, possibly
-       * filtered. This method supports paging.
-       * @alias dfareporting.floodlightActivityGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserId Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
-       * @param {string=} params.floodlightConfigurationId Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
-       * @param {string=} params.ids Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivityGroups.list
+        * @desc Retrieves a list of floodlight activity groups, possibly
+        * filtered. This method supports paging.
+        * @alias dfareporting.floodlightActivityGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserId Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+        * @param {string=} params.floodlightConfigurationId Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
+        * @param {string=} params.ids Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4645,38 +4245,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivityGroups.patch
-       * @desc Updates an existing floodlight activity group. This method
-       * supports patch semantics.
-       * @alias dfareporting.floodlightActivityGroups.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Floodlight activity Group ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivityGroups.patch
+        * @desc Updates an existing floodlight activity group. This method
+        * supports patch semantics.
+        * @alias dfareporting.floodlightActivityGroups.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Floodlight activity Group ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4687,36 +4283,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightActivityGroups.update
-       * @desc Updates an existing floodlight activity group.
-       * @alias dfareporting.floodlightActivityGroups.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightActivityGroups.update
+        * @desc Updates an existing floodlight activity group.
+        * @alias dfareporting.floodlightActivityGroups.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightActivityGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4727,14 +4319,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.floodlightConfigurations = {
@@ -4751,15 +4342,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4770,36 +4359,33 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightConfigurations.list
-       * @desc Retrieves a list of floodlight configurations, possibly filtered.
-       * @alias dfareporting.floodlightConfigurations.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightConfigurations.list
+        * @desc Retrieves a list of floodlight configurations, possibly
+        * filtered.
+        * @alias dfareporting.floodlightConfigurations.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4810,38 +4396,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightConfigurations.patch
-       * @desc Updates an existing floodlight configuration. This method
-       * supports patch semantics.
-       * @alias dfareporting.floodlightConfigurations.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Floodlight configuration ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightConfiguration} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightConfigurations.patch
+        * @desc Updates an existing floodlight configuration. This method
+        * supports patch semantics.
+        * @alias dfareporting.floodlightConfigurations.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Floodlight configuration ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightConfiguration} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4852,36 +4434,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.floodlightConfigurations.update
-       * @desc Updates an existing floodlight configuration.
-       * @alias dfareporting.floodlightConfigurations.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).FloodlightConfiguration} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.floodlightConfigurations.update
+        * @desc Updates an existing floodlight configuration.
+        * @alias dfareporting.floodlightConfigurations.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).FloodlightConfiguration} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4892,14 +4470,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.inventoryItems = {
@@ -4917,15 +4494,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4936,46 +4511,42 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.inventoryItems.list
-       * @desc Retrieves a list of inventory items, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.inventoryItems.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only inventory items with these IDs.
-       * @param {boolean=} params.inPlan Select only inventory items that are in plan.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.orderId Select only inventory items that belong to specified orders.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string} params.projectId Project ID for order documents.
-       * @param {string=} params.siteId Select only inventory items that are associated with these sites.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.type Select only inventory items with this type.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.inventoryItems.list
+        * @desc Retrieves a list of inventory items, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.inventoryItems.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only inventory items with these IDs.
+        * @param {boolean=} params.inPlan Select only inventory items that are in plan.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.orderId Select only inventory items that belong to specified orders.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string} params.projectId Project ID for order documents.
+        * @param {string=} params.siteId Select only inventory items that are associated with these sites.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.type Select only inventory items with this type.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -4986,14 +4557,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.languages = {
@@ -5009,15 +4579,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5027,14 +4595,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.metros = {
@@ -5050,15 +4617,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5068,14 +4633,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.mobileCarriers = {
@@ -5092,15 +4656,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5111,35 +4673,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.mobileCarriers.list
-       * @desc Retrieves a list of mobile carriers.
-       * @alias dfareporting.mobileCarriers.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.mobileCarriers.list
+        * @desc Retrieves a list of mobile carriers.
+        * @alias dfareporting.mobileCarriers.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5150,14 +4708,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.operatingSystems = {
@@ -5174,15 +4731,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5193,35 +4748,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.operatingSystems.list
-       * @desc Retrieves a list of operating systems.
-       * @alias dfareporting.operatingSystems.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.operatingSystems.list
+        * @desc Retrieves a list of operating systems.
+        * @alias dfareporting.operatingSystems.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5232,14 +4783,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.operatingSystemVersions = {
@@ -5256,15 +4806,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5275,35 +4823,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.operatingSystemVersions.list
-       * @desc Retrieves a list of operating system versions.
-       * @alias dfareporting.operatingSystemVersions.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.operatingSystemVersions.list
+        * @desc Retrieves a list of operating system versions.
+        * @alias dfareporting.operatingSystemVersions.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5314,14 +4858,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.orderDocuments = {
@@ -5339,15 +4882,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5358,46 +4899,42 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.orderDocuments.list
-       * @desc Retrieves a list of order documents, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.orderDocuments.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.approved Select only order documents that have been approved by at least one user.
-       * @param {string=} params.ids Select only order documents with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.orderId Select only order documents for specified orders.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string} params.projectId Project ID for order documents.
-       * @param {string=} params.searchString Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
-       * @param {string=} params.siteId Select only order documents that are associated with these sites.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.orderDocuments.list
+        * @desc Retrieves a list of order documents, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.orderDocuments.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.approved Select only order documents that have been approved by at least one user.
+        * @param {string=} params.ids Select only order documents with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.orderId Select only order documents for specified orders.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string} params.projectId Project ID for order documents.
+        * @param {string=} params.searchString Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
+        * @param {string=} params.siteId Select only order documents that are associated with these sites.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5408,14 +4945,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.orders = {
@@ -5433,15 +4969,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5452,44 +4986,40 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.orders.list
-       * @desc Retrieves a list of orders, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.orders.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only orders with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string} params.projectId Project ID for orders.
-       * @param {string=} params.searchString Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
-       * @param {string=} params.siteId Select only orders that are associated with these site IDs.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.orders.list
+        * @desc Retrieves a list of orders, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.orders.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only orders with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string} params.projectId Project ID for orders.
+        * @param {string=} params.searchString Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
+        * @param {string=} params.siteId Select only orders that are associated with these site IDs.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5500,14 +5030,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.placementGroups = {
@@ -5524,15 +5053,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5543,36 +5070,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementGroups.insert
-       * @desc Inserts a new placement group.
-       * @alias dfareporting.placementGroups.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementGroups.insert
+        * @desc Inserts a new placement group.
+        * @alias dfareporting.placementGroups.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5583,55 +5106,51 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementGroups.list
-       * @desc Retrieves a list of placement groups, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.placementGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only placement groups that belong to these advertisers.
-       * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
-       * @param {string=} params.campaignIds Select only placement groups that belong to these campaigns.
-       * @param {string=} params.contentCategoryIds Select only placement groups that are associated with these content categories.
-       * @param {string=} params.directorySiteIds Select only placement groups that are associated with these directory sites.
-       * @param {string=} params.ids Select only placement groups with these IDs.
-       * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string=} params.placementGroupType Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
-       * @param {string=} params.placementStrategyIds Select only placement groups that are associated with these placement strategies.
-       * @param {string=} params.pricingTypes Select only placement groups with these pricing types.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
-       * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementGroups.list
+        * @desc Retrieves a list of placement groups, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.placementGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only placement groups that belong to these advertisers.
+        * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
+        * @param {string=} params.campaignIds Select only placement groups that belong to these campaigns.
+        * @param {string=} params.contentCategoryIds Select only placement groups that are associated with these content categories.
+        * @param {string=} params.directorySiteIds Select only placement groups that are associated with these directory sites.
+        * @param {string=} params.ids Select only placement groups with these IDs.
+        * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string=} params.placementGroupType Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
+        * @param {string=} params.placementStrategyIds Select only placement groups that are associated with these placement strategies.
+        * @param {string=} params.pricingTypes Select only placement groups with these pricing types.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
+        * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5642,38 +5161,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementGroups.patch
-       * @desc Updates an existing placement group. This method supports patch
-       * semantics.
-       * @alias dfareporting.placementGroups.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Placement group ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementGroups.patch
+        * @desc Updates an existing placement group. This method supports patch
+        * semantics.
+        * @alias dfareporting.placementGroups.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Placement group ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5684,36 +5199,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementGroups.update
-       * @desc Updates an existing placement group.
-       * @alias dfareporting.placementGroups.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementGroups.update
+        * @desc Updates an existing placement group.
+        * @alias dfareporting.placementGroups.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementGroup} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5724,14 +5235,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.placements = {
@@ -5750,15 +5260,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetags: function(params, options, callback) {
+    generatetags(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5769,36 +5277,32 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placements.get
-       * @desc Gets one placement by ID.
-       * @alias dfareporting.placements.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Placement ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.placements.get
+        * @desc Gets one placement by ID.
+        * @alias dfareporting.placements.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Placement ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5809,36 +5313,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placements.insert
-       * @desc Inserts a new placement.
-       * @alias dfareporting.placements.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Placement} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.placements.insert
+        * @desc Inserts a new placement.
+        * @alias dfareporting.placements.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Placement} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5848,58 +5348,54 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placements.list
-       * @desc Retrieves a list of placements, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.placements.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only placements that belong to these advertisers.
-       * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
-       * @param {string=} params.campaignIds Select only placements that belong to these campaigns.
-       * @param {string=} params.compatibilities Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
-       * @param {string=} params.contentCategoryIds Select only placements that are associated with these content categories.
-       * @param {string=} params.directorySiteIds Select only placements that are associated with these directory sites.
-       * @param {string=} params.groupIds Select only placements that belong to these placement groups.
-       * @param {string=} params.ids Select only placements with these IDs.
-       * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string=} params.paymentSource Select only placements with this payment source.
-       * @param {string=} params.placementStrategyIds Select only placements that are associated with these placement strategies.
-       * @param {string=} params.pricingTypes Select only placements with these pricing types.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
-       * @param {string=} params.siteIds Select only placements that are associated with these sites.
-       * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.placements.list
+        * @desc Retrieves a list of placements, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.placements.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only placements that belong to these advertisers.
+        * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
+        * @param {string=} params.campaignIds Select only placements that belong to these campaigns.
+        * @param {string=} params.compatibilities Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
+        * @param {string=} params.contentCategoryIds Select only placements that are associated with these content categories.
+        * @param {string=} params.directorySiteIds Select only placements that are associated with these directory sites.
+        * @param {string=} params.groupIds Select only placements that belong to these placement groups.
+        * @param {string=} params.ids Select only placements with these IDs.
+        * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string=} params.paymentSource Select only placements with this payment source.
+        * @param {string=} params.placementStrategyIds Select only placements that are associated with these placement strategies.
+        * @param {string=} params.pricingTypes Select only placements with these pricing types.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement".
+        * @param {string=} params.siteIds Select only placements that are associated with these sites.
+        * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5909,38 +5405,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placements.patch
-       * @desc Updates an existing placement. This method supports patch
-       * semantics.
-       * @alias dfareporting.placements.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Placement ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Placement} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.placements.patch
+        * @desc Updates an existing placement. This method supports patch
+        * semantics.
+        * @alias dfareporting.placements.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Placement ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Placement} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5950,36 +5442,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placements.update
-       * @desc Updates an existing placement.
-       * @alias dfareporting.placements.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Placement} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.placements.update
+        * @desc Updates an existing placement.
+        * @alias dfareporting.placements.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Placement} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -5989,14 +5477,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.placementStrategies = {
@@ -6013,15 +5500,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6032,36 +5517,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementStrategies.get
-       * @desc Gets one placement strategy by ID.
-       * @alias dfareporting.placementStrategies.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Placement strategy ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementStrategies.get
+        * @desc Gets one placement strategy by ID.
+        * @alias dfareporting.placementStrategies.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Placement strategy ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6072,36 +5553,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementStrategies.insert
-       * @desc Inserts a new placement strategy.
-       * @alias dfareporting.placementStrategies.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementStrategies.insert
+        * @desc Inserts a new placement strategy.
+        * @alias dfareporting.placementStrategies.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6112,42 +5589,38 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementStrategies.list
-       * @desc Retrieves a list of placement strategies, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.placementStrategies.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only placement strategies with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementStrategies.list
+        * @desc Retrieves a list of placement strategies, possibly filtered.
+        * This method supports paging.
+        * @alias dfareporting.placementStrategies.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only placement strategies with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6158,38 +5631,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementStrategies.patch
-       * @desc Updates an existing placement strategy. This method supports
-       * patch semantics.
-       * @alias dfareporting.placementStrategies.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Placement strategy ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementStrategies.patch
+        * @desc Updates an existing placement strategy. This method supports
+        * patch semantics.
+        * @alias dfareporting.placementStrategies.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Placement strategy ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6200,36 +5669,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.placementStrategies.update
-       * @desc Updates an existing placement strategy.
-       * @alias dfareporting.placementStrategies.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.placementStrategies.update
+        * @desc Updates an existing placement strategy.
+        * @alias dfareporting.placementStrategies.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).PlacementStrategy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6240,14 +5705,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.platformTypes = {
@@ -6264,15 +5728,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6283,35 +5745,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.platformTypes.list
-       * @desc Retrieves a list of platform types.
-       * @alias dfareporting.platformTypes.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.platformTypes.list
+        * @desc Retrieves a list of platform types.
+        * @alias dfareporting.platformTypes.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6321,14 +5779,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.postalCodes = {
@@ -6345,15 +5802,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6364,35 +5819,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'code'],
         pathParams: ['code', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.postalCodes.list
-       * @desc Retrieves a list of postal codes.
-       * @alias dfareporting.postalCodes.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.postalCodes.list
+        * @desc Retrieves a list of postal codes.
+        * @alias dfareporting.postalCodes.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6402,14 +5853,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.projects = {
@@ -6426,15 +5876,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6444,43 +5892,39 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.projects.list
-       * @desc Retrieves a list of projects, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.projects.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserIds Select only projects with these advertiser IDs.
-       * @param {string=} params.ids Select only projects with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.projects.list
+        * @desc Retrieves a list of projects, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.projects.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserIds Select only projects with these advertiser IDs.
+        * @param {string=} params.ids Select only projects with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6490,14 +5934,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.regions = {
@@ -6513,15 +5956,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6531,14 +5972,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.remarketingLists = {
@@ -6555,15 +5995,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6574,36 +6012,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingLists.insert
-       * @desc Inserts a new remarketing list.
-       * @alias dfareporting.remarketingLists.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingLists.insert
+        * @desc Inserts a new remarketing list.
+        * @alias dfareporting.remarketingLists.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6614,44 +6048,40 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingLists.list
-       * @desc Retrieves a list of remarketing lists, possibly filtered. This
-       * method supports paging.
-       * @alias dfareporting.remarketingLists.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active or only inactive remarketing lists.
-       * @param {string} params.advertiserId Select only remarketing lists owned by this advertiser.
-       * @param {string=} params.floodlightActivityId Select only remarketing lists that have this floodlight activity ID.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingLists.list
+        * @desc Retrieves a list of remarketing lists, possibly filtered. This
+        * method supports paging.
+        * @alias dfareporting.remarketingLists.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active or only inactive remarketing lists.
+        * @param {string} params.advertiserId Select only remarketing lists owned by this advertiser.
+        * @param {string=} params.floodlightActivityId Select only remarketing lists that have this floodlight activity ID.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6662,38 +6092,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingLists.patch
-       * @desc Updates an existing remarketing list. This method supports patch
-       * semantics.
-       * @alias dfareporting.remarketingLists.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Remarketing list ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingLists.patch
+        * @desc Updates an existing remarketing list. This method supports patch
+        * semantics.
+        * @alias dfareporting.remarketingLists.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Remarketing list ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6704,36 +6130,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingLists.update
-       * @desc Updates an existing remarketing list.
-       * @alias dfareporting.remarketingLists.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingLists.update
+        * @desc Updates an existing remarketing list.
+        * @alias dfareporting.remarketingLists.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).RemarketingList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6744,14 +6166,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.remarketingListShares = {
@@ -6768,15 +6189,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6787,38 +6206,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId', 'remarketingListId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingListShares.patch
-       * @desc Updates an existing remarketing list share. This method supports
-       * patch semantics.
-       * @alias dfareporting.remarketingListShares.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string} params.remarketingListId Remarketing list ID.
-       * @param {dfareporting(v3.0).RemarketingListShare} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingListShares.patch
+        * @desc Updates an existing remarketing list share. This method supports
+        * patch semantics.
+        * @alias dfareporting.remarketingListShares.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string} params.remarketingListId Remarketing list ID.
+        * @param {dfareporting(v3.0).RemarketingListShare} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6829,36 +6244,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.remarketingListShares.update
-       * @desc Updates an existing remarketing list share.
-       * @alias dfareporting.remarketingListShares.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).RemarketingListShare} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.remarketingListShares.update
+        * @desc Updates an existing remarketing list share.
+        * @alias dfareporting.remarketingListShares.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).RemarketingListShare} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6869,14 +6280,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.reports = {
@@ -6893,15 +6303,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6912,36 +6320,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.get
-       * @desc Retrieves a report by its ID.
-       * @alias dfareporting.reports.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId The DFA user profile ID.
-       * @param {string} params.reportId The ID of the report.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.get
+        * @desc Retrieves a report by its ID.
+        * @alias dfareporting.reports.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId The DFA user profile ID.
+        * @param {string} params.reportId The ID of the report.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6952,36 +6356,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.insert
-       * @desc Creates a report.
-       * @alias dfareporting.reports.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId The DFA user profile ID.
-       * @param {dfareporting(v3.0).Report} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.insert
+        * @desc Creates a report.
+        * @alias dfareporting.reports.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId The DFA user profile ID.
+        * @param {dfareporting(v3.0).Report} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -6991,40 +6391,36 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.list
-       * @desc Retrieves list of reports.
-       * @alias dfareporting.reports.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-       * @param {string} params.profileId The DFA user profile ID.
-       * @param {string=} params.scope The scope that defines which results are returned.
-       * @param {string=} params.sortField The field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.list
+        * @desc Retrieves list of reports.
+        * @alias dfareporting.reports.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+        * @param {string} params.profileId The DFA user profile ID.
+        * @param {string=} params.scope The scope that defines which results are returned.
+        * @param {string=} params.sortField The field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7034,37 +6430,33 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.patch
-       * @desc Updates a report. This method supports patch semantics.
-       * @alias dfareporting.reports.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId The DFA user profile ID.
-       * @param {string} params.reportId The ID of the report.
-       * @param {dfareporting(v3.0).Report} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.patch
+        * @desc Updates a report. This method supports patch semantics.
+        * @alias dfareporting.reports.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId The DFA user profile ID.
+        * @param {string} params.reportId The ID of the report.
+        * @param {dfareporting(v3.0).Report} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7075,37 +6467,33 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.run
-       * @desc Runs a report.
-       * @alias dfareporting.reports.run
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId The DFA profile ID.
-       * @param {string} params.reportId The ID of the report.
-       * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    run: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.run
+        * @desc Runs a report.
+        * @alias dfareporting.reports.run
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId The DFA profile ID.
+        * @param {string} params.reportId The ID of the report.
+        * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    run(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7116,37 +6504,33 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.reports.update
-       * @desc Updates a report.
-       * @alias dfareporting.reports.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId The DFA user profile ID.
-       * @param {string} params.reportId The ID of the report.
-       * @param {dfareporting(v3.0).Report} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.reports.update
+        * @desc Updates a report.
+        * @alias dfareporting.reports.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId The DFA user profile ID.
+        * @param {string} params.reportId The ID of the report.
+        * @param {dfareporting(v3.0).Report} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7157,15 +6541,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     compatibleFields: {
       /**
        * dfareporting.reports.compatibleFields.query
@@ -7182,15 +6564,13 @@ function Dfareporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      query: function(params, options, callback) {
+      query(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -7201,14 +6581,13 @@ function Dfareporting(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['profileId'],
           pathParams: ['profileId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     files: {
@@ -7226,15 +6605,13 @@ function Dfareporting(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -7245,40 +6622,36 @@ function Dfareporting(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['profileId', 'reportId', 'fileId'],
           pathParams: ['fileId', 'profileId', 'reportId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * dfareporting.reports.files.list
-         * @desc Lists files for a report.
-         * @alias dfareporting.reports.files.list
-         * @memberOf! dfareporting(v3.0)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.maxResults Maximum number of results to return.
-         * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-         * @param {string} params.profileId The DFA profile ID.
-         * @param {string} params.reportId The ID of the parent report.
-         * @param {string=} params.sortField The field by which to sort the list.
-         * @param {string=} params.sortOrder Order of sorted results.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * dfareporting.reports.files.list
+          * @desc Lists files for a report.
+          * @alias dfareporting.reports.files.list
+          * @memberOf! dfareporting(v3.0)
+          *
+          * @param {object} params Parameters for request
+          * @param {integer=} params.maxResults Maximum number of results to return.
+          * @param {string=} params.pageToken The value of the nextToken from the previous result page.
+          * @param {string} params.profileId The DFA profile ID.
+          * @param {string} params.reportId The ID of the parent report.
+          * @param {string=} params.sortField The field by which to sort the list.
+          * @param {string=} params.sortOrder Order of sorted results.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -7289,14 +6662,13 @@ function Dfareporting(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['profileId', 'reportId'],
           pathParams: ['profileId', 'reportId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -7314,15 +6686,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7332,36 +6702,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sites.insert
-       * @desc Inserts a new site.
-       * @alias dfareporting.sites.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Site} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.sites.insert
+        * @desc Inserts a new site.
+        * @alias dfareporting.sites.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Site} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7371,51 +6737,47 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sites.list
-       * @desc Retrieves a list of sites, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.sites.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
-       * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
-       * @param {boolean=} params.acceptsPublisherPaidPlacements Select only sites that accept publisher paid placements.
-       * @param {boolean=} params.adWordsSite Select only AdWords sites.
-       * @param {boolean=} params.approved Select only approved sites.
-       * @param {string=} params.campaignIds Select only sites with these campaign IDs.
-       * @param {string=} params.directorySiteIds Select only sites with these directory site IDs.
-       * @param {string=} params.ids Select only sites with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.subaccountId Select only sites with this subaccount ID.
-       * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.sites.list
+        * @desc Retrieves a list of sites, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.sites.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
+        * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
+        * @param {boolean=} params.acceptsPublisherPaidPlacements Select only sites that accept publisher paid placements.
+        * @param {boolean=} params.adWordsSite Select only AdWords sites.
+        * @param {boolean=} params.approved Select only approved sites.
+        * @param {string=} params.campaignIds Select only sites with these campaign IDs.
+        * @param {string=} params.directorySiteIds Select only sites with these directory site IDs.
+        * @param {string=} params.ids Select only sites with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.subaccountId Select only sites with this subaccount ID.
+        * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7425,37 +6787,33 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sites.patch
-       * @desc Updates an existing site. This method supports patch semantics.
-       * @alias dfareporting.sites.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Site ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Site} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.sites.patch
+        * @desc Updates an existing site. This method supports patch semantics.
+        * @alias dfareporting.sites.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Site ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Site} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7465,36 +6823,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sites.update
-       * @desc Updates an existing site.
-       * @alias dfareporting.sites.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Site} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.sites.update
+        * @desc Updates an existing site.
+        * @alias dfareporting.sites.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Site} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7504,14 +6858,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.sizes = {
@@ -7528,15 +6881,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7546,36 +6897,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sizes.insert
-       * @desc Inserts a new size.
-       * @alias dfareporting.sizes.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Size} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.sizes.insert
+        * @desc Inserts a new size.
+        * @alias dfareporting.sizes.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Size} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7585,39 +6932,35 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.sizes.list
-       * @desc Retrieves a list of sizes, possibly filtered.
-       * @alias dfareporting.sizes.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.height Select only sizes with this height.
-       * @param {boolean=} params.iabStandard Select only IAB standard sizes.
-       * @param {string=} params.ids Select only sizes with these IDs.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {integer=} params.width Select only sizes with this width.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.sizes.list
+        * @desc Retrieves a list of sizes, possibly filtered.
+        * @alias dfareporting.sizes.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.height Select only sizes with this height.
+        * @param {boolean=} params.iabStandard Select only IAB standard sizes.
+        * @param {string=} params.ids Select only sizes with these IDs.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {integer=} params.width Select only sizes with this width.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7627,14 +6970,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.subaccounts = {
@@ -7651,15 +6993,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7670,36 +7010,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.subaccounts.insert
-       * @desc Inserts a new subaccount.
-       * @alias dfareporting.subaccounts.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.subaccounts.insert
+        * @desc Inserts a new subaccount.
+        * @alias dfareporting.subaccounts.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7709,42 +7045,38 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.subaccounts.list
-       * @desc Gets a list of subaccounts, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.subaccounts.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only subaccounts with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.subaccounts.list
+        * @desc Gets a list of subaccounts, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.subaccounts.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only subaccounts with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7754,38 +7086,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.subaccounts.patch
-       * @desc Updates an existing subaccount. This method supports patch
-       * semantics.
-       * @alias dfareporting.subaccounts.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Subaccount ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.subaccounts.patch
+        * @desc Updates an existing subaccount. This method supports patch
+        * semantics.
+        * @alias dfareporting.subaccounts.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Subaccount ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7795,36 +7123,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.subaccounts.update
-       * @desc Updates an existing subaccount.
-       * @alias dfareporting.subaccounts.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.subaccounts.update
+        * @desc Updates an existing subaccount.
+        * @alias dfareporting.subaccounts.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).Subaccount} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7834,14 +7158,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.targetableRemarketingLists = {
@@ -7858,15 +7181,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7877,43 +7198,39 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.targetableRemarketingLists.list
-       * @desc Retrieves a list of targetable remarketing lists, possibly
-       * filtered. This method supports paging.
-       * @alias dfareporting.targetableRemarketingLists.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.active Select only active or only inactive targetable remarketing lists.
-       * @param {string} params.advertiserId Select only targetable remarketing lists targetable by these advertisers.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.targetableRemarketingLists.list
+        * @desc Retrieves a list of targetable remarketing lists, possibly
+        * filtered. This method supports paging.
+        * @alias dfareporting.targetableRemarketingLists.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.active Select only active or only inactive targetable remarketing lists.
+        * @param {string} params.advertiserId Select only targetable remarketing lists targetable by these advertisers.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7924,14 +7241,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.targetingTemplates = {
@@ -7948,15 +7264,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -7967,36 +7281,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.targetingTemplates.insert
-       * @desc Inserts a new targeting template.
-       * @alias dfareporting.targetingTemplates.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.targetingTemplates.insert
+        * @desc Inserts a new targeting template.
+        * @alias dfareporting.targetingTemplates.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8007,43 +7317,39 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.targetingTemplates.list
-       * @desc Retrieves a list of targeting templates, optionally filtered.
-       * This method supports paging.
-       * @alias dfareporting.targetingTemplates.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.advertiserId Select only targeting templates with this advertiser ID.
-       * @param {string=} params.ids Select only targeting templates with these IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.targetingTemplates.list
+        * @desc Retrieves a list of targeting templates, optionally filtered.
+        * This method supports paging.
+        * @alias dfareporting.targetingTemplates.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.advertiserId Select only targeting templates with this advertiser ID.
+        * @param {string=} params.ids Select only targeting templates with these IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8054,38 +7360,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.targetingTemplates.patch
-       * @desc Updates an existing targeting template. This method supports
-       * patch semantics.
-       * @alias dfareporting.targetingTemplates.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id Targeting template ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.targetingTemplates.patch
+        * @desc Updates an existing targeting template. This method supports
+        * patch semantics.
+        * @alias dfareporting.targetingTemplates.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id Targeting template ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8096,36 +7398,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.targetingTemplates.update
-       * @desc Updates an existing targeting template.
-       * @alias dfareporting.targetingTemplates.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.targetingTemplates.update
+        * @desc Updates an existing targeting template.
+        * @alias dfareporting.targetingTemplates.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).TargetingTemplate} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8136,14 +7434,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.userProfiles = {
@@ -8159,15 +7456,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8176,34 +7471,30 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userProfiles.list
-       * @desc Retrieves list of user profiles for a user.
-       * @alias dfareporting.userProfiles.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.userProfiles.list
+        * @desc Retrieves list of user profiles for a user.
+        * @alias dfareporting.userProfiles.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8212,14 +7503,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.userRolePermissionGroups = {
@@ -8236,15 +7526,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8255,35 +7543,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRolePermissionGroups.list
-       * @desc Gets a list of all supported user role permission groups.
-       * @alias dfareporting.userRolePermissionGroups.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRolePermissionGroups.list
+        * @desc Gets a list of all supported user role permission groups.
+        * @alias dfareporting.userRolePermissionGroups.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8294,14 +7578,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.userRolePermissions = {
@@ -8318,15 +7601,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8337,36 +7618,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRolePermissions.list
-       * @desc Gets a list of user role permissions, possibly filtered.
-       * @alias dfareporting.userRolePermissions.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.ids Select only user role permissions with these IDs.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRolePermissions.list
+        * @desc Gets a list of user role permissions, possibly filtered.
+        * @alias dfareporting.userRolePermissions.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.ids Select only user role permissions with these IDs.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8377,14 +7654,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.userRoles = {
@@ -8401,15 +7677,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8420,36 +7694,32 @@ function Dfareporting(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRoles.get
-       * @desc Gets one user role by ID.
-       * @alias dfareporting.userRoles.get
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id User role ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRoles.get
+        * @desc Gets one user role by ID.
+        * @alias dfareporting.userRoles.get
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id User role ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8460,36 +7730,32 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRoles.insert
-       * @desc Inserts a new user role.
-       * @alias dfareporting.userRoles.insert
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).UserRole} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRoles.insert
+        * @desc Inserts a new user role.
+        * @alias dfareporting.userRoles.insert
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).UserRole} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8499,44 +7765,40 @@ function Dfareporting(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRoles.list
-       * @desc Retrieves a list of user roles, possibly filtered. This method
-       * supports paging.
-       * @alias dfareporting.userRoles.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.accountUserRoleOnly Select only account level user roles not associated with any specific subaccount.
-       * @param {string=} params.ids Select only user roles with the specified IDs.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
-       * @param {string=} params.sortField Field by which to sort the list.
-       * @param {string=} params.sortOrder Order of sorted results.
-       * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRoles.list
+        * @desc Retrieves a list of user roles, possibly filtered. This method
+        * supports paging.
+        * @alias dfareporting.userRoles.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.accountUserRoleOnly Select only account level user roles not associated with any specific subaccount.
+        * @param {string=} params.ids Select only user roles with the specified IDs.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
+        * @param {string=} params.sortField Field by which to sort the list.
+        * @param {string=} params.sortOrder Order of sorted results.
+        * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8546,38 +7808,34 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRoles.patch
-       * @desc Updates an existing user role. This method supports patch
-       * semantics.
-       * @alias dfareporting.userRoles.patch
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id User role ID.
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).UserRole} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRoles.patch
+        * @desc Updates an existing user role. This method supports patch
+        * semantics.
+        * @alias dfareporting.userRoles.patch
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id User role ID.
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).UserRole} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8587,36 +7845,32 @@ function Dfareporting(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.userRoles.update
-       * @desc Updates an existing user role.
-       * @alias dfareporting.userRoles.update
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {dfareporting(v3.0).UserRole} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dfareporting.userRoles.update
+        * @desc Updates an existing user role.
+        * @alias dfareporting.userRoles.update
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {dfareporting(v3.0).UserRole} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8626,14 +7880,13 @@ function Dfareporting(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.videoFormats = {
@@ -8650,15 +7903,13 @@ function Dfareporting(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8669,35 +7920,31 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dfareporting.videoFormats.list
-       * @desc Lists available video formats.
-       * @alias dfareporting.videoFormats.list
-       * @memberOf! dfareporting(v3.0)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.profileId User profile ID associated with this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dfareporting.videoFormats.list
+        * @desc Lists available video formats.
+        * @alias dfareporting.videoFormats.list
+        * @memberOf! dfareporting(v3.0)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.profileId User profile ID associated with this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -8707,14 +7954,13 @@ function Dfareporting(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -8729,79 +7975,12 @@ function Dfareporting(options) {
  * @property {boolean} activeViewOptOut Whether to serve creatives with Active View tags. If disabled, viewability data will not be available for any impressions.
  * @property {string[]} availablePermissionIds User role permissions available to the user roles of this account.
  * @property {string} countryId ID of the country associated with this account.
- * @property {string} currencyId ID of currency associated with this account. This is a required field.
-Acceptable values are:
-- &quot;1&quot; for USD
-- &quot;2&quot; for GBP
-- &quot;3&quot; for ESP
-- &quot;4&quot; for SEK
-- &quot;5&quot; for CAD
-- &quot;6&quot; for JPY
-- &quot;7&quot; for DEM
-- &quot;8&quot; for AUD
-- &quot;9&quot; for FRF
-- &quot;10&quot; for ITL
-- &quot;11&quot; for DKK
-- &quot;12&quot; for NOK
-- &quot;13&quot; for FIM
-- &quot;14&quot; for ZAR
-- &quot;15&quot; for IEP
-- &quot;16&quot; for NLG
-- &quot;17&quot; for EUR
-- &quot;18&quot; for KRW
-- &quot;19&quot; for TWD
-- &quot;20&quot; for SGD
-- &quot;21&quot; for CNY
-- &quot;22&quot; for HKD
-- &quot;23&quot; for NZD
-- &quot;24&quot; for MYR
-- &quot;25&quot; for BRL
-- &quot;26&quot; for PTE
-- &quot;27&quot; for MXP
-- &quot;28&quot; for CLP
-- &quot;29&quot; for TRY
-- &quot;30&quot; for ARS
-- &quot;31&quot; for PEN
-- &quot;32&quot; for ILS
-- &quot;33&quot; for CHF
-- &quot;34&quot; for VEF
-- &quot;35&quot; for COP
-- &quot;36&quot; for GTQ
-- &quot;37&quot; for PLN
-- &quot;39&quot; for INR
-- &quot;40&quot; for THB
-- &quot;41&quot; for IDR
-- &quot;42&quot; for CZK
-- &quot;43&quot; for RON
-- &quot;44&quot; for HUF
-- &quot;45&quot; for RUB
-- &quot;46&quot; for AED
-- &quot;47&quot; for BGN
-- &quot;48&quot; for HRK
-- &quot;49&quot; for MXN
-- &quot;50&quot; for NGN
+ * @property {string} currencyId ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
  * @property {string} defaultCreativeSizeId Default placement dimensions for this account.
  * @property {string} description Description of this account.
  * @property {string} id ID of this account. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#account&quot;.
- * @property {string} locale Locale of this account.
-Acceptable values are:
-- &quot;cs&quot; (Czech)
-- &quot;de&quot; (German)
-- &quot;en&quot; (English)
-- &quot;en-GB&quot; (English United Kingdom)
-- &quot;es&quot; (Spanish)
-- &quot;fr&quot; (French)
-- &quot;it&quot; (Italian)
-- &quot;ja&quot; (Japanese)
-- &quot;ko&quot; (Korean)
-- &quot;pl&quot; (Polish)
-- &quot;pt-BR&quot; (Portuguese Brazil)
-- &quot;ru&quot; (Russian)
-- &quot;sv&quot; (Swedish)
-- &quot;tr&quot; (Turkish)
-- &quot;zh-CN&quot; (Chinese Simplified)
-- &quot;zh-TW&quot; (Chinese Traditional)
+ * @property {string} locale Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil)  - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
  * @property {string} maximumImageSize Maximum image size allowed for this account, in kilobytes. Value must be greater than or equal to 1.
  * @property {string} name Name of this account. This is a required field, and must be less than 128 characters long and be globally unique.
  * @property {boolean} nielsenOcrEnabled Whether campaigns created in this account will be enabled for Nielsen OCR reach ratings by default.
@@ -8823,11 +8002,7 @@ Acceptable values are:
  * @typedef AccountPermission
  * @memberOf! dfareporting(v3.0)
  * @type object
- * @property {string[]} accountProfiles Account profiles associated with this account permission.
-
-Possible values are:
-- &quot;ACCOUNT_PROFILE_BASIC&quot;
-- &quot;ACCOUNT_PROFILE_STANDARD&quot;
+ * @property {string[]} accountProfiles Account profiles associated with this account permission.  Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
  * @property {string} id ID of this account permission.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermission&quot;.
  * @property {string} level Administrative level required to enable this account permission.
@@ -8876,24 +8051,7 @@ Possible values are:
  * @property {string} email Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
  * @property {string} id ID of the user profile. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfile&quot;.
- * @property {string} locale Locale of the user profile. This is a required field.
-Acceptable values are:
-- &quot;cs&quot; (Czech)
-- &quot;de&quot; (German)
-- &quot;en&quot; (English)
-- &quot;en-GB&quot; (English United Kingdom)
-- &quot;es&quot; (Spanish)
-- &quot;fr&quot; (French)
-- &quot;it&quot; (Italian)
-- &quot;ja&quot; (Japanese)
-- &quot;ko&quot; (Korean)
-- &quot;pl&quot; (Polish)
-- &quot;pt-BR&quot; (Portuguese Brazil)
-- &quot;ru&quot; (Russian)
-- &quot;sv&quot; (Swedish)
-- &quot;tr&quot; (Turkish)
-- &quot;zh-CN&quot; (Chinese Simplified)
-- &quot;zh-TW&quot; (Chinese Traditional)
+ * @property {string} locale Locale of the user profile. This is a required field. Acceptable values are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
  * @property {string} name Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
  * @property {dfareporting(v3.0).ObjectFilter} siteFilter Filter that describes which sites are visible to the user profile.
  * @property {string} subaccountId Subaccount ID of the user profile. This is a read-only field that can be left blank.
@@ -9001,11 +8159,7 @@ Acceptable values are:
  * @property {string} clickThroughUrlSuffix Suffix added to click-through URL of ad creative associations under this advertiser. Must be less than 129 characters long.
  * @property {string} defaultClickThroughEventTagId ID of the click-through event tag to apply by default to the landing pages of this advertiser&#39;s campaigns.
  * @property {string} defaultEmail Default email address used in sender field for tag emails.
- * @property {string} floodlightConfigurationId Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as:
-- This advertiser&#39;s original floodlight configuration is not already
-associated with floodlight activities or floodlight activity groups.
-- This advertiser&#39;s original floodlight configuration is not already shared
-with another advertiser.
+ * @property {string} floodlightConfigurationId Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as:  - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups.  - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
  * @property {dfareporting(v3.0).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
  * @property {string} id ID of this advertiser. This is a read-only, auto-generated field.
  * @property {dfareporting(v3.0).DimensionValue} idDimensionValue Dimension value for the ID of this advertiser. This is a read-only, auto-generated field.
@@ -9200,13 +8354,7 @@ with another advertiser.
  * @typedef ClickThroughUrl
  * @memberOf! dfareporting(v3.0)
  * @type object
- * @property {string} computedClickThroughUrl Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:
-- If defaultLandingPage is enabled then the campaign&#39;s default landing page
-URL is assigned to this field.
-- If defaultLandingPage is not enabled and a landingPageId is specified then
-that landing page&#39;s URL is assigned to this field.
-- If neither of the above cases apply, then the customClickThroughUrl is
-assigned to this field.
+ * @property {string} computedClickThroughUrl Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
  * @property {string} customClickThroughUrl Custom click-through URL. Applicable if the defaultLandingPage field is set to false and the landingPageId field is left unset.
  * @property {boolean} defaultLandingPage Whether the campaign default landing page is used.
  * @property {string} landingPageId ID of the landing page for the click-through URL. Applicable if the defaultLandingPage field is set to false.
@@ -9384,14 +8532,7 @@ assigned to this field.
  * @property {dfareporting(v3.0).ClickTag[]} clickTags Click tags of the creative. For DISPLAY, FLASH_INPAGE, and HTML5_BANNER creatives, this is a subset of detected click tags for the assets associated with this creative. After creating a flash asset, detected click tags will be returned in the creativeAssetMetadata. When inserting the creative, populate the creative clickTags field using the creativeAssetMetadata.clickTags field. For DISPLAY_IMAGE_GALLERY creatives, there should be exactly one entry in this list for each image creative asset. A click tag is matched with a corresponding creative asset by matching the clickTag.name field with the creativeAsset.assetIdentifier.name field. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
  * @property {string} commercialId Industry standard ID assigned to creative for reach and frequency. Applicable to INSTREAM_VIDEO_REDIRECT creatives.
  * @property {string[]} companionCreatives List of companion creatives assigned to an in-Stream videocreative. Acceptable values include IDs of existing flash and image creatives. Applicable to the following creative types: all VPAID and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
- * @property {string[]} compatibility Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. Applicable to all creative types.
-
-Acceptable values are:
-- &quot;APP&quot;
-- &quot;APP_INTERSTITIAL&quot;
-- &quot;IN_STREAM_VIDEO&quot;
-- &quot;DISPLAY&quot;
-- &quot;DISPLAY_INTERSTITIAL&quot;
+ * @property {string[]} compatibility Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. Applicable to all creative types.  Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
  * @property {boolean} convertFlashToHtml5 Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
  * @property {dfareporting(v3.0).CreativeCustomEvent[]} counterCustomEvents List of counter events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
  * @property {dfareporting(v3.0).CreativeAsset[]} creativeAssets Assets associated with a creative. Applicable to all but the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and REDIRECT
@@ -9431,10 +8572,7 @@ Acceptable values are:
  * @property {dfareporting(v3.0).ThirdPartyTrackingUrl[]} thirdPartyUrls Third-party URLs for tracking in-stream video creative events. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
  * @property {dfareporting(v3.0).CreativeCustomEvent[]} timerCustomEvents List of timer events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset is not HTML_IMAGE.
  * @property {string} totalFileSize Combined size of all creative assets. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
- * @property {string} type Type of this creative. This is a required field. Applicable to all creative types.
-
-Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing
-creatives. New creatives should use DISPLAY as a replacement for these types.
+ * @property {string} type Type of this creative. This is a required field. Applicable to all creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
  * @property {dfareporting(v3.0).UniversalAdId} universalAdId A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_VIDEO and VPAID.
  * @property {integer} version The version number helps you keep track of multiple versions of your creative in your reports. The version number will always be auto-generated during insert operations to start at 1. For tracking creatives the version cannot be incremented and will always remain at 1. For all other creative types the version can be incremented only by 1 during update operations. In addition, the version will be automatically incremented by 1 when undergoing Rich Media creative merging. Applicable to all creative types.
  * @property {string} videoDescription Description of the video ad. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
@@ -9477,24 +8615,7 @@ creatives. New creatives should use DISPLAY as a replacement for these types.
  * @property {string} progressiveServingUrl Progressive URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
  * @property {boolean} pushdown Whether the asset pushes down other content. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable when the asset offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
  * @property {number} pushdownDuration Pushdown duration in seconds for an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height. Acceptable values are 0 to 9.99, inclusive.
- * @property {string} role Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field.
-PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE,
-DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary
-assets), and all VPAID creatives. BACKUP_IMAGE applies to FLASH_INPAGE,
-HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY
-when the primary asset type is not HTML_IMAGE. ADDITIONAL_IMAGE and
-ADDITIONAL_FLASH apply to FLASH_INPAGE creatives. OTHER refers to assets from
-sources other than DCM, such as Studio uploaded assets, applicable to all
-RICH_MEDIA and all VPAID creatives. PARENT_VIDEO refers to videos uploaded by
-the user in DCM and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO
-creatives. TRANSCODED_VIDEO refers to videos transcoded by DCM from PARENT_VIDEO
-assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives.
-ALTERNATE_VIDEO refers to the DCM representation of child asset videos from
-Studio, and is applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added
-or removed within DCM. For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO,
-TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as
-backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can
-be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
+ * @property {string} role Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field. PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives. BACKUP_IMAGE applies to FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE. ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives. OTHER refers to assets from sources other than DCM, such as Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID creatives. PARENT_VIDEO refers to videos uploaded by the user in DCM and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. TRANSCODED_VIDEO refers to videos transcoded by DCM from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. ALTERNATE_VIDEO refers to the DCM representation of child asset videos from Studio, and is applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or removed within DCM. For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
  * @property {dfareporting(v3.0).Size} size Size associated with this creative asset. This is a required field when applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank, this field will be automatically set using the actual size of the associated image asset. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
  * @property {boolean} sslCompliant Whether the asset is SSL-compliant. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
  * @property {string} startTimeType Initial wait time type before making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
@@ -9524,33 +8645,7 @@ be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
  * @property {string} id Numeric ID of the asset. This is a read-only, auto-generated field.
  * @property {dfareporting(v3.0).DimensionValue} idDimensionValue Dimension value for the numeric ID of the asset. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
- * @property {string[]} warnedValidationRules Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.
-
-Possible values are:
-- &quot;ADMOB_REFERENCED&quot;
-- &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot;
-- &quot;ASSET_INVALID&quot;
-- &quot;CLICK_TAG_HARD_CODED&quot;
-- &quot;CLICK_TAG_INVALID&quot;
-- &quot;CLICK_TAG_IN_GWD&quot;
-- &quot;CLICK_TAG_MISSING&quot;
-- &quot;CLICK_TAG_MORE_THAN_ONE&quot;
-- &quot;CLICK_TAG_NON_TOP_LEVEL&quot;
-- &quot;COMPONENT_UNSUPPORTED_DCM&quot;
-- &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot;
-- &quot;EXTERNAL_FILE_REFERENCED&quot;
-- &quot;FILE_DETAIL_EMPTY&quot;
-- &quot;FILE_TYPE_INVALID&quot;
-- &quot;GWD_PROPERTIES_INVALID&quot;
-- &quot;HTML5_FEATURE_UNSUPPORTED&quot;
-- &quot;LINKED_FILE_NOT_FOUND&quot;
-- &quot;MAX_FLASH_VERSION_11&quot;
-- &quot;MRAID_REFERENCED&quot;
-- &quot;NOT_SSL_COMPLIANT&quot;
-- &quot;ORPHANED_ASSET&quot;
-- &quot;PRIMARY_HTML_MISSING&quot;
-- &quot;SVG_INVALID&quot;
-- &quot;ZIP_INVALID&quot;
+ * @property {string[]} warnedValidationRules Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.  Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
  */
 /**
  * @typedef CreativeAssetSelection
@@ -9571,19 +8666,7 @@ Possible values are:
  * @property {string} creativeId ID of the creative to be assigned. This is a required field.
  * @property {dfareporting(v3.0).DimensionValue} creativeIdDimensionValue Dimension value for the ID of the creative. This is a read-only, auto-generated field.
  * @property {string} endTime Date and time that the assigned creative should stop serving. Must be later than the start time.
- * @property {dfareporting(v3.0).RichMediaExitOverride[]} richMediaExitOverrides Rich media exit overrides for this creative assignment.
-Applicable when the creative type is any of the following:
-- DISPLAY
-- RICH_MEDIA_INPAGE
-- RICH_MEDIA_INPAGE_FLOATING
-- RICH_MEDIA_IM_EXPAND
-- RICH_MEDIA_EXPANDING
-- RICH_MEDIA_INTERSTITIAL_FLOAT
-- RICH_MEDIA_MOBILE_IN_APP
-- RICH_MEDIA_MULTI_FLOATING
-- RICH_MEDIA_PEEL_DOWN
-- VPAID_LINEAR
-- VPAID_NON_LINEAR
+ * @property {dfareporting(v3.0).RichMediaExitOverride[]} richMediaExitOverrides Rich media exit overrides for this creative assignment. Applicable when the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND - RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT - RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING - RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
  * @property {integer} sequence Sequence number of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to 65535, inclusive.
  * @property {boolean} sslCompliant Whether the creative to be assigned is SSL-compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
  * @property {string} startTime Date and time that the assigned creative should start serving.
@@ -9593,10 +8676,7 @@ Applicable when the creative type is any of the following:
  * @typedef CreativeClickThroughUrl
  * @memberOf! dfareporting(v3.0)
  * @type object
- * @property {string} computedClickThroughUrl Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:
-- If landingPageId is specified then that landing page&#39;s URL is assigned to
-this field.
-- Otherwise, the customClickThroughUrl is assigned to this field.
+ * @property {string} computedClickThroughUrl Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
  * @property {string} customClickThroughUrl Custom click-through URL. Applicable if the landingPageId field is left unset.
  * @property {string} landingPageId ID of the landing page for the click-through URL.
  */
@@ -9757,16 +8837,7 @@ this field.
  * @typedef DayPartTargeting
  * @memberOf! dfareporting(v3.0)
  * @type object
- * @property {string[]} daysOfWeek Days of the week when the ad will serve.
-
-Acceptable values are:
-- &quot;SUNDAY&quot;
-- &quot;MONDAY&quot;
-- &quot;TUESDAY&quot;
-- &quot;WEDNESDAY&quot;
-- &quot;THURSDAY&quot;
-- &quot;FRIDAY&quot;
-- &quot;SATURDAY&quot;
+ * @property {string[]} daysOfWeek Days of the week when the ad will serve.  Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
  * @property {integer[]} hoursOfDay Hours of the day when the ad will serve, where 0 is midnight to 1 AM and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values are 0 to 23, inclusive.
  * @property {boolean} userLocalTime Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
  */
@@ -9848,73 +8919,12 @@ Acceptable values are:
  * @property {boolean} active Whether this directory site is active.
  * @property {dfareporting(v3.0).DirectorySiteContactAssignment[]} contactAssignments Directory site contacts.
  * @property {string} countryId Country ID of this directory site. This is a read-only field.
- * @property {string} currencyId Currency ID of this directory site. This is a read-only field.
-Possible values are:
-- &quot;1&quot; for USD
-- &quot;2&quot; for GBP
-- &quot;3&quot; for ESP
-- &quot;4&quot; for SEK
-- &quot;5&quot; for CAD
-- &quot;6&quot; for JPY
-- &quot;7&quot; for DEM
-- &quot;8&quot; for AUD
-- &quot;9&quot; for FRF
-- &quot;10&quot; for ITL
-- &quot;11&quot; for DKK
-- &quot;12&quot; for NOK
-- &quot;13&quot; for FIM
-- &quot;14&quot; for ZAR
-- &quot;15&quot; for IEP
-- &quot;16&quot; for NLG
-- &quot;17&quot; for EUR
-- &quot;18&quot; for KRW
-- &quot;19&quot; for TWD
-- &quot;20&quot; for SGD
-- &quot;21&quot; for CNY
-- &quot;22&quot; for HKD
-- &quot;23&quot; for NZD
-- &quot;24&quot; for MYR
-- &quot;25&quot; for BRL
-- &quot;26&quot; for PTE
-- &quot;27&quot; for MXP
-- &quot;28&quot; for CLP
-- &quot;29&quot; for TRY
-- &quot;30&quot; for ARS
-- &quot;31&quot; for PEN
-- &quot;32&quot; for ILS
-- &quot;33&quot; for CHF
-- &quot;34&quot; for VEF
-- &quot;35&quot; for COP
-- &quot;36&quot; for GTQ
-- &quot;37&quot; for PLN
-- &quot;39&quot; for INR
-- &quot;40&quot; for THB
-- &quot;41&quot; for IDR
-- &quot;42&quot; for CZK
-- &quot;43&quot; for RON
-- &quot;44&quot; for HUF
-- &quot;45&quot; for RUB
-- &quot;46&quot; for AED
-- &quot;47&quot; for BGN
-- &quot;48&quot; for HRK
-- &quot;49&quot; for MXN
-- &quot;50&quot; for NGN
+ * @property {string} currencyId Currency ID of this directory site. This is a read-only field. Possible values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
  * @property {string} description Description of this directory site. This is a read-only field.
  * @property {string} id ID of this directory site. This is a read-only, auto-generated field.
  * @property {dfareporting(v3.0).DimensionValue} idDimensionValue Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
- * @property {string[]} inpageTagFormats Tag types for regular placements.
-
-Acceptable values are:
-- &quot;STANDARD&quot;
-- &quot;IFRAME_JAVASCRIPT_INPAGE&quot;
-- &quot;INTERNAL_REDIRECT_INPAGE&quot;
-- &quot;JAVASCRIPT_INPAGE&quot;
- * @property {string[]} interstitialTagFormats Tag types for interstitial placements.
-
-Acceptable values are:
-- &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot;
-- &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot;
-- &quot;JAVASCRIPT_INTERSTITIAL&quot;
+ * @property {string[]} inpageTagFormats Tag types for regular placements.  Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
+ * @property {string[]} interstitialTagFormats Tag types for interstitial placements.  Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySite&quot;.
  * @property {string} name Name of this directory site.
  * @property {string} parentId Parent directory site ID.
@@ -10113,8 +9123,7 @@ Acceptable values are:
  * @property {string} subaccountId Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
  * @property {string} tagFormat Tag format type for the floodlight activity. If left blank, the tag format will default to HTML.
  * @property {string} tagString Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
- * @property {string[]} userDefinedVariableTypes List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type.
-Acceptable values are U1 to U100, inclusive.
+ * @property {string[]} userDefinedVariableTypes List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type. Acceptable values are U1 to U100, inclusive.
  */
 /**
  * @typedef FloodlightActivityDynamicTag
@@ -10574,30 +9583,11 @@ Acceptable values are U1 to U100, inclusive.
  * @property {boolean} sslRequired Whether creatives assigned to this placement must be SSL-compliant.
  * @property {string} status Third-party placement status.
  * @property {string} subaccountId Subaccount ID of this placement. This field can be left blank.
- * @property {string[]} tagFormats Tag formats to generate for this placement. This field is required on insertion.
-Acceptable values are:
-- &quot;PLACEMENT_TAG_STANDARD&quot;
-- &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot;
-- &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot;
-- &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot;
-- &quot;PLACEMENT_TAG_JAVASCRIPT&quot;
-- &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot;
-- &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot;
-- &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot;
-- &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot;
-- &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot;
-- &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot;
-- &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot;
-- &quot;PLACEMENT_TAG_TRACKING&quot;
-- &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot;
-- &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
+ * @property {string[]} tagFormats Tag formats to generate for this placement. This field is required on insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; - &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot; - &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot; - &quot;PLACEMENT_TAG_TRACKING&quot; - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
  * @property {dfareporting(v3.0).TagSetting} tagSetting Tag settings for this placement.
  * @property {boolean} videoActiveViewOptOut Whether Verification and ActiveView are disabled for in-stream video creatives for this placement. The same setting videoActiveViewOptOut exists on the site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
  * @property {dfareporting(v3.0).VideoSettings} videoSettings A collection of settings which affect video creatives served through this placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
- * @property {string} vpaidAdapterChoice VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.
-
-Note: Flash is no longer supported. This field now defaults to HTML5 when the
-following values are provided: FLASH, BOTH.
+ * @property {string} vpaidAdapterChoice VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
  */
 /**
  * @typedef PlacementAssignment
@@ -10922,22 +9912,7 @@ following values are provided: FLASH, BOTH.
  * @type object
  * @property {boolean} exposureToConversionEnabled Whether the exposure to conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
  * @property {dfareporting(v3.0).LookbackConfiguration} lookbackConfiguration Default lookback windows for new advertisers in this account.
- * @property {string} reportGenerationTimeZoneId Report generation time zone ID of this account. This is a required field that can only be changed by a superuser.
-Acceptable values are:
-
-- &quot;1&quot; for &quot;America/New_York&quot;
-- &quot;2&quot; for &quot;Europe/London&quot;
-- &quot;3&quot; for &quot;Europe/Paris&quot;
-- &quot;4&quot; for &quot;Africa/Johannesburg&quot;
-- &quot;5&quot; for &quot;Asia/Jerusalem&quot;
-- &quot;6&quot; for &quot;Asia/Shanghai&quot;
-- &quot;7&quot; for &quot;Asia/Hong_Kong&quot;
-- &quot;8&quot; for &quot;Asia/Tokyo&quot;
-- &quot;9&quot; for &quot;Australia/Sydney&quot;
-- &quot;10&quot; for &quot;Asia/Dubai&quot;
-- &quot;11&quot; for &quot;America/Los_Angeles&quot;
-- &quot;12&quot; for &quot;Pacific/Auckland&quot;
-- &quot;13&quot; for &quot;America/Sao_Paulo&quot;
+ * @property {string} reportGenerationTimeZoneId Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;
  */
 /**
  * @typedef RichMediaExitOverride
@@ -10996,10 +9971,7 @@ Acceptable values are:
  * @property {dfareporting(v3.0).LookbackConfiguration} lookbackConfiguration Lookback window settings for this site.
  * @property {dfareporting(v3.0).TagSetting} tagSetting Configuration settings for dynamic and image floodlight tags.
  * @property {boolean} videoActiveViewOptOutTemplate Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
- * @property {string} vpaidAdapterChoiceTemplate Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).
-
-Note: Flash is no longer supported. This field now defaults to HTML5 when the
-following values are provided: FLASH, BOTH.
+ * @property {string} vpaidAdapterChoiceTemplate Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
  */
 /**
  * @typedef SitesListResponse

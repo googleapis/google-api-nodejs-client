@@ -48,16 +48,14 @@ function Adexperiencereport(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl =
           options.rootUrl || 'https://adexperiencereport.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,14 +63,13 @@ function Adexperiencereport(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['name'],
         pathParams: ['name'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.violatingSites = {
@@ -88,16 +85,14 @@ function Adexperiencereport(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl =
           options.rootUrl || 'https://adexperiencereport.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -106,14 +101,13 @@ function Adexperiencereport(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

@@ -47,15 +47,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    authinfo: function(params, options, callback) {
+    authinfo(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,37 +62,33 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.claimwebsite
-       * @desc Claims the website of a Merchant Center sub-account.
-       * @alias content.accounts.claimwebsite
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account whose website is claimed.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {boolean=} params.overwrite Only available to selected merchants. When set to True, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    claimwebsite: function(params, options, callback) {
+    }, /**
+        * content.accounts.claimwebsite
+        * @desc Claims the website of a Merchant Center sub-account.
+        * @alias content.accounts.claimwebsite
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account whose website is claimed.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {boolean=} params.overwrite Only available to selected merchants. When set to True, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    claimwebsite(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -105,37 +99,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.custombatch
-       * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center
-       * (sub-)accounts in a single request.
-       * @alias content.accounts.custombatch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {content(v2).AccountsCustomBatchRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    custombatch: function(params, options, callback) {
+    }, /**
+        * content.accounts.custombatch
+        * @desc Retrieves, inserts, updates, and deletes multiple Merchant
+        * Center (sub-)accounts in a single request.
+        * @alias content.accounts.custombatch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {content(v2).AccountsCustomBatchRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -144,38 +134,34 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.delete
-       * @desc Deletes a Merchant Center sub-account.
-       * @alias content.accounts.delete
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * content.accounts.delete
+        * @desc Deletes a Merchant Center sub-account.
+        * @alias content.accounts.delete
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -184,36 +170,32 @@ function Content(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.get
-       * @desc Retrieves a Merchant Center account.
-       * @alias content.accounts.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.accounts.get
+        * @desc Retrieves a Merchant Center account.
+        * @alias content.accounts.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -222,37 +204,33 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.insert
-       * @desc Creates a Merchant Center sub-account.
-       * @alias content.accounts.insert
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {content(v2).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * content.accounts.insert
+        * @desc Creates a Merchant Center sub-account.
+        * @alias content.accounts.insert
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {content(v2).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -261,37 +239,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.list
-       * @desc Lists the sub-accounts in your Merchant Center account.
-       * @alias content.accounts.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.accounts.list
+        * @desc Lists the sub-accounts in your Merchant Center account.
+        * @alias content.accounts.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -300,39 +274,35 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.patch
-       * @desc Updates a Merchant Center account. This method supports patch
-       * semantics.
-       * @alias content.accounts.patch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * content.accounts.patch
+        * @desc Updates a Merchant Center account. This method supports patch
+        * semantics.
+        * @alias content.accounts.patch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -341,38 +311,34 @@ function Content(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounts.update
-       * @desc Updates a Merchant Center account.
-       * @alias content.accounts.update
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * content.accounts.update
+        * @desc Updates a Merchant Center account.
+        * @alias content.accounts.update
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -381,14 +347,13 @@ function Content(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accountstatuses = {
@@ -403,15 +368,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -420,36 +383,32 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accountstatuses.get
-       * @desc Retrieves the status of a Merchant Center account.
-       * @alias content.accountstatuses.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.accountstatuses.get
+        * @desc Retrieves the status of a Merchant Center account.
+        * @alias content.accountstatuses.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -459,38 +418,34 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accountstatuses.list
-       * @desc Lists the statuses of the sub-accounts in your Merchant Center
-       * account.
-       * @alias content.accountstatuses.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.accountstatuses.list
+        * @desc Lists the statuses of the sub-accounts in your Merchant Center
+        * account.
+        * @alias content.accountstatuses.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -499,14 +454,13 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.accounttax = {
@@ -524,15 +478,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -541,36 +493,32 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounttax.get
-       * @desc Retrieves the tax settings of the account.
-       * @alias content.accounttax.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.accounttax.get
+        * @desc Retrieves the tax settings of the account.
+        * @alias content.accounttax.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -579,38 +527,34 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounttax.list
-       * @desc Lists the tax settings of the sub-accounts in your Merchant
-       * Center account.
-       * @alias content.accounttax.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.accounttax.list
+        * @desc Lists the tax settings of the sub-accounts in your Merchant
+        * Center account.
+        * @alias content.accounttax.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -619,39 +563,35 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounttax.patch
-       * @desc Updates the tax settings of the account. This method supports
-       * patch semantics.
-       * @alias content.accounttax.patch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).AccountTax} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * content.accounttax.patch
+        * @desc Updates the tax settings of the account. This method supports
+        * patch semantics.
+        * @alias content.accounttax.patch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).AccountTax} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -660,38 +600,34 @@ function Content(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.accounttax.update
-       * @desc Updates the tax settings of the account.
-       * @alias content.accounttax.update
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).AccountTax} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * content.accounttax.update
+        * @desc Updates the tax settings of the account.
+        * @alias content.accounttax.update
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).AccountTax} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -700,14 +636,13 @@ function Content(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.datafeeds = {
@@ -723,15 +658,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -740,38 +673,34 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.delete
-       * @desc Deletes a datafeed configuration from your Merchant Center
-       * account.
-       * @alias content.datafeeds.delete
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.datafeedId The ID of the datafeed.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.delete
+        * @desc Deletes a datafeed configuration from your Merchant Center
+        * account.
+        * @alias content.datafeeds.delete
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.datafeedId The ID of the datafeed.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -780,37 +709,33 @@ function Content(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.get
-       * @desc Retrieves a datafeed configuration from your Merchant Center
-       * account.
-       * @alias content.datafeeds.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.datafeedId The ID of the datafeed.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.get
+        * @desc Retrieves a datafeed configuration from your Merchant Center
+        * account.
+        * @alias content.datafeeds.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.datafeedId The ID of the datafeed.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -819,38 +744,34 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.insert
-       * @desc Registers a datafeed configuration with your Merchant Center
-       * account.
-       * @alias content.datafeeds.insert
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {content(v2).Datafeed} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.insert
+        * @desc Registers a datafeed configuration with your Merchant Center
+        * account.
+        * @alias content.datafeeds.insert
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {content(v2).Datafeed} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -859,37 +780,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.list
-       * @desc Lists the datafeeds in your Merchant Center account.
-       * @alias content.datafeeds.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.list
+        * @desc Lists the datafeeds in your Merchant Center account.
+        * @alias content.datafeeds.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -898,39 +815,35 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.patch
-       * @desc Updates a datafeed configuration of your Merchant Center account.
-       * This method supports patch semantics.
-       * @alias content.datafeeds.patch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.datafeedId The ID of the datafeed.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {content(v2).Datafeed} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.patch
+        * @desc Updates a datafeed configuration of your Merchant Center
+        * account. This method supports patch semantics.
+        * @alias content.datafeeds.patch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.datafeedId The ID of the datafeed.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {content(v2).Datafeed} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -939,38 +852,35 @@ function Content(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeeds.update
-       * @desc Updates a datafeed configuration of your Merchant Center account.
-       * @alias content.datafeeds.update
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.datafeedId The ID of the datafeed.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {content(v2).Datafeed} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * content.datafeeds.update
+        * @desc Updates a datafeed configuration of your Merchant Center
+        * account.
+        * @alias content.datafeeds.update
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.datafeedId The ID of the datafeed.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {content(v2).Datafeed} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -979,14 +889,13 @@ function Content(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.datafeedstatuses = {
@@ -1001,15 +910,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1018,39 +925,35 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeedstatuses.get
-       * @desc Retrieves the status of a datafeed from your Merchant Center
-       * account.
-       * @alias content.datafeedstatuses.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-       * @param {string} params.datafeedId The ID of the datafeed.
-       * @param {string=} params.language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-       * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.datafeedstatuses.get
+        * @desc Retrieves the status of a datafeed from your Merchant Center
+        * account.
+        * @alias content.datafeedstatuses.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+        * @param {string} params.datafeedId The ID of the datafeed.
+        * @param {string=} params.language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+        * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1060,38 +963,34 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.datafeedstatuses.list
-       * @desc Lists the statuses of the datafeeds in your Merchant Center
-       * account.
-       * @alias content.datafeedstatuses.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.datafeedstatuses.list
+        * @desc Lists the statuses of the datafeeds in your Merchant Center
+        * account.
+        * @alias content.datafeedstatuses.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1100,14 +999,13 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.inventory = {
@@ -1126,15 +1024,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1143,40 +1039,36 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.inventory.set
-       * @desc Updates price and availability of a product in your Merchant
-       * Center account.
-       * @alias content.inventory.set
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-       * @param {string} params.productId The REST id of the product for which to update price and availability.
-       * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
-       * @param {content(v2).InventorySetRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    set: function(params, options, callback) {
+    }, /**
+        * content.inventory.set
+        * @desc Updates price and availability of a product in your Merchant
+        * Center account.
+        * @alias content.inventory.set
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+        * @param {string} params.productId The REST id of the product for which to update price and availability.
+        * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
+        * @param {content(v2).InventorySetRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    set(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1187,14 +1079,13 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'storeCode', 'productId'],
         pathParams: ['merchantId', 'productId', 'storeCode'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.orders = {
@@ -1212,15 +1103,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function(params, options, callback) {
+    acknowledge(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1230,37 +1119,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.advancetestorder
-       * @desc Sandbox only. Moves a test order from state "inProgress" to state
-       * "pendingShipment".
-       * @alias content.orders.advancetestorder
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the test order to modify.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    advancetestorder: function(params, options, callback) {
+    }, /**
+        * content.orders.advancetestorder
+        * @desc Sandbox only. Moves a test order from state "inProgress" to
+        * state "pendingShipment".
+        * @alias content.orders.advancetestorder
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the test order to modify.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    advancetestorder(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1270,37 +1155,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.cancel
-       * @desc Cancels all line items in an order, making a full refund.
-       * @alias content.orders.cancel
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order to cancel.
-       * @param {content(v2).OrdersCancelRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    cancel: function(params, options, callback) {
+    }, /**
+        * content.orders.cancel
+        * @desc Cancels all line items in an order, making a full refund.
+        * @alias content.orders.cancel
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order to cancel.
+        * @param {content(v2).OrdersCancelRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    cancel(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1310,37 +1191,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.cancellineitem
-       * @desc Cancels a line item, making a full refund.
-       * @alias content.orders.cancellineitem
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {content(v2).OrdersCancelLineItemRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    cancellineitem: function(params, options, callback) {
+    }, /**
+        * content.orders.cancellineitem
+        * @desc Cancels a line item, making a full refund.
+        * @alias content.orders.cancellineitem
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersCancelLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    cancellineitem(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1350,36 +1227,32 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.createtestorder
-       * @desc Sandbox only. Creates a test order.
-       * @alias content.orders.createtestorder
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
-       * @param {content(v2).OrdersCreateTestOrderRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    createtestorder: function(params, options, callback) {
+    }, /**
+        * content.orders.createtestorder
+        * @desc Sandbox only. Creates a test order.
+        * @alias content.orders.createtestorder
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
+        * @param {content(v2).OrdersCreateTestOrderRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    createtestorder(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1388,35 +1261,31 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.custombatch
-       * @desc Retrieves or modifies multiple orders in a single request.
-       * @alias content.orders.custombatch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {content(v2).OrdersCustomBatchRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    custombatch: function(params, options, callback) {
+    }, /**
+        * content.orders.custombatch
+        * @desc Retrieves or modifies multiple orders in a single request.
+        * @alias content.orders.custombatch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {content(v2).OrdersCustomBatchRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1425,36 +1294,32 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.get
-       * @desc Retrieves an order from your Merchant Center account.
-       * @alias content.orders.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.orders.get
+        * @desc Retrieves an order from your Merchant Center account.
+        * @alias content.orders.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1463,36 +1328,32 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.getbymerchantorderid
-       * @desc Retrieves an order using merchant order id.
-       * @alias content.orders.getbymerchantorderid
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.merchantOrderId The merchant order id to be looked for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getbymerchantorderid: function(params, options, callback) {
+    }, /**
+        * content.orders.getbymerchantorderid
+        * @desc Retrieves an order using merchant order id.
+        * @alias content.orders.getbymerchantorderid
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.merchantOrderId The merchant order id to be looked for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getbymerchantorderid(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1503,37 +1364,33 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.gettestordertemplate
-       * @desc Sandbox only. Retrieves an order template that can be used to
-       * quickly create a new order in sandbox.
-       * @alias content.orders.gettestordertemplate
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
-       * @param {string} params.templateName The name of the template to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    gettestordertemplate: function(params, options, callback) {
+    }, /**
+        * content.orders.gettestordertemplate
+        * @desc Sandbox only. Retrieves an order template that can be used to
+        * quickly create a new order in sandbox.
+        * @alias content.orders.gettestordertemplate
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
+        * @param {string} params.templateName The name of the template to retrieve.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    gettestordertemplate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1544,42 +1401,38 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.list
-       * @desc Lists the orders in your Merchant Center account.
-       * @alias content.orders.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
-       * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
-       * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
-       * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.orders.list
+        * @desc Lists the orders in your Merchant Center account.
+        * @alias content.orders.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to false, in conjunction with the acknowledge call, such that only un-acknowledged orders are returned.
+        * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page. Known issue: All List calls will return all Orders without limit regardless of the value of this field.
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string=} params.orderBy The ordering of the returned list. The only supported value are placedDate desc and placedDate asc for now, which returns orders sorted by placement date. "placedDate desc" stands for listing orders by placement date, from oldest to most recent. "placedDate asc" stands for listing orders by placement date, from most recent to oldest. In future releases we'll support other sorting criteria.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
+        * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
+        * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1588,37 +1441,33 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.refund
-       * @desc Refund a portion of the order, up to the full amount paid.
-       * @alias content.orders.refund
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order to refund.
-       * @param {content(v2).OrdersRefundRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    refund: function(params, options, callback) {
+    }, /**
+        * content.orders.refund
+        * @desc Refund a portion of the order, up to the full amount paid.
+        * @alias content.orders.refund
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order to refund.
+        * @param {content(v2).OrdersRefundRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    refund(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1628,37 +1477,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.returnlineitem
-       * @desc Returns a line item.
-       * @alias content.orders.returnlineitem
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {content(v2).OrdersReturnLineItemRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    returnlineitem: function(params, options, callback) {
+    }, /**
+        * content.orders.returnlineitem
+        * @desc Returns a line item.
+        * @alias content.orders.returnlineitem
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersReturnLineItemRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    returnlineitem(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1668,37 +1513,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.shiplineitems
-       * @desc Marks line item(s) as shipped.
-       * @alias content.orders.shiplineitems
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {content(v2).OrdersShipLineItemsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    shiplineitems: function(params, options, callback) {
+    }, /**
+        * content.orders.shiplineitems
+        * @desc Marks line item(s) as shipped.
+        * @alias content.orders.shiplineitems
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersShipLineItemsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    shiplineitems(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1708,37 +1549,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.updatemerchantorderid
-       * @desc Updates the merchant order ID for a given order.
-       * @alias content.orders.updatemerchantorderid
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {content(v2).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updatemerchantorderid: function(params, options, callback) {
+    }, /**
+        * content.orders.updatemerchantorderid
+        * @desc Updates the merchant order ID for a given order.
+        * @alias content.orders.updatemerchantorderid
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updatemerchantorderid(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1749,37 +1586,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.orders.updateshipment
-       * @desc Updates a shipment's status, carrier, and/or tracking ID.
-       * @alias content.orders.updateshipment
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-       * @param {string} params.orderId The ID of the order.
-       * @param {content(v2).OrdersUpdateShipmentRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updateshipment: function(params, options, callback) {
+    }, /**
+        * content.orders.updateshipment
+        * @desc Updates a shipment's status, carrier, and/or tracking ID.
+        * @alias content.orders.updateshipment
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.orderId The ID of the order.
+        * @param {content(v2).OrdersUpdateShipmentRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateshipment(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1789,14 +1622,13 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.products = {
@@ -1814,15 +1646,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1831,37 +1661,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.products.delete
-       * @desc Deletes a product from your Merchant Center account.
-       * @alias content.products.delete
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-       * @param {string} params.productId The REST id of the product.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * content.products.delete
+        * @desc Deletes a product from your Merchant Center account.
+        * @alias content.products.delete
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+        * @param {string} params.productId The REST id of the product.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1870,36 +1696,32 @@ function Content(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.products.get
-       * @desc Retrieves a product from your Merchant Center account.
-       * @alias content.products.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-       * @param {string} params.productId The REST id of the product.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.products.get
+        * @desc Retrieves a product from your Merchant Center account.
+        * @alias content.products.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+        * @param {string} params.productId The REST id of the product.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1908,39 +1730,35 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.products.insert
-       * @desc Uploads a product to your Merchant Center account. If an item
-       * with the same channel, contentLanguage, offerId, and targetCountry
-       * already exists, this method updates that entry.
-       * @alias content.products.insert
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-       * @param {content(v2).Product} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * content.products.insert
+        * @desc Uploads a product to your Merchant Center account. If an item
+        * with the same channel, contentLanguage, offerId, and targetCountry
+        * already exists, this method updates that entry.
+        * @alias content.products.insert
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+        * @param {content(v2).Product} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1949,38 +1767,34 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.products.list
-       * @desc Lists the products in your Merchant Center account.
-       * @alias content.products.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
-       * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.products.list
+        * @desc Lists the products in your Merchant Center account.
+        * @alias content.products.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
+        * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1989,14 +1803,13 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.productstatuses = {
@@ -2013,15 +1826,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2030,37 +1841,33 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.productstatuses.get
-       * @desc Gets the status of a product from your Merchant Center account.
-       * @alias content.productstatuses.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.includeAttributes Flag to include full product data in the result of this get request. The default value is false.
-       * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-       * @param {string} params.productId The REST id of the product.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.productstatuses.get
+        * @desc Gets the status of a product from your Merchant Center account.
+        * @alias content.productstatuses.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.includeAttributes Flag to include full product data in the result of this get request. The default value is false.
+        * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+        * @param {string} params.productId The REST id of the product.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2070,40 +1877,36 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.productstatuses.list
-       * @desc Lists the statuses of the products in your Merchant Center
-       * account.
-       * @alias content.productstatuses.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.includeAttributes Flag to include full product data in the results of the list request. The default value is false.
-       * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
-       * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.productstatuses.list
+        * @desc Lists the statuses of the products in your Merchant Center
+        * account.
+        * @alias content.productstatuses.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.includeAttributes Flag to include full product data in the results of the list request. The default value is false.
+        * @param {boolean=} params.includeInvalidInsertedItems Flag to include the invalid inserted items in the result of the list request. By default the invalid items are not shown (the default value is false).
+        * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2112,14 +1915,13 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.shippingsettings = {
@@ -2137,15 +1939,13 @@ function Content(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function(params, options, callback) {
+    custombatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2154,36 +1954,32 @@ function Content(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.shippingsettings.get
-       * @desc Retrieves the shipping settings of the account.
-       * @alias content.shippingsettings.get
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * content.shippingsettings.get
+        * @desc Retrieves the shipping settings of the account.
+        * @alias content.shippingsettings.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2193,35 +1989,32 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.shippingsettings.getsupportedcarriers
-       * @desc Retrieves supported carriers and carrier services for an account.
-       * @alias content.shippingsettings.getsupportedcarriers
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.merchantId The ID of the account for which to retrieve the supported carriers.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getsupportedcarriers: function(params, options, callback) {
+    }, /**
+        * content.shippingsettings.getsupportedcarriers
+        * @desc Retrieves supported carriers and carrier services for an
+        * account.
+        * @alias content.shippingsettings.getsupportedcarriers
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.merchantId The ID of the account for which to retrieve the supported carriers.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getsupportedcarriers(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2230,38 +2023,34 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.shippingsettings.list
-       * @desc Lists the shipping settings of the sub-accounts in your Merchant
-       * Center account.
-       * @alias content.shippingsettings.list
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
-       * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * content.shippingsettings.list
+        * @desc Lists the shipping settings of the sub-accounts in your Merchant
+        * Center account.
+        * @alias content.shippingsettings.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2270,39 +2059,35 @@ function Content(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.shippingsettings.patch
-       * @desc Updates the shipping settings of the account. This method
-       * supports patch semantics.
-       * @alias content.shippingsettings.patch
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).ShippingSettings} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * content.shippingsettings.patch
+        * @desc Updates the shipping settings of the account. This method
+        * supports patch semantics.
+        * @alias content.shippingsettings.patch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).ShippingSettings} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2312,38 +2097,34 @@ function Content(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * content.shippingsettings.update
-       * @desc Updates the shipping settings of the account.
-       * @alias content.shippingsettings.update
-       * @memberOf! content(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-       * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-       * @param {string} params.merchantId The ID of the managing account. If this account is not a multi-client account, then this parameter must be the same as accountId.
-       * @param {content(v2).ShippingSettings} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * content.shippingsettings.update
+        * @desc Updates the shipping settings of the account.
+        * @alias content.shippingsettings.update
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).ShippingSettings} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2353,14 +2134,13 @@ function Content(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -2370,6 +2150,7 @@ function Content(options) {
  * @type object
  * @property {boolean} adultContent Indicates whether the merchant sells adult content.
  * @property {content(v2).AccountAdwordsLink[]} adwordsLinks List of linked AdWords accounts that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected either in the AdWords interface or through the  AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
+ * @property {content(v2).AccountGoogleMyBusinessLink} googleMyBusinessLink The GMB account which is linked or in the process of being linked with the Merchant Center accounnt.
  * @property {string} id Merchant Center account ID.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#account&quot;.
  * @property {string} name Display name for the account.
@@ -2387,6 +2168,13 @@ function Content(options) {
  * @property {string} status Status of the link between this Merchant Center account and the AdWords account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google AdWords or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
  */
 /**
+ * @typedef AccountGoogleMyBusinessLink
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} gmbEmail The GMB email address.
+ * @property {string} status Status of the link between this Merchant Center account and the GMB account.
+ */
+/**
  * @typedef AccountIdentifier
  * @memberOf! content(v2)
  * @type object
@@ -2397,11 +2185,7 @@ function Content(options) {
  * @typedef AccountsAuthInfoResponse
  * @memberOf! content(v2)
  * @type object
- * @property {content(v2).AccountIdentifier[]} accountIdentifiers The account identifiers corresponding to the authenticated user.
-- For an individual account: only the merchant ID is defined
-- For an aggregator: only the aggregator ID is defined
-- For a subaccount of an MCA: both the merchant ID and the aggregator ID are
-defined.
+ * @property {content(v2).AccountIdentifier[]} accountIdentifiers The account identifiers corresponding to the authenticated user. - For an individual account: only the merchant ID is defined - For an aggregator: only the aggregator ID is defined - For a subaccount of an MCA: both the merchant ID and the aggregator ID are defined.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
  */
 /**
@@ -2942,11 +2726,7 @@ defined.
  * @memberOf! content(v2)
  * @type object
  * @property {string} country CLDR country code (e.g. &quot;US&quot;).
- * @property {string[]} fullAddress Strings representing the lines of the printed label for mailing the order, for example:
-John Smith
-1600 Amphitheatre Parkway
-Mountain View, CA, 94043
-United States
+ * @property {string[]} fullAddress Strings representing the lines of the printed label for mailing the order, for example: John Smith 1600 Amphitheatre Parkway Mountain View, CA, 94043 United States
  * @property {boolean} isPostOfficeBox Whether the address is a post office box.
  * @property {string} locality City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
  * @property {string} postalCode Postal Code or ZIP (e.g. &quot;94043&quot;).
@@ -3059,27 +2839,14 @@ United States
  * @property {integer} expirationYear The card expiration year (4-digit, e.g. 2015).
  * @property {string} lastFourDigits The last four digits of the card number.
  * @property {string} phoneNumber The billing phone number.
- * @property {string} type The type of instrument.
-
-Acceptable values are:
-- &quot;AMEX&quot;
-- &quot;DISCOVER&quot;
-- &quot;JCB&quot;
-- &quot;MASTERCARD&quot;
-- &quot;UNIONPAY&quot;
-- &quot;VISA&quot;
-- &quot;&quot;
+ * @property {string} type The type of instrument.  Acceptable values are:   - &quot;AMEX&quot;  - &quot;DISCOVER&quot;  - &quot;JCB&quot;  - &quot;MASTERCARD&quot;  - &quot;UNIONPAY&quot;  - &quot;VISA&quot;  - &quot;&quot;
  */
 /**
  * @typedef OrderPromotion
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).OrderPromotionBenefit[]} benefits
- * @property {string} effectiveDates The date and time frame when the promotion is active and ready for validation review. Note that the promotion live time may be delayed for a few hours due to the validation review.
-Start date and end date are separated by a forward slash (/). The start date is
-specified by the format (YYYY-MM-DD), followed by the letter ?T?, the time of
-the day when the sale starts (in Greenwich Mean Time, GMT), followed by an
-expression of the time zone for the sale. The end date is in the same format.
+ * @property {string} effectiveDates The date and time frame when the promotion is active and ready for validation review. Note that the promotion live time may be delayed for a few hours due to the validation review. Start date and end date are separated by a forward slash (/). The start date is specified by the format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when the sale starts (in Greenwich Mean Time, GMT), followed by an expression of the time zone for the sale. The end date is in the same format.
  * @property {string} genericRedemptionCode Optional. The text code that corresponds to the promotion when applied on the retailer?s website.
  * @property {string} id The unique ID of the promotion.
  * @property {string} longTitle The full title of the promotion.
@@ -3140,8 +2907,11 @@ expression of the time zone for the sale. The end date is in the same format.
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2).Price} amountPretax Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to cancellation amount in amountPretax.
  * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to cancel.
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
@@ -3217,7 +2987,10 @@ expression of the time zone for the sale. The end date is in the same format.
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Price} amount Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2).Price} amountPretax Amount to refund for the cancelation. Optional. If not set, Google will calculate the default based on the price and tax of the items involved. The amount must not be larger than the net amount left on the order.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to cancellation amount in amountPretax.
  * @property {string} lineItemId The ID of the line item to cancel. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to cancel.
  * @property {string} reason The reason for the cancellation.
  * @property {string} reasonText The explanation of the reason.
@@ -3227,6 +3000,8 @@ expression of the time zone for the sale. The end date is in the same format.
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Price} amount The amount that is refunded.
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Either amount or amountPretax and amountTax should be filled.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
  * @property {string} reason The reason for the refund.
  * @property {string} reasonText The explanation of the reason.
  */
@@ -3235,6 +3010,7 @@ expression of the time zone for the sale. The end date is in the same format.
  * @memberOf! content(v2)
  * @type object
  * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to return.
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
@@ -3301,31 +3077,7 @@ expression of the time zone for the sale. The end date is in the same format.
  * @typedef OrderShipment
  * @memberOf! content(v2)
  * @type object
- * @property {string} carrier The carrier handling the shipment.
-
-Acceptable values are:
-- &quot;gsx&quot;
-- &quot;ups&quot;
-- &quot;united parcel service&quot;
-- &quot;usps&quot;
-- &quot;united states postal service&quot;
-- &quot;fedex&quot;
-- &quot;dhl&quot;
-- &quot;ecourier&quot;
-- &quot;cxt&quot;
-- &quot;google&quot;
-- &quot;on trac&quot;
-- &quot;ontrac&quot;
-- &quot;on-trac&quot;
-- &quot;on_trac&quot;
-- &quot;delvic&quot;
-- &quot;dynamex&quot;
-- &quot;lasership&quot;
-- &quot;smartpost&quot;
-- &quot;fedex smartpost&quot;
-- &quot;mpx&quot;
-- &quot;uds&quot;
-- &quot;united delivery service&quot;
+ * @property {string} carrier The carrier handling the shipment.  Acceptable values are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;
  * @property {string} creationDate Date on which the shipment has been created, in ISO 8601 format.
  * @property {string} deliveryDate Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delievered
  * @property {string} id The id of the shipment.
@@ -3338,6 +3090,7 @@ Acceptable values are:
  * @memberOf! content(v2)
  * @type object
  * @property {string} lineItemId The id of the line item that is shipped. Either lineItemId or productId is required.
+ * @property {string} productId The ID of the product to ship. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity that is shipped.
  */
 /**
@@ -3353,6 +3106,8 @@ Acceptable values are:
  * @memberOf! content(v2)
  * @type object
  * @property {content(v2).Price} amount The amount that is refunded.
+ * @property {content(v2).Price} amountPretax The amount that is refunded. Either amount or amountPretax and amountTax should be filled.
+ * @property {content(v2).Price} amountTax Tax amount that correspond to refund amount in amountPretax.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
  * @property {string} reason The reason for the refund.
  * @property {string} reasonText The explanation of the reason.
@@ -3370,6 +3125,7 @@ Acceptable values are:
  * @type object
  * @property {string} lineItemId The ID of the line item to return. Either lineItemId or productId is required.
  * @property {string} operationId The ID of the operation. Unique across all operations for a given order.
+ * @property {string} productId The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
  * @property {integer} quantity The quantity to return.
  * @property {string} reason The reason for the return.
  * @property {string} reasonText The explanation of the reason.
@@ -3490,9 +3246,7 @@ Acceptable values are:
  * @property {string} gender Target gender of the item.
  * @property {string} googleProductCategory Google&#39;s category of the item (see Google product taxonomy).
  * @property {string} gtin Global Trade Item Number (GTIN) of the item.
- * @property {string} id The REST id of the product. Content API methods that operate on products take this as their productId parameter.
-The REST id for a product is of the form
-channel:contentLanguage:targetCountry:offerId.
+ * @property {string} id The REST id of the product. Content API methods that operate on products take this as their productId parameter. The REST id for a product is of the form channel:contentLanguage:targetCountry:offerId.
  * @property {boolean} identifierExists False when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Required according to the Unique Product Identifier Rules for all target countries except for Canada.
  * @property {string} imageLink URL of an image of the item.
  * @property {content(v2).Installment} installment Number and amount of installments to pay for an item. Brazil only.
@@ -3507,9 +3261,7 @@ channel:contentLanguage:targetCountry:offerId.
  * @property {string} mobileLink Link to a mobile-optimized version of the landing page.
  * @property {string} mpn Manufacturer Part Number (MPN) of the item.
  * @property {string} multipack The number of identical products in a merchant-defined multipack.
- * @property {string} offerId A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details.
-Note: Content API methods that operate on products take the REST id of the
-product, not this identifier.
+ * @property {string} offerId A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST id of the product, not this identifier.
  * @property {boolean} onlineOnly Whether an item is available for purchase only online.
  * @property {string} pattern The item&#39;s pattern (e.g. polka dots).
  * @property {content(v2).Price} price Price of the item.
@@ -3614,11 +3366,7 @@ product, not this identifier.
  * @typedef ProductShippingDimension
  * @memberOf! content(v2)
  * @type object
- * @property {string} unit The unit of value.
-
-Acceptable values are:
-- &quot;cm&quot;
-- &quot;in&quot;
+ * @property {string} unit The unit of value.  Acceptable values are:   - &quot;cm&quot;  - &quot;in&quot;
  * @property {number} value The dimension of the product used to calculate the shipping cost of the item.
  */
 /**
@@ -3836,6 +3584,7 @@ Acceptable values are:
  * @property {content(v2).TestOrderCustomer} customer The details of the customer who placed the order.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#testOrder&quot;.
  * @property {content(v2).TestOrderLineItem[]} lineItems Line items that are ordered. At least one line item must be provided.
+ * @property {string} notificationMode Determines if test order must be pulled by merchant or pushed to merchant via push integration.
  * @property {content(v2).TestOrderPaymentMethod} paymentMethod The details of the payment method.
  * @property {string} predefinedDeliveryAddress Identifier of one of the predefined delivery addresses for the delivery.
  * @property {content(v2).OrderPromotion[]} promotions The details of the merchant provided promotions applied to the order. More details about the program are here.

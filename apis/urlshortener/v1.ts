@@ -48,15 +48,13 @@ function Urlshortener(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,35 +63,31 @@ function Urlshortener(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['shortUrl'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * urlshortener.url.insert
-       * @desc Creates a new short URL.
-       * @alias urlshortener.url.insert
-       * @memberOf! urlshortener(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {urlshortener(v1).Url} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * urlshortener.url.insert
+        * @desc Creates a new short URL.
+        * @alias urlshortener.url.insert
+        * @memberOf! urlshortener(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {urlshortener(v1).Url} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -102,36 +96,32 @@ function Urlshortener(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * urlshortener.url.list
-       * @desc Retrieves a list of URLs shortened by a user.
-       * @alias urlshortener.url.list
-       * @memberOf! urlshortener(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.projection Additional information to return.
-       * @param {string=} params.start-token Token for requesting successive pages of results.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * urlshortener.url.list
+        * @desc Retrieves a list of URLs shortened by a user.
+        * @alias urlshortener.url.list
+        * @memberOf! urlshortener(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.projection Additional information to return.
+        * @param {string=} params.start-token Token for requesting successive pages of results.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -140,14 +130,13 @@ function Urlshortener(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

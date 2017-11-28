@@ -50,15 +50,13 @@ function Groupsmigration(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function(params, options, callback) {
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -67,7 +65,7 @@ function Groupsmigration(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive')
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['groupId'],
@@ -76,7 +74,6 @@ function Groupsmigration(options) {
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

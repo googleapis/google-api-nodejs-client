@@ -48,16 +48,13 @@ function Prediction(options) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.predict =
-      function(params, options, callback) {
+  this.predict = (params, options, callback) => {
     if (typeof options === 'function') {
       callback = options;
       options = {};
     }
-    options || (options = {});
-
+    options = options || {};
     const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
     const parameters = {
       options: Object.assign(
           {
@@ -66,15 +63,14 @@ function Prediction(options) {
             method: 'POST'
           },
           options),
-      params: params,
+      params,
       requiredParams: ['data'],
       pathParams: ['data'],
       context: self
     };
     return createAPIRequest(parameters, callback);
-  }
-
-      self.hostedmodels = {
+  };
+  self.hostedmodels = {
     /**
      * prediction.hostedmodels.predict
      * @desc Submit input and request an output against a hosted model
@@ -88,15 +84,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function(params, options, callback) {
+    predict(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -106,14 +100,13 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['hostedModelName'],
         pathParams: ['hostedModelName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.training = {
@@ -129,15 +122,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -146,35 +137,31 @@ function Prediction(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['data'],
         pathParams: ['data'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.training.get
-       * @desc Check training status of your model
-       * @alias prediction.training.get
-       * @memberOf! prediction(v1.2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.data mybucket/mydata resource in Google Storage
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * prediction.training.get
+        * @desc Check training status of your model
+        * @alias prediction.training.get
+        * @memberOf! prediction(v1.2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.data mybucket/mydata resource in Google Storage
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -183,36 +170,32 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['data'],
         pathParams: ['data'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.training.insert
-       * @desc Begin training your model
-       * @alias prediction.training.insert
-       * @memberOf! prediction(v1.2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.data mybucket/mydata resource in Google Storage
-       * @param {prediction(v1.2).Training} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * prediction.training.insert
+        * @desc Begin training your model
+        * @alias prediction.training.insert
+        * @memberOf! prediction(v1.2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.data mybucket/mydata resource in Google Storage
+        * @param {prediction(v1.2).Training} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -221,36 +204,32 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.training.update
-       * @desc Add new data to a trained model
-       * @alias prediction.training.update
-       * @memberOf! prediction(v1.2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.data mybucket/mydata resource in Google Storage
-       * @param {prediction(v1.2).Update} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * prediction.training.update
+        * @desc Add new data to a trained model
+        * @alias prediction.training.update
+        * @memberOf! prediction(v1.2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.data mybucket/mydata resource in Google Storage
+        * @param {prediction(v1.2).Update} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -259,14 +238,13 @@ function Prediction(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['data'],
         pathParams: ['data'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

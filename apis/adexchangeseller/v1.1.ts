@@ -47,15 +47,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,14 +62,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.adclients = {
@@ -88,15 +85,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -105,14 +100,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.adunits = {
@@ -129,15 +123,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -148,39 +140,35 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangeseller.adunits.list
-       * @desc List all ad units in the specified ad client for this Ad Exchange
-       * account.
-       * @alias adexchangeseller.adunits.list
-       * @memberOf! adexchangeseller(v1.1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client for which to list ad units.
-       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangeseller.adunits.list
+        * @desc List all ad units in the specified ad client for this Ad
+        * Exchange account.
+        * @alias adexchangeseller.adunits.list
+        * @memberOf! adexchangeseller(v1.1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.adClientId Ad client for which to list ad units.
+        * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+        * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -190,15 +178,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     customchannels: {
       /**
        * adexchangeseller.adunits.customchannels.list
@@ -215,15 +201,13 @@ function Adexchangeseller(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -234,14 +218,13 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['adClientId', 'adUnitId'],
           pathParams: ['adClientId', 'adUnitId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -258,15 +241,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -275,14 +256,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.customchannels = {
@@ -299,15 +279,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -318,38 +296,34 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangeseller.customchannels.list
-       * @desc List all custom channels in the specified ad client for this Ad
-       * Exchange account.
-       * @alias adexchangeseller.customchannels.list
-       * @memberOf! adexchangeseller(v1.1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client for which to list custom channels.
-       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangeseller.customchannels.list
+        * @desc List all custom channels in the specified ad client for this Ad
+        * Exchange account.
+        * @alias adexchangeseller.customchannels.list
+        * @memberOf! adexchangeseller(v1.1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.adClientId Ad client for which to list custom channels.
+        * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -360,15 +334,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     adunits: {
       /**
        * adexchangeseller.customchannels.adunits.list
@@ -386,15 +358,13 @@ function Adexchangeseller(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -405,14 +375,13 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['adClientId', 'customChannelId'],
           pathParams: ['adClientId', 'customChannelId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -430,15 +399,13 @@ function Adexchangeseller(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -447,14 +414,13 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     metrics: {
@@ -470,15 +436,13 @@ function Adexchangeseller(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -487,14 +451,13 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -511,15 +474,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -528,34 +489,30 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['dealId'],
         pathParams: ['dealId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangeseller.preferreddeals.list
-       * @desc List the preferred deals for this Ad Exchange account.
-       * @alias adexchangeseller.preferreddeals.list
-       * @memberOf! adexchangeseller(v1.1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangeseller.preferreddeals.list
+        * @desc List the preferred deals for this Ad Exchange account.
+        * @alias adexchangeseller.preferreddeals.list
+        * @memberOf! adexchangeseller(v1.1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -564,14 +521,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.reports = {
@@ -597,15 +553,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, options, callback) {
+    generate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -614,15 +568,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     saved: {
       /**
        * adexchangeseller.reports.saved.generate
@@ -640,15 +592,13 @@ function Adexchangeseller(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, options, callback) {
+      generate(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -658,36 +608,32 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['savedReportId'],
           pathParams: ['savedReportId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adexchangeseller.reports.saved.list
-         * @desc List all saved reports in this Ad Exchange account.
-         * @alias adexchangeseller.reports.saved.list
-         * @memberOf! adexchangeseller(v1.1)
-         *
-         * @param {object=} params Parameters for request
-         * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adexchangeseller.reports.saved.list
+          * @desc List all saved reports in this Ad Exchange account.
+          * @alias adexchangeseller.reports.saved.list
+          * @memberOf! adexchangeseller(v1.1)
+          *
+          * @param {object=} params Parameters for request
+          * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+          * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -696,14 +642,13 @@ function Adexchangeseller(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -723,15 +668,13 @@ function Adexchangeseller(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -741,14 +684,13 @@ function Adexchangeseller(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -787,15 +729,7 @@ function Adexchangeseller(options) {
  * @property {string} id Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
  * @property {string} kind Kind of resource this is, in this case adexchangeseller#adUnit.
  * @property {string} name Name of this ad unit.
- * @property {string} status Status of this ad unit. Possible values are:
-NEW: Indicates that the ad unit was created within the last seven days and does
-not yet have any activity associated with it.
-
-ACTIVE: Indicates that there has been activity on this ad unit in the last seven
-days.
-
-INACTIVE: Indicates that there has been no activity on this ad unit in the last
-seven days.
+ * @property {string} status Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
  */
 /**
  * @typedef AdUnits

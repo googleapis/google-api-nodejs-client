@@ -49,15 +49,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -66,36 +64,32 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.bookshelves.list
-       * @desc Retrieves a list of public bookshelves for the specified user.
-       * @alias books.bookshelves.list
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.source String to identify the originator of this request.
-       * @param {string} params.userId ID of user for whom to retrieve bookshelves.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * books.bookshelves.list
+        * @desc Retrieves a list of public bookshelves for the specified user.
+        * @alias books.bookshelves.list
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -104,15 +98,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     volumes: {
       /**
        * books.bookshelves.volumes.list
@@ -131,15 +123,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -149,14 +139,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'shelf'],
           pathParams: ['shelf', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -175,15 +164,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addBook: function(params, options, callback) {
+    addBook(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -192,35 +179,31 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.cloudloading.deleteBook
-       * @desc Remove the book and its contents
-       * @alias books.cloudloading.deleteBook
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.volumeId The id of the book to be removed.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    deleteBook: function(params, options, callback) {
+    }, /**
+        * books.cloudloading.deleteBook
+        * @desc Remove the book and its contents
+        * @alias books.cloudloading.deleteBook
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.volumeId The id of the book to be removed.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    deleteBook(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -229,34 +212,30 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['volumeId'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.cloudloading.updateBook
-       * @alias books.cloudloading.updateBook
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {books(v1).BooksCloudloadingResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updateBook: function(params, options, callback) {
+    }, /**
+        * books.cloudloading.updateBook
+        * @alias books.cloudloading.updateBook
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {books(v1).BooksCloudloadingResource} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateBook(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -265,14 +244,13 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.dictionary = {
@@ -288,15 +266,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOfflineMetadata: function(params, options, callback) {
+    listOfflineMetadata(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -305,14 +281,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['cpksver'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.layers = {
@@ -331,15 +306,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -349,39 +322,35 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.layers.list
-       * @desc List the layer summaries for a volume.
-       * @alias books.layers.list
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.contentVersion The content version for the requested volume.
-       * @param {integer=} params.maxResults Maximum number of results to return
-       * @param {string=} params.pageToken The value of the nextToken from the previous page.
-       * @param {string=} params.source String to identify the originator of this request.
-       * @param {string} params.volumeId The volume to retrieve layers for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * books.layers.list
+        * @desc List the layer summaries for a volume.
+        * @alias books.layers.list
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.contentVersion The content version for the requested volume.
+        * @param {integer=} params.maxResults Maximum number of results to return
+        * @param {string=} params.pageToken The value of the nextToken from the previous page.
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {string} params.volumeId The volume to retrieve layers for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -390,15 +359,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     annotationData: {
       /**
        * books.layers.annotationData.get
@@ -421,15 +388,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -440,48 +405,44 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams:
               ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
           pathParams: ['annotationDataId', 'layerId', 'volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.layers.annotationData.list
-         * @desc Gets the annotation data for a volume and layer.
-         * @alias books.layers.annotationData.list
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-         * @param {string} params.contentVersion The content version for the requested volume.
-         * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
-         * @param {string} params.layerId The ID for the layer to get the annotation data.
-         * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-         * @param {integer=} params.maxResults Maximum number of results to return
-         * @param {string=} params.pageToken The value of the nextToken from the previous page.
-         * @param {integer=} params.scale The requested scale for the image.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-         * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-         * @param {string} params.volumeId The volume to retrieve annotation data for.
-         * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * books.layers.annotationData.list
+          * @desc Gets the annotation data for a volume and layer.
+          * @alias books.layers.annotationData.list
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
+          * @param {string} params.contentVersion The content version for the requested volume.
+          * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
+          * @param {string} params.layerId The ID for the layer to get the annotation data.
+          * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+          * @param {integer=} params.maxResults Maximum number of results to return
+          * @param {string=} params.pageToken The value of the nextToken from the previous page.
+          * @param {integer=} params.scale The requested scale for the image.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+          * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+          * @param {string} params.volumeId The volume to retrieve annotation data for.
+          * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -491,14 +452,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId', 'layerId', 'contentVersion'],
           pathParams: ['layerId', 'volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     volumeAnnotations: {
@@ -518,15 +478,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -537,49 +495,45 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId', 'layerId', 'annotationId'],
           pathParams: ['annotationId', 'layerId', 'volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.layers.volumeAnnotations.list
-         * @desc Gets the volume annotations for a volume and layer.
-         * @alias books.layers.volumeAnnotations.list
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.contentVersion The content version for the requested volume.
-         * @param {string=} params.endOffset The end offset to end retrieving data from.
-         * @param {string=} params.endPosition The end position to end retrieving data from.
-         * @param {string} params.layerId The ID for the layer to get the annotations.
-         * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-         * @param {integer=} params.maxResults Maximum number of results to return
-         * @param {string=} params.pageToken The value of the nextToken from the previous page.
-         * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string=} params.startOffset The start offset to start retrieving data from.
-         * @param {string=} params.startPosition The start position to start retrieving data from.
-         * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-         * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-         * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
-         * @param {string} params.volumeId The volume to retrieve annotations for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * books.layers.volumeAnnotations.list
+          * @desc Gets the volume annotations for a volume and layer.
+          * @alias books.layers.volumeAnnotations.list
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.contentVersion The content version for the requested volume.
+          * @param {string=} params.endOffset The end offset to end retrieving data from.
+          * @param {string=} params.endPosition The end position to end retrieving data from.
+          * @param {string} params.layerId The ID for the layer to get the annotations.
+          * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+          * @param {integer=} params.maxResults Maximum number of results to return
+          * @param {string=} params.pageToken The value of the nextToken from the previous page.
+          * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string=} params.startOffset The start offset to start retrieving data from.
+          * @param {string=} params.startPosition The start position to start retrieving data from.
+          * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+          * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+          * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
+          * @param {string} params.volumeId The volume to retrieve annotations for.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -588,14 +542,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId', 'layerId', 'contentVersion'],
           pathParams: ['layerId', 'volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -611,15 +564,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getUserSettings: function(params, options, callback) {
+    getUserSettings(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -628,38 +579,34 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.myconfig.releaseDownloadAccess
-       * @desc Release downloaded content access restriction.
-       * @alias books.myconfig.releaseDownloadAccess
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.cpksver The device/version ID from which to release the restriction.
-       * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-       * @param {string=} params.source String to identify the originator of this request.
-       * @param {string} params.volumeIds The volume(s) to release restrictions for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    releaseDownloadAccess: function(params, options, callback) {
+    }, /**
+        * books.myconfig.releaseDownloadAccess
+        * @desc Release downloaded content access restriction.
+        * @alias books.myconfig.releaseDownloadAccess
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.cpksver The device/version ID from which to release the restriction.
+        * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {string} params.volumeIds The volume(s) to release restrictions for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    releaseDownloadAccess(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -668,40 +615,36 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.myconfig.requestAccess
-       * @desc Request concurrent and download access restrictions.
-       * @alias books.myconfig.requestAccess
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.cpksver The device/version ID from which to request the restrictions.
-       * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
-       * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-       * @param {string} params.nonce The client nonce value.
-       * @param {string} params.source String to identify the originator of this request.
-       * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    requestAccess: function(params, options, callback) {
+    }, /**
+        * books.myconfig.requestAccess
+        * @desc Request concurrent and download access restrictions.
+        * @alias books.myconfig.requestAccess
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.cpksver The device/version ID from which to request the restrictions.
+        * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
+        * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+        * @param {string} params.nonce The client nonce value.
+        * @param {string} params.source String to identify the originator of this request.
+        * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    requestAccess(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -710,43 +653,39 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.myconfig.syncVolumeLicenses
-       * @desc Request downloaded content access for specified volumes on the My
-       * eBooks shelf.
-       * @alias books.myconfig.syncVolumeLicenses
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.cpksver The device/version ID from which to release the restriction.
-       * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
-       * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
-       * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-       * @param {string} params.nonce The client nonce value.
-       * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-       * @param {string} params.source String to identify the originator of this request.
-       * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    syncVolumeLicenses: function(params, options, callback) {
+    }, /**
+        * books.myconfig.syncVolumeLicenses
+        * @desc Request downloaded content access for specified volumes on the
+        * My eBooks shelf.
+        * @alias books.myconfig.syncVolumeLicenses
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.cpksver The device/version ID from which to release the restriction.
+        * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
+        * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
+        * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+        * @param {string} params.nonce The client nonce value.
+        * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+        * @param {string} params.source String to identify the originator of this request.
+        * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    syncVolumeLicenses(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -755,37 +694,33 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.myconfig.updateUserSettings
-       * @desc Sets the settings for the user. If a sub-object is specified, it
-       * will overwrite the existing sub-object stored in the server.
-       * Unspecified sub-objects will retain the existing value.
-       * @alias books.myconfig.updateUserSettings
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {books(v1).Usersettings} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updateUserSettings: function(params, options, callback) {
+    }, /**
+        * books.myconfig.updateUserSettings
+        * @desc Sets the settings for the user. If a sub-object is specified, it
+        * will overwrite the existing sub-object stored in the server.
+        * Unspecified sub-objects will retain the existing value.
+        * @alias books.myconfig.updateUserSettings
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {books(v1).Usersettings} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateUserSettings(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -794,14 +729,13 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.mylibrary = {
@@ -819,15 +753,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -837,39 +769,35 @@ function Books(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['annotationId'],
           pathParams: ['annotationId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.annotations.insert
-         * @desc Inserts a new annotation.
-         * @alias books.mylibrary.annotations.insert
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.annotationId The ID for the annotation to insert.
-         * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
-         * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {books(v1).Annotation} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.annotations.insert
+          * @desc Inserts a new annotation.
+          * @alias books.mylibrary.annotations.insert
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.annotationId The ID for the annotation to insert.
+          * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+          * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {books(v1).Annotation} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      insert(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -878,44 +806,40 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.annotations.list
-         * @desc Retrieves a list of annotations, possibly filtered.
-         * @alias books.mylibrary.annotations.list
-         * @memberOf! books(v1)
-         *
-         * @param {object=} params Parameters for request
-         * @param {string=} params.contentVersion The content version for the requested volume.
-         * @param {string=} params.layerId The layer ID to limit annotation by.
-         * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
-         * @param {integer=} params.maxResults Maximum number of results to return
-         * @param {string=} params.pageToken The value of the nextToken from the previous page.
-         * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-         * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-         * @param {string=} params.volumeId The volume to restrict annotations to.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.annotations.list
+          * @desc Retrieves a list of annotations, possibly filtered.
+          * @alias books.mylibrary.annotations.list
+          * @memberOf! books(v1)
+          *
+          * @param {object=} params Parameters for request
+          * @param {string=} params.contentVersion The content version for the requested volume.
+          * @param {string=} params.layerId The layer ID to limit annotation by.
+          * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
+          * @param {integer=} params.maxResults Maximum number of results to return
+          * @param {string=} params.pageToken The value of the nextToken from the previous page.
+          * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+          * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+          * @param {string=} params.volumeId The volume to restrict annotations to.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -924,36 +848,32 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.annotations.summary
-         * @desc Gets the summary of specified layers.
-         * @alias books.mylibrary.annotations.summary
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.layerIds Array of layer IDs to get the summary for.
-         * @param {string} params.volumeId Volume id to get the summary for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      summary: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.annotations.summary
+          * @desc Gets the summary of specified layers.
+          * @alias books.mylibrary.annotations.summary
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.layerIds Array of layer IDs to get the summary for.
+          * @param {string} params.volumeId Volume id to get the summary for.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      summary(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -962,37 +882,33 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['layerIds', 'volumeId'],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.annotations.update
-         * @desc Updates an existing annotation.
-         * @alias books.mylibrary.annotations.update
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.annotationId The ID for the annotation to update.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {books(v1).Annotation} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.annotations.update
+          * @desc Updates an existing annotation.
+          * @alias books.mylibrary.annotations.update
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.annotationId The ID for the annotation to update.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {books(v1).Annotation} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      update(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1002,14 +918,13 @@ function Books(options) {
                 method: 'PUT'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['annotationId'],
           pathParams: ['annotationId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     bookshelves: {
@@ -1028,15 +943,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addVolume: function(params, options, callback) {
+      addVolume(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1046,36 +959,32 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['shelf', 'volumeId'],
           pathParams: ['shelf'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.bookshelves.clearVolumes
-         * @desc Clears all volumes from a bookshelf.
-         * @alias books.mylibrary.bookshelves.clearVolumes
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.shelf ID of bookshelf from which to remove a volume.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      clearVolumes: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.bookshelves.clearVolumes
+          * @desc Clears all volumes from a bookshelf.
+          * @alias books.mylibrary.bookshelves.clearVolumes
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      clearVolumes(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1085,37 +994,33 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['shelf'],
           pathParams: ['shelf'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.bookshelves.get
-         * @desc Retrieves metadata for a specific bookshelf belonging to the
-         * authenticated user.
-         * @alias books.mylibrary.bookshelves.get
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.shelf ID of bookshelf to retrieve.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.bookshelves.get
+          * @desc Retrieves metadata for a specific bookshelf belonging to the
+          * authenticated user.
+          * @alias books.mylibrary.bookshelves.get
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.shelf ID of bookshelf to retrieve.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1124,36 +1029,32 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['shelf'],
           pathParams: ['shelf'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.bookshelves.list
-         * @desc Retrieves a list of bookshelves belonging to the authenticated
-         * user.
-         * @alias books.mylibrary.bookshelves.list
-         * @memberOf! books(v1)
-         *
-         * @param {object=} params Parameters for request
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.bookshelves.list
+          * @desc Retrieves a list of bookshelves belonging to the authenticated
+          * user.
+          * @alias books.mylibrary.bookshelves.list
+          * @memberOf! books(v1)
+          *
+          * @param {object=} params Parameters for request
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1162,38 +1063,34 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.bookshelves.moveVolume
-         * @desc Moves a volume within a bookshelf.
-         * @alias books.mylibrary.bookshelves.moveVolume
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.shelf ID of bookshelf with the volume.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string} params.volumeId ID of volume to move.
-         * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      moveVolume: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.bookshelves.moveVolume
+          * @desc Moves a volume within a bookshelf.
+          * @alias books.mylibrary.bookshelves.moveVolume
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.shelf ID of bookshelf with the volume.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string} params.volumeId ID of volume to move.
+          * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      moveVolume(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1203,38 +1100,34 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['shelf', 'volumeId', 'volumePosition'],
           pathParams: ['shelf'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.bookshelves.removeVolume
-         * @desc Removes a volume from a bookshelf.
-         * @alias books.mylibrary.bookshelves.removeVolume
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.reason The reason for which the book is removed from the library.
-         * @param {string} params.shelf ID of bookshelf from which to remove a volume.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string} params.volumeId ID of volume to remove.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      removeVolume: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.bookshelves.removeVolume
+          * @desc Removes a volume from a bookshelf.
+          * @alias books.mylibrary.bookshelves.removeVolume
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.reason The reason for which the book is removed from the library.
+          * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string} params.volumeId ID of volume to remove.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      removeVolume(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1244,15 +1137,13 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['shelf', 'volumeId'],
           pathParams: ['shelf'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       volumes: {
         /**
          * books.mylibrary.bookshelves.volumes.list
@@ -1273,15 +1164,13 @@ function Books(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, options, callback) {
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -1291,14 +1180,13 @@ function Books(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['shelf'],
             pathParams: ['shelf'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     },
@@ -1317,15 +1205,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1335,41 +1221,37 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId'],
           pathParams: ['volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.mylibrary.readingpositions.setPosition
-         * @desc Sets my reading position information for a volume.
-         * @alias books.mylibrary.readingpositions.setPosition
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.action Action that caused this reading position to be set.
-         * @param {string=} params.contentVersion Volume content version for which this reading position applies.
-         * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
-         * @param {string} params.position Position string for the new volume reading position.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
-         * @param {string} params.volumeId ID of volume for which to update the reading position.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      setPosition: function(params, options, callback) {
+      }, /**
+          * books.mylibrary.readingpositions.setPosition
+          * @desc Sets my reading position information for a volume.
+          * @alias books.mylibrary.readingpositions.setPosition
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.action Action that caused this reading position to be set.
+          * @param {string=} params.contentVersion Volume content version for which this reading position applies.
+          * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
+          * @param {string} params.position Position string for the new volume reading position.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
+          * @param {string} params.volumeId ID of volume for which to update the reading position.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      setPosition(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1380,14 +1262,13 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId', 'timestamp', 'position'],
           pathParams: ['volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1406,15 +1287,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1423,14 +1302,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['notification_id'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.onboarding = {
@@ -1446,15 +1324,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategories: function(params, options, callback) {
+    listCategories(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1463,40 +1339,36 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.onboarding.listCategoryVolumes
-       * @desc List available volumes under categories for onboarding
-       * experience.
-       * @alias books.onboarding.listCategoryVolumes
-       * @memberOf! books(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.categoryId List of category ids requested.
-       * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-       * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
-       * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
-       * @param {string=} params.pageToken The value of the nextToken from the previous page.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listCategoryVolumes: function(params, options, callback) {
+    }, /**
+        * books.onboarding.listCategoryVolumes
+        * @desc List available volumes under categories for onboarding
+        * experience.
+        * @alias books.onboarding.listCategoryVolumes
+        * @memberOf! books(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.categoryId List of category ids requested.
+        * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+        * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
+        * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
+        * @param {string=} params.pageToken The value of the nextToken from the previous page.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listCategoryVolumes(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1505,14 +1377,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.personalizedstream = {
@@ -1530,15 +1401,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1547,14 +1416,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.promooffer = {
@@ -1576,15 +1444,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function(params, options, callback) {
+    accept(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1593,40 +1459,36 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.promooffer.dismiss
-       * @alias books.promooffer.dismiss
-       * @memberOf! books(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.androidId device android_id
-       * @param {string=} params.device device device
-       * @param {string=} params.manufacturer device manufacturer
-       * @param {string=} params.model device model
-       * @param {string=} params.offerId Offer to dimiss
-       * @param {string=} params.product device product
-       * @param {string=} params.serial device serial
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    dismiss: function(params, options, callback) {
+    }, /**
+        * books.promooffer.dismiss
+        * @alias books.promooffer.dismiss
+        * @memberOf! books(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.androidId device android_id
+        * @param {string=} params.device device device
+        * @param {string=} params.manufacturer device manufacturer
+        * @param {string=} params.model device model
+        * @param {string=} params.offerId Offer to dimiss
+        * @param {string=} params.product device product
+        * @param {string=} params.serial device serial
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    dismiss(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1635,40 +1497,36 @@ function Books(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.promooffer.get
-       * @desc Returns a list of promo offers available to the user
-       * @alias books.promooffer.get
-       * @memberOf! books(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.androidId device android_id
-       * @param {string=} params.device device device
-       * @param {string=} params.manufacturer device manufacturer
-       * @param {string=} params.model device model
-       * @param {string=} params.product device product
-       * @param {string=} params.serial device serial
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * books.promooffer.get
+        * @desc Returns a list of promo offers available to the user
+        * @alias books.promooffer.get
+        * @memberOf! books(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.androidId device android_id
+        * @param {string=} params.device device device
+        * @param {string=} params.manufacturer device manufacturer
+        * @param {string=} params.model device model
+        * @param {string=} params.product device product
+        * @param {string=} params.serial device serial
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1677,14 +1535,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.series = {
@@ -1700,15 +1557,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1717,15 +1572,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['series_id'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     membership: {
       /**
        * books.series.membership.get
@@ -1741,15 +1594,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1758,14 +1609,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['series_id'],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1788,15 +1638,13 @@ function Books(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1805,48 +1653,44 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * books.volumes.list
-       * @desc Performs a book search.
-       * @alias books.volumes.list
-       * @memberOf! books(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.download Restrict to volumes by download availability.
-       * @param {string=} params.filter Filter search results.
-       * @param {string=} params.langRestrict Restrict results to books with this language code.
-       * @param {string=} params.libraryRestrict Restrict search to this user's library.
-       * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.orderBy Sort search results.
-       * @param {string=} params.partner Restrict and brand results for partner ID.
-       * @param {string=} params.printType Restrict to books or magazines.
-       * @param {string=} params.projection Restrict information returned to a set of selected fields.
-       * @param {string} params.q Full-text search query string.
-       * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
-       * @param {string=} params.source String to identify the originator of this request.
-       * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * books.volumes.list
+        * @desc Performs a book search.
+        * @alias books.volumes.list
+        * @memberOf! books(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.download Restrict to volumes by download availability.
+        * @param {string=} params.filter Filter search results.
+        * @param {string=} params.langRestrict Restrict results to books with this language code.
+        * @param {string=} params.libraryRestrict Restrict search to this user's library.
+        * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.orderBy Sort search results.
+        * @param {string=} params.partner Restrict and brand results for partner ID.
+        * @param {string=} params.printType Restrict to books or magazines.
+        * @param {string=} params.projection Restrict information returned to a set of selected fields.
+        * @param {string} params.q Full-text search query string.
+        * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
+        * @param {string=} params.source String to identify the originator of this request.
+        * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1855,15 +1699,13 @@ function Books(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['q'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     associated: {
       /**
        * books.volumes.associated.list
@@ -1881,15 +1723,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1898,14 +1738,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['volumeId'],
           pathParams: ['volumeId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     mybooks: {
@@ -1927,15 +1766,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1944,14 +1781,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     recommended: {
@@ -1969,15 +1805,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1986,38 +1820,34 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * books.volumes.recommended.rate
-         * @desc Rate a recommended book for the current user.
-         * @alias books.volumes.recommended.rate
-         * @memberOf! books(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-         * @param {string} params.rating Rating to be given to the volume.
-         * @param {string=} params.source String to identify the originator of this request.
-         * @param {string} params.volumeId ID of the source volume.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      rate: function(params, options, callback) {
+      }, /**
+          * books.volumes.recommended.rate
+          * @desc Rate a recommended book for the current user.
+          * @alias books.volumes.recommended.rate
+          * @memberOf! books(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+          * @param {string} params.rating Rating to be given to the volume.
+          * @param {string=} params.source String to identify the originator of this request.
+          * @param {string} params.volumeId ID of the source volume.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      rate(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -2026,14 +1856,13 @@ function Books(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['rating', 'volumeId'],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     useruploaded: {
@@ -2054,15 +1883,13 @@ function Books(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -2071,14 +1898,13 @@ function Books(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };

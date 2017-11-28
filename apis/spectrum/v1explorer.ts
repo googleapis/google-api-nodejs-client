@@ -49,15 +49,13 @@ function Spectrum(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrum: function(params, options, callback) {
+    getSpectrum(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -66,36 +64,32 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * spectrum.paws.getSpectrumBatch
-       * @desc The Google Spectrum Database does not support batch requests, so
-       * this method always yields an UNIMPLEMENTED error.
-       * @alias spectrum.paws.getSpectrumBatch
-       * @memberOf! spectrum(v1explorer)
-       *
-       * @param {object} params Parameters for request
-       * @param {spectrum(v1explorer).PawsGetSpectrumBatchRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getSpectrumBatch: function(params, options, callback) {
+    }, /**
+        * spectrum.paws.getSpectrumBatch
+        * @desc The Google Spectrum Database does not support batch requests, so
+        * this method always yields an UNIMPLEMENTED error.
+        * @alias spectrum.paws.getSpectrumBatch
+        * @memberOf! spectrum(v1explorer)
+        *
+        * @param {object} params Parameters for request
+        * @param {spectrum(v1explorer).PawsGetSpectrumBatchRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getSpectrumBatch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -104,36 +98,32 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * spectrum.paws.init
-       * @desc Initializes the connection between a white space device and the
-       * database.
-       * @alias spectrum.paws.init
-       * @memberOf! spectrum(v1explorer)
-       *
-       * @param {object} params Parameters for request
-       * @param {spectrum(v1explorer).PawsInitRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    init: function(params, options, callback) {
+    }, /**
+        * spectrum.paws.init
+        * @desc Initializes the connection between a white space device and the
+        * database.
+        * @alias spectrum.paws.init
+        * @memberOf! spectrum(v1explorer)
+        *
+        * @param {object} params Parameters for request
+        * @param {spectrum(v1explorer).PawsInitRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    init(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -142,39 +132,35 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * spectrum.paws.notifySpectrumUse
-       * @desc Notifies the database that the device has selected certain
-       * frequency ranges for transmission. Only to be invoked when required by
-       * the regulator. The Google Spectrum Database does not operate in domains
-       * that require notification, so this always yields an UNIMPLEMENTED
-       * error.
-       * @alias spectrum.paws.notifySpectrumUse
-       * @memberOf! spectrum(v1explorer)
-       *
-       * @param {object} params Parameters for request
-       * @param {spectrum(v1explorer).PawsNotifySpectrumUseRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    notifySpectrumUse: function(params, options, callback) {
+    }, /**
+        * spectrum.paws.notifySpectrumUse
+        * @desc Notifies the database that the device has selected certain
+        * frequency ranges for transmission. Only to be invoked when required by
+        * the regulator. The Google Spectrum Database does not operate in
+        * domains that require notification, so this always yields an
+        * UNIMPLEMENTED error.
+        * @alias spectrum.paws.notifySpectrumUse
+        * @memberOf! spectrum(v1explorer)
+        *
+        * @param {object} params Parameters for request
+        * @param {spectrum(v1explorer).PawsNotifySpectrumUseRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    notifySpectrumUse(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -183,36 +169,33 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * spectrum.paws.register
-       * @desc The Google Spectrum Database implements registration in the
-       * getSpectrum method. As such this always returns an UNIMPLEMENTED error.
-       * @alias spectrum.paws.register
-       * @memberOf! spectrum(v1explorer)
-       *
-       * @param {object} params Parameters for request
-       * @param {spectrum(v1explorer).PawsRegisterRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    register: function(params, options, callback) {
+    }, /**
+        * spectrum.paws.register
+        * @desc The Google Spectrum Database implements registration in the
+        * getSpectrum method. As such this always returns an UNIMPLEMENTED
+        * error.
+        * @alias spectrum.paws.register
+        * @memberOf! spectrum(v1explorer)
+        *
+        * @param {object} params Parameters for request
+        * @param {spectrum(v1explorer).PawsRegisterRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    register(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -221,38 +204,34 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * spectrum.paws.verifyDevice
-       * @desc Validates a device for white space use in accordance with
-       * regulatory rules. The Google Spectrum Database does not support
-       * master/slave configurations, so this always yields an UNIMPLEMENTED
-       * error.
-       * @alias spectrum.paws.verifyDevice
-       * @memberOf! spectrum(v1explorer)
-       *
-       * @param {object} params Parameters for request
-       * @param {spectrum(v1explorer).PawsVerifyDeviceRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    verifyDevice: function(params, options, callback) {
+    }, /**
+        * spectrum.paws.verifyDevice
+        * @desc Validates a device for white space use in accordance with
+        * regulatory rules. The Google Spectrum Database does not support
+        * master/slave configurations, so this always yields an UNIMPLEMENTED
+        * error.
+        * @alias spectrum.paws.verifyDevice
+        * @memberOf! spectrum(v1explorer)
+        *
+        * @param {object} params Parameters for request
+        * @param {spectrum(v1explorer).PawsVerifyDeviceRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    verifyDevice(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -261,14 +240,13 @@ function Spectrum(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -311,11 +289,7 @@ function Spectrum(options) {
  * @property {string} fccTvbdDeviceType Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2.
  * @property {string} manufacturerId The manufacturer&#39;s ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length.
  * @property {string} modelId The device&#39;s model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length.
- * @property {string[]} rulesetIds The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.
-
-For information about the valid requests, see section 9.2 of the PAWS
-specification. Currently, FccTvBandWhiteSpace-2010 is the only supported
-ruleset.
+ * @property {string[]} rulesetIds The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.  For information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.
  * @property {string} serialNumber The manufacturer&#39;s device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters.
  */
 /**
@@ -377,15 +351,7 @@ ruleset.
  * @typedef GeoLocationPolygon
  * @memberOf! spectrum(v1explorer)
  * @type object
- * @property {spectrum(v1explorer).GeoLocationPoint[]} exterior When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:
-- A connecting line shall not cross another connecting line of the same polygon.
-- The vertices must be defined in a counterclockwise order.
-- The edges of a polygon are defined by the shortest path between two points in
-space (not a geodesic curve). Consequently, the length between two adjacent
-vertices should be restricted to a maximum of 130 km.
-- All vertices are assumed to be at the same altitude.
-- Polygon shapes should be restricted to a maximum of 15 vertices (16 points
-that include the repeated vertex).
+ * @property {spectrum(v1explorer).GeoLocationPoint[]} exterior When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:   - A connecting line shall not cross another connecting line of the same polygon.  - The vertices must be defined in a counterclockwise order.  - The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km.  - All vertices are assumed to be at the same altitude.  - Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).
  */
 /**
  * @typedef GeoSpectrumSchedule
@@ -401,24 +367,12 @@ that include the repeated vertex).
  * @property {spectrum(v1explorer).AntennaCharacteristics} antenna Depending on device type and regulatory domain, antenna characteristics may be required.
  * @property {spectrum(v1explorer).DeviceCapabilities} capabilities The master device may include its device capabilities to limit the available-spectrum batch response to the spectrum that is compatible with its capabilities. The database should not return spectrum that is incompatible with the specified capabilities.
  * @property {spectrum(v1explorer).DeviceDescriptor} deviceDesc When the available spectrum request is made on behalf of a specific device (a master or slave device), device descriptor information for the device on whose behalf the request is made is required (in such cases, the requestType parameter must be empty). When a requestType value is specified, device descriptor information may be optional or required according to the rules of the applicable regulatory domain.
- * @property {spectrum(v1explorer).GeoLocation[]} locations A geolocation list is required. This allows a device to specify its current location plus additional anticipated locations when allowed by the regulatory domain. At least one location must be included. Geolocation must be given as the location of the radiation center of the device&#39;s antenna. If a location specifies a region, rather than a point, the database may return an UNIMPLEMENTED error if it does not support query by region.
-
-There is no upper limit on the number of locations included in a available
-spectrum batch request, but the database may restrict the number of locations it
-supports by returning a response with fewer locations than specified in the
-batch request. Note that geolocations must be those of the master device (a
-device with geolocation capability that makes an available spectrum batch
-request), whether the master device is making the request on its own behalf or
-on behalf of a slave device (one without geolocation capability).
+ * @property {spectrum(v1explorer).GeoLocation[]} locations A geolocation list is required. This allows a device to specify its current location plus additional anticipated locations when allowed by the regulatory domain. At least one location must be included. Geolocation must be given as the location of the radiation center of the device&#39;s antenna. If a location specifies a region, rather than a point, the database may return an UNIMPLEMENTED error if it does not support query by region.  There is no upper limit on the number of locations included in a available spectrum batch request, but the database may restrict the number of locations it supports by returning a response with fewer locations than specified in the batch request. Note that geolocations must be those of the master device (a device with geolocation capability that makes an available spectrum batch request), whether the master device is making the request on its own behalf or on behalf of a slave device (one without geolocation capability).
  * @property {spectrum(v1explorer).DeviceDescriptor} masterDeviceDesc When an available spectrum batch request is made by the master device (a device with geolocation capability) on behalf of a slave device (a device without geolocation capability), the rules of the applicable regulatory domain may require the master device to provide its own device descriptor information (in addition to device descriptor information for the slave device in a separate parameter).
  * @property {spectrum(v1explorer).DeviceOwner} owner Depending on device type and regulatory domain, device owner information may be included in an available spectrum batch request. This allows the device to register and get spectrum-availability information in a single request.
  * @property {string} requestType The request type parameter is an optional parameter that can be used to modify an available spectrum batch request, but its use depends on applicable regulatory rules. For example, It may be used to request generic slave device parameters without having to specify the device descriptor for a specific device. When the requestType parameter is missing, the request is for a specific device (master or slave), and the device descriptor parameter for the device on whose behalf the batch request is made is required.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsGetSpectrumBatchResponse
@@ -433,12 +387,8 @@ Required field.
  * @property {boolean} needsSpectrumReport For regulatory domains that require a spectrum-usage report from devices, the database must return true for this parameter if the geo-spectrum schedules list is not empty; otherwise, the database should either return false or omit this parameter. If this parameter is present and its value is true, the device must send a spectrum use notify message to the database; otherwise, the device should not send the notification.
  * @property {spectrum(v1explorer).RulesetInfo} rulesetInfo The database should return ruleset information, which identifies the applicable regulatory authority and ruleset for the available spectrum batch response. If included, the device must use the corresponding ruleset to interpret the response. Values provided in the returned ruleset information, such as maxLocationChange, take precedence over any conflicting values provided in the ruleset information returned in a prior initialization response sent by the database to the device.
  * @property {string} timestamp The database includes a timestamp of the form, YYYY-MM-DDThh:mm:ssZ (Internet timestamp format per RFC3339), in its available spectrum batch response. The timestamp should be used by the device as a reference for the start and stop times specified in the response spectrum schedules.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsGetSpectrumRequest
@@ -451,12 +401,8 @@ Required field.
  * @property {spectrum(v1explorer).DeviceDescriptor} masterDeviceDesc When an available spectrum request is made by the master device (a device with geolocation capability) on behalf of a slave device (a device without geolocation capability), the rules of the applicable regulatory domain may require the master device to provide its own device descriptor information (in addition to device descriptor information for the slave device, which is provided in a separate parameter).
  * @property {spectrum(v1explorer).DeviceOwner} owner Depending on device type and regulatory domain, device owner information may be included in an available spectrum request. This allows the device to register and get spectrum-availability information in a single request.
  * @property {string} requestType The request type parameter is an optional parameter that can be used to modify an available spectrum request, but its use depends on applicable regulatory rules. It may be used, for example, to request generic slave device parameters without having to specify the device descriptor for a specific device. When the requestType parameter is missing, the request is for a specific device (master or slave), and the deviceDesc parameter for the device on whose behalf the request is made is required.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsGetSpectrumResponse
@@ -471,12 +417,8 @@ Required field.
  * @property {spectrum(v1explorer).RulesetInfo} rulesetInfo The database should return ruleset information, which identifies the applicable regulatory authority and ruleset for the available spectrum response. If included, the device must use the corresponding ruleset to interpret the response. Values provided in the returned ruleset information, such as maxLocationChange, take precedence over any conflicting values provided in the ruleset information returned in a prior initialization response sent by the database to the device.
  * @property {spectrum(v1explorer).SpectrumSchedule[]} spectrumSchedules The available spectrum response must contain a spectrum schedule list. The list may be empty if spectrum is not available. The database may return more than one spectrum schedule to represent future changes to the available spectrum. How far in advance a schedule may be provided depends on the applicable regulatory domain.
  * @property {string} timestamp The database includes a timestamp of the form YYYY-MM-DDThh:mm:ssZ (Internet timestamp format per RFC3339) in its available spectrum response. The timestamp should be used by the device as a reference for the start and stop times specified in the response spectrum schedules.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsInitRequest
@@ -484,12 +426,8 @@ Required field.
  * @type object
  * @property {spectrum(v1explorer).DeviceDescriptor} deviceDesc The DeviceDescriptor parameter is required. If the database does not support the device or any of the rulesets specified in the device descriptor, it must return an UNSUPPORTED error code in the error response.
  * @property {spectrum(v1explorer).GeoLocation} location A device&#39;s geolocation is required.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsInitResponse
@@ -498,12 +436,8 @@ Required field.
  * @property {spectrum(v1explorer).DbUpdateSpec} databaseChange A database may include the databaseChange parameter to notify a device of a change to its database URI, providing one or more alternate database URIs. The device should use this information to update its list of pre-configured databases by (only) replacing its entry for the responding database with the list of alternate URIs.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;spectrum#pawsInitResponse&quot;.
  * @property {spectrum(v1explorer).RulesetInfo} rulesetInfo The rulesetInfo parameter must be included in the response. This parameter specifies the regulatory domain and parameters applicable to that domain. The database must include the authority field, which defines the regulatory domain for the location specified in the INIT_REQ message.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsNotifySpectrumUseRequest
@@ -512,24 +446,16 @@ Required field.
  * @property {spectrum(v1explorer).DeviceDescriptor} deviceDesc Device descriptor information is required in the spectrum-use notification message.
  * @property {spectrum(v1explorer).GeoLocation} location The geolocation of the master device (the device that is sending the spectrum-use notification) to the database is required in the spectrum-use notification message.
  * @property {spectrum(v1explorer).SpectrumMessage[]} spectra A spectrum list is required in the spectrum-use notification. The list specifies the spectrum that the device expects to use, which includes frequency ranges and maximum power levels. The list may be empty if the device decides not to use any of spectrum. For consistency, the psdBandwidthHz value should match that from one of the spectrum elements in the corresponding available spectrum response previously sent to the device by the database. Note that maximum power levels in the spectrum element must be expressed as power spectral density over the specified psdBandwidthHz value. The actual bandwidth to be used (as computed from the start and stop frequencies) may be different from the psdBandwidthHz value. As an example, when regulatory rules express maximum power spectral density in terms of maximum power over any 100 kHz band, then the psdBandwidthHz value should be set to 100 kHz, even though the actual bandwidth used can be 20 kHz.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsNotifySpectrumUseResponse
  * @memberOf! spectrum(v1explorer)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;spectrum#pawsNotifySpectrumUseResponse&quot;.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsRegisterRequest
@@ -539,12 +465,8 @@ Required field.
  * @property {spectrum(v1explorer).DeviceDescriptor} deviceDesc A DeviceDescriptor is required.
  * @property {spectrum(v1explorer).DeviceOwner} deviceOwner Device owner information is required.
  * @property {spectrum(v1explorer).GeoLocation} location A device&#39;s geolocation is required.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsRegisterResponse
@@ -552,24 +474,16 @@ Required field.
  * @type object
  * @property {spectrum(v1explorer).DbUpdateSpec} databaseChange A database may include the databaseChange parameter to notify a device of a change to its database URI, providing one or more alternate database URIs. The device should use this information to update its list of pre-configured databases by (only) replacing its entry for the responding database with the list of alternate URIs.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;spectrum#pawsRegisterResponse&quot;.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsVerifyDeviceRequest
  * @memberOf! spectrum(v1explorer)
  * @type object
  * @property {spectrum(v1explorer).DeviceDescriptor[]} deviceDescs A list of device descriptors, which specifies the slave devices to be validated, is required.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef PawsVerifyDeviceResponse
@@ -578,12 +492,8 @@ Required field.
  * @property {spectrum(v1explorer).DbUpdateSpec} databaseChange A database may include the databaseChange parameter to notify a device of a change to its database URI, providing one or more alternate database URIs. The device should use this information to update its list of pre-configured databases by (only) replacing its entry for the responding database with the list of alternate URIs.
  * @property {spectrum(v1explorer).DeviceValidity[]} deviceValidities A device validities list is required in the device validation response to report whether each slave device listed in a previous device validation request is valid. The number of entries must match the number of device descriptors listed in the previous device validation request.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;spectrum#pawsVerifyDeviceResponse&quot;.
- * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).
-
-Required field.
- * @property {string} version The PAWS version. Must be exactly 1.0.
-
-Required field.
+ * @property {string} type The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).  Required field.
+ * @property {string} version The PAWS version. Must be exactly 1.0.  Required field.
  */
 /**
  * @typedef RulesetInfo

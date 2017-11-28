@@ -49,15 +49,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -68,36 +66,32 @@ function Deploymentmanager(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.compositeTypes.get
-       * @desc Gets information about a specific composite type.
-       * @alias deploymentmanager.compositeTypes.get
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.compositeType The name of the composite type for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.compositeTypes.get
+        * @desc Gets information about a specific composite type.
+        * @alias deploymentmanager.compositeTypes.get
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.compositeType The name of the composite type for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -108,36 +102,32 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.compositeTypes.insert
-       * @desc Creates a composite type.
-       * @alias deploymentmanager.compositeTypes.insert
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.compositeTypes.insert
+        * @desc Creates a composite type.
+        * @alias deploymentmanager.compositeTypes.insert
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -148,39 +138,35 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.compositeTypes.list
-       * @desc Lists all composite types for Deployment Manager.
-       * @alias deploymentmanager.compositeTypes.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.compositeTypes.list
+        * @desc Lists all composite types for Deployment Manager.
+        * @alias deploymentmanager.compositeTypes.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -191,37 +177,33 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.compositeTypes.patch
-       * @desc Updates a composite type. This method supports patch semantics.
-       * @alias deploymentmanager.compositeTypes.patch
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.compositeType The name of the composite type for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.compositeTypes.patch
+        * @desc Updates a composite type. This method supports patch semantics.
+        * @alias deploymentmanager.compositeTypes.patch
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.compositeType The name of the composite type for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -232,37 +214,33 @@ function Deploymentmanager(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.compositeTypes.update
-       * @desc Updates a composite type.
-       * @alias deploymentmanager.compositeTypes.update
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.compositeType The name of the composite type for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.compositeTypes.update
+        * @desc Updates a composite type.
+        * @alias deploymentmanager.compositeTypes.update
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.compositeType The name of the composite type for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).CompositeType} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -273,14 +251,13 @@ function Deploymentmanager(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.deployments = {
@@ -299,15 +276,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancelPreview: function(params, options, callback) {
+    cancelPreview(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -318,37 +293,33 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.delete
-       * @desc Deletes a deployment and all of the resources in the deployment.
-       * @alias deploymentmanager.deployments.delete
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.delete
+        * @desc Deletes a deployment and all of the resources in the deployment.
+        * @alias deploymentmanager.deployments.delete
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -359,36 +330,32 @@ function Deploymentmanager(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.get
-       * @desc Gets information about a specific deployment.
-       * @alias deploymentmanager.deployments.get
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.get
+        * @desc Gets information about a specific deployment.
+        * @alias deploymentmanager.deployments.get
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -399,37 +366,33 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.getIamPolicy
-       * @desc Gets the access control policy for a resource. May be empty if no
-       * such policy or resource exists.
-       * @alias deploymentmanager.deployments.getIamPolicy
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.resource_ Name of the resource for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getIamPolicy: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.getIamPolicy
+        * @desc Gets the access control policy for a resource. May be empty if
+        * no such policy or resource exists.
+        * @alias deploymentmanager.deployments.getIamPolicy
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getIamPolicy(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -440,38 +403,34 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.insert
-       * @desc Creates a deployment and all of the resources described by the
-       * deployment manifest.
-       * @alias deploymentmanager.deployments.insert
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.insert
+        * @desc Creates a deployment and all of the resources described by the
+        * deployment manifest.
+        * @alias deploymentmanager.deployments.insert
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -482,39 +441,35 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.list
-       * @desc Lists all deployments for a given project.
-       * @alias deploymentmanager.deployments.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.list
+        * @desc Lists all deployments for a given project.
+        * @alias deploymentmanager.deployments.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -525,41 +480,37 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.patch
-       * @desc Updates a deployment and all of the resources described by the
-       * deployment manifest. This method supports patch semantics.
-       * @alias deploymentmanager.deployments.patch
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
-       * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.patch
+        * @desc Updates a deployment and all of the resources described by the
+        * deployment manifest. This method supports patch semantics.
+        * @alias deploymentmanager.deployments.patch
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
+        * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -570,38 +521,34 @@ function Deploymentmanager(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.setIamPolicy
-       * @desc Sets the access control policy on the specified resource.
-       * Replaces any existing policy.
-       * @alias deploymentmanager.deployments.setIamPolicy
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.resource_ Name of the resource for this request.
-       * @param {deploymentmanager(alpha).Policy} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    setIamPolicy: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.setIamPolicy
+        * @desc Sets the access control policy on the specified resource.
+        * Replaces any existing policy.
+        * @alias deploymentmanager.deployments.setIamPolicy
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {deploymentmanager(alpha).Policy} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setIamPolicy(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -612,39 +559,35 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.stop
-       * @desc Stops an ongoing operation. This does not roll back any work that
-       * has already been completed, but prevents any new work from being
-       * started.
-       * @alias deploymentmanager.deployments.stop
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).DeploymentsStopRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    stop: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.stop
+        * @desc Stops an ongoing operation. This does not roll back any work
+        * that has already been completed, but prevents any new work from being
+        * started.
+        * @alias deploymentmanager.deployments.stop
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).DeploymentsStopRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    stop(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -655,37 +598,33 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.testIamPermissions
-       * @desc Returns permissions that a caller has on the specified resource.
-       * @alias deploymentmanager.deployments.testIamPermissions
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.resource_ Name of the resource for this request.
-       * @param {deploymentmanager(alpha).TestPermissionsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    testIamPermissions: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.testIamPermissions
+        * @desc Returns permissions that a caller has on the specified resource.
+        * @alias deploymentmanager.deployments.testIamPermissions
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.resource_ Name of the resource for this request.
+        * @param {deploymentmanager(alpha).TestPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    testIamPermissions(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -696,41 +635,37 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.deployments.update
-       * @desc Updates a deployment and all of the resources described by the
-       * deployment manifest.
-       * @alias deploymentmanager.deployments.update
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
-       * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.deployments.update
+        * @desc Updates a deployment and all of the resources described by the
+        * deployment manifest.
+        * @alias deploymentmanager.deployments.update
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
+        * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).Deployment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -741,14 +676,13 @@ function Deploymentmanager(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.manifests = {
@@ -766,15 +700,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -785,40 +717,36 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.manifests.list
-       * @desc Lists all manifests for a given deployment.
-       * @alias deploymentmanager.manifests.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.manifests.list
+        * @desc Lists all manifests for a given deployment.
+        * @alias deploymentmanager.manifests.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -829,14 +757,13 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.operations = {
@@ -853,15 +780,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -872,39 +797,35 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.operations.list
-       * @desc Lists all operations for a project.
-       * @alias deploymentmanager.operations.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.operations.list
+        * @desc Lists all operations for a project.
+        * @alias deploymentmanager.operations.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -915,14 +836,13 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.resources = {
@@ -940,15 +860,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -959,40 +877,36 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.resources.list
-       * @desc Lists all resources in a given deployment.
-       * @alias deploymentmanager.resources.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.deployment The name of the deployment for this request.
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.resources.list
+        * @desc Lists all resources in a given deployment.
+        * @alias deploymentmanager.resources.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.deployment The name of the deployment for this request.
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1003,14 +917,13 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.typeProviders = {
@@ -1027,15 +940,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1046,36 +957,32 @@ function Deploymentmanager(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.get
-       * @desc Gets information about a specific type provider.
-       * @alias deploymentmanager.typeProviders.get
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.typeProvider The name of the type provider for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.get
+        * @desc Gets information about a specific type provider.
+        * @alias deploymentmanager.typeProviders.get
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.typeProvider The name of the type provider for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1086,37 +993,33 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.getType
-       * @desc Gets a type info for a type provided by a TypeProvider.
-       * @alias deploymentmanager.typeProviders.getType
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.type The name of the type provider for this request.
-       * @param {string} params.typeProvider The name of the type provider for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getType: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.getType
+        * @desc Gets a type info for a type provided by a TypeProvider.
+        * @alias deploymentmanager.typeProviders.getType
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.type The name of the type provider for this request.
+        * @param {string} params.typeProvider The name of the type provider for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getType(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1127,36 +1030,32 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider', 'type'],
         pathParams: ['project', 'type', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.insert
-       * @desc Creates a type provider.
-       * @alias deploymentmanager.typeProviders.insert
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.insert
+        * @desc Creates a type provider.
+        * @alias deploymentmanager.typeProviders.insert
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1167,39 +1066,35 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.list
-       * @desc Lists all resource type providers for Deployment Manager.
-       * @alias deploymentmanager.typeProviders.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.list
+        * @desc Lists all resource type providers for Deployment Manager.
+        * @alias deploymentmanager.typeProviders.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1210,40 +1105,36 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.listTypes
-       * @desc Lists all the type info for a TypeProvider.
-       * @alias deploymentmanager.typeProviders.listTypes
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.typeProvider The name of the type provider for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listTypes: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.listTypes
+        * @desc Lists all the type info for a TypeProvider.
+        * @alias deploymentmanager.typeProviders.listTypes
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.typeProvider The name of the type provider for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listTypes(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1254,37 +1145,33 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.patch
-       * @desc Updates a type provider. This method supports patch semantics.
-       * @alias deploymentmanager.typeProviders.patch
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.typeProvider The name of the type provider for this request.
-       * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.patch
+        * @desc Updates a type provider. This method supports patch semantics.
+        * @alias deploymentmanager.typeProviders.patch
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.typeProvider The name of the type provider for this request.
+        * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1295,37 +1182,33 @@ function Deploymentmanager(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.typeProviders.update
-       * @desc Updates a type provider.
-       * @alias deploymentmanager.typeProviders.update
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.typeProvider The name of the type provider for this request.
-       * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.typeProviders.update
+        * @desc Updates a type provider.
+        * @alias deploymentmanager.typeProviders.update
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.typeProvider The name of the type provider for this request.
+        * @param {deploymentmanager(alpha).TypeProvider} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1336,14 +1219,13 @@ function Deploymentmanager(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.types = {
@@ -1360,15 +1242,13 @@ function Deploymentmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1379,36 +1259,32 @@ function Deploymentmanager(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'type'],
         pathParams: ['project', 'type'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.types.get
-       * @desc Gets information about a specific type.
-       * @alias deploymentmanager.types.get
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.type The name of the type for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.types.get
+        * @desc Gets information about a specific type.
+        * @alias deploymentmanager.types.get
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.type The name of the type for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1419,36 +1295,32 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'type'],
         pathParams: ['project', 'type'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.types.insert
-       * @desc Creates a type.
-       * @alias deploymentmanager.types.insert
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {deploymentmanager(alpha).Type} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.types.insert
+        * @desc Creates a type.
+        * @alias deploymentmanager.types.insert
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {deploymentmanager(alpha).Type} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1458,39 +1330,35 @@ function Deploymentmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.types.list
-       * @desc Lists all resource types for Deployment Manager.
-       * @alias deploymentmanager.types.list
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project The project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.types.list
+        * @desc Lists all resource types for Deployment Manager.
+        * @alias deploymentmanager.types.list
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter {expression} for filtering listed resources. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project The project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1500,37 +1368,33 @@ function Deploymentmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.types.patch
-       * @desc Updates a type. This method supports patch semantics.
-       * @alias deploymentmanager.types.patch
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.type The name of the type for this request.
-       * @param {deploymentmanager(alpha).Type} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.types.patch
+        * @desc Updates a type. This method supports patch semantics.
+        * @alias deploymentmanager.types.patch
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.type The name of the type for this request.
+        * @param {deploymentmanager(alpha).Type} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1541,37 +1405,33 @@ function Deploymentmanager(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'type'],
         pathParams: ['project', 'type'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * deploymentmanager.types.update
-       * @desc Updates a type.
-       * @alias deploymentmanager.types.update
-       * @memberOf! deploymentmanager(alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project ID for this request.
-       * @param {string} params.type The name of the type for this request.
-       * @param {deploymentmanager(alpha).Type} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * deploymentmanager.types.update
+        * @desc Updates a type.
+        * @alias deploymentmanager.types.update
+        * @memberOf! deploymentmanager(alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project ID for this request.
+        * @param {string} params.type The name of the type for this request.
+        * @param {deploymentmanager(alpha).Type} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1582,14 +1442,13 @@ function Deploymentmanager(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'type'],
         pathParams: ['project', 'type'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -1633,29 +1492,7 @@ function Deploymentmanager(options) {
  * @memberOf! deploymentmanager(alpha)
  * @type object
  * @property {deploymentmanager(alpha).Expr} condition The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently. This field is GOOGLE_INTERNAL.
- * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
-
-* `allUsers`: A special identifier that represents anyone who is on the
-internet; with or without a Google account.
-
-* `allAuthenticatedUsers`: A special identifier that represents anyone who is
-authenticated with a Google account or a service account.
-
-* `user:{emailid}`: An email address that represents a specific Google account.
-For example, `alice@gmail.com` or `joe@example.com`.
-
-
-
-* `serviceAccount:{emailid}`: An email address that represents a service
-account. For example, `my-other-app@appspot.gserviceaccount.com`.
-
-* `group:{emailid}`: An email address that represents a Google group. For
-example, `admins@example.com`.
-
-
-
-* `domain:{domain}`: A Google Apps domain name that represents all the users of
-that domain. For example, `google.com` or `example.com`.
+ * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
  */
 /**
@@ -1733,11 +1570,7 @@ that domain. For example, `google.com` or `example.com`.
  * @type object
  * @property {deploymentmanager(alpha).Credential} credential User provided default credential for the deployment.
  * @property {string} description An optional user-provided description of the deployment.
- * @property {string} fingerprint Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.
-
-The fingerprint is initially generated by Deployment Manager and changes after
-every request to modify data. To get the latest fingerprint value, perform a
-get() request to a deployment.
+ * @property {string} fingerprint Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.  The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a get() request to a deployment.
  * @property {string} id Output only. Unique identifier for the resource; defined by the server.
  * @property {string} insertTime Output only. Timestamp when the deployment was created, in RFC3339 text format .
  * @property {deploymentmanager(alpha).DeploymentLabelEntry[]} labels Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
@@ -1767,11 +1600,7 @@ get() request to a deployment.
  * @typedef DeploymentsCancelPreviewRequest
  * @memberOf! deploymentmanager(alpha)
  * @type object
- * @property {string} fingerprint Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).
-
-The fingerprint is initially generated by Deployment Manager and changes after
-every request to modify a deployment. To get the latest fingerprint value,
-perform a get() request on the deployment.
+ * @property {string} fingerprint Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
  */
 /**
  * @typedef DeploymentsListResponse
@@ -1784,11 +1613,7 @@ perform a get() request on the deployment.
  * @typedef DeploymentsStopRequest
  * @memberOf! deploymentmanager(alpha)
  * @type object
- * @property {string} fingerprint Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).
-
-The fingerprint is initially generated by Deployment Manager and changes after
-every request to modify a deployment. To get the latest fingerprint value,
-perform a get() request on the deployment.
+ * @property {string} fingerprint Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
  */
 /**
  * @typedef DeploymentUpdate
@@ -1818,10 +1643,7 @@ perform a get() request on the deployment.
  * @memberOf! deploymentmanager(alpha)
  * @type object
  * @property {string} description An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
- * @property {string} expression Textual representation of an expression in Common Expression Language syntax.
-
-The application context of the containing message determines which well-known
-feature set of CEL is supported.
+ * @property {string} expression Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
  * @property {string} location An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
  * @property {string} title An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
  */
@@ -1879,9 +1701,7 @@ feature set of CEL is supported.
  * @property {deploymentmanager(alpha).ImportFile[]} imports Output only. The imported files for this manifest.
  * @property {string} insertTime Output only. Timestamp when the manifest was created, in RFC3339 text format.
  * @property {string} layout Output only. The YAML layout for this manifest.
- * @property {string} name Output only.
-
-The name of the manifest.
+ * @property {string} name Output only.  The name of the manifest.
  * @property {string} selfLink Output only. Self link for the manifest.
  */
 /**
@@ -1941,10 +1761,7 @@ The name of the manifest.
  * @type object
  * @property {deploymentmanager(alpha).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
  * @property {deploymentmanager(alpha).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
- * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
-is overwritten blindly.
+ * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {boolean} iamOwned
  * @property {deploymentmanager(alpha).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
  * @property {integer} version Version of the `Policy`. The default version is 0.

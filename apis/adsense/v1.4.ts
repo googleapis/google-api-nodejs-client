@@ -48,15 +48,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,36 +63,32 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.accounts.list
-       * @desc List all accounts available to this AdSense account.
-       * @alias adsense.accounts.list
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adsense.accounts.list
+        * @desc List all accounts available to this AdSense account.
+        * @alias adsense.accounts.list
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -103,15 +97,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     adclients: {
       /**
        * adsense.accounts.adclients.list
@@ -127,15 +119,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -144,14 +134,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     adunits: {
@@ -170,15 +159,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -189,37 +176,33 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.accounts.adunits.getAdCode
-         * @desc Get ad code for the specified ad unit.
-         * @alias adsense.accounts.adunits.getAdCode
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account which contains the ad client.
-         * @param {string} params.adClientId Ad client with contains the ad unit.
-         * @param {string} params.adUnitId Ad unit to get the code for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      getAdCode: function(params, options, callback) {
+      }, /**
+          * adsense.accounts.adunits.getAdCode
+          * @desc Get ad code for the specified ad unit.
+          * @alias adsense.accounts.adunits.getAdCode
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.accountId Account which contains the ad client.
+          * @param {string} params.adClientId Ad client with contains the ad unit.
+          * @param {string} params.adUnitId Ad unit to get the code for.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      getAdCode(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -230,40 +213,36 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.accounts.adunits.list
-         * @desc List all ad units in the specified ad client for the specified
-         * account.
-         * @alias adsense.accounts.adunits.list
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account to which the ad client belongs.
-         * @param {string} params.adClientId Ad client for which to list ad units.
-         * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-         * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adsense.accounts.adunits.list
+          * @desc List all ad units in the specified ad client for the specified
+          * account.
+          * @alias adsense.accounts.adunits.list
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.accountId Account to which the ad client belongs.
+          * @param {string} params.adClientId Ad client for which to list ad units.
+          * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+          * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+          * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -274,15 +253,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       customchannels: {
         /**
          * adsense.accounts.adunits.customchannels.list
@@ -301,15 +278,13 @@ function Adsense(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, options, callback) {
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -320,14 +295,13 @@ function Adsense(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId', 'adClientId', 'adUnitId'],
             pathParams: ['accountId', 'adClientId', 'adUnitId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     },
@@ -346,15 +320,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -364,36 +336,32 @@ function Adsense(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'alertId'],
           pathParams: ['accountId', 'alertId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.accounts.alerts.list
-         * @desc List the alerts for the specified AdSense account.
-         * @alias adsense.accounts.alerts.list
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account for which to retrieve the alerts.
-         * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adsense.accounts.alerts.list
+          * @desc List the alerts for the specified AdSense account.
+          * @alias adsense.accounts.alerts.list
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.accountId Account for which to retrieve the alerts.
+          * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -402,14 +370,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     customchannels: {
@@ -428,15 +395,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -447,39 +412,35 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId', 'customChannelId'],
           pathParams: ['accountId', 'adClientId', 'customChannelId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.accounts.customchannels.list
-         * @desc List all custom channels in the specified ad client for the
-         * specified account.
-         * @alias adsense.accounts.customchannels.list
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account to which the ad client belongs.
-         * @param {string} params.adClientId Ad client for which to list custom channels.
-         * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adsense.accounts.customchannels.list
+          * @desc List all custom channels in the specified ad client for the
+          * specified account.
+          * @alias adsense.accounts.customchannels.list
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.accountId Account to which the ad client belongs.
+          * @param {string} params.adClientId Ad client for which to list custom channels.
+          * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+          * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -490,15 +451,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       adunits: {
         /**
          * adsense.accounts.customchannels.adunits.list
@@ -517,15 +476,13 @@ function Adsense(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, options, callback) {
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -536,14 +493,13 @@ function Adsense(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId', 'adClientId', 'customChannelId'],
             pathParams: ['accountId', 'adClientId', 'customChannelId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     },
@@ -560,15 +516,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -577,14 +531,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     reports: {
@@ -613,15 +566,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, options, callback) {
+      generate(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -630,15 +581,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'startDate', 'endDate'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       saved: {
         /**
          * adsense.accounts.reports.saved.generate
@@ -657,15 +606,13 @@ function Adsense(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        generate: function(params, options, callback) {
+        generate(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -676,37 +623,33 @@ function Adsense(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId', 'savedReportId'],
             pathParams: ['accountId', 'savedReportId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * adsense.accounts.reports.saved.list
-           * @desc List all saved reports in the specified AdSense account.
-           * @alias adsense.accounts.reports.saved.list
-           * @memberOf! adsense(v1.4)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.accountId Account to which the saved reports belong.
-           * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-           * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        list: function(params, options, callback) {
+        }, /**
+            * adsense.accounts.reports.saved.list
+            * @desc List all saved reports in the specified AdSense account.
+            * @alias adsense.accounts.reports.saved.list
+            * @memberOf! adsense(v1.4)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.accountId Account to which the saved reports belong.
+            * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+            * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -716,14 +659,13 @@ function Adsense(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     },
@@ -741,15 +683,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -760,37 +700,33 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'savedAdStyleId'],
           pathParams: ['accountId', 'savedAdStyleId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.accounts.savedadstyles.list
-         * @desc List all saved ad styles in the specified account.
-         * @alias adsense.accounts.savedadstyles.list
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account for which to list saved ad styles.
-         * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adsense.accounts.savedadstyles.list
+          * @desc List all saved ad styles in the specified account.
+          * @alias adsense.accounts.savedadstyles.list
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.accountId Account for which to list saved ad styles.
+          * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+          * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -800,14 +736,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     urlchannels: {
@@ -827,15 +762,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -846,14 +779,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -871,15 +803,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -888,14 +818,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.adunits = {
@@ -912,15 +841,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -930,36 +857,32 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.adunits.getAdCode
-       * @desc Get ad code for the specified ad unit.
-       * @alias adsense.adunits.getAdCode
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client with contains the ad unit.
-       * @param {string} params.adUnitId Ad unit to get the code for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getAdCode: function(params, options, callback) {
+    }, /**
+        * adsense.adunits.getAdCode
+        * @desc Get ad code for the specified ad unit.
+        * @alias adsense.adunits.getAdCode
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.adClientId Ad client with contains the ad unit.
+        * @param {string} params.adUnitId Ad unit to get the code for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getAdCode(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -970,39 +893,35 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.adunits.list
-       * @desc List all ad units in the specified ad client for this AdSense
-       * account.
-       * @alias adsense.adunits.list
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client for which to list ad units.
-       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adsense.adunits.list
+        * @desc List all ad units in the specified ad client for this AdSense
+        * account.
+        * @alias adsense.adunits.list
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.adClientId Ad client for which to list ad units.
+        * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+        * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1011,15 +930,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     customchannels: {
       /**
        * adsense.adunits.customchannels.list
@@ -1036,15 +953,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1055,14 +970,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['adClientId', 'adUnitId'],
           pathParams: ['adClientId', 'adUnitId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1080,15 +994,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1097,35 +1009,31 @@ function Adsense(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.alerts.list
-       * @desc List the alerts for this AdSense account.
-       * @alias adsense.alerts.list
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adsense.alerts.list
+        * @desc List the alerts for this AdSense account.
+        * @alias adsense.alerts.list
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1134,14 +1042,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.customchannels = {
@@ -1158,15 +1065,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1177,38 +1082,34 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.customchannels.list
-       * @desc List all custom channels in the specified ad client for this
-       * AdSense account.
-       * @alias adsense.customchannels.list
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client for which to list custom channels.
-       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adsense.customchannels.list
+        * @desc List all custom channels in the specified ad client for this
+        * AdSense account.
+        * @alias adsense.customchannels.list
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.adClientId Ad client for which to list custom channels.
+        * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1218,15 +1119,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     adunits: {
       /**
        * adsense.customchannels.adunits.list
@@ -1244,15 +1143,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1263,14 +1160,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['adClientId', 'customChannelId'],
           pathParams: ['adClientId', 'customChannelId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1288,15 +1184,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1305,14 +1199,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     metrics: {
@@ -1328,15 +1221,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1345,14 +1236,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1368,15 +1258,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1385,14 +1273,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.reports = {
@@ -1421,15 +1308,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, options, callback) {
+    generate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1438,15 +1323,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     saved: {
       /**
        * adsense.reports.saved.generate
@@ -1464,15 +1347,13 @@ function Adsense(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function(params, options, callback) {
+      generate(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1481,36 +1362,32 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['savedReportId'],
           pathParams: ['savedReportId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * adsense.reports.saved.list
-         * @desc List all saved reports in this AdSense account.
-         * @alias adsense.reports.saved.list
-         * @memberOf! adsense(v1.4)
-         *
-         * @param {object=} params Parameters for request
-         * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-         * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * adsense.reports.saved.list
+          * @desc List all saved reports in this AdSense account.
+          * @alias adsense.reports.saved.list
+          * @memberOf! adsense(v1.4)
+          *
+          * @param {object=} params Parameters for request
+          * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+          * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -1519,14 +1396,13 @@ function Adsense(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -1543,15 +1419,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1560,36 +1434,32 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['savedAdStyleId'],
         pathParams: ['savedAdStyleId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adsense.savedadstyles.list
-       * @desc List all saved ad styles in the user's account.
-       * @alias adsense.savedadstyles.list
-       * @memberOf! adsense(v1.4)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adsense.savedadstyles.list
+        * @desc List all saved ad styles in the user's account.
+        * @alias adsense.savedadstyles.list
+        * @memberOf! adsense(v1.4)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+        * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1598,14 +1468,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.urlchannels = {
@@ -1624,15 +1493,13 @@ function Adsense(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1642,14 +1509,13 @@ function Adsense(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -1736,15 +1602,7 @@ function Adsense(options) {
  * @property {object} mobileContentAdsSettings Settings specific to WAP mobile content ads (AFMC) - deprecated.
  * @property {string} name Name of this ad unit.
  * @property {string} savedStyleId ID of the saved ad style which holds this ad unit&#39;s style information.
- * @property {string} status Status of this ad unit. Possible values are:
-NEW: Indicates that the ad unit was created within the last seven days and does
-not yet have any activity associated with it.
-
-ACTIVE: Indicates that there has been activity on this ad unit in the last seven
-days.
-
-INACTIVE: Indicates that there has been no activity on this ad unit in the last
-seven days.
+ * @property {string} status Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
  */
 /**
  * @typedef AdUnits

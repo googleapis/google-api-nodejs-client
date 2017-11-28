@@ -56,15 +56,13 @@ function Analytics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -73,14 +71,13 @@ function Analytics(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.management = {
@@ -98,15 +95,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -115,14 +110,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     goals: {
@@ -142,15 +136,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -161,14 +153,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     profiles: {
@@ -187,15 +178,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -206,14 +195,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     segments: {
@@ -230,15 +218,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -247,14 +233,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     webproperties: {
@@ -272,15 +257,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -291,14 +274,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };

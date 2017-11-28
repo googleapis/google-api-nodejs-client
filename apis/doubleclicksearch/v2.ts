@@ -59,15 +59,13 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -78,7 +76,7 @@ function Doubleclicksearch(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [
           'agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount',
           'startDate', 'startRow'
@@ -87,29 +85,25 @@ function Doubleclicksearch(options) {
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.conversion.insert
-       * @desc Inserts a batch of new conversions into DoubleClick Search.
-       * @alias doubleclicksearch.conversion.insert
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.conversion.insert
+        * @desc Inserts a batch of new conversions into DoubleClick Search.
+        * @alias doubleclicksearch.conversion.insert
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -118,43 +112,39 @@ function Doubleclicksearch(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.conversion.patch
-       * @desc Updates a batch of conversions in DoubleClick Search. This method
-       * supports patch semantics.
-       * @alias doubleclicksearch.conversion.patch
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.advertiserId Numeric ID of the advertiser.
-       * @param {string} params.agencyId Numeric ID of the agency.
-       * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-       * @param {string} params.engineAccountId Numeric ID of the engine account.
-       * @param {integer} params.rowCount The number of conversions to return per call.
-       * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-       * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
-       * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.conversion.patch
+        * @desc Updates a batch of conversions in DoubleClick Search. This
+        * method supports patch semantics.
+        * @alias doubleclicksearch.conversion.patch
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.advertiserId Numeric ID of the advertiser.
+        * @param {string} params.agencyId Numeric ID of the agency.
+        * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+        * @param {string} params.engineAccountId Numeric ID of the engine account.
+        * @param {integer} params.rowCount The number of conversions to return per call.
+        * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
+        * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
+        * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -163,7 +153,7 @@ function Doubleclicksearch(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: [
           'advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount',
           'startDate', 'startRow'
@@ -172,29 +162,25 @@ function Doubleclicksearch(options) {
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.conversion.update
-       * @desc Updates a batch of conversions in DoubleClick Search.
-       * @alias doubleclicksearch.conversion.update
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.conversion.update
+        * @desc Updates a batch of conversions in DoubleClick Search.
+        * @alias doubleclicksearch.conversion.update
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -203,36 +189,32 @@ function Doubleclicksearch(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.conversion.updateAvailability
-       * @desc Updates the availabilities of a batch of floodlight activities in
-       * DoubleClick Search.
-       * @alias doubleclicksearch.conversion.updateAvailability
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {doubleclicksearch(v2).UpdateAvailabilityRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updateAvailability: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.conversion.updateAvailability
+        * @desc Updates the availabilities of a batch of floodlight activities
+        * in DoubleClick Search.
+        * @alias doubleclicksearch.conversion.updateAvailability
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {doubleclicksearch(v2).UpdateAvailabilityRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateAvailability(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -242,14 +224,13 @@ function Doubleclicksearch(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.reports = {
@@ -265,15 +246,13 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function(params, options, callback) {
+    generate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -282,35 +261,31 @@ function Doubleclicksearch(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.reports.get
-       * @desc Polls for the status of a report request.
-       * @alias doubleclicksearch.reports.get
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.reportId ID of the report request being polled.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.reports.get
+        * @desc Polls for the status of a report request.
+        * @alias doubleclicksearch.reports.get
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.reportId ID of the report request being polled.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -319,36 +294,32 @@ function Doubleclicksearch(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.reports.getFile
-       * @desc Downloads a report file encoded in UTF-8.
-       * @alias doubleclicksearch.reports.getFile
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.reportFragment The index of the report fragment to download.
-       * @param {string} params.reportId ID of the report.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getFile: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.reports.getFile
+        * @desc Downloads a report file encoded in UTF-8.
+        * @alias doubleclicksearch.reports.getFile
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer} params.reportFragment The index of the report fragment to download.
+        * @param {string} params.reportId ID of the report.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getFile(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -359,35 +330,31 @@ function Doubleclicksearch(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclicksearch.reports.request
-       * @desc Inserts a report request into the reporting system.
-       * @alias doubleclicksearch.reports.request
-       * @memberOf! doubleclicksearch(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {doubleclicksearch(v2).ReportRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    request: function(params, options, callback) {
+    }, /**
+        * doubleclicksearch.reports.request
+        * @desc Inserts a report request into the reporting system.
+        * @alias doubleclicksearch.reports.request
+        * @memberOf! doubleclicksearch(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {doubleclicksearch(v2).ReportRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    request(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -396,14 +363,13 @@ function Doubleclicksearch(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.savedColumns = {
@@ -420,15 +386,13 @@ function Doubleclicksearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -439,14 +403,13 @@ function Doubleclicksearch(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -471,13 +434,9 @@ function Doubleclicksearch(options) {
  * @property {string} agencyId DS agency ID.
  * @property {string} attributionModel Available to advertisers only after contacting DoubleClick Search customer support.
  * @property {string} campaignId DS campaign ID.
- * @property {string} channel Sales channel for the product. Acceptable values are:
-- &quot;local&quot;: a physical store
-- &quot;online&quot;: an online store
+ * @property {string} channel Sales channel for the product. Acceptable values are:   - &quot;local&quot;: a physical store  - &quot;online&quot;: an online store
  * @property {string} clickId DS click ID for the conversion.
- * @property {string} conversionId For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser.
-For online conversions, DS copies the dsConversionId or floodlightOrderId into
-this property depending on the advertiser&#39;s Floodlight instructions.
+ * @property {string} conversionId For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser&#39;s Floodlight instructions.
  * @property {string} conversionModifiedTimestamp The time at which the conversion was last modified, in epoch millis UTC.
  * @property {string} conversionTimestamp The time at which the conversion took place, in epoch millis UTC.
  * @property {string} countMillis Available to advertisers only after contacting DoubleClick Search customer support.
@@ -543,19 +502,13 @@ this property depending on the advertiser&#39;s Floodlight instructions.
  * @memberOf! doubleclicksearch(v2)
  * @type object
  * @property {string} columnName Name of a DoubleClick Search column to include in the report.
- * @property {string} customDimensionName Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.
-If used in a conversion report, returns the value of the specified custom
-dimension for the given conversion, if set. This column does not segment the
-conversion report.
+ * @property {string} customDimensionName Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive. If used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report.
  * @property {string} customMetricName Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive.
  * @property {string} endDate Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate.
  * @property {boolean} groupByColumn Synchronous report only. Set to true to group by this column. Defaults to false.
  * @property {string} headerText Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name.
  * @property {string} platformSource The platform that is used to provide data for the custom dimension. Acceptable values are &quot;floodlight&quot;.
- * @property {string} productReportPerspective Returns metrics only for a specific type of product activity. Accepted values are:
-- &quot;sold&quot;: returns metrics only for products that were sold
-- &quot;advertised&quot;: returns metrics only for products that were advertised
-in a Shopping campaign, and that might or might not have been sold
+ * @property {string} productReportPerspective Returns metrics only for a specific type of product activity. Accepted values are:   - &quot;sold&quot;: returns metrics only for products that were sold  - &quot;advertised&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
  * @property {string} savedColumnName Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI.
  * @property {string} startDate Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate.
  */

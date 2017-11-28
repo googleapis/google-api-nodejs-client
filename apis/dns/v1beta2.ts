@@ -50,15 +50,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -69,38 +67,34 @@ function Dns(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.changes.get
-       * @desc Fetch the representation of an existing Change.
-       * @alias dns.changes.get
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dns.changes.get
+        * @desc Fetch the representation of an existing Change.
+        * @alias dns.changes.get
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -111,40 +105,36 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'changeId'],
         pathParams: ['changeId', 'managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.changes.list
-       * @desc Enumerate Changes to a ResourceRecordSet collection.
-       * @alias dns.changes.list
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
-       * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.changes.list
+        * @desc Enumerate Changes to a ResourceRecordSet collection.
+        * @alias dns.changes.list
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
+        * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -155,14 +145,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.dnsKeys = {
@@ -182,15 +171,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -201,39 +188,35 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'dnsKeyId'],
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.dnsKeys.list
-       * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
-       * @alias dns.dnsKeys.list
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.dnsKeys.list
+        * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
+        * @alias dns.dnsKeys.list
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -244,14 +227,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.managedZoneOperations = {
@@ -270,15 +252,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -289,39 +269,35 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'operation'],
         pathParams: ['managedZone', 'operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZoneOperations.list
-       * @desc Enumerate Operations for the given ManagedZone.
-       * @alias dns.managedZoneOperations.list
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.managedZoneOperations.list
+        * @desc Enumerate Operations for the given ManagedZone.
+        * @alias dns.managedZoneOperations.list
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -332,14 +308,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.managedZones = {
@@ -357,15 +332,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -374,37 +347,33 @@ function Dns(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.delete
-       * @desc Delete a previously created ManagedZone.
-       * @alias dns.managedZones.delete
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.delete
+        * @desc Delete a previously created ManagedZone.
+        * @alias dns.managedZones.delete
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -415,37 +384,33 @@ function Dns(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.get
-       * @desc Fetch the representation of an existing ManagedZone.
-       * @alias dns.managedZones.get
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.get
+        * @desc Fetch the representation of an existing ManagedZone.
+        * @alias dns.managedZones.get
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -456,39 +421,35 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.list
-       * @desc Enumerate ManagedZones that have been created but not yet
-       * deleted.
-       * @alias dns.managedZones.list
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.list
+        * @desc Enumerate ManagedZones that have been created but not yet
+        * deleted.
+        * @alias dns.managedZones.list
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -497,39 +458,35 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.patch
-       * @desc Update an existing ManagedZone. This method supports patch
-       * semantics.
-       * @alias dns.managedZones.patch
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {dns(v1beta2).ManagedZone} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.patch
+        * @desc Update an existing ManagedZone. This method supports patch
+        * semantics.
+        * @alias dns.managedZones.patch
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {dns(v1beta2).ManagedZone} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -540,38 +497,34 @@ function Dns(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.update
-       * @desc Update an existing ManagedZone.
-       * @alias dns.managedZones.update
-       * @memberOf! dns(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {dns(v1beta2).ManagedZone} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.update
+        * @desc Update an existing ManagedZone.
+        * @alias dns.managedZones.update
+        * @memberOf! dns(v1beta2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {dns(v1beta2).ManagedZone} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -582,14 +535,13 @@ function Dns(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.projects = {
@@ -606,15 +558,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -623,14 +573,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.resourceRecordSets = {
@@ -652,15 +601,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -671,14 +618,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -701,14 +647,7 @@ function Dns(options) {
  * @property {dns(v1beta2).Change[]} changes The requested changes.
  * @property {dns(v1beta2).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a &quot;snapshot&quot; of collections larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
  */
 /**
  * @typedef DnsKey
@@ -740,14 +679,7 @@ page size.
  * @property {dns(v1beta2).DnsKey[]} dnsKeys The requested resources.
  * @property {dns(v1beta2).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a &quot;snapshot&quot; of collections larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
  */
 /**
  * @typedef DnsKeySpec
@@ -787,14 +719,7 @@ page size.
  * @type object
  * @property {dns(v1beta2).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  * @property {dns(v1beta2).Operation[]} operations The operation resources.
  */
 /**
@@ -810,14 +735,7 @@ page size.
  * @property {dns(v1beta2).ResponseHeader} header
  * @property {string} kind Type of resource.
  * @property {dns(v1beta2).ManagedZone[]} managedZones The managed zone resources.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  */
 /**
  * @typedef Operation
@@ -886,14 +804,7 @@ page size.
  * @type object
  * @property {dns(v1beta2).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  * @property {dns(v1beta2).ResourceRecordSet[]} rrsets The resource record set resources.
  */
 /**

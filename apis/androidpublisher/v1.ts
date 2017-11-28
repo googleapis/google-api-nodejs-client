@@ -50,15 +50,13 @@ function Androidpublisher(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, options, callback) {
+    cancel(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -69,38 +67,34 @@ function Androidpublisher(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * androidpublisher.purchases.get
-       * @desc Checks whether a user's subscription purchase is valid and
-       * returns its expiry time.
-       * @alias androidpublisher.purchases.get
-       * @memberOf! androidpublisher(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-       * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
-       * @param {string} params.token The token provided to the user's device when the subscription was purchased.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * androidpublisher.purchases.get
+        * @desc Checks whether a user's subscription purchase is valid and
+        * returns its expiry time.
+        * @alias androidpublisher.purchases.get
+        * @memberOf! androidpublisher(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
+        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
+        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -111,14 +105,13 @@ function Androidpublisher(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

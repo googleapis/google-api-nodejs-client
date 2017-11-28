@@ -47,15 +47,13 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadlineitems: function(params, options, callback) {
+    downloadlineitems(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,35 +63,31 @@ function Doubleclickbidmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclickbidmanager.lineitems.uploadlineitems
-       * @desc Uploads line items in CSV format.
-       * @alias doubleclickbidmanager.lineitems.uploadlineitems
-       * @memberOf! doubleclickbidmanager(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {doubleclickbidmanager(v1).UploadLineItemsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    uploadlineitems: function(params, options, callback) {
+    }, /**
+        * doubleclickbidmanager.lineitems.uploadlineitems
+        * @desc Uploads line items in CSV format.
+        * @alias doubleclickbidmanager.lineitems.uploadlineitems
+        * @memberOf! doubleclickbidmanager(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {doubleclickbidmanager(v1).UploadLineItemsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    uploadlineitems(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -103,14 +97,13 @@ function Doubleclickbidmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.queries = {
@@ -126,15 +119,13 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createquery: function(params, options, callback) {
+    createquery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -143,35 +134,31 @@ function Doubleclickbidmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclickbidmanager.queries.deletequery
-       * @desc Deletes a stored query as well as the associated stored reports.
-       * @alias doubleclickbidmanager.queries.deletequery
-       * @memberOf! doubleclickbidmanager(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.queryId Query ID to delete.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    deletequery: function(params, options, callback) {
+    }, /**
+        * doubleclickbidmanager.queries.deletequery
+        * @desc Deletes a stored query as well as the associated stored reports.
+        * @alias doubleclickbidmanager.queries.deletequery
+        * @memberOf! doubleclickbidmanager(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.queryId Query ID to delete.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    deletequery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -180,35 +167,31 @@ function Doubleclickbidmanager(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclickbidmanager.queries.getquery
-       * @desc Retrieves a stored query.
-       * @alias doubleclickbidmanager.queries.getquery
-       * @memberOf! doubleclickbidmanager(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.queryId Query ID to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getquery: function(params, options, callback) {
+    }, /**
+        * doubleclickbidmanager.queries.getquery
+        * @desc Retrieves a stored query.
+        * @alias doubleclickbidmanager.queries.getquery
+        * @memberOf! doubleclickbidmanager(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.queryId Query ID to retrieve.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getquery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -217,34 +200,30 @@ function Doubleclickbidmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclickbidmanager.queries.listqueries
-       * @desc Retrieves stored queries.
-       * @alias doubleclickbidmanager.queries.listqueries
-       * @memberOf! doubleclickbidmanager(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listqueries: function(params, options, callback) {
+    }, /**
+        * doubleclickbidmanager.queries.listqueries
+        * @desc Retrieves stored queries.
+        * @alias doubleclickbidmanager.queries.listqueries
+        * @memberOf! doubleclickbidmanager(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listqueries(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -253,36 +232,32 @@ function Doubleclickbidmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * doubleclickbidmanager.queries.runquery
-       * @desc Runs a stored query to generate a report.
-       * @alias doubleclickbidmanager.queries.runquery
-       * @memberOf! doubleclickbidmanager(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.queryId Query ID to run.
-       * @param {doubleclickbidmanager(v1).RunQueryRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    runquery: function(params, options, callback) {
+    }, /**
+        * doubleclickbidmanager.queries.runquery
+        * @desc Runs a stored query to generate a report.
+        * @alias doubleclickbidmanager.queries.runquery
+        * @memberOf! doubleclickbidmanager(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.queryId Query ID to run.
+        * @param {doubleclickbidmanager(v1).RunQueryRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    runquery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -291,14 +266,13 @@ function Doubleclickbidmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.reports = {
@@ -314,15 +288,13 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listreports: function(params, options, callback) {
+    listreports(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -332,14 +304,13 @@ function Doubleclickbidmanager(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.sdf = {
@@ -355,15 +326,13 @@ function Doubleclickbidmanager(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download: function(params, options, callback) {
+    download(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -372,14 +341,13 @@ function Doubleclickbidmanager(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -469,9 +437,7 @@ function Doubleclickbidmanager(options) {
  * @property {string} googleCloudStoragePathForLatestReport The path to the location in Google Cloud Storage where the latest report is stored.
  * @property {string} googleDrivePathForLatestReport The path in Google Drive for the latest report.
  * @property {string} latestReportRunTimeMs The time when the latest report started to run.
- * @property {string} locale Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE
-
-An locale string not in the list above will generate reports in English.
+ * @property {string} locale Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list above will generate reports in English.
  * @property {integer} reportCount Number of reports that have been generated for the query.
  * @property {boolean} running Whether the latest report is currently running.
  * @property {boolean} sendNotification Whether to send an email notification when a report is ready. Default to false.

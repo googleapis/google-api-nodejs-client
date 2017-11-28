@@ -48,15 +48,13 @@ function Vault(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPermissions: function(params, options, callback) {
+    addPermissions(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,36 +63,32 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.close
-       * @desc Closes the specified matter. Returns matter with updated state.
-       * @alias vault.matters.close
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {vault(v1).CloseMatterRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    close: function(params, options, callback) {
+    }, /**
+        * vault.matters.close
+        * @desc Closes the specified matter. Returns matter with updated state.
+        * @alias vault.matters.close
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {vault(v1).CloseMatterRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    close(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -103,37 +97,33 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.create
-       * @desc Creates a new matter with the given name and description. The
-       * initial state is open, and the owner is the method caller. Returns the
-       * created matter with default view.
-       * @alias vault.matters.create
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {vault(v1).Matter} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    create: function(params, options, callback) {
+    }, /**
+        * vault.matters.create
+        * @desc Creates a new matter with the given name and description. The
+        * initial state is open, and the owner is the method caller. Returns the
+        * created matter with default view.
+        * @alias vault.matters.create
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {vault(v1).Matter} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -141,35 +131,31 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.delete
-       * @desc Deletes the specified matter. Returns matter with updated state.
-       * @alias vault.matters.delete
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * vault.matters.delete
+        * @desc Deletes the specified matter. Returns matter with updated state.
+        * @alias vault.matters.delete
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -178,36 +164,32 @@ function Vault(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.get
-       * @desc Gets the specified matter.
-       * @alias vault.matters.get
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {string=} params.view Specifies which parts of the Matter to return in the response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * vault.matters.get
+        * @desc Gets the specified matter.
+        * @alias vault.matters.get
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {string=} params.view Specifies which parts of the Matter to return in the response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -216,38 +198,34 @@ function Vault(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.list
-       * @desc Lists matters the user has access to.
-       * @alias vault.matters.list
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
-       * @param {string=} params.pageToken The pagination token as returned in the response.
-       * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
-       * @param {string=} params.view Specifies which parts of the matter to return in response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * vault.matters.list
+        * @desc Lists matters the user has access to.
+        * @alias vault.matters.list
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
+        * @param {string=} params.pageToken The pagination token as returned in the response.
+        * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
+        * @param {string=} params.view Specifies which parts of the matter to return in response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -255,36 +233,32 @@ function Vault(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.removePermissions
-       * @desc Removes an account as a matter collaborator.
-       * @alias vault.matters.removePermissions
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {vault(v1).RemoveMatterPermissionsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    removePermissions: function(params, options, callback) {
+    }, /**
+        * vault.matters.removePermissions
+        * @desc Removes an account as a matter collaborator.
+        * @alias vault.matters.removePermissions
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {vault(v1).RemoveMatterPermissionsRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removePermissions(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -293,36 +267,32 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.reopen
-       * @desc Reopens the specified matter. Returns matter with updated state.
-       * @alias vault.matters.reopen
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {vault(v1).ReopenMatterRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    reopen: function(params, options, callback) {
+    }, /**
+        * vault.matters.reopen
+        * @desc Reopens the specified matter. Returns matter with updated state.
+        * @alias vault.matters.reopen
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {vault(v1).ReopenMatterRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    reopen(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -331,37 +301,33 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.undelete
-       * @desc Undeletes the specified matter. Returns matter with updated
-       * state.
-       * @alias vault.matters.undelete
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {vault(v1).UndeleteMatterRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    undelete: function(params, options, callback) {
+    }, /**
+        * vault.matters.undelete
+        * @desc Undeletes the specified matter. Returns matter with updated
+        * state.
+        * @alias vault.matters.undelete
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {vault(v1).UndeleteMatterRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    undelete(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -370,38 +336,34 @@ function Vault(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * vault.matters.update
-       * @desc Updates the specified matter. This updates only the name and
-       * description of the matter, identified by matter id. Changes to any
-       * other fields are ignored. Returns the default view of the matter.
-       * @alias vault.matters.update
-       * @memberOf! vault(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.matterId The matter ID.
-       * @param {vault(v1).Matter} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * vault.matters.update
+        * @desc Updates the specified matter. This updates only the name and
+        * description of the matter, identified by matter id. Changes to any
+        * other fields are ignored. Returns the default view of the matter.
+        * @alias vault.matters.update
+        * @memberOf! vault(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.matterId The matter ID.
+        * @param {vault(v1).Matter} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -410,15 +372,13 @@ function Vault(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     holds: {
       /**
        * vault.matters.holds.create
@@ -433,15 +393,13 @@ function Vault(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -450,37 +408,33 @@ function Vault(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['matterId'],
           pathParams: ['matterId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * vault.matters.holds.delete
-         * @desc Removes a hold by ID. This will release any HeldAccounts on
-         * this Hold.
-         * @alias vault.matters.holds.delete
-         * @memberOf! vault(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.holdId The hold ID.
-         * @param {string} params.matterId The matter ID.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      delete: function(params, options, callback) {
+      }, /**
+          * vault.matters.holds.delete
+          * @desc Removes a hold by ID. This will release any HeldAccounts on
+          * this Hold.
+          * @alias vault.matters.holds.delete
+          * @memberOf! vault(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.holdId The hold ID.
+          * @param {string} params.matterId The matter ID.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -489,36 +443,32 @@ function Vault(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['matterId', 'holdId'],
           pathParams: ['holdId', 'matterId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * vault.matters.holds.get
-         * @desc Gets a hold by ID.
-         * @alias vault.matters.holds.get
-         * @memberOf! vault(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.holdId The hold ID.
-         * @param {string} params.matterId The matter ID.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * vault.matters.holds.get
+          * @desc Gets a hold by ID.
+          * @alias vault.matters.holds.get
+          * @memberOf! vault(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.holdId The hold ID.
+          * @param {string} params.matterId The matter ID.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -527,38 +477,34 @@ function Vault(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['matterId', 'holdId'],
           pathParams: ['holdId', 'matterId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * vault.matters.holds.list
-         * @desc Lists holds within a matter. An empty page token in
-         * ListHoldsResponse denotes no more holds to list.
-         * @alias vault.matters.holds.list
-         * @memberOf! vault(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.matterId The matter ID.
-         * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
-         * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * vault.matters.holds.list
+          * @desc Lists holds within a matter. An empty page token in
+          * ListHoldsResponse denotes no more holds to list.
+          * @alias vault.matters.holds.list
+          * @memberOf! vault(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.matterId The matter ID.
+          * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
+          * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -567,40 +513,36 @@ function Vault(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['matterId'],
           pathParams: ['matterId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * vault.matters.holds.update
-         * @desc Updates the OU and/or query parameters of a hold. You cannot
-         * add accounts to a hold that covers an OU, nor can you add OUs to a
-         * hold that covers individual accounts. Accounts listed in the hold
-         * will be ignored.
-         * @alias vault.matters.holds.update
-         * @memberOf! vault(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.holdId The ID of the hold.
-         * @param {string} params.matterId The matter ID.
-         * @param {vault(v1).Hold} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
+      }, /**
+          * vault.matters.holds.update
+          * @desc Updates the OU and/or query parameters of a hold. You cannot
+          * add accounts to a hold that covers an OU, nor can you add OUs to a
+          * hold that covers individual accounts. Accounts listed in the hold
+          * will be ignored.
+          * @alias vault.matters.holds.update
+          * @memberOf! vault(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.holdId The ID of the hold.
+          * @param {string} params.matterId The matter ID.
+          * @param {vault(v1).Hold} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      update(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -609,15 +551,13 @@ function Vault(options) {
                 method: 'PUT'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['matterId', 'holdId'],
           pathParams: ['holdId', 'matterId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       accounts: {
         /**
          * vault.matters.holds.accounts.create
@@ -635,15 +575,13 @@ function Vault(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function(params, options, callback) {
+        create(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -653,39 +591,35 @@ function Vault(options) {
                   method: 'POST'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['matterId', 'holdId'],
             pathParams: ['holdId', 'matterId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * vault.matters.holds.accounts.delete
-           * @desc Removes a HeldAccount from a hold. If this request leaves the
-           * hold with no held accounts, the hold will not apply to any
-           * accounts.
-           * @alias vault.matters.holds.accounts.delete
-           * @memberOf! vault(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.accountId The ID of the account to remove from the hold.
-           * @param {string} params.holdId The hold ID.
-           * @param {string} params.matterId The matter ID.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        delete: function(params, options, callback) {
+        }, /**
+            * vault.matters.holds.accounts.delete
+            * @desc Removes a HeldAccount from a hold. If this request leaves
+            * the hold with no held accounts, the hold will not apply to any
+            * accounts.
+            * @alias vault.matters.holds.accounts.delete
+            * @memberOf! vault(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.accountId The ID of the account to remove from the hold.
+            * @param {string} params.holdId The hold ID.
+            * @param {string} params.matterId The matter ID.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        delete (params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -696,39 +630,35 @@ function Vault(options) {
                   method: 'DELETE'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['matterId', 'holdId', 'accountId'],
             pathParams: ['accountId', 'holdId', 'matterId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * vault.matters.holds.accounts.list
-           * @desc Lists HeldAccounts for a hold. This will only list
-           * individually specified held accounts. If the hold is on an OU, then
-           * use <a href="https://developers.google.com/admin-sdk/">Admin
-           * SDK</a> to enumerate its members.
-           * @alias vault.matters.holds.accounts.list
-           * @memberOf! vault(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.holdId The hold ID.
-           * @param {string} params.matterId The matter ID.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        list: function(params, options, callback) {
+        }, /**
+            * vault.matters.holds.accounts.list
+            * @desc Lists HeldAccounts for a hold. This will only list
+            * individually specified held accounts. If the hold is on an OU,
+            * then use <a href="https://developers.google.com/admin-sdk/">Admin
+            * SDK</a> to enumerate its members.
+            * @alias vault.matters.holds.accounts.list
+            * @memberOf! vault(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.holdId The hold ID.
+            * @param {string} params.matterId The matter ID.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -738,14 +668,13 @@ function Vault(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['matterId', 'holdId'],
             pathParams: ['holdId', 'matterId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     }
@@ -755,12 +684,9 @@ function Vault(options) {
  * @typedef AddMatterPermissionsRequest
  * @memberOf! vault(v1)
  * @type object
- * @property {boolean} ccMe Only relevant if send_emails is true.
-True to CC requestor in the email message.
-False to not CC requestor.
+ * @property {boolean} ccMe Only relevant if send_emails is true. True to CC requestor in the email message. False to not CC requestor.
  * @property {vault(v1).MatterPermission} matterPermission The MatterPermission to add.
- * @property {boolean} sendEmails True to send notification email to the added account.
-False to not send notification email.
+ * @property {boolean} sendEmails True to send notification email to the added account. False to not send notification email.
  */
 /**
  * @typedef CloseMatterRequest
@@ -790,9 +716,7 @@ False to not send notification email.
  * @typedef HeldAccount
  * @memberOf! vault(v1)
  * @type object
- * @property {string} accountId The account&#39;s ID as provided by the
-&lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin
-SDK&lt;/a&gt;.
+ * @property {string} accountId The account&#39;s ID as provided by the &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
  * @property {string} holdTime When the account was put on hold.
  */
 /**
@@ -805,20 +729,16 @@ SDK&lt;/a&gt;.
  * @typedef HeldGroupsQuery
  * @memberOf! vault(v1)
  * @type object
- * @property {string} endTime The end time range for the search query. These timestamps are in GMT and
-rounded down to the start of the given date.
- * @property {string} startTime The start time range for the search query. These timestamps are in GMT and
-rounded down to the start of the given date.
+ * @property {string} endTime The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+ * @property {string} startTime The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
  * @property {string} terms The search terms for the hold.
  */
 /**
  * @typedef HeldMailQuery
  * @memberOf! vault(v1)
  * @type object
- * @property {string} endTime The end time range for the search query. These timestamps are in GMT and
-rounded down to the start of the given date.
- * @property {string} startTime The start time range for the search query. These timestamps are in GMT and
-rounded down to the start of the given date.
+ * @property {string} endTime The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+ * @property {string} startTime The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
  * @property {string} terms The search terms for the hold.
  */
 /**
@@ -832,16 +752,12 @@ rounded down to the start of the given date.
  * @typedef Hold
  * @memberOf! vault(v1)
  * @type object
- * @property {vault(v1).HeldAccount[]} accounts If set, the hold applies to the enumerated accounts and org_unit must be
-empty.
+ * @property {vault(v1).HeldAccount[]} accounts If set, the hold applies to the enumerated accounts and org_unit must be empty.
  * @property {string} corpus The corpus to be searched.
  * @property {string} holdId The unique immutable ID of the hold. Assigned during creation.
  * @property {string} name The name of the hold.
- * @property {vault(v1).HeldOrgUnit} orgUnit If set, the hold applies to all members of the organizational unit and
-accounts must be empty. This property is mutable. For groups holds,
-set the accounts field.
- * @property {vault(v1).CorpusQuery} query The corpus-specific query. If set, the corpusQuery must match corpus
-type.
+ * @property {vault(v1).HeldOrgUnit} orgUnit If set, the hold applies to all members of the organizational unit and accounts must be empty. This property is mutable. For groups holds, set the accounts field.
+ * @property {vault(v1).CorpusQuery} query The corpus-specific query. If set, the corpusQuery must match corpus type.
  * @property {string} updateTime The last time this hold was modified.
  */
 /**
@@ -855,8 +771,7 @@ type.
  * @memberOf! vault(v1)
  * @type object
  * @property {vault(v1).Hold[]} holds The list of holds.
- * @property {string} nextPageToken Page token to retrieve the next page of results in the list.
-If this is empty, then there are no more holds to list.
+ * @property {string} nextPageToken Page token to retrieve the next page of results in the list. If this is empty, then there are no more holds to list.
  */
 /**
  * @typedef ListMattersResponse
@@ -870,10 +785,8 @@ If this is empty, then there are no more holds to list.
  * @memberOf! vault(v1)
  * @type object
  * @property {string} description The description of the matter.
- * @property {string} matterId The matter ID which is generated by the server.
-Should be blank when creating a new matter.
- * @property {vault(v1).MatterPermission[]} matterPermissions List of users and access to the matter. Currently there is no programmer
-defined limit on the number of permissions a matter can have.
+ * @property {string} matterId The matter ID which is generated by the server. Should be blank when creating a new matter.
+ * @property {vault(v1).MatterPermission[]} matterPermissions List of users and access to the matter. Currently there is no programmer defined limit on the number of permissions a matter can have.
  * @property {string} name The name of the matter.
  * @property {string} state The state of the matter.
  */

@@ -47,15 +47,13 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,39 +62,35 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.activities.list
-       * @desc List all of the activities in the specified collection for a
-       * particular user.
-       * @alias plus.activities.list
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection The collection of activities to list.
-       * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * plus.activities.list
+        * @desc List all of the activities in the specified collection for a
+        * particular user.
+        * @alias plus.activities.list
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection The collection of activities to list.
+        * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -106,39 +100,35 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.activities.search
-       * @desc Search public activities.
-       * @alias plus.activities.search
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
-       * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.orderBy Specifies how to order search results.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-       * @param {string} params.query Full-text search query string.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    search: function(params, options, callback) {
+    }, /**
+        * plus.activities.search
+        * @desc Search public activities.
+        * @alias plus.activities.search
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+        * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.orderBy Specifies how to order search results.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+        * @param {string} params.query Full-text search query string.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    search(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -147,14 +137,13 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['query'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.comments = {
@@ -170,15 +159,13 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -187,38 +174,34 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.comments.list
-       * @desc List all of the comments for an activity.
-       * @alias plus.comments.list
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.activityId The ID of the activity to get comments for.
-       * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {string=} params.sortOrder The order in which to sort the list of comments.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * plus.comments.list
+        * @desc List all of the comments for an activity.
+        * @alias plus.comments.list
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.activityId The ID of the activity to get comments for.
+        * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {string=} params.sortOrder The order in which to sort the list of comments.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -227,14 +210,13 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.people = {
@@ -252,15 +234,13 @@ function Plus(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -269,39 +249,35 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.people.list
-       * @desc List all of the people in the specified collection.
-       * @alias plus.people.list
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection The collection of people to list.
-       * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.orderBy The order to return people in.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * plus.people.list
+        * @desc List all of the people in the specified collection.
+        * @alias plus.people.list
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection The collection of people to list.
+        * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.orderBy The order to return people in.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -310,39 +286,35 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.people.listByActivity
-       * @desc List all of the people in the specified collection for a
-       * particular activity.
-       * @alias plus.people.listByActivity
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.activityId The ID of the activity to get the list of people for.
-       * @param {string} params.collection The collection of people to list.
-       * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listByActivity: function(params, options, callback) {
+    }, /**
+        * plus.people.listByActivity
+        * @desc List all of the people in the specified collection for a
+        * particular activity.
+        * @alias plus.people.listByActivity
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.activityId The ID of the activity to get the list of people for.
+        * @param {string} params.collection The collection of people to list.
+        * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listByActivity(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -352,38 +324,34 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * plus.people.search
-       * @desc Search all public profiles.
-       * @alias plus.people.search
-       * @memberOf! plus(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
-       * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
-       * @param {string} params.query Specify a query string for full text search of public text in all profiles.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    search: function(params, options, callback) {
+    }, /**
+        * plus.people.search
+        * @desc Search all public profiles.
+        * @alias plus.people.search
+        * @memberOf! plus(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+        * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+        * @param {string} params.query Specify a query string for full text search of public text in all profiles.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    search(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -391,14 +359,13 @@ function Plus(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['query'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -433,9 +400,7 @@ function Plus(options) {
  * @property {string} title Title of this activity.
  * @property {string} updated The time at which this activity was last updated. Formatted as an RFC 3339 timestamp.
  * @property {string} url The link to this activity.
- * @property {string} verb This activity&#39;s verb, which indicates the action that was performed. Possible values include, but are not limited to, the following values:
-- &quot;post&quot; - Publish content to the stream.
-- &quot;share&quot; - Reshare an activity.
+ * @property {string} verb This activity&#39;s verb, which indicates the action that was performed. Possible values include, but are not limited to, the following values:   - &quot;post&quot; - Publish content to the stream.  - &quot;share&quot; - Reshare an activity.
  */
 /**
  * @typedef ActivityFeed
@@ -465,8 +430,7 @@ function Plus(options) {
  * @property {string} published The time at which this comment was initially published. Formatted as an RFC 3339 timestamp.
  * @property {string} selfLink Link to this comment resource.
  * @property {string} updated The time at which this comment was last updated. Formatted as an RFC 3339 timestamp.
- * @property {string} verb This comment&#39;s verb, indicating what action was performed. Possible values are:
-- &quot;post&quot; - Publish content to the stream.
+ * @property {string} verb This comment&#39;s verb, indicating what action was performed. Possible values are:   - &quot;post&quot; - Publish content to the stream.
  */
 /**
  * @typedef CommentFeed
@@ -508,10 +472,7 @@ function Plus(options) {
  * @property {string} domain The hosted domain name for the user&#39;s Google Apps account. For instance, example.com. The plus.profile.emails.read or email scope is needed to get this domain name.
  * @property {object[]} emails A list of email addresses that this person has, including their Google account email address, and the public verified email addresses on their Google+ profile. The plus.profile.emails.read scope is needed to retrieve these email addresses, or the email scope can be used to retrieve just the Google account email address.
  * @property {string} etag ETag of this response for caching purposes.
- * @property {string} gender The person&#39;s gender. Possible values include, but are not limited to, the following values:
-- &quot;male&quot; - Male gender.
-- &quot;female&quot; - Female gender.
-- &quot;other&quot; - Other.
+ * @property {string} gender The person&#39;s gender. Possible values include, but are not limited to, the following values:   - &quot;male&quot; - Male gender.  - &quot;female&quot; - Female gender.  - &quot;other&quot; - Other.
  * @property {string} id The ID of this person.
  * @property {object} image The representation of the person&#39;s profile photo.
  * @property {boolean} isPlusUser Whether this user has signed up for Google+.
@@ -519,23 +480,12 @@ function Plus(options) {
  * @property {string} language The user&#39;s preferred language for rendering.
  * @property {object} name An object representation of the individual components of a person&#39;s name.
  * @property {string} nickname The nickname of this person.
- * @property {string} objectType Type of person within Google+. Possible values include, but are not limited to, the following values:
-- &quot;person&quot; - represents an actual person.
-- &quot;page&quot; - represents a page.
+ * @property {string} objectType Type of person within Google+. Possible values include, but are not limited to, the following values:   - &quot;person&quot; - represents an actual person.  - &quot;page&quot; - represents a page.
  * @property {string} occupation The occupation of this person.
  * @property {object[]} organizations A list of current or past organizations with which this person is associated.
  * @property {object[]} placesLived A list of places where this person has lived.
  * @property {integer} plusOneCount If a Google+ Page, the number of people who have +1&#39;d this page.
- * @property {string} relationshipStatus The person&#39;s relationship status. Possible values include, but are not limited to, the following values:
-- &quot;single&quot; - Person is single.
-- &quot;in_a_relationship&quot; - Person is in a relationship.
-- &quot;engaged&quot; - Person is engaged.
-- &quot;married&quot; - Person is married.
-- &quot;its_complicated&quot; - The relationship is complicated.
-- &quot;open_relationship&quot; - Person is in an open relationship.
-- &quot;widowed&quot; - Person is widowed.
-- &quot;in_domestic_partnership&quot; - Person is in a domestic partnership.
-- &quot;in_civil_union&quot; - Person is in a civil union.
+ * @property {string} relationshipStatus The person&#39;s relationship status. Possible values include, but are not limited to, the following values:   - &quot;single&quot; - Person is single.  - &quot;in_a_relationship&quot; - Person is in a relationship.  - &quot;engaged&quot; - Person is engaged.  - &quot;married&quot; - Person is married.  - &quot;its_complicated&quot; - The relationship is complicated.  - &quot;open_relationship&quot; - Person is in an open relationship.  - &quot;widowed&quot; - Person is widowed.  - &quot;in_domestic_partnership&quot; - Person is in a domestic partnership.  - &quot;in_civil_union&quot; - Person is in a civil union.
  * @property {string} skills The person&#39;s skills.
  * @property {string} tagline The brief description (tagline) of this person.
  * @property {string} url The URL of this person&#39;s profile.
@@ -558,14 +508,7 @@ function Plus(options) {
  * @type object
  * @property {string} displayName A descriptive name for this entry. Suitable for display.
  * @property {string} id The ID of the entry. For entries of type &quot;person&quot; or &quot;circle&quot;, this is the ID of the resource. For other types, this property is not set.
- * @property {string} type The type of entry describing to whom access is granted. Possible values are:
-- &quot;person&quot; - Access to an individual.
-- &quot;circle&quot; - Access to members of a circle.
-- &quot;myCircles&quot; - Access to members of all the person&#39;s circles.
-- &quot;extendedCircles&quot; - Access to members of all the person&#39;s
-circles, plus all of the people in their circles.
-- &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain.
-- &quot;public&quot; - Access to anyone on the web.
+ * @property {string} type The type of entry describing to whom access is granted. Possible values are:   - &quot;person&quot; - Access to an individual.  - &quot;circle&quot; - Access to members of a circle.  - &quot;myCircles&quot; - Access to members of all the person&#39;s circles.  - &quot;extendedCircles&quot; - Access to members of all the person&#39;s circles, plus all of the people in their circles.  - &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain.  - &quot;public&quot; - Access to anyone on the web.
  */
 
 export = Plus;

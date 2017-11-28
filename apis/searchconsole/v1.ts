@@ -48,16 +48,14 @@ function Searchconsole(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      run: function(params, options, callback) {
+      run(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl =
             options.rootUrl || 'https://searchconsole.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -66,14 +64,13 @@ function Searchconsole(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: [],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -88,8 +85,7 @@ function Searchconsole(options) {
  * @typedef Image
  * @memberOf! searchconsole(v1)
  * @type object
- * @property {string} data Image data in format determined by the mime type. Currently, the format
-will always be &quot;image/png&quot;, but this might change in the future.
+ * @property {string} data Image data in format determined by the mime type. Currently, the format will always be &quot;image/png&quot;, but this might change in the future.
  * @property {string} mimeType The mime-type of the image data.
  */
 /**

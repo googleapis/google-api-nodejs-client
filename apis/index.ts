@@ -131,9 +131,6 @@ const APIS = {
     'v1beta1': require('./cloudresourcemanager/v1beta1'),
     'v2beta1': require('./cloudresourcemanager/v2beta1'),
       },
-  cloudtasks: {
-    'v2beta2': require('./cloudtasks/v2beta2'),
-      },
   cloudtrace: {
     'v1': require('./cloudtrace/v1'),
     'v2': require('./cloudtrace/v2'),
@@ -288,6 +285,7 @@ const APIS = {
     'v2': require('./oauth2/v2'),
       },
   oslogin: {
+    'v1': require('./oslogin/v1'),
     'v1alpha': require('./oslogin/v1alpha'),
     'v1beta': require('./oslogin/v1beta'),
       },
@@ -360,9 +358,6 @@ const APIS = {
       },
   servicemanagement: {
     'v1': require('./servicemanagement/v1'),
-      },
-  serviceuser: {
-    'v1': require('./serviceuser/v1'),
       },
   sheets: {
     'v4': require('./sheets/v4'),
@@ -577,9 +572,6 @@ export function cloudkms(options) {
 export function cloudresourcemanager(options) {
   return getAPI.call(this, 'cloudresourcemanager', options);
 }
-export function cloudtasks(options) {
-  return getAPI.call(this, 'cloudtasks', options);
-}
 export function cloudtrace(options) {
   return getAPI.call(this, 'cloudtrace', options);
 }
@@ -771,9 +763,6 @@ export function servicecontrol(options) {
 }
 export function servicemanagement(options) {
   return getAPI.call(this, 'servicemanagement', options);
-}
-export function serviceuser(options) {
-  return getAPI.call(this, 'serviceuser', options);
 }
 export function sheets(options) {
   return getAPI.call(this, 'sheets', options);

@@ -52,15 +52,13 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      aggregate: function(params, options, callback) {
+      aggregate(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -69,14 +67,13 @@ function Fitness(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     dataSources: {
@@ -100,15 +97,13 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -117,37 +112,33 @@ function Fitness(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.dataSources.delete
-         * @desc Deletes the specified data source. The request will fail if the
-         * data source contains any data points.
-         * @alias fitness.users.dataSources.delete
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.dataSourceId The data stream ID of the data source to delete.
-         * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      delete: function(params, options, callback) {
+      }, /**
+          * fitness.users.dataSources.delete
+          * @desc Deletes the specified data source. The request will fail if
+          * the data source contains any data points.
+          * @alias fitness.users.dataSources.delete
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.dataSourceId The data stream ID of the data source to delete.
+          * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -157,36 +148,32 @@ function Fitness(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.dataSources.get
-         * @desc Returns the specified data source.
-         * @alias fitness.users.dataSources.get
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
-         * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * fitness.users.dataSources.get
+          * @desc Returns the specified data source.
+          * @alias fitness.users.dataSources.get
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
+          * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -196,39 +183,35 @@ function Fitness(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.dataSources.list
-         * @desc Lists all data sources that are visible to the developer, using
-         * the OAuth scopes provided. The list is not exhaustive; the user may
-         * have private data sources that are only visible to other developers,
-         * or calls using other scopes.
-         * @alias fitness.users.dataSources.list
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
-         * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * fitness.users.dataSources.list
+          * @desc Lists all data sources that are visible to the developer,
+          * using the OAuth scopes provided. The list is not exhaustive; the
+          * user may have private data sources that are only visible to other
+          * developers, or calls using other scopes.
+          * @alias fitness.users.dataSources.list
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
+          * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -237,40 +220,36 @@ function Fitness(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.dataSources.patch
-         * @desc Updates the specified data source. The dataStreamId, dataType,
-         * type, dataStreamName, and device properties with the exception of
-         * version, cannot be modified.  Data sources are identified by their
-         * dataStreamId. This method supports patch semantics.
-         * @alias fitness.users.dataSources.patch
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.dataSourceId The data stream ID of the data source to update.
-         * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {fitness(v1).DataSource} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
+      }, /**
+          * fitness.users.dataSources.patch
+          * @desc Updates the specified data source. The dataStreamId, dataType,
+          * type, dataStreamName, and device properties with the exception of
+          * version, cannot be modified.  Data sources are identified by their
+          * dataStreamId. This method supports patch semantics.
+          * @alias fitness.users.dataSources.patch
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.dataSourceId The data stream ID of the data source to update.
+          * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {fitness(v1).DataSource} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      patch(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -280,40 +259,36 @@ function Fitness(options) {
                 method: 'PATCH'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.dataSources.update
-         * @desc Updates the specified data source. The dataStreamId, dataType,
-         * type, dataStreamName, and device properties with the exception of
-         * version, cannot be modified.  Data sources are identified by their
-         * dataStreamId.
-         * @alias fitness.users.dataSources.update
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.dataSourceId The data stream ID of the data source to update.
-         * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {fitness(v1).DataSource} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
+      }, /**
+          * fitness.users.dataSources.update
+          * @desc Updates the specified data source. The dataStreamId, dataType,
+          * type, dataStreamName, and device properties with the exception of
+          * version, cannot be modified.  Data sources are identified by their
+          * dataStreamId.
+          * @alias fitness.users.dataSources.update
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.dataSourceId The data stream ID of the data source to update.
+          * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {fitness(v1).DataSource} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      update(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -323,15 +298,13 @@ function Fitness(options) {
                 method: 'PUT'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      ,
+      },
       dataPointChanges: {
         /**
          * fitness.users.dataSources.dataPointChanges.list
@@ -349,15 +322,13 @@ function Fitness(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function(params, options, callback) {
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -368,14 +339,13 @@ function Fitness(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['userId', 'dataSourceId'],
             pathParams: ['dataSourceId', 'userId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       },
       datasets: {
@@ -401,15 +371,13 @@ function Fitness(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function(params, options, callback) {
+        delete (params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -420,43 +388,39 @@ function Fitness(options) {
                   method: 'DELETE'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * fitness.users.dataSources.datasets.get
-           * @desc Returns a dataset containing all data points whose start and
-           * end times overlap with the specified range of the dataset minimum
-           * start time and maximum end time. Specifically, any data point whose
-           * start time is less than or equal to the dataset end time and whose
-           * end time is greater than or equal to the dataset start time.
-           * @alias fitness.users.dataSources.datasets.get
-           * @memberOf! fitness(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-           * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-           * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
-           * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
-           * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        get: function(params, options, callback) {
+        }, /**
+            * fitness.users.dataSources.datasets.get
+            * @desc Returns a dataset containing all data points whose start and
+            * end times overlap with the specified range of the dataset minimum
+            * start time and maximum end time. Specifically, any data point
+            * whose start time is less than or equal to the dataset end time and
+            * whose end time is greater than or equal to the dataset start time.
+            * @alias fitness.users.dataSources.datasets.get
+            * @memberOf! fitness(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+            * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+            * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
+            * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
+            * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        get(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -467,43 +431,39 @@ function Fitness(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * fitness.users.dataSources.datasets.patch
-           * @desc Adds data points to a dataset. The dataset need not be
-           * previously created. All points within the given dataset will be
-           * returned with subsquent calls to retrieve this dataset. Data points
-           * can belong to more than one dataset. This method does not use patch
-           * semantics.
-           * @alias fitness.users.dataSources.datasets.patch
-           * @memberOf! fitness(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-           * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-           * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-           * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-           * @param {fitness(v1).Dataset} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        patch: function(params, options, callback) {
+        }, /**
+            * fitness.users.dataSources.datasets.patch
+            * @desc Adds data points to a dataset. The dataset need not be
+            * previously created. All points within the given dataset will be
+            * returned with subsquent calls to retrieve this dataset. Data
+            * points can belong to more than one dataset. This method does not
+            * use patch semantics.
+            * @alias fitness.users.dataSources.datasets.patch
+            * @memberOf! fitness(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
+            * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+            * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+            * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+            * @param {fitness(v1).Dataset} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        patch(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -514,14 +474,13 @@ function Fitness(options) {
                   method: 'PATCH'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['datasetId', 'dataSourceId', 'userId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     },
@@ -540,15 +499,13 @@ function Fitness(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -558,39 +515,35 @@ function Fitness(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'sessionId'],
           pathParams: ['sessionId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.sessions.list
-         * @desc Lists sessions previously created.
-         * @alias fitness.users.sessions.list
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-         * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
-         * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-         * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
-         * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * fitness.users.sessions.list
+          * @desc Lists sessions previously created.
+          * @alias fitness.users.sessions.list
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+          * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
+          * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+          * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+          * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -599,38 +552,34 @@ function Fitness(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * fitness.users.sessions.update
-         * @desc Updates or insert a given session.
-         * @alias fitness.users.sessions.update
-         * @memberOf! fitness(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
-         * @param {string} params.sessionId The ID of the session to be created.
-         * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-         * @param {fitness(v1).Session} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
+      }, /**
+          * fitness.users.sessions.update
+          * @desc Updates or insert a given session.
+          * @alias fitness.users.sessions.update
+          * @memberOf! fitness(v1)
+          *
+          * @param {object} params Parameters for request
+          * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
+          * @param {string} params.sessionId The ID of the session to be created.
+          * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+          * @param {fitness(v1).Session} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      update(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -640,14 +589,13 @@ function Fitness(options) {
                 method: 'PUT'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId', 'sessionId'],
           pathParams: ['sessionId', 'userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -737,10 +685,7 @@ function Fitness(options) {
  * @property {string} originDataSourceId If the data point is contained in a dataset for a derived data source, this field will be populated with the data source stream ID that created the data point originally.
  * @property {string} rawTimestampNanos The raw timestamp from the original SensorEvent.
  * @property {string} startTimeNanos The start time of the interval represented by this data point, in nanoseconds since epoch.
- * @property {fitness(v1).Value[]} value Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source.
-
-Only one of integer and floating point fields will be populated, depending on
-the format enum value within data source&#39;s type field.
+ * @property {fitness(v1).Value[]} value Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source.  Only one of integer and floating point fields will be populated, depending on the format enum value within data source&#39;s type field.
  */
 /**
  * @typedef Dataset
@@ -758,34 +703,7 @@ the format enum value within data source&#39;s type field.
  * @type object
  * @property {fitness(v1).Application} application Information about an application which feeds sensor data into the platform.
  * @property {string[]} dataQualityStandard
- * @property {string} dataStreamId A unique identifier for the data stream produced by this data source. The identifier includes:
-
-
-- The physical device&#39;s manufacturer, model, and serial number (UID).
-- The application&#39;s package name or name. Package name is used when the data
-source was created by an Android application. The developer project number is
-used when the data source was created by a REST client.
-- The data source&#39;s type.
-- The data source&#39;s stream name.  Note that not all attributes of the data
-source are used as part of the stream identifier. In particular, the version of
-the hardware/the application isn&#39;t used. This allows us to preserve the same
-stream through version updates. This also means that two DataSource objects may
-represent the same data stream even if they&#39;re not equal.
-
-The exact format of the data stream ID created by an Android application is:
-type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName
-
-The exact format of the data stream ID created by a REST client is:
-type:dataType.name:developer project
-number:device.manufacturer:device.model:device.uid:dataStreamName
-
-When any of the optional fields that comprise of the data stream ID are blank,
-they will be omitted from the data stream ID. The minimum viable data stream ID
-would be: type:dataType.name:developer project number
-
-Finally, the developer project number is obfuscated when read by any REST or
-Android client that did not create the data source. Only the data source creator
-will see the developer project number in clear and normal form.
+ * @property {string} dataStreamId A unique identifier for the data stream produced by this data source. The identifier includes:    - The physical device&#39;s manufacturer, model, and serial number (UID).  - The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client.  - The data source&#39;s type.  - The data source&#39;s stream name.  Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal.  The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName   The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName   When any of the optional fields that comprise of the data stream ID are blank, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number  Finally, the developer project number is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form.
  * @property {string} dataStreamName The stream name uniquely identifies this particular data source among other data sources of the same type from the same underlying producer. Setting the stream name is optional, but should be done whenever an application exposes two streams for the same data type, or when a device has two equivalent sensors.
  * @property {fitness(v1).DataType} dataType The data type defines the schema for a stream of data being collected by, inserted into, or queried from the Fitness API.
  * @property {fitness(v1).Device} device Representation of an integrated device (such as a phone or a wearable) that can hold sensors.

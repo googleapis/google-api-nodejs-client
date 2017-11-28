@@ -53,15 +53,13 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, options, callback) {
+    query(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -71,14 +69,13 @@ function Webmasters(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.sitemaps = {
@@ -95,15 +92,13 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -113,36 +108,32 @@ function Webmasters(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sitemaps.get
-       * @desc Retrieves information about a specific sitemap.
-       * @alias webmasters.sitemaps.get
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
-       * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * webmasters.sitemaps.get
+        * @desc Retrieves information about a specific sitemap.
+        * @alias webmasters.sitemaps.get
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
+        * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -152,38 +143,34 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sitemaps.list
-       * @desc Lists the sitemaps-entries submitted for this site, or included
-       * in the sitemap index file (if sitemapIndex is specified in the
-       * request).
-       * @alias webmasters.sitemaps.list
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.sitemapIndex A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
-       * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * webmasters.sitemaps.list
+        * @desc Lists the sitemaps-entries submitted for this site, or included
+        * in the sitemap index file (if sitemapIndex is specified in the
+        * request).
+        * @alias webmasters.sitemaps.list
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.sitemapIndex A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
+        * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -192,36 +179,32 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sitemaps.submit
-       * @desc Submits a sitemap for a site.
-       * @alias webmasters.sitemaps.submit
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.feedpath The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
-       * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    submit: function(params, options, callback) {
+    }, /**
+        * webmasters.sitemaps.submit
+        * @desc Submits a sitemap for a site.
+        * @alias webmasters.sitemaps.submit
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.feedpath The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
+        * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    submit(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -231,14 +214,13 @@ function Webmasters(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.sites = {
@@ -254,15 +236,13 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add: function(params, options, callback) {
+    add(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -271,35 +251,31 @@ function Webmasters(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sites.delete
-       * @desc Removes a site from the set of the user's Search Console sites.
-       * @alias webmasters.sites.delete
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * webmasters.sites.delete
+        * @desc Removes a site from the set of the user's Search Console sites.
+        * @alias webmasters.sites.delete
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -308,35 +284,31 @@ function Webmasters(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sites.get
-       * @desc Retrieves information about specific site.
-       * @alias webmasters.sites.get
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * webmasters.sites.get
+        * @desc Retrieves information about specific site.
+        * @alias webmasters.sites.get
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -345,34 +317,30 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.sites.list
-       * @desc Lists the user's Search Console sites.
-       * @alias webmasters.sites.list
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * webmasters.sites.list
+        * @desc Lists the user's Search Console sites.
+        * @alias webmasters.sites.list
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -381,14 +349,13 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.urlcrawlerrorscounts = {
@@ -408,15 +375,13 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function(params, options, callback) {
+    query(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -426,14 +391,13 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.urlcrawlerrorssamples = {
@@ -452,15 +416,13 @@ function Webmasters(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -471,38 +433,34 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.urlcrawlerrorssamples.list
-       * @desc Lists a site's sample URLs for the specified crawl error category
-       * and platform.
-       * @alias webmasters.urlcrawlerrorssamples.list
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.category The crawl error category. For example: authPermissions
-       * @param {string} params.platform The user agent type (platform) that made the request. For example: web
-       * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * webmasters.urlcrawlerrorssamples.list
+        * @desc Lists a site's sample URLs for the specified crawl error
+        * category and platform.
+        * @alias webmasters.urlcrawlerrorssamples.list
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.category The crawl error category. For example: authPermissions
+        * @param {string} params.platform The user agent type (platform) that made the request. For example: web
+        * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -512,39 +470,35 @@ function Webmasters(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'category', 'platform'],
         pathParams: ['siteUrl'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * webmasters.urlcrawlerrorssamples.markAsFixed
-       * @desc Marks the provided site's sample URL as fixed, and removes it
-       * from the samples list.
-       * @alias webmasters.urlcrawlerrorssamples.markAsFixed
-       * @memberOf! webmasters(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.category The crawl error category. For example: authPermissions
-       * @param {string} params.platform The user agent type (platform) that made the request. For example: web
-       * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-       * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    markAsFixed: function(params, options, callback) {
+    }, /**
+        * webmasters.urlcrawlerrorssamples.markAsFixed
+        * @desc Marks the provided site's sample URL as fixed, and removes it
+        * from the samples list.
+        * @alias webmasters.urlcrawlerrorssamples.markAsFixed
+        * @memberOf! webmasters(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.category The crawl error category. For example: authPermissions
+        * @param {string} params.platform The user agent type (platform) that made the request. For example: web
+        * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+        * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    markAsFixed(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -555,14 +509,13 @@ function Webmasters(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -595,14 +548,7 @@ function Webmasters(options) {
  * @typedef SearchAnalyticsQueryRequest
  * @memberOf! webmasters(v3)
  * @type object
- * @property {string} aggregationType [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.
-
-Note: If you group or filter by page, you cannot aggregate by property.
-
-If you specify any value other than AUTO, the aggregation type in the result
-will match the requested type, or if you request an invalid type, you will get
-an error. The API will never change your aggregation type if the requested type
-is invalid.
+ * @property {string} aggregationType [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.  Note: If you group or filter by page, you cannot aggregate by property.  If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
  * @property {webmasters(v3).ApiDimensionFilterGroup[]} dimensionFilterGroups [Optional] Zero or more filters to apply to the dimension grouping values; for example, &#39;query contains &quot;buy&quot;&#39; to see only data where the query string contains the substring &quot;buy&quot; (not case-sensitive). You can filter by a dimension without grouping by it.
  * @property {string[]} dimensions [Optional] Zero or more dimensions to group results by. Dimensions are the group-by values in the Search Analytics page. Dimensions are combined to create a unique row key for each row. Results are grouped in the order that you supply these dimensions.
  * @property {string} endDate [Required] End date of the requested date range, in YYYY-MM-DD format, in PST (UTC - 8:00). Must be greater than or equal to the start date. This value is included in the range.

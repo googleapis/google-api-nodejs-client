@@ -47,15 +47,13 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,14 +62,13 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.comments = {
@@ -89,15 +86,13 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -108,40 +103,36 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * blogger.comments.list
-       * @desc Retrieves the comments for a blog, possibly filtered.
-       * @alias blogger.comments.list
-       * @memberOf! blogger(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.blogId ID of the blog to fetch comments from.
-       * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
-       * @param {integer=} params.maxResults Maximum number of comments to include in the result.
-       * @param {string=} params.pageToken Continuation token if request is paged.
-       * @param {string} params.postId ID of the post to fetch posts from.
-       * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * blogger.comments.list
+        * @desc Retrieves the comments for a blog, possibly filtered.
+        * @alias blogger.comments.list
+        * @memberOf! blogger(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.blogId ID of the blog to fetch comments from.
+        * @param {boolean=} params.fetchBodies Whether the body content of the comments is included.
+        * @param {integer=} params.maxResults Maximum number of comments to include in the result.
+        * @param {string=} params.pageToken Continuation token if request is paged.
+        * @param {string} params.postId ID of the post to fetch posts from.
+        * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -151,14 +142,13 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.pages = {
@@ -175,15 +165,13 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -192,36 +180,32 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * blogger.pages.list
-       * @desc Retrieves pages for a blog, possibly filtered.
-       * @alias blogger.pages.list
-       * @memberOf! blogger(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.blogId ID of the blog to fetch pages from.
-       * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * blogger.pages.list
+        * @desc Retrieves pages for a blog, possibly filtered.
+        * @alias blogger.pages.list
+        * @memberOf! blogger(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.blogId ID of the blog to fetch pages from.
+        * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -230,14 +214,13 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.posts = {
@@ -254,15 +237,13 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -271,39 +252,35 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * blogger.posts.list
-       * @desc Retrieves a list of posts, possibly filtered.
-       * @alias blogger.posts.list
-       * @memberOf! blogger(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.blogId ID of the blog to fetch posts from.
-       * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
-       * @param {integer=} params.maxResults Maximum number of posts to fetch.
-       * @param {string=} params.pageToken Continuation token if the request is paged.
-       * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * blogger.posts.list
+        * @desc Retrieves a list of posts, possibly filtered.
+        * @alias blogger.posts.list
+        * @memberOf! blogger(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.blogId ID of the blog to fetch posts from.
+        * @param {boolean=} params.fetchBodies Whether the body content of posts is included.
+        * @param {integer=} params.maxResults Maximum number of posts to fetch.
+        * @param {string=} params.pageToken Continuation token if the request is paged.
+        * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -312,14 +289,13 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.users = {
@@ -335,15 +311,13 @@ function Blogger(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -352,15 +326,13 @@ function Blogger(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     blogs: {
       /**
        * blogger.users.blogs.list
@@ -374,15 +346,13 @@ function Blogger(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -391,14 +361,13 @@ function Blogger(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
