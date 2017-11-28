@@ -50,15 +50,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -67,14 +65,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.achievements = {
@@ -94,15 +91,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    increment: function(params, options, callback) {
+    increment(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -112,41 +107,37 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.achievements.list
-       * @desc Lists the progress for all your application's achievements for
-       * the currently authenticated player.
-       * @alias games.achievements.list
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
-       * @param {string=} params.state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.achievements.list
+        * @desc Lists the progress for all your application's achievements for
+        * the currently authenticated player.
+        * @alias games.achievements.list
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+        * @param {string=} params.state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -155,37 +146,33 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.achievements.reveal
-       * @desc Sets the state of the achievement with the given ID to REVEALED
-       * for the currently authenticated player.
-       * @alias games.achievements.reveal
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.achievementId The ID of the achievement used by this method.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    reveal: function(params, options, callback) {
+    }, /**
+        * games.achievements.reveal
+        * @desc Sets the state of the achievement with the given ID to REVEALED
+        * for the currently authenticated player.
+        * @alias games.achievements.reveal
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.achievementId The ID of the achievement used by this method.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    reveal(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -194,40 +181,36 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.achievements.setStepsAtLeast
-       * @desc Sets the steps for the currently authenticated player towards
-       * unlocking an achievement. If the steps parameter is less than the
-       * current number of steps that the player already gained for the
-       * achievement, the achievement is not modified.
-       * @alias games.achievements.setStepsAtLeast
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.achievementId The ID of the achievement used by this method.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {integer} params.steps The minimum value to set the steps to.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    setStepsAtLeast: function(params, options, callback) {
+    }, /**
+        * games.achievements.setStepsAtLeast
+        * @desc Sets the steps for the currently authenticated player towards
+        * unlocking an achievement. If the steps parameter is less than the
+        * current number of steps that the player already gained for the
+        * achievement, the achievement is not modified.
+        * @alias games.achievements.setStepsAtLeast
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.achievementId The ID of the achievement used by this method.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {integer} params.steps The minimum value to set the steps to.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setStepsAtLeast(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -237,36 +220,32 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.achievements.unlock
-       * @desc Unlocks this achievement for the currently authenticated player.
-       * @alias games.achievements.unlock
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.achievementId The ID of the achievement used by this method.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    unlock: function(params, options, callback) {
+    }, /**
+        * games.achievements.unlock
+        * @desc Unlocks this achievement for the currently authenticated player.
+        * @alias games.achievements.unlock
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.achievementId The ID of the achievement used by this method.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    unlock(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -275,37 +254,33 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.achievements.updateMultiple
-       * @desc Updates multiple achievements for the currently authenticated
-       * player.
-       * @alias games.achievements.updateMultiple
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {games(v1).AchievementUpdateMultipleRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updateMultiple: function(params, options, callback) {
+    }, /**
+        * games.achievements.updateMultiple
+        * @desc Updates multiple achievements for the currently authenticated
+        * player.
+        * @alias games.achievements.updateMultiple
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {games(v1).AchievementUpdateMultipleRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updateMultiple(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -314,14 +289,13 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.applications = {
@@ -342,15 +316,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -359,36 +331,32 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.applications.played
-       * @desc Indicate that the the currently authenticated user is playing
-       * your application.
-       * @alias games.applications.played
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    played: function(params, options, callback) {
+    }, /**
+        * games.applications.played
+        * @desc Indicate that the the currently authenticated user is playing
+        * your application.
+        * @alias games.applications.played
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    played(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -397,38 +365,34 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.applications.verify
-       * @desc Verifies the auth token provided with this request is for the
-       * application with the specified ID, and returns the ID of the player it
-       * was granted for.
-       * @alias games.applications.verify
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.applicationId The application ID from the Google Play developer console.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    verify: function(params, options, callback) {
+    }, /**
+        * games.applications.verify
+        * @desc Verifies the auth token provided with this request is for the
+        * application with the specified ID, and returns the ID of the player it
+        * was granted for.
+        * @alias games.applications.verify
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.applicationId The application ID from the Google Play developer console.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    verify(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -437,14 +401,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.events = {
@@ -464,15 +427,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByPlayer: function(params, options, callback) {
+    listByPlayer(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -480,38 +441,34 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.events.listDefinitions
-       * @desc Returns a list of the event definitions in this application.
-       * @alias games.events.listDefinitions
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listDefinitions: function(params, options, callback) {
+    }, /**
+        * games.events.listDefinitions
+        * @desc Returns a list of the event definitions in this application.
+        * @alias games.events.listDefinitions
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listDefinitions(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -520,38 +477,34 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.events.record
-       * @desc Records a batch of changes to the number of times events have
-       * occurred for the currently authenticated user of this application.
-       * @alias games.events.record
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {games(v1).EventRecordRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    record: function(params, options, callback) {
+    }, /**
+        * games.events.record
+        * @desc Records a batch of changes to the number of times events have
+        * occurred for the currently authenticated user of this application.
+        * @alias games.events.record
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {games(v1).EventRecordRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    record(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -559,14 +512,13 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.leaderboards = {
@@ -584,15 +536,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -601,38 +551,34 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.leaderboards.list
-       * @desc Lists all the leaderboard metadata for your application.
-       * @alias games.leaderboards.list
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.leaderboards.list
+        * @desc Lists all the leaderboard metadata for your application.
+        * @alias games.leaderboards.list
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -641,14 +587,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.metagame = {
@@ -664,15 +609,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetagameConfig: function(params, options, callback) {
+    getMetagameConfig(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -681,41 +624,37 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.metagame.listCategoriesByPlayer
-       * @desc List play data aggregated per category for the player
-       * corresponding to playerId.
-       * @alias games.metagame.listCategoriesByPlayer
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection The collection of categories for which data will be returned.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listCategoriesByPlayer: function(params, options, callback) {
+    }, /**
+        * games.metagame.listCategoriesByPlayer
+        * @desc List play data aggregated per category for the player
+        * corresponding to playerId.
+        * @alias games.metagame.listCategoriesByPlayer
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection The collection of categories for which data will be returned.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listCategoriesByPlayer(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -725,14 +664,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.players = {
@@ -751,15 +689,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -768,40 +704,36 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.players.list
-       * @desc Get the collection of players for the currently authenticated
-       * user.
-       * @alias games.players.list
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection Collection of players being retrieved
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.players.list
+        * @desc Get the collection of players for the currently authenticated
+        * user.
+        * @alias games.players.list
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection Collection of players being retrieved
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -810,14 +742,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.pushtokens = {
@@ -835,15 +766,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove: function(params, options, callback) {
+    remove(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -852,36 +781,32 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.pushtokens.update
-       * @desc Registers a push token for the current user and application.
-       * @alias games.pushtokens.update
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {games(v1).PushToken} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * games.pushtokens.update
+        * @desc Registers a push token for the current user and application.
+        * @alias games.pushtokens.update
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {games(v1).PushToken} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -890,14 +815,13 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.questMilestones = {
@@ -918,15 +842,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    claim: function(params, options, callback) {
+    claim(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -936,14 +858,13 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.quests = {
@@ -962,15 +883,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function(params, options, callback) {
+    accept(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -979,40 +898,36 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.quests.list
-       * @desc Get a list of quests for your application and the currently
-       * authenticated player.
-       * @alias games.quests.list
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.quests.list
+        * @desc Get a list of quests for your application and the currently
+        * authenticated player.
+        * @alias games.quests.list
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1021,14 +936,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.revisions = {
@@ -1045,15 +959,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check: function(params, options, callback) {
+    check(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1062,14 +974,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['clientRevision'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.rooms = {
@@ -1088,15 +999,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1105,38 +1014,34 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.decline
-       * @desc Decline an invitation to join a room. For internal use by the
-       * Games SDK only. Calling this method directly is unsupported.
-       * @alias games.rooms.decline
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.roomId The ID of the room.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    decline: function(params, options, callback) {
+    }, /**
+        * games.rooms.decline
+        * @desc Decline an invitation to join a room. For internal use by the
+        * Games SDK only. Calling this method directly is unsupported.
+        * @alias games.rooms.decline
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.roomId The ID of the room.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    decline(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1145,37 +1050,33 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.dismiss
-       * @desc Dismiss an invitation to join a room. For internal use by the
-       * Games SDK only. Calling this method directly is unsupported.
-       * @alias games.rooms.dismiss
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string} params.roomId The ID of the room.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    dismiss: function(params, options, callback) {
+    }, /**
+        * games.rooms.dismiss
+        * @desc Dismiss an invitation to join a room. For internal use by the
+        * Games SDK only. Calling this method directly is unsupported.
+        * @alias games.rooms.dismiss
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string} params.roomId The ID of the room.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    dismiss(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1184,37 +1085,33 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.get
-       * @desc Get the data for a room.
-       * @alias games.rooms.get
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.roomId The ID of the room.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * games.rooms.get
+        * @desc Get the data for a room.
+        * @alias games.rooms.get
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.roomId The ID of the room.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1223,39 +1120,35 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.join
-       * @desc Join a room. For internal use by the Games SDK only. Calling this
-       * method directly is unsupported.
-       * @alias games.rooms.join
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.roomId The ID of the room.
-       * @param {games(v1).RoomJoinRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    join: function(params, options, callback) {
+    }, /**
+        * games.rooms.join
+        * @desc Join a room. For internal use by the Games SDK only. Calling
+        * this method directly is unsupported.
+        * @alias games.rooms.join
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.roomId The ID of the room.
+        * @param {games(v1).RoomJoinRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    join(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1264,39 +1157,35 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.leave
-       * @desc Leave a room. For internal use by the Games SDK only. Calling
-       * this method directly is unsupported.
-       * @alias games.rooms.leave
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.roomId The ID of the room.
-       * @param {games(v1).RoomLeaveRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    leave: function(params, options, callback) {
+    }, /**
+        * games.rooms.leave
+        * @desc Leave a room. For internal use by the Games SDK only. Calling
+        * this method directly is unsupported.
+        * @alias games.rooms.leave
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.roomId The ID of the room.
+        * @param {games(v1).RoomLeaveRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    leave(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1305,38 +1194,34 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.list
-       * @desc Returns invitations to join rooms.
-       * @alias games.rooms.list
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.rooms.list
+        * @desc Returns invitations to join rooms.
+        * @alias games.rooms.list
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1344,40 +1229,36 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.rooms.reportStatus
-       * @desc Updates sent by a client reporting the status of peers in a room.
-       * For internal use by the Games SDK only. Calling this method directly is
-       * unsupported.
-       * @alias games.rooms.reportStatus
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.roomId The ID of the room.
-       * @param {games(v1).RoomP2PStatuses} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    reportStatus: function(params, options, callback) {
+    }, /**
+        * games.rooms.reportStatus
+        * @desc Updates sent by a client reporting the status of peers in a
+        * room. For internal use by the Games SDK only. Calling this method
+        * directly is unsupported.
+        * @alias games.rooms.reportStatus
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.roomId The ID of the room.
+        * @param {games(v1).RoomP2PStatuses} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    reportStatus(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1386,14 +1267,13 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.scores = {
@@ -1420,15 +1300,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1439,41 +1317,37 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.scores.list
-       * @desc Lists the scores in a leaderboard, starting from the top.
-       * @alias games.scores.list
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection The collection of scores you're requesting.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.leaderboardId The ID of the leaderboard.
-       * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.scores.list
+        * @desc Lists the scores in a leaderboard, starting from the top.
+        * @alias games.scores.list
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection The collection of scores you're requesting.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.leaderboardId The ID of the leaderboard.
+        * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1484,44 +1358,40 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.scores.listWindow
-       * @desc Lists the scores in a leaderboard around (and including) a
-       * player's score.
-       * @alias games.scores.listWindow
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.collection The collection of scores you're requesting.
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.leaderboardId The ID of the leaderboard.
-       * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {integer=} params.resultsAbove The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
-       * @param {boolean=} params.returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
-       * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listWindow: function(params, options, callback) {
+    }, /**
+        * games.scores.listWindow
+        * @desc Lists the scores in a leaderboard around (and including) a
+        * player's score.
+        * @alias games.scores.listWindow
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.collection The collection of scores you're requesting.
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.leaderboardId The ID of the leaderboard.
+        * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {integer=} params.resultsAbove The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
+        * @param {boolean=} params.returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
+        * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listWindow(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1532,39 +1402,35 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.scores.submit
-       * @desc Submits a score to the specified leaderboard.
-       * @alias games.scores.submit
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.leaderboardId The ID of the leaderboard.
-       * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
-       * @param {string=} params.scoreTag Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    submit: function(params, options, callback) {
+    }, /**
+        * games.scores.submit
+        * @desc Submits a score to the specified leaderboard.
+        * @alias games.scores.submit
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.leaderboardId The ID of the leaderboard.
+        * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
+        * @param {string=} params.scoreTag Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    submit(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1573,37 +1439,33 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.scores.submitMultiple
-       * @desc Submits multiple scores to leaderboards.
-       * @alias games.scores.submitMultiple
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {games(v1).PlayerScoreSubmissionList} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    submitMultiple: function(params, options, callback) {
+    }, /**
+        * games.scores.submitMultiple
+        * @desc Submits multiple scores to leaderboards.
+        * @alias games.scores.submitMultiple
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {games(v1).PlayerScoreSubmissionList} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    submitMultiple(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1612,14 +1474,13 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.snapshots = {
@@ -1637,15 +1498,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1654,40 +1513,36 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.snapshots.list
-       * @desc Retrieves a list of snapshots created by your application for the
-       * player corresponding to the player ID.
-       * @alias games.snapshots.list
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxResults The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.snapshots.list
+        * @desc Retrieves a list of snapshots created by your application for
+        * the player corresponding to the player ID.
+        * @alias games.snapshots.list
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxResults The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1696,14 +1551,13 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.turnBasedMatches = {
@@ -1720,15 +1574,13 @@ function Games(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function(params, options, callback) {
+    cancel(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1737,37 +1589,33 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.create
-       * @desc Create a turn-based match.
-       * @alias games.turnBasedMatches.create
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {games(v1).TurnBasedMatchCreateRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    create: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.create
+        * @desc Create a turn-based match.
+        * @alias games.turnBasedMatches.create
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {games(v1).TurnBasedMatchCreateRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1776,37 +1624,33 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.decline
-       * @desc Decline an invitation to play a turn-based match.
-       * @alias games.turnBasedMatches.decline
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    decline: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.decline
+        * @desc Decline an invitation to play a turn-based match.
+        * @alias games.turnBasedMatches.decline
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    decline(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1815,37 +1659,33 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.dismiss
-       * @desc Dismiss a turn-based match from the match list. The match will no
-       * longer show up in the list and will not generate notifications.
-       * @alias games.turnBasedMatches.dismiss
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string} params.matchId The ID of the match.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    dismiss: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.dismiss
+        * @desc Dismiss a turn-based match from the match list. The match will
+        * no longer show up in the list and will not generate notifications.
+        * @alias games.turnBasedMatches.dismiss
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string} params.matchId The ID of the match.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    dismiss(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1854,40 +1694,36 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.finish
-       * @desc Finish a turn-based match. Each player should make this call
-       * once, after all results are in. Only the player whose turn it is may
-       * make the first call to Finish, and can pass in the final match state.
-       * @alias games.turnBasedMatches.finish
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {games(v1).TurnBasedMatchResults} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    finish: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.finish
+        * @desc Finish a turn-based match. Each player should make this call
+        * once, after all results are in. Only the player whose turn it is may
+        * make the first call to Finish, and can pass in the final match state.
+        * @alias games.turnBasedMatches.finish
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {games(v1).TurnBasedMatchResults} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    finish(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1896,38 +1732,34 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.get
-       * @desc Get the data for a turn-based match.
-       * @alias games.turnBasedMatches.get
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {boolean=} params.includeMatchData Get match data along with metadata.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.get
+        * @desc Get the data for a turn-based match.
+        * @alias games.turnBasedMatches.get
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {boolean=} params.includeMatchData Get match data along with metadata.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1936,37 +1768,33 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.join
-       * @desc Join a turn-based match.
-       * @alias games.turnBasedMatches.join
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    join: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.join
+        * @desc Join a turn-based match.
+        * @alias games.turnBasedMatches.join
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    join(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1975,38 +1803,34 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.leave
-       * @desc Leave a turn-based match when it is not the current player's
-       * turn, without canceling the match.
-       * @alias games.turnBasedMatches.leave
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    leave: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.leave
+        * @desc Leave a turn-based match when it is not the current player's
+        * turn, without canceling the match.
+        * @alias games.turnBasedMatches.leave
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    leave(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2015,40 +1839,36 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.leaveTurn
-       * @desc Leave a turn-based match during the current player's turn,
-       * without canceling the match.
-       * @alias games.turnBasedMatches.leaveTurn
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {integer} params.matchVersion The version of the match being updated.
-       * @param {string=} params.pendingParticipantId The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    leaveTurn: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.leaveTurn
+        * @desc Leave a turn-based match during the current player's turn,
+        * without canceling the match.
+        * @alias games.turnBasedMatches.leaveTurn
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {integer} params.matchVersion The version of the match being updated.
+        * @param {string=} params.pendingParticipantId The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    leaveTurn(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2057,40 +1877,36 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.list
-       * @desc Returns turn-based matches the player is or was involved in.
-       * @alias games.turnBasedMatches.list
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {boolean=} params.includeMatchData True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
-       * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.list
+        * @desc Returns turn-based matches the player is or was involved in.
+        * @alias games.turnBasedMatches.list
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {boolean=} params.includeMatchData True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
+        * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2099,41 +1915,37 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.rematch
-       * @desc Create a rematch of a match that was previously completed, with
-       * the same participants. This can be called by only one player on a match
-       * still in their list; the player must have called Finish first. Returns
-       * the newly created match; it will be the caller's turn.
-       * @alias games.turnBasedMatches.rematch
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {string=} params.requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    rematch: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.rematch
+        * @desc Create a rematch of a match that was previously completed, with
+        * the same participants. This can be called by only one player on a
+        * match still in their list; the player must have called Finish first.
+        * Returns the newly created match; it will be the caller's turn.
+        * @alias games.turnBasedMatches.rematch
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {string=} params.requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    rematch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2142,43 +1954,39 @@ function Games(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.sync
-       * @desc Returns turn-based matches the player is or was involved in that
-       * changed since the last sync call, with the least recent changes coming
-       * first. Matches that should be removed from the local cache will have a
-       * status of MATCH_DELETED.
-       * @alias games.turnBasedMatches.sync
-       * @memberOf! games(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {boolean=} params.includeMatchData True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
-       * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
-       * @param {string=} params.pageToken The token returned by the previous request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    sync: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.sync
+        * @desc Returns turn-based matches the player is or was involved in that
+        * changed since the last sync call, with the least recent changes coming
+        * first. Matches that should be removed from the local cache will have a
+        * status of MATCH_DELETED.
+        * @alias games.turnBasedMatches.sync
+        * @memberOf! games(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {boolean=} params.includeMatchData True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
+        * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    sync(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2187,38 +1995,34 @@ function Games(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * games.turnBasedMatches.takeTurn
-       * @desc Commit the results of a player turn.
-       * @alias games.turnBasedMatches.takeTurn
-       * @memberOf! games(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.consistencyToken The last-seen mutation timestamp.
-       * @param {string=} params.language The preferred language to use for strings returned by this method.
-       * @param {string} params.matchId The ID of the match.
-       * @param {games(v1).TurnBasedMatchTurn} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    takeTurn: function(params, options, callback) {
+    }, /**
+        * games.turnBasedMatches.takeTurn
+        * @desc Commit the results of a player turn.
+        * @alias games.turnBasedMatches.takeTurn
+        * @memberOf! games(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+        * @param {string=} params.language The preferred language to use for strings returned by this method.
+        * @param {string} params.matchId The ID of the match.
+        * @param {games(v1).TurnBasedMatchTurn} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    takeTurn(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -2227,7 +2031,7 @@ function Games(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
         context: self
@@ -2235,26 +2039,18 @@ function Games(options) {
       return createAPIRequest(parameters, callback);
     }
 
-
   };
 }
 /**
  * @typedef AchievementDefinition
  * @memberOf! games(v1)
  * @type object
- * @property {string} achievementType The type of the achievement.
-Possible values are:
-- &quot;STANDARD&quot; - Achievement is either locked or unlocked.
-- &quot;INCREMENTAL&quot; - Achievement is incremental.
+ * @property {string} achievementType The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
  * @property {string} description The description of the achievement.
  * @property {string} experiencePoints Experience points which will be earned when unlocking this achievement.
  * @property {string} formattedTotalSteps The total steps for an incremental achievement as a string.
  * @property {string} id The ID of the achievement.
- * @property {string} initialState The initial state of the achievement.
-Possible values are:
-- &quot;HIDDEN&quot; - Achievement is hidden.
-- &quot;REVEALED&quot; - Achievement is revealed.
-- &quot;UNLOCKED&quot; - Achievement is unlocked.
+ * @property {string} initialState The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
  * @property {boolean} isRevealedIconUrlDefault Indicates whether the revealed icon image being returned is a default image, or is provided by the game.
  * @property {boolean} isUnlockedIconUrlDefault Indicates whether the unlocked icon image being returned is a default image, or is game-provided.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementDefinition.
@@ -2283,10 +2079,7 @@ Possible values are:
  * @typedef AchievementRevealResponse
  * @memberOf! games(v1)
  * @type object
- * @property {string} currentState The current state of the achievement for which a reveal was attempted. This might be UNLOCKED if the achievement was already unlocked.
-Possible values are:
-- &quot;REVEALED&quot; - Achievement is revealed.
-- &quot;UNLOCKED&quot; - Achievement is unlocked.
+ * @property {string} currentState The current state of the achievement for which a reveal was attempted. This might be UNLOCKED if the achievement was already unlocked. Possible values are:   - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementRevealResponse.
  */
 /**
@@ -2326,24 +2119,14 @@ Possible values are:
  * @property {games(v1).GamesAchievementIncrement} incrementPayload The payload if an update of type INCREMENT was requested for the achievement.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateRequest.
  * @property {games(v1).GamesAchievementSetStepsAtLeast} setStepsAtLeastPayload The payload if an update of type SET_STEPS_AT_LEAST was requested for the achievement.
- * @property {string} updateType The type of update being applied.
-Possible values are:
-- &quot;REVEAL&quot; - Achievement is revealed.
-- &quot;UNLOCK&quot; - Achievement is unlocked.
-- &quot;INCREMENT&quot; - Achievement is incremented.
-- &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is set to at least the
-passed value.
+ * @property {string} updateType The type of update being applied. Possible values are:   - &quot;REVEAL&quot; - Achievement is revealed.  - &quot;UNLOCK&quot; - Achievement is unlocked.  - &quot;INCREMENT&quot; - Achievement is incremented.  - &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is set to at least the passed value.
  */
 /**
  * @typedef AchievementUpdateResponse
  * @memberOf! games(v1)
  * @type object
  * @property {string} achievementId The achievement this update is was applied to.
- * @property {string} currentState The current state of the achievement.
-Possible values are:
-- &quot;HIDDEN&quot; - Achievement is hidden.
-- &quot;REVEALED&quot; - Achievement is revealed.
-- &quot;UNLOCKED&quot; - Achievement is unlocked.
+ * @property {string} currentState The current state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
  * @property {integer} currentSteps The current steps recorded for this achievement if it is incremental.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateResponse.
  * @property {boolean} newlyUnlocked Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).
@@ -2376,9 +2159,7 @@ Possible values are:
  * @property {string} author The author of the application.
  * @property {games(v1).ApplicationCategory} category The category of the application.
  * @property {string} description The description of the application.
- * @property {string[]} enabledFeatures A list of features that have been enabled for the application.
-Possible values are:
-- &quot;SNAPSHOTS&quot; - Snapshots has been enabled
+ * @property {string[]} enabledFeatures A list of features that have been enabled for the application. Possible values are:   - &quot;SNAPSHOTS&quot; - Snapshots has been enabled
  * @property {string} id The ID of the application.
  * @property {games(v1).Instance[]} instances The instances of the application.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#application.
@@ -2423,20 +2204,7 @@ Possible values are:
  * @typedef EventBatchRecordFailure
  * @memberOf! games(v1)
  * @type object
- * @property {string} failureCause The cause for the update failure.
-Possible values are:
-- &quot;TOO_LARGE&quot;: A batch request was issued with more events than are
-allowed in a single batch.
-- &quot;TIME_PERIOD_EXPIRED&quot;: A batch was sent with data too far in the
-past to record.
-- &quot;TIME_PERIOD_SHORT&quot;: A batch was sent with a time range that was too
-short.
-- &quot;TIME_PERIOD_LONG&quot;: A batch was sent with a time range that was too
-long.
-- &quot;ALREADY_UPDATED&quot;: An attempt was made to record a batch of data
-which was already seen.
-- &quot;RECORD_RATE_HIGH&quot;: An attempt was made to record data faster than
-the server will apply updates.
+ * @property {string} failureCause The cause for the update failure. Possible values are:   - &quot;TOO_LARGE&quot;: A batch request was issued with more events than are allowed in a single batch.  - &quot;TIME_PERIOD_EXPIRED&quot;: A batch was sent with data too far in the past to record.  - &quot;TIME_PERIOD_SHORT&quot;: A batch was sent with a time range that was too short.  - &quot;TIME_PERIOD_LONG&quot;: A batch was sent with a time range that was too long.  - &quot;ALREADY_UPDATED&quot;: An attempt was made to record a batch of data which was already seen.  - &quot;RECORD_RATE_HIGH&quot;: An attempt was made to record data faster than the server will apply updates.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventBatchRecordFailure.
  * @property {games(v1).EventPeriodRange} range The time range which was rejected; empty for a request-wide failure.
  */
@@ -2458,11 +2226,7 @@ the server will apply updates.
  * @property {string} imageUrl The base URL for the image that represents the event.
  * @property {boolean} isDefaultImageUrl Indicates whether the icon image being returned is a default image, or is game-provided.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventDefinition.
- * @property {string} visibility The visibility of event being tracked in this definition.
-Possible values are:
-- &quot;REVEALED&quot;: This event should be visible to all users.
-- &quot;HIDDEN&quot;: This event should only be shown to users that have
-recorded this event at least once.
+ * @property {string} visibility The visibility of event being tracked in this definition. Possible values are:   - &quot;REVEALED&quot;: This event should be visible to all users.  - &quot;HIDDEN&quot;: This event should only be shown to users that have recorded this event at least once.
  */
 /**
  * @typedef EventDefinitionListResponse
@@ -2493,12 +2257,7 @@ recorded this event at least once.
  * @memberOf! games(v1)
  * @type object
  * @property {string} eventId The ID of the event that was not updated.
- * @property {string} failureCause The cause for the update failure.
-Possible values are:
-- &quot;NOT_FOUND&quot; - An attempt was made to set an event that was not
-defined.
-- &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to increment an event
-by a non-positive value.
+ * @property {string} failureCause The cause for the update failure. Possible values are:   - &quot;NOT_FOUND&quot; - An attempt was made to set an event that was not defined.  - &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to increment an event by a non-positive value.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#eventRecordFailure.
  */
 /**
@@ -2561,11 +2320,7 @@ by a non-positive value.
  * @property {games(v1).InstanceIosDetails} iosInstance Platform dependent details for iOS.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#instance.
  * @property {string} name Localized display name.
- * @property {string} platformType The platform type.
-Possible values are:
-- &quot;ANDROID&quot; - Instance is for Android.
-- &quot;IOS&quot; - Instance is for iOS
-- &quot;WEB_APP&quot; - Instance is for Web App.
+ * @property {string} platformType The platform type. Possible values are:   - &quot;ANDROID&quot; - Instance is for Android.  - &quot;IOS&quot; - Instance is for iOS  - &quot;WEB_APP&quot; - Instance is for Web App.
  * @property {boolean} realtimePlay Flag to show if this game instance supports realtime play.
  * @property {boolean} turnBasedPlay Flag to show if this game instance supports turn based play.
  * @property {games(v1).InstanceWebDetails} webInstance Platform dependent details for Web.
@@ -2608,12 +2363,7 @@ Possible values are:
  * @property {boolean} isIconUrlDefault Indicates whether the icon image being returned is a default image, or is game-provided.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboard.
  * @property {string} name The name of the leaderboard.
- * @property {string} order How scores are ordered.
-Possible values are:
-- &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are sorted in
-descending order.
-- &quot;SMALLER_IS_BETTER&quot; - Smaller values are better; scores are sorted
-in ascending order.
+ * @property {string} order How scores are ordered. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are sorted in descending order.  - &quot;SMALLER_IS_BETTER&quot; - Smaller values are better; scores are sorted in ascending order.
  */
 /**
  * @typedef LeaderboardEntry
@@ -2626,11 +2376,7 @@ in ascending order.
  * @property {string} scoreRank The rank of this score for this leaderboard.
  * @property {string} scoreTag Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
  * @property {string} scoreValue The numerical value of this score.
- * @property {string} timeSpan The time span of this high score.
-Possible values are:
-- &quot;ALL_TIME&quot; - The score is an all-time high score.
-- &quot;WEEKLY&quot; - The score is a weekly high score.
-- &quot;DAILY&quot; - The score is a daily high score.
+ * @property {string} timeSpan The time span of this high score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time high score.  - &quot;WEEKLY&quot; - The score is a weekly high score.  - &quot;DAILY&quot; - The score is a daily high score.
  * @property {string} writeTimestampMillis The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
  */
 /**
@@ -2689,17 +2435,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#participantResult.
  * @property {string} participantId The ID of the participant.
  * @property {integer} placing The placement or ranking of the participant in the match results; a number from one to the number of participants in the match. Multiple participants may have the same placing value in case of a type.
- * @property {string} result The result of the participant for this match.
-Possible values are:
-- &quot;MATCH_RESULT_WIN&quot; - The participant won the match.
-- &quot;MATCH_RESULT_LOSS&quot; - The participant lost the match.
-- &quot;MATCH_RESULT_TIE&quot; - The participant tied the match.
-- &quot;MATCH_RESULT_NONE&quot; - There was no winner for the match (nobody wins
-or loses this kind of game.)
-- &quot;MATCH_RESULT_DISCONNECT&quot; - The participant disconnected / left
-during the match.
-- &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different
-results for this participant.
+ * @property {string} result The result of the participant for this match. Possible values are:   - &quot;MATCH_RESULT_WIN&quot; - The participant won the match.  - &quot;MATCH_RESULT_LOSS&quot; - The participant lost the match.  - &quot;MATCH_RESULT_TIE&quot; - The participant tied the match.  - &quot;MATCH_RESULT_NONE&quot; - There was no winner for the match (nobody wins or loses this kind of game.)  - &quot;MATCH_RESULT_DISCONNECT&quot; - The participant disconnected / left during the match.  - &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different results for this participant.
  */
 /**
  * @typedef PeerChannelDiagnostics
@@ -2753,11 +2489,7 @@ results for this participant.
  * @typedef PlayerAchievement
  * @memberOf! games(v1)
  * @type object
- * @property {string} achievementState The state of the achievement.
-Possible values are:
-- &quot;HIDDEN&quot; - Achievement is hidden.
-- &quot;REVEALED&quot; - Achievement is revealed.
-- &quot;UNLOCKED&quot; - Achievement is unlocked.
+ * @property {string} achievementState The state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
  * @property {integer} currentSteps The current steps for an incremental achievement.
  * @property {string} experiencePoints Experience points earned for the achievement. This field is absent for achievements that have not yet been unlocked and 0 for achievements that have been unlocked by testers but that are unpublished.
  * @property {string} formattedCurrentStepsString The current steps for an incremental achievement as a string.
@@ -2812,11 +2544,7 @@ Possible values are:
  * @property {string} scoreTag Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
  * @property {string} scoreValue The numerical value of this score.
  * @property {games(v1).LeaderboardScoreRank} socialRank The social rank of the score in this leaderboard.
- * @property {string} timeSpan The time span of this score.
-Possible values are:
-- &quot;ALL_TIME&quot; - The score is an all-time score.
-- &quot;WEEKLY&quot; - The score is a weekly score.
-- &quot;DAILY&quot; - The score is a daily score.
+ * @property {string} timeSpan The time span of this score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
  * @property {string} writeTimestamp The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
  */
 /**
@@ -2853,11 +2581,7 @@ Possible values are:
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerScore.
  * @property {string} score The numerical value for this player score.
  * @property {string} scoreTag Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
- * @property {string} timeSpan The time span for this player score.
-Possible values are:
-- &quot;ALL_TIME&quot; - The score is an all-time score.
-- &quot;WEEKLY&quot; - The score is a weekly score.
-- &quot;DAILY&quot; - The score is a daily score.
+ * @property {string} timeSpan The time span for this player score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
  */
 /**
  * @typedef PlayerScoreListResponse
@@ -2870,11 +2594,7 @@ Possible values are:
  * @typedef PlayerScoreResponse
  * @memberOf! games(v1)
  * @type object
- * @property {string[]} beatenScoreTimeSpans The time spans where the submitted score is better than the existing score for that time span.
-Possible values are:
-- &quot;ALL_TIME&quot; - The score is an all-time score.
-- &quot;WEEKLY&quot; - The score is a weekly score.
-- &quot;DAILY&quot; - The score is a daily score.
+ * @property {string[]} beatenScoreTimeSpans The time spans where the submitted score is better than the existing score for that time span. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
  * @property {string} formattedScore The formatted value of the submitted score.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreResponse.
  * @property {string} leaderboardId The leaderboard ID that this score was submitted to.
@@ -2899,8 +2619,7 @@ Possible values are:
  * @typedef PushToken
  * @memberOf! games(v1)
  * @type object
- * @property {string} clientRevision The revision of the client SDK used by your application, in the same format that&#39;s used by revisions.check. Used to send backward compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:
-- IOS - Push token is for iOS
+ * @property {string} clientRevision The revision of the client SDK used by your application, in the same format that&#39;s used by revisions.check. Used to send backward compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - IOS - Push token is for iOS
  * @property {games(v1).PushTokenId} id Unique identifier for this push token.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#pushToken.
  * @property {string} language The preferred language for notifications that are sent using this token.
@@ -2931,18 +2650,7 @@ Possible values are:
  * @property {string} name The name of the quest.
  * @property {string} notifyTimestampMillis The timestamp at which the user should be notified that the quest will end soon in milliseconds since the epoch in UTC.
  * @property {string} startTimestampMillis The timestamp at which the quest becomes active in milliseconds since the epoch in UTC.
- * @property {string} state The state of the quest.
-Possible values are:
-- &quot;UPCOMING&quot;: The quest is upcoming. The user can see the quest, but
-cannot accept it until it is open.
-- &quot;OPEN&quot;: The quest is currently open and may be accepted at this
-time.
-- &quot;ACCEPTED&quot;: The user is currently participating in this quest.
-- &quot;COMPLETED&quot;: The user has completed the quest.
-- &quot;FAILED&quot;: The quest was attempted but was not completed before the
-deadline expired.
-- &quot;EXPIRED&quot;: The quest has expired and was not accepted.
-- &quot;DELETED&quot;: The quest should be deleted from the local database.
+ * @property {string} state The state of the quest. Possible values are:   - &quot;UPCOMING&quot;: The quest is upcoming. The user can see the quest, but cannot accept it until it is open.  - &quot;OPEN&quot;: The quest is currently open and may be accepted at this time.  - &quot;ACCEPTED&quot;: The user is currently participating in this quest.  - &quot;COMPLETED&quot;: The user has completed the quest.  - &quot;FAILED&quot;: The quest was attempted but was not completed before the deadline expired.  - &quot;EXPIRED&quot;: The quest has expired and was not accepted.  - &quot;DELETED&quot;: The quest should be deleted from the local database.
  */
 /**
  * @typedef QuestContribution
@@ -2957,11 +2665,9 @@ deadline expired.
  * @memberOf! games(v1)
  * @type object
  * @property {games(v1).QuestContribution} completionContribution The total number of times the associated event must be incremented for the player to complete this quest.
- * @property {games(v1).QuestContribution} currentContribution The number of increments the player has made toward the completion count event increments required to complete the quest. This value will not exceed the completion contribution.
-There will be no currentContribution until the player has accepted the quest.
+ * @property {games(v1).QuestContribution} currentContribution The number of increments the player has made toward the completion count event increments required to complete the quest. This value will not exceed the completion contribution. There will be no currentContribution until the player has accepted the quest.
  * @property {string} eventId The ID of the event the criterion corresponds to.
- * @property {games(v1).QuestContribution} initialPlayerProgress The value of the event associated with this quest at the time that the quest was accepted. This value may change if event increments that took place before the start of quest are uploaded after the quest starts.
-There will be no initialPlayerProgress until the player has accepted the quest.
+ * @property {games(v1).QuestContribution} initialPlayerProgress The value of the event associated with this quest at the time that the quest was accepted. This value may change if event increments that took place before the start of quest are uploaded after the quest starts. There will be no initialPlayerProgress until the player has accepted the quest.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#questCriterion.
  */
 /**
@@ -2980,14 +2686,7 @@ There will be no initialPlayerProgress until the player has accepted the quest.
  * @property {games(v1).QuestCriterion[]} criteria The criteria of the milestone.
  * @property {string} id The milestone ID.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#questMilestone.
- * @property {string} state The current state of the milestone.
-Possible values are:
-- &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has not yet
-been claimed.
-- &quot;CLAIMED&quot; - The milestone is complete and has been claimed.
-- &quot;NOT_COMPLETED&quot; - The milestone has not yet been completed.
-- &quot;NOT_STARTED&quot; - The milestone is for a quest that has not yet been
-accepted.
+ * @property {string} state The current state of the milestone. Possible values are:   - &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has not yet been claimed.  - &quot;CLAIMED&quot; - The milestone is complete and has been claimed.  - &quot;NOT_COMPLETED&quot; - The milestone has not yet been completed.  - &quot;NOT_STARTED&quot; - The milestone is for a quest that has not yet been accepted.
  */
 /**
  * @typedef RevisionCheckResponse
@@ -2995,13 +2694,7 @@ accepted.
  * @type object
  * @property {string} apiVersion The version of the API this client revision should use when calling API methods.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#revisionCheckResponse.
- * @property {string} revisionStatus The result of the revision check.
-Possible values are:
-- &quot;OK&quot; - The revision being used is current.
-- &quot;DEPRECATED&quot; - There is currently a newer version available, but the
-revision being used still works.
-- &quot;INVALID&quot; - The revision being used is not supported in any released
-version.
+ * @property {string} revisionStatus The result of the revision check. Possible values are:   - &quot;OK&quot; - The revision being used is current.  - &quot;DEPRECATED&quot; - There is currently a newer version available, but the revision being used still works.  - &quot;INVALID&quot; - The revision being used is not supported in any released version.
  */
 /**
  * @typedef Room
@@ -3018,18 +2711,7 @@ version.
  * @property {games(v1).RoomParticipant[]} participants The participants involved in the room, along with their statuses. Includes participants who have left or declined invitations.
  * @property {string} roomId Globally unique ID for a room.
  * @property {integer} roomStatusVersion The version of the room status: an increasing counter, used by the client to ignore out-of-order updates to room status.
- * @property {string} status The status of the room.
-Possible values are:
-- &quot;ROOM_INVITING&quot; - One or more players have been invited and not
-responded.
-- &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by
-auto-matching.
-- &quot;ROOM_CONNECTING&quot; - Players have joined and are connecting to each
-other (either before or after auto-matching).
-- &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.
-- &quot;ROOM_DELETED&quot; - The room should no longer be shown on the client.
-Returned in sync calls when a player joins a room (as a tombstone), or for rooms
-where all joined participants have left.
+ * @property {string} status The status of the room. Possible values are:   - &quot;ROOM_INVITING&quot; - One or more players have been invited and not responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have joined and are connecting to each other (either before or after auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.  - &quot;ROOM_DELETED&quot; - The room should no longer be shown on the client. Returned in sync calls when a player joins a room (as a tombstone), or for rooms where all joined participants have left.
  * @property {integer} variant The variant / mode of the application being played; can be any integer value, or left blank.
  */
 /**
@@ -3096,28 +2778,7 @@ where all joined participants have left.
  * @type object
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomLeaveRequest.
  * @property {games(v1).RoomLeaveDiagnostics} leaveDiagnostics Diagnostics for a player leaving the room.
- * @property {string} reason Reason for leaving the match.
-Possible values are:
-- &quot;PLAYER_LEFT&quot; - The player chose to leave the room..
-- &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.
-- &quot;REALTIME_ABANDONED&quot; - The player switched to another application
-and abandoned the room.
-- &quot;REALTIME_PEER_CONNECTION_FAILURE&quot; - The client was unable to
-establish a connection to other peer(s).
-- &quot;REALTIME_SERVER_CONNECTION_FAILURE&quot; - The client was unable to
-communicate with the server.
-- &quot;REALTIME_SERVER_ERROR&quot; - The client received an error response when
-it tried to communicate with the server.
-- &quot;REALTIME_TIMEOUT&quot; - The client timed out while waiting for a room.
-- &quot;REALTIME_CLIENT_DISCONNECTING&quot; - The client disconnects without
-first calling Leave.
-- &quot;REALTIME_SIGN_OUT&quot; - The user signed out of G+ while in the room.
-- &quot;REALTIME_GAME_CRASHED&quot; - The game crashed.
-- &quot;REALTIME_ROOM_SERVICE_CRASHED&quot; - RoomAndroidService crashed.
-- &quot;REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION&quot; - Another client is
-trying to enter a room.
-- &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is trying to
-enter a new room.
+ * @property {string} reason Reason for leaving the match. Possible values are:   - &quot;PLAYER_LEFT&quot; - The player chose to leave the room..  - &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.  - &quot;REALTIME_ABANDONED&quot; - The player switched to another application and abandoned the room.  - &quot;REALTIME_PEER_CONNECTION_FAILURE&quot; - The client was unable to establish a connection to other peer(s).  - &quot;REALTIME_SERVER_CONNECTION_FAILURE&quot; - The client was unable to communicate with the server.  - &quot;REALTIME_SERVER_ERROR&quot; - The client received an error response when it tried to communicate with the server.  - &quot;REALTIME_TIMEOUT&quot; - The client timed out while waiting for a room.  - &quot;REALTIME_CLIENT_DISCONNECTING&quot; - The client disconnects without first calling Leave.  - &quot;REALTIME_SIGN_OUT&quot; - The user signed out of G+ while in the room.  - &quot;REALTIME_GAME_CRASHED&quot; - The game crashed.  - &quot;REALTIME_ROOM_SERVICE_CRASHED&quot; - RoomAndroidService crashed.  - &quot;REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION&quot; - Another client is trying to enter a room.  - &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is trying to enter a new room.
  */
 /**
  * @typedef RoomList
@@ -3140,23 +2801,11 @@ enter a new room.
  * @memberOf! games(v1)
  * @type object
  * @property {integer} connectionSetupLatencyMillis The amount of time in milliseconds it took to establish connections with this peer.
- * @property {string} error The error code in event of a failure.
-Possible values are:
-- &quot;P2P_FAILED&quot; - The client failed to establish a P2P connection with
-the peer.
-- &quot;PRESENCE_FAILED&quot; - The client failed to register to receive P2P
-connections.
-- &quot;RELAY_SERVER_FAILED&quot; - The client received an error when trying to
-use the relay server to establish a P2P connection with the peer.
+ * @property {string} error The error code in event of a failure. Possible values are:   - &quot;P2P_FAILED&quot; - The client failed to establish a P2P connection with the peer.  - &quot;PRESENCE_FAILED&quot; - The client failed to register to receive P2P connections.  - &quot;RELAY_SERVER_FAILED&quot; - The client received an error when trying to use the relay server to establish a P2P connection with the peer.
  * @property {string} error_reason More detailed diagnostic message returned in event of a failure.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatus.
  * @property {string} participantId The ID of the participant.
- * @property {string} status The status of the peer in the room.
-Possible values are:
-- &quot;CONNECTION_ESTABLISHED&quot; - The client established a P2P connection
-with the peer.
-- &quot;CONNECTION_FAILED&quot; - The client failed to establish directed
-presence with the peer.
+ * @property {string} status The status of the peer in the room. Possible values are:   - &quot;CONNECTION_ESTABLISHED&quot; - The client established a P2P connection with the peer.  - &quot;CONNECTION_FAILED&quot; - The client failed to establish directed presence with the peer.
  * @property {integer} unreliableRoundtripLatencyMillis The amount of time in milliseconds it took to send packets back and forth on the unreliable channel with this peer.
  */
 /**
@@ -3177,31 +2826,9 @@ presence with the peer.
  * @property {boolean} connected True if this participant is in the fully connected set of peers in the room.
  * @property {string} id An identifier for the participant in the scope of the room. Cannot be used to identify a player across rooms or in other contexts.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomParticipant.
- * @property {string} leaveReason The reason the participant left the room; populated if the participant status is PARTICIPANT_LEFT.
-Possible values are:
-- &quot;PLAYER_LEFT&quot; - The player explicitly chose to leave the room.
-- &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.
-- &quot;ABANDONED&quot; - The player switched to another application and
-abandoned the room.
-- &quot;PEER_CONNECTION_FAILURE&quot; - The client was unable to establish or
-maintain a connection to other peer(s) in the room.
-- &quot;SERVER_ERROR&quot; - The client received an error response when it tried
-to communicate with the server.
-- &quot;TIMEOUT&quot; - The client timed out while waiting for players to join
-and connect.
-- &quot;PRESENCE_FAILURE&quot; - The client&#39;s XMPP connection ended
-abruptly.
+ * @property {string} leaveReason The reason the participant left the room; populated if the participant status is PARTICIPANT_LEFT. Possible values are:   - &quot;PLAYER_LEFT&quot; - The player explicitly chose to leave the room.  - &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.  - &quot;ABANDONED&quot; - The player switched to another application and abandoned the room. - &quot;PEER_CONNECTION_FAILURE&quot; - The client was unable to establish or maintain a connection to other peer(s) in the room. - &quot;SERVER_ERROR&quot; - The client received an error response when it tried to communicate with the server.  - &quot;TIMEOUT&quot; - The client timed out while waiting for players to join and connect.  - &quot;PRESENCE_FAILURE&quot; - The client&#39;s XMPP connection ended abruptly.
  * @property {games(v1).Player} player Information about the player. Not populated if this player was anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
- * @property {string} status The status of the participant with respect to the room.
-Possible values are:
-- &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the
-room, but has not yet responded.
-- &quot;PARTICIPANT_JOINED&quot; - The participant has joined the room (either
-after creating it or accepting an invitation.)
-- &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to
-join the room.
-- &quot;PARTICIPANT_LEFT&quot; - The participant joined the room and then left
-it.
+ * @property {string} status The status of the participant with respect to the room. Possible values are:   - &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the room, but has not yet responded.  - &quot;PARTICIPANT_JOINED&quot; - The participant has joined the room (either after creating it or accepting an invitation.)  - &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to join the room.  - &quot;PARTICIPANT_LEFT&quot; - The participant joined the room and then left it.
  */
 /**
  * @typedef RoomStatus
@@ -3211,16 +2838,7 @@ it.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#roomStatus.
  * @property {games(v1).RoomParticipant[]} participants The participants involved in the room, along with their statuses. Includes participants who have left or declined invitations.
  * @property {string} roomId Globally unique ID for a room.
- * @property {string} status The status of the room.
-Possible values are:
-- &quot;ROOM_INVITING&quot; - One or more players have been invited and not
-responded.
-- &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by
-auto-matching.
-- &quot;ROOM_CONNECTING&quot; - Players have joined are connecting to each other
-(either before or after auto-matching).
-- &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.
-- &quot;ROOM_DELETED&quot; - All joined players have left.
+ * @property {string} status The status of the room. Possible values are:   - &quot;ROOM_INVITING&quot; - One or more players have been invited and not responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have joined are connecting to each other (either before or after auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.  - &quot;ROOM_DELETED&quot; - All joined players have left.
  * @property {integer} statusVersion The version of the status for the room: an increasing counter, used by the client to ignore out-of-order updates to room status.
  */
 /**
@@ -3246,9 +2864,7 @@ auto-matching.
  * @property {string} lastModifiedMillis The timestamp (in millis since Unix epoch) of the last modification to this snapshot.
  * @property {string} progressValue The progress value (64-bit integer set by developer) associated with this snapshot.
  * @property {string} title The title of this snapshot.
- * @property {string} type The type of this snapshot.
-Possible values are:
-- &quot;SAVE_GAME&quot; - A snapshot representing a save game.
+ * @property {string} type The type of this snapshot. Possible values are:   - &quot;SAVE_GAME&quot; - A snapshot representing a save game.
  * @property {string} uniqueName The unique name provided when the snapshot was created.
  */
 /**
@@ -3298,24 +2914,8 @@ Possible values are:
  * @property {games(v1).TurnBasedMatchData} previousMatchData The data / game state for the previous match; set for the first turn of rematches only.
  * @property {string} rematchId The ID of a rematch of this match. Only set for completed matches that have been rematched.
  * @property {games(v1).ParticipantResult[]} results The results reported for this match.
- * @property {string} status The status of the match.
-Possible values are:
-- &quot;MATCH_AUTO_MATCHING&quot; - One or more slots need to be filled by
-auto-matching; the match cannot be established until they are filled.
-- &quot;MATCH_ACTIVE&quot; - The match has started.
-- &quot;MATCH_COMPLETE&quot; - The match has finished.
-- &quot;MATCH_CANCELED&quot; - The match was canceled.
-- &quot;MATCH_EXPIRED&quot; - The match expired due to inactivity.
-- &quot;MATCH_DELETED&quot; - The match should no longer be shown on the client.
-Returned only for tombstones for matches when sync is called.
- * @property {string} userMatchStatus The status of the current user in the match. Derived from the match type, match status, the user&#39;s participant status, and the pending participant for the match.
-Possible values are:
-- &quot;USER_INVITED&quot; - The user has been invited to join the match and has
-not responded yet.
-- &quot;USER_AWAITING_TURN&quot; - The user is waiting for their turn.
-- &quot;USER_TURN&quot; - The user has an action to take in the match.
-- &quot;USER_MATCH_COMPLETED&quot; - The match has ended (it is completed,
-canceled, or expired.)
+ * @property {string} status The status of the match. Possible values are:   - &quot;MATCH_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching; the match cannot be established until they are filled.  - &quot;MATCH_ACTIVE&quot; - The match has started.  - &quot;MATCH_COMPLETE&quot; - The match has finished.  - &quot;MATCH_CANCELED&quot; - The match was canceled.  - &quot;MATCH_EXPIRED&quot; - The match expired due to inactivity.  - &quot;MATCH_DELETED&quot; - The match should no longer be shown on the client. Returned only for tombstones for matches when sync is called.
+ * @property {string} userMatchStatus The status of the current user in the match. Derived from the match type, match status, the user&#39;s participant status, and the pending participant for the match. Possible values are:   - &quot;USER_INVITED&quot; - The user has been invited to join the match and has not responded yet.  - &quot;USER_AWAITING_TURN&quot; - The user is waiting for their turn.  - &quot;USER_TURN&quot; - The user has an action to take in the match.  - &quot;USER_MATCH_COMPLETED&quot; - The match has ended (it is completed, canceled, or expired.)
  * @property {integer} variant The variant / mode of the application being played; can be any integer value, or left blank.
  * @property {string} withParticipantId The ID of another participant in the match that can be used when describing the participants the user is playing with.
  */
@@ -3369,23 +2969,7 @@ canceled, or expired.)
  * @property {string} id An identifier for the participant in the scope of the match. Cannot be used to identify a player across matches or in other contexts.
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchParticipant.
  * @property {games(v1).Player} player Information about the player. Not populated if this player was anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
- * @property {string} status The status of the participant with respect to the match.
-Possible values are:
-- &quot;PARTICIPANT_NOT_INVITED_YET&quot; - The participant is slated to be
-invited to the match, but the invitation has not been sent; the invite will be
-sent when it becomes their turn.
-- &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the
-match, but has not yet responded.
-- &quot;PARTICIPANT_JOINED&quot; - The participant has joined the match (either
-after creating it or accepting an invitation.)
-- &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to
-join the match.
-- &quot;PARTICIPANT_LEFT&quot; - The participant joined the match and then left
-it.
-- &quot;PARTICIPANT_FINISHED&quot; - The participant finished playing in the
-match.
-- &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their turn
-in the allotted time.
+ * @property {string} status The status of the participant with respect to the match. Possible values are:   - &quot;PARTICIPANT_NOT_INVITED_YET&quot; - The participant is slated to be invited to the match, but the invitation has not been sent; the invite will be sent when it becomes their turn.  - &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the match, but has not yet responded.  - &quot;PARTICIPANT_JOINED&quot; - The participant has joined the match (either after creating it or accepting an invitation.)  - &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to join the match.  - &quot;PARTICIPANT_LEFT&quot; - The participant joined the match and then left it.  - &quot;PARTICIPANT_FINISHED&quot; - The participant finished playing in the match.  - &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their turn in the allotted time.
  */
 /**
  * @typedef TurnBasedMatchRematch

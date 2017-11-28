@@ -111,15 +111,13 @@ function Logging(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -128,110 +126,106 @@ function Logging(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['logName'],
           pathParams: ['logName'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * logging.billingAccounts.logs.list
-         * @desc Lists the logs in projects, organizations, folders, or billing
-         * accounts. Only logs that have entries are listed.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Logging API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/logging
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var logging = google.logging('v2beta1');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // Required. The resource name that owns the logs:
-         *     // "projects/[PROJECT_ID]"
-         *     // "organizations/[ORGANIZATION_ID]"
-         *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-         *     // "folders/[FOLDER_ID]"
-         *     parent: 'billingAccounts/my-billing-account',  // TODO: Update
-         * placeholder value.
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   var handlePage = function(err, response) {
-         *     if (err) {
-         *       console.error(err);
-         *       return;
-         *     }
-         *
-         *     var logNamesPage = response['logNames'];
-         *     if (!logNamesPage) {
-         *       return;
-         *     }
-         *     for (var i = 0; i < logNamesPage.length; i++) {
-         *       // TODO: Change code below to process each resource in
-         * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null,
-         * 2));
-         *     }
-         *
-         *     if (response.nextPageToken) {
-         *       request.pageToken = response.nextPageToken;
-         *       logging.billingAccounts.logs.list(request, handlePage);
-         *     }
-         *   };
-         *
-         *   logging.billingAccounts.logs.list(request, handlePage);
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias logging.billingAccounts.logs.list
-         * @memberOf! logging(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-         * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-         * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * logging.billingAccounts.logs.list
+          * @desc Lists the logs in projects, organizations, folders, or billing
+          * accounts. Only logs that have entries are listed.
+          * @example
+          * // BEFORE RUNNING:
+          * // ---------------
+          * // 1. If not already done, enable the Stackdriver Logging API
+          * //    and check the quota for your project at
+          * //    https://console.developers.google.com/apis/api/logging
+          * // 2. This sample uses Application Default Credentials for
+          * authentication.
+          * //    If not already done, install the gcloud CLI from
+          * //    https://cloud.google.com/sdk and run
+          * //    `gcloud beta auth application-default login`.
+          * //    For more information, see
+          * //
+          * https://developers.google.com/identity/protocols/application-default-credentials
+          * // 3. Install the Node.js client library by running
+          * //    `npm install googleapis --save`
+          *
+          * var google = require('googleapis');
+          * var logging = google.logging('v2beta1');
+          *
+          * authorize(function(authClient) {
+          *   var request = {
+          *     // Required. The resource name that owns the logs:
+          *     // "projects/[PROJECT_ID]"
+          *     // "organizations/[ORGANIZATION_ID]"
+          *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+          *     // "folders/[FOLDER_ID]"
+          *     parent: 'billingAccounts/my-billing-account',  // TODO: Update
+          * placeholder value.
+          *
+          *     auth: authClient,
+          *   };
+          *
+          *   var handlePage = function(err, response) {
+          *     if (err) {
+          *       console.error(err);
+          *       return;
+          *     }
+          *
+          *     var logNamesPage = response['logNames'];
+          *     if (!logNamesPage) {
+          *       return;
+          *     }
+          *     for (var i = 0; i < logNamesPage.length; i++) {
+          *       // TODO: Change code below to process each resource in
+          * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null,
+          * 2));
+          *     }
+          *
+          *     if (response.nextPageToken) {
+          *       request.pageToken = response.nextPageToken;
+          *       logging.billingAccounts.logs.list(request, handlePage);
+          *     }
+          *   };
+          *
+          *   logging.billingAccounts.logs.list(request, handlePage);
+          * });
+          *
+          * function authorize(callback) {
+          *   google.auth.getApplicationDefault(function(err, authClient) {
+          *     if (err) {
+          *       console.error('authentication failed: ', err);
+          *       return;
+          *     }
+          *     if (authClient.createScopedRequired &&
+          * authClient.createScopedRequired()) { var scopes =
+          * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+          * authClient.createScoped(scopes);
+          *     }
+          *     callback(authClient);
+          *   });
+          * }
+          * @alias logging.billingAccounts.logs.list
+          * @memberOf! logging(v2beta1)
+          *
+          * @param {object} params Parameters for request
+          * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+          * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+          * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -240,14 +234,13 @@ function Logging(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -332,15 +325,13 @@ function Logging(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -349,93 +340,89 @@ function Logging(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * logging.entries.write
-       * @desc Log entry resourcesWrites log entries to Stackdriver Logging.
-       * This API method is the only way to send log entries to Stackdriver
-       * Logging. This method is used, directly or indirectly, by the
-       * Stackdriver Logging agent (fluentd) and all logging libraries
-       * configured to use Stackdriver Logging.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Stackdriver Logging API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/logging
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var logging = google.logging('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   logging.entries.write(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias logging.entries.write
-       * @memberOf! logging(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {logging(v2beta1).WriteLogEntriesRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    write: function(params, options, callback) {
+    }, /**
+        * logging.entries.write
+        * @desc Log entry resourcesWrites log entries to Stackdriver Logging.
+        * This API method is the only way to send log entries to Stackdriver
+        * Logging. This method is used, directly or indirectly, by the
+        * Stackdriver Logging agent (fluentd) and all logging libraries
+        * configured to use Stackdriver Logging.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Stackdriver Logging API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/logging
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var logging = google.logging('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   logging.entries.write(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias logging.entries.write
+        * @memberOf! logging(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {logging(v2beta1).WriteLogEntriesRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    write(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -444,14 +431,13 @@ function Logging(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.monitoredResourceDescriptors = {
@@ -533,15 +519,13 @@ function Logging(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -550,14 +534,13 @@ function Logging(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.organizations = {
@@ -637,15 +620,13 @@ function Logging(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -654,110 +635,106 @@ function Logging(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['logName'],
           pathParams: ['logName'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * logging.organizations.logs.list
-         * @desc Lists the logs in projects, organizations, folders, or billing
-         * accounts. Only logs that have entries are listed.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Stackdriver Logging API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/logging
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var logging = google.logging('v2beta1');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // Required. The resource name that owns the logs:
-         *     // "projects/[PROJECT_ID]"
-         *     // "organizations/[ORGANIZATION_ID]"
-         *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-         *     // "folders/[FOLDER_ID]"
-         *     parent: 'organizations/my-organization',  // TODO: Update
-         * placeholder value.
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   var handlePage = function(err, response) {
-         *     if (err) {
-         *       console.error(err);
-         *       return;
-         *     }
-         *
-         *     var logNamesPage = response['logNames'];
-         *     if (!logNamesPage) {
-         *       return;
-         *     }
-         *     for (var i = 0; i < logNamesPage.length; i++) {
-         *       // TODO: Change code below to process each resource in
-         * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null,
-         * 2));
-         *     }
-         *
-         *     if (response.nextPageToken) {
-         *       request.pageToken = response.nextPageToken;
-         *       logging.organizations.logs.list(request, handlePage);
-         *     }
-         *   };
-         *
-         *   logging.organizations.logs.list(request, handlePage);
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias logging.organizations.logs.list
-         * @memberOf! logging(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-         * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-         * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * logging.organizations.logs.list
+          * @desc Lists the logs in projects, organizations, folders, or billing
+          * accounts. Only logs that have entries are listed.
+          * @example
+          * // BEFORE RUNNING:
+          * // ---------------
+          * // 1. If not already done, enable the Stackdriver Logging API
+          * //    and check the quota for your project at
+          * //    https://console.developers.google.com/apis/api/logging
+          * // 2. This sample uses Application Default Credentials for
+          * authentication.
+          * //    If not already done, install the gcloud CLI from
+          * //    https://cloud.google.com/sdk and run
+          * //    `gcloud beta auth application-default login`.
+          * //    For more information, see
+          * //
+          * https://developers.google.com/identity/protocols/application-default-credentials
+          * // 3. Install the Node.js client library by running
+          * //    `npm install googleapis --save`
+          *
+          * var google = require('googleapis');
+          * var logging = google.logging('v2beta1');
+          *
+          * authorize(function(authClient) {
+          *   var request = {
+          *     // Required. The resource name that owns the logs:
+          *     // "projects/[PROJECT_ID]"
+          *     // "organizations/[ORGANIZATION_ID]"
+          *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+          *     // "folders/[FOLDER_ID]"
+          *     parent: 'organizations/my-organization',  // TODO: Update
+          * placeholder value.
+          *
+          *     auth: authClient,
+          *   };
+          *
+          *   var handlePage = function(err, response) {
+          *     if (err) {
+          *       console.error(err);
+          *       return;
+          *     }
+          *
+          *     var logNamesPage = response['logNames'];
+          *     if (!logNamesPage) {
+          *       return;
+          *     }
+          *     for (var i = 0; i < logNamesPage.length; i++) {
+          *       // TODO: Change code below to process each resource in
+          * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null,
+          * 2));
+          *     }
+          *
+          *     if (response.nextPageToken) {
+          *       request.pageToken = response.nextPageToken;
+          *       logging.organizations.logs.list(request, handlePage);
+          *     }
+          *   };
+          *
+          *   logging.organizations.logs.list(request, handlePage);
+          * });
+          *
+          * function authorize(callback) {
+          *   google.auth.getApplicationDefault(function(err, authClient) {
+          *     if (err) {
+          *       console.error('authentication failed: ', err);
+          *       return;
+          *     }
+          *     if (authClient.createScopedRequired &&
+          * authClient.createScopedRequired()) { var scopes =
+          * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+          * authClient.createScoped(scopes);
+          *     }
+          *     callback(authClient);
+          *   });
+          * }
+          * @alias logging.organizations.logs.list
+          * @memberOf! logging(v2beta1)
+          *
+          * @param {object} params Parameters for request
+          * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+          * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+          * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -766,14 +743,13 @@ function Logging(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -855,16 +831,14 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function(params, options, callback) {
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -873,111 +847,107 @@ function Logging(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['logName'],
               pathParams: ['logName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.logs.list
-             * @desc Lists the logs in projects, organizations, folders, or
-             * billing accounts. Only logs that have entries are listed.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The resource name that owns the logs:
-             *     // "projects/[PROJECT_ID]"
-             *     // "organizations/[ORGANIZATION_ID]"
-             *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-             *     // "folders/[FOLDER_ID]"
-             *     parent: 'projects/my-project',  // TODO: Update placeholder
-             * value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   var handlePage = function(err, response) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *
-             *     var logNamesPage = response['logNames'];
-             *     if (!logNamesPage) {
-             *       return;
-             *     }
-             *     for (var i = 0; i < logNamesPage.length; i++) {
-             *       // TODO: Change code below to process each resource in
-             * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null,
-             * 2));
-             *     }
-             *
-             *     if (response.nextPageToken) {
-             *       request.pageToken = response.nextPageToken;
-             *       logging.projects.logs.list(request, handlePage);
-             *     }
-             *   };
-             *
-             *   logging.projects.logs.list(request, handlePage);
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.logs.list
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-             * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-             * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * logging.projects.logs.list
+              * @desc Lists the logs in projects, organizations, folders, or
+              * billing accounts. Only logs that have entries are listed.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The resource name that owns the logs:
+              *     // "projects/[PROJECT_ID]"
+              *     // "organizations/[ORGANIZATION_ID]"
+              *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+              *     // "folders/[FOLDER_ID]"
+              *     parent: 'projects/my-project',  // TODO: Update placeholder
+              * value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   var handlePage = function(err, response) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *
+              *     var logNamesPage = response['logNames'];
+              *     if (!logNamesPage) {
+              *       return;
+              *     }
+              *     for (var i = 0; i < logNamesPage.length; i++) {
+              *       // TODO: Change code below to process each resource in
+              * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i],
+              * null, 2));
+              *     }
+              *
+              *     if (response.nextPageToken) {
+              *       request.pageToken = response.nextPageToken;
+              *       logging.projects.logs.list(request, handlePage);
+              *     }
+              *   };
+              *
+              *   logging.projects.logs.list(request, handlePage);
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.logs.list
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+              * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+              * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -986,14 +956,13 @@ function Logging(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
               context: self
             };
             return createAPIRequest(parameters, callback);
           }
-
 
         },
         metrics: {
@@ -1069,16 +1038,14 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function(params, options, callback) {
+          create(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1087,88 +1054,84 @@ function Logging(options) {
                     method: 'POST'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.metrics.delete
-             * @desc Deletes a logs-based metric.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // The resource name of the metric to delete:
-             *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-             *     metricName: 'projects/my-project/metrics/my-metric',  //
-             * TODO: Update placeholder value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.metrics.delete(request, function(err) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.metrics.delete
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.metricName The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          delete: function(params, options, callback) {
+          }, /**
+              * logging.projects.metrics.delete
+              * @desc Deletes a logs-based metric.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // The resource name of the metric to delete:
+              *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+              *     metricName: 'projects/my-project/metrics/my-metric',  //
+              * TODO: Update placeholder value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.metrics.delete(request, function(err) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.metrics.delete
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.metricName The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1177,91 +1140,85 @@ function Logging(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['metricName'],
               pathParams: ['metricName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.metrics.get
-             * @desc Gets a logs-based metric.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // The resource name of the desired metric:
-             *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-             *     metricName: 'projects/my-project/metrics/my-metric',  //
-             * TODO: Update placeholder value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.metrics.get(request, function(err, response) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *
-             *     // TODO: Change code below to process the `response` object:
-             *     console.log(JSON.stringify(response, null, 2));
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.metrics.get
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          get: function(params, options, callback) {
+          }, /**
+              * logging.projects.metrics.get
+              * @desc Gets a logs-based metric.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // The resource name of the desired metric:
+              *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+              *     metricName: 'projects/my-project/metrics/my-metric',  //
+              * TODO: Update placeholder value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.metrics.get(request, function(err, response)
+              * { if (err) { console.error(err); return;
+              *     }
+              *
+              *     // TODO: Change code below to process the `response` object:
+              *     console.log(JSON.stringify(response, null, 2));
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.metrics.get
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1270,107 +1227,103 @@ function Logging(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['metricName'],
               pathParams: ['metricName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.metrics.list
-             * @desc Lists logs-based metrics.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The name of the project containing the metrics:
-             *     // "projects/[PROJECT_ID]"
-             *     parent: 'projects/my-project',  // TODO: Update placeholder
-             * value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   var handlePage = function(err, response) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *
-             *     var metricsPage = response['metrics'];
-             *     if (!metricsPage) {
-             *       return;
-             *     }
-             *     for (var i = 0; i < metricsPage.length; i++) {
-             *       // TODO: Change code below to process each resource in
-             * `metricsPage`: console.log(JSON.stringify(metricsPage[i], null,
-             * 2));
-             *     }
-             *
-             *     if (response.nextPageToken) {
-             *       request.pageToken = response.nextPageToken;
-             *       logging.projects.metrics.list(request, handlePage);
-             *     }
-             *   };
-             *
-             *   logging.projects.metrics.list(request, handlePage);
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.metrics.list
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-             * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-             * @param {string} params.parent Required. The name of the project containing the metrics: "projects/[PROJECT_ID]"
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * logging.projects.metrics.list
+              * @desc Lists logs-based metrics.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The name of the project containing the metrics:
+              *     // "projects/[PROJECT_ID]"
+              *     parent: 'projects/my-project',  // TODO: Update placeholder
+              * value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   var handlePage = function(err, response) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *
+              *     var metricsPage = response['metrics'];
+              *     if (!metricsPage) {
+              *       return;
+              *     }
+              *     for (var i = 0; i < metricsPage.length; i++) {
+              *       // TODO: Change code below to process each resource in
+              * `metricsPage`: console.log(JSON.stringify(metricsPage[i], null,
+              * 2));
+              *     }
+              *
+              *     if (response.nextPageToken) {
+              *       request.pageToken = response.nextPageToken;
+              *       logging.projects.metrics.list(request, handlePage);
+              *     }
+              *   };
+              *
+              *   logging.projects.metrics.list(request, handlePage);
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.metrics.list
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+              * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+              * @param {string} params.parent Required. The name of the project containing the metrics: "projects/[PROJECT_ID]"
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1379,100 +1332,96 @@ function Logging(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.metrics.update
-             * @desc Creates or updates a logs-based metric.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // The resource name of the metric to update:
-             *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-             *     // The updated metric must be provided in the request and
-             * it's name field must be the same as
-             *     // [METRIC_ID] If the metric does not exist in [PROJECT_ID],
-             * then a new metric is created. metricName:
-             * 'projects/my-project/metrics/my-metric',  // TODO: Update
-             * placeholder value.
-             *
-             *     resource: {
-             *       // TODO: Add desired properties to the request body. All
-             * existing properties
-             *       // will be replaced.
-             *     },
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.metrics.update(request, function(err,
-             * response) { if (err) { console.error(err); return;
-             *     }
-             *
-             *     // TODO: Change code below to process the `response` object:
-             *     console.log(JSON.stringify(response, null, 2));
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.metrics.update
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.metricName The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
-             * @param {logging(v2beta1).LogMetric} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          update: function(params, options, callback) {
+          }, /**
+              * logging.projects.metrics.update
+              * @desc Creates or updates a logs-based metric.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // The resource name of the metric to update:
+              *     // "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+              *     // The updated metric must be provided in the request and
+              * it's name field must be the same as
+              *     // [METRIC_ID] If the metric does not exist in [PROJECT_ID],
+              * then a new metric is created. metricName:
+              * 'projects/my-project/metrics/my-metric',  // TODO: Update
+              * placeholder value.
+              *
+              *     resource: {
+              *       // TODO: Add desired properties to the request body. All
+              * existing properties
+              *       // will be replaced.
+              *     },
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.metrics.update(request, function(err,
+              * response) { if (err) { console.error(err); return;
+              *     }
+              *
+              *     // TODO: Change code below to process the `response` object:
+              *     console.log(JSON.stringify(response, null, 2));
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.metrics.update
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.metricName The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+              * @param {logging(v2beta1).LogMetric} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1481,14 +1430,13 @@ function Logging(options) {
                     method: 'PUT'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['metricName'],
               pathParams: ['metricName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
           }
-
 
         },
         sinks: {
@@ -1573,16 +1521,14 @@ function Logging(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function(params, options, callback) {
+          create(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1591,95 +1537,91 @@ function Logging(options) {
                     method: 'POST'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.sinks.delete
-             * @desc Deletes a sink. If the sink has a unique writer_identity,
-             * then that service account is also deleted.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The full resource name of the sink to delete,
-             * including the parent resource and the sink
-             *     // identifier:
-             *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-             *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-             *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-             *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-             *     // Example: "projects/my-project-id/sinks/my-sink-id".
-             *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
-             * Update placeholder value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.sinks.delete(request, function(err) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.sinks.delete
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          delete: function(params, options, callback) {
+          }, /**
+              * logging.projects.sinks.delete
+              * @desc Deletes a sink. If the sink has a unique writer_identity,
+              * then that service account is also deleted.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The full resource name of the sink to delete,
+              * including the parent resource and the sink
+              *     // identifier:
+              *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+              *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+              *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+              *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+              *     // Example: "projects/my-project-id/sinks/my-sink-id".
+              *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
+              * Update placeholder value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.sinks.delete(request, function(err) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.sinks.delete
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1688,95 +1630,91 @@ function Logging(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['sinkName'],
               pathParams: ['sinkName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.sinks.get
-             * @desc Gets a sink.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The resource name of the sink:
-             *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-             *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-             *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-             *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-             *     // Example: "projects/my-project-id/sinks/my-sink-id".
-             *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
-             * Update placeholder value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.sinks.get(request, function(err, response) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *
-             *     // TODO: Change code below to process the `response` object:
-             *     console.log(JSON.stringify(response, null, 2));
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.sinks.get
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          get: function(params, options, callback) {
+          }, /**
+              * logging.projects.sinks.get
+              * @desc Gets a sink.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The resource name of the sink:
+              *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+              *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+              *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+              *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+              *     // Example: "projects/my-project-id/sinks/my-sink-id".
+              *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
+              * Update placeholder value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.sinks.get(request, function(err, response) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *
+              *     // TODO: Change code below to process the `response` object:
+              *     console.log(JSON.stringify(response, null, 2));
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.sinks.get
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1785,110 +1723,106 @@ function Logging(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['sinkName'],
               pathParams: ['sinkName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.sinks.list
-             * @desc Lists sinks.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The parent resource whose sinks are to be
-             * listed:
-             *     // "projects/[PROJECT_ID]"
-             *     // "organizations/[ORGANIZATION_ID]"
-             *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-             *     // "folders/[FOLDER_ID]"
-             *     parent: 'projects/my-project',  // TODO: Update placeholder
-             * value.
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   var handlePage = function(err, response) {
-             *     if (err) {
-             *       console.error(err);
-             *       return;
-             *     }
-             *
-             *     var sinksPage = response['sinks'];
-             *     if (!sinksPage) {
-             *       return;
-             *     }
-             *     for (var i = 0; i < sinksPage.length; i++) {
-             *       // TODO: Change code below to process each resource in
-             * `sinksPage`: console.log(JSON.stringify(sinksPage[i], null, 2));
-             *     }
-             *
-             *     if (response.nextPageToken) {
-             *       request.pageToken = response.nextPageToken;
-             *       logging.projects.sinks.list(request, handlePage);
-             *     }
-             *   };
-             *
-             *   logging.projects.sinks.list(request, handlePage);
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.sinks.list
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-             * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-             * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * logging.projects.sinks.list
+              * @desc Lists sinks.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The parent resource whose sinks are to be
+              * listed:
+              *     // "projects/[PROJECT_ID]"
+              *     // "organizations/[ORGANIZATION_ID]"
+              *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
+              *     // "folders/[FOLDER_ID]"
+              *     parent: 'projects/my-project',  // TODO: Update placeholder
+              * value.
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   var handlePage = function(err, response) {
+              *     if (err) {
+              *       console.error(err);
+              *       return;
+              *     }
+              *
+              *     var sinksPage = response['sinks'];
+              *     if (!sinksPage) {
+              *       return;
+              *     }
+              *     for (var i = 0; i < sinksPage.length; i++) {
+              *       // TODO: Change code below to process each resource in
+              * `sinksPage`: console.log(JSON.stringify(sinksPage[i], null, 2));
+              *     }
+              *
+              *     if (response.nextPageToken) {
+              *       request.pageToken = response.nextPageToken;
+              *       logging.projects.sinks.list(request, handlePage);
+              *     }
+              *   };
+              *
+              *   logging.projects.sinks.list(request, handlePage);
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.sinks.list
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+              * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+              * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1897,107 +1831,103 @@ function Logging(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['parent'],
               pathParams: ['parent'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * logging.projects.sinks.update
-             * @desc Updates a sink. This method replaces the following fields
-             * in the existing sink with values from the new sink: destination,
-             * and filter. The updated sink might also have a new
-             * writer_identity; see the unique_writer_identity field.
-             * @example
-             * // BEFORE RUNNING:
-             * // ---------------
-             * // 1. If not already done, enable the Stackdriver Logging API
-             * //    and check the quota for your project at
-             * //    https://console.developers.google.com/apis/api/logging
-             * // 2. This sample uses Application Default Credentials for
-             * authentication.
-             * //    If not already done, install the gcloud CLI from
-             * //    https://cloud.google.com/sdk and run
-             * //    `gcloud beta auth application-default login`.
-             * //    For more information, see
-             * //
-             * https://developers.google.com/identity/protocols/application-default-credentials
-             * // 3. Install the Node.js client library by running
-             * //    `npm install googleapis --save`
-             *
-             * var google = require('googleapis');
-             * var logging = google.logging('v2beta1');
-             *
-             * authorize(function(authClient) {
-             *   var request = {
-             *     // Required. The full resource name of the sink to update,
-             * including the parent resource and the sink
-             *     // identifier:
-             *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-             *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-             *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-             *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-             *     // Example: "projects/my-project-id/sinks/my-sink-id".
-             *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
-             * Update placeholder value.
-             *
-             *     resource: {
-             *       // TODO: Add desired properties to the request body. All
-             * existing properties
-             *       // will be replaced.
-             *     },
-             *
-             *     auth: authClient,
-             *   };
-             *
-             *   logging.projects.sinks.update(request, function(err, response)
-             * { if (err) { console.error(err); return;
-             *     }
-             *
-             *     // TODO: Change code below to process the `response` object:
-             *     console.log(JSON.stringify(response, null, 2));
-             *   });
-             * });
-             *
-             * function authorize(callback) {
-             *   google.auth.getApplicationDefault(function(err, authClient) {
-             *     if (err) {
-             *       console.error('authentication failed: ', err);
-             *       return;
-             *     }
-             *     if (authClient.createScopedRequired &&
-             * authClient.createScopedRequired()) { var scopes =
-             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-             * authClient.createScoped(scopes);
-             *     }
-             *     callback(authClient);
-             *   });
-             * }
-             * @alias logging.projects.sinks.update
-             * @memberOf! logging(v2beta1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-             * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-             * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
-             * @param {logging(v2beta1).LogSink} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          update: function(params, options, callback) {
+          }, /**
+              * logging.projects.sinks.update
+              * @desc Updates a sink. This method replaces the following fields
+              * in the existing sink with values from the new sink: destination,
+              * and filter. The updated sink might also have a new
+              * writer_identity; see the unique_writer_identity field.
+              * @example
+              * // BEFORE RUNNING:
+              * // ---------------
+              * // 1. If not already done, enable the Stackdriver Logging API
+              * //    and check the quota for your project at
+              * //    https://console.developers.google.com/apis/api/logging
+              * // 2. This sample uses Application Default Credentials for
+              * authentication.
+              * //    If not already done, install the gcloud CLI from
+              * //    https://cloud.google.com/sdk and run
+              * //    `gcloud beta auth application-default login`.
+              * //    For more information, see
+              * //
+              * https://developers.google.com/identity/protocols/application-default-credentials
+              * // 3. Install the Node.js client library by running
+              * //    `npm install googleapis --save`
+              *
+              * var google = require('googleapis');
+              * var logging = google.logging('v2beta1');
+              *
+              * authorize(function(authClient) {
+              *   var request = {
+              *     // Required. The full resource name of the sink to update,
+              * including the parent resource and the sink
+              *     // identifier:
+              *     // "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+              *     // "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+              *     // "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+              *     // "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+              *     // Example: "projects/my-project-id/sinks/my-sink-id".
+              *     sinkName: 'projects/my-project/sinks/my-sink',  // TODO:
+              * Update placeholder value.
+              *
+              *     resource: {
+              *       // TODO: Add desired properties to the request body. All
+              * existing properties
+              *       // will be replaced.
+              *     },
+              *
+              *     auth: authClient,
+              *   };
+              *
+              *   logging.projects.sinks.update(request, function(err, response)
+              * { if (err) { console.error(err); return;
+              *     }
+              *
+              *     // TODO: Change code below to process the `response` object:
+              *     console.log(JSON.stringify(response, null, 2));
+              *   });
+              * });
+              *
+              * function authorize(callback) {
+              *   google.auth.getApplicationDefault(function(err, authClient) {
+              *     if (err) {
+              *       console.error('authentication failed: ', err);
+              *       return;
+              *     }
+              *     if (authClient.createScopedRequired &&
+              * authClient.createScopedRequired()) { var scopes =
+              * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+              * authClient.createScoped(scopes);
+              *     }
+              *     callback(authClient);
+              *   });
+              * }
+              * @alias logging.projects.sinks.update
+              * @memberOf! logging(v2beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+              * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+              * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+              * @param {logging(v2beta1).LogSink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl =
                 options.rootUrl || 'https://logging.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2006,14 +1936,13 @@ function Logging(options) {
                     method: 'PUT'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['sinkName'],
               pathParams: ['sinkName'],
               context: self
             };
             return createAPIRequest(parameters, callback);
           }
-
 
         }
       };
@@ -2090,12 +2019,7 @@ function Logging(options) {
  * @property {integer} pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of next_page_token in the response indicates that more results might be available.
  * @property {string} pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. page_token must be the value of next_page_token from the previous response. The values of other method parameters should be identical to those in the previous call.
  * @property {string[]} projectIds Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;. If present, these project identifiers are converted to resource name format and added to the list of resources in resource_names.
- * @property {string[]} resourceNames Required. Names of one or more parent resources from which to retrieve log entries:
-&quot;projects/[PROJECT_ID]&quot;
-&quot;organizations/[ORGANIZATION_ID]&quot;
-&quot;billingAccounts/[BILLING_ACCOUNT_ID]&quot;
-&quot;folders/[FOLDER_ID]&quot;
-Projects listed in the project_ids field are added to this list.
+ * @property {string[]} resourceNames Required. Names of one or more parent resources from which to retrieve log entries: &quot;projects/[PROJECT_ID]&quot; &quot;organizations/[ORGANIZATION_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]&quot; &quot;folders/[FOLDER_ID]&quot; Projects listed in the project_ids field are added to this list.
  */
 /**
  * @typedef ListLogEntriesResponse
@@ -2140,23 +2064,7 @@ Projects listed in the project_ids field are added to this list.
  * @property {string} insertId Optional. A unique identifier for the log entry. If you provide a value, then Stackdriver Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which can be removed. If omitted in new log entries, then Stackdriver Logging assigns its own unique identifier. The insert_id is also used to order log entries that have the same timestamp value.
  * @property {object} jsonPayload The log entry payload, represented as a structure that is expressed as a JSON object.
  * @property {object} labels Optional. A set of user-defined (key, value) data that provides additional information about the log entry.
- * @property {string} logName Required. The resource name of the log to which this log entry belongs:
-&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
-&quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
-&quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
-&quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot;
-A project number may optionally be used in place of PROJECT_ID. The  project
-number is translated to its corresponding PROJECT_ID internally  and the
-log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be
-URL-encoded within log_name. Example:
-&quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-[LOG_ID] must be less than 512 characters long and can only include the
-following characters: upper and lower case alphanumeric characters,
-forward-slash, underscore, hyphen, and period.For backward compatibility, if
-log_name begins with a forward-slash, such as /projects/..., then the log entry
-is ingested as usual but the forward-slash is removed. Listing the log entry
-will not show the leading slash and filtering for a log name with a leading
-slash will never return any results.
+ * @property {string} logName Required. The resource name of the log to which this log entry belongs: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may optionally be used in place of PROJECT_ID. The  project number is translated to its corresponding PROJECT_ID internally  and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
  * @property {logging(v2beta1).LogEntryOperation} operation Optional. Information about an operation associated with the log entry, if applicable.
  * @property {object} protoPayload The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.
  * @property {string} receiveTimestamp Output only. The time the log entry was received by Stackdriver Logging.
@@ -2200,9 +2108,7 @@ slash will never return any results.
  * @type object
  * @property {logging(v2beta1).BucketOptions} bucketOptions Optional. The bucket_options are required when the logs-based metric is using a DISTRIBUTION value type and it describes the bucket boundaries used to create a histogram of the extracted values.
  * @property {string} description Optional. A description of this metric, which is used in documentation.
- * @property {string} filter Required. An advanced logs filter which is used to match log entries. Example:
-&quot;resource.type=gae_app AND severity&gt;=ERROR&quot;
-The maximum length of the filter is 20000 characters.
+ * @property {string} filter Required. An advanced logs filter which is used to match log entries. Example: &quot;resource.type=gae_app AND severity&gt;=ERROR&quot; The maximum length of the filter is 20000 characters.
  * @property {object} labelExtractors Optional. A map from a label key string to an extractor expression which is used to extract data from a log entry field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated extractor expression in this map. The syntax of the extractor expression is the same as for the value_extractor field.The extracted value is converted to the type defined in the label descriptor. If the either the extraction or the type conversion fails, the label will have a default value. The default value for a string label is an empty string, for an integer label its 0, and for a boolean label its false.Note that there are upper bounds on the maximum number of labels and the number of active time series that are allowed in a project.
  * @property {logging(v2beta1).MetricDescriptor} metricDescriptor Optional. The metric descriptor associated with the logs-based metric. If unspecified, it uses a default metric descriptor with a DELTA metric kind, INT64 value type, with no labels and a unit of &quot;1&quot;. Such a metric counts the number of log entries matching the filter expression.The name, type, and description fields in the metric_descriptor are output only, and is constructed using the name and description field in the LogMetric.To create a logs-based metric that records a distribution of log values, a DELTA metric kind with a DISTRIBUTION value type must be used along with a value_extractor expression in the LogMetric.Each label in the metric descriptor must have a matching label name as the key and an extractor expression as the value in the label_extractors map.The metric_kind and value_type fields in the metric_descriptor cannot be updated once initially configured. New labels can be added in the metric_descriptor, but existing labels cannot be modified except for their description.
  * @property {string} name Required. The client-assigned metric identifier. Examples: &quot;error_count&quot;, &quot;nginx/requests&quot;.Metric identifiers are limited to 100 characters and can include only the following characters: A-Z, a-z, 0-9, and the special characters _-.,+!*&#39;,()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot be the first character of the name.The metric identifier in this field must not be URL-encoded (https://en.wikipedia.org/wiki/Percent-encoding). However, when the metric identifier appears as the [METRIC_ID] part of a metric_name API parameter, then the metric identifier must be URL-encoded. Example: &quot;projects/my-project/metrics/nginx%2Frequests&quot;.
@@ -2213,21 +2119,10 @@ The maximum length of the filter is 20000 characters.
  * @typedef LogSink
  * @memberOf! logging(v2beta1)
  * @type object
- * @property {string} destination Required. The export destination:
-&quot;storage.googleapis.com/[GCS_BUCKET]&quot;
-&quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot;
-&quot;pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]&quot;
-The sink&#39;s writer_identity, set when the sink is created, must have
-permission to write to the destination or else the log entries are not exported.
-For more information, see Exporting Logs With Sinks.
+ * @property {string} destination Required. The export destination: &quot;storage.googleapis.com/[GCS_BUCKET]&quot; &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot; &quot;pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]&quot; The sink&#39;s writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs With Sinks.
  * @property {string} endTime Deprecated. This field is ignored when creating or updating sinks.
- * @property {string} filter Optional. An advanced logs filter. The only exported log entries are those that are in the resource owning the sink and that match the filter. For example:
-logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
-
- * @property {boolean} includeChildren Optional. This field applies only to sinks owned by organizations and folders. If the field is false, the default, only the logs owned by the sink&#39;s parent resource are available for export. If the field is true, then logs from all the projects, folders, and billing accounts contained in the sink&#39;s parent resource are also available for export. Whether a particular log entry from the children is exported depends on the sink&#39;s filter expression. For example, if this field is true, then the filter resource.type=gce_instance would export all Compute Engine VM instance log entries from all projects in the sink&#39;s parent. To only export entries from certain child projects, filter on the project part of the log name:
-logName:(&quot;projects/test-project1/&quot; OR
-&quot;projects/test-project2/&quot;) AND resource.type=gce_instance
-
+ * @property {string} filter Optional. An advanced logs filter. The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
+ * @property {boolean} includeChildren Optional. This field applies only to sinks owned by organizations and folders. If the field is false, the default, only the logs owned by the sink&#39;s parent resource are available for export. If the field is true, then logs from all the projects, folders, and billing accounts contained in the sink&#39;s parent resource are also available for export. Whether a particular log entry from the children is exported depends on the sink&#39;s filter expression. For example, if this field is true, then the filter resource.type=gce_instance would export all Compute Engine VM instance log entries from all projects in the sink&#39;s parent. To only export entries from certain child projects, filter on the project part of the log name: logName:(&quot;projects/test-project1/&quot; OR &quot;projects/test-project2/&quot;) AND resource.type=gce_instance
  * @property {string} name Required. The client-assigned sink identifier, unique within the project. Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
  * @property {string} outputVersionFormat Deprecated. The log entry format to use for this sink&#39;s exported log entries. The v2 format is used by default and cannot be changed.
  * @property {string} startTime Deprecated. This field is ignored when creating or updating sinks.
@@ -2242,53 +2137,8 @@ logName:(&quot;projects/test-project1/&quot; OR
  * @property {logging(v2beta1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
  * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported.
  * @property {string} name The resource name of the metric descriptor.
- * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined custom metric types have the DNS name custom.googleapis.com. Metric types should use a natural hierarchical grouping. For example:
-&quot;custom.googleapis.com/invoice/paid/amount&quot;
-&quot;appengine.googleapis.com/http/server/response_latencies&quot;
-
- * @property {string} unit The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT)
-bit bit
-By byte
-s second
-min minute
-h hour
-d dayPrefixes (PREFIX)
-k kilo (10**3)
-M mega (10**6)
-G giga (10**9)
-T tera (10**12)
-P peta (10**15)
-E exa (10**18)
-Z zetta (10**21)
-Y yotta (10**24)
-m milli (10**-3)
-u micro (10**-6)
-n nano (10**-9)
-p pico (10**-12)
-f femto (10**-15)
-a atto (10**-18)
-z zepto (10**-21)
-y yocto (10**-24)
-Ki kibi (2**10)
-Mi mebi (2**20)
-Gi gibi (2**30)
-Ti tebi (2**40)GrammarThe grammar includes the dimensionless unit 1, such as
-1/s.The grammar also includes these connectors: / division (as an infix
-operator, e.g. 1/s). . multiplication (as an infix operator, e.g. GBy.d)The
-grammar for a unit is as follows: Expression = Component { &quot;.&quot;
-Component } { &quot;/&quot; Component } ;
-
-Component = [ PREFIX ] UNIT [ Annotation ]
-          | Annotation
-          | &quot;1&quot;
-          ;
-
-Annotation = &quot;{&quot; NAME &quot;}&quot; ;
-Notes:
-Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it
-is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s.
-NAME is a sequence of non-blank printable ASCII characters not  containing
-&#39;{&#39; or &#39;}&#39;.
+ * @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined custom metric types have the DNS name custom.googleapis.com. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+ * @property {string} unit The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10**3) M mega (10**6) G giga (10**9) T tera (10**12) P peta (10**15) E exa (10**18) Z zetta (10**21) Y yotta (10**24) m milli (10**-3) u micro (10**-6) n nano (10**-9) p pico (10**-12) f femto (10**-15) a atto (10**-18) z zepto (10**-21) y yocto (10**-24) Ki kibi (2**10) Mi mebi (2**20) Gi gibi (2**30) Ti tebi (2**40)GrammarThe grammar includes the dimensionless unit 1, such as 1/s.The grammar also includes these connectors: / division (as an infix operator, e.g. 1/s). . multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = [ PREFIX ] UNIT [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing &#39;{&#39; or &#39;}&#39;.
  * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
  */
 /**
@@ -2366,21 +2216,9 @@ NAME is a sequence of non-blank printable ASCII characters not  containing
  * @type object
  * @property {logging(v2beta1).LogEntry[]} entries Required. The log entries to send to Stackdriver Logging. The order of log entries in this list does not matter. Values supplied in this method&#39;s log_name, resource, and labels fields are copied into those log entries in this list that do not include values for their corresponding fields. For more information, see the LogEntry type.If the timestamp or insert_id fields are missing in log entries, then this method supplies the current time or a unique identifier, respectively. The supplied values are chosen so that, among the log entries that did not supply their own values, the entries earlier in the list will sort before the entries later in the list. See the entries.list method.Log entries with timestamps that are more than the logs retention period in the past or more than 24 hours in the future might be discarded. Discarding does not return an error.To improve throughput and to avoid exceeding the quota limit for calls to entries.write, you should try to include several log entries in this list, rather than calling this method for each individual log entry.
  * @property {object} labels Optional. Default labels that are added to the labels field of all log entries in entries. If a log entry already has a label with the same key as a label in this parameter, then the log entry&#39;s label is not changed. See LogEntry.
- * @property {string} logName Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name:
-&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
-&quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
-&quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
-&quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot;
-[LOG_ID] must be URL-encoded. For example,
-&quot;projects/my-project-id/logs/syslog&quot; or
-&quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-For more information about log names, see LogEntry.
+ * @property {string} logName Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot; or &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. For more information about log names, see LogEntry.
  * @property {boolean} partialSuccess Optional. Whether valid entries should be written even if some other entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any entry is not written, then the response status is the error associated with one of the failed entries and the response includes error details keyed by the entries&#39; zero-based index in the entries.write method.
- * @property {logging(v2beta1).MonitoredResource} resource Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example:
-{ &quot;type&quot;: &quot;gce_instance&quot;,
-  &quot;labels&quot;: {
-    &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;:
-&quot;00000000000000000000&quot; }} See LogEntry.
+ * @property {logging(v2beta1).MonitoredResource} resource Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example: { &quot;type&quot;: &quot;gce_instance&quot;,   &quot;labels&quot;: {     &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;: &quot;00000000000000000000&quot; }} See LogEntry.
  */
 /**
  * @typedef WriteLogEntriesResponse

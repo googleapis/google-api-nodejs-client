@@ -60,15 +60,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -77,14 +75,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     mcf: {
@@ -110,15 +107,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -127,14 +122,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
           pathParams: [],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     realtime: {
@@ -155,15 +149,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -172,7 +164,7 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['ids', 'metrics'],
           pathParams: [],
           context: self
@@ -180,1720 +172,1609 @@ function Analytics(options) {
         return createAPIRequest(parameters, callback);
       }
 
-
     }
   };
-  self.management = {
-    accounts: {
-      /**
-       * analytics.management.accounts.list
-       * @desc Lists all accounts to which the user has access.
-       * @alias analytics.management.accounts.list
-       * @memberOf! analytics(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.max-results The maximum number of accounts to include in this response.
-       * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    accountSummaries: {
-      /**
-       * analytics.management.accountSummaries.list
-       * @desc Lists account summaries (lightweight tree comprised of
-       * accounts/properties/profiles) to which the user has access.
-       * @alias analytics.management.accountSummaries.list
-       * @memberOf! analytics(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.max-results The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
-       * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/accountSummaries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    accountUserLinks: {
-      /**
-       * analytics.management.accountUserLinks.delete
-       * @desc Removes a user from the given account.
-       * @alias analytics.management.accountUserLinks.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to delete the user link for.
-       * @param {string} params.linkId Link ID to delete the user link for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'linkId'],
-          pathParams: ['accountId', 'linkId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.accountUserLinks.insert
-         * @desc Adds a new user to the given account.
-         * @alias analytics.management.accountUserLinks.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.accountUserLinks.list
-         * @desc Lists account-user links for a given account.
-         * @alias analytics.management.accountUserLinks.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve the user links for.
-         * @param {integer=} params.max-results The maximum number of account-user links to include in this response.
-         * @param {integer=} params.start-index An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.accountUserLinks.update
-         * @desc Updates permissions for an existing user on the given account.
-         * @alias analytics.management.accountUserLinks.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to update the account-user link for.
-         * @param {string} params.linkId Link ID to update the account-user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'linkId'],
-          pathParams: ['accountId', 'linkId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    customDataSources: {
-      /**
-       * analytics.management.customDataSources.list
-       * @desc List custom data sources to which the user has access.
-       * @alias analytics.management.customDataSources.list
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account Id for the custom data sources to retrieve.
-       * @param {integer=} params.max-results The maximum number of custom data sources to include in this response.
-       * @param {integer=} params.start-index A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param {string} params.webPropertyId Web property Id for the custom data sources to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    customDimensions: {
-      /**
-       * analytics.management.customDimensions.get
-       * @desc Get a custom dimension to which the user has access.
-       * @alias analytics.management.customDimensions.get
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the custom dimension to retrieve.
-       * @param {string} params.customDimensionId The ID of the custom dimension to retrieve.
-       * @param {string} params.webPropertyId Web property ID for the custom dimension to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customDimensions.insert
-         * @desc Create a new custom dimension.
-         * @alias analytics.management.customDimensions.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom dimension to create.
-         * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-         * @param {analytics(v3).CustomDimension} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customDimensions.list
-         * @desc Lists custom dimensions to which the user has access.
-         * @alias analytics.management.customDimensions.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom dimensions to retrieve.
-         * @param {integer=} params.max-results The maximum number of custom dimensions to include in this response.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property ID for the custom dimensions to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customDimensions.patch
-         * @desc Updates an existing custom dimension. This method supports
-         * patch semantics.
-         * @alias analytics.management.customDimensions.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom dimension to update.
-         * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
-         * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
-         * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-         * @param {analytics(v3).CustomDimension} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customDimensions.update
-         * @desc Updates an existing custom dimension.
-         * @alias analytics.management.customDimensions.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom dimension to update.
-         * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
-         * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
-         * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-         * @param {analytics(v3).CustomDimension} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    customMetrics: {
-      /**
-       * analytics.management.customMetrics.get
-       * @desc Get a custom metric to which the user has access.
-       * @alias analytics.management.customMetrics.get
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the custom metric to retrieve.
-       * @param {string} params.customMetricId The ID of the custom metric to retrieve.
-       * @param {string} params.webPropertyId Web property ID for the custom metric to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customMetrics.insert
-         * @desc Create a new custom metric.
-         * @alias analytics.management.customMetrics.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom metric to create.
-         * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-         * @param {analytics(v3).CustomMetric} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customMetrics.list
-         * @desc Lists custom metrics to which the user has access.
-         * @alias analytics.management.customMetrics.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom metrics to retrieve.
-         * @param {integer=} params.max-results The maximum number of custom metrics to include in this response.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property ID for the custom metrics to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customMetrics.patch
-         * @desc Updates an existing custom metric. This method supports patch
-         * semantics.
-         * @alias analytics.management.customMetrics.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom metric to update.
-         * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
-         * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
-         * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-         * @param {analytics(v3).CustomMetric} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.customMetrics.update
-         * @desc Updates an existing custom metric.
-         * @alias analytics.management.customMetrics.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID for the custom metric to update.
-         * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
-         * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
-         * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-         * @param {analytics(v3).CustomMetric} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    experiments: {
-      /**
-       * analytics.management.experiments.delete
-       * @desc Delete an experiment.
-       * @alias analytics.management.experiments.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to which the experiment belongs
-       * @param {string} params.experimentId ID of the experiment to delete
-       * @param {string} params.profileId View (Profile) ID to which the experiment belongs
-       * @param {string} params.webPropertyId Web property ID to which the experiment belongs
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.experiments.get
-         * @desc Returns an experiment to which the user has access.
-         * @alias analytics.management.experiments.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve the experiment for.
-         * @param {string} params.experimentId Experiment ID to retrieve the experiment for.
-         * @param {string} params.profileId View (Profile) ID to retrieve the experiment for.
-         * @param {string} params.webPropertyId Web property ID to retrieve the experiment for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.experiments.insert
-         * @desc Create a new experiment.
-         * @alias analytics.management.experiments.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the experiment for.
-         * @param {string} params.profileId View (Profile) ID to create the experiment for.
-         * @param {string} params.webPropertyId Web property ID to create the experiment for.
-         * @param {analytics(v3).Experiment} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.experiments.list
-         * @desc Lists experiments to which the user has access.
-         * @alias analytics.management.experiments.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve experiments for.
-         * @param {integer=} params.max-results The maximum number of experiments to include in this response.
-         * @param {string} params.profileId View (Profile) ID to retrieve experiments for.
-         * @param {integer=} params.start-index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property ID to retrieve experiments for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.experiments.patch
-         * @desc Update an existing experiment. This method supports patch
-         * semantics.
-         * @alias analytics.management.experiments.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the experiment to update.
-         * @param {string} params.experimentId Experiment ID of the experiment to update.
-         * @param {string} params.profileId View (Profile) ID of the experiment to update.
-         * @param {string} params.webPropertyId Web property ID of the experiment to update.
-         * @param {analytics(v3).Experiment} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.experiments.update
-         * @desc Update an existing experiment.
-         * @alias analytics.management.experiments.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID of the experiment to update.
-         * @param {string} params.experimentId Experiment ID of the experiment to update.
-         * @param {string} params.profileId View (Profile) ID of the experiment to update.
-         * @param {string} params.webPropertyId Web property ID of the experiment to update.
-         * @param {analytics(v3).Experiment} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    filters: {
-      /**
-       * analytics.management.filters.delete
-       * @desc Delete a filter.
-       * @alias analytics.management.filters.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to delete the filter for.
-       * @param {string} params.filterId ID of the filter to be deleted.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.filters.get
-         * @desc Returns a filters to which the user has access.
-         * @alias analytics.management.filters.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve filters for.
-         * @param {string} params.filterId Filter ID to retrieve filters for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.filters.insert
-         * @desc Create a new filter.
-         * @alias analytics.management.filters.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create filter for.
-         * @param {analytics(v3).Filter} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/analytics/v3/management/accounts/{accountId}/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.filters.list
-         * @desc Lists all filters for an account
-         * @alias analytics.management.filters.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve filters for.
-         * @param {integer=} params.max-results The maximum number of filters to include in this response.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/analytics/v3/management/accounts/{accountId}/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.filters.patch
-         * @desc Updates an existing filter. This method supports patch
-         * semantics.
-         * @alias analytics.management.filters.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which the filter belongs.
-         * @param {string} params.filterId ID of the filter to be updated.
-         * @param {analytics(v3).Filter} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.filters.update
-         * @desc Updates an existing filter.
-         * @alias analytics.management.filters.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which the filter belongs.
-         * @param {string} params.filterId ID of the filter to be updated.
-         * @param {analytics(v3).Filter} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    goals: {
-      /**
-       * analytics.management.goals.get
-       * @desc Gets a goal to which the user has access.
-       * @alias analytics.management.goals.get
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to retrieve the goal for.
-       * @param {string} params.goalId Goal ID to retrieve the goal for.
-       * @param {string} params.profileId View (Profile) ID to retrieve the goal for.
-       * @param {string} params.webPropertyId Web property ID to retrieve the goal for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.goals.insert
-         * @desc Create a new goal.
-         * @alias analytics.management.goals.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the goal for.
-         * @param {string} params.profileId View (Profile) ID to create the goal for.
-         * @param {string} params.webPropertyId Web property ID to create the goal for.
-         * @param {analytics(v3).Goal} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.goals.list
-         * @desc Lists goals to which the user has access.
-         * @alias analytics.management.goals.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-         * @param {integer=} params.max-results The maximum number of goals to include in this response.
-         * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
-         * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.goals.patch
-         * @desc Updates an existing goal. This method supports patch semantics.
-         * @alias analytics.management.goals.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to update the goal.
-         * @param {string} params.goalId Index of the goal to be updated.
-         * @param {string} params.profileId View (Profile) ID to update the goal.
-         * @param {string} params.webPropertyId Web property ID to update the goal.
-         * @param {analytics(v3).Goal} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.goals.update
-         * @desc Updates an existing goal.
-         * @alias analytics.management.goals.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to update the goal.
-         * @param {string} params.goalId Index of the goal to be updated.
-         * @param {string} params.profileId View (Profile) ID to update the goal.
-         * @param {string} params.webPropertyId Web property ID to update the goal.
-         * @param {analytics(v3).Goal} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    profileFilterLinks: {
-      /**
-       * analytics.management.profileFilterLinks.delete
-       * @desc Delete a profile filter link.
-       * @alias analytics.management.profileFilterLinks.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to which the profile filter link belongs.
-       * @param {string} params.linkId ID of the profile filter link to delete.
-       * @param {string} params.profileId Profile ID to which the filter link belongs.
-       * @param {string} params.webPropertyId Web property Id to which the profile filter link belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileFilterLinks.get
-         * @desc Returns a single profile filter link.
-         * @alias analytics.management.profileFilterLinks.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve profile filter link for.
-         * @param {string} params.linkId ID of the profile filter link.
-         * @param {string} params.profileId Profile ID to retrieve filter link for.
-         * @param {string} params.webPropertyId Web property Id to retrieve profile filter link for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileFilterLinks.insert
-         * @desc Create a new profile filter link.
-         * @alias analytics.management.profileFilterLinks.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create profile filter link for.
-         * @param {string} params.profileId Profile ID to create filter link for.
-         * @param {string} params.webPropertyId Web property Id to create profile filter link for.
-         * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileFilterLinks.list
-         * @desc Lists all profile filter links for a profile.
-         * @alias analytics.management.profileFilterLinks.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve profile filter links for.
-         * @param {integer=} params.max-results The maximum number of profile filter links to include in this response.
-         * @param {string} params.profileId Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileFilterLinks.patch
-         * @desc Update an existing profile filter link. This method supports
-         * patch semantics.
-         * @alias analytics.management.profileFilterLinks.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which profile filter link belongs.
-         * @param {string} params.linkId ID of the profile filter link to be updated.
-         * @param {string} params.profileId Profile ID to which filter link belongs
-         * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-         * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileFilterLinks.update
-         * @desc Update an existing profile filter link.
-         * @alias analytics.management.profileFilterLinks.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which profile filter link belongs.
-         * @param {string} params.linkId ID of the profile filter link to be updated.
-         * @param {string} params.profileId Profile ID to which filter link belongs
-         * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-         * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    profiles:
-        {
+  self.management =
+      {
+        accounts: {
+          /**
+           * analytics.management.accounts.list
+           * @desc Lists all accounts to which the user has access.
+           * @alias analytics.management.accounts.list
+           * @memberOf! analytics(v3)
+           *
+           * @param {object=} params Parameters for request
+           * @param {integer=} params.max-results The maximum number of accounts to include in this response.
+           * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/analytics/v3/management/accounts')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: [],
+              pathParams: [],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        accountSummaries: {
+          /**
+           * analytics.management.accountSummaries.list
+           * @desc Lists account summaries (lightweight tree comprised of
+           * accounts/properties/profiles) to which the user has access.
+           * @alias analytics.management.accountSummaries.list
+           * @memberOf! analytics(v3)
+           *
+           * @param {object=} params Parameters for request
+           * @param {integer=} params.max-results The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
+           * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/analytics/v3/management/accountSummaries')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: [],
+              pathParams: [],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        accountUserLinks: {
+          /**
+           * analytics.management.accountUserLinks.delete
+           * @desc Removes a user from the given account.
+           * @alias analytics.management.accountUserLinks.delete
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to delete the user link for.
+           * @param {string} params.linkId Link ID to delete the user link for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'linkId'],
+              pathParams: ['accountId', 'linkId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.accountUserLinks.insert
+              * @desc Adds a new user to the given account.
+              * @alias analytics.management.accountUserLinks.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.accountUserLinks.list
+              * @desc Lists account-user links for a given account.
+              * @alias analytics.management.accountUserLinks.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve the user links for.
+              * @param {integer=} params.max-results The maximum number of account-user links to include in this response.
+              * @param {integer=} params.start-index An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.accountUserLinks.update
+              * @desc Updates permissions for an existing user on the given
+              * account.
+              * @alias analytics.management.accountUserLinks.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to update the account-user link for.
+              * @param {string} params.linkId Link ID to update the account-user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'linkId'],
+              pathParams: ['accountId', 'linkId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        customDataSources: {
+          /**
+           * analytics.management.customDataSources.list
+           * @desc List custom data sources to which the user has access.
+           * @alias analytics.management.customDataSources.list
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account Id for the custom data sources to retrieve.
+           * @param {integer=} params.max-results The maximum number of custom data sources to include in this response.
+           * @param {integer=} params.start-index A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+           * @param {string} params.webPropertyId Web property Id for the custom data sources to retrieve.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        customDimensions: {
+          /**
+           * analytics.management.customDimensions.get
+           * @desc Get a custom dimension to which the user has access.
+           * @alias analytics.management.customDimensions.get
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID for the custom dimension to retrieve.
+           * @param {string} params.customDimensionId The ID of the custom dimension to retrieve.
+           * @param {string} params.webPropertyId Web property ID for the custom dimension to retrieve.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDimensionId'],
+              pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customDimensions.insert
+              * @desc Create a new custom dimension.
+              * @alias analytics.management.customDimensions.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom dimension to create.
+              * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
+              * @param {analytics(v3).CustomDimension} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customDimensions.list
+              * @desc Lists custom dimensions to which the user has access.
+              * @alias analytics.management.customDimensions.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom dimensions to retrieve.
+              * @param {integer=} params.max-results The maximum number of custom dimensions to include in this response.
+              * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID for the custom dimensions to retrieve.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customDimensions.patch
+              * @desc Updates an existing custom dimension. This method supports
+              * patch semantics.
+              * @alias analytics.management.customDimensions.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom dimension to update.
+              * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
+              * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+              * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
+              * @param {analytics(v3).CustomDimension} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDimensionId'],
+              pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customDimensions.update
+              * @desc Updates an existing custom dimension.
+              * @alias analytics.management.customDimensions.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom dimension to update.
+              * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
+              * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+              * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
+              * @param {analytics(v3).CustomDimension} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDimensionId'],
+              pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        customMetrics: {
+          /**
+           * analytics.management.customMetrics.get
+           * @desc Get a custom metric to which the user has access.
+           * @alias analytics.management.customMetrics.get
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID for the custom metric to retrieve.
+           * @param {string} params.customMetricId The ID of the custom metric to retrieve.
+           * @param {string} params.webPropertyId Web property ID for the custom metric to retrieve.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+              pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customMetrics.insert
+              * @desc Create a new custom metric.
+              * @alias analytics.management.customMetrics.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom metric to create.
+              * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
+              * @param {analytics(v3).CustomMetric} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customMetrics.list
+              * @desc Lists custom metrics to which the user has access.
+              * @alias analytics.management.customMetrics.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom metrics to retrieve.
+              * @param {integer=} params.max-results The maximum number of custom metrics to include in this response.
+              * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID for the custom metrics to retrieve.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customMetrics.patch
+              * @desc Updates an existing custom metric. This method supports
+              * patch semantics.
+              * @alias analytics.management.customMetrics.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom metric to update.
+              * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
+              * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+              * @param {string} params.webPropertyId Web property ID for the custom metric to update.
+              * @param {analytics(v3).CustomMetric} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+              pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.customMetrics.update
+              * @desc Updates an existing custom metric.
+              * @alias analytics.management.customMetrics.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the custom metric to update.
+              * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
+              * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+              * @param {string} params.webPropertyId Web property ID for the custom metric to update.
+              * @param {analytics(v3).CustomMetric} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+              pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        experiments:
+            {
+              /**
+               * analytics.management.experiments.delete
+               * @desc Delete an experiment.
+               * @alias analytics.management.experiments.delete
+               * @memberOf! analytics(v3)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.accountId Account ID to which the experiment belongs
+               * @param {string} params.experimentId ID of the experiment to delete
+               * @param {string} params.profileId View (Profile) ID to which the experiment belongs
+               * @param {string} params.webPropertyId Web property ID to which the experiment belongs
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'accountId', 'webPropertyId', 'profileId', 'experimentId'
+                  ],
+                  pathParams: [
+                    'accountId', 'experimentId', 'profileId', 'webPropertyId'
+                  ],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.experiments.get
+                  * @desc Returns an experiment to which the user has access.
+                  * @alias analytics.management.experiments.get
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to retrieve the experiment for.
+                  * @param {string} params.experimentId Experiment ID to retrieve the experiment for.
+                  * @param {string} params.profileId View (Profile) ID to retrieve the experiment for.
+                  * @param {string} params.webPropertyId Web property ID to retrieve the experiment for.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'accountId', 'webPropertyId', 'profileId', 'experimentId'
+                  ],
+                  pathParams: [
+                    'accountId', 'experimentId', 'profileId', 'webPropertyId'
+                  ],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.experiments.insert
+                  * @desc Create a new experiment.
+                  * @alias analytics.management.experiments.insert
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to create the experiment for.
+                  * @param {string} params.profileId View (Profile) ID to create the experiment for.
+                  * @param {string} params.webPropertyId Web property ID to create the experiment for.
+                  * @param {analytics(v3).Experiment} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              insert(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+                  pathParams: ['accountId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.experiments.list
+                  * @desc Lists experiments to which the user has access.
+                  * @alias analytics.management.experiments.list
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to retrieve experiments for.
+                  * @param {integer=} params.max-results The maximum number of experiments to include in this response.
+                  * @param {string} params.profileId View (Profile) ID to retrieve experiments for.
+                  * @param {integer=} params.start-index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+                  * @param {string} params.webPropertyId Web property ID to retrieve experiments for.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+                  pathParams: ['accountId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.experiments.patch
+                  * @desc Update an existing experiment. This method supports
+                  * patch semantics.
+                  * @alias analytics.management.experiments.patch
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID of the experiment to update.
+                  * @param {string} params.experimentId Experiment ID of the experiment to update.
+                  * @param {string} params.profileId View (Profile) ID of the experiment to update.
+                  * @param {string} params.webPropertyId Web property ID of the experiment to update.
+                  * @param {analytics(v3).Experiment} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'accountId', 'webPropertyId', 'profileId', 'experimentId'
+                  ],
+                  pathParams: [
+                    'accountId', 'experimentId', 'profileId', 'webPropertyId'
+                  ],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.experiments.update
+                  * @desc Update an existing experiment.
+                  * @alias analytics.management.experiments.update
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID of the experiment to update.
+                  * @param {string} params.experimentId Experiment ID of the experiment to update.
+                  * @param {string} params.profileId View (Profile) ID of the experiment to update.
+                  * @param {string} params.webPropertyId Web property ID of the experiment to update.
+                  * @param {analytics(v3).Experiment} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'accountId', 'webPropertyId', 'profileId', 'experimentId'
+                  ],
+                  pathParams: [
+                    'accountId', 'experimentId', 'profileId', 'webPropertyId'
+                  ],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            },
+        filters: {
+          /**
+           * analytics.management.filters.delete
+           * @desc Delete a filter.
+           * @alias analytics.management.filters.delete
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to delete the filter for.
+           * @param {string} params.filterId ID of the filter to be deleted.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'filterId'],
+              pathParams: ['accountId', 'filterId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.filters.get
+              * @desc Returns a filters to which the user has access.
+              * @alias analytics.management.filters.get
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve filters for.
+              * @param {string} params.filterId Filter ID to retrieve filters for.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'filterId'],
+              pathParams: ['accountId', 'filterId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.filters.insert
+              * @desc Create a new filter.
+              * @alias analytics.management.filters.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create filter for.
+              * @param {analytics(v3).Filter} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.filters.list
+              * @desc Lists all filters for an account
+              * @alias analytics.management.filters.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve filters for.
+              * @param {integer=} params.max-results The maximum number of filters to include in this response.
+              * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.filters.patch
+              * @desc Updates an existing filter. This method supports patch
+              * semantics.
+              * @alias analytics.management.filters.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the filter belongs.
+              * @param {string} params.filterId ID of the filter to be updated.
+              * @param {analytics(v3).Filter} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'filterId'],
+              pathParams: ['accountId', 'filterId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.filters.update
+              * @desc Updates an existing filter.
+              * @alias analytics.management.filters.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the filter belongs.
+              * @param {string} params.filterId ID of the filter to be updated.
+              * @param {analytics(v3).Filter} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'filterId'],
+              pathParams: ['accountId', 'filterId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        goals: {
+          /**
+           * analytics.management.goals.get
+           * @desc Gets a goal to which the user has access.
+           * @alias analytics.management.goals.get
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to retrieve the goal for.
+           * @param {string} params.goalId Goal ID to retrieve the goal for.
+           * @param {string} params.profileId View (Profile) ID to retrieve the goal for.
+           * @param {string} params.webPropertyId Web property ID to retrieve the goal for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+              pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.goals.insert
+              * @desc Create a new goal.
+              * @alias analytics.management.goals.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the goal for.
+              * @param {string} params.profileId View (Profile) ID to create the goal for.
+              * @param {string} params.webPropertyId Web property ID to create the goal for.
+              * @param {analytics(v3).Goal} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+              pathParams: ['accountId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.goals.list
+              * @desc Lists goals to which the user has access.
+              * @alias analytics.management.goals.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+              * @param {integer=} params.max-results The maximum number of goals to include in this response.
+              * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
+              * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+              pathParams: ['accountId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.goals.patch
+              * @desc Updates an existing goal. This method supports patch
+              * semantics.
+              * @alias analytics.management.goals.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to update the goal.
+              * @param {string} params.goalId Index of the goal to be updated.
+              * @param {string} params.profileId View (Profile) ID to update the goal.
+              * @param {string} params.webPropertyId Web property ID to update the goal.
+              * @param {analytics(v3).Goal} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+              pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.goals.update
+              * @desc Updates an existing goal.
+              * @alias analytics.management.goals.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to update the goal.
+              * @param {string} params.goalId Index of the goal to be updated.
+              * @param {string} params.profileId View (Profile) ID to update the goal.
+              * @param {string} params.webPropertyId Web property ID to update the goal.
+              * @param {analytics(v3).Goal} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+              pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        profileFilterLinks:
+            {
+              /**
+               * analytics.management.profileFilterLinks.delete
+               * @desc Delete a profile filter link.
+               * @alias analytics.management.profileFilterLinks.delete
+               * @memberOf! analytics(v3)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.accountId Account ID to which the profile filter link belongs.
+               * @param {string} params.linkId ID of the profile filter link to delete.
+               * @param {string} params.profileId Profile ID to which the filter link belongs.
+               * @param {string} params.webPropertyId Web property Id to which the profile filter link belongs.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+                  pathParams:
+                      ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.profileFilterLinks.get
+                  * @desc Returns a single profile filter link.
+                  * @alias analytics.management.profileFilterLinks.get
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to retrieve profile filter link for.
+                  * @param {string} params.linkId ID of the profile filter link.
+                  * @param {string} params.profileId Profile ID to retrieve filter link for.
+                  * @param {string} params.webPropertyId Web property Id to retrieve profile filter link for.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+                  pathParams:
+                      ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.profileFilterLinks.insert
+                  * @desc Create a new profile filter link.
+                  * @alias analytics.management.profileFilterLinks.insert
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to create profile filter link for.
+                  * @param {string} params.profileId Profile ID to create filter link for.
+                  * @param {string} params.webPropertyId Web property Id to create profile filter link for.
+                  * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              insert(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+                  pathParams: ['accountId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.profileFilterLinks.list
+                  * @desc Lists all profile filter links for a profile.
+                  * @alias analytics.management.profileFilterLinks.list
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to retrieve profile filter links for.
+                  * @param {integer=} params.max-results The maximum number of profile filter links to include in this response.
+                  * @param {string} params.profileId Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+                  * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+                  * @param {string} params.webPropertyId Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+                  pathParams: ['accountId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.profileFilterLinks.patch
+                  * @desc Update an existing profile filter link. This method
+                  * supports patch semantics.
+                  * @alias analytics.management.profileFilterLinks.patch
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to which profile filter link belongs.
+                  * @param {string} params.linkId ID of the profile filter link to be updated.
+                  * @param {string} params.profileId Profile ID to which filter link belongs
+                  * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
+                  * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+                  pathParams:
+                      ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.profileFilterLinks.update
+                  * @desc Update an existing profile filter link.
+                  * @alias analytics.management.profileFilterLinks.update
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId Account ID to which profile filter link belongs.
+                  * @param {string} params.linkId ID of the profile filter link to be updated.
+                  * @param {string} params.profileId Profile ID to which filter link belongs
+                  * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
+                  * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+                  pathParams:
+                      ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
+
+            },
+        profiles: {
           /**
            * analytics.management.profiles.delete
            * @desc Deletes a view (profile).
@@ -1908,15 +1789,13 @@ function Analytics(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function(params, options, callback) {
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1927,37 +1806,33 @@ function Analytics(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.profiles.get
-             * @desc Gets a view (profile) to which the user has access.
-             * @alias analytics.management.profiles.get
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to retrieve the view (profile) for.
-             * @param {string} params.profileId View (Profile) ID to retrieve the view (profile) for.
-             * @param {string} params.webPropertyId Web property ID to retrieve the view (profile) for.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          get: function(params, options, callback) {
+          }, /**
+              * analytics.management.profiles.get
+              * @desc Gets a view (profile) to which the user has access.
+              * @alias analytics.management.profiles.get
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve the view (profile) for.
+              * @param {string} params.profileId View (Profile) ID to retrieve the view (profile) for.
+              * @param {string} params.webPropertyId Web property ID to retrieve the view (profile) for.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -1968,37 +1843,33 @@ function Analytics(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.profiles.insert
-             * @desc Create a new view (profile).
-             * @alias analytics.management.profiles.insert
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to create the view (profile) for.
-             * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
-             * @param {analytics(v3).Profile} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          insert: function(params, options, callback) {
+          }, /**
+              * analytics.management.profiles.insert
+              * @desc Create a new view (profile).
+              * @alias analytics.management.profiles.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the view (profile) for.
+              * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
+              * @param {analytics(v3).Profile} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2009,38 +1880,34 @@ function Analytics(options) {
                     method: 'POST'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId'],
               pathParams: ['accountId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.profiles.list
-             * @desc Lists views (profiles) to which the user has access.
-             * @alias analytics.management.profiles.list
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
-             * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
-             * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-             * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * analytics.management.profiles.list
+              * @desc Lists views (profiles) to which the user has access.
+              * @alias analytics.management.profiles.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
+              * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
+              * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2051,39 +1918,35 @@ function Analytics(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId'],
               pathParams: ['accountId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.profiles.patch
-             * @desc Updates an existing view (profile). This method supports
-             * patch semantics.
-             * @alias analytics.management.profiles.patch
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to which the view (profile) belongs
-             * @param {string} params.profileId ID of the view (profile) to be updated.
-             * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-             * @param {analytics(v3).Profile} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          patch: function(params, options, callback) {
+          }, /**
+              * analytics.management.profiles.patch
+              * @desc Updates an existing view (profile). This method supports
+              * patch semantics.
+              * @alias analytics.management.profiles.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the view (profile) belongs
+              * @param {string} params.profileId ID of the view (profile) to be updated.
+              * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
+              * @param {analytics(v3).Profile} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2094,38 +1957,34 @@ function Analytics(options) {
                     method: 'PATCH'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.profiles.update
-             * @desc Updates an existing view (profile).
-             * @alias analytics.management.profiles.update
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to which the view (profile) belongs
-             * @param {string} params.profileId ID of the view (profile) to be updated.
-             * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-             * @param {analytics(v3).Profile} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          update: function(params, options, callback) {
+          }, /**
+              * analytics.management.profiles.update
+              * @desc Updates an existing view (profile).
+              * @alias analytics.management.profiles.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the view (profile) belongs
+              * @param {string} params.profileId ID of the view (profile) to be updated.
+              * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
+              * @param {analytics(v3).Profile} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2136,7 +1995,7 @@ function Analytics(options) {
                     method: 'PUT'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
@@ -2144,483 +2003,455 @@ function Analytics(options) {
             return createAPIRequest(parameters, callback);
           }
 
+        },
+        profileUserLinks: {
+          /**
+           * analytics.management.profileUserLinks.delete
+           * @desc Removes a user from the given view (profile).
+           * @alias analytics.management.profileUserLinks.delete
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to delete the user link for.
+           * @param {string} params.linkId Link ID to delete the user link for.
+           * @param {string} params.profileId View (Profile) ID to delete the user link for.
+           * @param {string} params.webPropertyId Web Property ID to delete the user link for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+              pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.profileUserLinks.insert
+              * @desc Adds a new user to the given view (profile).
+              * @alias analytics.management.profileUserLinks.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the user link for.
+              * @param {string} params.profileId View (Profile) ID to create the user link for.
+              * @param {string} params.webPropertyId Web Property ID to create the user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+              pathParams: ['accountId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.profileUserLinks.list
+              * @desc Lists profile-user links for a given view (profile).
+              * @alias analytics.management.profileUserLinks.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID which the given view (profile) belongs to.
+              * @param {integer=} params.max-results The maximum number of profile-user links to include in this response.
+              * @param {string} params.profileId View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
+              * @param {integer=} params.start-index An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+              pathParams: ['accountId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.profileUserLinks.update
+              * @desc Updates permissions for an existing user on the given view
+              * (profile).
+              * @alias analytics.management.profileUserLinks.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to update the user link for.
+              * @param {string} params.linkId Link ID to update the user link for.
+              * @param {string} params.profileId View (Profile ID) to update the user link for.
+              * @param {string} params.webPropertyId Web Property ID to update the user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+              pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
 
         },
-    profileUserLinks: {
-      /**
-       * analytics.management.profileUserLinks.delete
-       * @desc Removes a user from the given view (profile).
-       * @alias analytics.management.profileUserLinks.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to delete the user link for.
-       * @param {string} params.linkId Link ID to delete the user link for.
-       * @param {string} params.profileId View (Profile) ID to delete the user link for.
-       * @param {string} params.webPropertyId Web Property ID to delete the user link for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
+        remarketingAudience:
+            {
+              /**
+               * analytics.management.remarketingAudience.delete
+               * @desc Delete a remarketing audience.
+               * @alias analytics.management.remarketingAudience.delete
+               * @memberOf! analytics(v3)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.accountId Account ID to which the remarketing audience belongs.
+               * @param {string} params.remarketingAudienceId The ID of the remarketing audience to delete.
+               * @param {string} params.webPropertyId Web property ID to which the remarketing audience belongs.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete (params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+                  pathParams:
+                      ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.remarketingAudience.get
+                  * @desc Gets a remarketing audience to which the user has
+                  * access.
+                  * @alias analytics.management.remarketingAudience.get
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The account ID of the remarketing audience to retrieve.
+                  * @param {string} params.remarketingAudienceId The ID of the remarketing audience to retrieve.
+                  * @param {string} params.webPropertyId The web property ID of the remarketing audience to retrieve.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+                  pathParams:
+                      ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.remarketingAudience.insert
+                  * @desc Creates a new remarketing audience.
+                  * @alias analytics.management.remarketingAudience.insert
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The account ID for which to create the remarketing audience.
+                  * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
+                  * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              insert(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId'],
+                  pathParams: ['accountId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.remarketingAudience.list
+                  * @desc Lists remarketing audiences to which the user has
+                  * access.
+                  * @alias analytics.management.remarketingAudience.list
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The account ID of the remarketing audiences to retrieve.
+                  * @param {integer=} params.max-results The maximum number of remarketing audiences to include in this response.
+                  * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+                  * @param {string=} params.type
+                  * @param {string} params.webPropertyId The web property ID of the remarketing audiences to retrieve.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['accountId', 'webPropertyId'],
+                  pathParams: ['accountId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.remarketingAudience.patch
+                  * @desc Updates an existing remarketing audience. This method
+                  * supports patch semantics.
+                  * @alias analytics.management.remarketingAudience.patch
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The account ID of the remarketing audience to update.
+                  * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
+                  * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
+                  * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+                  pathParams:
+                      ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }, /**
+                  * analytics.management.remarketingAudience.update
+                  * @desc Updates an existing remarketing audience.
+                  * @alias analytics.management.remarketingAudience.update
+                  * @memberOf! analytics(v3)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The account ID of the remarketing audience to update.
+                  * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
+                  * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
+                  * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(params, options, callback) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+                  pathParams:
+                      ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+                  context: self
+                };
+                return createAPIRequest(parameters, callback);
+              }
 
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            },
+        segments: {
+          /**
+           * analytics.management.segments.list
+           * @desc Lists segments to which the user has access.
+           * @alias analytics.management.segments.list
+           * @memberOf! analytics(v3)
+           *
+           * @param {object=} params Parameters for request
+           * @param {integer=} params.max-results The maximum number of segments to include in this response.
+           * @param {integer=} params.start-index An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/analytics/v3/management/segments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: [],
+              pathParams: [],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
 
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileUserLinks.insert
-         * @desc Adds a new user to the given view (profile).
-         * @alias analytics.management.profileUserLinks.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the user link for.
-         * @param {string} params.profileId View (Profile) ID to create the user link for.
-         * @param {string} params.webPropertyId Web Property ID to create the user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileUserLinks.list
-         * @desc Lists profile-user links for a given view (profile).
-         * @alias analytics.management.profileUserLinks.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID which the given view (profile) belongs to.
-         * @param {integer=} params.max-results The maximum number of profile-user links to include in this response.
-         * @param {string} params.profileId View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
-         * @param {integer=} params.start-index An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.profileUserLinks.update
-         * @desc Updates permissions for an existing user on the given view
-         * (profile).
-         * @alias analytics.management.profileUserLinks.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to update the user link for.
-         * @param {string} params.linkId Link ID to update the user link for.
-         * @param {string} params.profileId View (Profile ID) to update the user link for.
-         * @param {string} params.webPropertyId Web Property ID to update the user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    remarketingAudience: {
-      /**
-       * analytics.management.remarketingAudience.delete
-       * @desc Delete a remarketing audience.
-       * @alias analytics.management.remarketingAudience.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to which the remarketing audience belongs.
-       * @param {string} params.remarketingAudienceId The ID of the remarketing audience to delete.
-       * @param {string} params.webPropertyId Web property ID to which the remarketing audience belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.remarketingAudience.get
-         * @desc Gets a remarketing audience to which the user has access.
-         * @alias analytics.management.remarketingAudience.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId The account ID of the remarketing audience to retrieve.
-         * @param {string} params.remarketingAudienceId The ID of the remarketing audience to retrieve.
-         * @param {string} params.webPropertyId The web property ID of the remarketing audience to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.remarketingAudience.insert
-         * @desc Creates a new remarketing audience.
-         * @alias analytics.management.remarketingAudience.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId The account ID for which to create the remarketing audience.
-         * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
-         * @param {analytics(v3).RemarketingAudience} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.remarketingAudience.list
-         * @desc Lists remarketing audiences to which the user has access.
-         * @alias analytics.management.remarketingAudience.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId The account ID of the remarketing audiences to retrieve.
-         * @param {integer=} params.max-results The maximum number of remarketing audiences to include in this response.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string=} params.type
-         * @param {string} params.webPropertyId The web property ID of the remarketing audiences to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.remarketingAudience.patch
-         * @desc Updates an existing remarketing audience. This method supports
-         * patch semantics.
-         * @alias analytics.management.remarketingAudience.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId The account ID of the remarketing audience to update.
-         * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
-         * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-         * @param {analytics(v3).RemarketingAudience} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.remarketingAudience.update
-         * @desc Updates an existing remarketing audience.
-         * @alias analytics.management.remarketingAudience.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId The account ID of the remarketing audience to update.
-         * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
-         * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-         * @param {analytics(v3).RemarketingAudience} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    segments: {
-      /**
-       * analytics.management.segments.list
-       * @desc Lists segments to which the user has access.
-       * @alias analytics.management.segments.list
-       * @memberOf! analytics(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.max-results The maximum number of segments to include in this response.
-       * @param {integer=} params.start-index An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/segments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    unsampledReports:
-        {
+        },
+        unsampledReports: {
           /**
            * analytics.management.unsampledReports.delete
            * @desc Deletes an unsampled report.
@@ -2636,15 +2467,13 @@ function Analytics(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function(params, options, callback) {
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2655,7 +2484,7 @@ function Analytics(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: [
                 'accountId', 'webPropertyId', 'profileId', 'unsampledReportId'
               ],
@@ -2665,32 +2494,28 @@ function Analytics(options) {
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.unsampledReports.get
-             * @desc Returns a single unsampled report.
-             * @alias analytics.management.unsampledReports.get
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to retrieve unsampled report for.
-             * @param {string} params.profileId View (Profile) ID to retrieve unsampled report for.
-             * @param {string} params.unsampledReportId ID of the unsampled report to retrieve.
-             * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          get: function(params, options, callback) {
+          }, /**
+              * analytics.management.unsampledReports.get
+              * @desc Returns a single unsampled report.
+              * @alias analytics.management.unsampledReports.get
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve unsampled report for.
+              * @param {string} params.profileId View (Profile) ID to retrieve unsampled report for.
+              * @param {string} params.unsampledReportId ID of the unsampled report to retrieve.
+              * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2701,7 +2526,7 @@ function Analytics(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: [
                 'accountId', 'webPropertyId', 'profileId', 'unsampledReportId'
               ],
@@ -2711,32 +2536,28 @@ function Analytics(options) {
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.unsampledReports.insert
-             * @desc Create a new unsampled report.
-             * @alias analytics.management.unsampledReports.insert
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to create the unsampled report for.
-             * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
-             * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
-             * @param {analytics(v3).UnsampledReport} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          insert: function(params, options, callback) {
+          }, /**
+              * analytics.management.unsampledReports.insert
+              * @desc Create a new unsampled report.
+              * @alias analytics.management.unsampledReports.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the unsampled report for.
+              * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
+              * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
+              * @param {analytics(v3).UnsampledReport} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2747,39 +2568,35 @@ function Analytics(options) {
                     method: 'POST'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * analytics.management.unsampledReports.list
-             * @desc Lists unsampled reports to which the user has access.
-             * @alias analytics.management.unsampledReports.list
-             * @memberOf! analytics(v3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
-             * @param {integer=} params.max-results The maximum number of unsampled reports to include in this response.
-             * @param {string} params.profileId View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
-             * @param {integer=} params.start-index An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-             * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * analytics.management.unsampledReports.list
+              * @desc Lists unsampled reports to which the user has access.
+              * @alias analytics.management.unsampledReports.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
+              * @param {integer=} params.max-results The maximum number of unsampled reports to include in this response.
+              * @param {string} params.profileId View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
+              * @param {integer=} params.start-index An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2790,7 +2607,7 @@ function Analytics(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'webPropertyId', 'profileId'],
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
@@ -2798,830 +2615,762 @@ function Analytics(options) {
             return createAPIRequest(parameters, callback);
           }
 
+        },
+        uploads: {
+          /**
+           * analytics.management.uploads.deleteUploadData
+           * @desc Delete data associated with a previous upload.
+           * @alias analytics.management.uploads.deleteUploadData
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account Id for the uploads to be deleted.
+           * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
+           * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
+           * @param {analytics(v3).AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          deleteUploadData(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDataSourceId'],
+              pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.uploads.get
+              * @desc List uploads to which the user has access.
+              * @alias analytics.management.uploads.get
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account Id for the upload to retrieve.
+              * @param {string} params.customDataSourceId Custom data source Id for upload to retrieve.
+              * @param {string} params.uploadId Upload Id to retrieve.
+              * @param {string} params.webPropertyId Web property Id for the upload to retrieve.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: [
+                'accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'
+              ],
+              pathParams: [
+                'accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'
+              ],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.uploads.list
+              * @desc List uploads to which the user has access.
+              * @alias analytics.management.uploads.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account Id for the uploads to retrieve.
+              * @param {string} params.customDataSourceId Custom data source Id for uploads to retrieve.
+              * @param {integer=} params.max-results The maximum number of uploads to include in this response.
+              * @param {integer=} params.start-index A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property Id for the uploads to retrieve.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDataSourceId'],
+              pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.uploads.uploadData
+              * @desc Upload data for a custom data source.
+              * @alias analytics.management.uploads.uploadData
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account Id associated with the upload.
+              * @param {string} params.customDataSourceId Custom data source Id to which the data being uploaded belongs.
+              * @param {string} params.webPropertyId Web property UA-string associated with the upload.
+              * @param {object} params.media Media object
+              * @param {string} params.media.mimeType Media mime-type
+              * @param {string|object} params.media.body Media body contents
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          uploadData(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              mediaUrl:
+                  (rootUrl +
+                   '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'customDataSourceId'],
+              pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
 
         },
-    uploads: {
-      /**
-       * analytics.management.uploads.deleteUploadData
-       * @desc Delete data associated with a previous upload.
-       * @alias analytics.management.uploads.deleteUploadData
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account Id for the uploads to be deleted.
-       * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
-       * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
-       * @param {analytics(v3).AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      deleteUploadData: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
+        webproperties: {
+          /**
+           * analytics.management.webproperties.get
+           * @desc Gets a web property to which the user has access.
+           * @alias analytics.management.webproperties.get
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to retrieve the web property for.
+           * @param {string} params.webPropertyId ID to retrieve the web property for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webproperties.insert
+              * @desc Create a new property if the account has fewer than 20
+              * properties. Web properties are visible in the Google Analytics
+              * interface only if they have at least one profile.
+              * @alias analytics.management.webproperties.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the web property for.
+              * @param {analytics(v3).Webproperty} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webproperties.list
+              * @desc Lists web properties to which the user has access.
+              * @alias analytics.management.webproperties.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
+              * @param {integer=} params.max-results The maximum number of web properties to include in this response.
+              * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId'],
+              pathParams: ['accountId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webproperties.patch
+              * @desc Updates an existing web property. This method supports
+              * patch semantics.
+              * @alias analytics.management.webproperties.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the web property belongs
+              * @param {string} params.webPropertyId Web property ID
+              * @param {analytics(v3).Webproperty} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webproperties.update
+              * @desc Updates an existing web property.
+              * @alias analytics.management.webproperties.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to which the web property belongs
+              * @param {string} params.webPropertyId Web property ID
+              * @param {analytics(v3).Webproperty} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        webPropertyAdWordsLinks: {
+          /**
+           * analytics.management.webPropertyAdWordsLinks.delete
+           * @desc Deletes a web property-AdWords link.
+           * @alias analytics.management.webPropertyAdWordsLinks.delete
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId ID of the account which the given web property belongs to.
+           * @param {string} params.webPropertyAdWordsLinkId Web property AdWords link ID.
+           * @param {string} params.webPropertyId Web property ID to delete the AdWords link for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+              pathParams:
+                  ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webPropertyAdWordsLinks.get
+              * @desc Returns a web property-AdWords link to which the user has
+              * access.
+              * @alias analytics.management.webPropertyAdWordsLinks.get
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId ID of the account which the given web property belongs to.
+              * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
+              * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+              pathParams:
+                  ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webPropertyAdWordsLinks.insert
+              * @desc Creates a webProperty-AdWords link.
+              * @alias analytics.management.webPropertyAdWordsLinks.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId ID of the Google Analytics account to create the link for.
+              * @param {string} params.webPropertyId Web property ID to create the link for.
+              * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webPropertyAdWordsLinks.list
+              * @desc Lists webProperty-AdWords links for a given web property.
+              * @alias analytics.management.webPropertyAdWordsLinks.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId ID of the account which the given web property belongs to.
+              * @param {integer=} params.max-results The maximum number of webProperty-AdWords links to include in this response.
+              * @param {integer=} params.start-index An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web property ID to retrieve the AdWords links for.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webPropertyAdWordsLinks.patch
+              * @desc Updates an existing webProperty-AdWords link. This method
+              * supports patch semantics.
+              * @alias analytics.management.webPropertyAdWordsLinks.patch
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId ID of the account which the given web property belongs to.
+              * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
+              * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+              * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+              pathParams:
+                  ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webPropertyAdWordsLinks.update
+              * @desc Updates an existing webProperty-AdWords link.
+              * @alias analytics.management.webPropertyAdWordsLinks.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId ID of the account which the given web property belongs to.
+              * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
+              * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+              * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams:
+                  ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+              pathParams:
+                  ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
+        },
+        webpropertyUserLinks: {
+          /**
+           * analytics.management.webpropertyUserLinks.delete
+           * @desc Removes a user from the given web property.
+           * @alias analytics.management.webpropertyUserLinks.delete
+           * @memberOf! analytics(v3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.accountId Account ID to delete the user link for.
+           * @param {string} params.linkId Link ID to delete the user link for.
+           * @param {string} params.webPropertyId Web Property ID to delete the user link for.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+              pathParams: ['accountId', 'linkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webpropertyUserLinks.insert
+              * @desc Adds a new user to the given web property.
+              * @alias analytics.management.webpropertyUserLinks.insert
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to create the user link for.
+              * @param {string} params.webPropertyId Web Property ID to create the user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webpropertyUserLinks.list
+              * @desc Lists webProperty-user links for a given web property.
+              * @alias analytics.management.webpropertyUserLinks.list
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID which the given web property belongs to.
+              * @param {integer=} params.max-results The maximum number of webProperty-user Links to include in this response.
+              * @param {integer=} params.start-index An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+              * @param {string} params.webPropertyId Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId'],
+              pathParams: ['accountId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }, /**
+              * analytics.management.webpropertyUserLinks.update
+              * @desc Updates permissions for an existing user on the given web
+              * property.
+              * @alias analytics.management.webpropertyUserLinks.update
+              * @memberOf! analytics(v3)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId Account ID to update the account-user link for.
+              * @param {string} params.linkId Link ID to update the account-user link for.
+              * @param {string} params.webPropertyId Web property ID to update the account-user link for.
+              * @param {analytics(v3).EntityUserLink} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+              pathParams: ['accountId', 'linkId', 'webPropertyId'],
+              context: self
+            };
+            return createAPIRequest(parameters, callback);
+          }
+
         }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.uploads.get
-         * @desc List uploads to which the user has access.
-         * @alias analytics.management.uploads.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account Id for the upload to retrieve.
-         * @param {string} params.customDataSourceId Custom data source Id for upload to retrieve.
-         * @param {string} params.uploadId Upload Id to retrieve.
-         * @param {string} params.webPropertyId Web property Id for the upload to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
-          pathParams:
-              ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.uploads.list
-         * @desc List uploads to which the user has access.
-         * @alias analytics.management.uploads.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account Id for the uploads to retrieve.
-         * @param {string} params.customDataSourceId Custom data source Id for uploads to retrieve.
-         * @param {integer=} params.max-results The maximum number of uploads to include in this response.
-         * @param {integer=} params.start-index A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property Id for the uploads to retrieve.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.uploads.uploadData
-         * @desc Upload data for a custom data source.
-         * @alias analytics.management.uploads.uploadData
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account Id associated with the upload.
-         * @param {string} params.customDataSourceId Custom data source Id to which the data being uploaded belongs.
-         * @param {string} params.webPropertyId Web property UA-string associated with the upload.
-         * @param {object} params.media Media object
-         * @param {string} params.media.mimeType Media mime-type
-         * @param {string|object} params.media.body Media body contents
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      uploadData: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    webproperties: {
-      /**
-       * analytics.management.webproperties.get
-       * @desc Gets a web property to which the user has access.
-       * @alias analytics.management.webproperties.get
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to retrieve the web property for.
-       * @param {string} params.webPropertyId ID to retrieve the web property for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webproperties.insert
-         * @desc Create a new property if the account has fewer than 20
-         * properties. Web properties are visible in the Google Analytics
-         * interface only if they have at least one profile.
-         * @alias analytics.management.webproperties.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the web property for.
-         * @param {analytics(v3).Webproperty} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webproperties.list
-         * @desc Lists web properties to which the user has access.
-         * @alias analytics.management.webproperties.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
-         * @param {integer=} params.max-results The maximum number of web properties to include in this response.
-         * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webproperties.patch
-         * @desc Updates an existing web property. This method supports patch
-         * semantics.
-         * @alias analytics.management.webproperties.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which the web property belongs
-         * @param {string} params.webPropertyId Web property ID
-         * @param {analytics(v3).Webproperty} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webproperties.update
-         * @desc Updates an existing web property.
-         * @alias analytics.management.webproperties.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to which the web property belongs
-         * @param {string} params.webPropertyId Web property ID
-         * @param {analytics(v3).Webproperty} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    webPropertyAdWordsLinks: {
-      /**
-       * analytics.management.webPropertyAdWordsLinks.delete
-       * @desc Deletes a web property-AdWords link.
-       * @alias analytics.management.webPropertyAdWordsLinks.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId ID of the account which the given web property belongs to.
-       * @param {string} params.webPropertyAdWordsLinkId Web property AdWords link ID.
-       * @param {string} params.webPropertyId Web property ID to delete the AdWords link for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webPropertyAdWordsLinks.get
-         * @desc Returns a web property-AdWords link to which the user has
-         * access.
-         * @alias analytics.management.webPropertyAdWordsLinks.get
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId ID of the account which the given web property belongs to.
-         * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-         * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webPropertyAdWordsLinks.insert
-         * @desc Creates a webProperty-AdWords link.
-         * @alias analytics.management.webPropertyAdWordsLinks.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId ID of the Google Analytics account to create the link for.
-         * @param {string} params.webPropertyId Web property ID to create the link for.
-         * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webPropertyAdWordsLinks.list
-         * @desc Lists webProperty-AdWords links for a given web property.
-         * @alias analytics.management.webPropertyAdWordsLinks.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId ID of the account which the given web property belongs to.
-         * @param {integer=} params.max-results The maximum number of webProperty-AdWords links to include in this response.
-         * @param {integer=} params.start-index An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web property ID to retrieve the AdWords links for.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webPropertyAdWordsLinks.patch
-         * @desc Updates an existing webProperty-AdWords link. This method
-         * supports patch semantics.
-         * @alias analytics.management.webPropertyAdWordsLinks.patch
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId ID of the account which the given web property belongs to.
-         * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-         * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
-         * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webPropertyAdWordsLinks.update
-         * @desc Updates an existing webProperty-AdWords link.
-         * @alias analytics.management.webPropertyAdWordsLinks.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId ID of the account which the given web property belongs to.
-         * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-         * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
-         * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    },
-    webpropertyUserLinks: {
-      /**
-       * analytics.management.webpropertyUserLinks.delete
-       * @desc Removes a user from the given web property.
-       * @alias analytics.management.webpropertyUserLinks.delete
-       * @memberOf! analytics(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to delete the user link for.
-       * @param {string} params.linkId Link ID to delete the user link for.
-       * @param {string} params.webPropertyId Web Property ID to delete the user link for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webpropertyUserLinks.insert
-         * @desc Adds a new user to the given web property.
-         * @alias analytics.management.webpropertyUserLinks.insert
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to create the user link for.
-         * @param {string} params.webPropertyId Web Property ID to create the user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      insert: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webpropertyUserLinks.list
-         * @desc Lists webProperty-user links for a given web property.
-         * @alias analytics.management.webpropertyUserLinks.list
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID which the given web property belongs to.
-         * @param {integer=} params.max-results The maximum number of webProperty-user Links to include in this response.
-         * @param {integer=} params.start-index An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-         * @param {string} params.webPropertyId Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * analytics.management.webpropertyUserLinks.update
-         * @desc Updates permissions for an existing user on the given web
-         * property.
-         * @alias analytics.management.webpropertyUserLinks.update
-         * @memberOf! analytics(v3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Account ID to update the account-user link for.
-         * @param {string} params.linkId Link ID to update the account-user link for.
-         * @param {string} params.webPropertyId Web property ID to update the account-user link for.
-         * @param {analytics(v3).EntityUserLink} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      update: function(params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'webPropertyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback);
-      }
-
-
-    }
-  };
+      };
   self.metadata = {
     columns: {
       /**
@@ -3636,15 +3385,13 @@ function Analytics(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -3653,14 +3400,13 @@ function Analytics(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['reportType'],
           pathParams: ['reportType'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -3677,15 +3423,13 @@ function Analytics(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAccountTicket: function(params, options, callback) {
+    createAccountTicket(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -3694,14 +3438,13 @@ function Analytics(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -3973,14 +3716,7 @@ function Analytics(options) {
  * @property {string} reasonExperimentEnded Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;, &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;, &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;. &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
  * @property {boolean} rewriteVariationUrlsAsOriginal Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
  * @property {string} selfLink Link for this experiment. This field is read-only.
- * @property {string} servingFramework The framework used to serve the experiment variations and evaluate the results. One of:
-- REDIRECT: Google Analytics redirects traffic to different variation pages,
-reports the chosen variation and evaluates the results.
-- API: Google Analytics chooses and reports the variation to serve and evaluates
-the results; the caller is responsible for serving the selected variation.
-- EXTERNAL: The variations will be served externally and the chosen variation
-reported to Google Analytics. The caller is responsible for serving the selected
-variation and evaluating the results.
+ * @property {string} servingFramework The framework used to serve the experiment variations and evaluate the results. One of:   - REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. - API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. - EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
  * @property {string} snippet The snippet of code to include on the control page(s). This field is read-only.
  * @property {string} startTime The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING). This field is present only if the experiment has started. This field is read-only.
  * @property {string} status Experiment status. Possible values: &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;. Experiments can be created in the &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is required when creating an experiment.
@@ -4030,93 +3766,7 @@ variation and evaluating the results.
  * @type object
  * @property {boolean} caseSensitive Determines if the filter is case sensitive.
  * @property {string} expressionValue Filter expression value
- * @property {string} field Field to filter. Possible values:
-- Content and Traffic
-- PAGE_REQUEST_URI,
-- PAGE_HOSTNAME,
-- PAGE_TITLE,
-- REFERRAL,
-- COST_DATA_URI (Campaign target URL),
-- HIT_TYPE,
-- INTERNAL_SEARCH_TERM,
-- INTERNAL_SEARCH_TYPE,
-- SOURCE_PROPERTY_TRACKING_ID,
-- Campaign or AdGroup
-- CAMPAIGN_SOURCE,
-- CAMPAIGN_MEDIUM,
-- CAMPAIGN_NAME,
-- CAMPAIGN_AD_GROUP,
-- CAMPAIGN_TERM,
-- CAMPAIGN_CONTENT,
-- CAMPAIGN_CODE,
-- CAMPAIGN_REFERRAL_PATH,
-- E-Commerce
-- TRANSACTION_COUNTRY,
-- TRANSACTION_REGION,
-- TRANSACTION_CITY,
-- TRANSACTION_AFFILIATION (Store or order location),
-- ITEM_NAME,
-- ITEM_CODE,
-- ITEM_VARIATION,
-- TRANSACTION_ID,
-- TRANSACTION_CURRENCY_CODE,
-- PRODUCT_ACTION_TYPE,
-- Audience/Users
-- BROWSER,
-- BROWSER_VERSION,
-- BROWSER_SIZE,
-- PLATFORM,
-- PLATFORM_VERSION,
-- LANGUAGE,
-- SCREEN_RESOLUTION,
-- SCREEN_COLORS,
-- JAVA_ENABLED (Boolean Field),
-- FLASH_VERSION,
-- GEO_SPEED (Connection speed),
-- VISITOR_TYPE,
-- GEO_ORGANIZATION (ISP organization),
-- GEO_DOMAIN,
-- GEO_IP_ADDRESS,
-- GEO_IP_VERSION,
-- Location
-- GEO_COUNTRY,
-- GEO_REGION,
-- GEO_CITY,
-- Event
-- EVENT_CATEGORY,
-- EVENT_ACTION,
-- EVENT_LABEL,
-- Other
-- CUSTOM_FIELD_1,
-- CUSTOM_FIELD_2,
-- USER_DEFINED_VALUE,
-- Application
-- APP_ID,
-- APP_INSTALLER_ID,
-- APP_NAME,
-- APP_VERSION,
-- SCREEN,
-- IS_APP (Boolean Field),
-- IS_FATAL_EXCEPTION (Boolean Field),
-- EXCEPTION_DESCRIPTION,
-- Mobile device
-- IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),
-- IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),
-- DEVICE_CATEGORY,
-- MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),
-- MOBILE_HAS_NFC_SUPPORT (Boolean Field),
-- MOBILE_HAS_CELLULAR_RADIO (Boolean Field),
-- MOBILE_HAS_WIFI_SUPPORT (Boolean Field),
-- MOBILE_BRAND_NAME,
-- MOBILE_MODEL_NAME,
-- MOBILE_MARKETING_NAME,
-- MOBILE_POINTING_METHOD,
-- Social
-- SOCIAL_NETWORK,
-- SOCIAL_ACTION,
-- SOCIAL_ACTION_TARGET,
-- Custom dimension
-- CUSTOM_DIMENSION (See accompanying field index),
+ * @property {string} field Field to filter. Possible values:   - Content and Traffic   - PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  - COST_DATA_URI (Campaign target URL),  - HIT_TYPE,  - INTERNAL_SEARCH_TERM,  - INTERNAL_SEARCH_TYPE,  - SOURCE_PROPERTY_TRACKING_ID,    - Campaign or AdGroup   - CAMPAIGN_SOURCE,  - CAMPAIGN_MEDIUM,  - CAMPAIGN_NAME,  - CAMPAIGN_AD_GROUP,  - CAMPAIGN_TERM,  - CAMPAIGN_CONTENT,  - CAMPAIGN_CODE,  - CAMPAIGN_REFERRAL_PATH,    - E-Commerce   - TRANSACTION_COUNTRY,  - TRANSACTION_REGION,  - TRANSACTION_CITY,  - TRANSACTION_AFFILIATION (Store or order location),  - ITEM_NAME,  - ITEM_CODE,  - ITEM_VARIATION,  - TRANSACTION_ID,  - TRANSACTION_CURRENCY_CODE,  - PRODUCT_ACTION_TYPE,    - Audience/Users   - BROWSER,  - BROWSER_VERSION,  - BROWSER_SIZE,  - PLATFORM,  - PLATFORM_VERSION,  - LANGUAGE,  - SCREEN_RESOLUTION,  - SCREEN_COLORS,  - JAVA_ENABLED (Boolean Field),  - FLASH_VERSION,  - GEO_SPEED (Connection speed),  - VISITOR_TYPE,  - GEO_ORGANIZATION (ISP organization),  - GEO_DOMAIN,  - GEO_IP_ADDRESS,  - GEO_IP_VERSION,    - Location   - GEO_COUNTRY,  - GEO_REGION,  - GEO_CITY,    - Event   - EVENT_CATEGORY,  - EVENT_ACTION,  - EVENT_LABEL,    - Other   - CUSTOM_FIELD_1,  - CUSTOM_FIELD_2,  - USER_DEFINED_VALUE,    - Application   - APP_ID,  - APP_INSTALLER_ID,  - APP_NAME,  - APP_VERSION,  - SCREEN,  - IS_APP (Boolean Field),  - IS_FATAL_EXCEPTION (Boolean Field),  - EXCEPTION_DESCRIPTION,    - Mobile device   - IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),  - IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),  - DEVICE_CATEGORY,  - MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  - MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  - MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,    - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,    - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
  * @property {integer} fieldIndex The Index of the custom dimension. Set only if the field is a is CUSTOM_DIMENSION.
  * @property {string} kind Kind value for filter expression
  * @property {string} matchType Match type for this filter. Possible values are BEGINS_WITH, EQUAL, ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS, PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all other filters must use MATCHES.
@@ -4255,11 +3905,7 @@ variation and evaluating the results.
  * @property {boolean} botFilteringEnabled Indicates whether bot filtering is enabled for this view (profile).
  * @property {object} childLink Child link for this view (profile). Points to the list of goals for this view (profile).
  * @property {string} created Time this view (profile) was created.
- * @property {string} currency The currency type associated with this view (profile), defaults to USD. The supported values are:
-USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD,
-THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH,
-AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF,
-LVL
+ * @property {string} currency The currency type associated with this view (profile), defaults to USD. The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
  * @property {string} defaultPage Default page for this view (profile).
  * @property {boolean} eCommerceTracking Indicates whether ecommerce tracking is enabled for this view (profile).
  * @property {boolean} enhancedECommerceTracking Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.
@@ -4290,16 +3936,7 @@ LVL
  * @property {string} id Profile filter link ID.
  * @property {string} kind Resource type for Analytics filter.
  * @property {analytics(v3).ProfileRef} profileRef View (Profile) for this link.
- * @property {integer} rank The rank of this profile filter link relative to the other filters linked to the same profile.
-For readonly (i.e., list and get) operations, the rank always starts at 1.
-For write (i.e., create, update, or delete) operations, you may specify a value
-between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of
-the list, either don&#39;t specify a rank or set a rank to a number greater than
-the largest rank in the list. In order to insert a link to the beginning of the
-list specify a rank that is less than or equal to 1. The new link will move all
-existing filters with the same or lower rank down the list. After the link is
-inserted/updated/deleted all profile filter links will be renumbered starting
-at 1.
+ * @property {integer} rank The rank of this profile filter link relative to the other filters linked to the same profile. For readonly (i.e., list and get) operations, the rank always starts at 1. For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
  * @property {string} selfLink Link for this profile filter link.
  */
 /**

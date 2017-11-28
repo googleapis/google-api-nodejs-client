@@ -49,15 +49,13 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, options, callback) {
+    search(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -66,14 +64,13 @@ function Civicinfo(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.elections = {
@@ -89,15 +86,13 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    electionQuery: function(params, options, callback) {
+    electionQuery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -106,40 +101,36 @@ function Civicinfo(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * civicinfo.elections.voterInfoQuery
-       * @desc Looks up information relevant to a voter based on the voter's
-       * registered address.
-       * @alias civicinfo.elections.voterInfoQuery
-       * @memberOf! civicinfo(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.address The registered address of the voter to look up.
-       * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
-       * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
-       * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-       * @param {civicinfo(v2).VoterInfoRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    voterInfoQuery: function(params, options, callback) {
+    }, /**
+        * civicinfo.elections.voterInfoQuery
+        * @desc Looks up information relevant to a voter based on the voter's
+        * registered address.
+        * @alias civicinfo.elections.voterInfoQuery
+        * @memberOf! civicinfo(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.address The registered address of the voter to look up.
+        * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
+        * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+        * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+        * @param {civicinfo(v2).VoterInfoRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    voterInfoQuery(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -148,14 +139,13 @@ function Civicinfo(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['address'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.representatives = {
@@ -176,15 +166,13 @@ function Civicinfo(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByAddress: function(params, options, callback) {
+    representativeInfoByAddress(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -193,40 +181,36 @@ function Civicinfo(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * civicinfo.representatives.representativeInfoByDivision
-       * @desc Looks up representative information for a single geographic
-       * division.
-       * @alias civicinfo.representatives.representativeInfoByDivision
-       * @memberOf! civicinfo(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-       * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
-       * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
-       * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-       * @param {civicinfo(v2).DivisionRepresentativeInfoRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    representativeInfoByDivision: function(params, options, callback) {
+    }, /**
+        * civicinfo.representatives.representativeInfoByDivision
+        * @desc Looks up representative information for a single geographic
+        * division.
+        * @alias civicinfo.representatives.representativeInfoByDivision
+        * @memberOf! civicinfo(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+        * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
+        * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
+        * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+        * @param {civicinfo(v2).DivisionRepresentativeInfoRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    representativeInfoByDivision(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -235,14 +219,13 @@ function Civicinfo(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -402,18 +385,7 @@ function Civicinfo(options) {
  * @typedef GeographicDivision
  * @memberOf! civicinfo(v2)
  * @type object
- * @property {string[]} alsoKnownAs Any other valid OCD IDs that refer to the same division.
-
-Because OCD IDs are meant to be human-readable and at least somewhat
-predictable, there are occasionally several identifiers for a single division.
-These identifiers are defined to be equivalent to one another, and one is always
-indicated as the primary identifier. The primary identifier will be returned in
-ocd_id above, and any other equivalent valid identifiers will be returned in
-this list.
-
-For example, if this division&#39;s OCD ID is
-ocd-division/country:us/district:dc, this will contain
-ocd-division/country:us/state:dc.
+ * @property {string[]} alsoKnownAs Any other valid OCD IDs that refer to the same division.  Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.  For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
  * @property {string} name The name of the division.
  * @property {integer[]} officeIndices List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
  */

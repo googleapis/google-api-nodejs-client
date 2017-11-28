@@ -48,15 +48,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,34 +63,30 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.accounts.list
-       * @desc Retrieves the authenticated user's list of accounts.
-       * @alias adexchangebuyer.accounts.list
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.accounts.list
+        * @desc Retrieves the authenticated user's list of accounts.
+        * @alias adexchangebuyer.accounts.list
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -101,37 +95,33 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.accounts.patch
-       * @desc Updates an existing account. This method supports patch
-       * semantics.
-       * @alias adexchangebuyer.accounts.patch
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.id The account id
-       * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.accounts.patch
+        * @desc Updates an existing account. This method supports patch
+        * semantics.
+        * @alias adexchangebuyer.accounts.patch
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer} params.id The account id
+        * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -140,36 +130,32 @@ function Adexchangebuyer(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.accounts.update
-       * @desc Updates an existing account.
-       * @alias adexchangebuyer.accounts.update
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.id The account id
-       * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.accounts.update
+        * @desc Updates an existing account.
+        * @alias adexchangebuyer.accounts.update
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer} params.id The account id
+        * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -178,14 +164,13 @@ function Adexchangebuyer(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.billingInfo = {
@@ -202,15 +187,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -219,35 +202,31 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.billingInfo.list
-       * @desc Retrieves a list of billing information for all accounts of the
-       * authenticated user.
-       * @alias adexchangebuyer.billingInfo.list
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.billingInfo.list
+        * @desc Retrieves a list of billing information for all accounts of the
+        * authenticated user.
+        * @alias adexchangebuyer.billingInfo.list
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -256,14 +235,13 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.budget = {
@@ -281,15 +259,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -299,39 +275,35 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.budget.patch
-       * @desc Updates the budget amount for the budget of the adgroup specified
-       * by the accountId and billingId, with the budget amount in the request.
-       * This method supports patch semantics.
-       * @alias adexchangebuyer.budget.patch
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id associated with the budget being updated.
-       * @param {string} params.billingId The billing id associated with the budget being updated.
-       * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.budget.patch
+        * @desc Updates the budget amount for the budget of the adgroup
+        * specified by the accountId and billingId, with the budget amount in
+        * the request. This method supports patch semantics.
+        * @alias adexchangebuyer.budget.patch
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id associated with the budget being updated.
+        * @param {string} params.billingId The billing id associated with the budget being updated.
+        * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -341,38 +313,35 @@ function Adexchangebuyer(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.budget.update
-       * @desc Updates the budget amount for the budget of the adgroup specified
-       * by the accountId and billingId, with the budget amount in the request.
-       * @alias adexchangebuyer.budget.update
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id associated with the budget being updated.
-       * @param {string} params.billingId The billing id associated with the budget being updated.
-       * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.budget.update
+        * @desc Updates the budget amount for the budget of the adgroup
+        * specified by the accountId and billingId, with the budget amount in
+        * the request.
+        * @alias adexchangebuyer.budget.update
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id associated with the budget being updated.
+        * @param {string} params.billingId The billing id associated with the budget being updated.
+        * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -382,14 +351,13 @@ function Adexchangebuyer(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.creatives = {
@@ -407,15 +375,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -426,35 +392,31 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.creatives.insert
-       * @desc Submit a new creative.
-       * @alias adexchangebuyer.creatives.insert
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {adexchangebuyer(v1.3).Creative} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.creatives.insert
+        * @desc Submit a new creative.
+        * @alias adexchangebuyer.creatives.insert
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {adexchangebuyer(v1.3).Creative} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -463,40 +425,36 @@ function Adexchangebuyer(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.creatives.list
-       * @desc Retrieves a list of the authenticated user's active creatives. A
-       * creative will be available 30-40 minutes after submission.
-       * @alias adexchangebuyer.creatives.list
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.accountId When specified, only creatives for the given account ids are returned.
-       * @param {string=} params.buyerCreativeId When specified, only creatives for the given buyer creative ids are returned.
-       * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-       * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-       * @param {string=} params.statusFilter When specified, only creatives having the given status are returned.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.creatives.list
+        * @desc Retrieves a list of the authenticated user's active creatives. A
+        * creative will be available 30-40 minutes after submission.
+        * @alias adexchangebuyer.creatives.list
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.accountId When specified, only creatives for the given account ids are returned.
+        * @param {string=} params.buyerCreativeId When specified, only creatives for the given buyer creative ids are returned.
+        * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
+        * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
+        * @param {string=} params.statusFilter When specified, only creatives having the given status are returned.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -505,14 +463,13 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.directDeals = {
@@ -528,15 +485,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -545,34 +500,30 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.directDeals.list
-       * @desc Retrieves the authenticated user's list of direct deals.
-       * @alias adexchangebuyer.directDeals.list
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.directDeals.list
+        * @desc Retrieves the authenticated user's list of direct deals.
+        * @alias adexchangebuyer.directDeals.list
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -581,14 +532,13 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.performanceReport = {
@@ -608,15 +558,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -625,14 +573,13 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'endDateTime', 'startDateTime'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.pretargetingConfig = {
@@ -649,15 +596,13 @@ function Adexchangebuyer(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -668,36 +613,32 @@ function Adexchangebuyer(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.pretargetingConfig.get
-       * @desc Gets a specific pretargeting configuration
-       * @alias adexchangebuyer.pretargetingConfig.get
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id to get the pretargeting config for.
-       * @param {string} params.configId The specific id of the configuration to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.pretargetingConfig.get
+        * @desc Gets a specific pretargeting configuration
+        * @alias adexchangebuyer.pretargetingConfig.get
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id to get the pretargeting config for.
+        * @param {string} params.configId The specific id of the configuration to retrieve.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -708,36 +649,32 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.pretargetingConfig.insert
-       * @desc Inserts a new pretargeting configuration.
-       * @alias adexchangebuyer.pretargetingConfig.insert
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id to insert the pretargeting config for.
-       * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.pretargetingConfig.insert
+        * @desc Inserts a new pretargeting configuration.
+        * @alias adexchangebuyer.pretargetingConfig.insert
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id to insert the pretargeting config for.
+        * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -747,36 +684,32 @@ function Adexchangebuyer(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.pretargetingConfig.list
-       * @desc Retrieves a list of the authenticated user's pretargeting
-       * configurations.
-       * @alias adexchangebuyer.pretargetingConfig.list
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id to get the pretargeting configs for.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.pretargetingConfig.list
+        * @desc Retrieves a list of the authenticated user's pretargeting
+        * configurations.
+        * @alias adexchangebuyer.pretargetingConfig.list
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id to get the pretargeting configs for.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -786,38 +719,34 @@ function Adexchangebuyer(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.pretargetingConfig.patch
-       * @desc Updates an existing pretargeting config. This method supports
-       * patch semantics.
-       * @alias adexchangebuyer.pretargetingConfig.patch
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id to update the pretargeting config for.
-       * @param {string} params.configId The specific id of the configuration to update.
-       * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.pretargetingConfig.patch
+        * @desc Updates an existing pretargeting config. This method supports
+        * patch semantics.
+        * @alias adexchangebuyer.pretargetingConfig.patch
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id to update the pretargeting config for.
+        * @param {string} params.configId The specific id of the configuration to update.
+        * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -828,37 +757,33 @@ function Adexchangebuyer(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * adexchangebuyer.pretargetingConfig.update
-       * @desc Updates an existing pretargeting config.
-       * @alias adexchangebuyer.pretargetingConfig.update
-       * @memberOf! adexchangebuyer(v1.3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId The account id to update the pretargeting config for.
-       * @param {string} params.configId The specific id of the configuration to update.
-       * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * adexchangebuyer.pretargetingConfig.update
+        * @desc Updates an existing pretargeting config.
+        * @alias adexchangebuyer.pretargetingConfig.update
+        * @memberOf! adexchangebuyer(v1.3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The account id to update the pretargeting config for.
+        * @param {string} params.configId The specific id of the configuration to update.
+        * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -869,14 +794,13 @@ function Adexchangebuyer(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

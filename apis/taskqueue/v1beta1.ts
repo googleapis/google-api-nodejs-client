@@ -49,15 +49,13 @@ function Taskqueue(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -68,14 +66,13 @@ function Taskqueue(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.tasks = {
@@ -93,15 +90,13 @@ function Taskqueue(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -112,37 +107,33 @@ function Taskqueue(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * taskqueue.tasks.get
-       * @desc Get a particular task from a TaskQueue.
-       * @alias taskqueue.tasks.get
-       * @memberOf! taskqueue(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project under which the queue lies.
-       * @param {string} params.task The task to get properties of.
-       * @param {string} params.taskqueue The taskqueue in which the task belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * taskqueue.tasks.get
+        * @desc Get a particular task from a TaskQueue.
+        * @alias taskqueue.tasks.get
+        * @memberOf! taskqueue(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project under which the queue lies.
+        * @param {string} params.task The task to get properties of.
+        * @param {string} params.taskqueue The taskqueue in which the task belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -153,38 +144,34 @@ function Taskqueue(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * taskqueue.tasks.lease
-       * @desc Lease 1 or more tasks from a TaskQueue.
-       * @alias taskqueue.tasks.lease
-       * @memberOf! taskqueue(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.leaseSecs The lease in seconds.
-       * @param {integer} params.numTasks The number of tasks to lease.
-       * @param {string} params.project The project under which the queue lies.
-       * @param {string} params.taskqueue The taskqueue to lease a task from.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    lease: function(params, options, callback) {
+    }, /**
+        * taskqueue.tasks.lease
+        * @desc Lease 1 or more tasks from a TaskQueue.
+        * @alias taskqueue.tasks.lease
+        * @memberOf! taskqueue(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer} params.leaseSecs The lease in seconds.
+        * @param {integer} params.numTasks The number of tasks to lease.
+        * @param {string} params.project The project under which the queue lies.
+        * @param {string} params.taskqueue The taskqueue to lease a task from.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    lease(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -195,36 +182,32 @@ function Taskqueue(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'taskqueue', 'numTasks', 'leaseSecs'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * taskqueue.tasks.list
-       * @desc List Tasks in a TaskQueue
-       * @alias taskqueue.tasks.list
-       * @memberOf! taskqueue(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project under which the queue lies.
-       * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * taskqueue.tasks.list
+        * @desc List Tasks in a TaskQueue
+        * @alias taskqueue.tasks.list
+        * @memberOf! taskqueue(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project under which the queue lies.
+        * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -235,14 +218,13 @@ function Taskqueue(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

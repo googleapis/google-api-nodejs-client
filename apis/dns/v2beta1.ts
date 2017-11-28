@@ -111,15 +111,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -130,99 +128,95 @@ function Dns(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.changes.get
-       * @desc Fetch the representation of an existing Change.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     // The identifier of the requested change, from a previous
-       * ResourceRecordSetsChangeResponse. changeId: 'my-change-id',  // TODO:
-       * Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   dns.changes.get(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.changes.get
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dns.changes.get
+        * @desc Fetch the representation of an existing Change.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     // The identifier of the requested change, from a previous
+        * ResourceRecordSetsChangeResponse. changeId: 'my-change-id',  // TODO:
+        * Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   dns.changes.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.changes.get
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -233,110 +227,106 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'changeId'],
         pathParams: ['changeId', 'managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.changes.list
-       * @desc Enumerate Changes to a ResourceRecordSet collection.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var changesPage = response['changes'];
-       *     if (!changesPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < changesPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `changesPage`: console.log(JSON.stringify(changesPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       dns.changes.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   dns.changes.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.changes.list
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
-       * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.changes.list
+        * @desc Enumerate Changes to a ResourceRecordSet collection.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var changesPage = response['changes'];
+        *     if (!changesPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < changesPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `changesPage`: console.log(JSON.stringify(changesPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       dns.changes.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   dns.changes.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.changes.list
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
+        * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -347,14 +337,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.dnsKeys = {
@@ -434,15 +423,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -453,109 +440,105 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'dnsKeyId'],
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.dnsKeys.list
-       * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var dnsKeysPage = response['dnsKeys'];
-       *     if (!dnsKeysPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < dnsKeysPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `dnsKeysPage`: console.log(JSON.stringify(dnsKeysPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       dns.dnsKeys.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   dns.dnsKeys.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.dnsKeys.list
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.dnsKeys.list
+        * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var dnsKeysPage = response['dnsKeys'];
+        *     if (!dnsKeysPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < dnsKeysPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `dnsKeysPage`: console.log(JSON.stringify(dnsKeysPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       dns.dnsKeys.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   dns.dnsKeys.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.dnsKeys.list
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -566,14 +549,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.managedZoneOperations = {
@@ -651,15 +633,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -670,109 +650,106 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone', 'operation'],
         pathParams: ['managedZone', 'operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZoneOperations.list
-       * @desc Enumerate Operations for the given ManagedZone.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request.
-       *     managedZone: 'my-managed-zone',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var operationsPage = response['operations'];
-       *     if (!operationsPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < operationsPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `operationsPage`: console.log(JSON.stringify(operationsPage[i], null,
-       * 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       dns.managedZoneOperations.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   dns.managedZoneOperations.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZoneOperations.list
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.managedZoneOperations.list
+        * @desc Enumerate Operations for the given ManagedZone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request.
+        *     managedZone: 'my-managed-zone',  // TODO: Update placeholder
+        * value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var operationsPage = response['operations'];
+        *     if (!operationsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < operationsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `operationsPage`: console.log(JSON.stringify(operationsPage[i], null,
+        * 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       dns.managedZoneOperations.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   dns.managedZoneOperations.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZoneOperations.list
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -783,14 +760,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.managedZones = {
@@ -865,15 +841,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -882,94 +856,90 @@ function Dns(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.delete
-       * @desc Delete a previously created ManagedZone.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   dns.managedZones.delete(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZones.delete
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.delete
+        * @desc Delete a previously created ManagedZone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   dns.managedZones.delete(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZones.delete
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -980,94 +950,90 @@ function Dns(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.get
-       * @desc Fetch the representation of an existing ManagedZone.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   dns.managedZones.get(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZones.get
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.get
+        * @desc Fetch the representation of an existing ManagedZone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   dns.managedZones.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZones.get
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1078,106 +1044,102 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.list
-       * @desc Enumerate ManagedZones that have been created but not yet
-       * deleted.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var managedZonesPage = response['managedZones'];
-       *     if (!managedZonesPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < managedZonesPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `managedZonesPage`: console.log(JSON.stringify(managedZonesPage[i],
-       * null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       dns.managedZones.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   dns.managedZones.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZones.list
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
-       * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-       * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.list
+        * @desc Enumerate ManagedZones that have been created but not yet
+        * deleted.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var managedZonesPage = response['managedZones'];
+        *     if (!managedZonesPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < managedZonesPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `managedZonesPage`: console.log(JSON.stringify(managedZonesPage[i],
+        * null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       dns.managedZones.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   dns.managedZones.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZones.list
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
+        * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+        * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1186,102 +1148,98 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.patch
-       * @desc Update an existing ManagedZone. This method supports patch
-       * semantics.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body. Only these
-       * properties
-       *       // will be changed.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   dns.managedZones.patch(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZones.patch
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {dns(v2beta1).ManagedZone} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.patch
+        * @desc Update an existing ManagedZone. This method supports patch
+        * semantics.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. Only these
+        * properties
+        *       // will be changed.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   dns.managedZones.patch(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZones.patch
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {dns(v2beta1).ManagedZone} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1292,101 +1250,97 @@ function Dns(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * dns.managedZones.update
-       * @desc Update an existing ManagedZone.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud DNS API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/dns
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var dns = google.dns('v2beta1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Identifies the project addressed by this request.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // Identifies the managed zone addressed by this request. Can be
-       * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
-       * Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body. All existing
-       * properties
-       *       // will be replaced.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   dns.managedZones.update(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias dns.managedZones.update
-       * @memberOf! dns(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-       * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-       * @param {string} params.project Identifies the project addressed by this request.
-       * @param {dns(v2beta1).ManagedZone} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * dns.managedZones.update
+        * @desc Update an existing ManagedZone.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Google Cloud DNS API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/dns
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var dns = google.dns('v2beta1');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // Identifies the project addressed by this request.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // Identifies the managed zone addressed by this request. Can be
+        * the managed zone name or id. managedZone: 'my-managed-zone',  // TODO:
+        * Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. All
+        * existing properties
+        *       // will be replaced.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   dns.managedZones.update(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias dns.managedZones.update
+        * @memberOf! dns(v2beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+        * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+        * @param {string} params.project Identifies the project addressed by this request.
+        * @param {dns(v2beta1).ManagedZone} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1397,14 +1351,13 @@ function Dns(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.projects = {
@@ -1474,15 +1427,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1491,14 +1442,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.resourceRecordSets = {
@@ -1590,15 +1540,13 @@ function Dns(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1609,14 +1557,13 @@ function Dns(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -1639,14 +1586,7 @@ function Dns(options) {
  * @property {dns(v2beta1).Change[]} changes The requested changes.
  * @property {dns(v2beta1).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a &quot;snapshot&quot; of collections larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
  */
 /**
  * @typedef DnsKey
@@ -1678,14 +1618,7 @@ page size.
  * @property {dns(v2beta1).DnsKey[]} dnsKeys The requested resources.
  * @property {dns(v2beta1).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a &quot;snapshot&quot; of collections larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
  */
 /**
  * @typedef DnsKeySpec
@@ -1725,14 +1658,7 @@ page size.
  * @type object
  * @property {dns(v2beta1).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  * @property {dns(v2beta1).Operation[]} operations The operation resources.
  */
 /**
@@ -1748,14 +1674,7 @@ page size.
  * @property {dns(v2beta1).ResponseHeader} header
  * @property {string} kind Type of resource.
  * @property {dns(v2beta1).ManagedZone[]} managedZones The managed zone resources.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  */
 /**
  * @typedef Operation
@@ -1824,14 +1743,7 @@ page size.
  * @type object
  * @property {dns(v2beta1).ResponseHeader} header
  * @property {string} kind Type of resource.
- * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
-
-In this way you can retrieve the complete contents of even very large
-collections one page at a time. However, if the contents of the collection
-change between the first and last paginated list request, the set of all
-elements returned will be an inconsistent view of the collection. There is no
-way to retrieve a consistent snapshot of a collection larger than the maximum
-page size.
+ * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  * @property {dns(v2beta1).ResourceRecordSet[]} rrsets The resource record set resources.
  */
 /**

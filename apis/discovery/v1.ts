@@ -49,15 +49,13 @@ function Discovery(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest: function(params, options, callback) {
+    getRest(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -66,36 +64,32 @@ function Discovery(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * discovery.apis.list
-       * @desc Retrieve the list of APIs supported at this endpoint.
-       * @alias discovery.apis.list
-       * @memberOf! discovery(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.name Only include APIs with the given name.
-       * @param {boolean=} params.preferred Return only the preferred version of an API.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * discovery.apis.list
+        * @desc Retrieve the list of APIs supported at this endpoint.
+        * @alias discovery.apis.list
+        * @memberOf! discovery(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.name Only include APIs with the given name.
+        * @param {boolean=} params.preferred Return only the preferred version of an API.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -104,14 +98,13 @@ function Discovery(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

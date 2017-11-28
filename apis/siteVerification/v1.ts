@@ -47,15 +47,13 @@ function Siteverification(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,35 +62,31 @@ function Siteverification(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.get
-       * @desc Get the most current data for a website or domain.
-       * @alias siteVerification.webResource.get
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The id of a verified site or domain.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.get
+        * @desc Get the most current data for a website or domain.
+        * @alias siteVerification.webResource.get
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The id of a verified site or domain.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -101,35 +95,31 @@ function Siteverification(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.getToken
-       * @desc Get a verification token for placing on a website or domain.
-       * @alias siteVerification.webResource.getToken
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {siteVerification(v1).SiteVerificationWebResourceGettokenRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getToken: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.getToken
+        * @desc Get a verification token for placing on a website or domain.
+        * @alias siteVerification.webResource.getToken
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {siteVerification(v1).SiteVerificationWebResourceGettokenRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getToken(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -138,36 +128,32 @@ function Siteverification(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.insert
-       * @desc Attempt verification of a website or domain.
-       * @alias siteVerification.webResource.insert
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.verificationMethod The method to use for verifying a site or domain.
-       * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.insert
+        * @desc Attempt verification of a website or domain.
+        * @alias siteVerification.webResource.insert
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.verificationMethod The method to use for verifying a site or domain.
+        * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -176,34 +162,30 @@ function Siteverification(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['verificationMethod'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.list
-       * @desc Get the list of your verified websites and domains.
-       * @alias siteVerification.webResource.list
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.list
+        * @desc Get the list of your verified websites and domains.
+        * @alias siteVerification.webResource.list
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -212,37 +194,33 @@ function Siteverification(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.patch
-       * @desc Modify the list of owners for your website or domain. This method
-       * supports patch semantics.
-       * @alias siteVerification.webResource.patch
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The id of a verified site or domain.
-       * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.patch
+        * @desc Modify the list of owners for your website or domain. This
+        * method supports patch semantics.
+        * @alias siteVerification.webResource.patch
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The id of a verified site or domain.
+        * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -251,36 +229,32 @@ function Siteverification(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * siteVerification.webResource.update
-       * @desc Modify the list of owners for your website or domain.
-       * @alias siteVerification.webResource.update
-       * @memberOf! siteVerification(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The id of a verified site or domain.
-       * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * siteVerification.webResource.update
+        * @desc Modify the list of owners for your website or domain.
+        * @alias siteVerification.webResource.update
+        * @memberOf! siteVerification(v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The id of a verified site or domain.
+        * @param {siteVerification(v1).SiteVerificationWebResourceResource} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -289,14 +263,13 @@ function Siteverification(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

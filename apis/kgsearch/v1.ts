@@ -55,15 +55,13 @@ function Kgsearch(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function(params, options, callback) {
+    search(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://kgsearch.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -72,7 +70,7 @@ function Kgsearch(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
@@ -80,15 +78,13 @@ function Kgsearch(options) {
       return createAPIRequest(parameters, callback);
     }
 
-
   };
 }
 /**
  * @typedef SearchResponse
  * @memberOf! kgsearch(v1)
  * @type object
- * @property {any} @context The local context applicable for the response. See more details at
-http://www.w3.org/TR/json-ld/#context-definitions.
+ * @property {any} @context The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions.
  * @property {any} @type The schema type of top-level JSON-LD object, e.g. ItemList.
  * @property {any[]} itemListElement The item list of search results.
  */

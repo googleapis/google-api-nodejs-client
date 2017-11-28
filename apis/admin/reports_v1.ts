@@ -58,15 +58,13 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -77,45 +75,41 @@ function Admin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * reports.activities.watch
-       * @desc Push changes to activities
-       * @alias reports.activities.watch
-       * @memberOf! admin(reports_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
-       * @param {string} params.applicationName Application name for which the events are to be retrieved.
-       * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
-       * @param {string=} params.endTime Return events which occurred at or before this time.
-       * @param {string=} params.eventName Name of the event being queried.
-       * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
-       * @param {integer=} params.maxResults Number of activity records to be shown in each page.
-       * @param {string=} params.pageToken Token to specify next page.
-       * @param {string=} params.startTime Return events which occurred at or after this time.
-       * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
-       * @param {admin(reports_v1).Channel} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    watch: function(params, options, callback) {
+    }, /**
+        * reports.activities.watch
+        * @desc Push changes to activities
+        * @alias reports.activities.watch
+        * @memberOf! admin(reports_v1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.actorIpAddress IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
+        * @param {string} params.applicationName Application name for which the events are to be retrieved.
+        * @param {string=} params.customerId Represents the customer for which the data is to be fetched.
+        * @param {string=} params.endTime Return events which occurred at or before this time.
+        * @param {string=} params.eventName Name of the event being queried.
+        * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
+        * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+        * @param {string=} params.pageToken Token to specify next page.
+        * @param {string=} params.startTime Return events which occurred at or after this time.
+        * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+        * @param {admin(reports_v1).Channel} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    watch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -126,14 +120,13 @@ function Admin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.channels = {
@@ -149,15 +142,13 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, options, callback) {
+    stop(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -167,14 +158,13 @@ function Admin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.customerUsageReports = {
@@ -194,15 +184,13 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -211,14 +199,13 @@ function Admin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['date'],
         pathParams: ['date'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.userUsageReport = {
@@ -241,15 +228,13 @@ function Admin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -259,14 +244,13 @@ function Admin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

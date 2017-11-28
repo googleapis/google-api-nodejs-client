@@ -52,15 +52,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -71,40 +69,36 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams:
             ['project', 'instance', 'backupConfiguration', 'dueTime'],
         pathParams: ['backupConfiguration', 'instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.backupRuns.list
-       * @desc Lists all backup runs associated with a Cloud SQL instance.
-       * @alias sql.backupRuns.list
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.backupConfiguration Identifier for the backup configuration. This gets generated automatically when a backup configuration is created.
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {integer=} params.maxResults Maximum number of backup runs per response.
-       * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * sql.backupRuns.list
+        * @desc Lists all backup runs associated with a Cloud SQL instance.
+        * @alias sql.backupRuns.list
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backupConfiguration Identifier for the backup configuration. This gets generated automatically when a backup configuration is created.
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {integer=} params.maxResults Maximum number of backup runs per response.
+        * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -115,14 +109,13 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance', 'backupConfiguration'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.flags = {
@@ -138,15 +131,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -155,14 +146,13 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.instances = {
@@ -179,15 +169,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clone: function(params, options, callback) {
+    clone(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -196,36 +184,32 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.delete
-       * @desc Deletes a Cloud SQL instance.
-       * @alias sql.instances.delete
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance to be deleted.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * sql.instances.delete
+        * @desc Deletes a Cloud SQL instance.
+        * @alias sql.instances.delete
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -235,38 +219,34 @@ function Sqladmin(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.export
-       * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
-       * bucket as a MySQL dump file.
-       * @alias sql.instances.export
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance to be exported.
-       * @param {sqladmin(v1beta3).InstancesExportRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    export: function(params, options, callback) {
+    }, /**
+        * sql.instances.export
+        * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
+        * bucket as a MySQL dump file.
+        * @alias sql.instances.export
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance to be exported.
+        * @param {sqladmin(v1beta3).InstancesExportRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    export(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -277,36 +257,32 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.get
-       * @desc Retrieves information about a Cloud SQL instance.
-       * @alias sql.instances.get
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Database instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * sql.instances.get
+        * @desc Retrieves information about a Cloud SQL instance.
+        * @alias sql.instances.get
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Database instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -316,38 +292,34 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.import
-       * @desc Imports data into a Cloud SQL instance from a MySQL dump file
-       * stored in a Google Cloud Storage bucket.
-       * @alias sql.instances.import
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {sqladmin(v1beta3).InstancesImportRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    import: function(params, options, callback) {
+    }, /**
+        * sql.instances.import
+        * @desc Imports data into a Cloud SQL instance from a MySQL dump file
+        * stored in a Google Cloud Storage bucket.
+        * @alias sql.instances.import
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {sqladmin(v1beta3).InstancesImportRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    import(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -358,36 +330,32 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.insert
-       * @desc Creates a new Cloud SQL instance.
-       * @alias sql.instances.insert
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
-       * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * sql.instances.insert
+        * @desc Creates a new Cloud SQL instance.
+        * @alias sql.instances.insert
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+        * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -396,38 +364,34 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.list
-       * @desc Lists instances for a given project, in alphabetical order by
-       * instance name.
-       * @alias sql.instances.list
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults The maximum number of results to return per response.
-       * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-       * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * sql.instances.list
+        * @desc Lists instances for a given project, in alphabetical order by
+        * instance name.
+        * @alias sql.instances.list
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of results to return per response.
+        * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+        * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -436,38 +400,34 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.patch
-       * @desc Updates the settings of a Cloud SQL instance. This method
-       * supports patch semantics.
-       * @alias sql.instances.patch
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    patch: function(params, options, callback) {
+    }, /**
+        * sql.instances.patch
+        * @desc Updates the settings of a Cloud SQL instance. This method
+        * supports patch semantics.
+        * @alias sql.instances.patch
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -477,37 +437,33 @@ function Sqladmin(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.promoteReplica
-       * @desc Promotes the read replica instance to be a stand-alone Cloud SQL
-       * instance.
-       * @alias sql.instances.promoteReplica
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL read replica instance name.
-       * @param {string} params.project ID of the project that contains the read replica.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    promoteReplica: function(params, options, callback) {
+    }, /**
+        * sql.instances.promoteReplica
+        * @desc Promotes the read replica instance to be a stand-alone Cloud SQL
+        * instance.
+        * @alias sql.instances.promoteReplica
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL read replica instance name.
+        * @param {string} params.project ID of the project that contains the read replica.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    promoteReplica(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -518,37 +474,33 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.resetSslConfig
-       * @desc Deletes all client certificates and generates a new server SSL
-       * certificate for a Cloud SQL instance.
-       * @alias sql.instances.resetSslConfig
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    resetSslConfig: function(params, options, callback) {
+    }, /**
+        * sql.instances.resetSslConfig
+        * @desc Deletes all client certificates and generates a new server SSL
+        * certificate for a Cloud SQL instance.
+        * @alias sql.instances.resetSslConfig
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    resetSslConfig(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -559,36 +511,32 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.restart
-       * @desc Restarts a Cloud SQL instance.
-       * @alias sql.instances.restart
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance to be restarted.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    restart: function(params, options, callback) {
+    }, /**
+        * sql.instances.restart
+        * @desc Restarts a Cloud SQL instance.
+        * @alias sql.instances.restart
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance to be restarted.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    restart(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -599,38 +547,34 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.restoreBackup
-       * @desc Restores a backup of a Cloud SQL instance.
-       * @alias sql.instances.restoreBackup
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.backupConfiguration The identifier of the backup configuration. This gets generated automatically when a backup configuration is created.
-       * @param {string} params.dueTime The start time of the four-hour backup window. The backup can occur any time in the window. The time is in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    restoreBackup: function(params, options, callback) {
+    }, /**
+        * sql.instances.restoreBackup
+        * @desc Restores a backup of a Cloud SQL instance.
+        * @alias sql.instances.restoreBackup
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.backupConfiguration The identifier of the backup configuration. This gets generated automatically when a backup configuration is created.
+        * @param {string} params.dueTime The start time of the four-hour backup window. The backup can occur any time in the window. The time is in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    restoreBackup(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -641,39 +585,35 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams:
             ['project', 'instance', 'backupConfiguration', 'dueTime'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.setRootPassword
-       * @desc Sets the password for the root user of the specified Cloud SQL
-       * instance.
-       * @alias sql.instances.setRootPassword
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {sqladmin(v1beta3).InstanceSetRootPasswordRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    setRootPassword: function(params, options, callback) {
+    }, /**
+        * sql.instances.setRootPassword
+        * @desc Sets the password for the root user of the specified Cloud SQL
+        * instance.
+        * @alias sql.instances.setRootPassword
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {sqladmin(v1beta3).InstanceSetRootPasswordRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setRootPassword(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -684,37 +624,33 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.instances.update
-       * @desc Updates the settings of a Cloud SQL instance.
-       * @alias sql.instances.update
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * sql.instances.update
+        * @desc Updates the settings of a Cloud SQL instance.
+        * @alias sql.instances.update
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {sqladmin(v1beta3).DatabaseInstance} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -724,14 +660,13 @@ function Sqladmin(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.operations = {
@@ -750,15 +685,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -769,39 +702,35 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance', 'operation'],
         pathParams: ['instance', 'operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.operations.list
-       * @desc Lists all operations that have been performed on a Cloud SQL
-       * instance.
-       * @alias sql.operations.list
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {integer=} params.maxResults Maximum number of operations per response.
-       * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * sql.operations.list
+        * @desc Lists all operations that have been performed on a Cloud SQL
+        * instance.
+        * @alias sql.operations.list
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {integer=} params.maxResults Maximum number of operations per response.
+        * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -812,14 +741,13 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.sslCerts = {
@@ -837,15 +765,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -856,38 +782,34 @@ function Sqladmin(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.sslCerts.get
-       * @desc Retrieves an SSL certificate as specified by its SHA-1
-       * fingerprint.
-       * @alias sql.sslCerts.get
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project that contains the instance.
-       * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * sql.sslCerts.get
+        * @desc Retrieves an SSL certificate as specified by its SHA-1
+        * fingerprint.
+        * @alias sql.sslCerts.get
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project that contains the instance.
+        * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -898,38 +820,34 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.sslCerts.insert
-       * @desc Creates an SSL certificate and returns the certificate, the
-       * associated private key, and the server certificate authority.
-       * @alias sql.sslCerts.insert
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
-       * @param {sqladmin(v1beta3).SslCertsInsertRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * sql.sslCerts.insert
+        * @desc Creates an SSL certificate and returns the certificate, the
+        * associated private key, and the server certificate authority.
+        * @alias sql.sslCerts.insert
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+        * @param {sqladmin(v1beta3).SslCertsInsertRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -940,37 +858,33 @@ function Sqladmin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * sql.sslCerts.list
-       * @desc Lists all of the current SSL certificates defined for a Cloud SQL
-       * instance.
-       * @alias sql.sslCerts.list
-       * @memberOf! sqladmin(v1beta3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-       * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * sql.sslCerts.list
+        * @desc Lists all of the current SSL certificates defined for a Cloud
+        * SQL instance.
+        * @alias sql.sslCerts.list
+        * @memberOf! sqladmin(v1beta3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+        * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -981,14 +895,13 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.tiers = {
@@ -1005,15 +918,13 @@ function Sqladmin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function(params, options, callback) {
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1022,14 +933,13 @@ function Sqladmin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -1098,9 +1008,7 @@ function Sqladmin(options) {
  * @property {string} databaseVersion The database engine type and version. Can be MYSQL_5_5 or MYSQL_5_6. Defaults to MYSQL_5_5. The databaseVersion cannot be changed after instance creation.
  * @property {string} etag HTTP 1.1 Entity tag for the resource.
  * @property {string} instance Name of the Cloud SQL instance. This does not include the project ID.
- * @property {string} instanceType The instance type. This can be one of the following.
-CLOUD_SQL_INSTANCE: Regular Cloud SQL instance.
-READ_REPLICA_INSTANCE: Cloud SQL instance acting as a read-replica.
+ * @property {string} instanceType The instance type. This can be one of the following. CLOUD_SQL_INSTANCE: Regular Cloud SQL instance. READ_REPLICA_INSTANCE: Cloud SQL instance acting as a read-replica.
  * @property {sqladmin(v1beta3).IpMapping[]} ipAddresses The assigned IP addresses for the instance.
  * @property {string} ipv6Address The IPv6 address assigned to the instance.
  * @property {string} kind This is always sql#instance.
@@ -1112,12 +1020,7 @@ READ_REPLICA_INSTANCE: Cloud SQL instance acting as a read-replica.
  * @property {sqladmin(v1beta3).SslCert} serverCaCert SSL configuration.
  * @property {string} serviceAccountEmailAddress The service account email address assigned to the instance.
  * @property {sqladmin(v1beta3).Settings} settings The user settings.
- * @property {string} state The current serving state of the Cloud SQL instance. This can be one of the following.
-RUNNABLE: The instance is running, or is ready to run when accessed.
-SUSPENDED: The instance is not available, for example due to problems with
-billing. PENDING_CREATE: The instance is being created. MAINTENANCE: The
-instance is down for maintenance. UNKNOWN_STATE: The state of the instance is
-unknown.
+ * @property {string} state The current serving state of the Cloud SQL instance. This can be one of the following. RUNNABLE: The instance is running, or is ready to run when accessed. SUSPENDED: The instance is not available, for example due to problems with billing. PENDING_CREATE: The instance is being created. MAINTENANCE: The instance is down for maintenance. UNKNOWN_STATE: The state of the instance is unknown.
  */
 /**
  * @typedef ExportContext
@@ -1331,10 +1234,7 @@ unknown.
  * @typedef Settings
  * @memberOf! sqladmin(v1beta3)
  * @type object
- * @property {string} activationPolicy The activation policy for this instance. This specifies when the instance should be activated and is applicable only when the instance state is RUNNABLE. This can be one of the following.
-ALWAYS: The instance should always be active.
-NEVER: The instance should never be activated.
-ON_DEMAND: The instance is activated upon receiving requests.
+ * @property {string} activationPolicy The activation policy for this instance. This specifies when the instance should be activated and is applicable only when the instance state is RUNNABLE. This can be one of the following. ALWAYS: The instance should always be active. NEVER: The instance should never be activated. ON_DEMAND: The instance is activated upon receiving requests.
  * @property {string[]} authorizedGaeApplications The App Engine app IDs that can access this instance.
  * @property {sqladmin(v1beta3).BackupConfiguration[]} backupConfiguration The daily backup configuration for the instance.
  * @property {sqladmin(v1beta3).DatabaseFlags[]} databaseFlags The database flags passed to the instance at startup.

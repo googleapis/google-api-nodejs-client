@@ -51,15 +51,13 @@ function Resourceviews(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources: function(params, options, callback) {
+    addresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -70,37 +68,33 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region', 'resourceViewName'],
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.delete
-       * @desc Delete a resource view.
-       * @alias resourceviews.regionViews.delete
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.delete
+        * @desc Delete a resource view.
+        * @alias resourceviews.regionViews.delete
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -111,37 +105,33 @@ function Resourceviews(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region', 'resourceViewName'],
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.get
-       * @desc Get the information of a resource view.
-       * @alias resourceviews.regionViews.get
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.get
+        * @desc Get the information of a resource view.
+        * @alias resourceviews.regionViews.get
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -152,37 +142,33 @@ function Resourceviews(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region', 'resourceViewName'],
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.insert
-       * @desc Create a resource view.
-       * @alias resourceviews.regionViews.insert
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.insert
+        * @desc Create a resource view.
+        * @alias resourceviews.regionViews.insert
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -193,38 +179,34 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region'],
         pathParams: ['projectName', 'region'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.list
-       * @desc List resource views.
-       * @alias resourceviews.regionViews.list
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-       * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.list
+        * @desc List resource views.
+        * @alias resourceviews.regionViews.list
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+        * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -235,39 +217,35 @@ function Resourceviews(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region'],
         pathParams: ['projectName', 'region'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.listresources
-       * @desc List the resources in the view.
-       * @alias resourceviews.regionViews.listresources
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-       * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listresources: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.listresources
+        * @desc List the resources in the view.
+        * @alias resourceviews.regionViews.listresources
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+        * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -278,38 +256,34 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region', 'resourceViewName'],
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.regionViews.removeresources
-       * @desc Remove resources from the view.
-       * @alias resourceviews.regionViews.removeresources
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.region The region name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {resourceviews(v1beta1).RegionViewsRemoveResourcesRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    removeresources: function(params, options, callback) {
+    }, /**
+        * resourceviews.regionViews.removeresources
+        * @desc Remove resources from the view.
+        * @alias resourceviews.regionViews.removeresources
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.region The region name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {resourceviews(v1beta1).RegionViewsRemoveResourcesRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removeresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -320,14 +294,13 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'region', 'resourceViewName'],
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.zoneViews = {
@@ -346,15 +319,13 @@ function Resourceviews(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources: function(params, options, callback) {
+    addresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -365,37 +336,33 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'resourceViewName'],
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.delete
-       * @desc Delete a resource view.
-       * @alias resourceviews.zoneViews.delete
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.delete
+        * @desc Delete a resource view.
+        * @alias resourceviews.zoneViews.delete
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -406,37 +373,33 @@ function Resourceviews(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'resourceViewName'],
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.get
-       * @desc Get the information of a zonal resource view.
-       * @alias resourceviews.zoneViews.get
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.get
+        * @desc Get the information of a zonal resource view.
+        * @alias resourceviews.zoneViews.get
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -447,37 +410,33 @@ function Resourceviews(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'resourceViewName'],
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.insert
-       * @desc Create a resource view.
-       * @alias resourceviews.zoneViews.insert
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.insert
+        * @desc Create a resource view.
+        * @alias resourceviews.zoneViews.insert
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {resourceviews(v1beta1).ResourceView} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -488,38 +447,34 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.list
-       * @desc List resource views.
-       * @alias resourceviews.zoneViews.list
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-       * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.list
+        * @desc List resource views.
+        * @alias resourceviews.zoneViews.list
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+        * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -530,39 +485,35 @@ function Resourceviews(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.listresources
-       * @desc List the resources of the resource view.
-       * @alias resourceviews.zoneViews.listresources
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
-       * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    listresources: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.listresources
+        * @desc List the resources of the resource view.
+        * @alias resourceviews.zoneViews.listresources
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 5000, inclusive. (Default: 5000)
+        * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    listresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -573,38 +524,34 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'resourceViewName'],
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * resourceviews.zoneViews.removeresources
-       * @desc Remove resources from the view.
-       * @alias resourceviews.zoneViews.removeresources
-       * @memberOf! resourceviews(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project name of the resource view.
-       * @param {string} params.resourceViewName The name of the resource view.
-       * @param {string} params.zone The zone name of the resource view.
-       * @param {resourceviews(v1beta1).ZoneViewsRemoveResourcesRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    removeresources: function(params, options, callback) {
+    }, /**
+        * resourceviews.zoneViews.removeresources
+        * @desc Remove resources from the view.
+        * @alias resourceviews.zoneViews.removeresources
+        * @memberOf! resourceviews(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project name of the resource view.
+        * @param {string} params.resourceViewName The name of the resource view.
+        * @param {string} params.zone The zone name of the resource view.
+        * @param {resourceviews(v1beta1).ZoneViewsRemoveResourcesRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removeresources(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -615,14 +562,13 @@ function Resourceviews(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'resourceViewName'],
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

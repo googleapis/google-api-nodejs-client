@@ -28,7 +28,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 /**
  * {{ api.title }}
  *
- * {{ api.description }}
+ * {{ api.description | oneLine }}
  *
  * @example
  * const google = require('googleapis');
@@ -59,19 +59,19 @@ function {{ Name }} (options) {
 {% if api.schemas %}
 {% for schemaName, schema in api.schemas|dictsort %}
 /**
- * @typedef {{ schema.id }}
+ * @typedef {{ schema.id | oneLine }}
  * @memberOf! {{ api.name }}({{ api.version }})
- * @type {{ schema.type }}
+ * @type {{ schema.type | oneLine }}
 {% if schema.properties %}
 {% for pname, p in schema.properties|dictsort %}
 {% if p.$ref %}
- * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
+ * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
 {% elif p.items and p.items.type %}
- * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
+ * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
 {% elif p.items and p.items.$ref %}
- * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
+ * @property {{ lb }}{{ api.name }}({{ api.version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
 {% else %}
- * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
+ * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description | cleanPaths | oneLine }}
 {% endif %}
 {% endfor %}
 {% endif %}

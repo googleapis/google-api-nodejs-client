@@ -49,15 +49,13 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -68,36 +66,32 @@ function Clouduseraccounts(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.globalAccountsOperations.get
-       * @desc Retrieves the specified operation resource.
-       * @alias clouduseraccounts.globalAccountsOperations.get
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.operation Name of the Operations resource to return.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.globalAccountsOperations.get
+        * @desc Retrieves the specified operation resource.
+        * @alias clouduseraccounts.globalAccountsOperations.get
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.operation Name of the Operations resource to return.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -108,40 +102,36 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.globalAccountsOperations.list
-       * @desc Retrieves the list of operation resources contained within the
-       * specified project.
-       * @alias clouduseraccounts.globalAccountsOperations.list
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.globalAccountsOperations.list
+        * @desc Retrieves the list of operation resources contained within the
+        * specified project.
+        * @alias clouduseraccounts.globalAccountsOperations.list
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -152,14 +142,13 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.groups = {
@@ -177,15 +166,13 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addMember: function(params, options, callback) {
+    addMember(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -196,36 +183,32 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.groups.delete
-       * @desc Deletes the specified Group resource.
-       * @alias clouduseraccounts.groups.delete
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupName Name of the Group resource to delete.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.groups.delete
+        * @desc Deletes the specified Group resource.
+        * @alias clouduseraccounts.groups.delete
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.groupName Name of the Group resource to delete.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -236,36 +219,32 @@ function Clouduseraccounts(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.groups.get
-       * @desc Returns the specified Group resource.
-       * @alias clouduseraccounts.groups.get
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupName Name of the Group resource to return.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.groups.get
+        * @desc Returns the specified Group resource.
+        * @alias clouduseraccounts.groups.get
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.groupName Name of the Group resource to return.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -276,37 +255,33 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.groups.insert
-       * @desc Creates a Group resource in the specified project using the data
-       * included in the request.
-       * @alias clouduseraccounts.groups.insert
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {clouduseraccounts(vm_beta).Group} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.groups.insert
+        * @desc Creates a Group resource in the specified project using the data
+        * included in the request.
+        * @alias clouduseraccounts.groups.insert
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {clouduseraccounts(vm_beta).Group} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -317,40 +292,36 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.groups.list
-       * @desc Retrieves the list of groups contained within the specified
-       * project.
-       * @alias clouduseraccounts.groups.list
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.groups.list
+        * @desc Retrieves the list of groups contained within the specified
+        * project.
+        * @alias clouduseraccounts.groups.list
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -361,37 +332,33 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.groups.removeMember
-       * @desc Removes users from the specified group.
-       * @alias clouduseraccounts.groups.removeMember
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupName Name of the group for this request.
-       * @param {string} params.project Project ID for this request.
-       * @param {clouduseraccounts(vm_beta).GroupsRemoveMemberRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    removeMember: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.groups.removeMember
+        * @desc Removes users from the specified group.
+        * @alias clouduseraccounts.groups.removeMember
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.groupName Name of the group for this request.
+        * @param {string} params.project Project ID for this request.
+        * @param {clouduseraccounts(vm_beta).GroupsRemoveMemberRequest} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removeMember(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -402,14 +369,13 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.linux = {
@@ -430,15 +396,13 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAuthorizedKeysView: function(params, options, callback) {
+    getAuthorizedKeysView(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -449,42 +413,38 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'zone', 'user', 'instance'],
         pathParams: ['project', 'user', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.linux.getLinuxAccountViews
-       * @desc Retrieves a list of user accounts for an instance within a
-       * specific project.
-       * @alias clouduseraccounts.linux.getLinuxAccountViews
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.zone Name of the zone for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    getLinuxAccountViews: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.linux.getLinuxAccountViews
+        * @desc Retrieves a list of user accounts for an instance within a
+        * specific project.
+        * @alias clouduseraccounts.linux.getLinuxAccountViews
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {string} params.instance The fully-qualified URL of the virtual machine requesting the views.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.zone Name of the zone for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getLinuxAccountViews(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -495,14 +455,13 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['project', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.users = {
@@ -521,15 +480,13 @@ function Clouduseraccounts(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPublicKey: function(params, options, callback) {
+    addPublicKey(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -540,36 +497,32 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.users.delete
-       * @desc Deletes the specified User resource.
-       * @alias clouduseraccounts.users.delete
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.user Name of the user resource to delete.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.users.delete
+        * @desc Deletes the specified User resource.
+        * @alias clouduseraccounts.users.delete
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.user Name of the user resource to delete.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -580,36 +533,32 @@ function Clouduseraccounts(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.users.get
-       * @desc Returns the specified User resource.
-       * @alias clouduseraccounts.users.get
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.user Name of the user resource to return.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.users.get
+        * @desc Returns the specified User resource.
+        * @alias clouduseraccounts.users.get
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.user Name of the user resource to return.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -620,37 +569,33 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.users.insert
-       * @desc Creates a User resource in the specified project using the data
-       * included in the request.
-       * @alias clouduseraccounts.users.insert
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project Project ID for this request.
-       * @param {clouduseraccounts(vm_beta).User} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.users.insert
+        * @desc Creates a User resource in the specified project using the data
+        * included in the request.
+        * @alias clouduseraccounts.users.insert
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project Project ID for this request.
+        * @param {clouduseraccounts(vm_beta).User} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -661,39 +606,36 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.users.list
-       * @desc Retrieves a list of users contained within the specified project.
-       * @alias clouduseraccounts.users.list
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-       * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
-       * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-       * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-       * @param {string} params.project Project ID for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.users.list
+        * @desc Retrieves a list of users contained within the specified
+        * project.
+        * @alias clouduseraccounts.users.list
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  Compute Engine Beta API Only: If you use filtering in the Beta API, you can also filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. In particular, use filtering on nested fields to take advantage of instance labels to organize and filter results based on label values.  The Beta API also supports filtering on multiple expressions by providing each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+        * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+        * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+        * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+        * @param {string} params.project Project ID for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -704,37 +646,33 @@ function Clouduseraccounts(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * clouduseraccounts.users.removePublicKey
-       * @desc Removes the specified public key from the user.
-       * @alias clouduseraccounts.users.removePublicKey
-       * @memberOf! clouduseraccounts(vm_beta)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
-       * @param {string} params.project Project ID for this request.
-       * @param {string} params.user Name of the user for this request.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    removePublicKey: function(params, options, callback) {
+    }, /**
+        * clouduseraccounts.users.removePublicKey
+        * @desc Removes the specified public key from the user.
+        * @alias clouduseraccounts.users.removePublicKey
+        * @memberOf! clouduseraccounts(vm_beta)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
+        * @param {string} params.project Project ID for this request.
+        * @param {string} params.user Name of the user for this request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    removePublicKey(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -745,14 +683,13 @@ function Clouduseraccounts(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

@@ -49,15 +49,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function(params, options, callback) {
+    predict(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -67,14 +65,13 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['hostedModelName'],
         pathParams: ['hostedModelName'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.trainedmodels = {
@@ -90,15 +87,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyze: function(params, options, callback) {
+    analyze(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -107,35 +102,31 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.delete
-       * @desc Delete a trained model.
-       * @alias prediction.trainedmodels.delete
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.delete
+        * @desc Delete a trained model.
+        * @alias prediction.trainedmodels.delete
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -144,35 +135,31 @@ function Prediction(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.get
-       * @desc Check training status of your model.
-       * @alias prediction.trainedmodels.get
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.get
+        * @desc Check training status of your model.
+        * @alias prediction.trainedmodels.get
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -181,35 +168,31 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.insert
-       * @desc Begin training your model.
-       * @alias prediction.trainedmodels.insert
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object} params Parameters for request
-       * @param {prediction(v1.5).Training} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.insert
+        * @desc Begin training your model.
+        * @alias prediction.trainedmodels.insert
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object} params Parameters for request
+        * @param {prediction(v1.5).Training} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -218,36 +201,32 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.list
-       * @desc List available models.
-       * @alias prediction.trainedmodels.list
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.maxResults Maximum number of results to return
-       * @param {string=} params.pageToken Pagination token
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.list
+        * @desc List available models.
+        * @alias prediction.trainedmodels.list
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.maxResults Maximum number of results to return
+        * @param {string=} params.pageToken Pagination token
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -256,36 +235,32 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.predict
-       * @desc Submit model id and request a prediction.
-       * @alias prediction.trainedmodels.predict
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {prediction(v1.5).Input} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    predict: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.predict
+        * @desc Submit model id and request a prediction.
+        * @alias prediction.trainedmodels.predict
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {prediction(v1.5).Input} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    predict(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -294,36 +269,32 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.update
-       * @desc Add new data to a trained model.
-       * @alias prediction.trainedmodels.update
-       * @memberOf! prediction(v1.5)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {prediction(v1.5).Update} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.update
+        * @desc Add new data to a trained model.
+        * @alias prediction.trainedmodels.update
+        * @memberOf! prediction(v1.5)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {prediction(v1.5).Update} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -332,14 +303,13 @@ function Prediction(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

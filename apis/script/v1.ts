@@ -55,15 +55,13 @@ function Script(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function(params, options, callback) {
+    run(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -72,7 +70,7 @@ function Script(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
         context: self
@@ -80,55 +78,30 @@ function Script(options) {
       return createAPIRequest(parameters, callback);
     }
 
-
   };
 }
 /**
  * @typedef ExecutionError
  * @memberOf! script(v1)
  * @type object
- * @property {string} errorMessage The error message thrown by Apps Script, usually localized into the user&#39;s
-language.
- * @property {string} errorType The error type, for example `TypeError` or `ReferenceError`. If the error
-type is unavailable, this field is not included.
- * @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
-where the execution failed, with the deepest call first.
+ * @property {string} errorMessage The error message thrown by Apps Script, usually localized into the user&#39;s language.
+ * @property {string} errorType The error type, for example `TypeError` or `ReferenceError`. If the error type is unavailable, this field is not included.
+ * @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show where the execution failed, with the deepest call first.
  */
 /**
  * @typedef ExecutionRequest
  * @memberOf! script(v1)
  * @type object
- * @property {boolean} devMode If `true` and the user is an owner of the script, the script runs at the
-most recently saved version rather than the version deployed for use with
-the Apps Script API. Optional; default is `false`.
- * @property {string} function The name of the function to execute in the given script. The name does not
-include parentheses or parameters.
- * @property {any[]} parameters The parameters to be passed to the function being executed. The object type
-for each parameter should match the expected type in Apps Script.
-Parameters cannot be Apps Script-specific object types (such as a
-`Document` or a `Calendar`); they can only be primitive types such as
-`string`, `number`, `array`, `object`, or `boolean`. Optional.
- * @property {string} sessionState For Android add-ons only. An ID that represents the user&#39;s current session
-in the Android app for Google Docs or Sheets, included as extra data in the
-[Intent](https://developer.android.com/guide/components/intents-filters.html)
-that launches the add-on. When an Android add-on is run with a session
-state, it gains the privileges of a
-[bound](https://developers.google.com/apps-script/guides/bound)
-script&amp;mdash;that is, it can access information like the user&#39;s current
-cursor position (in Docs) or selected cell (in Sheets). To retrieve the
-state, call
-`Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`.
-Optional.
+ * @property {boolean} devMode If `true` and the user is an owner of the script, the script runs at the most recently saved version rather than the version deployed for use with the Apps Script API. Optional; default is `false`.
+ * @property {string} function The name of the function to execute in the given script. The name does not include parentheses or parameters.
+ * @property {any[]} parameters The parameters to be passed to the function being executed. The object type for each parameter should match the expected type in Apps Script. Parameters cannot be Apps Script-specific object types (such as a `Document` or a `Calendar`); they can only be primitive types such as `string`, `number`, `array`, `object`, or `boolean`. Optional.
+ * @property {string} sessionState For Android add-ons only. An ID that represents the user&#39;s current session in the Android app for Google Docs or Sheets, included as extra data in the [Intent](https://developer.android.com/guide/components/intents-filters.html) that launches the add-on. When an Android add-on is run with a session state, it gains the privileges of a [bound](https://developers.google.com/apps-script/guides/bound) script&amp;mdash;that is, it can access information like the user&#39;s current cursor position (in Docs) or selected cell (in Sheets). To retrieve the state, call `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`. Optional.
  */
 /**
  * @typedef ExecutionResponse
  * @memberOf! script(v1)
  * @type object
- * @property {any} result The return value of the script function. The type matches the object type
-returned in Apps Script. Functions called using the Apps Script API cannot
-return Apps Script-specific objects (such as a `Document` or a `Calendar`);
-they can only return primitive types such as a `string`, `number`, `array`,
-`object`, or `boolean`.
+ * @property {any} result The return value of the script function. The type matches the object type returned in Apps Script. Functions called using the Apps Script API cannot return Apps Script-specific objects (such as a `Document` or a `Calendar`); they can only return primitive types such as a `string`, `number`, `array`, `object`, or `boolean`.
  */
 /**
  * @typedef Operation

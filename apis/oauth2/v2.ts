@@ -44,16 +44,13 @@ function Oauth2(options) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect =
-      function(params, options, callback) {
+  this.getCertForOpenIdConnect = (params, options, callback) => {
     if (typeof options === 'function') {
       callback = options;
       options = {};
     }
-    options || (options = {});
-
+    options = options || {};
     const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
     const parameters = {
       options: Object.assign(
           {
@@ -61,37 +58,33 @@ function Oauth2(options) {
             method: 'GET'
           },
           options),
-      params: params,
+      params,
       requiredParams: [],
       pathParams: [],
       context: self
     };
     return createAPIRequest(parameters, callback);
-  }
-
-      /**
-       * oauth2.tokeninfo
-       * @alias oauth2.tokeninfo
-       * @memberOf! oauth2(v2)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.access_token
-       * @param {string=} params.id_token
-       * @param {string=} params.token_handle
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      this.tokeninfo =
-          function(params, options, callback) {
+  };
+  /**
+   * oauth2.tokeninfo
+   * @alias oauth2.tokeninfo
+   * @memberOf! oauth2(v2)
+   *
+   * @param {object=} params Parameters for request
+   * @param {string=} params.access_token
+   * @param {string=} params.id_token
+   * @param {string=} params.token_handle
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  this.tokeninfo = (params, options, callback) => {
     if (typeof options === 'function') {
       callback = options;
       options = {};
     }
-    options || (options = {});
-
+    options = options || {};
     const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
     const parameters = {
       options: Object.assign(
           {
@@ -100,15 +93,14 @@ function Oauth2(options) {
             method: 'POST'
           },
           options),
-      params: params,
+      params,
       requiredParams: [],
       pathParams: [],
       context: self
     };
     return createAPIRequest(parameters, callback);
-  }
-
-          self.userinfo = {
+  };
+  self.userinfo = {
     /**
      * oauth2.userinfo.get
      * @alias oauth2.userinfo.get
@@ -119,15 +111,13 @@ function Oauth2(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -136,15 +126,13 @@ function Oauth2(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     v2: {
       me: {
         /**
@@ -157,15 +145,13 @@ function Oauth2(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, options, callback) {
+        get(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -174,14 +160,13 @@ function Oauth2(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: [],
             pathParams: [],
             context: self
           };
           return createAPIRequest(parameters, callback);
         }
-
 
       }
     }

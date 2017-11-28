@@ -48,15 +48,13 @@ function Tagmanager(options) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function(params, options, callback) {
+        get(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -65,34 +63,30 @@ function Tagmanager(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * tagmanager.accounts.list
-           * @desc Lists all GTM Accounts that a user has access to.
-           * @alias tagmanager.accounts.list
-           * @memberOf! tagmanager(v1)
-           *
-           * @param {object=} params Parameters for request
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        list: function(params, options, callback) {
+        }, /**
+            * tagmanager.accounts.list
+            * @desc Lists all GTM Accounts that a user has access to.
+            * @alias tagmanager.accounts.list
+            * @memberOf! tagmanager(v1)
+            *
+            * @param {object=} params Parameters for request
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        list(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -101,37 +95,33 @@ function Tagmanager(options) {
                   method: 'GET'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: [],
             pathParams: [],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        , /**
-           * tagmanager.accounts.update
-           * @desc Updates a GTM Account.
-           * @alias tagmanager.accounts.update
-           * @memberOf! tagmanager(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.accountId The GTM Account ID.
-           * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
-           * @param {tagmanager(v1).Account} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-        update: function(params, options, callback) {
+        }, /**
+            * tagmanager.accounts.update
+            * @desc Updates a GTM Account.
+            * @alias tagmanager.accounts.update
+            * @memberOf! tagmanager(v1)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.accountId The GTM Account ID.
+            * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
+            * @param {tagmanager(v1).Account} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        update(params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
           }
-          options || (options = {});
-
+          options = options || {};
           const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
           const parameters = {
             options: Object.assign(
                 {
@@ -140,15 +130,13 @@ function Tagmanager(options) {
                   method: 'PUT'
                 },
                 options),
-            params: params,
+            params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
             context: self
           };
           return createAPIRequest(parameters, callback);
-        }
-
-        ,
+        },
         containers:
             {
               /**
@@ -164,16 +152,14 @@ function Tagmanager(options) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              create: function(params, options, callback) {
+              create(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
                 }
-                options || (options = {});
-
+                options = options || {};
                 const rootUrl =
                     options.rootUrl || 'https://www.googleapis.com/';
-
                 const parameters = {
                   options: Object.assign(
                       {
@@ -183,37 +169,33 @@ function Tagmanager(options) {
                         method: 'POST'
                       },
                       options),
-                  params: params,
+                  params,
                   requiredParams: ['accountId'],
                   pathParams: ['accountId'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
-              }
-
-              , /**
-                 * tagmanager.accounts.containers.delete
-                 * @desc Deletes a Container.
-                 * @alias tagmanager.accounts.containers.delete
-                 * @memberOf! tagmanager(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.accountId The GTM Account ID.
-                 * @param {string} params.containerId The GTM Container ID.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-              delete: function(params, options, callback) {
+              }, /**
+                  * tagmanager.accounts.containers.delete
+                  * @desc Deletes a Container.
+                  * @alias tagmanager.accounts.containers.delete
+                  * @memberOf! tagmanager(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The GTM Account ID.
+                  * @param {string} params.containerId The GTM Container ID.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete (params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
                 }
-                options || (options = {});
-
+                options = options || {};
                 const rootUrl =
                     options.rootUrl || 'https://www.googleapis.com/';
-
                 const parameters = {
                   options: Object.assign(
                       {
@@ -224,37 +206,33 @@ function Tagmanager(options) {
                         method: 'DELETE'
                       },
                       options),
-                  params: params,
+                  params,
                   requiredParams: ['accountId', 'containerId'],
                   pathParams: ['accountId', 'containerId'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
-              }
-
-              , /**
-                 * tagmanager.accounts.containers.get
-                 * @desc Gets a Container.
-                 * @alias tagmanager.accounts.containers.get
-                 * @memberOf! tagmanager(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.accountId The GTM Account ID.
-                 * @param {string} params.containerId The GTM Container ID.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-              get: function(params, options, callback) {
+              }, /**
+                  * tagmanager.accounts.containers.get
+                  * @desc Gets a Container.
+                  * @alias tagmanager.accounts.containers.get
+                  * @memberOf! tagmanager(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The GTM Account ID.
+                  * @param {string} params.containerId The GTM Container ID.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
                 }
-                options || (options = {});
-
+                options = options || {};
                 const rootUrl =
                     options.rootUrl || 'https://www.googleapis.com/';
-
                 const parameters = {
                   options: Object.assign(
                       {
@@ -265,36 +243,32 @@ function Tagmanager(options) {
                         method: 'GET'
                       },
                       options),
-                  params: params,
+                  params,
                   requiredParams: ['accountId', 'containerId'],
                   pathParams: ['accountId', 'containerId'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
-              }
-
-              , /**
-                 * tagmanager.accounts.containers.list
-                 * @desc Lists all Containers that belongs to a GTM Account.
-                 * @alias tagmanager.accounts.containers.list
-                 * @memberOf! tagmanager(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.accountId The GTM Account ID.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-              list: function(params, options, callback) {
+              }, /**
+                  * tagmanager.accounts.containers.list
+                  * @desc Lists all Containers that belongs to a GTM Account.
+                  * @alias tagmanager.accounts.containers.list
+                  * @memberOf! tagmanager(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The GTM Account ID.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
                 }
-                options || (options = {});
-
+                options = options || {};
                 const rootUrl =
                     options.rootUrl || 'https://www.googleapis.com/';
-
                 const parameters = {
                   options: Object.assign(
                       {
@@ -304,39 +278,35 @@ function Tagmanager(options) {
                         method: 'GET'
                       },
                       options),
-                  params: params,
+                  params,
                   requiredParams: ['accountId'],
                   pathParams: ['accountId'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
-              }
-
-              , /**
-                 * tagmanager.accounts.containers.update
-                 * @desc Updates a Container.
-                 * @alias tagmanager.accounts.containers.update
-                 * @memberOf! tagmanager(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.accountId The GTM Account ID.
-                 * @param {string} params.containerId The GTM Container ID.
-                 * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
-                 * @param {tagmanager(v1).Container} params.resource Request body data
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-              update: function(params, options, callback) {
+              }, /**
+                  * tagmanager.accounts.containers.update
+                  * @desc Updates a Container.
+                  * @alias tagmanager.accounts.containers.update
+                  * @memberOf! tagmanager(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.accountId The GTM Account ID.
+                  * @param {string} params.containerId The GTM Container ID.
+                  * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
+                  * @param {tagmanager(v1).Container} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(params, options, callback) {
                 if (typeof options === 'function') {
                   callback = options;
                   options = {};
                 }
-                options || (options = {});
-
+                options = options || {};
                 const rootUrl =
                     options.rootUrl || 'https://www.googleapis.com/';
-
                 const parameters = {
                   options: Object.assign(
                       {
@@ -347,15 +317,13 @@ function Tagmanager(options) {
                         method: 'PUT'
                       },
                       options),
-                  params: params,
+                  params,
                   requiredParams: ['accountId', 'containerId'],
                   pathParams: ['accountId', 'containerId'],
                   context: self
                 };
                 return createAPIRequest(parameters, callback);
-              }
-
-              ,
+              },
               environments: {
                 /**
                  * tagmanager.accounts.containers.environments.create
@@ -371,16 +339,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create: function(params, options, callback) {
+                create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -391,38 +357,34 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.environments.delete
-                   * @desc Deletes a GTM Environment.
-                   * @alias tagmanager.accounts.containers.environments.delete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.environmentId The GTM Environment ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                delete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.environments.delete
+                    * @desc Deletes a GTM Environment.
+                    * @alias tagmanager.accounts.containers.environments.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.environmentId The GTM Environment ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -433,39 +395,35 @@ function Tagmanager(options) {
                           method: 'DELETE'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'environmentId'],
                     pathParams: ['accountId', 'containerId', 'environmentId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.environments.get
-                   * @desc Gets a GTM Environment.
-                   * @alias tagmanager.accounts.containers.environments.get
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.environmentId The GTM Environment ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                get: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.environments.get
+                    * @desc Gets a GTM Environment.
+                    * @alias tagmanager.accounts.containers.environments.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.environmentId The GTM Environment ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -476,38 +434,34 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'environmentId'],
                     pathParams: ['accountId', 'containerId', 'environmentId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.environments.list
-                   * @desc Lists all GTM Environments of a GTM Container.
-                   * @alias tagmanager.accounts.containers.environments.list
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                list: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.environments.list
+                    * @desc Lists all GTM Environments of a GTM Container.
+                    * @alias tagmanager.accounts.containers.environments.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -518,41 +472,37 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.environments.patch
-                   * @desc Updates a GTM Environment. This method supports patch
-                   * semantics.
-                   * @alias tagmanager.accounts.containers.environments.patch
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.environmentId The GTM Environment ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
-                   * @param {tagmanager(v1).Environment} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                patch: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.environments.patch
+                    * @desc Updates a GTM Environment. This method supports
+                    * patch semantics.
+                    * @alias tagmanager.accounts.containers.environments.patch
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.environmentId The GTM Environment ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+                    * @param {tagmanager(v1).Environment} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                patch(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -563,41 +513,37 @@ function Tagmanager(options) {
                           method: 'PATCH'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'environmentId'],
                     pathParams: ['accountId', 'containerId', 'environmentId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.environments.update
-                   * @desc Updates a GTM Environment.
-                   * @alias tagmanager.accounts.containers.environments.update
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.environmentId The GTM Environment ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
-                   * @param {tagmanager(v1).Environment} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                update: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.environments.update
+                    * @desc Updates a GTM Environment.
+                    * @alias tagmanager.accounts.containers.environments.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.environmentId The GTM Environment ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
+                    * @param {tagmanager(v1).Environment} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -608,7 +554,7 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'environmentId'],
                     pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -616,7 +562,6 @@ function Tagmanager(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }
-
 
               },
               folders: {
@@ -634,16 +579,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create: function(params, options, callback) {
+                create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -654,38 +597,34 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.folders.delete
-                   * @desc Deletes a GTM Folder.
-                   * @alias tagmanager.accounts.containers.folders.delete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.folderId The GTM Folder ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                delete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.folders.delete
+                    * @desc Deletes a GTM Folder.
+                    * @alias tagmanager.accounts.containers.folders.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.folderId The GTM Folder ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -696,38 +635,34 @@ function Tagmanager(options) {
                           method: 'DELETE'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'folderId'],
                     pathParams: ['accountId', 'containerId', 'folderId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.folders.get
-                   * @desc Gets a GTM Folder.
-                   * @alias tagmanager.accounts.containers.folders.get
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.folderId The GTM Folder ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                get: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.folders.get
+                    * @desc Gets a GTM Folder.
+                    * @alias tagmanager.accounts.containers.folders.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.folderId The GTM Folder ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -738,37 +673,33 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'folderId'],
                     pathParams: ['accountId', 'containerId', 'folderId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.folders.list
-                   * @desc Lists all GTM Folders of a Container.
-                   * @alias tagmanager.accounts.containers.folders.list
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                list: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.folders.list
+                    * @desc Lists all GTM Folders of a Container.
+                    * @alias tagmanager.accounts.containers.folders.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -779,40 +710,36 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.folders.update
-                   * @desc Updates a GTM Folder.
-                   * @alias tagmanager.accounts.containers.folders.update
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
-                   * @param {string} params.folderId The GTM Folder ID.
-                   * @param {tagmanager(v1).Folder} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                update: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.folders.update
+                    * @desc Updates a GTM Folder.
+                    * @alias tagmanager.accounts.containers.folders.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
+                    * @param {string} params.folderId The GTM Folder ID.
+                    * @param {tagmanager(v1).Folder} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -823,15 +750,13 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'folderId'],
                     pathParams: ['accountId', 'containerId', 'folderId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                ,
+                },
                 entities: {
                   /**
                    * tagmanager.accounts.containers.folders.entities.list
@@ -847,16 +772,14 @@ function Tagmanager(options) {
                    * @param {callback} callback The callback that handles the response.
                    * @return {object} Request object
                    */
-                  list: function(params, options, callback) {
+                  list(params, options, callback) {
                     if (typeof options === 'function') {
                       callback = options;
                       options = {};
                     }
-                    options || (options = {});
-
+                    options = options || {};
                     const rootUrl =
                         options.rootUrl || 'https://www.googleapis.com/';
-
                     const parameters = {
                       options: Object.assign(
                           {
@@ -867,14 +790,13 @@ function Tagmanager(options) {
                             method: 'GET'
                           },
                           options),
-                      params: params,
+                      params,
                       requiredParams: ['accountId', 'containerId', 'folderId'],
                       pathParams: ['accountId', 'containerId', 'folderId'],
                       context: self
                     };
                     return createAPIRequest(parameters, callback);
                   }
-
 
                 }
               },
@@ -897,16 +819,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                update: function(params, options, callback) {
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -917,14 +837,13 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'folderId'],
                     pathParams: ['accountId', 'containerId', 'folderId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
                 }
-
 
               },
               reauthorize_environments: {
@@ -945,16 +864,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                update: function(params, options, callback) {
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -965,7 +882,7 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'environmentId'],
                     pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -973,7 +890,6 @@ function Tagmanager(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }
-
 
               },
               tags: {
@@ -991,16 +907,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create: function(params, options, callback) {
+                create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1011,38 +925,34 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.tags.delete
-                   * @desc Deletes a GTM Tag.
-                   * @alias tagmanager.accounts.containers.tags.delete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.tagId The GTM Tag ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                delete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.tags.delete
+                    * @desc Deletes a GTM Tag.
+                    * @alias tagmanager.accounts.containers.tags.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.tagId The GTM Tag ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1053,38 +963,34 @@ function Tagmanager(options) {
                           method: 'DELETE'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'tagId'],
                     pathParams: ['accountId', 'containerId', 'tagId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.tags.get
-                   * @desc Gets a GTM Tag.
-                   * @alias tagmanager.accounts.containers.tags.get
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.tagId The GTM Tag ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                get: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.tags.get
+                    * @desc Gets a GTM Tag.
+                    * @alias tagmanager.accounts.containers.tags.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.tagId The GTM Tag ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1095,37 +1001,33 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'tagId'],
                     pathParams: ['accountId', 'containerId', 'tagId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.tags.list
-                   * @desc Lists all GTM Tags of a Container.
-                   * @alias tagmanager.accounts.containers.tags.list
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                list: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.tags.list
+                    * @desc Lists all GTM Tags of a Container.
+                    * @alias tagmanager.accounts.containers.tags.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1136,40 +1038,36 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.tags.update
-                   * @desc Updates a GTM Tag.
-                   * @alias tagmanager.accounts.containers.tags.update
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
-                   * @param {string} params.tagId The GTM Tag ID.
-                   * @param {tagmanager(v1).Tag} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                update: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.tags.update
+                    * @desc Updates a GTM Tag.
+                    * @alias tagmanager.accounts.containers.tags.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
+                    * @param {string} params.tagId The GTM Tag ID.
+                    * @param {tagmanager(v1).Tag} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1180,14 +1078,13 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'tagId'],
                     pathParams: ['accountId', 'containerId', 'tagId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
                 }
-
 
               },
               triggers: {
@@ -1205,16 +1102,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create: function(params, options, callback) {
+                create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1225,38 +1120,34 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.triggers.delete
-                   * @desc Deletes a GTM Trigger.
-                   * @alias tagmanager.accounts.containers.triggers.delete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.triggerId The GTM Trigger ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                delete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.triggers.delete
+                    * @desc Deletes a GTM Trigger.
+                    * @alias tagmanager.accounts.containers.triggers.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.triggerId The GTM Trigger ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1267,38 +1158,34 @@ function Tagmanager(options) {
                           method: 'DELETE'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'triggerId'],
                     pathParams: ['accountId', 'containerId', 'triggerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.triggers.get
-                   * @desc Gets a GTM Trigger.
-                   * @alias tagmanager.accounts.containers.triggers.get
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.triggerId The GTM Trigger ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                get: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.triggers.get
+                    * @desc Gets a GTM Trigger.
+                    * @alias tagmanager.accounts.containers.triggers.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.triggerId The GTM Trigger ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1309,37 +1196,33 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'triggerId'],
                     pathParams: ['accountId', 'containerId', 'triggerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.triggers.list
-                   * @desc Lists all GTM Triggers of a Container.
-                   * @alias tagmanager.accounts.containers.triggers.list
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                list: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.triggers.list
+                    * @desc Lists all GTM Triggers of a Container.
+                    * @alias tagmanager.accounts.containers.triggers.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1350,40 +1233,36 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.triggers.update
-                   * @desc Updates a GTM Trigger.
-                   * @alias tagmanager.accounts.containers.triggers.update
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
-                   * @param {string} params.triggerId The GTM Trigger ID.
-                   * @param {tagmanager(v1).Trigger} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                update: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.triggers.update
+                    * @desc Updates a GTM Trigger.
+                    * @alias tagmanager.accounts.containers.triggers.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
+                    * @param {string} params.triggerId The GTM Trigger ID.
+                    * @param {tagmanager(v1).Trigger} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1394,7 +1273,7 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId', 'triggerId'],
                     pathParams: ['accountId', 'containerId', 'triggerId'],
                     context: self
@@ -1402,226 +1281,202 @@ function Tagmanager(options) {
                   return createAPIRequest(parameters, callback);
                 }
 
+              },
+              variables: {
+                /**
+                 * tagmanager.accounts.containers.variables.create
+                 * @desc Creates a GTM Variable.
+                 * @alias tagmanager.accounts.containers.variables.create
+                 * @memberOf! tagmanager(v1)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.accountId The GTM Account ID.
+                 * @param {string} params.containerId The GTM Container ID.
+                 * @param {tagmanager(v1).Variable} params.resource Request body data
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                create(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://www.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['accountId', 'containerId'],
+                    pathParams: ['accountId', 'containerId'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * tagmanager.accounts.containers.variables.delete
+                    * @desc Deletes a GTM Variable.
+                    * @alias tagmanager.accounts.containers.variables.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.variableId The GTM Variable ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://www.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'DELETE'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['accountId', 'containerId', 'variableId'],
+                    pathParams: ['accountId', 'containerId', 'variableId'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * tagmanager.accounts.containers.variables.get
+                    * @desc Gets a GTM Variable.
+                    * @alias tagmanager.accounts.containers.variables.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.variableId The GTM Variable ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://www.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['accountId', 'containerId', 'variableId'],
+                    pathParams: ['accountId', 'containerId', 'variableId'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * tagmanager.accounts.containers.variables.list
+                    * @desc Lists all GTM Variables of a Container.
+                    * @alias tagmanager.accounts.containers.variables.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://www.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['accountId', 'containerId'],
+                    pathParams: ['accountId', 'containerId'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }, /**
+                    * tagmanager.accounts.containers.variables.update
+                    * @desc Updates a GTM Variable.
+                    * @alias tagmanager.accounts.containers.variables.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
+                    * @param {string} params.variableId The GTM Variable ID.
+                    * @param {tagmanager(v1).Variable} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://www.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'PUT'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['accountId', 'containerId', 'variableId'],
+                    pathParams: ['accountId', 'containerId', 'variableId'],
+                    context: self
+                  };
+                  return createAPIRequest(parameters, callback);
+                }
 
               },
-              variables:
-                  {
-                    /**
-                     * tagmanager.accounts.containers.variables.create
-                     * @desc Creates a GTM Variable.
-                     * @alias tagmanager.accounts.containers.variables.create
-                     * @memberOf! tagmanager(v1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.accountId The GTM Account ID.
-                     * @param {string} params.containerId The GTM Container ID.
-                     * @param {tagmanager(v1).Variable} params.resource Request body data
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    create: function(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options || (options = {});
-
-                      const rootUrl =
-                          options.rootUrl || 'https://www.googleapis.com/';
-
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params: params,
-                        requiredParams: ['accountId', 'containerId'],
-                        pathParams: ['accountId', 'containerId'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-                    , /**
-                       * tagmanager.accounts.containers.variables.delete
-                       * @desc Deletes a GTM Variable.
-                       * @alias tagmanager.accounts.containers.variables.delete
-                       * @memberOf! tagmanager(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.accountId The GTM Account ID.
-                       * @param {string} params.containerId The GTM Container ID.
-                       * @param {string} params.variableId The GTM Variable ID.
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                    delete: function(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options || (options = {});
-
-                      const rootUrl =
-                          options.rootUrl || 'https://www.googleapis.com/';
-
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'DELETE'
-                            },
-                            options),
-                        params: params,
-                        requiredParams:
-                            ['accountId', 'containerId', 'variableId'],
-                        pathParams: ['accountId', 'containerId', 'variableId'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-                    , /**
-                       * tagmanager.accounts.containers.variables.get
-                       * @desc Gets a GTM Variable.
-                       * @alias tagmanager.accounts.containers.variables.get
-                       * @memberOf! tagmanager(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.accountId The GTM Account ID.
-                       * @param {string} params.containerId The GTM Container ID.
-                       * @param {string} params.variableId The GTM Variable ID.
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                    get: function(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options || (options = {});
-
-                      const rootUrl =
-                          options.rootUrl || 'https://www.googleapis.com/';
-
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params: params,
-                        requiredParams:
-                            ['accountId', 'containerId', 'variableId'],
-                        pathParams: ['accountId', 'containerId', 'variableId'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-                    , /**
-                       * tagmanager.accounts.containers.variables.list
-                       * @desc Lists all GTM Variables of a Container.
-                       * @alias tagmanager.accounts.containers.variables.list
-                       * @memberOf! tagmanager(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.accountId The GTM Account ID.
-                       * @param {string} params.containerId The GTM Container ID.
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                    list: function(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options || (options = {});
-
-                      const rootUrl =
-                          options.rootUrl || 'https://www.googleapis.com/';
-
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params: params,
-                        requiredParams: ['accountId', 'containerId'],
-                        pathParams: ['accountId', 'containerId'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-                    , /**
-                       * tagmanager.accounts.containers.variables.update
-                       * @desc Updates a GTM Variable.
-                       * @alias tagmanager.accounts.containers.variables.update
-                       * @memberOf! tagmanager(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.accountId The GTM Account ID.
-                       * @param {string} params.containerId The GTM Container ID.
-                       * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
-                       * @param {string} params.variableId The GTM Variable ID.
-                       * @param {tagmanager(v1).Variable} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                    update: function(params, options, callback) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options || (options = {});
-
-                      const rootUrl =
-                          options.rootUrl || 'https://www.googleapis.com/';
-
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'PUT'
-                            },
-                            options),
-                        params: params,
-                        requiredParams:
-                            ['accountId', 'containerId', 'variableId'],
-                        pathParams: ['accountId', 'containerId', 'variableId'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback);
-                    }
-
-
-                  },
               versions: {
                 /**
                  * tagmanager.accounts.containers.versions.create
@@ -1637,16 +1492,14 @@ function Tagmanager(options) {
                  * @param {callback} callback The callback that handles the response.
                  * @return {object} Request object
                  */
-                create: function(params, options, callback) {
+                create(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1657,38 +1510,34 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.delete
-                   * @desc Deletes a Container Version.
-                   * @alias tagmanager.accounts.containers.versions.delete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                delete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.delete
+                    * @desc Deletes a Container Version.
+                    * @alias tagmanager.accounts.containers.versions.delete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete (params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1699,7 +1548,7 @@ function Tagmanager(options) {
                           method: 'DELETE'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1707,32 +1556,28 @@ function Tagmanager(options) {
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.get
-                   * @desc Gets a Container Version.
-                   * @alias tagmanager.accounts.containers.versions.get
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                get: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.get
+                    * @desc Gets a Container Version.
+                    * @alias tagmanager.accounts.containers.versions.get
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1743,7 +1588,7 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1751,33 +1596,29 @@ function Tagmanager(options) {
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.list
-                   * @desc Lists all Container Versions of a GTM Container.
-                   * @alias tagmanager.accounts.containers.versions.list
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {boolean=} params.headers Retrieve headers only when true.
-                   * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                list: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.list
+                    * @desc Lists all Container Versions of a GTM Container.
+                    * @alias tagmanager.accounts.containers.versions.list
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {boolean=} params.headers Retrieve headers only when true.
+                    * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1788,39 +1629,35 @@ function Tagmanager(options) {
                           method: 'GET'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams: ['accountId', 'containerId'],
                     pathParams: ['accountId', 'containerId'],
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.publish
-                   * @desc Publishes a Container Version.
-                   * @alias tagmanager.accounts.containers.versions.publish
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                publish: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.publish
+                    * @desc Publishes a Container Version.
+                    * @alias tagmanager.accounts.containers.versions.publish
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                publish(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1831,7 +1668,7 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1839,36 +1676,32 @@ function Tagmanager(options) {
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.restore
-                   * @desc Restores a Container Version. This will overwrite the
-                   * container's current configuration (including its variables,
-                   * triggers and tags). The operation will not have any effect
-                   * on the version that is being served (i.e. the published
-                   * version).
-                   * @alias tagmanager.accounts.containers.versions.restore
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                restore: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.restore
+                    * @desc Restores a Container Version. This will overwrite
+                    * the container's current configuration (including its
+                    * variables, triggers and tags). The operation will not have
+                    * any effect on the version that is being served (i.e. the
+                    * published version).
+                    * @alias tagmanager.accounts.containers.versions.restore
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                restore(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1879,7 +1712,7 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1887,32 +1720,28 @@ function Tagmanager(options) {
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.undelete
-                   * @desc Undeletes a Container Version.
-                   * @alias tagmanager.accounts.containers.versions.undelete
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID.
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                undelete: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.undelete
+                    * @desc Undeletes a Container Version.
+                    * @alias tagmanager.accounts.containers.versions.undelete
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                undelete(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1923,7 +1752,7 @@ function Tagmanager(options) {
                           method: 'POST'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1931,34 +1760,30 @@ function Tagmanager(options) {
                     context: self
                   };
                   return createAPIRequest(parameters, callback);
-                }
-
-                , /**
-                   * tagmanager.accounts.containers.versions.update
-                   * @desc Updates a Container Version.
-                   * @alias tagmanager.accounts.containers.versions.update
-                   * @memberOf! tagmanager(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.accountId The GTM Account ID.
-                   * @param {string} params.containerId The GTM Container ID.
-                   * @param {string} params.containerVersionId The GTM Container Version ID.
-                   * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
-                   * @param {tagmanager(v1).ContainerVersion} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                update: function(params, options, callback) {
+                }, /**
+                    * tagmanager.accounts.containers.versions.update
+                    * @desc Updates a Container Version.
+                    * @alias tagmanager.accounts.containers.versions.update
+                    * @memberOf! tagmanager(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.accountId The GTM Account ID.
+                    * @param {string} params.containerId The GTM Container ID.
+                    * @param {string} params.containerVersionId The GTM Container Version ID.
+                    * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+                    * @param {tagmanager(v1).ContainerVersion} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                update(params, options, callback) {
                   if (typeof options === 'function') {
                     callback = options;
                     options = {};
                   }
-                  options || (options = {});
-
+                  options = options || {};
                   const rootUrl =
                       options.rootUrl || 'https://www.googleapis.com/';
-
                   const parameters = {
                     options: Object.assign(
                         {
@@ -1969,7 +1794,7 @@ function Tagmanager(options) {
                           method: 'PUT'
                         },
                         options),
-                    params: params,
+                    params,
                     requiredParams:
                         ['accountId', 'containerId', 'containerVersionId'],
                     pathParams:
@@ -1978,7 +1803,6 @@ function Tagmanager(options) {
                   };
                   return createAPIRequest(parameters, callback);
                 }
-
 
               }
             },
@@ -1996,15 +1820,13 @@ function Tagmanager(options) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function(params, options, callback) {
+          create(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2014,37 +1836,33 @@ function Tagmanager(options) {
                     method: 'POST'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId'],
               pathParams: ['accountId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * tagmanager.accounts.permissions.delete
-             * @desc Removes a user from the account, revoking access to it and
-             * all of its containers.
-             * @alias tagmanager.accounts.permissions.delete
-             * @memberOf! tagmanager(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId The GTM Account ID.
-             * @param {string} params.permissionId The GTM User ID.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          delete: function(params, options, callback) {
+          }, /**
+              * tagmanager.accounts.permissions.delete
+              * @desc Removes a user from the account, revoking access to it and
+              * all of its containers.
+              * @alias tagmanager.accounts.permissions.delete
+              * @memberOf! tagmanager(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId The GTM Account ID.
+              * @param {string} params.permissionId The GTM User ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete (params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2055,36 +1873,32 @@ function Tagmanager(options) {
                     method: 'DELETE'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'permissionId'],
               pathParams: ['accountId', 'permissionId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * tagmanager.accounts.permissions.get
-             * @desc Gets a user's Account & Container Permissions.
-             * @alias tagmanager.accounts.permissions.get
-             * @memberOf! tagmanager(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId The GTM Account ID.
-             * @param {string} params.permissionId The GTM User ID.
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          get: function(params, options, callback) {
+          }, /**
+              * tagmanager.accounts.permissions.get
+              * @desc Gets a user's Account & Container Permissions.
+              * @alias tagmanager.accounts.permissions.get
+              * @memberOf! tagmanager(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId The GTM Account ID.
+              * @param {string} params.permissionId The GTM User ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2095,36 +1909,32 @@ function Tagmanager(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'permissionId'],
               pathParams: ['accountId', 'permissionId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * tagmanager.accounts.permissions.list
-             * @desc List all users that have access to the account along with
-             * Account and Container Permissions granted to each of them.
-             * @alias tagmanager.accounts.permissions.list
-             * @memberOf! tagmanager(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId The GTM Account ID. @required tagmanager.accounts.permissions.list
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          list: function(params, options, callback) {
+          }, /**
+              * tagmanager.accounts.permissions.list
+              * @desc List all users that have access to the account along with
+              * Account and Container Permissions granted to each of them.
+              * @alias tagmanager.accounts.permissions.list
+              * @memberOf! tagmanager(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId The GTM Account ID. @required tagmanager.accounts.permissions.list
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2134,37 +1944,33 @@ function Tagmanager(options) {
                     method: 'GET'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId'],
               pathParams: ['accountId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
-          }
-
-          , /**
-             * tagmanager.accounts.permissions.update
-             * @desc Updates a user's Account & Container Permissions.
-             * @alias tagmanager.accounts.permissions.update
-             * @memberOf! tagmanager(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.accountId The GTM Account ID.
-             * @param {string} params.permissionId The GTM User ID.
-             * @param {tagmanager(v1).UserAccess} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-          update: function(params, options, callback) {
+          }, /**
+              * tagmanager.accounts.permissions.update
+              * @desc Updates a user's Account & Container Permissions.
+              * @alias tagmanager.accounts.permissions.update
+              * @memberOf! tagmanager(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.accountId The GTM Account ID.
+              * @param {string} params.permissionId The GTM User ID.
+              * @param {tagmanager(v1).UserAccess} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(params, options, callback) {
             if (typeof options === 'function') {
               callback = options;
               options = {};
             }
-            options || (options = {});
-
+            options = options || {};
             const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
             const parameters = {
               options: Object.assign(
                   {
@@ -2175,14 +1981,13 @@ function Tagmanager(options) {
                     method: 'PUT'
                   },
                   options),
-              params: params,
+              params,
               requiredParams: ['accountId', 'permissionId'],
               pathParams: ['accountId', 'permissionId'],
               context: self
             };
             return createAPIRequest(parameters, callback);
           }
-
 
         }
       };
@@ -2206,15 +2011,7 @@ function Tagmanager(options) {
  * @typedef Condition
  * @memberOf! tagmanager(v1)
  * @type object
- * @property {tagmanager(v1).Parameter[]} parameter A list of named parameters (key/value), depending on the condition&#39;s type. Notes:
-- For binary operators, include parameters named arg0 and arg1 for specifying
-the left and right operands, respectively.
-- At this time, the left operand (arg0) must be a reference to a variable.
-- For case-insensitive Regex matching, include a boolean parameter named
-ignore_case that is set to true. If not specified or set to any other value, the
-matching will be case sensitive.
-- To negate an operator, include a boolean parameter named negate boolean
-parameter that is set to true.
+ * @property {tagmanager(v1).Parameter[]} parameter A list of named parameters (key/value), depending on the condition&#39;s type. Notes:  - For binary operators, include parameters named arg0 and arg1 for specifying the left and right operands, respectively.  - At this time, the left operand (arg0) must be a reference to a variable.  - For case-insensitive Regex matching, include a boolean parameter named ignore_case that is set to true. If not specified or set to any other value, the matching will be case sensitive.  - To negate an operator, include a boolean parameter named negate boolean parameter that is set to true.
  * @property {string} type The type of operator for this condition.
  */
 /**
@@ -2404,14 +2201,7 @@ parameter that is set to true.
  * @property {string} key The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
  * @property {tagmanager(v1).Parameter[]} list This list parameter&#39;s parameters (keys will be ignored).
  * @property {tagmanager(v1).Parameter[]} map This map parameter&#39;s parameters (must have keys; keys must be unique).
- * @property {string} type The parameter type. Valid values are:
-- boolean: The value represents a boolean, represented as &#39;true&#39; or
-&#39;false&#39;
-- integer: The value represents a 64-bit signed integer value, in base 10
-- list: A list of parameters should be specified
-- map: A map of parameters should be specified
-- template: The value represents any text; this can include variable references
-(even variable references that might return non-string types)
+ * @property {string} type The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)
  * @property {string} value A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
  */
 /**

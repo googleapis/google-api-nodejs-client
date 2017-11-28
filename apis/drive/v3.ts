@@ -48,15 +48,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function(params, options, callback) {
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -64,14 +62,13 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.changes = {
@@ -88,15 +85,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getStartPageToken: function(params, options, callback) {
+    getStartPageToken(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -105,43 +100,39 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.changes.list
-       * @desc Lists the changes for a user or Team Drive.
-       * @alias drive.changes.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-       * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-       * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
-       * @param {integer=} params.pageSize The maximum number of changes to return per page.
-       * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-       * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
-       * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.changes.list
+        * @desc Lists the changes for a user or Team Drive.
+        * @alias drive.changes.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+        * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+        * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+        * @param {integer=} params.pageSize The maximum number of changes to return per page.
+        * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+        * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+        * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -150,44 +141,40 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['pageToken'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.changes.watch
-       * @desc Subscribes to changes for a user.
-       * @alias drive.changes.watch
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-       * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-       * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
-       * @param {integer=} params.pageSize The maximum number of changes to return per page.
-       * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-       * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
-       * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-       * @param {drive(v3).Channel} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    watch: function(params, options, callback) {
+    }, /**
+        * drive.changes.watch
+        * @desc Subscribes to changes for a user.
+        * @alias drive.changes.watch
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+        * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
+        * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+        * @param {integer=} params.pageSize The maximum number of changes to return per page.
+        * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+        * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
+        * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
+        * @param {drive(v3).Channel} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    watch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -196,14 +183,13 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['pageToken'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.channels = {
@@ -219,15 +205,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function(params, options, callback) {
+    stop(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -236,14 +220,13 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.comments = {
@@ -260,15 +243,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -277,36 +258,32 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.comments.delete
-       * @desc Deletes a comment.
-       * @alias drive.comments.delete
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * drive.comments.delete
+        * @desc Deletes a comment.
+        * @alias drive.comments.delete
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -315,37 +292,33 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.comments.get
-       * @desc Gets a comment by ID.
-       * @alias drive.comments.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.includeDeleted Whether to return deleted comments. Deleted comments will not include their original content.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.comments.get
+        * @desc Gets a comment by ID.
+        * @alias drive.comments.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.includeDeleted Whether to return deleted comments. Deleted comments will not include their original content.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -354,39 +327,35 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.comments.list
-       * @desc Lists a file's comments.
-       * @alias drive.comments.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.includeDeleted Whether to include deleted comments. Deleted comments will not include their original content.
-       * @param {integer=} params.pageSize The maximum number of comments to return per page.
-       * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-       * @param {string=} params.startModifiedTime The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.comments.list
+        * @desc Lists a file's comments.
+        * @alias drive.comments.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.includeDeleted Whether to include deleted comments. Deleted comments will not include their original content.
+        * @param {integer=} params.pageSize The maximum number of comments to return per page.
+        * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+        * @param {string=} params.startModifiedTime The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -395,37 +364,33 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.comments.update
-       * @desc Updates a comment with patch semantics.
-       * @alias drive.comments.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {drive(v3).Comment} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.comments.update
+        * @desc Updates a comment with patch semantics.
+        * @alias drive.comments.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {drive(v3).Comment} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -434,14 +399,13 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.files = {
@@ -463,15 +427,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function(params, options, callback) {
+    copy(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -480,43 +442,39 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.create
-       * @desc Creates a new file.
-       * @alias drive.files.create
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-       * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
-       * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-       * @param  {object} params.resource Media resource metadata
-       * @param {object} params.media Media object
-       * @param {string} params.media.mimeType Media mime-type
-       * @param {string|object} params.media.body Media body contents
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    create: function(params, options, callback) {
+    }, /**
+        * drive.files.create
+        * @desc Creates a new file.
+        * @alias drive.files.create
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
+        * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
+        * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
+        * @param  {object} params.resource Media resource metadata
+        * @param {object} params.media Media object
+        * @param {string} params.media.mimeType Media mime-type
+        * @param {string|object} params.media.body Media body contents
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -524,7 +482,7 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         mediaUrl:
             (rootUrl + '/upload/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
@@ -532,33 +490,29 @@ function Drive(options) {
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.delete
-       * @desc Permanently deletes a file owned by the user without moving it to
-       * the trash. If the file belongs to a Team Drive the user must be an
-       * organizer on the parent. If the target is a folder, all descendants
-       * owned by the user are also deleted.
-       * @alias drive.files.delete
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * drive.files.delete
+        * @desc Permanently deletes a file owned by the user without moving it
+        * to the trash. If the file belongs to a Team Drive the user must be an
+        * organizer on the parent. If the target is a folder, all descendants
+        * owned by the user are also deleted.
+        * @alias drive.files.delete
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -567,34 +521,30 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.emptyTrash
-       * @desc Permanently deletes all of the user's trashed files.
-       * @alias drive.files.emptyTrash
-       * @memberOf! drive(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    emptyTrash: function(params, options, callback) {
+    }, /**
+        * drive.files.emptyTrash
+        * @desc Permanently deletes all of the user's trashed files.
+        * @alias drive.files.emptyTrash
+        * @memberOf! drive(v3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    emptyTrash(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -603,38 +553,34 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.export
-       * @desc Exports a Google Doc to the requested MIME type and returns the
-       * exported content. Please note that the exported content is limited to
-       * 10MB.
-       * @alias drive.files.export
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.mimeType The MIME type of the format requested for this export.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    export: function(params, options, callback) {
+    }, /**
+        * drive.files.export
+        * @desc Exports a Google Doc to the requested MIME type and returns the
+        * exported content. Please note that the exported content is limited to
+        * 10MB.
+        * @alias drive.files.export
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.mimeType The MIME type of the format requested for this export.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    export(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -643,37 +589,33 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'mimeType'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.generateIds
-       * @desc Generates a set of file IDs which can be provided in create
-       * requests.
-       * @alias drive.files.generateIds
-       * @memberOf! drive(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.count The number of IDs to return.
-       * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    generateIds: function(params, options, callback) {
+    }, /**
+        * drive.files.generateIds
+        * @desc Generates a set of file IDs which can be provided in create
+        * requests.
+        * @alias drive.files.generateIds
+        * @memberOf! drive(v3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.count The number of IDs to return.
+        * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    generateIds(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -682,37 +624,33 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.get
-       * @desc Gets a file's metadata or content by ID.
-       * @alias drive.files.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.files.get
+        * @desc Gets a file's metadata or content by ID.
+        * @alias drive.files.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -721,44 +659,40 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.list
-       * @desc Lists or searches files.
-       * @alias drive.files.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'user'; all other values must be used in isolation. Prefer 'user' or 'teamDrive' to 'allTeamDrives' for efficiency.
-       * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
-       * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
-       * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-       * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
-       * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-       * @param {string=} params.q A query for filtering the file results. See the "Search for Files" guide for supported syntax.
-       * @param {string=} params.spaces A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {string=} params.teamDriveId ID of Team Drive to search.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.files.list
+        * @desc Lists or searches files.
+        * @alias drive.files.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'user'; all other values must be used in isolation. Prefer 'user' or 'teamDrive' to 'allTeamDrives' for efficiency.
+        * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
+        * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
+        * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+        * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
+        * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+        * @param {string=} params.q A query for filtering the file results. See the "Search for Files" guide for supported syntax.
+        * @param {string=} params.spaces A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {string=} params.teamDriveId ID of Team Drive to search.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -766,45 +700,41 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.update
-       * @desc Updates a file's metadata and/or content with patch semantics.
-       * @alias drive.files.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.addParents A comma-separated list of parent IDs to add.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
-       * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
-       * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-       * @param  {object} params.resource Media resource metadata
-       * @param {object} params.media Media object
-       * @param {string} params.media.mimeType Media mime-type
-       * @param {string|object} params.media.body Media body contents
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.files.update
+        * @desc Updates a file's metadata and/or content with patch semantics.
+        * @alias drive.files.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string=} params.addParents A comma-separated list of parent IDs to add.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
+        * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
+        * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
+        * @param  {object} params.resource Media resource metadata
+        * @param {object} params.media Media object
+        * @param {string} params.media.mimeType Media mime-type
+        * @param {string|object} params.media.body Media body contents
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -813,7 +743,7 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         mediaUrl: (rootUrl + '/upload/drive/v3/files/{fileId}')
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
@@ -821,32 +751,28 @@ function Drive(options) {
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.files.watch
-       * @desc Subscribes to changes to a file
-       * @alias drive.files.watch
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {drive(v3).Channel} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    watch: function(params, options, callback) {
+    }, /**
+        * drive.files.watch
+        * @desc Subscribes to changes to a file
+        * @alias drive.files.watch
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {drive(v3).Channel} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    watch(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -855,14 +781,13 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.permissions = {
@@ -884,15 +809,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -901,38 +824,34 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.permissions.delete
-       * @desc Deletes a permission.
-       * @alias drive.permissions.delete
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file or Team Drive.
-       * @param {string} params.permissionId The ID of the permission.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * drive.permissions.delete
+        * @desc Deletes a permission.
+        * @alias drive.permissions.delete
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file or Team Drive.
+        * @param {string} params.permissionId The ID of the permission.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -942,38 +861,34 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.permissions.get
-       * @desc Gets a permission by ID.
-       * @alias drive.permissions.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.permissionId The ID of the permission.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.permissions.get
+        * @desc Gets a permission by ID.
+        * @alias drive.permissions.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.permissionId The ID of the permission.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -983,39 +898,35 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.permissions.list
-       * @desc Lists a file's or Team Drive's permissions.
-       * @alias drive.permissions.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file or Team Drive.
-       * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
-       * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.permissions.list
+        * @desc Lists a file's or Team Drive's permissions.
+        * @alias drive.permissions.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file or Team Drive.
+        * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
+        * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1024,41 +935,37 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.permissions.update
-       * @desc Updates a permission with patch semantics.
-       * @alias drive.permissions.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file or Team Drive.
-       * @param {string} params.permissionId The ID of the permission.
-       * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-       * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-       * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
-       * @param {drive(v3).Permission} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.permissions.update
+        * @desc Updates a permission with patch semantics.
+        * @alias drive.permissions.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file or Team Drive.
+        * @param {string} params.permissionId The ID of the permission.
+        * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
+        * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+        * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+        * @param {drive(v3).Permission} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1068,14 +975,13 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.replies = {
@@ -1093,15 +999,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1111,37 +1015,33 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.replies.delete
-       * @desc Deletes a reply.
-       * @alias drive.replies.delete
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.replyId The ID of the reply.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * drive.replies.delete
+        * @desc Deletes a reply.
+        * @alias drive.replies.delete
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.replyId The ID of the reply.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1152,38 +1052,34 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.replies.get
-       * @desc Gets a reply by ID.
-       * @alias drive.replies.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.includeDeleted Whether to return deleted replies. Deleted replies will not include their original content.
-       * @param {string} params.replyId The ID of the reply.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.replies.get
+        * @desc Gets a reply by ID.
+        * @alias drive.replies.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.includeDeleted Whether to return deleted replies. Deleted replies will not include their original content.
+        * @param {string} params.replyId The ID of the reply.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1194,39 +1090,35 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.replies.list
-       * @desc Lists a comment's replies.
-       * @alias drive.replies.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {boolean=} params.includeDeleted Whether to include deleted replies. Deleted replies will not include their original content.
-       * @param {integer=} params.pageSize The maximum number of replies to return per page.
-       * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.replies.list
+        * @desc Lists a comment's replies.
+        * @alias drive.replies.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {boolean=} params.includeDeleted Whether to include deleted replies. Deleted replies will not include their original content.
+        * @param {integer=} params.pageSize The maximum number of replies to return per page.
+        * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1236,38 +1128,34 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.replies.update
-       * @desc Updates a reply with patch semantics.
-       * @alias drive.replies.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.commentId The ID of the comment.
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.replyId The ID of the reply.
-       * @param {drive(v3).Reply} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.replies.update
+        * @desc Updates a reply with patch semantics.
+        * @alias drive.replies.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.commentId The ID of the comment.
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.replyId The ID of the reply.
+        * @param {drive(v3).Reply} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1278,14 +1166,13 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.revisions = {
@@ -1303,15 +1190,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1320,37 +1205,33 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.revisions.get
-       * @desc Gets a revision's metadata or content by ID.
-       * @alias drive.revisions.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.revisionId The ID of the revision.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.revisions.get
+        * @desc Gets a revision's metadata or content by ID.
+        * @alias drive.revisions.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.revisionId The ID of the revision.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1359,37 +1240,33 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.revisions.list
-       * @desc Lists a file's revisions.
-       * @alias drive.revisions.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {integer=} params.pageSize The maximum number of revisions to return per page.
-       * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.revisions.list
+        * @desc Lists a file's revisions.
+        * @alias drive.revisions.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {integer=} params.pageSize The maximum number of revisions to return per page.
+        * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1398,37 +1275,33 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.revisions.update
-       * @desc Updates a revision with patch semantics.
-       * @alias drive.revisions.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.fileId The ID of the file.
-       * @param {string} params.revisionId The ID of the revision.
-       * @param {drive(v3).Revision} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.revisions.update
+        * @desc Updates a revision with patch semantics.
+        * @alias drive.revisions.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.fileId The ID of the file.
+        * @param {string} params.revisionId The ID of the revision.
+        * @param {drive(v3).Revision} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1437,14 +1310,13 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.teamdrives = {
@@ -1461,15 +1333,13 @@ function Drive(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function(params, options, callback) {
+    create(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1478,36 +1348,32 @@ function Drive(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['requestId'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.teamdrives.delete
-       * @desc Permanently deletes a Team Drive for which the user is an
-       * organizer. The Team Drive cannot contain any untrashed items.
-       * @alias drive.teamdrives.delete
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.teamDriveId The ID of the Team Drive
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * drive.teamdrives.delete
+        * @desc Permanently deletes a Team Drive for which the user is an
+        * organizer. The Team Drive cannot contain any untrashed items.
+        * @alias drive.teamdrives.delete
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.teamDriveId The ID of the Team Drive
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1516,36 +1382,32 @@ function Drive(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.teamdrives.get
-       * @desc Gets a Team Drive's metadata by ID.
-       * @alias drive.teamdrives.get
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.teamDriveId The ID of the Team Drive
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * drive.teamdrives.get
+        * @desc Gets a Team Drive's metadata by ID.
+        * @alias drive.teamdrives.get
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.teamDriveId The ID of the Team Drive
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1554,38 +1416,34 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.teamdrives.list
-       * @desc Lists the user's Team Drives.
-       * @alias drive.teamdrives.list
-       * @memberOf! drive(v3)
-       *
-       * @param {object=} params Parameters for request
-       * @param {integer=} params.pageSize Maximum number of Team Drives to return.
-       * @param {string=} params.pageToken Page token for Team Drives.
-       * @param {string=} params.q Query string for searching Team Drives.
-       * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * drive.teamdrives.list
+        * @desc Lists the user's Team Drives.
+        * @alias drive.teamdrives.list
+        * @memberOf! drive(v3)
+        *
+        * @param {object=} params Parameters for request
+        * @param {integer=} params.pageSize Maximum number of Team Drives to return.
+        * @param {string=} params.pageToken Page token for Team Drives.
+        * @param {string=} params.q Query string for searching Team Drives.
+        * @param {boolean=} params.useDomainAdminAccess Whether the request should be treated as if it was issued by a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1594,36 +1452,32 @@ function Drive(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * drive.teamdrives.update
-       * @desc Updates a Team Drive's metadata
-       * @alias drive.teamdrives.update
-       * @memberOf! drive(v3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.teamDriveId The ID of the Team Drive
-       * @param {drive(v3).TeamDrive} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * drive.teamdrives.update
+        * @desc Updates a Team Drive's metadata
+        * @alias drive.teamdrives.update
+        * @memberOf! drive(v3)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.teamDriveId The ID of the Team Drive
+        * @param {drive(v3).TeamDrive} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -1632,14 +1486,13 @@ function Drive(options) {
               method: 'PATCH'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -1724,20 +1577,15 @@ function Drive(options) {
  * @typedef File
  * @memberOf! drive(v3)
  * @type object
- * @property {object} appProperties A collection of arbitrary key-value pairs which are private to the requesting app.
-Entries with null values are cleared in update and copy requests.
+ * @property {object} appProperties A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.
  * @property {object} capabilities Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
  * @property {object} contentHints Additional information about the content of the file. These fields are never populated in responses.
  * @property {string} createdTime The time at which the file was created (RFC 3339 date-time).
  * @property {string} description A short description of the file.
  * @property {boolean} explicitlyTrashed Whether the file has been explicitly trashed, as opposed to recursively trashed from a parent folder.
  * @property {string} fileExtension The final component of fullFileExtension. This is only available for files with binary content in Drive.
- * @property {string} folderColorRgb The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource.
-If an unsupported color is specified, the closest color in the palette will be
-used instead.
- * @property {string} fullFileExtension The full file extension extracted from the name field. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. This is only available for files with binary content in Drive.
-This is automatically updated when the name field changes, however it is not
-cleared if the new name does not contain a valid extension.
+ * @property {string} folderColorRgb The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource. If an unsupported color is specified, the closest color in the palette will be used instead.
+ * @property {string} fullFileExtension The full file extension extracted from the name field. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. This is only available for files with binary content in Drive. This is automatically updated when the name field changes, however it is not cleared if the new name does not contain a valid extension.
  * @property {boolean} hasAugmentedPermissions Whether any users are granted file access directly on this file. This field is only populated for Team Drive files.
  * @property {boolean} hasThumbnail Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
  * @property {string} headRevisionId The ID of the file&#39;s head revision. This is currently only available for files with binary content in Drive.
@@ -1748,28 +1596,18 @@ cleared if the new name does not contain a valid extension.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#file&quot;.
  * @property {drive(v3).User} lastModifyingUser The last user to modify the file.
  * @property {string} md5Checksum The MD5 checksum for the content of the file. This is only applicable to files with binary content in Drive.
- * @property {string} mimeType The MIME type of the file.
-Drive will attempt to automatically detect an appropriate value from uploaded
-content if no value is provided. The value cannot be changed unless a new
-revision is uploaded. If a file is created with a Google Doc MIME type, the
-uploaded content will be imported if possible. The supported import formats are
-published in the About resource.
+ * @property {string} mimeType The MIME type of the file. Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.
  * @property {boolean} modifiedByMe Whether the file has been modified by this user.
  * @property {string} modifiedByMeTime The last time the file was modified by the user (RFC 3339 date-time).
- * @property {string} modifiedTime The last time the file was modified by anyone (RFC 3339 date-time).
-Note that setting modifiedTime will also update modifiedByMeTime for the user.
+ * @property {string} modifiedTime The last time the file was modified by anyone (RFC 3339 date-time). Note that setting modifiedTime will also update modifiedByMeTime for the user.
  * @property {string} name The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of Team Drives, My Drive root folder, and Application Data folder the name is constant.
  * @property {string} originalFilename The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.
  * @property {boolean} ownedByMe Whether the user owns the file. Not populated for Team Drive files.
  * @property {drive(v3).User[]} owners The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for Team Drive files.
- * @property {string[]} parents The IDs of the parent folders which contain the file.
-If not specified as part of a create request, the file will be placed directly
-in the My Drive folder. Update requests must use the addParents and
-removeParents parameters to modify the values.
+ * @property {string[]} parents The IDs of the parent folders which contain the file. If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.
  * @property {string[]} permissionIds List of permission IDs for users with access to this file.
  * @property {drive(v3).Permission[]} permissions The full list of permissions for the file. This is only available if the requesting user can share the file. Not populated for Team Drive files.
- * @property {object} properties A collection of arbitrary key-value pairs which are visible to all apps.
-Entries with null values are cleared in update and copy requests.
+ * @property {object} properties A collection of arbitrary key-value pairs which are visible to all apps. Entries with null values are cleared in update and copy requests.
  * @property {string} quotaBytesUsed The number of storage quota bytes used by the file. This includes the head revision as well as previous revisions with keepForever enabled.
  * @property {boolean} shared Whether the file has been shared. Not populated for Team Drive files.
  * @property {string} sharedWithMeTime The time at which the file was shared with the user, if applicable (RFC 3339 date-time).
@@ -1818,25 +1656,13 @@ Entries with null values are cleared in update and copy requests.
  * @property {string} displayName A displayable name for users, groups or domains.
  * @property {string} domain The domain to which this permission refers.
  * @property {string} emailAddress The email address of the user or group to which this permission refers.
- * @property {string} expirationTime The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:
-- They can only be set on user and group permissions
-- The time must be in the future
-- The time cannot be more than a year in the future
+ * @property {string} expirationTime The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:   - They can only be set on user and group permissions  - The time must be in the future  - The time cannot be more than a year in the future
  * @property {string} id The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#permission&quot;.
  * @property {string} photoLink A link to the user&#39;s profile photo, if available.
- * @property {string} role The role granted by this permission. While new values may be supported in the future, the following are currently allowed:
-- organizer
-- owner
-- writer
-- commenter
-- reader
+ * @property {string} role The role granted by this permission. While new values may be supported in the future, the following are currently allowed:   - organizer  - owner  - writer  - commenter  - reader
  * @property {object[]} teamDrivePermissionDetails Details of whether the permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
- * @property {string} type The type of the grantee. Valid values are:
-- user
-- group
-- domain
-- anyone
+ * @property {string} type The type of the grantee. Valid values are:   - user  - group  - domain  - anyone
  */
 /**
  * @typedef PermissionList
@@ -1850,9 +1676,7 @@ Entries with null values are cleared in update and copy requests.
  * @typedef Reply
  * @memberOf! drive(v3)
  * @type object
- * @property {string} action The action the reply performed to the parent comment. Valid values are:
-- resolve
-- reopen
+ * @property {string} action The action the reply performed to the parent comment. Valid values are:   - resolve  - reopen
  * @property {drive(v3).User} author The user who created the reply.
  * @property {string} content The plain text content of the reply. This field is used for setting the content, while htmlContent should be displayed. This is required on creates if no action is specified.
  * @property {string} createdTime The time at which the reply was created (RFC 3339 date-time).
@@ -1875,8 +1699,7 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
  * @property {string} id The ID of the revision.
- * @property {boolean} keepForever Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file.
-This field is only applicable to files with binary content in Drive.
+ * @property {boolean} keepForever Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file. This field is only applicable to files with binary content in Drive.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#revision&quot;.
  * @property {drive(v3).User} lastModifyingUser The last user to modify this revision.
  * @property {string} md5Checksum The MD5 checksum of the revision&#39;s content. This is only applicable to files with binary content in Drive.

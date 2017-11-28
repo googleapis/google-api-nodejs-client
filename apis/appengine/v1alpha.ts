@@ -50,15 +50,13 @@ function Appengine(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -67,36 +65,32 @@ function Appengine(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.authorizedCertificates.delete
-         * @desc Deletes the specified SSL certificate.
-         * @alias appengine.apps.authorizedCertificates.delete
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
-         * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      delete: function(params, options, callback) {
+      }, /**
+          * appengine.apps.authorizedCertificates.delete
+          * @desc Deletes the specified SSL certificate.
+          * @alias appengine.apps.authorizedCertificates.delete
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+          * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -107,37 +101,33 @@ function Appengine(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'authorizedCertificatesId'],
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.authorizedCertificates.get
-         * @desc Gets the specified SSL certificate.
-         * @alias appengine.apps.authorizedCertificates.get
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
-         * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-         * @param {string=} params.view Controls the set of fields returned in the GET response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * appengine.apps.authorizedCertificates.get
+          * @desc Gets the specified SSL certificate.
+          * @alias appengine.apps.authorizedCertificates.get
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+          * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+          * @param {string=} params.view Controls the set of fields returned in the GET response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -148,39 +138,35 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'authorizedCertificatesId'],
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.authorizedCertificates.list
-         * @desc Lists all SSL certificates the user is authorized to
-         * administer.
-         * @alias appengine.apps.authorizedCertificates.list
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-         * @param {integer=} params.pageSize Maximum results to return per page.
-         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-         * @param {string=} params.view Controls the set of fields returned in the LIST response.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * appengine.apps.authorizedCertificates.list
+          * @desc Lists all SSL certificates the user is authorized to
+          * administer.
+          * @alias appengine.apps.authorizedCertificates.list
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+          * @param {integer=} params.pageSize Maximum results to return per page.
+          * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+          * @param {string=} params.view Controls the set of fields returned in the LIST response.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -189,42 +175,38 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.authorizedCertificates.patch
-         * @desc Updates the specified SSL certificate. To renew a certificate
-         * and maintain its existing domain mappings, update certificate_data
-         * with a new certificate. The new certificate must be applicable to the
-         * same domains as the original certificate. The certificate
-         * display_name may also be updated.
-         * @alias appengine.apps.authorizedCertificates.patch
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
-         * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-         * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-         * @param {appengine(v1alpha).AuthorizedCertificate} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
+      }, /**
+          * appengine.apps.authorizedCertificates.patch
+          * @desc Updates the specified SSL certificate. To renew a certificate
+          * and maintain its existing domain mappings, update certificate_data
+          * with a new certificate. The new certificate must be applicable to
+          * the same domains as the original certificate. The certificate
+          * display_name may also be updated.
+          * @alias appengine.apps.authorizedCertificates.patch
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+          * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
+          * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
+          * @param {appengine(v1alpha).AuthorizedCertificate} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      patch(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -235,14 +217,13 @@ function Appengine(options) {
                 method: 'PATCH'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'authorizedCertificatesId'],
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     authorizedDomains: {
@@ -260,15 +241,13 @@ function Appengine(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function(params, options, callback) {
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -277,14 +256,13 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     domainMappings: {
@@ -306,15 +284,13 @@ function Appengine(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -323,38 +299,34 @@ function Appengine(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.domainMappings.delete
-         * @desc Deletes the specified domain mapping. A user must be authorized
-         * to administer the associated domain in order to delete a
-         * DomainMapping resource.
-         * @alias appengine.apps.domainMappings.delete
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
-         * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      delete: function(params, options, callback) {
+      }, /**
+          * appengine.apps.domainMappings.delete
+          * @desc Deletes the specified domain mapping. A user must be
+          * authorized to administer the associated domain in order to delete a
+          * DomainMapping resource.
+          * @alias appengine.apps.domainMappings.delete
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+          * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -365,36 +337,32 @@ function Appengine(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'domainMappingsId'],
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.domainMappings.get
-         * @desc Gets the specified domain mapping.
-         * @alias appengine.apps.domainMappings.get
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
-         * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * appengine.apps.domainMappings.get
+          * @desc Gets the specified domain mapping.
+          * @alias appengine.apps.domainMappings.get
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+          * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -405,37 +373,33 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'domainMappingsId'],
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.domainMappings.list
-         * @desc Lists the domain mappings on an application.
-         * @alias appengine.apps.domainMappings.list
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-         * @param {integer=} params.pageSize Maximum results to return per page.
-         * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * appengine.apps.domainMappings.list
+          * @desc Lists the domain mappings on an application.
+          * @alias appengine.apps.domainMappings.list
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+          * @param {integer=} params.pageSize Maximum results to return per page.
+          * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -444,43 +408,39 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.domainMappings.patch
-         * @desc Updates the specified domain mapping. To map an SSL certificate
-         * to a domain mapping, update certificate_id to point to an
-         * AuthorizedCertificate resource. A user must be authorized to
-         * administer the associated domain in order to update a DomainMapping
-         * resource.
-         * @alias appengine.apps.domainMappings.patch
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
-         * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-         * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
-         * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-         * @param {appengine(v1alpha).DomainMapping} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
+      }, /**
+          * appengine.apps.domainMappings.patch
+          * @desc Updates the specified domain mapping. To map an SSL
+          * certificate to a domain mapping, update certificate_id to point to
+          * an AuthorizedCertificate resource. A user must be authorized to
+          * administer the associated domain in order to update a DomainMapping
+          * resource.
+          * @alias appengine.apps.domainMappings.patch
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+          * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
+          * @param {boolean=} params.noManagedCertificate Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
+          * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+          * @param {appengine(v1alpha).DomainMapping} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      patch(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -491,14 +451,13 @@ function Appengine(options) {
                 method: 'PATCH'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'domainMappingsId'],
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     locations: {
@@ -515,15 +474,13 @@ function Appengine(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -533,39 +490,35 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'locationsId'],
           pathParams: ['appsId', 'locationsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.locations.list
-         * @desc Lists information about the supported locations for this
-         * service.
-         * @alias appengine.apps.locations.list
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-         * @param {string=} params.filter The standard list filter.
-         * @param {integer=} params.pageSize The standard list page size.
-         * @param {string=} params.pageToken The standard list page token.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * appengine.apps.locations.list
+          * @desc Lists information about the supported locations for this
+          * service.
+          * @alias appengine.apps.locations.list
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
+          * @param {string=} params.filter The standard list filter.
+          * @param {integer=} params.pageSize The standard list page size.
+          * @param {string=} params.pageToken The standard list page token.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -574,14 +527,13 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     operations: {
@@ -600,15 +552,13 @@ function Appengine(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function(params, options, callback) {
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -618,47 +568,43 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId', 'operationsId'],
           pathParams: ['appsId', 'operationsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * appengine.apps.operations.list
-         * @desc Lists operations that match the specified filter in the
-         * request. If the server doesn't support this method, it returns
-         * UNIMPLEMENTED.NOTE: the name binding allows API services to override
-         * the binding to use different resource name schemes, such as
-         * users/x/operations. To override the binding, API services can add a
-         * binding such as "/v1/{name=users/x}/operations" to their service
-         * configuration. For backwards compatibility, the default name includes
-         * the operations collection id, however overriding users must ensure
-         * the name binding is the parent resource, without the operations
-         * collection id.
-         * @alias appengine.apps.operations.list
-         * @memberOf! appengine(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
-         * @param {string=} params.filter The standard list filter.
-         * @param {integer=} params.pageSize The standard list page size.
-         * @param {string=} params.pageToken The standard list page token.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      list: function(params, options, callback) {
+      }, /**
+          * appengine.apps.operations.list
+          * @desc Lists operations that match the specified filter in the
+          * request. If the server doesn't support this method, it returns
+          * UNIMPLEMENTED.NOTE: the name binding allows API services to override
+          * the binding to use different resource name schemes, such as
+          * users/x/operations. To override the binding, API services can add a
+          * binding such as "/v1/{name=users/x}/operations" to their service
+          * configuration. For backwards compatibility, the default name
+          * includes the operations collection id, however overriding users must
+          * ensure the name binding is the parent resource, without the
+          * operations collection id.
+          * @alias appengine.apps.operations.list
+          * @memberOf! appengine(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
+          * @param {string=} params.filter The standard list filter.
+          * @param {integer=} params.pageSize The standard list page size.
+          * @param {string=} params.pageToken The standard list page token.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      list(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -667,14 +613,13 @@ function Appengine(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -760,9 +705,7 @@ function Appengine(options) {
  * @typedef Location
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {object} labels Cross-service attributes for the location. For example
-{&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
-
+ * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
  * @property {string} name Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;

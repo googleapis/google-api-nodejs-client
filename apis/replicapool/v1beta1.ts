@@ -51,15 +51,13 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -70,37 +68,33 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.pools.get
-       * @desc Gets information about a single replica pool.
-       * @alias replicapool.pools.get
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.poolName The name of the replica pool for this request.
-       * @param {string} params.projectName The project ID for this replica pool.
-       * @param {string} params.zone The zone for this replica pool.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * replicapool.pools.get
+        * @desc Gets information about a single replica pool.
+        * @alias replicapool.pools.get
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.poolName The name of the replica pool for this request.
+        * @param {string} params.projectName The project ID for this replica pool.
+        * @param {string} params.zone The zone for this replica pool.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -111,37 +105,33 @@ function Replicapool(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.pools.insert
-       * @desc Inserts a new replica pool.
-       * @alias replicapool.pools.insert
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName The project ID for this replica pool.
-       * @param {string} params.zone The zone for this replica pool.
-       * @param {replicapool(v1beta1).Pool} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * replicapool.pools.insert
+        * @desc Inserts a new replica pool.
+        * @alias replicapool.pools.insert
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.projectName The project ID for this replica pool.
+        * @param {string} params.zone The zone for this replica pool.
+        * @param {replicapool(v1beta1).Pool} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -152,38 +142,34 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.pools.list
-       * @desc List all replica pools.
-       * @alias replicapool.pools.list
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-       * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
-       * @param {string} params.projectName The project ID for this request.
-       * @param {string} params.zone The zone for this replica pool.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * replicapool.pools.list
+        * @desc List all replica pools.
+        * @alias replicapool.pools.list
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+        * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+        * @param {string} params.projectName The project ID for this request.
+        * @param {string} params.zone The zone for this replica pool.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -194,40 +180,36 @@ function Replicapool(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.pools.resize
-       * @desc Resize a pool. This is an asynchronous operation, and multiple
-       * overlapping resize requests can be made. Replica Pools will use the
-       * information from the last resize request.
-       * @alias replicapool.pools.resize
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.numReplicas The desired number of replicas to resize to. If this number is larger than the existing number of replicas, new replicas will be added. If the number is smaller, then existing replicas will be deleted.
-       * @param {string} params.poolName The name of the replica pool for this request.
-       * @param {string} params.projectName The project ID for this replica pool.
-       * @param {string} params.zone The zone for this replica pool.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    resize: function(params, options, callback) {
+    }, /**
+        * replicapool.pools.resize
+        * @desc Resize a pool. This is an asynchronous operation, and multiple
+        * overlapping resize requests can be made. Replica Pools will use the
+        * information from the last resize request.
+        * @alias replicapool.pools.resize
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.numReplicas The desired number of replicas to resize to. If this number is larger than the existing number of replicas, new replicas will be added. If the number is smaller, then existing replicas will be deleted.
+        * @param {string} params.poolName The name of the replica pool for this request.
+        * @param {string} params.projectName The project ID for this replica pool.
+        * @param {string} params.zone The zone for this replica pool.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    resize(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -238,38 +220,34 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.pools.updatetemplate
-       * @desc Update the template used by the pool.
-       * @alias replicapool.pools.updatetemplate
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.poolName The name of the replica pool for this request.
-       * @param {string} params.projectName The project ID for this replica pool.
-       * @param {string} params.zone The zone for this replica pool.
-       * @param {replicapool(v1beta1).Template} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    updatetemplate: function(params, options, callback) {
+    }, /**
+        * replicapool.pools.updatetemplate
+        * @desc Update the template used by the pool.
+        * @alias replicapool.pools.updatetemplate
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.poolName The name of the replica pool for this request.
+        * @param {string} params.projectName The project ID for this replica pool.
+        * @param {string} params.zone The zone for this replica pool.
+        * @param {replicapool(v1beta1).Template} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    updatetemplate(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -280,14 +258,13 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.replicas = {
@@ -307,15 +284,13 @@ function Replicapool(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function(params, options, callback) {
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -326,38 +301,34 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.replicas.get
-       * @desc Gets information about a specific replica.
-       * @alias replicapool.replicas.get
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.poolName The replica pool name for this request.
-       * @param {string} params.projectName The project ID for this request.
-       * @param {string} params.replicaName The name of the replica for this request.
-       * @param {string} params.zone The zone where the replica lives.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * replicapool.replicas.get
+        * @desc Gets information about a specific replica.
+        * @alias replicapool.replicas.get
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.poolName The replica pool name for this request.
+        * @param {string} params.projectName The project ID for this request.
+        * @param {string} params.replicaName The name of the replica for this request.
+        * @param {string} params.zone The zone where the replica lives.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -368,39 +339,35 @@ function Replicapool(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.replicas.list
-       * @desc Lists all replicas in a pool.
-       * @alias replicapool.replicas.list
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
-       * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
-       * @param {string} params.poolName The replica pool name for this request.
-       * @param {string} params.projectName The project ID for this request.
-       * @param {string} params.zone The zone where the replica pool lives.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * replicapool.replicas.list
+        * @desc Lists all replicas in a pool.
+        * @alias replicapool.replicas.list
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default: 50)
+        * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
+        * @param {string} params.poolName The replica pool name for this request.
+        * @param {string} params.projectName The project ID for this request.
+        * @param {string} params.zone The zone where the replica pool lives.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -411,38 +378,34 @@ function Replicapool(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * replicapool.replicas.restart
-       * @desc Restarts a replica in a pool.
-       * @alias replicapool.replicas.restart
-       * @memberOf! replicapool(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.poolName The replica pool name for this request.
-       * @param {string} params.projectName The project ID for this request.
-       * @param {string} params.replicaName The name of the replica for this request.
-       * @param {string} params.zone The zone where the replica lives.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    restart: function(params, options, callback) {
+    }, /**
+        * replicapool.replicas.restart
+        * @desc Restarts a replica in a pool.
+        * @alias replicapool.replicas.restart
+        * @memberOf! replicapool(v1beta1)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.poolName The replica pool name for this request.
+        * @param {string} params.projectName The project ID for this request.
+        * @param {string} params.replicaName The name of the replica for this request.
+        * @param {string} params.zone The zone where the replica lives.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    restart(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -453,14 +416,13 @@ function Replicapool(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -560,19 +522,14 @@ function Replicapool(options) {
  * @type object
  * @property {string} diskSizeGb The size of the created disk in gigabytes.
  * @property {string} diskType Name of the disk type resource describing which disk type to use to create the disk. For example &#39;pd-ssd&#39; or &#39;pd-standard&#39;. Default is &#39;pd-standard&#39;
- * @property {string} sourceImage The name or fully-qualified URL of a source image to use to create this disk. If you provide a name of the source image, Replica Pool will look for an image with that name in your project. If you are specifying an image provided by Compute Engine, you will need to provide the full URL with the correct project, such as:
-http://www.googleapis.com/compute/v1/projects/debian-cloud/
-global/images/debian-wheezy-7-vYYYYMMDD
+ * @property {string} sourceImage The name or fully-qualified URL of a source image to use to create this disk. If you provide a name of the source image, Replica Pool will look for an image with that name in your project. If you are specifying an image provided by Compute Engine, you will need to provide the full URL with the correct project, such as: http://www.googleapis.com/compute/v1/projects/debian-cloud/ global/images/debian-wheezy-7-vYYYYMMDD
  */
 /**
  * @typedef Pool
  * @memberOf! replicapool(v1beta1)
  * @type object
  * @property {boolean} autoRestart Whether replicas in this pool should be restarted if they experience a failure. The default value is true.
- * @property {string} baseInstanceName The base instance name to use for the replicas in this pool. This must match the regex [a-z]([-a-z0-9]*[a-z0-9])?. If specified, the instances in this replica pool will be named in the format &lt;base-instance-name&gt;-&lt;ID&gt;. The &lt;ID&gt; postfix will be a four character alphanumeric identifier generated by the service.
-
-If this is not specified by the user, a random base instance name is generated
-by the service.
+ * @property {string} baseInstanceName The base instance name to use for the replicas in this pool. This must match the regex [a-z]([-a-z0-9]*[a-z0-9])?. If specified, the instances in this replica pool will be named in the format &lt;base-instance-name&gt;-&lt;ID&gt;. The &lt;ID&gt; postfix will be a four character alphanumeric identifier generated by the service.  If this is not specified by the user, a random base instance name is generated by the service.
  * @property {integer} currentNumReplicas [Output Only] The current number of replicas in the pool.
  * @property {string} description An optional description of the replica pool.
  * @property {replicapool(v1beta1).HealthCheck[]} healthChecks Deprecated. Please use template[].healthChecks instead.

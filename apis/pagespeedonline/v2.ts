@@ -55,15 +55,13 @@ function Pagespeedonline(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runpagespeed: function(params, options, callback) {
+    runpagespeed(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -72,14 +70,13 @@ function Pagespeedonline(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['url'],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

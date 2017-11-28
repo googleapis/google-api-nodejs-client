@@ -20,8 +20,7 @@ import {createAPIRequest} from '../../lib/apirequest';
  * Accelerated Mobile Pages (AMP) URL API
  *
  * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given
- list of public URL(s).
-
+ * list of public URL(s).
  *
  * @example
  * const google = require('googleapis');
@@ -50,16 +49,14 @@ function Acceleratedmobilepageurl(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet: function(params, options, callback) {
+    batchGet(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl =
           options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -68,14 +65,13 @@ function Acceleratedmobilepageurl(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: [],
         pathParams: [],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }
@@ -84,8 +80,7 @@ function Acceleratedmobilepageurl(options) {
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
  * @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
- * @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
-the cached document in the Google AMP Cache.
+ * @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache.
  * @property {string} originalUrl The original non-AMP URL.
  */
 /**
@@ -101,18 +96,13 @@ the cached document in the Google AMP Cache.
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
  * @property {string} lookupStrategy The lookup_strategy being requested.
- * @property {string[]} urls List of URLs to look up for the paired AMP URLs.
-The URLs are case-sensitive. Up to 50 URLs per lookup
-(see [Usage Limits](/amp/cache/reference/limits)).
+ * @property {string[]} urls List of URLs to look up for the paired AMP URLs. The URLs are case-sensitive. Up to 50 URLs per lookup (see [Usage Limits](/amp/cache/reference/limits)).
  */
 /**
  * @typedef BatchGetAmpUrlsResponse
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
- * @property {acceleratedmobilepageurl(v1).AmpUrl[]} ampUrls For each URL in BatchAmpUrlsRequest, the URL response. The response might
-not be in the same order as URLs in the batch request.
-If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated
-only once.
+ * @property {acceleratedmobilepageurl(v1).AmpUrl[]} ampUrls For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once.
  * @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
  */
 

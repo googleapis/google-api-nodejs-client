@@ -23,12 +23,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const oslogin = google.oslogin('v1beta');
+ * const oslogin = google.oslogin('v1');
  *
  * @namespace oslogin
  * @type {Function}
- * @version v1beta
- * @variation v1beta
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Oslogin
  */
 function Oslogin(options) {
@@ -40,7 +40,7 @@ function Oslogin(options) {
      * @desc Retrieves the profile information used for logging in to a virtual
      * machine on Google Compute Engine.
      * @alias oslogin.users.getLoginProfile
-     * @memberOf! oslogin(v1beta)
+     * @memberOf! oslogin(v1)
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique ID for the user in format `users/{user}`.
@@ -58,7 +58,7 @@ function Oslogin(options) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta/{name}/loginProfile')
+              url: (rootUrl + '/v1/{name}/loginProfile')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -75,12 +75,12 @@ function Oslogin(options) {
         * Default POSIX account information is set when no username and UID
         * exist as part of the login profile.
         * @alias oslogin.users.importSshPublicKey
-        * @memberOf! oslogin(v1beta)
+        * @memberOf! oslogin(v1)
         *
         * @param {object} params Parameters for request
         * @param {string} params.parent The unique ID for the user in format `users/{user}`.
         * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
-        * @param {oslogin(v1beta).SshPublicKey} params.resource Request body data
+        * @param {oslogin(v1).SshPublicKey} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -95,7 +95,7 @@ function Oslogin(options) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta/{parent}:importSshPublicKey')
+              url: (rootUrl + '/v1/{parent}:importSshPublicKey')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -112,7 +112,7 @@ function Oslogin(options) {
        * oslogin.users.projects.delete
        * @desc Deletes a POSIX account.
        * @alias oslogin.users.projects.delete
-       * @memberOf! oslogin(v1beta)
+       * @memberOf! oslogin(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
@@ -130,7 +130,7 @@ function Oslogin(options) {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v1beta/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -148,7 +148,7 @@ function Oslogin(options) {
        * oslogin.users.sshPublicKeys.delete
        * @desc Deletes an SSH public key.
        * @alias oslogin.users.sshPublicKeys.delete
-       * @memberOf! oslogin(v1beta)
+       * @memberOf! oslogin(v1)
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
@@ -166,7 +166,7 @@ function Oslogin(options) {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v1beta/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'DELETE'
               },
               options),
@@ -180,7 +180,7 @@ function Oslogin(options) {
           * oslogin.users.sshPublicKeys.get
           * @desc Retrieves an SSH public key.
           * @alias oslogin.users.sshPublicKeys.get
-          * @memberOf! oslogin(v1beta)
+          * @memberOf! oslogin(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
@@ -198,7 +198,7 @@ function Oslogin(options) {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v1beta/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'GET'
               },
               options),
@@ -213,12 +213,12 @@ function Oslogin(options) {
           * @desc Updates an SSH public key and returns the profile information.
           * This method supports patch semantics.
           * @alias oslogin.users.sshPublicKeys.patch
-          * @memberOf! oslogin(v1beta)
+          * @memberOf! oslogin(v1)
           *
           * @param {object} params Parameters for request
           * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
           * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
-          * @param {oslogin(v1beta).SshPublicKey} params.resource Request body data
+          * @param {oslogin(v1).SshPublicKey} params.resource Request body data
           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
@@ -233,7 +233,7 @@ function Oslogin(options) {
         const parameters = {
           options: Object.assign(
               {
-                url: (rootUrl + '/v1beta/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
                 method: 'PATCH'
               },
               options),
@@ -250,27 +250,27 @@ function Oslogin(options) {
 }
 /**
  * @typedef Empty
- * @memberOf! oslogin(v1beta)
+ * @memberOf! oslogin(v1)
  * @type object
  */
 /**
  * @typedef ImportSshPublicKeyResponse
- * @memberOf! oslogin(v1beta)
+ * @memberOf! oslogin(v1)
  * @type object
- * @property {oslogin(v1beta).LoginProfile} loginProfile The login profile information for the user.
+ * @property {oslogin(v1).LoginProfile} loginProfile The login profile information for the user.
  */
 /**
  * @typedef LoginProfile
- * @memberOf! oslogin(v1beta)
+ * @memberOf! oslogin(v1)
  * @type object
  * @property {string} name The primary email address that uniquely identifies the user.
- * @property {oslogin(v1beta).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the user.
+ * @property {oslogin(v1).PosixAccount[]} posixAccounts The list of POSIX accounts associated with the user.
  * @property {object} sshPublicKeys A map from SSH public key fingerprint to the associated key object.
  * @property {boolean} suspended Indicates if the user is suspended. A suspended user cannot log in but their profile information is retained.
  */
 /**
  * @typedef PosixAccount
- * @memberOf! oslogin(v1beta)
+ * @memberOf! oslogin(v1)
  * @type object
  * @property {string} accountId Output only. A POSIX account identifier.
  * @property {string} gecos The GECOS (user information) entry for this account.
@@ -284,7 +284,7 @@ function Oslogin(options) {
  */
 /**
  * @typedef SshPublicKey
- * @memberOf! oslogin(v1beta)
+ * @memberOf! oslogin(v1)
  * @type object
  * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
  * @property {string} fingerprint Output only. The SHA-256 fingerprint of the SSH public key.

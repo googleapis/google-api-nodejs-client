@@ -52,15 +52,13 @@ function Playcustomapp(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function(params, options, callback) {
+      create(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -70,7 +68,7 @@ function Playcustomapp(options) {
                 method: 'POST'
               },
               options),
-          params: params,
+          params,
           mediaUrl: (rootUrl +
                      '/upload/playcustomapp/v1/accounts/{account}/customApps')
                         .replace(/([^:]\/)\/+/g, '$1'),
@@ -80,7 +78,6 @@ function Playcustomapp(options) {
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };

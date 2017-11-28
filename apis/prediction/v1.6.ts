@@ -111,15 +111,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function(params, options, callback) {
+    predict(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -130,14 +128,13 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'hostedModelName'],
         pathParams: ['hostedModelName', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
   self.trainedmodels = {
@@ -210,15 +207,13 @@ function Prediction(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyze: function(params, options, callback) {
+    analyze(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -229,89 +224,85 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.delete
-       * @desc Delete a trained model.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // The unique name for the predictive model.
-       *     id: 'my-id',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   prediction.trainedmodels.delete(request, function(err) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.delete
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {string} params.project The project associated with the model.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    delete: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.delete
+        * @desc Delete a trained model.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The unique name for the predictive model.
+        *     id: 'my-id',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   prediction.trainedmodels.delete(request, function(err) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.delete
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {string} params.project The project associated with the model.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    delete (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -321,92 +312,88 @@ function Prediction(options) {
               method: 'DELETE'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.get
-       * @desc Check training status of your model.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // The unique name for the predictive model.
-       *     id: 'my-id',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   prediction.trainedmodels.get(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.get
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {string} params.project The project associated with the model.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    get: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.get
+        * @desc Check training status of your model.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The unique name for the predictive model.
+        *     id: 'my-id',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   prediction.trainedmodels.get(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.get
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {string} params.project The project associated with the model.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -416,93 +403,89 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.insert
-       * @desc Train a Prediction API model.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   prediction.trainedmodels.insert(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.insert
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.project The project associated with the model.
-       * @param {prediction(v1.6).Insert} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    insert: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.insert
+        * @desc Train a Prediction API model.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   prediction.trainedmodels.insert(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.insert
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.project The project associated with the model.
+        * @param {prediction(v1.6).Insert} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    insert(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -512,103 +495,99 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.list
-       * @desc List available models.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var itemsPage = response['items'];
-       *     if (!itemsPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < itemsPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       prediction.trainedmodels.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   prediction.trainedmodels.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.list
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.maxResults Maximum number of results to return.
-       * @param {string=} params.pageToken Pagination token.
-       * @param {string} params.project The project associated with the model.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    list: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.list
+        * @desc List available models.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   var handlePage = function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     var itemsPage = response['items'];
+        *     if (!itemsPage) {
+        *       return;
+        *     }
+        *     for (var i = 0; i < itemsPage.length; i++) {
+        *       // TODO: Change code below to process each resource in
+        * `itemsPage`: console.log(JSON.stringify(itemsPage[i], null, 2));
+        *     }
+        *
+        *     if (response.nextPageToken) {
+        *       request.pageToken = response.nextPageToken;
+        *       prediction.trainedmodels.list(request, handlePage);
+        *     }
+        *   };
+        *
+        *   prediction.trainedmodels.list(request, handlePage);
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.list
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults Maximum number of results to return.
+        * @param {string=} params.pageToken Pagination token.
+        * @param {string} params.project The project associated with the model.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -618,97 +597,93 @@ function Prediction(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project'],
         pathParams: ['project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.predict
-       * @desc Submit model id and request a prediction.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // The unique name for the predictive model.
-       *     id: 'my-id',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   prediction.trainedmodels.predict(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.predict
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {string} params.project The project associated with the model.
-       * @param {prediction(v1.6).Input} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    predict: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.predict
+        * @desc Submit model id and request a prediction.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The unique name for the predictive model.
+        *     id: 'my-id',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   prediction.trainedmodels.predict(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.predict
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {string} params.project The project associated with the model.
+        * @param {prediction(v1.6).Input} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    predict(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -719,99 +694,95 @@ function Prediction(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * prediction.trainedmodels.update
-       * @desc Add new data to a trained model.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Prediction API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/prediction
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var prediction = google.prediction('v1.6');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The project associated with the model.
-       *     project: 'my-project',  // TODO: Update placeholder value.
-       *
-       *     // The unique name for the predictive model.
-       *     id: 'my-id',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body. All existing
-       * properties
-       *       // will be replaced.
-       *     },
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   prediction.trainedmodels.update(request, function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias prediction.trainedmodels.update
-       * @memberOf! prediction(v1.6)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.id The unique name for the predictive model.
-       * @param {string} params.project The project associated with the model.
-       * @param {prediction(v1.6).Update} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    update: function(params, options, callback) {
+    }, /**
+        * prediction.trainedmodels.update
+        * @desc Add new data to a trained model.
+        * @example
+        * // BEFORE RUNNING:
+        * // ---------------
+        * // 1. If not already done, enable the Prediction API
+        * //    and check the quota for your project at
+        * //    https://console.developers.google.com/apis/api/prediction
+        * // 2. This sample uses Application Default Credentials for
+        * authentication.
+        * //    If not already done, install the gcloud CLI from
+        * //    https://cloud.google.com/sdk and run
+        * //    `gcloud beta auth application-default login`.
+        * //    For more information, see
+        * //
+        * https://developers.google.com/identity/protocols/application-default-credentials
+        * // 3. Install the Node.js client library by running
+        * //    `npm install googleapis --save`
+        *
+        * var google = require('googleapis');
+        * var prediction = google.prediction('v1.6');
+        *
+        * authorize(function(authClient) {
+        *   var request = {
+        *     // The project associated with the model.
+        *     project: 'my-project',  // TODO: Update placeholder value.
+        *
+        *     // The unique name for the predictive model.
+        *     id: 'my-id',  // TODO: Update placeholder value.
+        *
+        *     resource: {
+        *       // TODO: Add desired properties to the request body. All
+        * existing properties
+        *       // will be replaced.
+        *     },
+        *
+        *     auth: authClient,
+        *   };
+        *
+        *   prediction.trainedmodels.update(request, function(err, response) {
+        *     if (err) {
+        *       console.error(err);
+        *       return;
+        *     }
+        *
+        *     // TODO: Change code below to process the `response` object:
+        *     console.log(JSON.stringify(response, null, 2));
+        *   });
+        * });
+        *
+        * function authorize(callback) {
+        *   google.auth.getApplicationDefault(function(err, authClient) {
+        *     if (err) {
+        *       console.error('authentication failed: ', err);
+        *       return;
+        *     }
+        *     if (authClient.createScopedRequired &&
+        * authClient.createScopedRequired()) { var scopes =
+        * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+        * authClient.createScoped(scopes);
+        *     }
+        *     callback(authClient);
+        *   });
+        * }
+        * @alias prediction.trainedmodels.update
+        * @memberOf! prediction(v1.6)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.id The unique name for the predictive model.
+        * @param {string} params.project The project associated with the model.
+        * @param {prediction(v1.6).Update} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -821,14 +792,13 @@ function Prediction(options) {
               method: 'PUT'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
         context: self
       };
       return createAPIRequest(parameters, callback);
     }
-
 
   };
 }

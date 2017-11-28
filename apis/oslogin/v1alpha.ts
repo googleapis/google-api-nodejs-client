@@ -48,15 +48,13 @@ function Oslogin(options) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getLoginProfile: function(params, options, callback) {
+    getLoginProfile(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -65,39 +63,35 @@ function Oslogin(options) {
               method: 'GET'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['name'],
         pathParams: ['name'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    , /**
-       * oslogin.users.importSshPublicKey
-       * @desc Adds an SSH public key and returns the profile information.
-       * Default POSIX account information is set when no username and UID exist
-       * as part of the login profile.
-       * @alias oslogin.users.importSshPublicKey
-       * @memberOf! oslogin(v1alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The unique ID for the user in format `users/{user}`.
-       * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
-       * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-    importSshPublicKey: function(params, options, callback) {
+    }, /**
+        * oslogin.users.importSshPublicKey
+        * @desc Adds an SSH public key and returns the profile information.
+        * Default POSIX account information is set when no username and UID
+        * exist as part of the login profile.
+        * @alias oslogin.users.importSshPublicKey
+        * @memberOf! oslogin(v1alpha)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.parent The unique ID for the user in format `users/{user}`.
+        * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
+        * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    importSshPublicKey(params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
       }
-      options || (options = {});
-
+      options = options || {};
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
       const parameters = {
         options: Object.assign(
             {
@@ -106,15 +100,13 @@ function Oslogin(options) {
               method: 'POST'
             },
             options),
-        params: params,
+        params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
         context: self
       };
       return createAPIRequest(parameters, callback);
-    }
-
-    ,
+    },
     projects: {
       /**
        * oslogin.users.projects.delete
@@ -128,15 +120,13 @@ function Oslogin(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -145,14 +135,13 @@ function Oslogin(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['name'],
           pathParams: ['name'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     },
     sshPublicKeys: {
@@ -168,15 +157,13 @@ function Oslogin(options) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, options, callback) {
+      delete (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -185,35 +172,31 @@ function Oslogin(options) {
                 method: 'DELETE'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['name'],
           pathParams: ['name'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * oslogin.users.sshPublicKeys.get
-         * @desc Retrieves an SSH public key.
-         * @alias oslogin.users.sshPublicKeys.get
-         * @memberOf! oslogin(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      get: function(params, options, callback) {
+      }, /**
+          * oslogin.users.sshPublicKeys.get
+          * @desc Retrieves an SSH public key.
+          * @alias oslogin.users.sshPublicKeys.get
+          * @memberOf! oslogin(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      get(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -222,38 +205,34 @@ function Oslogin(options) {
                 method: 'GET'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['name'],
           pathParams: ['name'],
           context: self
         };
         return createAPIRequest(parameters, callback);
-      }
-
-      , /**
-         * oslogin.users.sshPublicKeys.patch
-         * @desc Updates an SSH public key and returns the profile information.
-         * This method supports patch semantics.
-         * @alias oslogin.users.sshPublicKeys.patch
-         * @memberOf! oslogin(v1alpha)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-         * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
-         * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-      patch: function(params, options, callback) {
+      }, /**
+          * oslogin.users.sshPublicKeys.patch
+          * @desc Updates an SSH public key and returns the profile information.
+          * This method supports patch semantics.
+          * @alias oslogin.users.sshPublicKeys.patch
+          * @memberOf! oslogin(v1alpha)
+          *
+          * @param {object} params Parameters for request
+          * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+          * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
+          * @param {oslogin(v1alpha).SshPublicKey} params.resource Request body data
+          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+          * @param {callback} callback The callback that handles the response.
+          * @return {object} Request object
+          */
+      patch(params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
         }
-        options || (options = {});
-
+        options = options || {};
         const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-
         const parameters = {
           options: Object.assign(
               {
@@ -262,14 +241,13 @@ function Oslogin(options) {
                 method: 'PATCH'
               },
               options),
-          params: params,
+          params,
           requiredParams: ['name'],
           pathParams: ['name'],
           context: self
         };
         return createAPIRequest(parameters, callback);
       }
-
 
     }
   };
@@ -304,8 +282,7 @@ function Oslogin(options) {
  * @property {string} homeDirectory The path to the home directory for this account.
  * @property {boolean} primary Only one POSIX account can be marked as primary.
  * @property {string} shell The path to the logic shell for this account.
- * @property {string} systemId System identifier for which account the username or uid applies to.
-By default, the empty value is used.
+ * @property {string} systemId System identifier for which account the username or uid applies to. By default, the empty value is used.
  * @property {string} uid The user ID.
  * @property {string} username The username of the POSIX account.
  */
@@ -315,9 +292,7 @@ By default, the empty value is used.
  * @type object
  * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
  * @property {string} fingerprint Output only. The SHA-256 fingerprint of the SSH public key.
- * @property {string} key Public key text in SSH format, defined by
-&lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot;
-target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
+ * @property {string} key Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
  */
 
 export = Oslogin;
