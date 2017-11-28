@@ -59,9 +59,9 @@ function {{ Name }} (options) {
 {% if api.schemas %}
 {% for schemaName, schema in api.schemas|dictsort %}
 /**
- * @typedef {{ schema.id|oneLine }}
+ * @typedef {{ schema.id | oneLine }}
  * @memberOf! {{ api.name }}({{ api.version }})
- * @type {{ schema.type|oneLine }}
+ * @type {{ schema.type | oneLine }}
 {% if schema.properties %}
 {% for pname, p in schema.properties|dictsort %}
 {% if p.$ref %}
